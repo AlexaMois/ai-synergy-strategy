@@ -64,6 +64,14 @@ export default {
         "dark-bg": "hsl(var(--dark-bg))",
         "light-bg": "hsl(var(--light-bg))",
       },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-primary-hover': 'var(--gradient-primary-hover)',
+      },
+      boxShadow: {
+        'glow': 'var(--shadow-glow)',
+        'glow-hover': 'var(--shadow-glow-hover)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
