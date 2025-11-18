@@ -9,25 +9,25 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 135 14% 8%;
+    --foreground: 0 0% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 135 14% 8%;
+    --card-foreground: 0 0% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 135 14% 8%;
+    --popover-foreground: 0 0% 15%;
 
     --primary: 185 62% 51%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 25% 98%;
-    --secondary-foreground: 135 14% 8%;
+    --secondary-foreground: 0 0% 15%;
 
     --muted: 220 25% 98%;
-    --muted-foreground: 135 14% 45%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 185 62% 51%;
-    --accent-foreground: 135 14% 8%;
+    --accent-foreground: 0 0% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -38,7 +38,7 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
     
-    --dark-bg: 135 14% 8%;
+    --dark-bg: 0 0% 10%;
     --light-bg: 220 25% 98%;
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -59,32 +59,32 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 135 14% 8%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 100%;
 
-    --card: 135 14% 8%;
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 135 14% 8%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
 
     --primary: 185 62% 51%;
-    --primary-foreground: 135 14% 8%;
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 135 14% 15%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 135 14% 15%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 185 62% 51%;
-    --accent-foreground: 135 14% 8%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 135 14% 20%;
-    --input: 135 14% 20%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
     --ring: 185 62% 51%;
     
     --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 51%), hsl(185, 72%, 61%));
