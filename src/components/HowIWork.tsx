@@ -1,4 +1,7 @@
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+
 const HowIWork = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const steps = [
     {
       number: "01",
@@ -21,7 +24,7 @@ const HowIWork = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary">
+    <section ref={ref} className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -33,7 +36,11 @@ const HowIWork = () => {
 
           <div className="space-y-12">
             {steps.map((step, index) => (
-              <div key={index} className="flex gap-8 items-start">
+              <div 
+                key={index} 
+                className={`flex gap-8 items-start ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
                 <div className="flex-shrink-0 w-20 h-20 bg-accent text-accent-foreground rounded-lg flex items-center justify-center text-2xl font-bold">
                   {step.number}
                 </div>

@@ -5,8 +5,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const FAQ = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const faqs = [
     {
       question: "Сколько стоит внедрение ИИ?",
@@ -41,16 +43,16 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section ref={ref} className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Часто задаваемые вопросы
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto" />
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className={`max-w-3xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem

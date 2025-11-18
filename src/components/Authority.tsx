@@ -1,7 +1,9 @@
 import { Award, Users, BookOpen, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Authority = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const achievements = [
     {
       icon: Award,
@@ -42,9 +44,9 @@ const Authority = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary">
+    <section ref={ref} className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Авторитет и признание
           </h2>
@@ -55,7 +57,8 @@ const Authority = () => {
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg bg-background border border-border hover:border-accent transition-colors"
+              className={`p-6 rounded-lg bg-background border border-border hover:border-accent hover:shadow-lg hover:-translate-y-1 transition-all ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
                 <achievement.icon className="w-6 h-6 text-accent" />
