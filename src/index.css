@@ -43,9 +43,9 @@ All colors MUST be HSL.
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 51%), hsl(185, 72%, 61%));
-    --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 61%), hsl(185, 82%, 71%));
-    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 71%), hsl(185, 92%, 81%));
+    --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 35%), hsl(185, 72%, 45%));
+    --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 45%), hsl(185, 82%, 55%));
+    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 55%), hsl(185, 92%, 65%));
     --shadow-glow: 0 0 20px hsla(185, 62%, 51%, 0.4);
     --shadow-glow-hover: 0 0 30px hsla(185, 62%, 51%, 0.6);
     --shadow-glow-active: 0 0 40px hsla(185, 72%, 61%, 0.8);
@@ -89,9 +89,9 @@ All colors MUST be HSL.
     --input: 0 0% 20%;
     --ring: 185 62% 51%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 51%), hsl(185, 72%, 61%));
-    --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 61%), hsl(185, 82%, 71%));
-    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 71%), hsl(185, 92%, 81%));
+    --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 35%), hsl(185, 72%, 45%));
+    --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 45%), hsl(185, 82%, 55%));
+    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 55%), hsl(185, 92%, 65%));
     --shadow-glow: 0 0 20px hsla(185, 62%, 51%, 0.4);
     --shadow-glow-hover: 0 0 30px hsla(185, 62%, 51%, 0.6);
     --shadow-glow-active: 0 0 40px hsla(185, 72%, 61%, 0.8);
