@@ -45,8 +45,10 @@ All colors MUST be HSL.
     
     --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 51%), hsl(185, 72%, 61%));
     --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 61%), hsl(185, 82%, 71%));
+    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 71%), hsl(185, 92%, 81%));
     --shadow-glow: 0 0 20px hsla(185, 62%, 51%, 0.4);
     --shadow-glow-hover: 0 0 30px hsla(185, 62%, 51%, 0.6);
+    --shadow-glow-active: 0 0 40px hsla(185, 72%, 61%, 0.8);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -89,8 +91,10 @@ All colors MUST be HSL.
     
     --gradient-primary: linear-gradient(135deg, hsl(185, 62%, 51%), hsl(185, 72%, 61%));
     --gradient-primary-hover: linear-gradient(135deg, hsl(185, 72%, 61%), hsl(185, 82%, 71%));
+    --gradient-primary-active: linear-gradient(135deg, hsl(185, 82%, 71%), hsl(185, 92%, 81%));
     --shadow-glow: 0 0 20px hsla(185, 62%, 51%, 0.4);
     --shadow-glow-hover: 0 0 30px hsla(185, 62%, 51%, 0.6);
+    --shadow-glow-active: 0 0 40px hsla(185, 72%, 61%, 0.8);
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -193,5 +197,14 @@ All colors MUST be HSL.
     50% {
       opacity: 0.85;
     }
+  }
+  
+  .button-gradient-animate {
+    background-size: 200% 200%;
+    transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .button-gradient-animate:hover {
+    background-position: right center;
   }
 }
