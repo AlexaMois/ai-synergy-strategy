@@ -67,10 +67,12 @@ export default {
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-primary-hover': 'var(--gradient-primary-hover)',
+        'gradient-primary-active': 'var(--gradient-primary-active)',
       },
       boxShadow: {
         'glow': 'var(--shadow-glow)',
         'glow-hover': 'var(--shadow-glow-hover)',
+        'glow-active': 'var(--shadow-glow-active)',
       },
       borderRadius: {
         lg: "var(--radius)",
