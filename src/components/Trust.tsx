@@ -1,6 +1,8 @@
 import { Award, TrendingUp, Building2, Target } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Trust = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
   const facts = [
     {
       icon: Award,
@@ -21,9 +23,9 @@ const Trust = () => {
   ];
 
   return (
-    <section className="py-16 bg-secondary">
+    <section ref={ref} className="py-16 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           {facts.map((fact, index) => (
             <div
               key={index}

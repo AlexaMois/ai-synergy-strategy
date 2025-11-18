@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Cases = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const cases = [
     {
       title: "Крайпотребсоюз",
@@ -27,9 +29,9 @@ const Cases = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary">
+    <section ref={ref} className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Кейсы</h2>
           <div className="w-24 h-1 bg-accent mx-auto" />
         </div>
@@ -38,7 +40,8 @@ const Cases = () => {
           {cases.map((caseItem, index) => (
             <div
               key={index}
-              className="p-8 rounded-lg bg-background border-l-4 border-accent hover:shadow-lg transition-shadow"
+              className={`p-8 rounded-lg bg-background border-l-4 border-accent hover:shadow-xl hover:-translate-y-2 transition-all ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <h3 className="text-2xl font-bold mb-4">{caseItem.title}</h3>
               <div className="space-y-2 mb-4">

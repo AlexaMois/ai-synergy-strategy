@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Send, Youtube } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Contact = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  
   return (
-    <section className="py-20 bg-background">
+    <section ref={ref} className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Начните с малого
             </h2>
@@ -16,7 +19,7 @@ const Contact = () => {
             <div className="w-24 h-1 bg-accent mx-auto mt-6" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className={`grid md:grid-cols-2 gap-8 mb-12 ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}>
             <div className="p-8 rounded-lg bg-card border border-border">
               <h3 className="text-xl font-bold mb-6">Свяжитесь со мной</h3>
               <div className="space-y-4">

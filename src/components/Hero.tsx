@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Hero = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  
   return (
-    <section className="relative bg-background overflow-hidden">
+    <section ref={ref} className="relative bg-background overflow-hidden">
       <div className="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 relative z-10">
+          <div className={`space-y-8 relative z-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
             <div className="relative">
               <div className="absolute -left-4 top-0 w-2 h-24 bg-accent" />
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -36,7 +39,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative">
+          <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <div className="absolute -top-8 -right-8 w-72 h-72 border-2 border-accent/20 rounded-lg" />
             <img 
               src={alexandraPortrait} 

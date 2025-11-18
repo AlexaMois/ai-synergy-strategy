@@ -1,4 +1,7 @@
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+
 const WhyItWorks = () => {
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const principles = [
     {
       title: "Фокус на ROI",
@@ -23,9 +26,9 @@ const WhyItWorks = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section ref={ref} className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Почему у меня получается
           </h2>
@@ -40,7 +43,8 @@ const WhyItWorks = () => {
           {principles.map((principle, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg bg-card border border-border hover:border-accent transition-colors"
+              className={`p-6 rounded-lg bg-card border border-border hover:border-accent hover:shadow-lg hover:-translate-y-1 transition-all ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-accent text-accent-foreground rounded-full flex items-center justify-center font-bold">
