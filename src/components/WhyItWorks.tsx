@@ -12,19 +12,23 @@ const WhyItWorks = () => {
     <section ref={ref} className="relative py-16 bg-background overflow-hidden">
       {/* N Pattern Background */}
       <div 
-        className="absolute bottom-0 left-0 w-1/2 h-2/3 opacity-[0.02] pointer-events-none"
+        className="absolute bottom-0 left-0 w-1/2 h-2/3 opacity-[0.05] pointer-events-none"
         style={{
           backgroundImage: `url(${nPattern})`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '100px'
+          backgroundSize: '100px',
+          filter: 'hue-rotate(20deg) saturate(1.5)',
         }}
       />
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute bottom-32 right-20 w-96 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.6}px) rotate(-45deg)` }}
+        className="absolute bottom-32 right-20 w-60 opacity-30 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.3}px) rotate(-45deg)`,
+          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">

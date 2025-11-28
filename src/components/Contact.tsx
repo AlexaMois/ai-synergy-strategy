@@ -14,8 +14,11 @@ const Contact = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(-12deg)` }}
+        className="absolute top-1/2 right-10 w-72 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(-12deg)`,
+          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
