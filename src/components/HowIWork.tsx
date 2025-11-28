@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,7 @@ const HowIWork = () => {
   return (
     <section id="how" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute top-32 right-16 w-[420px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"

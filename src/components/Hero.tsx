@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
@@ -21,7 +22,7 @@ const Hero = () => {
         }}
       />
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
@@ -68,10 +69,12 @@ const Hero = () => {
           </div>
           
           <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <img 
+            <OptimizedImage 
               src={alexandraPortrait} 
               alt="Александра Моисеева - AI консультант" 
               className="rounded-lg w-full h-auto object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>

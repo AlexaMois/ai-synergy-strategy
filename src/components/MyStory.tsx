@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
@@ -10,7 +11,7 @@ const MyStory = () => {
   return (
     <section id="about" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
@@ -23,10 +24,11 @@ const MyStory = () => {
 
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           <div className={`${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <img
+            <OptimizedImage
               src={alexandraPortrait}
               alt="Александра Моисеева"
               className="rounded-lg w-full"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
