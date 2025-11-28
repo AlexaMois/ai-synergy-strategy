@@ -12,6 +12,7 @@ import FAQ from "@/components/FAQ";
 import Authority from "@/components/Authority";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -30,6 +31,7 @@ const Index = () => {
       <FAQ />
       <Contact />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
