@@ -13,7 +13,7 @@ const Contact = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-10 w-80 opacity-10 pointer-events-none transition-transform duration-100 ease-out"
+        className="absolute top-1/2 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
         style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(-12deg)` }}
       />
       <div className="container mx-auto px-4">

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import nPattern from "@/assets/n-pattern.png";
-import brushAccent from "@/assets/brush-accent-2.png";
+import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 
@@ -24,8 +24,8 @@ const Hero = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/4 right-1/4 w-64 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset}px) rotate(-15deg)` }}
+        className="absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
