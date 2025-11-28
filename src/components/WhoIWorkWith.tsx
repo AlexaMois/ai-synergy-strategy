@@ -1,10 +1,20 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const WhoIWorkWith = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.35);
 
   return (
-    <section ref={ref} className="py-32 bg-background">
+    <section ref={ref} className="relative py-32 bg-background overflow-hidden">
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute bottom-20 left-16 w-[380px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(35deg)` }}
+      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`text-5xl md:text-6xl font-bold mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
