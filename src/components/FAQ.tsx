@@ -35,7 +35,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-32 bg-background overflow-hidden">
+    <section ref={ref} className="relative py-16 bg-background overflow-hidden">
       {/* Brush Accent */}
       <img 
         src={brushAccent} 
@@ -44,22 +44,22 @@ const FAQ = () => {
         style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <h2 className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Вопросы и ответы
         </h2>
 
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-          <Accordion type="single" collapsible className="space-y-6">
+          <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border-b-2 border-border pb-4"
+                className="border-b-2 border-border pb-3"
               >
-                <AccordionTrigger className="text-left text-xl md:text-2xl font-bold hover:text-accent">
+                <AccordionTrigger className="text-left text-lg md:text-xl font-bold hover:text-accent">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-lg text-muted-foreground leading-relaxed pt-4">
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-3">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

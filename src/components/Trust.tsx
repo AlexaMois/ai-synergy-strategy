@@ -13,7 +13,7 @@ const Trust = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-8 bg-secondary overflow-hidden">
+    <section ref={ref} className="relative py-6 bg-secondary overflow-hidden">
       {/* Brush Accent */}
       <img 
         src={brushAccent} 

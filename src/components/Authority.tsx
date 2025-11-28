@@ -13,7 +13,7 @@ const Authority = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-24 bg-secondary overflow-hidden">
+    <section ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
       <img 
         src={brushAccent} 
@@ -23,12 +23,12 @@ const Authority = () => {
       />
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h3 className="text-3xl md:text-4xl font-bold mb-12">
+          <h3 className="text-2xl font-bold mb-8">
             Выступления и публикации
           </h3>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
             {achievements.map((achievement, index) => (
-              <div key={index} className="text-lg md:text-xl text-muted-foreground">
+              <div key={index} className="text-base text-muted-foreground">
                 {achievement}
               </div>
             ))}
