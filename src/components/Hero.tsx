@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import nPattern from "@/assets/n-pattern.png";
@@ -9,6 +10,27 @@ import { useParallax } from "@/hooks/use-parallax";
 const Hero = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
+
+  const tabsContent = {
+    ceo: {
+      title: "За 30 минут покажу, где ваш бизнес теряет деньги в процессах",
+      description: "Экспресс-аудит, после которого становится ясно, что автоматизировать, что НЕ автоматизировать и что даст ROI уже в первые месяцы.",
+      button1: "Пройти экспресс-аудит процессов",
+      button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
+    },
+    operations: {
+      title: "Где процессы буксуют — и что даст эффект быстрее всего",
+      description: "Инженерный разбор, который выявляет узкие места, дублирование и реальные точки ускорения.",
+      button1: "Пройти экспресс-аудит процессов",
+      button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
+    },
+    it: {
+      title: "Как внедрять технологии, не ломая работающую систему",
+      description: "Честная оценка зрелости процессов, рисков, архитектуры и реальных возможностей ИИ.",
+      button1: "Пройти экспресс-аудит процессов",
+      button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
+    }
+  };
 
   return (
     <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
@@ -33,55 +55,116 @@ const Hero = () => {
         }}
       />
       <div className="container mx-auto">
-        <div className="grid-12 items-center">
-          <div className={`col-span-6 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="space-y-4">
-              <div className="inline-block">
-                <span className="text-sm font-bold tracking-wider uppercase text-accent">
-                  для руководителей и владельцев бизнеса
-                </span>
+        <Tabs defaultValue="ceo" className="w-full">
+          <div className="grid-12 items-center">
+            <div className={`col-span-6 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+              <div className="space-y-4">
+                <div className="inline-block">
+                  <span className="text-sm font-bold tracking-wider uppercase text-accent">
+                    для руководителей и владельцев бизнеса
+                  </span>
+                </div>
+
+                <TabsList className="bg-gray-100 p-1 h-auto rounded-xl mb-6">
+                  <TabsTrigger value="ceo" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                    Я — CEO
+                  </TabsTrigger>
+                  <TabsTrigger value="operations" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                    Я — операционный директор
+                  </TabsTrigger>
+                  <TabsTrigger value="it" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                    Я — ИТ-директор
+                  </TabsTrigger>
+                </TabsList>
               </div>
-              
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                <span className="text-text-heading">ИИ</span>
-                <br />
-                <span className="text-text-body">БЕЗ ХАОСА</span>
-                <br />
-                <span className="text-accent">И ИЛЛЮЗИЙ</span>
-              </h1>
+
+              <TabsContent value="ceo" className="mt-0">
+                <div className="space-y-6">
+                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                    {tabsContent.ceo.title}
+                  </h1>
+                  
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                    {tabsContent.ceo.description}
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+                      {tabsContent.ceo.button1}
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    >
+                      {tabsContent.ceo.button2}
+                    </Button>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="operations" className="mt-0">
+                <div className="space-y-6">
+                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                    {tabsContent.operations.title}
+                  </h1>
+                  
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                    {tabsContent.operations.description}
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+                      {tabsContent.operations.button1}
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    >
+                      {tabsContent.operations.button2}
+                    </Button>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="it" className="mt-0">
+                <div className="space-y-6">
+                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                    {tabsContent.it.title}
+                  </h1>
+                  
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                    {tabsContent.it.description}
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+                      {tabsContent.it.button1}
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    >
+                      {tabsContent.it.button2}
+                    </Button>
+                  </div>
+                </div>
+              </TabsContent>
             </div>
-            
-            <p className="text-lg text-text-body leading-relaxed max-w-xl">
-              Диагностирую, проектирую и внедряю искусственный интеллект. 
-              <span className={`block mt-3 text-handwriting ${isVisible ? 'animate-handwriting' : 'opacity-0'}`} style={{ animationDelay: '0.5s' }}>
-                Честно. Понятно. Результативно.
-              </span>
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
-                Узнать, что автоматизировать
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
-              >
-                Скачать чек-лист
-              </Button>
-            </div>
-          </div>
           
-          <div className={`col-span-6 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <OptimizedImage 
-              src={alexandraPortrait} 
-              alt="Александра Моисеева - AI консультант" 
-              className="rounded-lg w-full h-auto object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <div className={`col-span-6 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+              <OptimizedImage 
+                src={alexandraPortrait} 
+                alt="Александра Моисеева - AI консультант" 
+                className="rounded-lg w-full h-auto object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
-        </div>
+        </Tabs>
       </div>
     </section>
   );
