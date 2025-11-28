@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
+import alexandraPortrait from "@/assets/alexandra-portrait.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 const Hero = () => {
   const {
@@ -38,12 +38,15 @@ const Hero = () => {
           </div>
           
           <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <div className="absolute -top-8 -right-8 w-72 h-72 border-2 border-accent/20 rounded-lg" />
-            <img 
-              src={alexandraPortrait} 
-              alt="Александра Моисеева - AI консультант" 
-              className="relative rounded-lg shadow-2xl w-full h-auto object-cover"
-            />
+            <div className="absolute -top-6 -right-6 w-full h-full border-4 border-accent/30 rounded-2xl transform rotate-3" />
+            <div className="absolute -bottom-6 -left-6 w-full h-full bg-accent/10 rounded-2xl transform -rotate-2" />
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(49,198,212,0.4)] ring-2 ring-accent/20 hover:shadow-[0_25px_70px_-15px_rgba(49,198,212,0.5)] transition-all duration-500">
+              <img 
+                src={alexandraPortrait} 
+                alt="Александра Моисеева - AI консультант" 
+                className="relative w-full h-auto object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
