@@ -166,6 +166,52 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* 12-column grid system */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .col-span-2 {
+    grid-column: span 2;
+  }
+  
+  .col-span-3 {
+    grid-column: span 3;
+  }
+  
+  .col-span-4 {
+    grid-column: span 4;
+  }
+  
+  .col-span-6 {
+    grid-column: span 6;
+  }
+  
+  .col-span-8 {
+    grid-column: span 8;
+  }
+  
+  .col-span-12 {
+    grid-column: span 12;
+  }
+  
+  /* Responsive grid adjustments */
+  @media (max-width: 768px) {
+    .grid-12 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .col-span-2,
+    .col-span-3,
+    .col-span-4,
+    .col-span-6,
+    .col-span-8 {
+      grid-column: span 4;
+    }
+  }
+  
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
