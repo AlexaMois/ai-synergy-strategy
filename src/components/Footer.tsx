@@ -2,7 +2,13 @@ const Footer = () => {
   return (
     <footer className="bg-dark-bg text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-2xl font-bold mb-2">
+              Александра <span className="text-accent">Моисеева</span>
+            </p>
+            <p className="text-background/60">AI консультант</p>
+          </div>
 
           <div className="flex gap-8 text-background/80">
             <a href="#services" className="hover:text-accent transition-colors">Услуги</a>

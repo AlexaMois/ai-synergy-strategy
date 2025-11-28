@@ -39,8 +39,12 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
+          <a href="#" className="text-2xl font-bold text-foreground">
+            Александра <span className="text-accent">Моисеева</span>
+          </a>
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 mx-auto">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
