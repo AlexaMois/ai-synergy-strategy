@@ -28,7 +28,9 @@ const Hero = () => {
             
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
               Диагностирую, проектирую и внедряю искусственный интеллект. 
-              Честно. Понятно. Результативно.
+              <span className="block mt-4 text-2xl md:text-3xl font-iriska text-accent">
+                Честно. Понятно. Результативно.
+              </span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
