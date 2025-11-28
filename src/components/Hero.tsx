@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
-import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
+import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
@@ -174,7 +174,7 @@ const Hero = () => {
               <OptimizedImage 
                 src={alexandraPortrait} 
                 alt="Александра Моисеева - AI консультант" 
-                className="rounded-lg w-full h-auto object-cover"
+                className="rounded-lg w-[82%] h-auto object-cover mx-auto"
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
