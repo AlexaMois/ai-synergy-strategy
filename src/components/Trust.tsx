@@ -1,14 +1,18 @@
 import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
+import { useCountUp } from "@/hooks/use-count-up";
 import brushAccent from "@/assets/brush-accent-1.png";
 
 const Trust = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
   const parallaxOffset = useParallax(0.4);
+  const roiMin = useCountUp({ end: 200, duration: 2000, isVisible });
+  const roiMax = useCountUp({ end: 400, duration: 2000, isVisible });
+  
   const facts = [
     "Член НФИИ",
-    "ROI 200-400%",
+    `ROI ${roiMin}-${roiMax}%`,
     "IT-Парк Казань",
     "Бизнес-Успех 2024",
   ];

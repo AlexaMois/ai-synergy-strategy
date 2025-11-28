@@ -2,11 +2,14 @@ import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
+import { useCountUp } from "@/hooks/use-count-up";
 import brushAccent from "@/assets/brush-accent-1.png";
 
 const MyStory = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
+  const yearsCount = useCountUp({ end: 15, duration: 1800, isVisible });
+  const projectsCount = useCountUp({ end: 30, duration: 1800, isVisible, suffix: '+' });
   
   return (
     <section id="about" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
@@ -38,10 +41,10 @@ const MyStory = () => {
           <div className={`space-y-5 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <div className="space-y-4 text-base md:text-lg text-text-body">
               <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-                <span className="font-bold text-xl text-text-heading">15 лет опыта</span> в цифровой трансформации
+                <span className="font-bold text-xl text-text-heading">{yearsCount} лет опыта</span> в цифровой трансформации
               </p>
               <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.27s' }}>
-                <span className="font-bold text-xl text-text-heading">30+ проектов</span> внедрения ИИ
+                <span className="font-bold text-xl text-text-heading">{projectsCount} проектов</span> внедрения ИИ
               </p>
               <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.34s' }}>
                 <span className="font-bold text-xl text-text-heading">Член НФИИ</span> — Национальной Федерации ИИ
