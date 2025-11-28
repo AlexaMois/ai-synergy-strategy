@@ -105,7 +105,7 @@ const Hero = () => {
                     </Button>
                   </div>
 
-                  <p className="text-sm text-text-body mt-4">
+                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -134,7 +134,7 @@ const Hero = () => {
                     </Button>
                   </div>
 
-                  <p className="text-sm text-text-body mt-4">
+                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -163,7 +163,7 @@ const Hero = () => {
                     </Button>
                   </div>
 
-                  <p className="text-sm text-text-body mt-4">
+                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
