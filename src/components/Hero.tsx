@@ -84,7 +84,7 @@ const Hero = () => {
 
               <TabsContent value="ceo" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
                     {tabsContent.ceo.title}
                   </h1>
                   
@@ -113,7 +113,7 @@ const Hero = () => {
 
               <TabsContent value="operations" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
                     {tabsContent.operations.title}
                   </h1>
                   
@@ -142,7 +142,7 @@ const Hero = () => {
 
               <TabsContent value="it" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-5xl md:text-6xl font-bold leading-tight text-text-heading">
+                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
                     {tabsContent.it.title}
                   </h1>
                   
