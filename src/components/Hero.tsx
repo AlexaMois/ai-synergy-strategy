@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-
 const Hero = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  
-  return (
-    <section ref={ref} className="relative bg-background overflow-hidden">
+  const {
+    ref,
+    isVisible
+  } = useIntersectionObserver({
+    threshold: 0.2
+  });
+  return <section ref={ref} className="relative bg-background overflow-hidden">
       <div className="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 py-16 md:py-24">
@@ -29,11 +31,7 @@ const Hero = () => {
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-golos font-semibold">
                 Узнать, что можно автоматизировать
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-accent text-foreground hover:bg-accent/10 font-golos font-semibold"
-              >
+              <Button size="lg" variant="outline" className="border-accent text-foreground hover:bg-accent/10 font-golos font-semibold">
                 Скачать чек-лист
               </Button>
             </div>
@@ -41,16 +39,10 @@ const Hero = () => {
           
           <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <div className="absolute -top-8 -right-8 w-72 h-72 border-2 border-accent/20 rounded-lg" />
-            <img 
-              src={alexandraPortrait} 
-              alt="Александра Моисеева" 
-              className="relative z-10 rounded-lg shadow-2xl w-full"
-            />
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
