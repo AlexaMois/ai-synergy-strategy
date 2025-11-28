@@ -104,6 +104,10 @@ const Hero = () => {
                       {tabsContent.ceo.button2}
                     </Button>
                   </div>
+
+                  <p className="text-sm text-text-body mt-4">
+                    36+ проектов · 350+ консультаций · ROI клиентов 200–400%
+                  </p>
                 </div>
               </TabsContent>
 
@@ -129,6 +133,10 @@ const Hero = () => {
                       {tabsContent.operations.button2}
                     </Button>
                   </div>
+
+                  <p className="text-sm text-text-body mt-4">
+                    36+ проектов · 350+ консультаций · ROI клиентов 200–400%
+                  </p>
                 </div>
               </TabsContent>
 
@@ -154,6 +162,10 @@ const Hero = () => {
                       {tabsContent.it.button2}
                     </Button>
                   </div>
+
+                  <p className="text-sm text-text-body mt-4">
+                    36+ проектов · 350+ консультаций · ROI клиентов 200–400%
+                  </p>
                 </div>
               </TabsContent>
             </div>
