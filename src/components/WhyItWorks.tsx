@@ -1,9 +1,11 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-2.png";
 
 const WhyItWorks = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.25);
 
   return (
     <section ref={ref} className="relative py-32 bg-background overflow-hidden">
@@ -20,7 +22,8 @@ const WhyItWorks = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute bottom-32 right-20 w-72 opacity-20 pointer-events-none -rotate-45"
+        className="absolute bottom-32 right-20 w-72 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(-45deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">

@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
 
 const Contact = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.35);
   
   return (
     <section id="contact" ref={ref} className="relative py-32 bg-background overflow-hidden">
@@ -11,7 +13,8 @@ const Contact = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-10 w-80 opacity-10 pointer-events-none -rotate-12"
+        className="absolute top-1/2 right-10 w-80 opacity-10 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(-12deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">

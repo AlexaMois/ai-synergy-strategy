@@ -3,9 +3,11 @@ import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-2.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
 
 const Hero = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.3);
 
   return (
     <section ref={ref} className="relative bg-background pt-32 pb-20 overflow-hidden">
@@ -22,7 +24,8 @@ const Hero = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/4 right-1/4 w-64 opacity-20 pointer-events-none"
+        className="absolute top-1/4 right-1/4 w-64 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${parallaxOffset}px) rotate(-15deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
