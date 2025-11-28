@@ -5,9 +5,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const FAQ = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.35);
   const faqs = [
     {
       question: "Сколько стоит внедрение ИИ?",
@@ -32,7 +35,14 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-background">
+    <section ref={ref} className="relative py-32 bg-background overflow-hidden">
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute top-20 left-20 w-[400px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
+      />
       <div className="container mx-auto px-4">
         <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Вопросы и ответы
