@@ -24,12 +24,12 @@ const Authority = () => {
       />
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h3 className="text-2xl font-bold mb-8">
+          <h3 className="text-2xl font-bold mb-8 text-text-heading">
             Выступления и публикации
           </h3>
           <div className="flex flex-wrap justify-center gap-6 md:gap-12">
             {achievements.map((achievement, index) => (
-              <div key={index} className="text-base text-muted-foreground">
+              <div key={index} className="text-base text-text-body">
                 {achievement}
               </div>
             ))}

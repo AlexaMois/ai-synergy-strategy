@@ -38,7 +38,7 @@ const Services = () => {
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-4xl font-bold mb-12 text-center">
+          <h2 className="text-4xl font-bold mb-12 text-center text-text-heading">
             Мои направления работы
           </h2>
 
@@ -53,8 +53,8 @@ const Services = () => {
                   {service.number}
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-bold">{service.title}</h3>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                  <h3 className="text-2xl font-bold text-text-heading">{service.title}</h3>
+                  <p className="text-base md:text-lg text-text-body leading-relaxed max-w-2xl">
                     {service.description}
                   </p>
                 </div>

@@ -29,10 +29,10 @@ const WhyItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-4xl font-bold mb-6 text-text-heading">
               AI Synergy Framework
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-text-body">
               Авторский метод, который объединяет бизнес-цели, технологии и людей
             </p>
           </div>
@@ -40,20 +40,20 @@ const WhyItWorks = () => {
           <div className={`grid md:grid-cols-3 gap-8 mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-3">ROI</div>
-              <p className="text-lg">Фокус на измеримой отдаче</p>
+              <p className="text-lg text-text-body">Фокус на измеримой отдаче</p>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-3">Люди</div>
-              <p className="text-lg">Команда первична</p>
+              <p className="text-lg text-text-body">Команда первична</p>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-3">Этика</div>
-              <p className="text-lg">Прозрачность решений</p>
+              <p className="text-lg text-text-body">Прозрачность решений</p>
             </div>
           </div>
 
           <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-            <blockquote className="text-2xl md:text-3xl font-iriska font-bold text-accent">
+            <blockquote className="text-handwriting">
               "Я заставляю ИИ работать,<br />а не производить впечатление"
             </blockquote>
           </div>

@@ -45,7 +45,7 @@ const FAQ = () => {
         style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Вопросы и ответы
         </h2>
 
@@ -57,10 +57,10 @@ const FAQ = () => {
                 value={`item-${index}`}
                 className="border-b-2 border-border pb-3"
               >
-                <AccordionTrigger className="text-left text-lg md:text-xl font-bold hover:text-accent">
+                <AccordionTrigger className="text-left text-lg md:text-xl font-bold text-text-heading hover:text-accent">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-3">
+                <AccordionContent className="text-base text-text-body leading-relaxed pt-3">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

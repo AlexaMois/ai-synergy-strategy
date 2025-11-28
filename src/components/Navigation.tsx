@@ -39,7 +39,7 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <a href="#" className="text-2xl font-bold text-foreground">
+          <a href="#" className="text-2xl font-bold text-text-heading">
             Александра <span className="text-accent">Моисеева</span>
           </a>
 
@@ -50,7 +50,7 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-foreground hover:text-accent transition-colors font-medium"
+                className="text-text-heading hover:text-accent transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -62,7 +62,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-text-heading"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -77,7 +77,7 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="block py-3 text-foreground hover:text-accent transition-colors"
+                className="block py-3 text-text-heading hover:text-accent transition-colors"
               >
                 {link.label}
               </a>

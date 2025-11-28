@@ -36,7 +36,7 @@ const HowIWork = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Как начать работу
           </h2>
 
@@ -50,8 +50,8 @@ const HowIWork = () => {
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-accent flex items-center justify-center">
                   <span className="text-3xl font-bold text-accent">{step.number}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-base text-muted-foreground">{step.description}</p>
+                <h3 className="text-xl font-bold mb-3 text-text-heading">{step.title}</h3>
+                <p className="text-base text-text-body">{step.description}</p>
               </div>
             ))}
           </div>
