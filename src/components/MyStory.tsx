@@ -14,8 +14,11 @@ const MyStory = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)` }}
+        className={`absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)`,
+          animationDelay: '0.2s'
+        }}
       />
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -34,16 +37,16 @@ const MyStory = () => {
 
           <div className={`space-y-5 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <div className="space-y-4 text-base md:text-lg text-text-body">
-              <p className="leading-relaxed">
+              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
                 <span className="font-bold text-xl text-text-heading">15 лет опыта</span> в цифровой трансформации
               </p>
-              <p className="leading-relaxed">
+              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.27s' }}>
                 <span className="font-bold text-xl text-text-heading">30+ проектов</span> внедрения ИИ
               </p>
-              <p className="leading-relaxed">
+              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.34s' }}>
                 <span className="font-bold text-xl text-text-heading">Член НФИИ</span> — Национальной Федерации ИИ
               </p>
-              <p className="leading-relaxed">
+              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.41s' }}>
                 <span className="font-bold text-xl text-text-heading">Эксперт-практик</span>, а не теоретик
               </p>
             </div>
