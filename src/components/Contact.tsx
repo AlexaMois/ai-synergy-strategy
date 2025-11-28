@@ -1,22 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import brushStroke from "@/assets/brush-stroke.jpg";
-import { motion, useScroll, useTransform } from "framer-motion";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const Contact = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const { scrollY } = useScroll();
-  const brushY = useTransform(scrollY, [3000, 4000], [50, -30]);
-  const brushRotate = useTransform(scrollY, [3000, 4000], [-12, 5]);
   
   return (
     <section id="contact" ref={ref} className="relative py-32 bg-background overflow-hidden">
-      {/* Brush Accent with Parallax */}
-      <motion.img 
-        src={brushStroke} 
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-10 w-[400px] opacity-10 pointer-events-none mix-blend-multiply"
-        style={{ y: brushY, rotate: brushRotate }}
+        className="absolute top-1/2 right-10 w-80 opacity-10 pointer-events-none -rotate-12"
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">

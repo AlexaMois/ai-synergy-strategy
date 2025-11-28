@@ -1,13 +1,9 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import nPattern from "@/assets/n-pattern.png";
-import brushStroke from "@/assets/brush-stroke.jpg";
-import { motion, useScroll, useTransform } from "framer-motion";
+import brushAccent from "@/assets/brush-accent-2.png";
 
 const WhyItWorks = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const { scrollY } = useScroll();
-  const brushY = useTransform(scrollY, [1500, 2500], [100, -50]);
-  const brushRotate = useTransform(scrollY, [1500, 2500], [-45, -20]);
 
   return (
     <section ref={ref} className="relative py-32 bg-background overflow-hidden">
@@ -20,12 +16,11 @@ const WhyItWorks = () => {
           backgroundSize: '100px'
         }}
       />
-      {/* Brush Accent with Parallax */}
-      <motion.img 
-        src={brushStroke} 
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
         alt="" 
-        className="absolute bottom-32 right-20 w-[450px] opacity-20 pointer-events-none mix-blend-multiply"
-        style={{ y: brushY, rotate: brushRotate }}
+        className="absolute bottom-32 right-20 w-72 opacity-20 pointer-events-none -rotate-45"
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
