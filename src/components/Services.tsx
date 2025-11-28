@@ -33,8 +33,11 @@ const Services = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)` }}
+        className={`absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)`,
+          animationDelay: '0.2s'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -47,7 +50,7 @@ const Services = () => {
               <div
                 key={index}
                 className={`grid md:grid-cols-[100px_1fr] gap-6 items-start pb-12 border-b border-border last:border-0 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 0.15}s` }}
+                style={{ animationDelay: `${0.2 + index * 0.07}s` }}
               >
                 <div className="text-6xl font-bold text-accent/20">
                   {service.number}

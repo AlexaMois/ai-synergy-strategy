@@ -14,19 +14,23 @@ const Hero = () => {
     <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
       {/* N Pattern Background */}
       <div 
-        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none"
+        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none transition-transform duration-100 ease-out"
         style={{
           backgroundImage: `url(${nPattern})`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '120px'
+          backgroundSize: '120px',
+          transform: `translateY(${parallaxOffset * 0.1}px)`
         }}
       />
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)` }}
+        className={`absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)`,
+          animationDelay: '0.2s'
+        }}
       />
       <div className="container mx-auto">
         <div className="grid-12 items-center">
@@ -49,7 +53,7 @@ const Hero = () => {
             
             <p className="text-lg text-text-body leading-relaxed max-w-xl">
               Диагностирую, проектирую и внедряю искусственный интеллект. 
-              <span className="block mt-3 text-handwriting">
+              <span className={`block mt-3 text-handwriting ${isVisible ? 'animate-handwriting' : 'opacity-0'}`} style={{ animationDelay: '0.5s' }}>
                 Честно. Понятно. Результативно.
               </span>
             </p>

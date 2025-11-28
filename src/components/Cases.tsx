@@ -36,8 +36,11 @@ const Cases = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-40 left-12 w-[460px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.7}px) rotate(15deg)` }}
+        className={`absolute top-40 left-12 w-[460px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.7}px) rotate(15deg)`,
+          animationDelay: '0.3s'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -49,8 +52,8 @@ const Cases = () => {
             {cases.map((caseItem, index) => (
               <div
                 key={index}
-                className={`space-y-4 ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 0.15}s` }}
+                className={`space-y-4 p-6 rounded-2xl border border-border/30 bg-gradient-card shadow-card transition-all duration-300 hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] hover:scale-[1.015] cursor-pointer ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 0.07}s` }}
               >
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-text-heading">{caseItem.title}</h3>

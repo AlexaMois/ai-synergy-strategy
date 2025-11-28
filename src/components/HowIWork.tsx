@@ -31,8 +31,11 @@ const HowIWork = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-32 right-16 w-[420px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-20deg)` }}
+        className={`absolute top-32 right-16 w-[420px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.5}px) rotate(-20deg)`,
+          animationDelay: '0.15s'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -45,7 +48,7 @@ const HowIWork = () => {
               <div
                 key={index}
                 className={`text-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 0.15}s` }}
+                style={{ animationDelay: `${0.2 + index * 0.07}s` }}
               >
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-accent flex items-center justify-center">
                   <span className="text-3xl font-bold text-accent">{step.number}</span>

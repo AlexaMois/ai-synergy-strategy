@@ -19,13 +19,20 @@ const Trust = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 left-1/4 w-[350px] opacity-10 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(60deg)` }}
+        className={`absolute top-1/2 left-1/4 w-[350px] opacity-10 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.6}px) rotate(60deg)`,
+          animationDelay: '0.1s'
+        }}
       />
       <div className="container mx-auto px-4">
-        <div className={`flex flex-wrap justify-center gap-8 md:gap-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16">
           {facts.map((fact, index) => (
-            <div key={index} className="text-center">
+            <div 
+              key={index} 
+              className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.07}s` }}
+            >
               <p className="text-lg md:text-xl font-bold text-text-heading">{fact}</p>
             </div>
           ))}

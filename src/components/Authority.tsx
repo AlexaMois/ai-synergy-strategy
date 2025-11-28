@@ -19,8 +19,11 @@ const Authority = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-20 w-[340px] opacity-12 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-50deg)` }}
+        className={`absolute top-1/2 right-20 w-[340px] opacity-12 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-50deg)`,
+          animationDelay: '0.1s'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -29,7 +32,11 @@ const Authority = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-6 md:gap-12">
             {achievements.map((achievement, index) => (
-              <div key={index} className="text-base text-text-body">
+              <div 
+                key={index} 
+                className={`text-base text-text-body ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${0.2 + index * 0.07}s` }}
+              >
                 {achievement}
               </div>
             ))}

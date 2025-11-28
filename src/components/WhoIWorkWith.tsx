@@ -13,8 +13,11 @@ const WhoIWorkWith = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute bottom-20 left-16 w-[380px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(35deg)` }}
+        className={`absolute bottom-20 left-16 w-[380px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.6}px) rotate(35deg)`,
+          animationDelay: '0.15s'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
