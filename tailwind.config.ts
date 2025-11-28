@@ -67,13 +67,13 @@ export default {
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
-        'gradient-primary-hover': 'var(--gradient-primary-hover)',
-        'gradient-primary-active': 'var(--gradient-primary-active)',
+        'gradient-soft': 'var(--gradient-soft)',
+        'gradient-card': 'var(--gradient-card)',
       },
       boxShadow: {
-        'glow': 'var(--shadow-glow)',
-        'glow-hover': 'var(--shadow-glow-hover)',
-        'glow-active': 'var(--shadow-glow-active)',
+        'soft': 'var(--shadow-soft)',
+        'card': 'var(--shadow-card)',
+        'hover': 'var(--shadow-hover)',
       },
       borderRadius: {
         lg: "var(--radius)",
