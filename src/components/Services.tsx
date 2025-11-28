@@ -1,8 +1,12 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import brushAccent from "@/assets/brush-accent-1.png";
+import brushStroke from "@/assets/brush-stroke.jpg";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Services = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { scrollY } = useScroll();
+  const brushY = useTransform(scrollY, [400, 1200], [0, 150]);
+  const brushRotate = useTransform(scrollY, [400, 1200], [12, -10]);
   const services = [
     {
       number: "01",
@@ -26,11 +30,12 @@ const Services = () => {
 
   return (
     <section id="services" ref={ref} className="relative py-32 bg-background overflow-hidden">
-      {/* Brush Accent */}
-      <img 
-        src={brushAccent} 
+      {/* Brush Accent with Parallax */}
+      <motion.img 
+        src={brushStroke} 
         alt="" 
-        className="absolute top-20 left-10 w-96 opacity-15 pointer-events-none rotate-12"
+        className="absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none mix-blend-multiply"
+        style={{ y: brushY, rotate: brushRotate }}
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
