@@ -48,7 +48,7 @@ const Hero = () => {
             
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
               Диагностирую, проектирую и внедряю искусственный интеллект. 
-              <span className="block mt-4 text-2xl md:text-3xl font-iriska text-accent">
+              <span className="block mt-4 text-2xl md:text-3xl font-iriska font-bold text-accent">
                 Честно. Понятно. Результативно.
               </span>
             </p>
