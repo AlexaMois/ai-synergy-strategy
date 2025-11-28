@@ -65,14 +65,14 @@ const Hero = () => {
                   </span>
                 </div>
 
-                <TabsList className="bg-gray-100 p-1 h-auto rounded-xl mb-6">
-                  <TabsTrigger value="ceo" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                <TabsList className="bg-transparent p-1 h-auto rounded-xl mb-6">
+                  <TabsTrigger value="ceo" className="text-sm px-4 py-2 bg-white text-[#666] data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:shadow-soft">
                     Я — CEO
                   </TabsTrigger>
-                  <TabsTrigger value="operations" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                  <TabsTrigger value="operations" className="text-sm px-4 py-2 bg-white text-[#666] data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:shadow-soft">
                     Я — операционный директор
                   </TabsTrigger>
-                  <TabsTrigger value="it" className="text-sm px-4 py-2 data-[state=active]:bg-white">
+                  <TabsTrigger value="it" className="text-sm px-4 py-2 bg-white text-[#666] data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:shadow-soft">
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
