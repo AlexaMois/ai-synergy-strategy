@@ -14,11 +14,8 @@ const MyStory = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute bottom-20 right-10 w-72 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ 
-          transform: `translateY(${parallaxOffset * 0.3}px) rotate(-30deg)`,
-          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
-        }}
+        className="absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)` }}
       />
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
@@ -30,11 +27,7 @@ const MyStory = () => {
             <OptimizedImage
               src={alexandraPortrait}
               alt="Александра Моисеева"
-              className="rounded-3xl w-full transition-transform duration-300 hover:scale-[1.02]"
-              style={{
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
-                aspectRatio: '4/5'
-              }}
+              className="rounded-lg w-full"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

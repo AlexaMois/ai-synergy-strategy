@@ -33,11 +33,8 @@ const Services = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-20 left-10 w-80 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(12deg)`,
-          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
-        }}
+        className="absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

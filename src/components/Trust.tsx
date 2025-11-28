@@ -19,11 +19,8 @@ const Trust = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 left-1/4 w-56 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(60deg)`,
-          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
-        }}
+        className="absolute top-1/2 left-1/4 w-[350px] opacity-10 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(60deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className={`flex flex-wrap justify-center gap-8 md:gap-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

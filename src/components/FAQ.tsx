@@ -41,11 +41,8 @@ const FAQ = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-20 left-20 w-64 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(25deg)`,
-          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
-        }}
+        className="absolute top-20 left-20 w-[400px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
       />
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

@@ -14,23 +14,19 @@ const Hero = () => {
     <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
       {/* N Pattern Background */}
       <div 
-        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.06] pointer-events-none"
+        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `url(${nPattern})`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '120px',
-          filter: 'hue-rotate(20deg) saturate(1.5)',
+          backgroundSize: '120px'
         }}
       />
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/4 right-1/4 w-64 opacity-30 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(-15deg)`,
-          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
-        }}
+        className="absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)` }}
       />
       <div className="container mx-auto">
         <div className="grid-12 items-center">
@@ -76,11 +72,7 @@ const Hero = () => {
             <OptimizedImage 
               src={alexandraPortrait} 
               alt="Александра Моисеева - AI консультант" 
-              className="rounded-3xl w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
-              style={{
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)',
-                aspectRatio: '4/5'
-              }}
+              className="rounded-lg w-full h-auto object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
             />
