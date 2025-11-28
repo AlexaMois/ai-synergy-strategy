@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
@@ -15,7 +16,7 @@ const Trust = () => {
   return (
     <section ref={ref} className="relative py-6 bg-secondary overflow-hidden">
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute top-1/2 left-1/4 w-[350px] opacity-10 pointer-events-none transition-transform duration-100 ease-out"

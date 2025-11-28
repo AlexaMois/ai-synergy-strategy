@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
@@ -32,7 +33,7 @@ const Cases = () => {
   return (
     <section id="cases" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute top-40 left-12 w-[460px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"

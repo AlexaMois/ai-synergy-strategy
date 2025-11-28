@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
@@ -37,7 +38,7 @@ const FAQ = () => {
   return (
     <section ref={ref} className="relative py-16 bg-background overflow-hidden">
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute top-20 left-20 w-[400px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"

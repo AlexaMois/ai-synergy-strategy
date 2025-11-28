@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import nPattern from "@/assets/n-pattern.png";
@@ -19,7 +20,7 @@ const WhyItWorks = () => {
         }}
       />
       {/* Brush Accent */}
-      <img 
+      <OptimizedImage 
         src={brushAccent} 
         alt="" 
         className="absolute bottom-32 right-20 w-96 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
