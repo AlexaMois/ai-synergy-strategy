@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const FAQ = () => {
@@ -13,68 +12,49 @@ const FAQ = () => {
     {
       question: "Сколько стоит внедрение ИИ?",
       answer:
-        "Стоимость зависит от масштаба проекта. Начинаю с диагностики (от 150 000 ₽), которая даёт чёткую карту процессов и расчёт ROI. Полное внедрение с сопровождением — от 500 000 ₽.",
+        "Начинаю с диагностики (от 150 000 ₽). Полное внедрение с сопровождением — от 500 000 ₽.",
     },
     {
       question: "Сколько времени займёт проект?",
       answer:
-        "Диагностика — 2-4 недели. Пилотное внедрение — 1-3 месяца. Полномасштабное решение — 3-6 месяцев. Всё зависит от сложности процессов и готовности данных.",
+        "Диагностика — 2-4 недели. Пилотное внедрение — 1-3 месяца. Полномасштабное решение — 3-6 месяцев.",
     },
     {
       question: "Нужно ли обучать сотрудников?",
       answer:
-        "Да, обучение — обязательная часть внедрения. Провожу практические воркшопы и создаю внутренние регламенты. ИИ работает эффективно, только когда команда понимает, как с ним взаимодействовать.",
+        "Да, обучение — обязательная часть внедрения. Провожу практические воркшопы и создаю внутренние регламенты.",
     },
     {
       question: "Какие ошибки чаще всего допускают при внедрении ИИ?",
       answer:
-        "Главная ошибка — внедрение ради хайпа, без измеримых целей. Вторая — игнорирование качества данных. Третья — отсутствие обучения команды. Я помогаю избежать этих ловушек с самого начала.",
-    },
-    {
-      question: "С какими отраслями вы работаете?",
-      answer:
-        "Опыт работы в ритейле, логистике, производстве, образовании, госсекторе и B2B-услугах. Подход универсален — главное, чтобы были данные и процессы, которые можно улучшить.",
-    },
-    {
-      question: "Станет ли компания зависимой от вас после внедрения?",
-      answer:
-        "Нет. Моя задача — не создать зависимость, а передать компетенции. Обучаю команду, документирую решения и настраиваю процессы так, чтобы система работала без моего участия.",
+        "Главная ошибка — внедрение ради хайпа, без измеримых целей. Вторая — игнорирование качества данных. Третья — отсутствие обучения команды.",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-background">
+    <section ref={ref} className="py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Часто задаваемые вопросы
-          </h2>
-          <div className="w-24 h-1 bg-accent mx-auto" />
-        </div>
+        <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          Вопросы и ответы
+        </h2>
 
-        <div className={`max-w-3xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+          <Accordion type="single" collapsible className="space-y-6">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border rounded-lg px-6 bg-card"
+                className="border-b-2 border-border pb-4"
               >
-                <AccordionTrigger className="text-left font-semibold hover:text-accent">
+                <AccordionTrigger className="text-left text-xl md:text-2xl font-bold hover:text-accent">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-lg text-muted-foreground leading-relaxed pt-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-              Запросить диагностику процессов
-            </Button>
-          </div>
         </div>
       </div>
     </section>

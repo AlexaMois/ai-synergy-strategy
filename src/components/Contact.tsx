@@ -1,91 +1,48 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, Send, Youtube } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Contact = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   
   return (
-    <section ref={ref} className="py-20 bg-background">
+    <section id="contact" ref={ref} className="py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Начните с малого
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Узнайте, что можно автоматизировать уже сегодня
-            </p>
-            <div className="w-24 h-1 bg-accent mx-auto mt-6" />
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className={`text-5xl md:text-6xl font-bold mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Начните с диагностики
+          </h2>
+          
+          <p className={`text-2xl md:text-3xl text-muted-foreground mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+            Узнайте, что можно автоматизировать<br />уже сегодня
+          </p>
+          
+          <div className={`flex flex-col sm:flex-row gap-6 justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+            <Button size="lg" className="h-16 px-10 text-lg bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+              Запросить диагностику
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="h-16 px-10 text-lg border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
+            >
+              Написать в Telegram
+            </Button>
           </div>
 
-          <div className={`grid md:grid-cols-2 gap-8 mb-12 ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}>
-            <div className="p-8 rounded-lg bg-card border border-border">
-              <h3 className="text-xl font-bold mb-6">Свяжитесь со мной</h3>
-              <div className="space-y-4">
-                <a
-                  href="tel:+79123456789"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  <span>+7 (912) 345-67-89</span>
-                </a>
-                <a
-                  href="mailto:hello@neuro-solutions.ru"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span>hello@neuro-solutions.ru</span>
-                </a>
-                <a
-                  href="https://t.me/alexmoiseeva"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Send className="w-5 h-5" />
-                  <span>Telegram</span>
-                </a>
-                <a
-                  href="https://youtube.com/@alexmoiseeva"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Youtube className="w-5 h-5" />
-                  <span>YouTube</span>
-                </a>
+          <div className={`mt-16 pt-16 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+            <div className="grid md:grid-cols-3 gap-8 text-lg text-muted-foreground">
+              <div>
+                <p className="font-bold text-foreground mb-2">Email</p>
+                <p>hello@neuro-solutions.ru</p>
               </div>
-            </div>
-
-            <div className="p-8 rounded-lg bg-accent/5 border-2 border-accent">
-              <h3 className="text-xl font-bold mb-4">
-                Бесплатная консультация
-              </h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                30 минут разбора вашей ситуации: узнайте, где ИИ может дать 
-                максимальную отдачу в вашем бизнесе
-              </p>
-              <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-                Записаться на консультацию
-              </Button>
-            </div>
-          </div>
-
-          <div className="text-center p-8 bg-secondary rounded-lg">
-            <p className="text-2xl font-bold mb-4">
-              Готовы начать трансформацию?
-            </p>
-            <p className="text-muted-foreground mb-6">
-              Первый шаг — понять, что можно автоматизировать прямо сейчас
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-                Запросить аудит процессов
-              </Button>
-              <Button size="lg" variant="outline" className="border-accent text-foreground hover:bg-accent/10 font-semibold">
-                Скачать чек-лист
-              </Button>
+              <div>
+                <p className="font-bold text-foreground mb-2">Телефон</p>
+                <p>+7 (912) 345-67-89</p>
+              </div>
+              <div>
+                <p className="font-bold text-foreground mb-2">Telegram</p>
+                <p>@alexmoiseeva</p>
+              </div>
             </div>
           </div>
         </div>

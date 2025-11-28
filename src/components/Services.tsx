@@ -1,23 +1,22 @@
-import { Search, Brain, Users } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Services = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const services = [
     {
-      icon: Search,
+      number: "01",
       title: "Аудит и диагностика",
       description:
         "Выявляю процессы, где ИИ даст реальную отдачу. Оцениваю зрелость данных и готовность команды. Формирую дорожную карту внедрения.",
     },
     {
-      icon: Brain,
+      number: "02",
       title: "Стратегия и архитектура",
       description:
         "Проектирую архитектуру ИИ-решений под задачи бизнеса. Выбираю технологии и поставщиков. Закладываю основу для масштабирования.",
     },
     {
-      icon: Users,
+      number: "03",
       title: "Консалтинг и сопровождение",
       description:
         "Обучаю команду работе с ИИ. Сопровождаю пилоты и запуски. Помогаю избежать ошибок и достичь целевых метрик.",
@@ -25,31 +24,32 @@ const Services = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-background">
+    <section id="services" ref={ref} className="py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className="text-5xl md:text-6xl font-bold mb-24 text-center">
             Мои направления работы
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto" />
-        </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`p-8 rounded-lg border border-border hover:border-accent transition-all bg-card hover:shadow-lg hover:-translate-y-1 ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6">
-                <service.icon className="w-8 h-8 text-accent" />
+          <div className="space-y-20">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`grid md:grid-cols-[120px_1fr] gap-8 items-start pb-20 border-b border-border last:border-0 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="text-7xl md:text-8xl font-bold text-accent/20">
+                  {service.number}
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl md:text-4xl font-bold">{service.title}</h3>
+                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
