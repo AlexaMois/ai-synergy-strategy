@@ -16,7 +16,7 @@ export default {
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],
         golos: ['Golos Text', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        iriska: ['Iriska Free', 'cursive'],
+        iriska: ['Caveat', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
