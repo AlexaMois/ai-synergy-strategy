@@ -31,8 +31,11 @@ const HowIWork = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-32 right-16 w-[420px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-20deg)` }}
+        className="absolute top-32 right-16 w-64 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.3}px) rotate(-20deg)`,
+          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">

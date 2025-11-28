@@ -36,8 +36,11 @@ const Cases = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-40 left-12 w-[460px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${parallaxOffset * 0.7}px) rotate(15deg)` }}
+        className="absolute top-40 left-12 w-72 opacity-25 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ 
+          transform: `translateY(${parallaxOffset * 0.3}px) rotate(15deg)`,
+          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">

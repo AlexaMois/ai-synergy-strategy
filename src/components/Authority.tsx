@@ -19,8 +19,11 @@ const Authority = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className="absolute top-1/2 right-20 w-[340px] opacity-12 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-50deg)` }}
+        className="absolute top-1/2 right-20 w-56 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ 
+          transform: `translateY(${-parallaxOffset * 0.3}px) rotate(-50deg)`,
+          filter: 'drop-shadow(0 3px 8px rgba(0, 0, 0, 0.06))'
+        }}
       />
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
