@@ -1,8 +1,10 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
 
 const Services = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.4);
   const services = [
     {
       number: "01",
@@ -30,7 +32,8 @@ const Services = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-20 left-10 w-96 opacity-15 pointer-events-none rotate-12"
+        className="absolute top-20 left-10 w-96 opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)` }}
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
