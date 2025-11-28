@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import nPattern from "@/assets/n-pattern.png";
-import brushAccent from "@/assets/brush-accent-2.png";
+import brushStroke from "@/assets/brush-stroke.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { scrollY } = useScroll();
+  const brushY = useTransform(scrollY, [0, 500], [0, -100]);
+  const brushRotate = useTransform(scrollY, [0, 500], [0, 15]);
 
   return (
     <section ref={ref} className="relative bg-background pt-32 pb-20 overflow-hidden">
@@ -18,11 +22,12 @@ const Hero = () => {
           backgroundSize: '120px'
         }}
       />
-      {/* Brush Accent */}
-      <img 
-        src={brushAccent} 
+      {/* Brush Accent with Parallax */}
+      <motion.img 
+        src={brushStroke} 
         alt="" 
-        className="absolute top-1/4 right-1/4 w-64 opacity-20 pointer-events-none"
+        className="absolute top-1/4 right-1/4 w-96 opacity-20 pointer-events-none mix-blend-multiply"
+        style={{ y: brushY, rotate: brushRotate }}
       />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
