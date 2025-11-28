@@ -32,7 +32,7 @@ const WhyItWorks = () => {
           </div>
 
           <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-            <blockquote className="text-3xl md:text-4xl font-bold italic">
+            <blockquote className="text-3xl md:text-4xl font-iriska text-accent">
               "Я заставляю ИИ работать,<br />а не производить впечатление"
             </blockquote>
           </div>
