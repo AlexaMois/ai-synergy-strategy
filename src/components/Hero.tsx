@@ -76,6 +76,10 @@ const Hero = () => {
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
+
+                <p className="text-base text-text-body leading-relaxed mb-6">
+                  Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы. Формирую честную картину: где ROI, где эффективность, где имитация.
+                </p>
               </div>
 
               <TabsContent value="ceo" className="mt-0">
