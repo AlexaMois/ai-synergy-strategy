@@ -39,17 +39,17 @@ const Hero = () => {
               </div>
               
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                <span className="text-foreground">ИИ</span>
+                <span className="text-text-heading">ИИ</span>
                 <br />
-                <span className="text-muted-foreground">БЕЗ ХАОСА</span>
+                <span className="text-text-body">БЕЗ ХАОСА</span>
                 <br />
                 <span className="text-accent">И ИЛЛЮЗИЙ</span>
               </h1>
             </div>
             
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+            <p className="text-lg text-text-body leading-relaxed max-w-xl">
               Диагностирую, проектирую и внедряю искусственный интеллект. 
-              <span className="block mt-3 text-xl md:text-2xl font-iriska font-bold text-accent">
+              <span className="block mt-3 text-handwriting">
                 Честно. Понятно. Результативно.
               </span>
             </p>
@@ -61,7 +61,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="h-12 px-6 text-base border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
+                className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
               >
                 Скачать чек-лист
               </Button>
