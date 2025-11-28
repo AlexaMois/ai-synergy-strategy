@@ -28,9 +28,9 @@ const Hero = () => {
         className="absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-transform duration-100 ease-out"
         style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)` }}
       />
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
-          <div className={`space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+      <div className="container mx-auto">
+        <div className="grid-12 items-center">
+          <div className={`col-span-6 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
             <div className="space-y-4">
               <div className="inline-block">
                 <span className="text-sm font-bold tracking-wider uppercase text-accent">
@@ -68,7 +68,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+          <div className={`col-span-6 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <OptimizedImage 
               src={alexandraPortrait} 
               alt="Александра Моисеева - AI консультант" 
