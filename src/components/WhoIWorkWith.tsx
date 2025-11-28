@@ -18,12 +18,12 @@ const WhoIWorkWith = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`text-4xl font-bold mb-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`text-4xl font-bold mb-8 text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             С кем я работаю
           </h2>
           
           <div className={`space-y-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <p className="text-xl md:text-2xl leading-relaxed">
+            <p className="text-xl md:text-2xl leading-relaxed text-text-body">
               Компании с <span className="font-bold text-accent">20-300 сотрудников</span>, 
               которые хотят <span className="font-bold">реальной эффективности</span>, 
               а не модного слова
@@ -33,7 +33,7 @@ const WhoIWorkWith = () => {
               <div className="w-24 h-0.5 bg-accent mx-auto"></div>
             </div>
             
-            <p className="text-base md:text-lg text-muted-foreground italic">
+            <p className="text-base md:text-lg text-text-subtle italic">
               Не работаю с фрилансерами и проектами ради хайпа
             </p>
           </div>

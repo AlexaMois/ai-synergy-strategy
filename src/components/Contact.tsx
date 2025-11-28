@@ -19,11 +19,11 @@ const Contact = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`text-4xl font-bold mb-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`text-4xl font-bold mb-8 text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Начните с диагностики
           </h2>
           
-          <p className={`text-xl md:text-2xl text-muted-foreground mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+          <p className={`text-xl md:text-2xl text-text-body mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
             Узнайте, что можно автоматизировать<br />уже сегодня
           </p>
           
@@ -34,24 +34,24 @@ const Contact = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="h-12 px-8 text-base border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
+              className="h-12 px-8 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
             >
               Написать в Telegram
             </Button>
           </div>
 
           <div className={`mt-12 pt-12 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
-            <div className="grid md:grid-cols-3 gap-6 text-base text-muted-foreground">
+            <div className="grid md:grid-cols-3 gap-6 text-base text-text-body">
               <div>
-                <p className="font-bold text-foreground mb-2">Email</p>
+                <p className="font-bold text-text-heading mb-2">Email</p>
                 <p>hello@neuro-solutions.ru</p>
               </div>
               <div>
-                <p className="font-bold text-foreground mb-2">Телефон</p>
+                <p className="font-bold text-text-heading mb-2">Телефон</p>
                 <p>+7 (912) 345-67-89</p>
               </div>
               <div>
-                <p className="font-bold text-foreground mb-2">Telegram</p>
+                <p className="font-bold text-text-heading mb-2">Telegram</p>
                 <p>@alexmoiseeva</p>
               </div>
             </div>

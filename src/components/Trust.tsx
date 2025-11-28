@@ -26,7 +26,7 @@ const Trust = () => {
         <div className={`flex flex-wrap justify-center gap-8 md:gap-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           {facts.map((fact, index) => (
             <div key={index} className="text-center">
-              <p className="text-lg md:text-xl font-bold text-foreground">{fact}</p>
+              <p className="text-lg md:text-xl font-bold text-text-heading">{fact}</p>
             </div>
           ))}
         </div>

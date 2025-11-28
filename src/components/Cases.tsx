@@ -41,7 +41,7 @@ const Cases = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Кейсы
           </h2>
 
@@ -53,13 +53,13 @@ const Cases = () => {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold">{caseItem.title}</h3>
+                  <h3 className="text-xl font-bold text-text-heading">{caseItem.title}</h3>
                   <div className="flex flex-col gap-1">
                     <p className="text-2xl font-bold text-accent">{caseItem.result}</p>
-                    <p className="text-lg font-semibold text-muted-foreground">{caseItem.roi}</p>
+                    <p className="text-lg font-semibold text-text-subtle">{caseItem.roi}</p>
                   </div>
                 </div>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-base text-text-body leading-relaxed">
                   {caseItem.description}
                 </p>
               </div>
