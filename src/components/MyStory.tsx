@@ -1,11 +1,21 @@
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const MyStory = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const parallaxOffset = useParallax(0.3);
   
   return (
-    <section id="about" ref={ref} className="py-32 bg-secondary">
+    <section id="about" ref={ref} className="relative py-32 bg-secondary overflow-hidden">
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)` }}
+      />
       <div className="container mx-auto px-4">
         <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Александра Моисеева

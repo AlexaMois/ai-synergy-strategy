@@ -1,7 +1,10 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const Trust = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
+  const parallaxOffset = useParallax(0.4);
   const facts = [
     "Член НФИИ",
     "ROI 200-400%",
@@ -10,7 +13,14 @@ const Trust = () => {
   ];
 
   return (
-    <section ref={ref} className="py-8 bg-secondary">
+    <section ref={ref} className="relative py-8 bg-secondary overflow-hidden">
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute top-1/2 left-1/4 w-[350px] opacity-10 pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(60deg)` }}
+      />
       <div className="container mx-auto px-4">
         <div className={`flex flex-wrap justify-center gap-8 md:gap-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           {facts.map((fact, index) => (
