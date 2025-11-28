@@ -10,7 +10,7 @@ const Hero = () => {
   const parallaxOffset = useParallax(0.3);
 
   return (
-    <section ref={ref} className="relative bg-background pt-32 pb-20 overflow-hidden">
+    <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
       {/* N Pattern Background */}
       <div 
         className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none"
@@ -28,16 +28,16 @@ const Hero = () => {
         style={{ transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)` }}
       />
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-          <div className={`space-y-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+          <div className={`space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className="space-y-4">
               <div className="inline-block">
                 <span className="text-sm font-bold tracking-wider uppercase text-accent">
                   для руководителей и владельцев бизнеса
                 </span>
               </div>
               
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-none">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 <span className="text-foreground">ИИ</span>
                 <br />
                 <span className="text-muted-foreground">БЕЗ ХАОСА</span>
@@ -46,21 +46,21 @@ const Hero = () => {
               </h1>
             </div>
             
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
               Диагностирую, проектирую и внедряю искусственный интеллект. 
-              <span className="block mt-4 text-2xl md:text-3xl font-iriska font-bold text-accent">
+              <span className="block mt-3 text-xl md:text-2xl font-iriska font-bold text-accent">
                 Честно. Понятно. Результативно.
               </span>
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="h-16 px-8 text-lg bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
                 Узнать, что автоматизировать
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="h-16 px-8 text-lg border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
+                className="h-12 px-6 text-base border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
               >
                 Скачать чек-лист
               </Button>

@@ -114,10 +114,16 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-raleway;
+    line-height: 1.5;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-golos;
+    line-height: 1.2;
+  }
+  
+  p {
+    line-height: 1.6;
   }
 }
 
@@ -208,8 +214,7 @@ All colors MUST be HSL.
     align-items: center;
     white-space: nowrap;
     font-weight: 600;
-    font-size: 1.125rem;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
   
   @keyframes marquee {

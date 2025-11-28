@@ -27,7 +27,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" ref={ref} className="relative py-32 bg-background overflow-hidden">
+    <section id="services" ref={ref} className="relative py-16 bg-background overflow-hidden">
       {/* Brush Accent */}
       <img 
         src={brushAccent} 
@@ -37,23 +37,23 @@ const Services = () => {
       />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-5xl md:text-6xl font-bold mb-24 text-center">
+          <h2 className="text-4xl font-bold mb-12 text-center">
             Мои направления работы
           </h2>
 
-          <div className="space-y-20">
+          <div className="space-y-12">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`grid md:grid-cols-[120px_1fr] gap-8 items-start pb-20 border-b border-border last:border-0 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
+                className={`grid md:grid-cols-[100px_1fr] gap-6 items-start pb-12 border-b border-border last:border-0 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="text-7xl md:text-8xl font-bold text-accent/20">
+                <div className="text-6xl font-bold text-accent/20">
                   {service.number}
                 </div>
-                <div className="space-y-4">
-                  <h3 className="text-3xl md:text-4xl font-bold">{service.title}</h3>
-                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-bold">{service.title}</h3>
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                     {service.description}
                   </p>
                 </div>

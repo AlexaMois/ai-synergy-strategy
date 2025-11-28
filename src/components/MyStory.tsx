@@ -8,7 +8,7 @@ const MyStory = () => {
   const parallaxOffset = useParallax(0.3);
   
   return (
-    <section id="about" ref={ref} className="relative py-32 bg-secondary overflow-hidden">
+    <section id="about" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
       <img 
         src={brushAccent} 
@@ -17,11 +17,11 @@ const MyStory = () => {
         style={{ transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)` }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <h2 className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Александра Моисеева
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           <div className={`${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
             <img
               src={alexandraPortrait}
@@ -30,19 +30,19 @@ const MyStory = () => {
             />
           </div>
 
-          <div className={`space-y-8 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <div className="space-y-6 text-xl">
+          <div className={`space-y-5 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+            <div className="space-y-4 text-base md:text-lg">
               <p className="leading-relaxed">
-                <span className="font-bold text-2xl">15 лет опыта</span> в цифровой трансформации
+                <span className="font-bold text-xl">15 лет опыта</span> в цифровой трансформации
               </p>
               <p className="leading-relaxed">
-                <span className="font-bold text-2xl">30+ проектов</span> внедрения ИИ
+                <span className="font-bold text-xl">30+ проектов</span> внедрения ИИ
               </p>
               <p className="leading-relaxed">
-                <span className="font-bold text-2xl">Член НФИИ</span> — Национальной Федерации ИИ
+                <span className="font-bold text-xl">Член НФИИ</span> — Национальной Федерации ИИ
               </p>
               <p className="leading-relaxed">
-                <span className="font-bold text-2xl">Эксперт-практик</span>, а не теоретик
+                <span className="font-bold text-xl">Эксперт-практик</span>, а не теоретик
               </p>
             </div>
           </div>
