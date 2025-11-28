@@ -1,52 +1,61 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+
 const Hero = () => {
-  const {
-    ref,
-    isVisible
-  } = useIntersectionObserver({
-    threshold: 0.2
-  });
-  return <section ref={ref} className="relative bg-background overflow-hidden">
-      <div className="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className={`space-y-8 relative z-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="relative">
-              <div className="absolute -left-4 top-0 w-2 h-24 bg-accent" />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Помогаю компаниям внедрять искусственный интеллект{" "}
-                <span className="text-accent">без хаоса и иллюзий</span>
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+
+  return (
+    <section ref={ref} className="relative bg-background pt-32 pb-20 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+          <div className={`space-y-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-sm font-bold tracking-wider uppercase text-accent">
+                  для руководителей и владельцев бизнеса
+                </span>
+              </div>
+              
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-none">
+                <span className="text-foreground">ИИ</span>
+                <br />
+                <span className="text-muted-foreground">БЕЗ ХАОСА</span>
+                <br />
+                <span className="text-accent">И ИЛЛЮЗИЙ</span>
               </h1>
             </div>
             
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Провожу диагностику, проектирую архитектуру решений и сопровождаю 
-              внедрение до результата. Честно. Понятно. Результативно.
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
+              Диагностирую, проектирую и внедряю искусственный интеллект. 
+              Честно. Понятно. Результативно.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-golos font-semibold">
-                Узнать, что можно автоматизировать
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button size="lg" className="h-16 px-8 text-lg bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+                Узнать, что автоматизировать
               </Button>
-              <Button size="lg" variant="outline" className="border-accent text-foreground hover:bg-accent/10 font-golos font-semibold">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="h-16 px-8 text-lg border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold"
+              >
                 Скачать чек-лист
               </Button>
             </div>
           </div>
           
           <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <div className="absolute -top-8 -right-8 w-72 h-72 border-2 border-accent/20 rounded-lg" />
             <img 
               src={alexandraPortrait} 
               alt="Александра Моисеева - AI консультант" 
-              className="relative rounded-lg shadow-2xl w-full h-auto object-cover"
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;

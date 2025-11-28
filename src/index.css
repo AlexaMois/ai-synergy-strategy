@@ -186,25 +186,42 @@ All colors MUST be HSL.
     }
   }
   
-  .animate-pulse-slow {
-    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Marquee Animation */
+  .marquee-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
   }
   
-  @keyframes pulse-slow {
-    0%, 100% {
-      opacity: 1;
+  .marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+  
+  .marquee-set {
+    display: flex;
+    flex-shrink: 0;
+  }
+  
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1.125rem;
+    padding: 0 1rem;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
     }
-    50% {
-      opacity: 0.85;
+    100% {
+      transform: translateX(-33.333%);
     }
   }
   
-  .button-gradient-animate {
-    background-size: 200% 200%;
-    transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease;
-  }
-  
-  .button-gradient-animate:hover {
-    background-position: right center;
+  .marquee-content:hover {
+    animation-play-state: paused;
   }
 }

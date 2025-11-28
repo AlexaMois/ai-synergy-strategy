@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Cases = () => {
@@ -7,61 +5,55 @@ const Cases = () => {
   const cases = [
     {
       title: "Крайпотребсоюз",
-      result: "–92% времени на обработку",
+      result: "–92% времени",
       roi: "ROI 278%",
       description:
-        "Автоматизация документооборота и аналитики для региональной организации. Сокращение рутинных операций с 8 часов до 40 минут.",
+        "Автоматизация документооборота и аналитики. Сокращение рутинных операций с 8 часов до 40 минут.",
     },
     {
       title: "Голосовой ассистент",
-      result: "Полная автоматизация",
+      result: "70% автоматизация",
       roi: "ROI 340%",
       description:
-        "Разработка и внедрение голосового помощника для службы поддержки. Обработка 70% запросов без участия оператора.",
+        "Разработка голосового помощника для службы поддержки. Обработка без участия оператора.",
     },
     {
       title: "Грузовой экспресс",
-      result: "Оптимизация логистики",
+      result: "–35% простоев",
       roi: "ROI 215%",
       description:
-        "Внедрение ИИ для прогнозирования маршрутов и загрузки. Снижение простоев на 35% и экономия топлива на 18%.",
+        "Внедрение ИИ для прогнозирования маршрутов. Снижение простоев и экономия топлива на 18%.",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-secondary">
+    <section id="cases" ref={ref} className="py-32 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Кейсы</h2>
-          <div className="w-24 h-1 bg-accent mx-auto" />
-        </div>
+        <div className="max-w-6xl mx-auto">
+          <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Кейсы
+          </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {cases.map((caseItem, index) => (
-            <div
-              key={index}
-              className={`p-8 rounded-lg bg-background border-l-4 border-accent hover:shadow-xl hover:-translate-y-2 transition-all ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <h3 className="text-2xl font-bold mb-4">{caseItem.title}</h3>
-              <div className="space-y-2 mb-4">
-                <p className="text-accent font-semibold text-lg">
-                  {caseItem.result}
+          <div className="grid md:grid-cols-3 gap-12">
+            {cases.map((caseItem, index) => (
+              <div
+                key={index}
+                className={`space-y-6 ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">{caseItem.title}</h3>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-3xl font-bold text-accent">{caseItem.result}</p>
+                    <p className="text-xl font-semibold text-muted-foreground">{caseItem.roi}</p>
+                  </div>
+                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {caseItem.description}
                 </p>
-                <p className="text-accent font-semibold">{caseItem.roi}</p>
               </div>
-              <p className="text-muted-foreground leading-relaxed">
-                {caseItem.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button variant="outline" className="border-accent text-foreground hover:bg-accent/10">
-            Посмотреть все кейсы
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

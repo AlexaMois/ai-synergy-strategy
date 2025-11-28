@@ -1,63 +1,54 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { Button } from "@/components/ui/button";
 
 const HowIWork = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const steps = [
     {
-      number: "01",
-      title: "Диагностика",
-      description:
-        "Изучаю процессы, данные и текущие боли. Определяю точки применения ИИ с максимальной отдачей.",
+      number: "1",
+      title: "Подайте заявку",
+      description: "Заполните форму или свяжитесь со мной напрямую",
     },
     {
-      number: "02",
-      title: "Архитектура",
-      description:
-        "Проектирую решение: выбираю инструменты, определяю интеграции, закладываю масштабируемость.",
+      number: "2",
+      title: "Диагностика процессов",
+      description: "Изучаю ваши процессы, данные и определяю точки роста",
     },
     {
-      number: "03",
-      title: "Сопровождение",
-      description:
-        "Запускаю пилот, обучаю команду, дорабатываю систему до целевых метрик и передаю в эксплуатацию.",
+      number: "3",
+      title: "Проектирование решения",
+      description: "Создаю архитектуру и выбираю инструменты для внедрения",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-secondary">
+    <section id="how" ref={ref} className="py-32 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Как я работаю
-            </h2>
-            <div className="w-24 h-1 bg-accent mx-auto" />
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <h2 className={`text-5xl md:text-6xl font-bold mb-24 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Как начать работу
+          </h2>
 
-          <div className="space-y-12">
+          <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step, index) => (
-              <div 
-                key={index} 
-                className={`flex gap-8 items-start ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+              <div
+                key={index}
+                className={`text-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="flex-shrink-0 w-20 h-20 bg-accent text-accent-foreground rounded-lg flex items-center justify-center text-2xl font-bold">
-                  {step.number}
+                <div className="w-24 h-24 mx-auto mb-8 rounded-full border-4 border-accent flex items-center justify-center">
+                  <span className="text-4xl font-bold text-accent">{step.number}</span>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
+                <p className="text-lg text-muted-foreground">{step.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-16 p-8 bg-background rounded-lg border-l-4 border-accent">
-            <p className="text-xl italic text-muted-foreground">
-              "ИИ — инструмент, а не волшебная кнопка."
-            </p>
+          <div className="text-center mt-20">
+            <Button size="lg" className="h-16 px-8 text-lg bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+              Начать сейчас
+            </Button>
           </div>
         </div>
       </div>

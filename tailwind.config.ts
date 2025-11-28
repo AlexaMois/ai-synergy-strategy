@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],
-        golos: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        golos: ['Golos Text', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
