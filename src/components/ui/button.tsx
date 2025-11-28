@@ -5,22 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[30px] text-lg font-bold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0 transition-all duration-500 ease-in-out",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-semibold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 transition-all duration-300 ease-out",
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-[hsl(185,72%,55%)] via-[hsl(185,82%,62%)] to-[hsl(185,92%,68%)] text-[hsl(0,0%,10%)] shadow-glow hover:shadow-glow-hover hover:scale-105 hover:from-[hsl(185,82%,62%)] hover:via-[hsl(185,92%,68%)] hover:to-[hsl(185,100%,75%)] active:shadow-glow-active active:scale-[1.02]",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all duration-300",
-        outline: "border-2 border-accent bg-transparent text-foreground hover:bg-gradient-to-r hover:from-accent/10 hover:via-accent/20 hover:to-accent/10 hover:shadow-glow hover:scale-105",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300",
-        ghost: "hover:bg-accent hover:text-accent-foreground transition-all duration-300",
-        link: "text-primary underline-offset-4 hover:underline transition-all duration-300",
+        default: "bg-accent text-accent-foreground shadow-soft hover:shadow-card hover:scale-[1.02] active:scale-[0.98]",
+        destructive: "bg-destructive text-destructive-foreground shadow-soft hover:shadow-card hover:scale-[1.02]",
+        outline: "border-2 border-border bg-background text-foreground hover:bg-muted hover:shadow-soft hover:scale-[1.02]",
+        secondary: "bg-secondary text-secondary-foreground shadow-soft hover:bg-muted hover:shadow-card hover:scale-[1.02]",
+        ghost: "hover:bg-muted/50 hover:text-foreground",
+        link: "text-accent underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-14 px-8 py-4",
-        sm: "h-12 px-6 text-base",
-        lg: "h-16 px-10 text-xl",
-        icon: "h-14 w-14",
+        default: "h-11 px-6 py-2.5",
+        sm: "h-9 px-4 text-sm",
+        lg: "h-12 px-8 text-lg",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
