@@ -32,7 +32,7 @@ const Services = () => {
       <img 
         src={brushAccent} 
         alt="" 
-        className="absolute top-20 left-10 w-96 opacity-15 pointer-events-none transition-transform duration-100 ease-out"
+        className="absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
         style={{ transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)` }}
       />
       <div className="container mx-auto px-4">
