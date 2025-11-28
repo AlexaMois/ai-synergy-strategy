@@ -1,10 +1,27 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import nPattern from "@/assets/n-pattern.png";
+import brushAccent from "@/assets/brush-accent-2.png";
 
 const WhyItWorks = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <section ref={ref} className="py-32 bg-background">
+    <section ref={ref} className="relative py-32 bg-background overflow-hidden">
+      {/* N Pattern Background */}
+      <div 
+        className="absolute bottom-0 left-0 w-1/2 h-2/3 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `url(${nPattern})`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '100px'
+        }}
+      />
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute bottom-32 right-20 w-72 opacity-20 pointer-events-none -rotate-45"
+      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-24 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

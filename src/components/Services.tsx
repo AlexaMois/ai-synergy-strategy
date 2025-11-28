@@ -1,4 +1,5 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import brushAccent from "@/assets/brush-accent-1.png";
 
 const Services = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -24,7 +25,13 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" ref={ref} className="py-32 bg-background">
+    <section id="services" ref={ref} className="relative py-32 bg-background overflow-hidden">
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute top-20 left-10 w-96 opacity-15 pointer-events-none rotate-12"
+      />
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-5xl md:text-6xl font-bold mb-24 text-center">

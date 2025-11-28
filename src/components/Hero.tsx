@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
+import nPattern from "@/assets/n-pattern.png";
+import brushAccent from "@/assets/brush-accent-2.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const Hero = () => {
@@ -7,6 +9,21 @@ const Hero = () => {
 
   return (
     <section ref={ref} className="relative bg-background pt-32 pb-20 overflow-hidden">
+      {/* N Pattern Background */}
+      <div 
+        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url(${nPattern})`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '120px'
+        }}
+      />
+      {/* Brush Accent */}
+      <img 
+        src={brushAccent} 
+        alt="" 
+        className="absolute top-1/4 right-1/4 w-64 opacity-20 pointer-events-none"
+      />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           <div className={`space-y-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
