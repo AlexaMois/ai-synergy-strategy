@@ -5,13 +5,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[30px] text-lg font-bold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0 animate-pulse-slow button-gradient-animate",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[30px] text-lg font-bold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0 transition-all duration-500 ease-in-out",
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-[hsl(185,62%,35%)] via-[hsl(185,72%,45%)] to-[hsl(185,82%,55%)] text-white shadow-glow hover:shadow-glow-active hover:scale-105 active:shadow-glow-active transition-all duration-500 ease-in-out",
+        default: "bg-gradient-to-r from-[hsl(185,72%,55%)] via-[hsl(185,82%,62%)] to-[hsl(185,92%,68%)] text-[hsl(0,0%,10%)] shadow-glow hover:shadow-glow-hover hover:scale-105 hover:from-[hsl(185,82%,62%)] hover:via-[hsl(185,92%,68%)] hover:to-[hsl(185,100%,75%)] active:shadow-glow-active active:scale-[1.02]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all duration-300",
-        outline: "border-2 border-accent bg-transparent text-foreground hover:bg-gradient-to-r hover:from-accent/5 hover:via-accent/10 hover:to-accent/5 hover:shadow-glow hover:scale-105 transition-all duration-500",
+        outline: "border-2 border-accent bg-transparent text-foreground hover:bg-gradient-to-r hover:from-accent/10 hover:via-accent/20 hover:to-accent/10 hover:shadow-glow hover:scale-105",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300",
         ghost: "hover:bg-accent hover:text-accent-foreground transition-all duration-300",
         link: "text-primary underline-offset-4 hover:underline transition-all duration-300",
