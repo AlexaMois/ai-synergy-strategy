@@ -39,7 +39,11 @@ const Hero = () => {
           
           <div className={`relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <div className="absolute -top-8 -right-8 w-72 h-72 border-2 border-accent/20 rounded-lg" />
-            
+            <img 
+              src={alexandraPortrait} 
+              alt="Александра Моисеева - AI консультант" 
+              className="relative rounded-lg shadow-2xl w-full h-auto object-cover"
+            />
           </div>
         </div>
       </div>
