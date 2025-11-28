@@ -76,6 +76,11 @@ export default {
           300: "hsl(var(--gray-300))",
           400: "hsl(var(--gray-400))",
         },
+        text: {
+          heading: "hsl(var(--text-heading))",
+          body: "hsl(var(--text-body))",
+          subtle: "hsl(var(--text-subtle))",
+        },
         "soft-sand": "hsl(var(--soft-sand))",
         "dark-bg": "hsl(var(--dark-bg))",
         "light-bg": "hsl(var(--light-bg))",
