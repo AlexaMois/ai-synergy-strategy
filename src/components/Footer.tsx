@@ -1,4 +1,19 @@
 const Footer = () => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const navHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <footer className="bg-dark-bg text-background py-10">
       <div className="container mx-auto px-4">
@@ -11,10 +26,10 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-6 text-background/80 text-sm">
-            <a href="#services" className="hover:text-accent transition-colors">Услуги</a>
-            <a href="#cases" className="hover:text-accent transition-colors">Кейсы</a>
-            <a href="#about" className="hover:text-accent transition-colors">О себе</a>
-            <a href="#contact" className="hover:text-accent transition-colors">Контакты</a>
+            <a href="#services" onClick={(e) => scrollToSection(e, "#services")} className="hover:text-accent transition-colors">Услуги</a>
+            <a href="#cases" onClick={(e) => scrollToSection(e, "#cases")} className="hover:text-accent transition-colors">Кейсы</a>
+            <a href="#about" onClick={(e) => scrollToSection(e, "#about")} className="hover:text-accent transition-colors">О себе</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")} className="hover:text-accent transition-colors">Контакты</a>
           </div>
         </div>
 
