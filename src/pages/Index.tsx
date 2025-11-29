@@ -8,8 +8,8 @@ import HowIWorkProcess from "@/components/HowIWorkProcess";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
-import Cases from "@/components/Cases";
 import Authority from "@/components/Authority";
+import Cases from "@/components/Cases";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -28,8 +28,8 @@ const Index = () => {
       <Services />
       <HowIWork />
       <WhoIWorkWith />
-      <Cases />
       <Authority />
+      <Cases />
       <FAQ />
       <Contact />
       <Footer />
