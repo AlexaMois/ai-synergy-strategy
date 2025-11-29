@@ -9,40 +9,47 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
+import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon } from "lucide-react";
 
 const FAQ = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.35);
-  const faqs = [
+  const faqs: { question: string; answer: string; icon: LucideIcon }[] = [
     {
       question: "Сколько стоит внедрение ИИ?",
       answer:
         "От 50 000 ₽ за быстрые решения до 500 000 ₽ за архитектуру и сопровождение. Начинаем с экспресс-аудита.",
+      icon: DollarSign,
     },
     {
       question: "Сколько это занимает?",
       answer:
         "Экспресс-аудит — 60 минут. Интеграции — от 2 недель. Сложные проекты — 2–4 месяца.",
+      icon: Clock,
     },
     {
       question: "Команда поймёт, что происходит?",
       answer:
         "Да. Объясняю простым языком. Каждый проект завершается обучением сотрудников.",
+      icon: Users,
     },
     {
       question: "А если решение не сработает?",
       answer:
         "Есть пилот. Все гипотезы проверяем до масштабирования.",
+      icon: Shield,
     },
     {
       question: "Вы работаете с нашей отраслью?",
       answer:
         "Да. Логистика, PR, финансы, медицина, образование, ритейл.",
+      icon: Briefcase,
     },
     {
       question: "Будем зависеть от вас?",
       answer:
         "Нет. Я создаю автономные системы и передаю управляемый продукт.",
+      icon: Unlock,
     },
   ];
 
@@ -62,20 +69,26 @@ const FAQ = () => {
 
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border-b-2 border-border pb-3"
-              >
-                <AccordionTrigger className="text-left text-lg md:text-xl font-bold text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-base text-text-body leading-relaxed pt-3">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            {faqs.map((faq, index) => {
+              const IconComponent = faq.icon;
+              return (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="border-b-2 border-border pb-3"
+                >
+                  <AccordionTrigger className="text-left text-lg md:text-xl font-bold text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
+                    <div className="flex items-center gap-3">
+                      <IconComponent className="h-5 w-5 text-accent shrink-0" />
+                      <span>{faq.question}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-base text-text-body leading-relaxed pt-3 pl-8">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
           </Accordion>
 
           <div className="mt-12 text-center">
