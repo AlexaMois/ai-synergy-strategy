@@ -111,7 +111,7 @@ const Cases = () => {
 
                 {/* Solutions */}
                 <div className="mb-4">
-                  <p className="text-base font-medium text-text-body mb-2">Решение:</p>
+                  <p className="text-handwriting mb-2">Решение:</p>
                   <ul className="space-y-1.5">
                     {caseItem.solutions.map((solution, idx) => (
                       <li key={idx} className="text-[15px] text-text-secondary leading-relaxed flex">
@@ -127,7 +127,7 @@ const Cases = () => {
 
                 {/* Results */}
                 <div className="mb-6">
-                  <p className="text-base font-medium text-text-body mb-2">Результаты:</p>
+                  <p className="text-handwriting mb-2">Результаты:</p>
                   <ul className="space-y-1.5">
                     {caseItem.results.map((result, idx) => (
                       <li key={idx} className="text-[15px] text-text-secondary leading-relaxed">
