@@ -1,9 +1,9 @@
 import oporaRossii from '@/assets/partners/opora-rossii.png';
 import itPark from '@/assets/partners/it-park.png';
-import combox from '@/assets/partners/combox.png';
+import combox from '@/assets/partners/combox.jpg';
 import software from '@/assets/partners/software.svg';
-import kritbi from '@/assets/partners/kritbi.png';
-import nfii from '@/assets/partners/nfii.png';
+import kritbi from '@/assets/partners/kritbi.jpg';
+import nfii from '@/assets/partners/nfii.jpg';
 
 const Partners = () => {
   const partners = [
