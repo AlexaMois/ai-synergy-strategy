@@ -76,17 +76,31 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
                 
-                {/* Одна широкая карточка внизу */}
-                <div 
-                  className="py-8 px-6 rounded-xl text-center"
-                  style={{ 
-                    backgroundColor: '#F8F3FF',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
-                >
-                  <p className="text-base text-text-body leading-relaxed">
-                    Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
-                  </p>
+                {/* Две широкие карточки внизу */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div 
+                    className="py-8 px-6 rounded-xl text-center"
+                    style={{ 
+                      backgroundColor: '#F8F3FF',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                    }}
+                  >
+                    <p className="text-base text-text-body leading-relaxed">
+                      Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+                    </p>
+                  </div>
+                  
+                  <div 
+                    className="py-8 px-6 rounded-xl text-center"
+                    style={{ 
+                      backgroundColor: '#F8F3FF',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                    }}
+                  >
+                    <p className="text-base text-text-body leading-relaxed">
+                      Место для ещё одного достижения
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
