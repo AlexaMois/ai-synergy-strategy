@@ -553,4 +553,26 @@ All colors MUST be HSL.
   .marquee-content:hover {
     animation-play-state: paused;
   }
+  
+  /* Partners marquee - slower animation */
+  .marquee-logos {
+    animation: marquee 40s linear infinite;
+  }
+  
+  .partner-logo-placeholder {
+    height: 55px;
+    min-width: 140px;
+    margin: 0 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+  }
+  
+  .partner-logo-placeholder:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
 }
