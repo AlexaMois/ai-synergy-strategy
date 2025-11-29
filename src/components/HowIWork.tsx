@@ -53,7 +53,7 @@ const HowIWork = () => {
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-accent flex items-center justify-center">
                   <span className="text-3xl font-semibold text-accent">{step.number}</span>
                 </div>
-                <h3 className="text-lg font-medium mb-3 text-text-heading">{step.title}</h3>
+                <h3 className="text-2xl font-medium mb-3 text-text-heading">{step.title}</h3>
                 <p className="text-base text-text-body">{step.description}</p>
               </div>
             ))}

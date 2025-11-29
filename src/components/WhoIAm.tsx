@@ -28,7 +28,7 @@ const WhoIAm = () => {
         <h2 className="section-title text-center">
           Кто я и почему ко мне приходят
         </h2>
-        <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
+        <div className="w-24 h-[2px] bg-primary mx-auto"></div>
       </div>
 
       {/* Двухколоночный блок */}
@@ -38,7 +38,7 @@ const WhoIAm = () => {
           className={`rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           style={{ backgroundColor: 'hsl(var(--bg-light-blue))' }}
         >
-          <p className="text-lg md:text-xl leading-relaxed text-[#222222] font-normal">
+          <p className="text-lg leading-relaxed text-text-heading font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
             15 лет — в управлении, финансах, операционке.<br/><br/>
             Знаю, как устроены процессы изнутри — не по презентациям.
@@ -56,7 +56,7 @@ const WhoIAm = () => {
                 transitionDelay: `${150 + index * 75}ms`
               }}
             >
-              <p className="text-base md:text-lg text-[#222222] font-normal leading-relaxed">
+              <p className="text-lg text-text-heading font-normal leading-relaxed">
                 {card.title}
               </p>
             </div>
@@ -65,8 +65,8 @@ const WhoIAm = () => {
       </div>
 
       {/* Акцентная плашка внизу */}
-      <div className={`bg-[#49BED8] rounded-2xl p-6 text-center shadow-card transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-lg md:text-xl font-medium text-white">
+      <div className={`bg-primary rounded-2xl p-6 text-center shadow-card transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <p className="text-lg font-medium text-white">
           Моя цель — не внедрить "что-то модное", а усилить бизнес.
         </p>
       </div>

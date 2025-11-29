@@ -26,7 +26,7 @@ const WhoIWorkWith = () => {
           </h2>
           
           <div className={`space-y-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <p className="text-lg md:text-xl leading-relaxed text-text-body">
+            <p className="text-lg leading-relaxed text-text-body">
               Компании с <span className="font-medium text-accent">20-300 сотрудников</span>, 
               которые хотят <span className="font-medium">реальной эффективности</span>, 
               а не модного слова

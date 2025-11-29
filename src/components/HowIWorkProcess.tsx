@@ -82,7 +82,7 @@ const HowIWorkProcess = () => {
                     <Icon className="w-9 h-9" style={{ color: '#49BED8' }} strokeWidth={1.5} />
                   </div>
                   
-                  <h3 className="text-lg font-medium mb-3 text-text-heading text-center">
+                  <h3 className="text-2xl font-medium mb-3 text-text-heading text-center">
                     {card.title}
                   </h3>
                   <p className="text-handwriting mb-3">
