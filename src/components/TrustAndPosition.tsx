@@ -2,7 +2,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
-import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
+import { Target, TrendingUp, MessageCircle, Search, Shield, Users } from "lucide-react";
 
 const TrustAndPosition = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -42,62 +42,92 @@ const TrustAndPosition = () => {
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 auto-rows-fr">
+              {/* Вступительный текст */}
+              <div className="mb-6">
+                <p className="text-base text-text-body leading-relaxed">
+                  Потому что я работаю не с технологиями — <span className="font-semibold">я работаю с бизнесом</span>.
+                  Считаю экономику каждого решения, вижу процессы изнутри и не продаю то, что не принесёт эффекта.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
                 {/* Карточка 1 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
                   <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                    12+ лет в управлении, финансах и технологиях
+                    12+ лет в управлении, финансах и операционке
                   </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Победитель Национальной премии "Бизнес-Успех", 2025
+                    Понимаю, как работают компании, как строятся процессы и что действительно влияет на прибыль.
                   </p>
                 </div>
                 
                 {/* Карточка 2 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
                   <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                    Член Национального фонта искусственного интеллекта
+                    Победитель Национальной премии "Бизнес-Успех" (2025)
                   </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Резидент IT-Парк Казань и КРИТБИ
+                    Признание за реальные проекты, а не за презентации.
                   </p>
                 </div>
                 
                 {/* Карточка 3 */}
                 <div 
-                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    Член Национального фонда искусственного интеллекта
+                  </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+                    Экспертиза, подтверждённая профессиональным сообществом.
                   </p>
                 </div>
                 
                 {/* Карточка 4 */}
                 <div 
-                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    Резидент IT-Парк Казань и КРИТБИ
+                  </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Место для ещё одного достижения
+                    Практика внедрений на российских платформах и в закрытых контурах.
+                  </p>
+                </div>
+                
+                {/* Карточка 5 */}
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{ 
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    ROI клиентов 200–400% в первые месяцы внедрения
+                  </p>
+                  <p className="text-base text-text-body leading-relaxed">
+                    Я оцениваю выгоду до старта — и веду проекты до результата.
                   </p>
                 </div>
               </div>
@@ -107,14 +137,18 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3">
-                  Моя позиция
+                  🔥 Моя позиция
                 </h2>
-                <div className="w-full h-px bg-gray-200"></div>
+                <div className="w-full h-px bg-gray-200 mb-6"></div>
+                <p className="text-base text-text-body leading-relaxed">
+                  <span className="font-semibold">ИИ — это инструмент управления</span>, а не модный проект.
+                  Он должен усиливать процессы, снижать издержки и давать прогнозируемый эффект.
+                </p>
               </div>
 
               <div className="space-y-4">
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  className="flex items-start gap-4 p-5 rounded-full bg-white"
                   style={{
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
@@ -129,13 +163,14 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      <span className="font-semibold">ИИ — инструмент</span>, а не повод "повесить" на бизнес лишние расходы.
+                      <span className="font-semibold">Я за честные решения</span><br />
+                      Если автоматизация не окупится — я скажу об этом сразу. Это экономит бюджеты, время и доверие.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  className="flex items-start gap-4 p-5 rounded-full bg-white"
                   style={{
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
@@ -150,13 +185,14 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      Любой проект должен <span className="font-semibold">давать эффект</span>, а не создавать видимость инноваций.
+                      <span className="font-semibold">Я за инженерный подход</span>, а не "кнопку ИИ"<br />
+                      Сначала анализ, архитектура и риски — потом выбор инструмента.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  className="flex items-start gap-4 p-5 rounded-full bg-white"
                   style={{
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
@@ -171,13 +207,14 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      Если ИИ не нужен — я <span className="font-semibold">честно скажу об этом сразу</span>.
+                      <span className="font-semibold">Я за прозрачность</span><br />
+                      Объясняю управленцам на их языке: деньги, скорость, нагрузка, устойчивость.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  className="flex items-start gap-4 p-5 rounded-full bg-white"
                   style={{
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
@@ -188,11 +225,34 @@ const TrustAndPosition = () => {
                       background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
                     }}
                   >
-                    <Search className="w-6 h-6 text-white" />
+                    <Users className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      <span className="font-semibold">Диагностика — фильтр</span>, без которого нельзя начинать.
+                      <span className="font-semibold">Я за зрелые команды</span><br />
+                      Внедрение работает тогда, когда люди понимают смысл изменений.
+                    </p>
+                  </div>
+                </div>
+
+                <div 
+                  className="flex items-start gap-4 p-5 rounded-full bg-white"
+                  style={{
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <div 
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                    }}
+                  >
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-base text-text-body leading-relaxed">
+                      <span className="font-semibold">Я за устойчивость</span>, а не зависимость<br />
+                      Строю системы, которые компания может поддерживать без меня.
                     </p>
                   </div>
                 </div>
