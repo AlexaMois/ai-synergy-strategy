@@ -67,7 +67,7 @@ const AIFramework = () => {
         <h2 className="section-title text-center">
           Мой метод: AI Synergy Framework
         </h2>
-        <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
+        <div className="w-24 h-[2px] bg-primary mx-auto"></div>
       </div>
 
       {/* Подзаголовок */}
@@ -134,7 +134,7 @@ const AIFramework = () => {
           {/* Центральная надпись */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center bg-white/90 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
-              <p className="text-[14px] md:text-[16px] font-semibold text-[#222222] leading-tight px-4">
+              <p className="text-[14px] md:text-[16px] font-semibold text-text-heading leading-tight px-4">
                 AI Synergy<br/>Framework
               </p>
             </div>
@@ -143,22 +143,22 @@ const AIFramework = () => {
           {/* Статичные подписи секторов - симметрично вокруг круга */}
           {/* Бизнес - верхний левый (кремовый сектор) */}
           <div className="absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Бизнес</p>
+            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Бизнес</p>
           </div>
           
           {/* Технологии - верхний правый (голубой сектор) */}
           <div className="absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Технологии</p>
+            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Технологии</p>
           </div>
           
           {/* Процессы - нижний левый (мятный сектор) */}
           <div className="absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Процессы</p>
+            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Процессы</p>
           </div>
           
           {/* Люди - нижний правый (лавандовый сектор) */}
           <div className="absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Люди</p>
+            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Люди</p>
           </div>
         </div>
       </div>
@@ -182,12 +182,12 @@ const AIFramework = () => {
             onMouseEnter={() => setHoveredPillar(index)}
             onMouseLeave={() => setHoveredPillar(null)}
           >
-            <h3 className="text-lg font-medium text-[#222222] mb-4">
+            <h3 className="text-2xl font-medium text-text-heading mb-4">
               {pillar.title}
             </h3>
             <div className="space-y-3">
               {pillar.points.map((point, idx) => (
-                <p key={idx} className="text-base text-[#444444] leading-relaxed">
+                <p key={idx} className="text-base text-text-body leading-relaxed">
                   {point}
                 </p>
               ))}
@@ -198,7 +198,7 @@ const AIFramework = () => {
 
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-3xl font-semibold text-primary whitespace-nowrap">
+        <p className="text-2xl md:text-3xl font-semibold text-primary">
           Результат: решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>

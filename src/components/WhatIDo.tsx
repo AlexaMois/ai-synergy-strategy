@@ -53,7 +53,7 @@ const WhatIDo = () => {
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-medium mb-4 text-text-heading">
+                      <h3 className="text-2xl font-medium mb-4 text-text-heading">
                         {card.title}
                       </h3>
                       <p className="text-base text-text-body leading-[1.7]">

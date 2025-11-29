@@ -55,7 +55,7 @@ const Hero = () => {
             <div className={`col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               <div className="space-y-3">
                 <div className="inline-block">
-                  <span className="text-handwriting text-gray-700 text-2xl">
+                  <span className="text-handwriting">
                     независимый стратег инженер ИИ
                   </span>
                 </div>
@@ -69,7 +69,7 @@ const Hero = () => {
               </p>
 
                 <div className="space-y-2">
-                  <p className="text-xs text-[#999] uppercase tracking-wide">Кому это особенно полезно:</p>
+                  <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно полезно:</p>
                   <TabsList className="bg-transparent p-0 h-auto gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
                   <TabsTrigger value="ceo" className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     Я — CEO
@@ -102,14 +102,16 @@ const Hero = () => {
                           {tabsContent.ceo.button1}
                         </a>
                       </Button>
-                      
+                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
                     <a href="#" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.ceo.button2}
                     </a>
                   </div>
 
-                  
+                  <p className="text-sm text-text-subtle leading-tight mt-8">
+                    36+ проектов · 350+ консультаций · ROI клиентов 200–400%
+                  </p>
                 </div>
               </TabsContent>
 
@@ -137,7 +139,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-sm text-[#777] leading-tight mt-8">
+                  <p className="text-sm text-text-subtle leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -167,7 +169,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-sm text-[#777] leading-tight mt-8">
+                  <p className="text-sm text-text-subtle leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
