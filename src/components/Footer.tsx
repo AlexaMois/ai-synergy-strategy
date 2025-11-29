@@ -3,7 +3,20 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
+    
+    // Extract the hash from href (e.g., "/#services" -> "#services")
+    const hash = href.includes('#') ? href.split('#')[1] : '';
+    
+    if (!hash) return;
+    
+    // If we're not on the homepage, navigate there first
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${hash}`;
+      return;
+    }
+    
+    // If we're on homepage, scroll to element
+    const element = document.querySelector(`#${hash}`);
     if (element) {
       const navHeight = 80;
       const elementPosition = element.getBoundingClientRect().top;
