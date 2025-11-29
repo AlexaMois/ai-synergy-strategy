@@ -87,7 +87,7 @@ const Cases = () => {
             return (
               <div
                 key={index}
-                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 flex flex-col ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] flex flex-col ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                 style={{
                   animationDelay: `${index * 0.1}s`
                 }}
