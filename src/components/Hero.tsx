@@ -185,7 +185,19 @@ const Hero = () => {
             </div>
           
             <div className={`lg:col-span-5 relative mb-8 lg:mb-0 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-              <OptimizedImage src={alexandraPortrait} alt="Александра Моисеева - AI консультант" className="rounded-lg w-full max-w-[280px] sm:max-w-[320px] lg:w-[82%] lg:max-w-none h-auto object-cover mx-auto" priority sizes="(max-width: 768px) 100vw, 50vw" />
+              {/* Блок с градиентной обводкой — симметричный левому */}
+              <div className="p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+                {/* Контейнер с пропорциями 4:5 */}
+                <div className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden rounded-xl bg-gray-50">
+                  <OptimizedImage 
+                    src={alexandraPortrait} 
+                    alt="Александра Моисеева - AI консультант" 
+                    className="w-full h-full object-cover object-top"
+                    priority 
+                    sizes="(max-width: 768px) 100vw, 50vw" 
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </Tabs>
