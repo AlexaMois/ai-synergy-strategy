@@ -23,13 +23,47 @@ const Services = () => {
     title: "Консалтинг и сопровождение",
     description: "Обучаю команду работе с ИИ. Сопровождаю пилоты и запуски. Помогаю избежать ошибок и достичь целевых метрик."
   }];
-  return <section id="services" ref={ref} className="relative py-16 bg-background overflow-hidden">
+  return (
+    <section id="services" ref={ref} className="relative py-20 bg-background overflow-hidden">
       {/* Brush Accent */}
-      <OptimizedImage src={brushAccent} alt="" className={`absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`} style={{
-      transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)`,
-      animationDelay: '0.2s'
-    }} />
+      <OptimizedImage 
+        src={brushAccent} 
+        alt="" 
+        className={`absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`} 
+        style={{
+          transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)`,
+          animationDelay: '0.2s'
+        }} 
+      />
       
-    </section>;
+      <div className="container mx-auto px-4">
+        <h2 className="section-title text-center leading-tight mb-10">
+          Услуги, <span className="font-semibold">которые я предлагаю</span>
+        </h2>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {services.map((service, index) => (
+            <div
+              key={service.number}
+              className={`p-8 rounded-[20px] bg-white shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${
+                isVisible ? 'animate-fade-in-up' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <div className="text-5xl font-bold text-primary mb-4 opacity-30">
+                {service.number}
+              </div>
+              <h3 className="text-xl font-semibold text-text-heading mb-3">
+                {service.title}
+              </h3>
+              <p className="text-text-body leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 export default Services;

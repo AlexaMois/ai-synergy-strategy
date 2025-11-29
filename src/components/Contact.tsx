@@ -53,7 +53,7 @@ const Contact = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg text-text-body">
               <div className="p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
                 <p className="font-semibold text-text-heading mb-2">Email</p>
-                <a href="mailto:neiroreshenia@yandex.ru" className="hover:text-accent transition-colors">neiroreshenia@yandex.ru</a>
+                <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">neiroreshenia@yandex.com</a>
               </div>
               <div className="p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
                 <p className="font-semibold text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
