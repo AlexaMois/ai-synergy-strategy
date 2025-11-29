@@ -59,8 +59,8 @@ const Hero = () => {
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
           <div className="grid-12 items-center">
-            <div className={`col-span-6 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-              <div className="space-y-4">
+            <div className={`col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+              <div className="space-y-3">
                 <div className="inline-block">
                   <span className="text-sm font-medium tracking-wide text-accent">
                     независимый стратег инженер ИИ
@@ -71,11 +71,13 @@ const Hero = () => {
                   Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку.
                 </p>
                 
-                <p className="text-lg text-text-body leading-relaxed mb-6">
+                <p className="text-lg text-text-body leading-relaxed">
                   Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
                 </p>
 
-                <TabsList className="bg-transparent p-0 h-auto mb-6 gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
+                <div className="space-y-2">
+                  <p className="text-xs text-[#999] uppercase tracking-wide">Кому это особенно полезно:</p>
+                  <TabsList className="bg-transparent p-0 h-auto gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
                   <TabsTrigger 
                     value="ceo" 
                     className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
@@ -96,16 +98,17 @@ const Hero = () => {
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
+                </div>
               </div>
 
               <TabsContent value="ceo" className="mt-0 animate-fade-in">
-                <div className="space-y-6">
-                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
-                    {tabsContent.ceo.title}
+                <div className="space-y-4">
+                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
+                    Как внедрять технологии, <span className="font-semibold">не нарушая устойчивость бизнеса</span>
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.ceo.description}
+                    Получаете <span className="font-semibold">честную оценку процессов, рисков и экономического эффекта</span>: что даст результат, что не окупится, и в какой последовательности двигаться.
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
@@ -132,13 +135,13 @@ const Hero = () => {
               </TabsContent>
 
               <TabsContent value="operations" className="mt-0 animate-fade-in">
-                <div className="space-y-6">
-                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
-                    {tabsContent.operations.title}
+                <div className="space-y-4">
+                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
+                    <span className="font-semibold">Как убрать узкие места</span> и повысить скорость операционки
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.operations.description}
+                    Выявляю <span className="font-semibold">дублирование, задержки и точки просадки</span>. Показываю, какие решения действительно ускорят процессы и сократят нагрузку на команду.
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
@@ -165,13 +168,13 @@ const Hero = () => {
               </TabsContent>
 
               <TabsContent value="it" className="mt-0 animate-fade-in">
-                <div className="space-y-6">
-                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
-                    {tabsContent.it.title}
+                <div className="space-y-4">
+                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
+                    <span className="font-semibold">Как внедрять ИИ без техдолга</span> и архитектурных рисков
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.it.description}
+                    Даю <span className="font-semibold">независимую оценку интеграций, безопасности и совместимости</span>: какие ИИ-решения впишутся в вашу инфраструктуру и будут устойчивыми в поддержке.
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
@@ -198,7 +201,7 @@ const Hero = () => {
               </TabsContent>
             </div>
           
-            <div className={`col-span-6 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+            <div className={`col-span-5 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
               <OptimizedImage 
                 src={alexandraPortrait} 
                 alt="Александра Моисеева - AI консультант" 
