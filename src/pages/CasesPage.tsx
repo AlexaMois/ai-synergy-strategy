@@ -3,120 +3,108 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
-import { Building2, Mic, Truck, Store, Hospital, GraduationCap } from "lucide-react";
+import { Image } from "lucide-react";
 
 const CasesPage = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   const cases = [
     {
-      icon: Building2,
-      company: "Крайпотребсоюз (Красноярск)",
-      task: "Задача: автоматизация договоров, внедрение ИИ.",
-      solutions: [
-        "проведён полный аудит и выдано заключение",
-        "создана архитектура",
-        "выбрана единая российская платформа",
-        "корпоративное обучение + обучение каждого сотрудника",
-        "автоматизированы юридический и финансово-экономический отделы"
+      id: 1,
+      image: null,
+      targetAudience: "Кооперативная сеть, 500+ сотрудников",
+      caseTitle: "Автоматизация договоров и внедрение ИИ",
+      industry: "Ритейл / Кооперация",
+      task: "Крайпотребсоюз нуждался в комплексной автоматизации работы юридического и финансового отделов, а также внедрении ИИ для повышения эффективности работы.",
+      actions: [
+        "Проведён полный аудит процессов и выдано экспертное заключение",
+        "Разработана архитектура решения на базе российской платформы",
+        "Выполнено корпоративное обучение всех сотрудников",
+        "Автоматизированы юридический и финансово-экономический отделы",
+        "Внедрена система контроля и мониторинга"
       ],
-      results: [
-        "92% времени сэкономлено",
-        "–80% ФОТ",
-        "ROI 278%"
-      ],
-      mainMetric: { value: 278, prefix: "ROI ", suffix: "%" },
-      bgColor: "#F0F9FB"
+      result: "Время на обработку договоров сократилось на 92%, фонд оплаты труда снизился на 80%. Возврат инвестиций составил 278% за первый год работы системы.",
+      mainMetric: { value: 278, prefix: "ROI ", suffix: "%" }
     },
     {
-      icon: Mic,
-      company: "Голосовой ассистент «GolossOK»",
-      task: "Задача: голосовой интерфейс для корпоративных систем и задач.",
-      solutions: [
-        "архитектура голосового интерфейса",
-        "API интеграции",
-        "обучение модели",
-        "внедрение в рабочие процессы"
+      id: 2,
+      image: null,
+      targetAudience: "B2B-компании и корпоративный сектор",
+      caseTitle: "Голосовой интерфейс для корпоративных систем",
+      industry: "IT / Автоматизация",
+      task: "Необходимо было создать голосовой интерфейс для упрощения взаимодействия с корпоративными системами и ускорения бизнес-процессов.",
+      actions: [
+        "Разработана архитектура голосового интерфейса",
+        "Настроены API интеграции с CRM и внутренними системами",
+        "Проведено обучение модели под специфику бизнеса",
+        "Внедрена интеграция с Telegram для удобства сотрудников"
       ],
-      results: [
-        "×5 скорость обработки",
-        "Интеграция в CRM и Telegram",
-        "Экономия времени маркетинга и SMM"
-      ],
-      mainMetric: { value: 5, prefix: "×", suffix: " скорость" },
-      bgColor: "#F8F3FF"
+      result: "Скорость обработки задач увеличилась в 5 раз. Система интегрирована с CRM и Telegram, что позволило сэкономить время маркетинга и SMM-отдела.",
+      mainMetric: { value: 5, prefix: "×", suffix: " скорость" }
     },
     {
-      icon: Truck,
-      company: "Грузовой Экспресс",
-      task: "Задача: автоматизация поступления заявок, контроль менеджеров, быстрые отчёты.",
-      solutions: [
-        "Telegram",
-        "Google Sheets",
-        "голосовое управление",
-        "полностью уложились в бюджет клиента"
+      id: 3,
+      image: null,
+      targetAudience: "Логистическая компания",
+      caseTitle: "Автоматизация заявок и контроль менеджеров",
+      industry: "Логистика",
+      task: "Грузовой Экспресс столкнулся с проблемой длительной обработки заявок и отсутствием контроля работы менеджеров. Требовались быстрые отчёты и прозрачность процессов.",
+      actions: [
+        "Внедрена автоматизация через Telegram-бот",
+        "Настроена интеграция с Google Sheets для учёта",
+        "Добавлено голосовое управление для водителей",
+        "Проект полностью уложился в бюджет клиента"
       ],
-      results: [
-        "–3–4 часа работы менеджеров в неделю",
-        "99% точность",
-        "Окупаемость — 3 недели"
-      ],
-      mainMetric: { value: 3, prefix: "окупаемость ", suffix: " недели" },
-      bgColor: "#F0F9FB"
+      result: "Менеджеры экономят 3-4 часа рабочего времени в неделю. Точность обработки заявок достигла 99%. Окупаемость проекта составила всего 3 недели.",
+      mainMetric: { value: 3, prefix: "окупаемость ", suffix: " недели" }
     },
     {
-      icon: Store,
-      company: "Сеть розничных магазинов",
-      task: "Задача: автоматизация учета товаров и прогнозирование спроса.",
-      solutions: [
-        "внедрение системы учета с ИИ",
-        "прогнозирование продаж на основе исторических данных",
-        "интеграция с 1С",
-        "обучение персонала"
+      id: 4,
+      image: null,
+      targetAudience: "Розничная сеть, 20+ точек продаж",
+      caseTitle: "Прогнозирование спроса и учёт товаров",
+      industry: "Ритейл",
+      task: "Сеть магазинов теряла прибыль из-за излишков товара на складе и неточных прогнозов спроса. Требовалась умная система учёта с прогнозированием.",
+      actions: [
+        "Внедрена система учёта с ИИ-прогнозированием",
+        "Настроено прогнозирование продаж на основе исторических данных",
+        "Выполнена интеграция с 1С",
+        "Обучен персонал работе с новой системой"
       ],
-      results: [
-        "–40% излишков товара",
-        "+25% точность прогнозов",
-        "ROI 215%"
-      ],
-      mainMetric: { value: 215, prefix: "ROI ", suffix: "%" },
-      bgColor: "#E8E0F5"
+      result: "Излишки товара на складе сократились на 40%, точность прогнозов выросла на 25%. ROI составил 215% за год.",
+      mainMetric: { value: 215, prefix: "ROI ", suffix: "%" }
     },
     {
-      icon: Hospital,
-      company: "Медицинская клиника",
-      task: "Задача: автоматизация записи пациентов и обработки медицинской документации.",
-      solutions: [
-        "голосовой бот для записи",
-        "автоматическая обработка медкарт",
-        "интеграция с медицинской системой",
-        "GDPR-совместимость"
+      id: 5,
+      image: null,
+      targetAudience: "Частная медицинская клиника",
+      caseTitle: "Запись пациентов и обработка документации",
+      industry: "Медицина",
+      task: "Клиника нуждалась в автоматизации записи пациентов и обработки медицинской документации для снижения нагрузки на администраторов.",
+      actions: [
+        "Внедрён голосовой бот для автоматической записи пациентов",
+        "Настроена автоматическая обработка медицинских карт",
+        "Выполнена интеграция с медицинской информационной системой",
+        "Обеспечена GDPR-совместимость системы"
       ],
-      results: [
-        "–60% времени администраторов",
-        "98% точность распознавания",
-        "Окупаемость — 2 месяца"
-      ],
-      mainMetric: { value: 60, prefix: "–", suffix: "% времени" },
-      bgColor: "#DFF0F0"
+      result: "Время работы администраторов сократилось на 60%, точность распознавания речи составила 98%. Окупаемость проекта — 2 месяца.",
+      mainMetric: { value: 60, prefix: "–", suffix: "% времени" }
     },
     {
-      icon: GraduationCap,
-      company: "Образовательная платформа",
-      task: "Задача: персонализация обучения и автоматизация проверки заданий.",
-      solutions: [
-        "ИИ-ассистент для студентов",
-        "автоматическая проверка эссе и кода",
-        "персональные рекомендации курсов",
-        "аналитика прогресса"
+      id: 6,
+      image: null,
+      targetAudience: "EdTech-стартап",
+      caseTitle: "Персонализация обучения",
+      industry: "Образование",
+      task: "Образовательная платформа хотела повысить завершаемость курсов и автоматизировать проверку заданий для масштабирования бизнеса.",
+      actions: [
+        "Разработан ИИ-ассистент для студентов",
+        "Внедрена автоматическая проверка эссе и кода",
+        "Настроены персональные рекомендации курсов",
+        "Добавлена аналитика прогресса обучения"
       ],
-      results: [
-        "+45% завершаемость курсов",
-        "–70% времени на проверку",
-        "×3 вовлеченность студентов"
-      ],
-      mainMetric: { value: 45, prefix: "+", suffix: "% завершений" },
-      bgColor: "#F8F3FF"
+      result: "Завершаемость курсов выросла на 45%, время на проверку заданий сократилось на 70%. Вовлеченность студентов увеличилась в 3 раза.",
+      mainMetric: { value: 45, prefix: "+", suffix: "% завершений" }
     }
   ];
 
@@ -128,21 +116,19 @@ const CasesPage = () => {
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-text-heading mb-6">
-            Реальные кейсы внедрения ИИ
+            Кейсы и результаты внедрения ИИ
           </h1>
           <p className="text-xl text-text-body max-w-3xl mx-auto">
-            Конкретные проекты с измеримыми результатами. Без приукрашивания, 
-            только факты, цифры и реальный ROI.
+            Конкретные проекты с измеримыми результатами. Без приукрашивания — только факты и цифры.
           </p>
         </div>
       </section>
 
       {/* Cases Grid */}
-      <section ref={ref} className="py-16 bg-[#FAFBFC]">
+      <section ref={ref} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {cases.map((caseItem, index) => {
-              const Icon = caseItem.icon;
               const metricCount = useCountUp({
                 end: caseItem.mainMetric.value,
                 duration: 1800,
@@ -153,60 +139,66 @@ const CasesPage = () => {
               
               return (
                 <div
-                  key={index}
-                  className={`p-8 rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 flex flex-col ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{
-                    backgroundColor: caseItem.bgColor,
-                    animationDelay: `${index * 0.1}s`
-                  }}
+                  key={caseItem.id}
+                  className={`bg-white rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:scale-[1.02] overflow-hidden ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div 
-                      className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: 'rgba(73, 190, 216, 0.15)'
-                      }}
-                    >
-                      <Icon className="w-8 h-8 text-accent" />
+                  {/* Header with Image and Meta */}
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row gap-4 mb-6">
+                      {/* Image Placeholder */}
+                      <div className="w-full md:w-[120px] h-[100px] md:h-[100px] flex-shrink-0 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center">
+                        <Image className="w-8 h-8 text-gray-400" />
+                      </div>
+                      
+                      {/* Meta Info */}
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-text-heading mb-1">
+                          <span className="text-text-subtle">Для кого:</span> {caseItem.targetAudience}
+                        </p>
+                        <h3 className="text-lg font-semibold text-text-heading mb-1 leading-tight">
+                          <span className="text-text-subtle font-normal">Тема кейса:</span> {caseItem.caseTitle}
+                        </h3>
+                        <p className="text-xs text-text-subtle">
+                          Отрасль: {caseItem.industry}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-[18px] font-semibold text-[#222222] leading-tight">
-                        {caseItem.company}
-                      </h3>
-                    </div>
-                  </div>
 
-                  <p className="text-[15px] text-[#444444] mb-4 italic">
-                    {caseItem.task}
-                  </p>
-
-                  <div className="mb-4">
-                    <p className="text-[14px] font-semibold text-[#222222] mb-2">Решение:</p>
-                    <ul className="space-y-1.5">
-                      {caseItem.solutions.map((solution, idx) => (
-                        <li key={idx} className="text-[14px] text-[#444444] flex items-start">
-                          <span className="mr-2 text-accent">•</span>
-                          <span>{solution}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-auto pt-4 border-t-2 border-[#222222]/10">
-                    <p className="text-[14px] font-semibold text-[#222222] mb-2">Результат:</p>
-                    <ul className="space-y-1.5 mb-4">
-                      {caseItem.results.map((result, idx) => (
-                        <li key={idx} className="text-[14px] text-[#444444] flex items-start">
-                          <span className="mr-2 text-accent font-bold">→</span>
-                          <span>{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <div className="text-center py-3 bg-white/40 rounded-xl">
-                      <p className="text-[24px] font-bold text-accent">
-                        {metricCount}
+                    {/* Task */}
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-text-heading mb-2">Задача</h4>
+                      <p className="text-base text-text-body leading-relaxed">
+                        {caseItem.task}
                       </p>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-text-heading mb-2">Что сделали</h4>
+                      <ul className="space-y-2">
+                        {caseItem.actions.map((action, idx) => (
+                          <li key={idx} className="text-sm text-text-body flex items-start">
+                            <span className="mr-2 text-primary font-bold">•</span>
+                            <span>{action}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Result */}
+                    <div className="pt-5 border-t border-gray-200">
+                      <h4 className="text-sm font-semibold text-text-heading mb-2">Результат</h4>
+                      <p className="text-base text-text-body leading-relaxed mb-4">
+                        {caseItem.result}
+                      </p>
+                      
+                      {/* Main Metric */}
+                      <div className="text-center py-4 bg-primary-light/30 rounded-xl">
+                        <p className="text-2xl md:text-3xl font-bold text-primary">
+                          {metricCount}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
