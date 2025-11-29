@@ -35,7 +35,8 @@ const WhoIAm = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Левая колонка - большая карточка */}
         <div 
-          className={`bg-[#D4EDFC] rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{ backgroundColor: 'hsl(var(--bg-light-blue))' }}
         >
           <p className="text-lg md:text-xl leading-relaxed text-[#222222] font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
@@ -49,8 +50,9 @@ const WhoIAm = () => {
           {rightCards.map((card, index) => (
             <div
               key={index}
-              className={`bg-[#D4EDFC] rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ 
+                backgroundColor: 'hsl(var(--bg-light-blue))',
                 transitionDelay: `${150 + index * 75}ms`
               }}
             >
