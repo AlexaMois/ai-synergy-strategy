@@ -15,7 +15,7 @@ const About = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-text-heading mb-6">
                 Александра Моисеева
@@ -90,7 +90,7 @@ const About = () => {
             Моя философия работы
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-[#F1F4F5] rounded-2xl p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
               <h3 className="text-xl font-semibold text-text-heading mb-4">
                 Инженерное мышление
@@ -141,7 +141,7 @@ const About = () => {
             Признание и достижения
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Член НФИИ</p>
             </div>

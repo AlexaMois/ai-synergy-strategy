@@ -53,7 +53,7 @@ const ExitIntentPopup = () => {
         {/* Header with accent background */}
         <div className="bg-gradient-to-r from-[#D4EDFC] to-[#E8E0F5] p-8 pb-6">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-[#222222] mb-3">
+            <DialogTitle className="text-2xl sm:text-3xl font-bold text-[#222222] mb-3">
               Подождите! Не уходите с пустыми руками
             </DialogTitle>
             <DialogDescription className="text-lg text-[#444444]">
