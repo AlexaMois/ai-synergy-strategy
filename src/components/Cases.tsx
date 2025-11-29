@@ -96,13 +96,13 @@ const Cases = () => {
                 {/* Icon and Company */}
                 <div className="flex items-start gap-4 mb-4">
                   <Icon className="w-9 h-9 flex-shrink-0" style={{ color: '#49BED8' }} strokeWidth={1.5} />
-                  <h3 className="text-base font-medium text-text-heading leading-tight pt-2">
+                  <h3 className="text-lg font-medium text-text-heading leading-tight pt-2">
                     {caseItem.company}
                   </h3>
                 </div>
 
                 {/* Task */}
-                <p className="text-base text-text-body mb-4">
+                <p className="text-lg text-text-body mb-4 leading-relaxed">
                   {caseItem.task}
                 </p>
 
@@ -114,7 +114,7 @@ const Cases = () => {
                   <p className="text-handwriting mb-2">Решение:</p>
                   <ul className="space-y-1.5">
                     {caseItem.solutions.map((solution, idx) => (
-                      <li key={idx} className="text-base text-text-secondary leading-relaxed flex">
+                      <li key={idx} className="text-lg text-text-secondary leading-relaxed flex">
                         <span className="mr-2">–</span>
                         <span>{solution}</span>
                       </li>
@@ -130,7 +130,7 @@ const Cases = () => {
                   <p className="text-handwriting mb-2">Результаты:</p>
                   <ul className="space-y-1.5">
                     {caseItem.results.map((result, idx) => (
-                      <li key={idx} className="text-base text-text-secondary leading-relaxed">
+                      <li key={idx} className="text-lg text-text-secondary leading-relaxed">
                         {result}
                       </li>
                     ))}

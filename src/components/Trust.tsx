@@ -41,7 +41,7 @@ const Trust = () => {
               className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
               style={{ animationDelay: `${index * 0.07}s` }}
             >
-              <p className="text-lg md:text-xl font-bold text-text-heading">{fact}</p>
+              <p className="text-lg font-semibold text-text-heading">{fact}</p>
             </div>
           ))}
         </div>

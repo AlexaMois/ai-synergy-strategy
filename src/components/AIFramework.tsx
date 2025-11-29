@@ -187,7 +187,7 @@ const AIFramework = () => {
             </h3>
             <div className="space-y-3">
               {pillar.points.map((point, idx) => (
-                <p key={idx} className="text-base text-text-body leading-relaxed">
+                <p key={idx} className="text-lg text-text-body leading-relaxed">
                   {point}
                 </p>
               ))}

@@ -50,17 +50,17 @@ const Contact = () => {
           </div>
 
           <div className={`mt-12 pt-12 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
-            <div className="grid md:grid-cols-3 gap-6 text-base text-text-body">
+            <div className="grid md:grid-cols-3 gap-6 text-lg text-text-body">
               <div>
-                <p className="font-medium text-text-heading mb-2">Email</p>
+                <p className="font-semibold text-text-heading mb-2">Email</p>
                 <a href="mailto:neiroreshenia@yandex.ru" className="hover:text-accent transition-colors">neiroreshenia@yandex.ru</a>
               </div>
               <div>
-                <p className="font-medium text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
+                <p className="font-semibold text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
                 <a href="tel:+79937217367" className="hover:text-accent transition-colors">+7 (993) 721-73-67</a>
               </div>
               <div>
-                <p className="font-medium text-text-heading mb-2">Telegram-канал</p>
+                <p className="font-semibold text-text-heading mb-2">Telegram-канал</p>
                 <a href="https://t.me/neiroreshenia" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@neiroreshenia</a>
               </div>
             </div>

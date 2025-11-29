@@ -90,14 +90,14 @@ const HowIWorkProcess = () => {
                   </p>
                   <ul className="space-y-2 mb-4">
                     {card.points.map((point, idx) => (
-                      <li key={idx} className="text-base text-text-body leading-relaxed flex">
+                      <li key={idx} className="text-lg text-text-body leading-relaxed flex">
                         <span className="mr-2">•</span>
                         <span>{point}</span>
                       </li>
                     ))}
                   </ul>
                   {card.footer && (
-                    <p className="text-base font-medium text-primary mt-4">
+                    <p className="text-lg font-semibold text-primary mt-4">
                       {card.footer}
                     </p>
                   )}
