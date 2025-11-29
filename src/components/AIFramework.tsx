@@ -54,6 +54,7 @@ const AIFramework = () => {
 
   return (
     <section 
+      id="methodology"
       ref={ref}
       className="py-16 md:py-20 px-6 md:px-20 max-w-[1360px] mx-auto"
     >
