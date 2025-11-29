@@ -91,7 +91,7 @@ const WhyItWorks = () => {
             </div>
             
             <div 
-              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:col-span-2 lg:col-span-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
               style={{ 
                 background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
                 animationDelay: '0.3s'
@@ -99,6 +99,18 @@ const WhyItWorks = () => {
             >
               <p className="text-base text-text-body leading-[1.7] text-center">
                 Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+              </p>
+            </div>
+            
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.35s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                ПРИДУМАТЬ
               </p>
             </div>
           </div>
