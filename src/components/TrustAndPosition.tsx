@@ -11,7 +11,7 @@ const TrustAndPosition = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-[hsl(var(--bg-light-blue))]"
+      className="relative py-20 overflow-hidden bg-background"
     >
       {/* Brush Accent */}
       <OptimizedImage 
@@ -24,49 +24,53 @@ const TrustAndPosition = () => {
         }}
       />
       
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
+        {/* Общий контейнер с тенью */}
+        <div 
+          className={`max-w-7xl mx-auto bg-[#FAFBFC] rounded-3xl p-12 md:p-14 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+          style={{
+            boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
+          }}
+        >
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
-              <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-                <h2 className="section-title text-center">
+              <div className="mb-8">
+                <h2 className="text-[30px] font-medium text-text-heading mb-3">
                   Почему мне доверяют
                 </h2>
-                <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+                <div className="w-full h-px bg-gray-200"></div>
               </div>
               
               <div className="space-y-4">
                 {/* Две вертикальные карточки в ряд */}
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div 
-                    className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className="p-6 rounded-xl"
                     style={{ 
-                      backgroundColor: 'hsl(var(--bg-light-purple))',
-                      animationDelay: '0.1s'
+                      backgroundColor: '#F8F3FF',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                     }}
                   >
-                    <p className="text-sm text-text-body leading-[1.7] mb-3">
+                    <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
                       12+ лет в управлении, финансах и технологиях
                     </p>
-                    <div className="w-12 h-px bg-primary/20 my-3"></div>
-                    <p className="text-sm text-text-body leading-[1.7]">
+                    <p className="text-base text-text-body leading-relaxed">
                       Победитель Национальной премии "Бизнес-Успех", 2025
                     </p>
                   </div>
                   
                   <div 
-                    className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className="p-6 rounded-xl"
                     style={{ 
-                      backgroundColor: 'hsl(var(--bg-light-purple))',
-                      animationDelay: '0.15s'
+                      backgroundColor: '#F8F3FF',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                     }}
                   >
-                    <p className="text-sm text-text-body leading-[1.7] mb-3">
+                    <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
                       Член Национального фонда искусственного интеллекта
                     </p>
-                    <div className="w-12 h-px bg-primary/20 my-3"></div>
-                    <p className="text-sm text-text-body leading-[1.7]">
+                    <p className="text-base text-text-body leading-relaxed">
                       Резидент IT-Парк Казань и КРИТБИ
                     </p>
                   </div>
@@ -74,13 +78,13 @@ const TrustAndPosition = () => {
                 
                 {/* Одна широкая карточка внизу */}
                 <div 
-                  className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className="p-6 rounded-xl text-center"
                   style={{ 
-                    backgroundColor: 'hsl(var(--bg-light-purple))',
-                    animationDelay: '0.2s'
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
+                  <p className="text-base text-text-body leading-relaxed">
                     Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
                   </p>
                 </div>
@@ -89,76 +93,94 @@ const TrustAndPosition = () => {
 
             {/* Правая колонка: Моя позиция */}
             <div>
-              <div className="w-24 h-px bg-gray-300 mx-auto mb-6"></div>
-              <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-                Моя позиция
-              </h2>
+              <div className="mb-8">
+                <h2 className="text-[30px] font-medium text-text-heading mb-3">
+                  Моя позиция
+                </h2>
+                <div className="w-full h-px bg-gray-200"></div>
+              </div>
 
               <div className="space-y-4">
                 <div 
-                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    backgroundColor: 'hsl(var(--bg-light-blue))',
-                    animationDelay: '0.1s'
+                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  style={{
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Target className="w-5 h-5 text-primary" />
+                  <div 
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                    }}
+                  >
+                    <Target className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-text-body leading-[1.7]">
-                      ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.
+                    <p className="text-base text-text-body leading-relaxed">
+                      <span className="font-semibold">ИИ — инструмент</span>, а не повод "повесить" на бизнес лишние расходы.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    backgroundColor: 'hsl(var(--bg-light-blue))',
-                    animationDelay: '0.15s'
+                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  style={{
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-primary" />
+                  <div 
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                    }}
+                  >
+                    <TrendingUp className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-text-body leading-[1.7]">
-                      Любой проект должен давать эффект, а не создавать видимость инноваций.
+                    <p className="text-base text-text-body leading-relaxed">
+                      Любой проект должен <span className="font-semibold">давать эффект</span>, а не создавать видимость инноваций.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    backgroundColor: 'hsl(var(--bg-light-blue))',
-                    animationDelay: '0.2s'
+                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  style={{
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 text-primary" />
+                  <div 
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                    }}
+                  >
+                    <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-text-body leading-[1.7]">
-                      Если ИИ не нужен — я честно скажу об этом сразу.
+                    <p className="text-base text-text-body leading-relaxed">
+                      Если ИИ не нужен — я <span className="font-semibold">честно скажу об этом сразу</span>.
                     </p>
                   </div>
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    backgroundColor: 'hsl(var(--bg-light-blue))',
-                    animationDelay: '0.25s'
+                  className="flex items-center gap-4 p-5 rounded-full bg-white"
+                  style={{
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Search className="w-5 h-5 text-primary" />
+                  <div 
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                    }}
+                  >
+                    <Search className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-text-body leading-[1.7]">
-                      Диагностика — фильтр, без которого нельзя начинать.
+                    <p className="text-base text-text-body leading-relaxed">
+                      <span className="font-semibold">Диагностика — фильтр</span>, без которого нельзя начинать.
                     </p>
                   </div>
                 </div>
