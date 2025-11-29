@@ -1,212 +1,305 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useCountUp } from "@/hooks/use-count-up";
 import { Image } from "lucide-react";
 
-const CasesPage = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+interface CaseItem {
+  id: number;
+  title: string;
+  image: string | null;
+  targetAudience: string;
+  industry: string;
+  price: string;
+  status: string;
+  task: string;
+  actions: string[];
+  results: string[];
+}
 
-  const cases = [
+const CasesPage = () => {
+  const cases: CaseItem[] = [
     {
       id: 1,
+      title: "AI-SMM Агентство — автоматизация генерации контента",
       image: null,
-      targetAudience: "Кооперативная сеть, 500+ сотрудников",
-      caseTitle: "Автоматизация договоров и внедрение ИИ",
-      industry: "Ритейл / Кооперация",
-      task: "Крайпотребсоюз нуждался в комплексной автоматизации работы юридического и финансового отделов, а также внедрении ИИ для повышения эффективности работы.",
+      targetAudience: "внутренний продукт для digital-команд и SMM-специалистов",
+      industry: "маркетинг, digital",
+      price: "от 250 000 ₽",
+      status: "действующий",
+      task: "Сократить время на создание контента, устранить хаос в публикациях, автоматизировать работу SMM-команды и снизить расходы на копирайтеров и стратегов.",
       actions: [
-        "Проведён полный аудит процессов и выдано экспертное заключение",
-        "Разработана архитектура решения на базе российской платформы",
-        "Выполнено корпоративное обучение всех сотрудников",
-        "Автоматизированы юридический и финансово-экономический отделы",
-        "Внедрена система контроля и мониторинга"
+        "Создали AI-бота, который генерирует посты, сторис, прогревы, контент-планы",
+        "Поддержка текстовых и голосовых брифов",
+        "Генерация под разные форматы (Stories, Reels, Telegram и др.)",
+        "Интеграция с Telegram, Google Sheets, AmoCRM",
+        "Настройка адаптации под платформу и стиль"
       ],
-      result: "Время на обработку договоров сократилось на 92%, фонд оплаты труда снизился на 80%. Возврат инвестиций составил 278% за первый год работы системы.",
-      mainMetric: { value: 278, prefix: "ROI ", suffix: "%" }
+      results: [
+        "Сокращение времени на контент с 8 часов до 15 минут в неделю",
+        "Экономия до 80 000 ₽ в месяц",
+        "Рост охватов и вовлечённости",
+        "Стабильные продажи за счёт регулярности контента"
+      ]
     },
     {
       id: 2,
+      title: "Умный AI-ассистент для родителей («Школьный ассистент»)",
       image: null,
-      targetAudience: "B2B-компании и корпоративный сектор",
-      caseTitle: "Голосовой интерфейс для корпоративных систем",
-      industry: "IT / Автоматизация",
-      task: "Необходимо было создать голосовой интерфейс для упрощения взаимодействия с корпоративными системами и ускорения бизнес-процессов.",
+      targetAudience: "Лицей №101, Санкт-Петербург",
+      industry: "образование",
+      price: "от 70 000 ₽",
+      status: "действующий",
+      task: "Освободить администрацию от бесконечных запросов родителей, автоматизировать доступ к расписанию, посещаемости и уведомлениям.",
       actions: [
-        "Разработана архитектура голосового интерфейса",
-        "Настроены API интеграции с CRM и внутренними системами",
-        "Проведено обучение модели под специфику бизнеса",
-        "Внедрена интеграция с Telegram для удобства сотрудников"
+        "Телеграм-бот, собирающий профиль ученика при регистрации",
+        "Хранение информации в Google Sheets",
+        "Парсинг PDF-расписаний",
+        "Ответы на запросы родителей за 5–10 секунд",
+        "Автоматическая рассылка изменений и событий"
       ],
-      result: "Скорость обработки задач увеличилась в 5 раз. Система интегрирована с CRM и Telegram, что позволило сэкономить время маркетинга и SMM-отдела.",
-      mainMetric: { value: 5, prefix: "×", suffix: " скорость" }
+      results: [
+        "Ответы за 5–10 сек вместо 10–15 минут",
+        "Экономия до 50 часов в месяц у администрации",
+        "0 пропущенных уведомлений",
+        "Повышение дисциплины и вовлечённости"
+      ]
     },
     {
       id: 3,
+      title: "НейроТендеролог — отбор релевантных тендеров",
       image: null,
-      targetAudience: "Логистическая компания",
-      caseTitle: "Автоматизация заявок и контроль менеджеров",
-      industry: "Логистика",
-      task: "Грузовой Экспресс столкнулся с проблемой длительной обработки заявок и отсутствием контроля работы менеджеров. Требовались быстрые отчёты и прозрачность процессов.",
+      targetAudience: "внутренний R&D-проект",
+      industry: "тендеры, госзакупки",
+      price: "от 150 000 ₽",
+      status: "действующий",
+      task: "Ускорить анализ тендеров, исключить ручную проверку и снизить вероятность упущенных выгодных торгов.",
       actions: [
-        "Внедрена автоматизация через Telegram-бот",
-        "Настроена интеграция с Google Sheets для учёта",
-        "Добавлено голосовое управление для водителей",
-        "Проект полностью уложился в бюджет клиента"
+        "Python-скрипт, собирающий тендеры с Контура по расписанию",
+        "Фильтрация по стоп-словам",
+        "Оценка релевантности через LLM в 3 этапа",
+        "Уведомления в Telegram"
       ],
-      result: "Менеджеры экономят 3-4 часа рабочего времени в неделю. Точность обработки заявок достигла 99%. Окупаемость проекта составила всего 3 недели.",
-      mainMetric: { value: 3, prefix: "окупаемость ", suffix: " недели" }
+      results: [
+        "Сокращение времени с 3 часов до 15 минут в день",
+        "Исключение человеческого фактора",
+        "Точность релевантности 85–90%"
+      ]
     },
     {
       id: 4,
+      title: "НейроКонспектолог — автоматическая расшифровка встреч",
       image: null,
-      targetAudience: "Розничная сеть, 20+ точек продаж",
-      caseTitle: "Прогнозирование спроса и учёт товаров",
-      industry: "Ритейл",
-      task: "Сеть магазинов теряла прибыль из-за излишков товара на складе и неточных прогнозов спроса. Требовалась умная система учёта с прогнозированием.",
+      targetAudience: "digital-команды",
+      industry: "бизнес-процессы, внутренняя коммуникация",
+      price: "от 50 000 ₽",
+      status: "завершён",
+      task: "Автоматизировать протоколирование встреч, снизить потери информации и уменьшить ручную работу.",
       actions: [
-        "Внедрена система учёта с ИИ-прогнозированием",
-        "Настроено прогнозирование продаж на основе исторических данных",
-        "Выполнена интеграция с 1С",
-        "Обучен персонал работе с новой системой"
+        "Автоматическая транскрибация аудио и видео",
+        "Разметка по спикерам и темам",
+        "Создание структурированных протоколов",
+        "Интеграции с Telegram, Notion, Google Docs"
       ],
-      result: "Излишки товара на складе сократились на 40%, точность прогнозов выросла на 25%. ROI составил 215% за год.",
-      mainMetric: { value: 215, prefix: "ROI ", suffix: "%" }
+      results: [
+        "Экономия 10 часов в неделю",
+        "Прозрачность договорённостей",
+        "Минимизация ошибок"
+      ]
     },
     {
       id: 5,
+      title: "ИИ-Вася Секретарь",
       image: null,
-      targetAudience: "Частная медицинская клиника",
-      caseTitle: "Запись пациентов и обработка документации",
-      industry: "Медицина",
-      task: "Клиника нуждалась в автоматизации записи пациентов и обработки медицинской документации для снижения нагрузки на администраторов.",
+      targetAudience: "стартап-основатель (команда 3–5 человек)",
+      industry: "продуктивность, бизнес-ассистенты",
+      price: "от 80 000 ₽",
+      status: "действующий",
+      task: "Сократить рутинные задачи, улучшить организацию данных и отказаться от дорогостоящего человеческого ассистента.",
       actions: [
-        "Внедрён голосовой бот для автоматической записи пациентов",
-        "Настроена автоматическая обработка медицинских карт",
-        "Выполнена интеграция с медицинской информационной системой",
-        "Обеспечена GDPR-совместимость системы"
+        "Ассистент в Telegram и приложении",
+        "Голосовое управление календарём",
+        "Заметки, папки, визитки, заявки",
+        "AI-юрист",
+        "Интеграции с Google Sheets"
       ],
-      result: "Время работы администраторов сократилось на 60%, точность распознавания речи составила 98%. Окупаемость проекта — 2 месяца.",
-      mainMetric: { value: 60, prefix: "–", suffix: "% времени" }
+      results: [
+        "Экономия 20+ часов в месяц",
+        "3 секунды вместо 5 часов на поиск информации",
+        "ROI ~15×",
+        "Полный порядок в данных, 0 потерь"
+      ]
     },
     {
       id: 6,
+      title: "НейроПожарник — AI-ассистент по нормам ПБ",
       image: null,
-      targetAudience: "EdTech-стартап",
-      caseTitle: "Персонализация обучения",
-      industry: "Образование",
-      task: "Образовательная платформа хотела повысить завершаемость курсов и автоматизировать проверку заданий для масштабирования бизнеса.",
+      targetAudience: "группа компаний «АЛЬТ»",
+      industry: "промышленная безопасность",
+      price: "от 120 000 ₽",
+      status: "действующий",
+      task: "Облегчить работу специалистов ПБ и сократить риски ошибок и штрафов.",
       actions: [
-        "Разработан ИИ-ассистент для студентов",
-        "Внедрена автоматическая проверка эссе и кода",
-        "Настроены персональные рекомендации курсов",
-        "Добавлена аналитика прогресса обучения"
+        "AI-ассистент в Telegram",
+        "Парсинг законодательства",
+        "База знаний по нормативам",
+        "Интеграции с Telegram и Google Sheets"
       ],
-      result: "Завершаемость курсов выросла на 45%, время на проверку заданий сократилось на 70%. Вовлеченность студентов увеличилась в 3 раза.",
-      mainMetric: { value: 45, prefix: "+", suffix: "% завершений" }
+      results: [
+        "Ответы за 10 секунд вместо 30 минут",
+        "Освобождение 80% времени",
+        "Снижение риска штрафов до нуля"
+      ]
+    },
+    {
+      id: 7,
+      title: "Грузовой Экспресс — автоматизация заявок",
+      image: null,
+      targetAudience: "транспортная компания",
+      industry: "логистика",
+      price: "от 200 000 ₽",
+      status: "завершён",
+      task: "Ускорить приём заявок, исключить ошибки и обеспечить аналитическую прозрачность без внедрения CRM.",
+      actions: [
+        "Telegram-бот с ИИ",
+        "Автоматическое сохранение заявок",
+        "Распределение по менеджерам",
+        "Ежедневные отчёты"
+      ],
+      results: [
+        "Экономия 3–4 часа в неделю на менеджера",
+        "0 дублей, 0 потерь",
+        "Полная аналитика в реальном времени"
+      ]
+    },
+    {
+      id: 8,
+      title: "НейроФермер — автоматизация учёта",
+      image: null,
+      targetAudience: "фермерское хозяйство + сеть магазинов",
+      industry: "сельское хозяйство",
+      price: "от 300 000 ₽",
+      status: "действующий",
+      task: "Упорядочить управленческий учёт, разгрузить руководителя и устранить частые ошибки.",
+      actions: [
+        "Telegram-бот с голосовым управлением",
+        "Учёт надоев, рождений, процедур",
+        "Ролевой доступ",
+        "Integrations + PDF-отчёты"
+      ],
+      results: [
+        "Экономия 60 часов в месяц",
+        "Прозрачность и управляемость",
+        "Выгода до 2 млн ₽ в год"
+      ]
+    },
+    {
+      id: 9,
+      title: "СамПродам Бот — автоматизация договоров",
+      image: null,
+      targetAudience: "Агентство недвижимости «ЭКСПЕРТ»",
+      industry: "недвижимость",
+      price: "от 200 000 ₽",
+      status: "действующий",
+      task: "Автоматизировать подготовку договоров, снизить ошибки и ускорить работу юристов и риелторов.",
+      actions: [
+        "Telegram-бот с OCR",
+        "Чтение паспортов и ЕГРН",
+        "Подстановка в шаблоны",
+        "Генерация PDF и Word"
+      ],
+      results: [
+        "Результаты будут добавлены"
+      ]
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-text-heading mb-6">
-            Кейсы и результаты внедрения ИИ
-          </h1>
-          <p className="text-xl text-text-body max-w-3xl mx-auto">
-            Конкретные проекты с измеримыми результатами. Без приукрашивания — только факты и цифры.
-          </p>
-        </div>
-      </section>
-
-      {/* Cases Grid */}
-      <section ref={ref} className="py-20 bg-gray-50">
+      <main className="py-20">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {cases.map((caseItem, index) => {
-              const metricCount = useCountUp({
-                end: caseItem.mainMetric.value,
-                duration: 1800,
-                isVisible,
-                prefix: caseItem.mainMetric.prefix,
-                suffix: caseItem.mainMetric.suffix
-              });
-              
-              return (
-                <div
-                  key={caseItem.id}
-                  className={`bg-white rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:scale-[1.02] overflow-hidden ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Header with Image and Meta */}
-                  <div className="p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row gap-4 mb-6">
-                      {/* Image Placeholder */}
-                      <div className="w-full md:w-[120px] h-[100px] md:h-[100px] flex-shrink-0 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center">
-                        <Image className="w-8 h-8 text-gray-400" />
-                      </div>
-                      
-                      {/* Meta Info */}
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-text-heading mb-1">
-                          <span className="text-text-subtle">Для кого:</span> {caseItem.targetAudience}
-                        </p>
-                        <h3 className="text-lg font-semibold text-text-heading mb-1 leading-tight">
-                          <span className="text-text-subtle font-normal">Тема кейса:</span> {caseItem.caseTitle}
-                        </h3>
-                        <p className="text-xs text-text-subtle">
-                          Отрасль: {caseItem.industry}
-                        </p>
-                      </div>
-                    </div>
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <h1 className="section-title mb-4">
+              Кейсы и результаты внедрения ИИ
+            </h1>
+            <p className="text-lg text-text-body max-w-3xl mx-auto">
+              Реальные примеры аудита процессов, автоматизации и ИИ-решений для бизнеса
+            </p>
+          </div>
 
-                    {/* Task */}
-                    <div className="mb-5">
-                      <h4 className="text-sm font-semibold text-text-heading mb-2">Задача</h4>
-                      <p className="text-base text-text-body leading-relaxed">
-                        {caseItem.task}
-                      </p>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="mb-5">
-                      <h4 className="text-sm font-semibold text-text-heading mb-2">Что сделали</h4>
-                      <ul className="space-y-2">
-                        {caseItem.actions.map((action, idx) => (
-                          <li key={idx} className="text-sm text-text-body flex items-start">
-                            <span className="mr-2 text-primary font-bold">•</span>
-                            <span>{action}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Result */}
-                    <div className="pt-5 border-t border-gray-200">
-                      <h4 className="text-sm font-semibold text-text-heading mb-2">Результат</h4>
-                      <p className="text-base text-text-body leading-relaxed mb-4">
-                        {caseItem.result}
-                      </p>
-                      
-                      {/* Main Metric */}
-                      <div className="text-center py-4 bg-primary-light/30 rounded-xl">
-                        <p className="text-2xl md:text-3xl font-bold text-primary">
-                          {metricCount}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+          {/* Cases Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cases.map((caseItem) => (
+              <div
+                key={caseItem.id}
+                className="bg-white rounded-[20px] shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] p-6 md:p-8 gradient-border gradient-border-hover"
+              >
+                {/* Image Placeholder */}
+                <div className="w-full h-[120px] bg-gray-100 rounded-xl mb-6 flex items-center justify-center">
+                  <Image className="w-12 h-12 text-gray-300" strokeWidth={1.5} />
                 </div>
-              );
-            })}
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-text-heading mb-4 leading-tight">
+                  {caseItem.title}
+                </h3>
+
+                {/* Meta Information */}
+                <div className="space-y-2 mb-4">
+                  <p className="text-sm text-text-body">
+                    <span className="text-text-subtle">Для кого:</span> {caseItem.targetAudience}
+                  </p>
+                  <p className="text-sm text-text-body">
+                    <span className="text-text-subtle">Отрасль:</span> {caseItem.industry}
+                  </p>
+                  <p className="text-sm text-text-body">
+                    <span className="text-text-subtle">Стоимость:</span> {caseItem.price}
+                  </p>
+                  <p className="text-sm text-text-body">
+                    <span className="text-text-subtle">Статус проекта:</span> {caseItem.status}
+                  </p>
+                </div>
+
+                {/* Task */}
+                <div className="border-t border-gray-100 pt-4 mt-4">
+                  <p className="text-handwriting mb-2">Задача</p>
+                  <p className="text-sm text-text-body leading-relaxed">
+                    {caseItem.task}
+                  </p>
+                </div>
+
+                {/* Actions */}
+                <div className="border-t border-gray-100 pt-4 mt-4">
+                  <p className="text-handwriting mb-2">Что сделали</p>
+                  <ul className="space-y-1.5">
+                    {caseItem.actions.map((action, idx) => (
+                      <li key={idx} className="text-sm text-text-body leading-relaxed flex">
+                        <span className="text-primary mr-2">•</span>
+                        <span>{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Results */}
+                <div className="border-t border-gray-100 pt-4 mt-4">
+                  <p className="text-handwriting mb-2">Результаты и эффекты</p>
+                  <ul className="space-y-1.5">
+                    {caseItem.results.map((result, idx) => (
+                      <li key={idx} className="text-sm text-text-body leading-relaxed flex">
+                        <span className="text-primary mr-2">•</span>
+                        <span>{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
       <BackToTop />
