@@ -25,11 +25,11 @@ const Index = () => {
       <TrustMarquee />
       <WhatIDo />
       <HowIWorkProcess />
+      <Cases />
       <Services />
       <HowIWork />
       <WhoIWorkWith />
       <Authority />
-      <Cases />
       <FAQ />
       <Contact />
       <Footer />
