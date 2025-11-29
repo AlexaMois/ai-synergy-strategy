@@ -21,7 +21,7 @@ const WhoIAm = () => {
   return (
     <section 
       ref={ref}
-      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-[hsl(var(--bg-light-blue))]"
+      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-white"
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -35,7 +35,7 @@ const WhoIAm = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Левая колонка - большая карточка */}
         <div 
-          className={`bg-[#F1F4F5] rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`bg-[#D4EDFC] rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <p className="text-lg md:text-xl leading-relaxed text-[#222222] font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
@@ -49,7 +49,7 @@ const WhoIAm = () => {
           {rightCards.map((card, index) => (
             <div
               key={index}
-              className={`bg-[#F1F4F5] rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`bg-[#D4EDFC] rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ 
                 transitionDelay: `${150 + index * 75}ms`
               }}
