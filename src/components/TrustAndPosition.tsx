@@ -45,7 +45,7 @@ const TrustAndPosition = () => {
               <div className="grid grid-cols-2 gap-4">
                 {/* Карточка 1 */}
                 <div 
-                  className="p-6 rounded-xl"
+                  className="p-6 rounded-xl min-h-[140px] flex flex-col justify-center"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
@@ -61,7 +61,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 2 */}
                 <div 
-                  className="p-6 rounded-xl"
+                  className="p-6 rounded-xl min-h-[140px] flex flex-col justify-center"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
@@ -77,7 +77,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 3 */}
                 <div 
-                  className="p-6 rounded-xl text-center"
+                  className="p-6 rounded-xl text-center min-h-[140px] flex items-center justify-center"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
@@ -90,7 +90,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
-                  className="p-6 rounded-xl text-center"
+                  className="p-6 rounded-xl text-center min-h-[140px] flex items-center justify-center"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
