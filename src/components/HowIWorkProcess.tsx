@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Compass, Brain, Puzzle } from "lucide-react";
+import { Search, LayoutDashboard, ShieldCheck } from "lucide-react";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const HowIWorkProcess = () => {
@@ -9,7 +9,7 @@ const HowIWorkProcess = () => {
 
   const cards = [
     {
-      icon: Compass,
+      icon: Search,
       title: "Экспресс-аудит — первый шаг",
       subtitle: "30 минут, которые показывают:",
       points: [
@@ -22,7 +22,7 @@ const HowIWorkProcess = () => {
       bgColor: "#F0F9FB"
     },
     {
-      icon: Brain,
+      icon: LayoutDashboard,
       title: "AI-стратегия и архитектура решений",
       subtitle: "Что создаю:",
       points: [
@@ -35,7 +35,7 @@ const HowIWorkProcess = () => {
       bgColor: "#F8F3FF"
     },
     {
-      icon: Puzzle,
+      icon: ShieldCheck,
       title: "Сопровождение внедрения и независимая экспертиза",
       subtitle: "На стороне клиента:",
       points: [
@@ -77,17 +77,9 @@ const HowIWorkProcess = () => {
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
-                  {/* Icon with gradient background and glow */}
+                  {/* Icon - minimal business style */}
                   <div className="flex justify-center mb-6">
-                    <div 
-                      className="w-20 h-20 rounded-full flex items-center justify-center relative"
-                      style={{
-                        background: 'linear-gradient(135deg, #49BED8 0%, #B8A6E0 100%)',
-                        boxShadow: '0 8px 24px rgba(73, 190, 216, 0.3), 0 0 20px rgba(184, 166, 224, 0.2)'
-                      }}
-                    >
-                      <Icon className="w-9 h-9 text-white" strokeWidth={1.5} />
-                    </div>
+                    <Icon className="w-9 h-9" style={{ color: '#49BED8' }} strokeWidth={1.5} />
                   </div>
                   
                   <h3 className="text-lg font-medium mb-3 text-text-heading text-center">
