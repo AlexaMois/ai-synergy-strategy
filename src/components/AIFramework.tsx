@@ -198,8 +198,8 @@ const AIFramework = () => {
 
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-3xl font-semibold text-[#49BED8] animate-fade-in">
-          <span className="inline-block animate-bounce">Результат:</span> решения, которые работают годами, а не «умирают» через месяц.
+        <p className="text-3xl font-semibold text-primary">
+          Результат: решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>
     </section>
