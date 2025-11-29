@@ -50,7 +50,7 @@ const WhoIAm = () => {
           {rightCards.map((card, index) => (
             <div
               key={index}
-              className={`rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover hover:scale-[1.02] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover hover:scale-[1.02] hover:bg-primary-light/30 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ 
                 backgroundColor: 'hsl(var(--gray-50))',
                 transitionDelay: `${150 + index * 75}ms`
