@@ -1,11 +1,18 @@
+import oporaRossii from '@/assets/partners/opora-rossii.png';
+import itPark from '@/assets/partners/it-park.png';
+import combox from '@/assets/partners/combox.jpg';
+import software from '@/assets/partners/software.svg';
+import kritbi from '@/assets/partners/kritbi.jpg';
+import nfii from '@/assets/partners/nfii.jpg';
+
 const Partners = () => {
   const partners = [
-    { id: 1, name: "Партнёр 1" },
-    { id: 2, name: "Партнёр 2" },
-    { id: 3, name: "Партнёр 3" },
-    { id: 4, name: "Партнёр 4" },
-    { id: 5, name: "Партнёр 5" },
-    { id: 6, name: "Партнёр 6" },
+    { id: 1, name: "ОПОРА РОССИИ", logo: oporaRossii },
+    { id: 2, name: "IT Park", logo: itPark },
+    { id: 3, name: "COMBOX Technology", logo: combox },
+    { id: 4, name: "Software", logo: software },
+    { id: 5, name: "КРИТБИ", logo: kritbi },
+    { id: 6, name: "НФИИ", logo: nfii },
   ];
 
   return (
@@ -25,9 +32,11 @@ const Partners = () => {
                     className="partner-logo-placeholder"
                     title={partner.name}
                   >
-                    <div className="w-full h-full border-2 border-dashed border-gray-300 rounded-lg bg-gray-50/30 flex items-center justify-center">
-                      <span className="text-xs text-gray-400">{partner.name}</span>
-                    </div>
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="h-full w-auto object-contain"
+                    />
                   </div>
                 ))}
               </div>
