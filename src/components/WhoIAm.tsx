@@ -25,8 +25,8 @@ const WhoIAm = () => {
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="section-title text-center">
-          Кто я и почему ко мне приходят
+        <h2 className="section-title text-center leading-tight">
+          Кто я, <span className="font-semibold">и почему ко мне приходят</span>
         </h2>
         <div className="w-24 h-[2px] bg-primary mx-auto"></div>
       </div>

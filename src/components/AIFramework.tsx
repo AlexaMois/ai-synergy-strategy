@@ -60,8 +60,8 @@ const AIFramework = () => {
   return <section id="methodology" ref={ref} className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="section-title text-center">
-          Мой метод: AI Synergy Framework
+        <h2 className="section-title text-center leading-tight">
+          Мой метод, <span className="font-semibold">AI Synergy Framework</span>
         </h2>
         <div className="w-24 h-[2px] bg-primary mx-auto"></div>
       </div>

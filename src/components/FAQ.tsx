@@ -63,8 +63,8 @@ const FAQ = () => {
         style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          Частые вопросы
+        <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          Частые вопросы, <span className="font-semibold">ответы на главное</span>
         </h2>
 
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
