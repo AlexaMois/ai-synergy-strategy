@@ -1,15 +1,12 @@
-import OptimizedImage from "@/components/OptimizedImage";
-import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
-import { useCountUp } from "@/hooks/use-count-up";
 import brushAccent from "@/assets/brush-accent-1.png";
+import OptimizedImage from "@/components/OptimizedImage";
+import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const MyStory = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
-  const yearsCount = useCountUp({ end: 15, duration: 1800, isVisible });
-  const projectsCount = useCountUp({ end: 30, duration: 1800, isVisible, suffix: '+' });
   
   return (
     <section id="about" ref={ref} className="relative py-20 overflow-hidden" style={{
@@ -26,29 +23,79 @@ const MyStory = () => {
         }}
       />
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto px-12 py-16 md:px-16 md:py-20">
+        <div className="max-w-4xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
           <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Моя позиция
           </h2>
 
-          <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <div className="space-y-6 text-center">
-              <p className="text-lg text-text-body leading-[1.6]">
-                ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.
-              </p>
-              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
-              <p className="text-lg text-text-body leading-[1.6]">
-                Любой проект должен давать эффект, а не создавать видимость инноваций.
-              </p>
-              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
-              <p className="text-lg text-text-body leading-[1.6]">
-                Если ИИ не нужен — я честно скажу об этом сразу.
-              </p>
-              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
-              <p className="text-lg text-text-body leading-[1.6]">
-                Диагностика — фильтр, без которого нельзя начинать.
-              </p>
+          <div className="space-y-4">
+            <div 
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.1s'
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Target className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="text-base text-text-body leading-[1.7]">
+                  ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.
+                </p>
+              </div>
+            </div>
+
+            <div 
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.15s'
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="text-base text-text-body leading-[1.7]">
+                  Любой проект должен давать эффект, а не создавать видимость инноваций.
+                </p>
+              </div>
+            </div>
+
+            <div 
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.2s'
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <MessageCircle className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="text-base text-text-body leading-[1.7]">
+                  Если ИИ не нужен — я честно скажу об этом сразу.
+                </p>
+              </div>
+            </div>
+
+            <div 
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.25s'
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Search className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="text-base text-text-body leading-[1.7]">
+                  Диагностика — фильтр, без которого нельзя начинать.
+                </p>
+              </div>
             </div>
           </div>
         </div>
