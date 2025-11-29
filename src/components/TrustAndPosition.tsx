@@ -39,9 +39,9 @@ const TrustAndPosition = () => {
                 {/* Две вертикальные карточки в ряд */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div 
-                    className={`p-6 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                     style={{ 
-                      background: 'linear-gradient(180deg, #F3EEFF 0%, #FFFFFF 10%)',
+                      backgroundColor: '#F3EEFF',
                       animationDelay: '0.1s'
                     }}
                   >
@@ -55,9 +55,9 @@ const TrustAndPosition = () => {
                   </div>
                   
                   <div 
-                    className={`p-6 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                     style={{ 
-                      background: 'linear-gradient(180deg, #F3EEFF 0%, #FFFFFF 10%)',
+                      backgroundColor: '#F3EEFF',
                       animationDelay: '0.15s'
                     }}
                   >
@@ -69,6 +69,19 @@ const TrustAndPosition = () => {
                       Резидент IT-Парк Казань и КРИТБИ
                     </p>
                   </div>
+                </div>
+                
+                {/* Одна широкая карточка внизу */}
+                <div 
+                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  style={{ 
+                    backgroundColor: '#F3EEFF',
+                    animationDelay: '0.2s'
+                  }}
+                >
+                  <p className="text-sm text-text-body leading-[1.7] text-center">
+                    Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+                  </p>
                 </div>
               </div>
             </div>
@@ -82,7 +95,7 @@ const TrustAndPosition = () => {
 
               <div className="space-y-4">
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
                     background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
                     animationDelay: '0.1s'
@@ -99,7 +112,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
                     background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
                     animationDelay: '0.15s'
@@ -116,7 +129,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
                     background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
                     animationDelay: '0.2s'
@@ -133,7 +146,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
                     background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
                     animationDelay: '0.25s'
@@ -148,21 +161,6 @@ const TrustAndPosition = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Широкая карточка на всю ширину двух колонок */}
-            <div className="lg:col-span-2">
-              <div 
-                className={`p-6 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{ 
-                  background: 'linear-gradient(180deg, #F3EEFF 0%, #FFFFFF 10%)',
-                  animationDelay: '0.2s'
-                }}
-              >
-                <p className="text-sm text-text-body leading-[1.7] text-center">
-                  Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
-                </p>
               </div>
             </div>
           </div>
