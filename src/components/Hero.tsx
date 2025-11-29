@@ -92,7 +92,7 @@ const Hero = () => {
                 </p>
               </div>
 
-              <TabsContent value="ceo" className="mt-0">
+              <TabsContent value="ceo" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
                   <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.ceo.title}
@@ -122,7 +122,7 @@ const Hero = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="operations" className="mt-0">
+              <TabsContent value="operations" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
                   <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.operations.title}
@@ -152,7 +152,7 @@ const Hero = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="it" className="mt-0">
+              <TabsContent value="it" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
                   <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.it.title}
