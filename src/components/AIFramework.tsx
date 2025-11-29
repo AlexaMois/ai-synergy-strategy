@@ -136,25 +136,25 @@ const AIFramework = () => {
             </div>
           </div>
 
-          {/* Статичные подписи секторов */}
-          {/* Технологии - справа */}
-          <div className="absolute right-[-90px] top-1/2 -translate-y-1/2 bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          {/* Статичные подписи секторов - симметрично вокруг круга */}
+          {/* Бизнес - верхний левый (кремовый сектор) */}
+          <div className="absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Бизнес</p>
+          </div>
+          
+          {/* Технологии - верхний правый (голубой сектор) */}
+          <div className="absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Технологии</p>
           </div>
           
-          {/* Люди - снизу справа */}
-          <div className="absolute right-[-20px] bottom-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Люди</p>
-          </div>
-          
-          {/* Процессы - снизу слева */}
-          <div className="absolute left-[-30px] bottom-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          {/* Процессы - нижний левый (мятный сектор) */}
+          <div className="absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Процессы</p>
           </div>
           
-          {/* Бизнес - сверху слева */}
-          <div className="absolute left-[-20px] top-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Бизнес</p>
+          {/* Люди - нижний правый (лавандовый сектор) */}
+          <div className="absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Люди</p>
           </div>
         </div>
       </div>
