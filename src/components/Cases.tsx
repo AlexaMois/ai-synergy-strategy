@@ -65,7 +65,7 @@ const Cases = () => {
   ];
 
   return (
-    <section className="py-20 bg-background" ref={ref}>
+    <section id="cases" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Title */}
         <h2 className="text-[42px] font-semibold text-text-heading text-center mb-12">

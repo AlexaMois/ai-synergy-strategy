@@ -5,11 +5,31 @@ import { Button } from "@/components/ui/button";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Determine active section
+      const sections = ["services", "how", "cases", "about", "methodology", "interviews", "contact"];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(`#${section}`);
+            break;
+          }
+        }
+      }
     };
+
+    handleScroll(); // Initial call
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -57,7 +77,11 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-text-heading hover:text-accent transition-colors font-medium"
+                className={`transition-all duration-300 font-medium relative ${
+                  activeSection === link.href
+                    ? "text-accent after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-accent"
+                    : "text-text-heading hover:text-accent"
+                }`}
               >
                 {link.label}
               </a>
@@ -84,7 +108,11 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="block py-3 text-text-heading hover:text-accent transition-colors"
+                className={`block py-3 transition-colors font-medium ${
+                  activeSection === link.href
+                    ? "text-accent border-l-4 border-accent pl-4"
+                    : "text-text-heading hover:text-accent"
+                }`}
               >
                 {link.label}
               </a>
