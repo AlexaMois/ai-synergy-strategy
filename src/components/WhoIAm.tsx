@@ -20,7 +20,6 @@ const WhoIAm = () => {
 
   return (
     <section 
-      id="who-i-am"
       ref={ref}
       className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-[hsl(var(--bg-light-blue))]"
     >

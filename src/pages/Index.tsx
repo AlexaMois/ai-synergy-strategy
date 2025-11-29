@@ -23,24 +23,15 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
-      <div className="h-16 md:h-20" />
       <TrustAndPosition />
-      <div className="h-16 md:h-20" />
       <WhatIDo />
-      <div className="h-16 md:h-20" />
       <TrustMarquee />
-      <div className="h-16 md:h-20" />
       <HowIWorkProcess />
-      <div className="h-16 md:h-20" />
       <Cases />
-      <div className="h-16 md:h-20" />
       <AIFramework />
-      <div className="h-16 md:h-20" />
       <WhoIAm />
-      <div className="h-16 md:h-20" />
       <Services />
       <HowIWork />
-      <div className="h-16 md:h-20" />
       <WhoIWorkWith />
       
       <FAQ />

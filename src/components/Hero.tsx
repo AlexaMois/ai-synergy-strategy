@@ -67,47 +67,44 @@ const Hero = () => {
                   </span>
                 </div>
 
-                <div className="mb-4">
-                  <p className="text-xs uppercase tracking-wider text-[#999] mb-3">Для кого</p>
-                  <TabsList className="bg-transparent p-0 h-auto gap-3 border-b border-gray-200 flex-wrap justify-start w-full">
-                    <TabsTrigger 
-                      value="ceo" 
-                      className="text-sm px-4 py-2.5 bg-white text-[#666] border border-gray-200 rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-sm data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary data-[state=active]:shadow-md"
-                    >
-                      Я — CEO
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="operations" 
-                      className="text-sm px-4 py-2.5 bg-white text-[#666] border border-gray-200 rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-sm data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary data-[state=active]:shadow-md"
-                    >
-                      <span className="hidden sm:inline">Я — операционный директор</span>
-                      <span className="sm:hidden">Я — Опер. директор</span>
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="it" 
-                      className="text-sm px-4 py-2.5 bg-white text-[#666] border border-gray-200 rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-sm data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary data-[state=active]:shadow-md"
-                    >
-                      Я — ИТ-директор
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
+                <TabsList className="bg-transparent p-0 h-auto mb-6 gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
+                  <TabsTrigger 
+                    value="ceo" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
+                    Я — CEO
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="operations" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
+                    <span className="hidden sm:inline">Я — операционный директор</span>
+                    <span className="sm:hidden">Я — Опер. директор</span>
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="it" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
+                    Я — ИТ-директор
+                  </TabsTrigger>
+                </TabsList>
 
-                <p className="text-base text-text-body leading-relaxed mb-6 max-w-xl">
-                  Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы.
+                <p className="text-lg text-text-body leading-relaxed mb-6">
+                  Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы. Формирую честную картину: где ROI, где эффективность, где имитация.
                 </p>
               </div>
 
               <TabsContent value="ceo" className="mt-0 animate-fade-in">
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.ceo.title}
                   </h1>
                   
-                  <p className="text-base text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
                     {tabsContent.ceo.description}
                   </p>
                   
-                  <div className="flex flex-col gap-3 pt-2">
+                  <div className="flex flex-col gap-4 pt-2">
                     <div className="flex flex-col gap-2">
                       <Button size="lg" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -118,29 +115,29 @@ const Hero = () => {
                     </div>
                     <a 
                       href="#" 
-                      className="text-sm text-primary hover:text-primary-dark underline underline-offset-4 transition-colors"
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.ceo.button2}
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-6">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
               </TabsContent>
 
               <TabsContent value="operations" className="mt-0 animate-fade-in">
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.operations.title}
                   </h1>
                   
-                  <p className="text-base text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
                     {tabsContent.operations.description}
                   </p>
                   
-                  <div className="flex flex-col gap-3 pt-2">
+                  <div className="flex flex-col gap-4 pt-2">
                     <div className="flex flex-col gap-2">
                       <Button size="lg" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -151,29 +148,29 @@ const Hero = () => {
                     </div>
                     <a 
                       href="#" 
-                      className="text-sm text-primary hover:text-primary-dark underline underline-offset-4 transition-colors"
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.operations.button2}
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-6">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
               </TabsContent>
 
               <TabsContent value="it" className="mt-0 animate-fade-in">
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.it.title}
                   </h1>
                   
-                  <p className="text-base text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
                     {tabsContent.it.description}
                   </p>
                   
-                  <div className="flex flex-col gap-3 pt-2">
+                  <div className="flex flex-col gap-4 pt-2">
                     <div className="flex flex-col gap-2">
                       <Button size="lg" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -184,13 +181,13 @@ const Hero = () => {
                     </div>
                     <a 
                       href="#" 
-                      className="text-sm text-primary hover:text-primary-dark underline underline-offset-4 transition-colors"
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.it.button2}
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-6">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>

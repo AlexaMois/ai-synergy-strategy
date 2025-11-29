@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const AIFramework = () => {
@@ -5,6 +6,8 @@ const AIFramework = () => {
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  const [hoveredSector, setHoveredSector] = useState<number | null>(null);
 
   const sectors = [
     { name: "Бизнес", color: "#D4EDFC" },
@@ -68,50 +71,79 @@ const AIFramework = () => {
         ИИ РАБОТАЕТ ТОЛЬКО ТОГДА, КОГДА СОВПАДАЮТ: БИЗНЕС, ПРОЦЕССЫ, ЛЮДИ И ТЕХНОЛОГИИ.
       </p>
 
-      {/* Круговая схема с подписями */}
-      <div className={`flex flex-col items-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
+      {/* Круговая схема */}
+      <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+        <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
           <svg viewBox="0 0 200 200" className="w-full h-full">
+            {/* Сектор 1 - Бизнес */}
             <path
               d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z"
               fill={sectors[0].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(0)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
+            {/* Сектор 2 - Процессы */}
             <path
               d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z"
               fill={sectors[1].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(1)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
+            {/* Сектор 3 - Люди */}
             <path
               d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z"
               fill={sectors[2].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(2)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
+            {/* Сектор 4 - Технологии */}
             <path
               d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z"
               fill={sectors[3].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(3)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
           </svg>
           
           {/* Центральная надпись */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center bg-white/95 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
-              <p className="text-sm md:text-base font-semibold text-[#222222] leading-tight px-4">
+            <div className="text-center bg-white/90 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
+              <p className="text-[14px] md:text-[16px] font-semibold text-[#222222] leading-tight px-4">
                 AI Synergy<br/>Framework
               </p>
             </div>
           </div>
 
-          {/* Подписи секторов */}
-          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 pointer-events-none">
-            <p className="text-sm md:text-base font-medium text-[#222222]">Бизнес</p>
-          </div>
-          <div className="absolute top-1/2 right-[12%] -translate-y-1/2 pointer-events-none">
-            <p className="text-sm md:text-base font-medium text-[#222222]">Процессы</p>
-          </div>
-          <div className="absolute bottom-[15%] left-1/2 -translate-x-1/2 pointer-events-none">
-            <p className="text-sm md:text-base font-medium text-[#222222]">Люди</p>
-          </div>
-          <div className="absolute top-1/2 left-[12%] -translate-y-1/2 pointer-events-none">
-            <p className="text-sm md:text-base font-medium text-[#222222]">Технологии</p>
-          </div>
+          {/* Tooltip */}
+          {hoveredSector !== null && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <div className="bg-[#222222] text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in text-center whitespace-nowrap">
+                <p className="text-[14px] md:text-[16px] font-medium">
+                  {sectors[hoveredSector].name}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -120,19 +152,26 @@ const AIFramework = () => {
         {pillars.map((pillar, index) => (
           <div
             key={index}
-            className={`${pillar.color} rounded-2xl p-6 shadow-card ${
+            className={`${pillar.color} rounded-2xl p-6 shadow-card transition-all duration-300 cursor-pointer ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{ 
-              transitionDelay: `${200 + index * 75}ms`
+              transitionDelay: `${200 + index * 75}ms`,
+              transform: hoveredSector === index ? 'scale(1.05)' : 'scale(1)',
+              boxShadow: hoveredSector === index 
+                ? '0 4px 12px rgba(73, 190, 216, 0.15)' 
+                : 'var(--shadow-card)',
+              opacity: hoveredSector === null || hoveredSector === index ? 1 : 0.7
             }}
+            onMouseEnter={() => setHoveredSector(index)}
+            onMouseLeave={() => setHoveredSector(null)}
           >
-            <h3 className="text-base font-medium text-[#222222] mb-3">
+            <h3 className="text-lg font-medium text-[#222222] mb-4">
               {pillar.title}
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {pillar.points.map((point, idx) => (
-                <p key={idx} className="text-sm text-[#444444] leading-relaxed">
+                <p key={idx} className="text-base text-[#444444] leading-relaxed">
                   {point}
                 </p>
               ))}

@@ -51,7 +51,6 @@ const HowIWorkProcess = () => {
 
   return (
     <section 
-      id="how"
       ref={ref}
       className="relative py-20 overflow-hidden bg-white"
     >

@@ -11,17 +11,17 @@ const TrustMarquee = () => {
   ];
 
   return (
-    <div className="bg-dark-bg text-background py-4 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-          {facts.map((fact, index) => (
-            <div key={index} className="flex items-center gap-4 md:gap-6">
-              <span className="text-sm md:text-base whitespace-nowrap">
-                {fact}
-              </span>
-              {index < facts.length - 1 && (
-                <span className="text-accent">•</span>
-              )}
+    <div className="bg-dark-bg text-background py-3 overflow-hidden">
+      <div className="marquee-container">
+        <div className="marquee-content">
+          {[...Array(3)].map((_, setIndex) => (
+            <div key={setIndex} className="marquee-set">
+              {facts.map((fact, index) => (
+                <span key={`${setIndex}-${index}`} className="marquee-item text-base">
+                  {fact}
+                  <span className="text-accent mx-3">•</span>
+                </span>
+              ))}
             </div>
           ))}
         </div>

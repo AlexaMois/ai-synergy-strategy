@@ -16,7 +16,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
 
       // Determine active section
-      const sections = ["trust", "what-i-do", "how", "cases", "methodology", "services", "contact"];
+      const sections = ["services", "how", "cases", "about", "methodology", "interviews", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -51,7 +51,7 @@ const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { href: "#trust", label: "Услуги", isScroll: true },
+    { href: "#services", label: "Услуги", isScroll: true },
     { href: "#how", label: "Как работаю", isScroll: true },
     { href: "#cases", label: "Кейсы", isScroll: true },
     { href: "/about", label: "Обо мне", isScroll: false },
