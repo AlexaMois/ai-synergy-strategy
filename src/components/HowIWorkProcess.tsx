@@ -69,9 +69,9 @@ const HowIWorkProcess = () => {
               return (
                 <div
                   key={index}
-                  className={`p-8 rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
-                    backgroundColor: card.bgColor,
+                    backgroundColor: index === 1 ? 'hsl(var(--bg-light-purple))' : 'hsl(var(--bg-light-blue))',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >

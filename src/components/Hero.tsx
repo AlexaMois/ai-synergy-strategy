@@ -33,7 +33,7 @@ const Hero = () => {
   };
 
   return (
-    <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
+    <section ref={ref} className="relative bg-background pt-16 pb-20 overflow-hidden">
       {/* N Pattern Background */}
       <div 
         className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none transition-transform duration-100 ease-out"

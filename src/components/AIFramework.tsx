@@ -56,7 +56,7 @@ const AIFramework = () => {
     <section 
       id="methodology"
       ref={ref}
-      className="py-16 md:py-20 px-6 md:px-20 max-w-[1360px] mx-auto"
+      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background"
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -152,15 +152,15 @@ const AIFramework = () => {
         {pillars.map((pillar, index) => (
           <div
             key={index}
-            className={`${pillar.color} rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-300 cursor-pointer ${
+            className={`${pillar.color} rounded-2xl p-6 shadow-card transition-all duration-300 cursor-pointer ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{ 
               transitionDelay: `${200 + index * 75}ms`,
               transform: hoveredSector === index ? 'scale(1.05)' : 'scale(1)',
               boxShadow: hoveredSector === index 
-                ? '0 16px 32px rgba(73, 190, 216, 0.2)' 
-                : '0 8px 20px rgba(0,0,0,0.04)',
+                ? '0 4px 12px rgba(73, 190, 216, 0.15)' 
+                : 'var(--shadow-card)',
               opacity: hoveredSector === null || hoveredSector === index ? 1 : 0.7
             }}
             onMouseEnter={() => setHoveredSector(index)}

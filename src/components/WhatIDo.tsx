@@ -25,10 +25,7 @@ const WhatIDo = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-16 overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #F8FCFD 0%, #F9F8FD 100%)'
-      }}
+      className="relative py-20 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
@@ -45,9 +42,9 @@ const WhatIDo = () => {
               return (
                 <div
                   key={index}
-                  className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-6 rounded-2xl shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
-                    background: 'linear-gradient(135deg, #FAFBFC 0%, #F8F9FB 100%)',
+                    backgroundColor: 'hsl(var(--bg-light-blue))',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
