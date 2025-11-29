@@ -85,7 +85,7 @@ const HowIWorkProcess = () => {
                   <h3 className="text-lg font-medium mb-3 text-text-heading text-center">
                     {card.title}
                   </h3>
-                  <p className="text-base font-normal mb-3 text-text-body">
+                  <p className="text-handwriting mb-3">
                     {card.subtitle}
                   </p>
                   <ul className="space-y-2 mb-4">

@@ -25,7 +25,7 @@ const Contact = () => {
             Готовы узнать, где теряются ресурсы?
           </h2>
           
-          <p className={`text-lg md:text-xl text-text-body mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+          <p className={`text-handwriting mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
             Начните с малого — экспресс-аудита.
           </p>
           
