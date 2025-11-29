@@ -1,11 +1,11 @@
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { Search, LayoutDashboard, ShieldCheck } from "lucide-react";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const HowIWorkProcess = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
 
   const cards = [
     {
@@ -57,7 +57,7 @@ const HowIWorkProcess = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className={`text-center mb-12 ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
             <h2 className="section-title text-center leading-tight">
               Как я работаю с компаниями, <span className="font-semibold">три этапа</span>
             </h2>
@@ -71,10 +71,9 @@ const HowIWorkProcess = () => {
               return (
                 <div
                   key={index}
-                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(index + 1)}`}
                   style={{
-                    backgroundColor: 'hsl(var(--gray-50))',
-                    animationDelay: `${index * 0.1}s`
+                    backgroundColor: 'hsl(var(--gray-50))'
                   }}
                 >
                   {/* Icon - minimal business style */}
@@ -108,10 +107,7 @@ const HowIWorkProcess = () => {
 
           {/* CTA Block */}
           <div 
-            className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] bg-white gradient-border gradient-border-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{
-              animationDelay: '0.4s'
-            }}
+            className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] bg-white gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
           >
             <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
               Узнать, что можно автоматизировать в вашей компании

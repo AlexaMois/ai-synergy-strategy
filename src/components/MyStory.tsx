@@ -1,11 +1,11 @@
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const MyStory = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
   
   return (
@@ -16,7 +16,7 @@ const MyStory = () => {
       <OptimizedImage 
         src={brushAccent} 
         alt="" 
-        className={`absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
+        className={`absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${getAnimationClass('animate-fade-slide-up', 'animate-mobile-fade-scale')}`}
         style={{ 
           transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)`,
           animationDelay: '0.2s'
@@ -25,16 +25,15 @@ const MyStory = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
-          <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`section-title text-center ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
             Моя позиция
           </h2>
 
           <div className="space-y-4">
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(0, 'animate-fade-in-up')}`}
               style={{ 
-                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                animationDelay: '0.1s'
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -48,10 +47,9 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(1, 'animate-fade-in-up')}`}
               style={{ 
-                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                animationDelay: '0.15s'
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -65,10 +63,9 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(2, 'animate-fade-in-up')}`}
               style={{ 
-                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                animationDelay: '0.2s'
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -82,10 +79,9 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(3, 'animate-fade-in-up')}`}
               style={{ 
-                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                animationDelay: '0.25s'
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
             >
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">

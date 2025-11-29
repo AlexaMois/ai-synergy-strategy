@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const Contact = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.35);
   
   return (
@@ -21,15 +21,15 @@ const Contact = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
             Готовы узнать, <span className="font-semibold">где теряются ресурсы?</span>
           </h2>
           
-          <p className={`text-handwriting mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+          <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
             Начните с малого — экспресс-аудита.
           </p>
           
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${getStaggeredClass(2, 'animate-scale-in')}`}>
             <div className="flex flex-col gap-2 items-center">
               <Button size="lg" asChild>
                 <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -49,7 +49,7 @@ const Contact = () => {
             </Button>
           </div>
 
-          <div className={`mt-12 pt-12 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+          <div className={`mt-12 pt-12 border-t border-border ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg text-text-body">
               <div className="p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
                 <p className="font-semibold text-text-heading mb-2">Email</p>
