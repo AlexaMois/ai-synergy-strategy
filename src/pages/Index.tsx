@@ -2,14 +2,13 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import TrustMarquee from "@/components/TrustMarquee";
+import TrustAndPosition from "@/components/TrustAndPosition";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import Cases from "@/components/Cases";
-import WhyItWorks from "@/components/WhyItWorks";
-import MyStory from "@/components/MyStory";
-import FAQ from "@/components/FAQ";
 import Authority from "@/components/Authority";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -20,8 +19,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
-      <WhyItWorks />
-      <MyStory />
+      <TrustAndPosition />
       <TrustMarquee />
       <Services />
       <HowIWork />
