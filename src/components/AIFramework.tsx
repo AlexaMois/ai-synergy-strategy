@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const AIFramework = () => {
@@ -5,6 +6,15 @@ const AIFramework = () => {
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  const [hoveredSector, setHoveredSector] = useState<number | null>(null);
+
+  const sectors = [
+    { name: "Бизнес", color: "#D4EDFC" },
+    { name: "Процессы", color: "#E8E0F5" },
+    { name: "Люди", color: "#DFF0F0" },
+    { name: "Технологии", color: "#E3F4F9" }
+  ];
 
   const pillars = [
     {
@@ -64,40 +74,75 @@ const AIFramework = () => {
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
         <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
           <svg viewBox="0 0 200 200" className="w-full h-full">
-            {/* Сектор 1 - голубой */}
+            {/* Сектор 1 - Бизнес */}
             <path
               d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z"
-              fill="#D4EDFC"
-              className="transition-all duration-300 hover:opacity-80"
+              fill={sectors[0].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(0)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 2 - светло-сиреневый */}
+            {/* Сектор 2 - Процессы */}
             <path
               d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z"
-              fill="#E8E0F5"
-              className="transition-all duration-300 hover:opacity-80"
+              fill={sectors[1].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(1)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 3 - серо-бирюзовый */}
+            {/* Сектор 3 - Люди */}
             <path
               d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z"
-              fill="#DFF0F0"
-              className="transition-all duration-300 hover:opacity-80"
+              fill={sectors[2].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(2)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 4 - светло-голубой */}
+            {/* Сектор 4 - Технологии */}
             <path
               d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z"
-              fill="#E3F4F9"
-              className="transition-all duration-300 hover:opacity-80"
+              fill={sectors[3].color}
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
+                opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
+              }}
+              onMouseEnter={() => setHoveredSector(3)}
+              onMouseLeave={() => setHoveredSector(null)}
             />
           </svg>
           
           {/* Центральная надпись */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center bg-white/90 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
               <p className="text-[14px] md:text-[16px] font-semibold text-[#222222] leading-tight px-4">
                 AI Synergy<br/>Framework
               </p>
             </div>
           </div>
+
+          {/* Tooltip */}
+          {hoveredSector !== null && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <div className="bg-[#222222] text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in text-center whitespace-nowrap">
+                <p className="text-[14px] md:text-[16px] font-medium">
+                  {sectors[hoveredSector].name}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
