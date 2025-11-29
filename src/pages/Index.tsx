@@ -17,6 +17,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import FloatingCTA from "@/components/FloatingCTA";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 const Index = () => {
   return <div className="min-h-screen">
       <Navigation />
@@ -38,6 +39,7 @@ const Index = () => {
       <Footer />
       <BackToTop />
       <FloatingCTA />
+      <ExitIntentPopup />
     </div>;
 };
 export default Index;
