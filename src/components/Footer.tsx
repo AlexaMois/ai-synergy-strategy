@@ -26,17 +26,17 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-background/80 text-sm">
-            <a href="#about" onClick={(e) => scrollToSection(e, "#about")} className="hover:text-accent transition-colors">Обо мне</a>
+            <a href="/about" className="hover:text-accent transition-colors">Обо мне</a>
             <span className="text-background/40">·</span>
-            <a href="#services" onClick={(e) => scrollToSection(e, "#services")} className="hover:text-accent transition-colors">Услуги</a>
+            <a href="/#services" className="hover:text-accent transition-colors">Услуги</a>
             <span className="text-background/40">·</span>
-            <a href="#cases" onClick={(e) => scrollToSection(e, "#cases")} className="hover:text-accent transition-colors">Кейсы</a>
+            <a href="/cases" className="hover:text-accent transition-colors">Кейсы</a>
             <span className="text-background/40">·</span>
-            <a href="#methodology" onClick={(e) => scrollToSection(e, "#methodology")} className="hover:text-accent transition-colors">Методология</a>
+            <a href="/#methodology" className="hover:text-accent transition-colors">Методология</a>
             <span className="text-background/40">·</span>
-            <a href="#interviews" onClick={(e) => scrollToSection(e, "#interviews")} className="hover:text-accent transition-colors">Интервью</a>
+            <a href="/blog" className="hover:text-accent transition-colors">Блог</a>
             <span className="text-background/40">·</span>
-            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")} className="hover:text-accent transition-colors">Контакты</a>
+            <a href="/#contact" className="hover:text-accent transition-colors">Контакты</a>
           </div>
         </div>
 

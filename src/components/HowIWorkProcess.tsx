@@ -123,11 +123,14 @@ const HowIWorkProcess = () => {
             <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
               Узнать, что можно автоматизировать в вашей компании
             </h3>
-            <Button 
+            <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              asChild
             >
-              Записаться на бесплатный экспресс-аудит
+              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                Записаться на бесплатный экспресс-аудит
+              </a>
             </Button>
           </div>
         </div>

@@ -93,8 +93,10 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
-                      {tabsContent.ceo.button1}
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                      <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                        {tabsContent.ceo.button1}
+                      </a>
                     </Button>
                     <Button 
                       size="lg" 
@@ -122,8 +124,10 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
-                      {tabsContent.operations.button1}
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                      <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                        {tabsContent.operations.button1}
+                      </a>
                     </Button>
                     <Button 
                       size="lg" 
@@ -151,8 +155,10 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
-                      {tabsContent.it.button1}
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                      <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                        {tabsContent.it.button1}
+                      </a>
                     </Button>
                     <Button 
                       size="lg" 

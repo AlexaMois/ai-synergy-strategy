@@ -160,12 +160,13 @@ const Cases = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center">
-          <Button 
-            size="lg"
-            className="text-lg px-8"
-          >
-            Посмотреть все кейсы
-          </Button>
+            <Button 
+              size="lg" 
+              className="text-lg px-8"
+              asChild
+            >
+              <a href="/cases">Посмотреть все кейсы</a>
+            </Button>
         </div>
       </div>
     </section>
