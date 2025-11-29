@@ -17,33 +17,81 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-bg text-background py-10">
+    <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <p className="text-xl font-bold mb-1">
-              Александра Моисеева
+        {/* Основная информация */}
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Колонка 1: О компании */}
+          <div>
+            <p className="text-xl font-bold mb-2">Александра Моисеева</p>
+            <p className="text-background/60 text-sm mb-4">AI-консультант</p>
+            <p className="text-background/80 text-sm leading-relaxed">
+              Помогаю компаниям внедрять AI без хаоса и иллюзий — через диагностику, архитектуру и сопровождение.
             </p>
-            <p className="text-background/60 text-sm">AI-консультант</p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-background/80 text-sm">
-            <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
-            <span className="hidden sm:inline text-background/40">·</span>
-            <a href="/#services" onClick={(e) => scrollToSection(e, '#services')} className="hover:text-accent transition-colors">Услуги</a>
-            <span className="hidden sm:inline text-background/40">·</span>
-            <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
-            <span className="hidden sm:inline text-background/40">·</span>
-            <a href="/#methodology" onClick={(e) => scrollToSection(e, '#methodology')} className="hover:text-accent transition-colors">Методология</a>
-            <span className="hidden sm:inline text-background/40">·</span>
-            <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
-            <span className="hidden sm:inline text-background/40">·</span>
-            <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
+          {/* Колонка 2: Навигация */}
+          <div>
+            <p className="text-lg font-semibold mb-4">Навигация</p>
+            <div className="flex flex-col gap-2 text-background/80 text-sm">
+              <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
+              <a href="/#services" onClick={(e) => scrollToSection(e, '#services')} className="hover:text-accent transition-colors">Услуги</a>
+              <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
+              <a href="/#methodology" onClick={(e) => scrollToSection(e, '#methodology')} className="hover:text-accent transition-colors">Методология</a>
+              <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
+              <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
+            </div>
+          </div>
+
+          {/* Колонка 3: Контакты */}
+          <div>
+            <p className="text-lg font-semibold mb-4">Контакты</p>
+            <div className="flex flex-col gap-2 text-background/80 text-sm">
+              <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">
+                neiroreshenia@yandex.com
+              </a>
+              <a href="https://нейрорешения.рф" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                https://нейрорешения.рф
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-background/20 mt-8 pt-6 text-center text-background/60 text-sm">
-          <p>© Александра Моисеева, 2023–2025. Все права защищены.</p>
+        {/* Юридическая информация */}
+        <div className="border-t border-background/20 pt-6 mb-6">
+          <div className="grid md:grid-cols-2 gap-6 text-sm text-background/70">
+            {/* Реквизиты */}
+            <div>
+              <p className="text-background/90 font-medium mb-2">Реквизиты ИП</p>
+              <p>ИП Моисеева Александра Сергеевна</p>
+              <p>ИНН: [ИНН]</p>
+              <p>ОГРНИП: [ОГРНИП]</p>
+            </div>
+
+            {/* Юридические документы */}
+            <div>
+              <p className="text-background/90 font-medium mb-2">Юридические документы</p>
+              <div className="flex flex-col gap-1">
+                <Link to="/consent" className="hover:text-accent transition-colors">
+                  Согласие на обработку персональных данных
+                </Link>
+                <Link to="/privacy-policy" className="hover:text-accent transition-colors">
+                  Политика в отношении обработки персональных данных
+                </Link>
+                <Link to="/terms" className="hover:text-accent transition-colors">
+                  Договор-оферта
+                </Link>
+              </div>
+              <p className="mt-3">
+                По вопросам ПДн: <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">neiroreshenia@yandex.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Копирайт */}
+        <div className="border-t border-background/20 pt-6 text-center text-background/60 text-sm">
+          <p>© ИП Моисеева Александра Сергеевна, 2023–2025. Все права защищены.</p>
         </div>
       </div>
     </footer>
