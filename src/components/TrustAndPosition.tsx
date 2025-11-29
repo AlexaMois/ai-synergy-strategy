@@ -45,17 +45,14 @@ const TrustAndPosition = () => {
               <div className="grid grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
-                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                    12+ лет в управлении, финансах и технологиях
-                  </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Победитель Национальной премии "Бизнес-Успех", 2025
+                    Помогаю компаниям получать измеримую пользу от ИИ, а не создавать лишние расходы.
                   </p>
                 </div>
                 
@@ -68,36 +65,42 @@ const TrustAndPosition = () => {
                   }}
                 >
                   <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                    Член Национального фонта искусственного интеллекта
+                    12+ лет в управлении, финансах и операционке
                   </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Резидент IT-Парк Казань и КРИТБИ
+                    Понимаю процессы изнутри и оцениваю решения через экономику.
                   </p>
                 </div>
                 
                 {/* Карточка 3 */}
                 <div 
-                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    Профессиональное признание
+                  </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+                    Победитель «Бизнес-Успех» (2025), член НФИИ, резидент IT-Парк Казань и КРИТБИ.
                   </p>
                 </div>
                 
                 {/* Карточка 4 */}
                 <div 
-                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
+                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    Подтверждённый результат
+                  </p>
                   <p className="text-base text-text-body leading-relaxed">
-                    Место для ещё одного достижения
+                    36+ проектов, ROI клиентов 200–400% в первые месяцы внедрения.
                   </p>
                 </div>
               </div>
@@ -129,7 +132,7 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      <span className="font-semibold">ИИ — инструмент</span>, а не повод "повесить" на бизнес лишние расходы.
+                      ИИ — это инструмент управления. Он должен усиливать процессы и приносить предсказуемый эффект.
                     </p>
                   </div>
                 </div>
@@ -150,7 +153,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      Любой проект должен <span className="font-semibold">давать эффект</span>, а не создавать видимость инноваций.
+                      <span className="font-semibold">Инженерный подход</span><br />
+                      Диагностика, архитектура, экономика — только после этого технологии.
                     </p>
                   </div>
                 </div>
@@ -171,7 +175,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      Если ИИ не нужен — я <span className="font-semibold">честно скажу об этом сразу</span>.
+                      <span className="font-semibold">Честность решения</span><br />
+                      Если автоматизация не окупится или не нужна, я говорю об этом сразу.
                     </p>
                   </div>
                 </div>
@@ -192,7 +197,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-base text-text-body leading-relaxed">
-                      <span className="font-semibold">Диагностика — фильтр</span>, без которого нельзя начинать.
+                      <span className="font-semibold">Устойчивость и независимость</span><br />
+                      Строю системы, которые компания может поддерживать сама, без внешней зависимости.
                     </p>
                   </div>
                 </div>
