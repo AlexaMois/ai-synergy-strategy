@@ -18,144 +18,176 @@ const Terms = () => {
         </Link>
 
         <article className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-semibold text-foreground mb-8">
-            Договор-оферта на оказание консультационных услуг
+          <h1 className="text-4xl font-semibold text-foreground mb-4">
+            Договор-оферта на оказание услуг № 6
           </h1>
+          
+          <p className="text-muted-foreground mb-8">
+            Ознакомиться с действующей редакцией от 15.05.2025г. договора-оферты можно по ссылке →<br />
+            <strong>ДОГОВОР ОФЕРТА</strong>
+          </p>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">1. Общие положения</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Настоящий договор-оферта (далее — Договор) является официальным публичным предложением ИП Моисеевой Александры Алексеевны (далее — Исполнитель) заключить договор на оказание консультационных услуг в области внедрения AI-решений.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              <strong>Исполнитель:</strong><br />
-              ИП Моисеева Александра Алексеевна<br />
-              <strong>ИНН:</strong> 245906802500<br />
-              <strong>ОГРНИП:</strong> 323246800027635<br />
-              <strong>Email:</strong> neiroreshenia@yandex.com<br />
-              <strong>Сайт:</strong> https://нейрорешения.рф
-            </p>
-          </section>
+          <div className="text-muted-foreground leading-relaxed space-y-6">
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">ДОГОВОР-ОФЕРТА НА ОКАЗАНИЕ УСЛУГ № 6</h2>
+              <p>
+                Индивидуальный предприниматель Моисеева Александра Алексеевна, ИНН 245906802500, ОГРНИП 323246800027635, именуемая в дальнейшем "Исполнитель", настоящим предлагает любому дееспособному физическому или юридическому лицу, далее "Заказчик", заключить настоящий договор оказания услуг (далее — "Договор") на нижеследующих условиях.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">2. Термины и определения</h2>
-            <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-              <li><strong>Исполнитель</strong> — ИП Моисеева Александра Алексеевна.</li>
-              <li><strong>Заказчик</strong> — юридическое или физическое лицо, принявшее условия настоящего Договора.</li>
-              <li><strong>Услуги</strong> — консультационные услуги по внедрению AI-решений, диагностике процессов, разработке AI-стратегии и архитектуры, сопровождению внедрения.</li>
-            </ul>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">1. Предмет договора</h2>
+              <p className="mb-3">
+                <strong>1.1.</strong> Исполнитель оказывает информационно-консультационные услуги, включая:
+              </p>
+              <ul className="list-none space-y-2 mb-3">
+                <li>— экспертные консультации по вопросам применения ИИ в бизнесе;</li>
+                <li>— аудит и настройку системы "Нейро-Тендеролог";</li>
+                <li>— разработку и внедрение функций по техническому заданию;</li>
+                <li>— анализ тендерной активности и ИИ-фильтров;</li>
+                <li>— иные услуги в рамках компетенции Исполнителя.</li>
+              </ul>
+              <p>
+                <strong>1.2.</strong> Бесплатные консультации предоставляются без заключения договора и не входят в рамки настоящего соглашения.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">3. Предмет договора</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Исполнитель обязуется оказать Заказчику консультационные услуги в области внедрения искусственного интеллекта, а Заказчик обязуется принять и оплатить эти услуги в соответствии с условиями настоящего Договора.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              Перечень услуг:
-            </p>
-            <ul className="list-disc pl-6 text-muted-foreground space-y-2 mt-4">
-              <li><strong>Экспресс-аудит процессов</strong> — диагностика текущих процессов компании, выявление точек применения AI</li>
-              <li><strong>AI-стратегия и архитектура</strong> — разработка дорожной карты внедрения, проектирование архитектуры решений</li>
-              <li><strong>Сопровождение внедрения</strong> — контроль качества, проверка подрядчиков, защита интересов бизнеса</li>
-            </ul>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">2. Порядок заключения договора</h2>
+              <p className="mb-3">
+                <strong>2.1.</strong> Настоящий договор является публичной офертой.
+              </p>
+              <p className="mb-3">
+                <strong>2.2.</strong> Акцептом (принятием условий оферты) признаётся совершение любых из следующих действий:
+              </p>
+              <ul className="list-none space-y-2 mb-3">
+                <li>— отправка формы на сайте https://нейрорешения.рф;</li>
+                <li>— оплата счёта от ИП Моисеевой А.А.;</li>
+                <li>— отправка сообщения в мессенджере или онлайн-виджете;</li>
+                <li>— начало переписки в Telegram или email;</li>
+                <li>— фактическое получение консультации или услуг.</li>
+              </ul>
+              <p>
+                <strong>2.3.</strong> Акцепт означает полное согласие Заказчика с условиями настоящей оферты и её приложениями.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">4. Порядок оказания услуг</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              4.1. Заказчик направляет запрос на оказание услуг через форму на сайте или по электронной почте.<br />
-              4.2. Стороны согласовывают объем, сроки и стоимость услуг.<br />
-              4.3. Исполнитель приступает к оказанию услуг после получения предоплаты (если предусмотрено).<br />
-              4.4. По завершении работ Исполнитель предоставляет Заказчику отчет или результат консультации.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">3. Стоимость услуг и порядок оплаты</h2>
+              <p className="mb-3">
+                <strong>3.1.</strong> Стоимость определяется индивидуально. Час консультационной работы — 8 690 рублей.
+              </p>
+              <p className="mb-3">
+                <strong>3.2.</strong> Платные услуги предоставляются при 80% предоплате на основании счёта.
+              </p>
+              <p className="mb-3">
+                <strong>3.3.</strong> Оставшиеся 20% оплачиваются в течение 3 рабочих дней после подписания акта оказанных услуг.
+              </p>
+              <p className="mb-3">
+                <strong>3.4.</strong> Возврат предоплаты не осуществляется, в том числе в случае отказа Заказчика от получения услуг.
+              </p>
+              <p>
+                <strong>3.5.</strong> Исполнитель вправе в одностороннем порядке изменять стоимость услуг. Новые тарифы применяются к заказам, размещённым после публикации изменений на сайте.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">5. Стоимость услуг и порядок оплаты</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              5.1. Стоимость услуг определяется индивидуально и согласовывается с Заказчиком.<br />
-              5.2. Оплата производится безналичным переводом на расчетный счет Исполнителя или иным согласованным способом.<br />
-              5.3. Экспресс-аудит процессов (30 минут) предоставляется бесплатно.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">4. Приемка услуг</h2>
+              <p className="mb-3">
+                <strong>4.1.</strong> По завершении услуг Исполнитель оформляет акт оказанных услуг.
+              </p>
+              <p className="mb-3">
+                <strong>4.2.</strong> Акт подписывается обеими сторонами. В случае отсутствия замечаний в течение 3 рабочих дней с момента получения, услуги считаются принятыми.
+              </p>
+              <p>
+                <strong>4.3.</strong> Переписка по email или Telegram может быть использована в качестве подтверждения оказания и приёмки услуг.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">6. Права и обязанности сторон</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              <strong>Исполнитель обязуется:</strong>
-            </p>
-            <ul className="list-disc pl-6 text-muted-foreground space-y-2 mt-4">
-              <li>Оказать услуги качественно и в согласованные сроки</li>
-              <li>Соблюдать конфиденциальность информации Заказчика</li>
-              <li>Предоставить результаты работы в согласованной форме</li>
-            </ul>
-            <p className="text-muted-foreground leading-relaxed mt-6">
-              <strong>Заказчик обязуется:</strong>
-            </p>
-            <ul className="list-disc pl-6 text-muted-foreground space-y-2 mt-4">
-              <li>Своевременно предоставить необходимую информацию и документы</li>
-              <li>Оплатить услуги в соответствии с условиями Договора</li>
-              <li>Принять результаты оказанных услуг</li>
-            </ul>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">5. Ответственность сторон</h2>
+              <p className="mb-3">
+                <strong>5.1.</strong> Стороны обязуются действовать добросовестно, своевременно исполнять обязательства.
+              </p>
+              <p>
+                <strong>5.2.</strong> Исполнитель не несёт ответственность за решения Заказчика, принятые на основе рекомендаций.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">7. Конфиденциальность</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Стороны обязуются не разглашать конфиденциальную информацию, полученную в ходе исполнения Договора, третьим лицам без письменного согласия другой Стороны.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">6. Конфиденциальность и персональные данные</h2>
+              <p className="mb-3">
+                <strong>6.1.</strong> Информация, переданная в рамках оказания услуг, считается конфиденциальной.
+              </p>
+              <p>
+                <strong>6.2.</strong> Заказчик выражает согласие на обработку персональных данных в соответствии с Политикой конфиденциальности и Согласием, опубликованными на сайте https://нейрорешения.рф.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">8. Ответственность сторон</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              8.1. За неисполнение или ненадлежащее исполнение обязательств по настоящему Договору Стороны несут ответственность в соответствии с законодательством Российской Федерации.<br />
-              8.2. Исполнитель не несет ответственности за результаты бизнес-решений Заказчика, принятых на основе консультаций.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">7. Форс-мажор</h2>
+              <p>
+                <strong>7.1.</strong> Стороны освобождаются от ответственности за неисполнение обязательств, вызванное форс-мажорными обстоятельствами (стихийные бедствия, сбои в работе интернета и хостинга, действия государственных органов и т.д.), при условии документального подтверждения.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">9. Порядок разрешения споров</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Все споры и разногласия решаются путем переговоров. При недостижении согласия спор передается на рассмотрение в суд в соответствии с законодательством Российской Федерации.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">8. Интеллектуальная собственность</h2>
+              <p className="mb-3">
+                <strong>8.1.</strong> Исключительные права на создаваемые Исполнителем материалы, скрипты, настройки, методики и иные результаты интеллектуальной деятельности принадлежат Исполнителю, если иное не согласовано сторонами.
+              </p>
+              <p>
+                <strong>8.2.</strong> Заказчик получает неисключительное право использования результатов только в рамках оказанных услуг.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">10. Срок действия договора</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Договор вступает в силу с момента акцепта оферты Заказчиком и действует до полного исполнения обязательств Сторонами.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">9. Ограничение гарантий</h2>
+              <p className="mb-3">
+                <strong>9.1.</strong> Услуги предоставляются "как есть". Исполнитель не гарантирует достижение конкретного результата, если он зависит от сторонних систем, действий Заказчика или третьих лиц.
+              </p>
+              <p>
+                <strong>9.2.</strong> Исполнитель не несёт ответственности за перебои в работе сторонних API, платформ и сервисов, используемых при оказании услуг.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">11. Акцепт оферты</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Акцептом настоящей оферты является заполнение формы на сайте, отправка письма на электронную почту Исполнителя или иное действие, свидетельствующее о намерении Заказчика получить услуги.
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">10. Изменение условий и срок действия</h2>
+              <p className="mb-3">
+                <strong>10.1.</strong> Исполнитель вправе изменять условия настоящей Оферты в одностороннем порядке.
+              </p>
+              <p className="mb-3">
+                <strong>10.2.</strong> Новая редакция вступает в силу с момента публикации на сайте либо с иной указанной даты.
+              </p>
+              <p className="mb-3">
+                <strong>10.3.</strong> Продолжение использования услуг означает согласие Заказчика с новой редакцией оферты.
+              </p>
+              <p>
+                <strong>10.4.</strong> Настоящий договор вступает в силу с момента акцепта и действует до полного исполнения обязательств сторонами.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">12. Заключительные положения</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Условия настоящего Договора могут быть изменены Исполнителем в одностороннем порядке с публикацией актуальной версии на сайте https://нейрорешения.рф
-            </p>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              <strong>Дата публикации:</strong> 29.11.2025
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">11. Заключительные положения</h2>
+              <p>
+                <strong>11.1.</strong> Все споры разрешаются путём переговоров, при недостижении соглашения — в суде по месту нахождения Исполнителя.
+              </p>
+            </section>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-medium text-foreground mb-4">Реквизиты Исполнителя</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              ИП Моисеева Александра Алексеевна<br />
-              <strong>ИНН:</strong> 245906802500<br />
-              <strong>ОГРНИП:</strong> 323246800027635<br />
-              <strong>Email:</strong> neiroreshenia@yandex.com<br />
-              <strong>Сайт:</strong> https://нейрорешения.рф
-            </p>
-          </section>
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">Реквизиты Исполнителя:</h2>
+              <p>ИП Моисеева Александра Алексеевна</p>
+              <p>ИНН: 245906802500</p>
+              <p>ОГРНИП: 323246800027635</p>
+              <p>Email: neiroreshenia@yandex.com</p>
+              <p>Телефон: 8 (993) 721-73-67</p>
+              <p>Сайт: https://нейрорешения.рф</p>
+            </section>
+
+            <div className="text-center mt-8">
+              <p className="font-medium">«Редакция от 15.05.2025»</p>
+            </div>
+          </div>
         </article>
       </main>
 
