@@ -74,53 +74,143 @@ const AIFramework = () => {
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
         <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
           <svg viewBox="0 0 200 200" className="w-full h-full">
+            <defs>
+              <clipPath id="sector1">
+                <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" />
+              </clipPath>
+              <clipPath id="sector2">
+                <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" />
+              </clipPath>
+              <clipPath id="sector3">
+                <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" />
+              </clipPath>
+              <clipPath id="sector4">
+                <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" />
+              </clipPath>
+            </defs>
+
             {/* Сектор 1 - Бизнес */}
+            <g clipPath="url(#sector1)">
+              <circle
+                cx="100"
+                cy="100"
+                r="100"
+                fill={sectors[0].color}
+                className="cursor-pointer"
+                style={{
+                  filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
+                  opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={() => setHoveredSector(0)}
+                onMouseLeave={() => setHoveredSector(null)}
+              />
+            </g>
             <path
-              d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z"
-              fill={sectors[0].color}
-              className="transition-all duration-300 cursor-pointer"
+              d="M 100 0 A 100 100 0 0 1 200 100"
+              fill="none"
+              stroke={sectors[0].color}
+              strokeWidth="100"
+              strokeDasharray="157"
+              strokeDashoffset={isVisible ? "0" : "157"}
+              className="pointer-events-none"
               style={{
-                filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
+                transition: 'stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDelay: '0.3s'
               }}
-              onMouseEnter={() => setHoveredSector(0)}
-              onMouseLeave={() => setHoveredSector(null)}
             />
+
             {/* Сектор 2 - Процессы */}
+            <g clipPath="url(#sector2)">
+              <circle
+                cx="100"
+                cy="100"
+                r="100"
+                fill={sectors[1].color}
+                className="cursor-pointer"
+                style={{
+                  filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
+                  opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={() => setHoveredSector(1)}
+                onMouseLeave={() => setHoveredSector(null)}
+              />
+            </g>
             <path
-              d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z"
-              fill={sectors[1].color}
-              className="transition-all duration-300 cursor-pointer"
+              d="M 200 100 A 100 100 0 0 1 100 200"
+              fill="none"
+              stroke={sectors[1].color}
+              strokeWidth="100"
+              strokeDasharray="157"
+              strokeDashoffset={isVisible ? "0" : "157"}
+              className="pointer-events-none"
               style={{
-                filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
+                transition: 'stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDelay: '0.7s'
               }}
-              onMouseEnter={() => setHoveredSector(1)}
-              onMouseLeave={() => setHoveredSector(null)}
             />
+
             {/* Сектор 3 - Люди */}
+            <g clipPath="url(#sector3)">
+              <circle
+                cx="100"
+                cy="100"
+                r="100"
+                fill={sectors[2].color}
+                className="cursor-pointer"
+                style={{
+                  filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
+                  opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={() => setHoveredSector(2)}
+                onMouseLeave={() => setHoveredSector(null)}
+              />
+            </g>
             <path
-              d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z"
-              fill={sectors[2].color}
-              className="transition-all duration-300 cursor-pointer"
+              d="M 100 200 A 100 100 0 0 1 0 100"
+              fill="none"
+              stroke={sectors[2].color}
+              strokeWidth="100"
+              strokeDasharray="157"
+              strokeDashoffset={isVisible ? "0" : "157"}
+              className="pointer-events-none"
               style={{
-                filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
+                transition: 'stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDelay: '1.1s'
               }}
-              onMouseEnter={() => setHoveredSector(2)}
-              onMouseLeave={() => setHoveredSector(null)}
             />
+
             {/* Сектор 4 - Технологии */}
+            <g clipPath="url(#sector4)">
+              <circle
+                cx="100"
+                cy="100"
+                r="100"
+                fill={sectors[3].color}
+                className="cursor-pointer"
+                style={{
+                  filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
+                  opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={() => setHoveredSector(3)}
+                onMouseLeave={() => setHoveredSector(null)}
+              />
+            </g>
             <path
-              d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z"
-              fill={sectors[3].color}
-              className="transition-all duration-300 cursor-pointer"
+              d="M 0 100 A 100 100 0 0 1 100 0"
+              fill="none"
+              stroke={sectors[3].color}
+              strokeWidth="100"
+              strokeDasharray="157"
+              strokeDashoffset={isVisible ? "0" : "157"}
+              className="pointer-events-none"
               style={{
-                filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
+                transition: 'stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDelay: '1.5s'
               }}
-              onMouseEnter={() => setHoveredSector(3)}
-              onMouseLeave={() => setHoveredSector(null)}
             />
           </svg>
           
