@@ -28,7 +28,7 @@ const Contact = () => {
           </p>
           
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <Button size="lg" className="h-12 px-8 text-base font-medium" asChild>
+            <Button size="lg" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Пройти экспресс-аудит процессов
               </a>
@@ -36,7 +36,6 @@ const Contact = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="h-12 px-8 text-base font-medium"
               asChild
             >
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer">

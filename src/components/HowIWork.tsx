@@ -60,8 +60,10 @@ const HowIWork = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-medium">
-              Начать сейчас
+            <Button size="lg" asChild>
+              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                Начать сейчас
+              </a>
             </Button>
           </div>
         </div>

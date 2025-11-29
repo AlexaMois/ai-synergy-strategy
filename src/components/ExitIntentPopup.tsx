@@ -95,7 +95,6 @@ const ExitIntentPopup = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               size="lg"
-              className="flex-1 h-12 text-base font-bold"
               asChild
             >
               <a
@@ -111,7 +110,6 @@ const ExitIntentPopup = () => {
             <Button
               size="lg"
               variant="outline"
-              className="flex-1 h-12 text-base font-bold"
               onClick={handleClose}
             >
               Может быть позже
