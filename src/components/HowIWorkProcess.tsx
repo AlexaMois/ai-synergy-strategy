@@ -71,7 +71,7 @@ const HowIWorkProcess = () => {
               return (
                 <div
                   key={index}
-                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
                     backgroundColor: 'hsl(var(--gray-50))',
                     animationDelay: `${index * 0.1}s`
