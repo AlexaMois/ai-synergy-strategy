@@ -1,10 +1,10 @@
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { Button } from "./ui/button";
 import { Building2, Mic, Truck } from "lucide-react";
 
 const Cases = () => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
 
   const cases = [
     {
@@ -87,10 +87,7 @@ const Cases = () => {
             return (
               <div
                 key={index}
-                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{
-                  animationDelay: `${index * 0.1}s`
-                }}
+                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${getStaggeredClass(index)}`}
               >
                 {/* Icon and Company */}
                 <div className="flex items-start gap-4 mb-4">

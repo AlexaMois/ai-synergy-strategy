@@ -416,6 +416,106 @@ All colors MUST be HSL.
     }
   }
   
+  /* Mobile-optimized animations - faster, lighter */
+  @keyframes mobileSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mobileSlideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes mobileSlideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes mobileFadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes mobileGentleBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile animation classes */
+  .animate-mobile-slide-up {
+    animation: mobileSlideUp 0.4s ease-out forwards;
+  }
+  
+  .animate-mobile-slide-in-left {
+    animation: mobileSlideInLeft 0.4s ease-out forwards;
+  }
+  
+  .animate-mobile-slide-in-right {
+    animation: mobileSlideInRight 0.4s ease-out forwards;
+  }
+  
+  .animate-mobile-fade-scale {
+    animation: mobileFadeScale 0.35s ease-out forwards;
+  }
+  
+  .animate-mobile-bounce {
+    animation: mobileGentleBounce 0.5s ease-out forwards;
+  }
+  
+  /* Stagger delays for lists */
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+  
+  /* Mobile-only animations */
+  @media (max-width: 768px) {
+    .md\:animate-mobile-slide-up {
+      animation: mobileSlideUp 0.4s ease-out forwards;
+    }
+    
+    .md\:animate-mobile-fade-scale {
+      animation: mobileFadeScale 0.35s ease-out forwards;
+    }
+  }
+  
   /* Marquee Animation */
   .marquee-container {
     display: flex;
