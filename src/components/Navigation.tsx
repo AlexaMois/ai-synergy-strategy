@@ -7,6 +7,8 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -69,6 +71,25 @@ const Navigation = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Swipe gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swiped left - do nothing (already open)
+    }
+    if (touchStart - touchEnd < -75) {
+      // Swiped right - close menu
       setIsMobileMenuOpen(false);
     }
   };
@@ -146,6 +167,9 @@ const Navigation = () => {
         className={`fixed top-20 right-0 bottom-0 w-[280px] bg-background shadow-2xl z-40 md:hidden transition-transform duration-300 ease-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="flex flex-col h-full p-6 overflow-y-auto">
           <nav className="space-y-2 flex-1">
