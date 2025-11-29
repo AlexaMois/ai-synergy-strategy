@@ -55,7 +55,7 @@ const Hero = () => {
             <div className={`col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               <div className="space-y-3">
                 <div className="inline-block">
-                  <span className="text-handwriting">
+                  <span className="text-handwriting text-gray-700 text-2xl">
                     независимый стратег инженер ИИ
                   </span>
                 </div>
