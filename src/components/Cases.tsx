@@ -95,15 +95,7 @@ const Cases = () => {
               >
                 {/* Icon and Company */}
                 <div className="flex items-start gap-4 mb-4">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #49BED8 0%, #B8A6E0 100%)',
-                      boxShadow: '0 8px 24px rgba(73, 190, 216, 0.3), 0 0 20px rgba(184, 166, 224, 0.2)'
-                    }}
-                  >
-                    <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-                  </div>
+                  <Icon className="w-9 h-9 flex-shrink-0" style={{ color: '#49BED8' }} strokeWidth={1.5} />
                   <h3 className="text-base font-medium text-text-heading leading-tight pt-2">
                     {caseItem.company}
                   </h3>
