@@ -27,10 +27,7 @@ const TrustAndPosition = () => {
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div 
-          className={`max-w-7xl mx-auto bg-background rounded-3xl p-12 md:p-14 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-          style={{
-            boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
-          }}
+          className={`max-w-7xl mx-auto bg-background rounded-3xl p-12 md:p-14 shadow-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
         >
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Левая колонка: Почему мне доверяют */}
@@ -45,11 +42,7 @@ const TrustAndPosition = () => {
               <div className="grid grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
-                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
-                  style={{ 
-                    backgroundColor: 'hsl(var(--gray-50))',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card"
                 >
                   <p className="text-lg text-text-body leading-relaxed">
                     Помогаю компаниям получать измеримую пользу от ИИ, а не создавать лишние расходы.
@@ -58,11 +51,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 2 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
-                  style={{ 
-                    backgroundColor: 'hsl(var(--gray-50))',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card"
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     12+ лет в управлении, финансах и операционке
@@ -74,11 +63,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 3 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
-                  style={{ 
-                    backgroundColor: 'hsl(var(--gray-50))',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card"
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Профессиональное признание
@@ -90,11 +75,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
-                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
-                  style={{ 
-                    backgroundColor: 'hsl(var(--gray-50))',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card"
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Подтверждённый результат
@@ -117,10 +98,7 @@ const TrustAndPosition = () => {
 
               <div className="space-y-4">
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
-                  style={{
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -138,10 +116,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
-                  style={{
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -160,10 +135,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
-                  style={{
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -182,10 +154,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white"
-                  style={{
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                  }}
+                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
