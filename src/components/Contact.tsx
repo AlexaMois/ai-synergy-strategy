@@ -28,8 +28,10 @@ const Contact = () => {
           </p>
           
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <Button size="lg" className="h-12 px-8 text-base font-bold">
-              Пройти экспресс-аудит процессов
+            <Button size="lg" className="h-12 px-8 text-base font-bold" asChild>
+              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                Пройти экспресс-аудит процессов
+              </a>
             </Button>
             <Button 
               size="lg" 

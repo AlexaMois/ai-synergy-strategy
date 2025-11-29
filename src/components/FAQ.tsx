@@ -95,12 +95,11 @@ const FAQ = () => {
             <Button 
               size="lg" 
               className="px-8"
-              onClick={() => {
-                const contactSection = document.querySelector('#contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              asChild
             >
-              Запросить экспресс-аудит
+              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+                Запросить экспресс-аудит
+              </a>
             </Button>
           </div>
         </div>
