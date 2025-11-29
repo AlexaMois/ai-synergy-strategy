@@ -16,6 +16,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import FloatingCTA from "@/components/FloatingCTA";
 const Index = () => {
   return <div className="min-h-screen">
       <Navigation />
@@ -36,6 +37,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <BackToTop />
+      <FloatingCTA />
     </div>;
 };
 export default Index;
