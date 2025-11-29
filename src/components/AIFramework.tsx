@@ -28,7 +28,7 @@ const AIFramework = () => {
         "Потом: какие решения подойдут?",
         "Считаю эффект до старта."
       ],
-      color: "bg-[#D4EDFC]"
+      color: "bg-[#F6F3EB]"
     },
     {
       title: "Инженерное мышление",
@@ -36,7 +36,7 @@ const AIFramework = () => {
         "Проектирую систему, а не набор инструментов.",
         "Если решение ломает процессы — оно не внедряется."
       ],
-      color: "bg-[#D4EDFC]"
+      color: "bg-[#DFF0F0]"
     },
     {
       title: "Люди в центре",
@@ -44,7 +44,7 @@ const AIFramework = () => {
         "Объясняю, обучаю, снимаю сопротивление.",
         "Технологии не должны пугать."
       ],
-      color: "bg-[#D4EDFC]"
+      color: "bg-[#E8E0F5]"
     },
     {
       title: "Этика и честность",
@@ -60,7 +60,7 @@ const AIFramework = () => {
     <section 
       id="methodology"
       ref={ref}
-      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-white"
+      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background"
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
