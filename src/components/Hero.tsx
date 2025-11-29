@@ -63,7 +63,7 @@ const Hero = () => {
               <div className="space-y-4">
                 <div className="inline-block">
                   <span className="text-sm font-medium tracking-wide text-accent">
-                    для руководителей и владельцев бизнеса
+                    независимый стратег инженер ИИ
                   </span>
                 </div>
 
