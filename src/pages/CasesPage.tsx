@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { Image } from "lucide-react";
+import { useState } from "react";
 
 interface CaseItem {
   id: number;
@@ -14,9 +15,21 @@ interface CaseItem {
   task: string;
   actions: string[];
   results: string[];
+  categories: string[];
 }
 
+const CATEGORIES = [
+  "Все кейсы",
+  "Автоматизация процессов и данных",
+  "AI-ассистенты для бизнеса",
+  "Контент и коммуникации с помощью ИИ",
+  "Корпоративное обучение и внедрение ИИ-компетенций",
+  "R&D и внутренние инструменты",
+];
+
 const CasesPage = () => {
+  const [activeCategory, setActiveCategory] = useState("Все кейсы");
+
   const cases: CaseItem[] = [
     {
       id: 1,
@@ -39,7 +52,8 @@ const CasesPage = () => {
         "Экономия до 80 000 ₽ в месяц",
         "Рост охватов и вовлечённости",
         "Стабильные продажи за счёт регулярности контента"
-      ]
+      ],
+      categories: ["Контент и коммуникации с помощью ИИ"]
     },
     {
       id: 2,
@@ -62,7 +76,8 @@ const CasesPage = () => {
         "Экономия до 50 часов в месяц у администрации",
         "0 пропущенных уведомлений",
         "Повышение дисциплины и вовлечённости"
-      ]
+      ],
+      categories: ["Автоматизация процессов и данных"]
     },
     {
       id: 3,
@@ -83,7 +98,8 @@ const CasesPage = () => {
         "Сокращение времени с 3 часов до 15 минут в день",
         "Исключение человеческого фактора",
         "Точность релевантности 85–90%"
-      ]
+      ],
+      categories: ["AI-ассистенты для бизнеса", "R&D и внутренние инструменты"]
     },
     {
       id: 4,
@@ -104,7 +120,8 @@ const CasesPage = () => {
         "Экономия 10 часов в неделю",
         "Прозрачность договорённостей",
         "Минимизация ошибок"
-      ]
+      ],
+      categories: ["R&D и внутренние инструменты"]
     },
     {
       id: 5,
@@ -127,7 +144,8 @@ const CasesPage = () => {
         "3 секунды вместо 5 часов на поиск информации",
         "ROI ~15×",
         "Полный порядок в данных, 0 потерь"
-      ]
+      ],
+      categories: ["AI-ассистенты для бизнеса"]
     },
     {
       id: 6,
@@ -148,7 +166,8 @@ const CasesPage = () => {
         "Ответы за 10 секунд вместо 30 минут",
         "Освобождение 80% времени",
         "Снижение риска штрафов до нуля"
-      ]
+      ],
+      categories: ["AI-ассистенты для бизнеса"]
     },
     {
       id: 7,
@@ -169,7 +188,8 @@ const CasesPage = () => {
         "Экономия 3–4 часа в неделю на менеджера",
         "0 дублей, 0 потерь",
         "Полная аналитика в реальном времени"
-      ]
+      ],
+      categories: ["Автоматизация процессов и данных"]
     },
     {
       id: 8,
@@ -190,7 +210,8 @@ const CasesPage = () => {
         "Экономия 60 часов в месяц",
         "Прозрачность и управляемость",
         "Выгода до 2 млн ₽ в год"
-      ]
+      ],
+      categories: ["Автоматизация процессов и данных"]
     },
     {
       id: 9,
@@ -209,9 +230,14 @@ const CasesPage = () => {
       ],
       results: [
         "Результаты будут добавлены"
-      ]
+      ],
+      categories: ["Автоматизация процессов и данных"]
     }
   ];
+
+  const filteredCases = activeCategory === "Все кейсы" 
+    ? cases 
+    : cases.filter(caseItem => caseItem.categories.includes(activeCategory));
 
   return (
     <div className="min-h-screen bg-background">
@@ -229,9 +255,29 @@ const CasesPage = () => {
             </p>
           </div>
 
+          {/* Category Tabs */}
+          <div className="mb-12 flex flex-wrap justify-center gap-3">
+            {CATEGORIES.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`
+                  px-6 py-3 rounded-xl border text-sm font-medium
+                  transition-all duration-300 ease-out
+                  ${activeCategory === category 
+                    ? 'bg-primary text-white border-primary shadow-md scale-105' 
+                    : 'bg-white text-text-body border-gray-200 hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.02] hover:shadow-sm'
+                  }
+                `}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
           {/* Cases Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {cases.map((caseItem) => (
+            {filteredCases.map((caseItem) => (
               <div
                 key={caseItem.id}
                 className="bg-white rounded-[20px] shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] p-6 md:p-8 gradient-border gradient-border-hover"
