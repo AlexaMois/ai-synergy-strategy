@@ -33,19 +33,74 @@ const WhyItWorks = () => {
         }}
       />
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto px-16 py-16 md:px-20 md:py-20">
-          <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className="max-w-5xl mx-auto py-16">
+          <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h2 className="text-4xl font-bold mb-6 text-text-heading">
               Почему мне доверяют
             </h2>
-            <div className="w-24 h-px bg-gray-300 mx-auto mb-10"></div>
-            <p className="text-lg text-text-body leading-[1.7] max-w-2xl mx-auto">
-              12+ лет в управлении, финансах и технологиях.<br />
-              Победитель Национальной премии "Бизнес-Успех", 2025.<br />
-              Член Национального фонда искусственного интеллекта.<br />
-              Резидент IT-Парк Казань и КРИТБИ.<br />
-              Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ".
-            </p>
+            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.1s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                12+ лет в управлении, финансах и технологиях
+              </p>
+            </div>
+            
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.15s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                Победитель Национальной премии "Бизнес-Успех", 2025
+              </p>
+            </div>
+            
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.2s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                Член Национального фонда искусственного интеллекта
+              </p>
+            </div>
+            
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.25s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                Резидент IT-Парк Казань и КРИТБИ
+              </p>
+            </div>
+            
+            <div 
+              className={`p-8 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:col-span-2 lg:col-span-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ 
+                background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                animationDelay: '0.3s'
+              }}
+            >
+              <p className="text-base text-text-body leading-[1.7] text-center">
+                Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+              </p>
+            </div>
           </div>
         </div>
       </div>
