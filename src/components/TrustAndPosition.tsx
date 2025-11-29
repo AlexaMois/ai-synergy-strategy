@@ -78,7 +78,7 @@ const TrustAndPosition = () => {
                 
                 {/* Одна широкая карточка внизу */}
                 <div 
-                  className="p-6 rounded-xl text-center"
+                  className="py-8 px-6 rounded-xl text-center"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
