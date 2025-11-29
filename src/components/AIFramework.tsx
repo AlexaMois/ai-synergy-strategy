@@ -7,7 +7,11 @@ const AIFramework = () => {
     triggerOnce: true,
   });
 
-  const [hoveredSector, setHoveredSector] = useState<number | null>(null);
+  const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
+
+  // Маппинг между секторами круга и карточками
+  const sectorToPillar: { [key: number]: number } = { 0: 3, 1: 2, 2: 1, 3: 0 };
+  const pillarToSector: { [key: number]: number } = { 0: 3, 1: 2, 2: 1, 3: 0 };
 
   const sectors = [
     { name: "Технологии", color: "#D4EDFC", position: "right" },
@@ -83,11 +87,11 @@ const AIFramework = () => {
               fill={sectors[0].color}
               className="transition-all duration-300 cursor-pointer"
               style={{
-                filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
+                filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
+                opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 0 ? 1 : 0.6
               }}
-              onMouseEnter={() => setHoveredSector(0)}
-              onMouseLeave={() => setHoveredSector(null)}
+              onMouseEnter={() => setHoveredPillar(sectorToPillar[0])}
+              onMouseLeave={() => setHoveredPillar(null)}
             />
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path
@@ -95,11 +99,11 @@ const AIFramework = () => {
               fill={sectors[1].color}
               className="transition-all duration-300 cursor-pointer"
               style={{
-                filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
+                filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
+                opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 1 ? 1 : 0.6
               }}
-              onMouseEnter={() => setHoveredSector(1)}
-              onMouseLeave={() => setHoveredSector(null)}
+              onMouseEnter={() => setHoveredPillar(sectorToPillar[1])}
+              onMouseLeave={() => setHoveredPillar(null)}
             />
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path
@@ -107,11 +111,11 @@ const AIFramework = () => {
               fill={sectors[2].color}
               className="transition-all duration-300 cursor-pointer"
               style={{
-                filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
+                filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
+                opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 2 ? 1 : 0.6
               }}
-              onMouseEnter={() => setHoveredSector(2)}
-              onMouseLeave={() => setHoveredSector(null)}
+              onMouseEnter={() => setHoveredPillar(sectorToPillar[2])}
+              onMouseLeave={() => setHoveredPillar(null)}
             />
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path
@@ -119,11 +123,11 @@ const AIFramework = () => {
               fill={sectors[3].color}
               className="transition-all duration-300 cursor-pointer"
               style={{
-                filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
-                opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
+                filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
+                opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 3 ? 1 : 0.6
               }}
-              onMouseEnter={() => setHoveredSector(3)}
-              onMouseLeave={() => setHoveredSector(null)}
+              onMouseEnter={() => setHoveredPillar(sectorToPillar[3])}
+              onMouseLeave={() => setHoveredPillar(null)}
             />
           </svg>
           
@@ -169,14 +173,14 @@ const AIFramework = () => {
             }`}
             style={{ 
               transitionDelay: `${200 + index * 75}ms`,
-              transform: hoveredSector === index ? 'scale(1.05)' : 'scale(1)',
-              boxShadow: hoveredSector === index 
+              transform: hoveredPillar === index ? 'scale(1.05)' : 'scale(1)',
+              boxShadow: hoveredPillar === index 
                 ? '0 4px 12px rgba(73, 190, 216, 0.15)' 
                 : 'var(--shadow-card)',
-              opacity: hoveredSector === null || hoveredSector === index ? 1 : 0.7
+              opacity: hoveredPillar === null || hoveredPillar === index ? 1 : 0.7
             }}
-            onMouseEnter={() => setHoveredSector(index)}
-            onMouseLeave={() => setHoveredSector(null)}
+            onMouseEnter={() => setHoveredPillar(index)}
+            onMouseLeave={() => setHoveredPillar(null)}
           >
             <h3 className="text-lg font-medium text-[#222222] mb-4">
               {pillar.title}
