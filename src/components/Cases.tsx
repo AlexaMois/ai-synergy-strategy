@@ -68,8 +68,8 @@ const Cases = () => {
     <section id="cases" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Title */}
-        <h2 className="section-title text-center">
-          Реальные кейсы
+        <h2 className="section-title text-center leading-tight">
+          Реальные кейсы, <span className="font-semibold">подтверждённый результат</span>
         </h2>
 
         {/* Cases Grid */}

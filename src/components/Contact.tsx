@@ -21,8 +21,8 @@ const Contact = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            Готовы узнать, где теряются ресурсы?
+          <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Готовы узнать, <span className="font-semibold">где теряются ресурсы?</span>
           </h2>
           
           <p className={`text-handwriting mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>

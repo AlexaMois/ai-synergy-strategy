@@ -58,8 +58,8 @@ const HowIWorkProcess = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="section-title text-center">
-              Как я работаю с компаниями
+            <h2 className="section-title text-center leading-tight">
+              Как я работаю с компаниями, <span className="font-semibold">три этапа</span>
             </h2>
             <div className="w-24 h-px bg-gray-300 mx-auto"></div>
           </div>
