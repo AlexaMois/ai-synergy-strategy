@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
+import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const Hero = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -103,11 +105,14 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" asChild>
-                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                        {tabsContent.ceo.button1}
-                      </a>
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button size="lg" asChild>
+                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                          {tabsContent.ceo.button1}
+                        </a>
+                      </Button>
+                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                    </div>
                     <a 
                       href="#" 
                       className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
@@ -133,11 +138,14 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" asChild>
-                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                        {tabsContent.operations.button1}
-                      </a>
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button size="lg" asChild>
+                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                          {tabsContent.operations.button1}
+                        </a>
+                      </Button>
+                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                    </div>
                     <a 
                       href="#" 
                       className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
@@ -163,11 +171,14 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" asChild>
-                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                        {tabsContent.it.button1}
-                      </a>
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button size="lg" asChild>
+                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                          {tabsContent.it.button1}
+                        </a>
+                      </Button>
+                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                    </div>
                     <a 
                       href="#" 
                       className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"

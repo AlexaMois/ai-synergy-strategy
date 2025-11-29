@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/OptimizedImage";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
+import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const Contact = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -27,12 +29,15 @@ const Contact = () => {
             Начните с малого — экспресс-аудита.
           </p>
           
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Пройти экспресс-аудит процессов
-              </a>
-            </Button>
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+            <div className="flex flex-col gap-2 items-center">
+              <Button size="lg" asChild>
+                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                  Пройти экспресс-аудит процессов
+                </a>
+              </Button>
+              <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
+            </div>
             <Button 
               size="lg" 
               variant="outline" 
