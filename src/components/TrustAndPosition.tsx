@@ -10,6 +10,7 @@ const TrustAndPosition = () => {
 
   return (
     <section 
+      id="trust"
       ref={ref}
       className="relative py-20 overflow-hidden bg-[hsl(var(--bg-light-blue))]"
     >
@@ -25,8 +26,8 @@ const TrustAndPosition = () => {
       />
       
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
