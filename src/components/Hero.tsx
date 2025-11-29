@@ -67,8 +67,12 @@ const Hero = () => {
                   </span>
                 </div>
 
+                <p className="text-lg text-text-body leading-relaxed font-semibold">
+                  Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку.
+                </p>
+                
                 <p className="text-lg text-text-body leading-relaxed mb-6">
-                  Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку. Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
+                  Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
                 </p>
 
                 <TabsList className="bg-transparent p-0 h-auto mb-6 gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
