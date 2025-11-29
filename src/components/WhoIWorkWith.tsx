@@ -36,7 +36,7 @@ const WhoIWorkWith = () => {
               <div className="w-24 h-0.5 bg-accent mx-auto"></div>
             </div>
             
-            <p className="text-sm md:text-base text-text-subtle italic">
+            <p className="text-sm text-text-subtle italic">
               Не работаю с фрилансерами и проектами ради хайпа
             </p>
           </div>

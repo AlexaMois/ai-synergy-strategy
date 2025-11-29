@@ -83,7 +83,7 @@ const FAQ = () => {
                       <span>{faq.question}</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-base text-text-body leading-relaxed pt-3 pl-8">
+                  <AccordionContent className="text-lg text-text-body leading-relaxed pt-3 pl-8">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

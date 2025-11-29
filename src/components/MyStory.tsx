@@ -25,7 +25,7 @@ const MyStory = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
-          <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Моя позиция
           </h2>
 
@@ -41,7 +41,7 @@ const MyStory = () => {
                 <Target className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="text-base text-text-body leading-[1.7]">
+                <p className="text-lg text-text-body leading-relaxed">
                   ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.
                 </p>
               </div>
@@ -58,7 +58,7 @@ const MyStory = () => {
                 <TrendingUp className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="text-base text-text-body leading-[1.7]">
+                <p className="text-lg text-text-body leading-relaxed">
                   Любой проект должен давать эффект, а не создавать видимость инноваций.
                 </p>
               </div>
@@ -75,7 +75,7 @@ const MyStory = () => {
                 <MessageCircle className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="text-base text-text-body leading-[1.7]">
+                <p className="text-lg text-text-body leading-relaxed">
                   Если ИИ не нужен — я честно скажу об этом сразу.
                 </p>
               </div>
@@ -92,7 +92,7 @@ const MyStory = () => {
                 <Search className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="text-base text-text-body leading-[1.7]">
+                <p className="text-lg text-text-body leading-relaxed">
                   Диагностика — фильтр, без которого нельзя начинать.
                 </p>
               </div>
