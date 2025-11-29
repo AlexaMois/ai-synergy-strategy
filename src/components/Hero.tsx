@@ -101,7 +101,7 @@ const Hero = () => {
                 </div>
               </div>
 
-              <TabsContent value="ceo" className="mt-0 animate-fade-in">
+              <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[36px] font-medium leading-tight text-text-heading">
                     Как внедрять технологии, <span className="font-semibold">не нарушая устойчивость бизнеса</span>
@@ -134,7 +134,7 @@ const Hero = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="operations" className="mt-0 animate-fade-in">
+              <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[36px] font-medium leading-tight text-text-heading">
                     <span className="font-semibold">Как убрать узкие места</span> и повысить скорость операционки
@@ -167,7 +167,7 @@ const Hero = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="it" className="mt-0 animate-fade-in">
+              <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[36px] font-medium leading-tight text-text-heading">
                     <span className="font-semibold">Как внедрять ИИ без техдолга</span> и архитектурных рисков
