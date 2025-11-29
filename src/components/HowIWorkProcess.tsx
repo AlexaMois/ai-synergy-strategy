@@ -128,7 +128,7 @@ const HowIWorkProcess = () => {
               className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
-              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Записаться на бесплатный экспресс-аудит
               </a>
             </Button>

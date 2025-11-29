@@ -104,7 +104,7 @@ const Navigation = () => {
               )
             )}
             <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Консультация
               </a>
             </Button>
@@ -152,7 +152,7 @@ const Navigation = () => {
               )
             )}
             <Button size="sm" className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-              <a href="https://calendar.google.com/YOUR_CALENDAR_LINK" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Консультация
               </a>
             </Button>

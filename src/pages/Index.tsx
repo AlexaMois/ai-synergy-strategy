@@ -22,8 +22,8 @@ const Index = () => {
       <Hero />
       <MarqueeText />
       <TrustAndPosition />
-      <TrustMarquee />
       <WhatIDo />
+      <TrustMarquee />
       <HowIWorkProcess />
       <Cases />
       <AIFramework />
