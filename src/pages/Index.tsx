@@ -16,10 +16,8 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navigation />
       <Hero />
       <MarqueeText />
@@ -33,13 +31,11 @@ const Index = () => {
       <Services />
       <HowIWork />
       <WhoIWorkWith />
-      <Authority />
+      
       <FAQ />
       <Contact />
       <Footer />
       <BackToTop />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
