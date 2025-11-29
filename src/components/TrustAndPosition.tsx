@@ -42,65 +42,63 @@ const TrustAndPosition = () => {
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
               
-              <div className="space-y-4">
-                {/* Две вертикальные карточки в ряд */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div 
-                    className="p-6 rounded-xl"
-                    style={{ 
-                      backgroundColor: '#F8F3FF',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                      12+ лет в управлении, финансах и технологиях
-                    </p>
-                    <p className="text-base text-text-body leading-relaxed">
-                      Победитель Национальной премии "Бизнес-Успех", 2025
-                    </p>
-                  </div>
-                  
-                  <div 
-                    className="p-6 rounded-xl"
-                    style={{ 
-                      backgroundColor: '#F8F3FF',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                      Член Национального фонда искусственного интеллекта
-                    </p>
-                    <p className="text-base text-text-body leading-relaxed">
-                      Резидент IT-Парк Казань и КРИТБИ
-                    </p>
-                  </div>
+              <div className="grid grid-cols-2 gap-4">
+                {/* Карточка 1 */}
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{ 
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    12+ лет в управлении, финансах и технологиях
+                  </p>
+                  <p className="text-base text-text-body leading-relaxed">
+                    Победитель Национальной премии "Бизнес-Успех", 2025
+                  </p>
                 </div>
                 
-                {/* Две широкие карточки внизу */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div 
-                    className="py-8 px-6 rounded-xl text-center"
-                    style={{ 
-                      backgroundColor: '#F8F3FF',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    <p className="text-base text-text-body leading-relaxed">
-                      Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
-                    </p>
-                  </div>
-                  
-                  <div 
-                    className="py-8 px-6 rounded-xl text-center"
-                    style={{ 
-                      backgroundColor: '#F8F3FF',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    <p className="text-base text-text-body leading-relaxed">
-                      Место для ещё одного достижения
-                    </p>
-                  </div>
+                {/* Карточка 2 */}
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{ 
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
+                    Член Национального фонда искусственного интеллекта
+                  </p>
+                  <p className="text-base text-text-body leading-relaxed">
+                    Резидент IT-Парк Казань и КРИТБИ
+                  </p>
+                </div>
+                
+                {/* Карточка 3 */}
+                <div 
+                  className="p-6 rounded-xl text-center"
+                  style={{ 
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <p className="text-base text-text-body leading-relaxed">
+                    Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
+                  </p>
+                </div>
+                
+                {/* Карточка 4 */}
+                <div 
+                  className="p-6 rounded-xl text-center"
+                  style={{ 
+                    backgroundColor: '#F8F3FF',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  }}
+                >
+                  <p className="text-base text-text-body leading-relaxed">
+                    Место для ещё одного достижения
+                  </p>
                 </div>
               </div>
             </div>
