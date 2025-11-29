@@ -65,14 +65,24 @@ const Hero = () => {
                   </span>
                 </div>
 
-                <TabsList className="bg-transparent p-0 h-auto mb-6 gap-6 border-b-2 border-gray-200">
-                  <TabsTrigger value="ceo" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
+                <TabsList className="bg-transparent p-0 h-auto mb-6 gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
+                  <TabsTrigger 
+                    value="ceo" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
                     Я — CEO
                   </TabsTrigger>
-                  <TabsTrigger value="operations" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
-                    Я — операционный директор
+                  <TabsTrigger 
+                    value="operations" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
+                    <span className="hidden sm:inline">Я — операционный директор</span>
+                    <span className="sm:hidden">Я — Опер. директор</span>
                   </TabsTrigger>
-                  <TabsTrigger value="it" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
+                  <TabsTrigger 
+                    value="it" 
+                    className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium"
+                  >
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
