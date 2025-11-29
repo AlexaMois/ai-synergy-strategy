@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -26,17 +28,17 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-background/80 text-sm">
-            <a href="/about" className="hover:text-accent transition-colors">Обо мне</a>
+            <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
             <span className="text-background/40">·</span>
-            <a href="/#services" className="hover:text-accent transition-colors">Услуги</a>
+            <a href="/#services" onClick={(e) => scrollToSection(e, '#services')} className="hover:text-accent transition-colors">Услуги</a>
             <span className="text-background/40">·</span>
-            <a href="/cases" className="hover:text-accent transition-colors">Кейсы</a>
+            <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
             <span className="text-background/40">·</span>
-            <a href="/#methodology" className="hover:text-accent transition-colors">Методология</a>
+            <a href="/#methodology" onClick={(e) => scrollToSection(e, '#methodology')} className="hover:text-accent transition-colors">Методология</a>
             <span className="text-background/40">·</span>
-            <a href="/blog" className="hover:text-accent transition-colors">Блог</a>
+            <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
             <span className="text-background/40">·</span>
-            <a href="/#contact" className="hover:text-accent transition-colors">Контакты</a>
+            <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
           </div>
         </div>
 

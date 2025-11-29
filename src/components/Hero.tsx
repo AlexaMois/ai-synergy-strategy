@@ -104,7 +104,7 @@ const Hero = () => {
                       </Button>
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
-                    <a href="#" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    <a href="/ai-checklist.pdf" download className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.ceo.button2}
                     </a>
                   </div>
@@ -134,7 +134,7 @@ const Hero = () => {
                       </Button>
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
-                    <a href="#" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    <a href="/ai-checklist.pdf" download className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.operations.button2}
                     </a>
                   </div>
@@ -164,7 +164,7 @@ const Hero = () => {
                       </Button>
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
-                    <a href="#" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    <a href="/ai-checklist.pdf" download className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.it.button2}
                     </a>
                   </div>
