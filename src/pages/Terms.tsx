@@ -25,13 +25,13 @@ const Terms = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-medium text-foreground mb-4">1. Общие положения</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Настоящий договор-оферта (далее — Договор) является официальным публичным предложением ИП Моисеевой Александры Сергеевны (далее — Исполнитель) заключить договор на оказание консультационных услуг в области внедрения AI-решений.
+              Настоящий договор-оферта (далее — Договор) является официальным публичным предложением ИП Моисеевой Александры Алексеевны (далее — Исполнитель) заключить договор на оказание консультационных услуг в области внедрения AI-решений.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4">
               <strong>Исполнитель:</strong><br />
-              ИП Моисеева Александра Сергеевна<br />
-              <strong>ИНН:</strong> [ИНН]<br />
-              <strong>ОГРНИП:</strong> [ОГРНИП]<br />
+              ИП Моисеева Александра Алексеевна<br />
+              <strong>ИНН:</strong> 245906802500<br />
+              <strong>ОГРНИП:</strong> 323246800027635<br />
               <strong>Email:</strong> neiroreshenia@yandex.com<br />
               <strong>Сайт:</strong> https://нейрорешения.рф
             </p>
@@ -40,7 +40,7 @@ const Terms = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-medium text-foreground mb-4">2. Термины и определения</h2>
             <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-              <li><strong>Исполнитель</strong> — ИП Моисеева Александра Сергеевна.</li>
+              <li><strong>Исполнитель</strong> — ИП Моисеева Александра Алексеевна.</li>
               <li><strong>Заказчик</strong> — юридическое или физическое лицо, принявшее условия настоящего Договора.</li>
               <li><strong>Услуги</strong> — консультационные услуги по внедрению AI-решений, диагностике процессов, разработке AI-стратегии и архитектуры, сопровождению внедрения.</li>
             </ul>
@@ -149,9 +149,9 @@ const Terms = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-medium text-foreground mb-4">Реквизиты Исполнителя</h2>
             <p className="text-muted-foreground leading-relaxed">
-              ИП Моисеева Александра Сергеевна<br />
-              <strong>ИНН:</strong> [ИНН]<br />
-              <strong>ОГРНИП:</strong> [ОГРНИП]<br />
+              ИП Моисеева Александра Алексеевна<br />
+              <strong>ИНН:</strong> 245906802500<br />
+              <strong>ОГРНИП:</strong> 323246800027635<br />
               <strong>Email:</strong> neiroreshenia@yandex.com<br />
               <strong>Сайт:</strong> https://нейрорешения.рф
             </p>
