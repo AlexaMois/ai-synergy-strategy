@@ -42,10 +42,10 @@ const TrustAndPosition = () => {
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
-                  className="p-6 rounded-xl min-h-[140px] flex flex-col justify-center"
+                  className="p-6 rounded-xl flex flex-col justify-center h-full"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
@@ -61,14 +61,14 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 2 */}
                 <div 
-                  className="p-6 rounded-xl min-h-[140px] flex flex-col justify-center"
+                  className="p-6 rounded-xl flex flex-col justify-center h-full"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
                   <p className="text-base font-semibold text-text-heading leading-relaxed mb-2">
-                    Член Национального фонда искусственного интеллекта
+                    Член Национального фонта искусственного интеллекта
                   </p>
                   <p className="text-base text-text-body leading-relaxed">
                     Резидент IT-Парк Казань и КРИТБИ
@@ -77,7 +77,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 3 */}
                 <div 
-                  className="p-6 rounded-xl text-center min-h-[140px] flex items-center justify-center"
+                  className="p-6 rounded-xl text-center flex items-center justify-center h-full"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
@@ -90,7 +90,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
-                  className="p-6 rounded-xl text-center min-h-[140px] flex items-center justify-center"
+                  className="p-6 rounded-xl text-center flex items-center justify-center h-full"
                   style={{ 
                     backgroundColor: '#F8F3FF',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
