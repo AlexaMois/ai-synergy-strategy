@@ -52,22 +52,30 @@ const Hero = () => {
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-            <div className={`lg:col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-              <div className="space-y-3">
-                <div className="inline-block">
-                  <span className="text-handwriting text-3xl">
-                    независимый стратег инженер ИИ
-                  </span>
+            <div className={`lg:col-span-7 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+              {/* Верхний блок с градиентной обводкой */}
+              <div className="p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+                <div className="space-y-3">
+                  <div className="inline-block">
+                    <span className="text-handwriting text-3xl">
+                      независимый стратег инженер ИИ
+                    </span>
+                  </div>
+
+                  <p className="text-lg text-text-body leading-relaxed font-semibold">
+                    Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку.
+                  </p>
+                  
+                  <p className="text-lg text-text-body leading-relaxed">
+                    Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
+                  </p>
                 </div>
+              </div>
 
-                <p className="text-lg text-text-body leading-relaxed font-semibold">
-                  Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку.
-                </p>
-                
-                <p className="text-lg text-text-body leading-relaxed">Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
+              {/* Визуальная пауза */}
+              <div className="h-2"></div>
 
-              </p>
-
+              <div className="space-y-3">
                 <div className="space-y-2">
                   <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно полезно:</p>
                   <TabsList className="bg-transparent p-0 h-auto gap-2 sm:gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
