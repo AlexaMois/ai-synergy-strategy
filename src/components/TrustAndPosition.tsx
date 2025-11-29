@@ -29,7 +29,7 @@ const TrustAndPosition = () => {
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-                <h2 className="text-3xl font-bold mb-5 text-text-heading">
+                <h2 className="section-title text-center">
                   Почему мне доверяют
                 </h2>
                 <div className="w-24 h-px bg-gray-300 mx-auto"></div>
@@ -89,7 +89,7 @@ const TrustAndPosition = () => {
             {/* Правая колонка: Моя позиция */}
             <div>
               <div className="w-24 h-px bg-gray-300 mx-auto mb-6"></div>
-              <h2 className={`text-3xl font-bold mb-10 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+              <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
                 Моя позиция
               </h2>
 

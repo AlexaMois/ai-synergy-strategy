@@ -68,7 +68,7 @@ const Cases = () => {
     <section id="cases" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Title */}
-        <h2 className="text-[42px] font-semibold text-text-heading text-center mb-12">
+        <h2 className="section-title text-center">
           Реальные кейсы
         </h2>
 
@@ -104,7 +104,7 @@ const Cases = () => {
                   >
                     <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-semibold text-text-heading leading-tight pt-2">
+                  <h3 className="text-base font-medium text-text-heading leading-tight pt-2">
                     {caseItem.company}
                   </h3>
                 </div>

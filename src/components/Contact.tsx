@@ -19,16 +19,16 @@ const Contact = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`text-4xl font-bold mb-6 text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Готовы узнать, где теряются ресурсы?
           </h2>
           
-          <p className={`text-xl md:text-2xl text-text-body mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+          <p className={`text-lg md:text-xl text-text-body mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
             Начните с малого — экспресс-аудита.
           </p>
           
           <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-            <Button size="lg" className="h-12 px-8 text-base font-bold" asChild>
+            <Button size="lg" className="h-12 px-8 text-base font-medium" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Пройти экспресс-аудит процессов
               </a>
@@ -36,7 +36,7 @@ const Contact = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="h-12 px-8 text-base font-bold"
+              className="h-12 px-8 text-base font-medium"
               asChild
             >
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer">
@@ -48,15 +48,15 @@ const Contact = () => {
           <div className={`mt-12 pt-12 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
             <div className="grid md:grid-cols-3 gap-6 text-base text-text-body">
               <div>
-                <p className="font-bold text-text-heading mb-2">Email</p>
+                <p className="font-medium text-text-heading mb-2">Email</p>
                 <a href="mailto:neiroreshenia@yandex.ru" className="hover:text-accent transition-colors">neiroreshenia@yandex.ru</a>
               </div>
               <div>
-                <p className="font-bold text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
+                <p className="font-medium text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
                 <a href="tel:+79937217367" className="hover:text-accent transition-colors">+7 (993) 721-73-67</a>
               </div>
               <div>
-                <p className="font-bold text-text-heading mb-2">Telegram-канал</p>
+                <p className="font-medium text-text-heading mb-2">Telegram-канал</p>
                 <a href="https://t.me/neiroreshenia" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@neiroreshenia</a>
               </div>
             </div>
