@@ -13,7 +13,7 @@ const AIFramework = () => {
     { name: "Бизнес", color: "#D4EDFC" },
     { name: "Процессы", color: "#E8E0F5" },
     { name: "Люди", color: "#DFF0F0" },
-    { name: "Технологии", color: "#E3F4F9" }
+    { name: "Технологии", color: "#F6F3EB" }
   ];
 
   const pillars = [
@@ -68,7 +68,7 @@ const AIFramework = () => {
 
       {/* Подзаголовок */}
       <p className={`text-handwriting text-center mb-12 md:mb-16 tracking-wide transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0 animate-handwriting' : 'opacity-0 translate-y-4'}`}>
-        ИИ РАБОТАЕТ ТОЛЬКО ТОГДА, КОГДА СОВПАДАЮТ: БИЗНЕС, ПРОЦЕССЫ, ЛЮДИ И ТЕХНОЛОГИИ.
+        ИИ работает только тогда, когда совпадают: бизнес, процессы, люди и технологии.
       </p>
 
       {/* Круговая схема */}
@@ -181,9 +181,9 @@ const AIFramework = () => {
       </div>
 
       {/* Итоговая плашка */}
-      <div className={`bg-gradient-to-r from-[#D4EDFC] to-[#E8E0F5] rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-[18px] md:text-[20px] font-medium text-[#222222]">
-          <span className="text-[#49BED8] font-semibold">Результат:</span> решения, которые работают годами, а не «умирают» через месяц.
+      <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <p className="text-3xl font-semibold text-primary">
+          <span className="font-semibold">Результат:</span> решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>
     </section>
