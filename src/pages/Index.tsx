@@ -10,6 +10,7 @@ import HowIWork from "@/components/HowIWork";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import Authority from "@/components/Authority";
 import Cases from "@/components/Cases";
+import AIFramework from "@/components/AIFramework";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ const Index = () => {
       <WhatIDo />
       <HowIWorkProcess />
       <Cases />
+      <AIFramework />
       <Services />
       <HowIWork />
       <WhoIWorkWith />
