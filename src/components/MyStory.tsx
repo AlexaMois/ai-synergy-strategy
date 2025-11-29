@@ -25,7 +25,7 @@ const MyStory = () => {
       />
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          Александра Моисеева
+          Моя позиция
         </h2>
 
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
@@ -39,20 +39,12 @@ const MyStory = () => {
           </div>
 
           <div className={`space-y-5 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <div className="space-y-4 text-base md:text-lg text-text-body">
-              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-                <span className="font-bold text-xl text-text-heading">{yearsCount} лет опыта</span> в цифровой трансформации
-              </p>
-              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.27s' }}>
-                <span className="font-bold text-xl text-text-heading">{projectsCount} проектов</span> внедрения ИИ
-              </p>
-              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.34s' }}>
-                <span className="font-bold text-xl text-text-heading">Член НФИИ</span> — Национальной Федерации ИИ
-              </p>
-              <p className={`leading-relaxed ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.41s' }}>
-                <span className="font-bold text-xl text-text-heading">Эксперт-практик</span>, а не теоретик
-              </p>
-            </div>
+            <p className="text-lg text-text-body leading-relaxed">
+              ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.<br />
+              Любой проект должен давать эффект, а не создавать видимость инноваций.<br />
+              Если ИИ не нужен — я честно скажу об этом сразу.<br />
+              Диагностика — фильтр, без которого нельзя начинать.
+            </p>
           </div>
         </div>
       </div>
