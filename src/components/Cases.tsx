@@ -1,4 +1,5 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useCountUp } from "@/hooks/use-count-up";
 import { Button } from "./ui/button";
 import { Building2, Mic, Truck } from "lucide-react";
 
@@ -22,7 +23,7 @@ const Cases = () => {
         "–80% ФОТ",
         "ROI 278%"
       ],
-      mainMetric: "ROI 278%",
+      mainMetric: { value: 278, prefix: "ROI ", suffix: "%" },
       bgColor: "#F0F9FB"
     },
     {
@@ -40,7 +41,7 @@ const Cases = () => {
         "Интеграция в CRM и Telegram",
         "Экономия времени маркетинга и SMM"
       ],
-      mainMetric: "×5 скорость",
+      mainMetric: { value: 5, prefix: "×", suffix: " скорость" },
       bgColor: "#F8F3FF"
     },
     {
@@ -58,7 +59,7 @@ const Cases = () => {
         "99% точность",
         "Окупаемость — 3 недели"
       ],
-      mainMetric: "окупаемость 3 недели",
+      mainMetric: { value: 3, prefix: "окупаемость ", suffix: " недели" },
       bgColor: "#F0F9FB"
     }
   ];
@@ -75,6 +76,14 @@ const Cases = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {cases.map((caseItem, index) => {
             const Icon = caseItem.icon;
+            const metricCount = useCountUp({
+              end: caseItem.mainMetric.value,
+              duration: 1800,
+              isVisible,
+              prefix: caseItem.mainMetric.prefix,
+              suffix: caseItem.mainMetric.suffix
+            });
+            
             return (
               <div
                 key={index}
@@ -141,7 +150,7 @@ const Cases = () => {
                   className="mt-auto pt-4 border-t-2 border-primary/20"
                 >
                   <p className="text-3xl font-semibold text-primary text-center">
-                    {caseItem.mainMetric}
+                    {metricCount}
                   </p>
                 </div>
               </div>
