@@ -35,76 +35,52 @@ const TrustAndPosition = () => {
                 <div className="w-24 h-px bg-gray-300 mx-auto"></div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-4">
-                <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                    animationDelay: '0.1s'
-                  }}
-                >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
-                    12+ лет в управлении, финансах и технологиях
-                  </p>
+              <div className="space-y-4">
+                {/* Две вертикальные карточки в ряд */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div 
+                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    style={{ 
+                      backgroundColor: '#F3EEFF',
+                      animationDelay: '0.1s'
+                    }}
+                  >
+                    <p className="text-sm text-text-body leading-[1.7] mb-3">
+                      12+ лет в управлении, финансах и технологиях
+                    </p>
+                    <div className="w-12 h-px bg-primary/20 my-3"></div>
+                    <p className="text-sm text-text-body leading-[1.7]">
+                      Победитель Национальной премии "Бизнес-Успех", 2025
+                    </p>
+                  </div>
+                  
+                  <div 
+                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    style={{ 
+                      backgroundColor: '#F3EEFF',
+                      animationDelay: '0.15s'
+                    }}
+                  >
+                    <p className="text-sm text-text-body leading-[1.7] mb-3">
+                      Член Национального фонда искусственного интеллекта
+                    </p>
+                    <div className="w-12 h-px bg-primary/20 my-3"></div>
+                    <p className="text-sm text-text-body leading-[1.7]">
+                      Резидент IT-Парк Казань и КРИТБИ
+                    </p>
+                  </div>
                 </div>
                 
+                {/* Одна широкая карточка внизу */}
                 <div 
                   className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                    animationDelay: '0.15s'
-                  }}
-                >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
-                    Победитель Национальной премии "Бизнес-Успех", 2025
-                  </p>
-                </div>
-                
-                <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                    backgroundColor: '#F3EEFF',
                     animationDelay: '0.2s'
                   }}
                 >
                   <p className="text-sm text-text-body leading-[1.7] text-center">
-                    Член Национального фонда искусственного интеллекта
-                  </p>
-                </div>
-                
-                <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                    animationDelay: '0.25s'
-                  }}
-                >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
-                    Резидент IT-Парк Казань и КРИТБИ
-                  </p>
-                </div>
-                
-                <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:col-span-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                    animationDelay: '0.3s'
-                  }}
-                >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
                     Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ"
-                  </p>
-                </div>
-                
-                <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] md:col-span-2 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                  style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
-                    animationDelay: '0.35s'
-                  }}
-                >
-                  <p className="text-sm text-text-body leading-[1.7] text-center">
-                    ПРИДУМАТЬ
                   </p>
                 </div>
               </div>
