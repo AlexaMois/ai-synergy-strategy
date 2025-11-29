@@ -63,7 +63,7 @@ const FAQ = () => {
         style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Частые вопросы
         </h2>
 
@@ -77,7 +77,7 @@ const FAQ = () => {
                   value={`item-${index}`}
                   className="border-b-2 border-border pb-3"
                 >
-                  <AccordionTrigger className="text-left text-lg md:text-xl font-bold text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
+                  <AccordionTrigger className="text-left text-lg font-medium text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
                     <div className="flex items-center gap-3">
                       <IconComponent className="h-5 w-5 text-accent shrink-0" />
                       <span>{faq.question}</span>

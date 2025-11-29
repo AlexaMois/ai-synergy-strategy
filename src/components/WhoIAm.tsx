@@ -25,7 +25,7 @@ const WhoIAm = () => {
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="text-[32px] md:text-[42px] font-semibold text-[#222222] mb-4">
+        <h2 className="section-title text-center">
           Кто я и почему ко мне приходят
         </h2>
         <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
@@ -37,7 +37,7 @@ const WhoIAm = () => {
         <div 
           className={`bg-[#F1F4F5] rounded-2xl p-8 md:p-10 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          <p className="text-[20px] md:text-[24px] leading-relaxed text-[#222222] font-medium">
+          <p className="text-lg md:text-xl leading-relaxed text-[#222222] font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
             15 лет — в управлении, финансах, операционке.<br/><br/>
             Знаю, как устроены процессы изнутри — не по презентациям.
@@ -54,7 +54,7 @@ const WhoIAm = () => {
                 transitionDelay: `${150 + index * 75}ms`
               }}
             >
-              <p className="text-[17px] md:text-[18px] text-[#222222] font-medium leading-relaxed">
+              <p className="text-base md:text-lg text-[#222222] font-normal leading-relaxed">
                 {card.title}
               </p>
             </div>
@@ -64,7 +64,7 @@ const WhoIAm = () => {
 
       {/* Акцентная плашка внизу */}
       <div className={`bg-[#49BED8] rounded-2xl p-6 md:p-8 text-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-[18px] md:text-[20px] font-semibold text-white">
+        <p className="text-lg md:text-xl font-medium text-white">
           Моя цель — не внедрить "что-то модное", а усилить бизнес.
         </p>
       </div>

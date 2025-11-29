@@ -56,7 +56,7 @@ const HowIWorkProcess = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5 text-text-heading">
+            <h2 className="section-title text-center">
               Как я работаю с компаниями
             </h2>
             <div className="w-24 h-px bg-gray-300 mx-auto"></div>
@@ -88,10 +88,10 @@ const HowIWorkProcess = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-semibold mb-3 text-text-heading text-center">
+                  <h3 className="text-lg font-medium mb-3 text-text-heading text-center">
                     {card.title}
                   </h3>
-                  <p className="text-base font-medium mb-3 text-text-body">
+                  <p className="text-base font-normal mb-3 text-text-body">
                     {card.subtitle}
                   </p>
                   <ul className="space-y-2 mb-4">

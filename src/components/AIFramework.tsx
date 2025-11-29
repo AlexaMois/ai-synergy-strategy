@@ -60,7 +60,7 @@ const AIFramework = () => {
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="text-[32px] md:text-[42px] font-semibold text-[#222222] mb-4">
+        <h2 className="section-title text-center">
           Мой метод: AI Synergy Framework
         </h2>
         <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
@@ -166,12 +166,12 @@ const AIFramework = () => {
             onMouseEnter={() => setHoveredSector(index)}
             onMouseLeave={() => setHoveredSector(null)}
           >
-            <h3 className="text-[20px] md:text-[24px] font-semibold text-[#222222] mb-4">
+            <h3 className="text-lg font-medium text-[#222222] mb-4">
               {pillar.title}
             </h3>
             <div className="space-y-3">
               {pillar.points.map((point, idx) => (
-                <p key={idx} className="text-[15px] md:text-[16px] text-[#444444] leading-relaxed">
+                <p key={idx} className="text-base text-[#444444] leading-relaxed">
                   {point}
                 </p>
               ))}

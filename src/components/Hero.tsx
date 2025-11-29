@@ -60,7 +60,7 @@ const Hero = () => {
             <div className={`col-span-6 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               <div className="space-y-4">
                 <div className="inline-block">
-                  <span className="text-sm font-bold tracking-wider uppercase text-accent">
+                  <span className="text-sm font-medium tracking-wide text-accent">
                     для руководителей и владельцев бизнеса
                   </span>
                 </div>
@@ -94,7 +94,7 @@ const Hero = () => {
 
               <TabsContent value="ceo" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
-                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.ceo.title}
                   </h1>
                   
@@ -103,7 +103,7 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-medium w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.ceo.button1}
                       </a>
@@ -116,7 +116,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-8">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -124,7 +124,7 @@ const Hero = () => {
 
               <TabsContent value="operations" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
-                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.operations.title}
                   </h1>
                   
@@ -133,7 +133,7 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-medium w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.operations.button1}
                       </a>
@@ -146,7 +146,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-8">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -154,7 +154,7 @@ const Hero = () => {
 
               <TabsContent value="it" className="mt-0 animate-fade-in">
                 <div className="space-y-6">
-                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[36px] font-semibold leading-tight text-text-heading">
                     {tabsContent.it.title}
                   </h1>
                   
@@ -163,7 +163,7 @@ const Hero = () => {
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-medium w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.it.button1}
                       </a>
@@ -176,7 +176,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-xs text-[#777] leading-tight mt-8">
+                  <p className="text-sm text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>

@@ -33,7 +33,7 @@ const WhatIDo = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-3xl font-bold mb-5 text-text-heading">
+            <h2 className="section-title text-center">
               Что я делаю и чем отличаюсь
             </h2>
             <div className="w-24 h-px bg-gray-300 mx-auto"></div>
@@ -56,7 +56,7 @@ const WhatIDo = () => {
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-semibold mb-4 text-text-heading">
+                      <h3 className="text-xl font-medium mb-4 text-text-heading">
                         {card.title}
                       </h3>
                       <p className="text-base text-text-body leading-[1.7]">

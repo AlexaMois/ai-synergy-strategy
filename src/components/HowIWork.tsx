@@ -39,7 +39,7 @@ const HowIWork = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`section-title text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Как начать работу
           </h2>
 
@@ -51,16 +51,16 @@ const HowIWork = () => {
                 style={{ animationDelay: `${0.2 + index * 0.07}s` }}
               >
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-accent flex items-center justify-center">
-                  <span className="text-3xl font-bold text-accent">{step.number}</span>
+                  <span className="text-3xl font-semibold text-accent">{step.number}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-text-heading">{step.title}</h3>
+                <h3 className="text-lg font-medium mb-3 text-text-heading">{step.title}</h3>
                 <p className="text-base text-text-body">{step.description}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
+            <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-medium">
               Начать сейчас
             </Button>
           </div>
