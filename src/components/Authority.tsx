@@ -14,7 +14,7 @@ const Authority = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-16 bg-secondary overflow-hidden">
+    <section id="interviews" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
