@@ -3,50 +3,73 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
+  const { toast } = useToast();
+  
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    
+    toast({
+      title: "Спасибо за подписку!",
+      description: `Мы отправим новые статьи на ${email}`,
+    });
+    
+    e.currentTarget.reset();
+  };
+
   const posts = [
     {
       title: "Почему 80% проектов по внедрению ИИ проваливаются",
       excerpt: "Разбираю главные ошибки компаний при внедрении ИИ и как их избежать. Честный взгляд на технологии без хайпа.",
       date: "15 марта 2025",
       category: "Внедрение ИИ",
-      readTime: "7 мин"
+      readTime: "7 мин",
+      slug: "why-ai-projects-fail"
     },
     {
       title: "AI Synergy Framework: методология для успешных проектов",
       excerpt: "Как синхронизировать бизнес, процессы, людей и технологии для достижения реальных результатов.",
       date: "8 марта 2025",
       category: "Методология",
-      readTime: "10 мин"
+      readTime: "10 мин",
+      slug: "ai-synergy-framework"
     },
     {
       title: "ROI от ИИ: как считать эффективность до внедрения",
       excerpt: "Пошаговая методика расчета возврата инвестиций в ИИ-проекты. С примерами и формулами.",
       date: "1 марта 2025",
       category: "Аналитика",
-      readTime: "12 мин"
+      readTime: "12 мин",
+      slug: "ai-roi-calculation"
     },
     {
       title: "Автоматизация без хаоса: чек-лист для руководителя",
       excerpt: "10 вопросов, которые нужно задать перед началом любого проекта автоматизации.",
       date: "22 февраля 2025",
       category: "Управление",
-      readTime: "5 мин"
+      readTime: "5 мин",
+      slug: "automation-checklist"
     },
     {
       title: "Российские LLM vs зарубежные: практический сравнительный анализ",
       excerpt: "Тестировал GigaChat, YandexGPT и другие российские решения. Результаты и рекомендации.",
       date: "15 февраля 2025",
       category: "Технологии",
-      readTime: "15 мин"
+      readTime: "15 мин",
+      slug: "russian-llm-comparison"
     },
     {
       title: "Как обучить команду работе с ИИ за 2 недели",
       excerpt: "Программа обучения, которая снимает страх перед технологиями и делает сотрудников союзниками изменений.",
       date: "8 февраля 2025",
       category: "Обучение",
-      readTime: "8 мин"
+      readTime: "8 мин",
+      slug: "team-ai-training"
     }
   ];
 
@@ -72,10 +95,9 @@ const Blog = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
-              <article
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-              >
+              <Link to={`/blog/${post.slug}`} key={index}>
+                <article className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
+                >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-medium text-accent bg-[#D4EDFC] px-3 py-1 rounded-full">
                     {post.category}
@@ -97,11 +119,12 @@ const Blog = () => {
                     <span>{post.date}</span>
                   </div>
                   
-                  <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80 p-0">
+                  <span className="text-accent hover:text-accent/80 font-medium text-sm flex items-center">
                     Читать <ArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
+                  </span>
                 </div>
               </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -117,16 +140,18 @@ const Blog = () => {
             <p className="text-lg text-text-body mb-8">
               Получайте новые статьи и практические материалы о внедрении ИИ раз в две недели
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <input
                 type="email"
+                name="email"
                 placeholder="Ваш email"
+                required
                 className="flex-1 px-6 py-3 rounded-xl border-2 border-transparent focus:border-accent focus:outline-none text-base"
               />
-              <Button size="lg" className="px-8">
+              <Button type="submit" size="lg" className="px-8">
                 Подписаться
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
