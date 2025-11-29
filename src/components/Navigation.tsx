@@ -77,10 +77,10 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className={`transition-all duration-300 font-medium relative ${
+                className={`transition-all duration-300 font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out ${
                   activeSection === link.href
-                    ? "text-accent after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-accent"
-                    : "text-text-heading hover:text-accent"
+                    ? "text-accent after:w-full after:opacity-100"
+                    : "text-text-heading hover:text-accent after:w-0 after:opacity-0"
                 }`}
               >
                 {link.label}
