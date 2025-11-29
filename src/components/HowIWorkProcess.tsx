@@ -73,7 +73,7 @@ const HowIWorkProcess = () => {
                   key={index}
                   className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
-                    backgroundColor: index === 1 ? 'hsl(var(--bg-light-purple))' : 'hsl(var(--bg-light-blue))',
+                    backgroundColor: 'hsl(var(--gray-50))',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
@@ -108,9 +108,8 @@ const HowIWorkProcess = () => {
 
           {/* CTA Block */}
           <div 
-            className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+            className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
             style={{
-              background: 'linear-gradient(135deg, #F0F9FB 0%, #F8F3FF 100%)',
               animationDelay: '0.4s'
             }}
           >

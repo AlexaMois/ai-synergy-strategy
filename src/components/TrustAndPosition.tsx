@@ -27,7 +27,7 @@ const TrustAndPosition = () => {
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div 
-          className={`max-w-7xl mx-auto bg-[#FAFBFC] rounded-3xl p-12 md:p-14 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+          className={`max-w-7xl mx-auto bg-background rounded-3xl p-12 md:p-14 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           style={{
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
           }}
@@ -47,7 +47,7 @@ const TrustAndPosition = () => {
                 <div 
                   className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px]"
                   style={{ 
-                    backgroundColor: '#F8F3FF',
+                    backgroundColor: 'hsl(var(--gray-50))',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
@@ -60,7 +60,7 @@ const TrustAndPosition = () => {
                 <div 
                   className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
                   style={{ 
-                    backgroundColor: '#F8F3FF',
+                    backgroundColor: 'hsl(var(--gray-50))',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
@@ -76,7 +76,7 @@ const TrustAndPosition = () => {
                 <div 
                   className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
                   style={{ 
-                    backgroundColor: '#F8F3FF',
+                    backgroundColor: 'hsl(var(--gray-50))',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
@@ -92,7 +92,7 @@ const TrustAndPosition = () => {
                 <div 
                   className="p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px]"
                   style={{ 
-                    backgroundColor: '#F8F3FF',
+                    backgroundColor: 'hsl(var(--gray-50))',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                   }}
                 >
