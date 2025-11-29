@@ -1,12 +1,13 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
+import { Compass, Brain, Puzzle } from "lucide-react";
 
 const HowIWorkProcess = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   const cards = [
     {
-      emoji: "🧭",
+      icon: Compass,
       title: "Экспресс-аудит — первый шаг",
       subtitle: "30 минут, которые показывают:",
       points: [
@@ -19,7 +20,7 @@ const HowIWorkProcess = () => {
       bgColor: "#F0F9FB"
     },
     {
-      emoji: "🧠",
+      icon: Brain,
       title: "AI-стратегия и архитектура решений",
       subtitle: "Что создаю:",
       points: [
@@ -32,7 +33,7 @@ const HowIWorkProcess = () => {
       bgColor: "#F8F3FF"
     },
     {
-      emoji: "🧩",
+      icon: Puzzle,
       title: "Сопровождение внедрения и независимая экспертиза",
       subtitle: "На стороне клиента:",
       points: [
@@ -63,37 +64,52 @@ const HowIWorkProcess = () => {
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className={`p-8 rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{
-                  backgroundColor: card.bgColor,
-                  animationDelay: `${index * 0.1}s`
-                }}
-              >
-                <div className="text-4xl mb-4">{card.emoji}</div>
-                <h3 className="text-xl font-semibold mb-3 text-text-heading">
-                  {card.title}
-                </h3>
-                <p className="text-base font-medium mb-3 text-text-body">
-                  {card.subtitle}
-                </p>
-                <ul className="space-y-2 mb-4">
-                  {card.points.map((point, idx) => (
-                    <li key={idx} className="text-base text-text-body leading-relaxed flex">
-                      <span className="mr-2">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                {card.footer && (
-                  <p className="text-base font-medium text-primary mt-4">
-                    {card.footer}
+            {cards.map((card, index) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={index}
+                  className={`p-8 rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  style={{
+                    backgroundColor: card.bgColor,
+                    animationDelay: `${index * 0.1}s`
+                  }}
+                >
+                  {/* Icon with gradient background and glow */}
+                  <div className="flex justify-center mb-6">
+                    <div 
+                      className="w-20 h-20 rounded-full flex items-center justify-center relative"
+                      style={{
+                        background: 'linear-gradient(135deg, #49BED8 0%, #B8A6E0 100%)',
+                        boxShadow: '0 8px 24px rgba(73, 190, 216, 0.3), 0 0 20px rgba(184, 166, 224, 0.2)'
+                      }}
+                    >
+                      <Icon className="w-9 h-9 text-white" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 text-text-heading text-center">
+                    {card.title}
+                  </h3>
+                  <p className="text-base font-medium mb-3 text-text-body">
+                    {card.subtitle}
                   </p>
-                )}
-              </div>
-            ))}
+                  <ul className="space-y-2 mb-4">
+                    {card.points.map((point, idx) => (
+                      <li key={idx} className="text-base text-text-body leading-relaxed flex">
+                        <span className="mr-2">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {card.footer && (
+                    <p className="text-base font-medium text-primary mt-4">
+                      {card.footer}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* CTA Block */}
