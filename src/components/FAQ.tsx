@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
@@ -16,22 +17,32 @@ const FAQ = () => {
     {
       question: "Сколько стоит внедрение ИИ?",
       answer:
-        "Начинаю с диагностики (от 150 000 ₽). Полное внедрение с сопровождением — от 500 000 ₽.",
+        "От 50 000 ₽ за быстрые решения до 500 000 ₽ за архитектуру и сопровождение. Начинаем с экспресс-аудита.",
     },
     {
-      question: "Сколько времени займёт проект?",
+      question: "Сколько это занимает?",
       answer:
-        "Диагностика — 2-4 недели. Пилотное внедрение — 1-3 месяца. Полномасштабное решение — 3-6 месяцев.",
+        "Экспресс-аудит — 60 минут. Интеграции — от 2 недель. Сложные проекты — 2–4 месяца.",
     },
     {
-      question: "Нужно ли обучать сотрудников?",
+      question: "Команда поймёт, что происходит?",
       answer:
-        "Да, обучение — обязательная часть внедрения. Провожу практические воркшопы и создаю внутренние регламенты.",
+        "Да. Объясняю простым языком. Каждый проект завершается обучением сотрудников.",
     },
     {
-      question: "Какие ошибки чаще всего допускают при внедрении ИИ?",
+      question: "А если решение не сработает?",
       answer:
-        "Главная ошибка — внедрение ради хайпа, без измеримых целей. Вторая — игнорирование качества данных. Третья — отсутствие обучения команды.",
+        "Есть пилот. Все гипотезы проверяем до масштабирования.",
+    },
+    {
+      question: "Вы работаете с нашей отраслью?",
+      answer:
+        "Да. Логистика, PR, финансы, медицина, образование, ритейл.",
+    },
+    {
+      question: "Будем зависеть от вас?",
+      answer:
+        "Нет. Я создаю автономные системы и передаю управляемый продукт.",
     },
   ];
 
@@ -46,7 +57,7 @@ const FAQ = () => {
       />
       <div className="container mx-auto px-4">
         <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          Вопросы и ответы
+          Частые вопросы
         </h2>
 
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
@@ -66,6 +77,19 @@ const FAQ = () => {
               </AccordionItem>
             ))}
           </Accordion>
+
+          <div className="mt-12 text-center">
+            <Button 
+              size="lg" 
+              className="px-8"
+              onClick={() => {
+                const contactSection = document.querySelector('#contact');
+                contactSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Запросить экспресс-аудит
+            </Button>
+          </div>
         </div>
       </div>
     </section>
