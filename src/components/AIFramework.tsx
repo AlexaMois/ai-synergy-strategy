@@ -66,8 +66,8 @@ const AIFramework = () => {
       </div>
 
       {/* Подзаголовок */}
-      <p className={`text-center text-[16px] md:text-[18px] text-[#6A6A6A] mb-12 md:mb-16 transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        ИИ работает только тогда, когда совпадают: бизнес → процессы → люди → технологии.
+      <p className={`text-center text-[26px] font-normal text-[#49BED8] mb-12 md:mb-16 tracking-wide transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        ИИ РАБОТАЕТ ТОЛЬКО ТОГДА, КОГДА СОВПАДАЮТ: БИЗНЕС, ПРОЦЕССЫ, ЛЮДИ И ТЕХНОЛОГИИ.
       </p>
 
       {/* Круговая схема */}
