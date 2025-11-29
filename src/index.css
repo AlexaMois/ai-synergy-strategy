@@ -297,6 +297,18 @@ All colors MUST be HSL.
     }
   }
   
+  /* Mobile breakpoint for grid-12 system */
+  @media (max-width: 640px) {
+    .grid-12 {
+      grid-template-columns: 1fr;
+    }
+    .col-span-2, .col-span-3, .col-span-4, 
+    .col-span-5, .col-span-6, .col-span-7, 
+    .col-span-8, .col-span-12 {
+      grid-column: span 1;
+    }
+  }
+  
   .animate-fade-in-up {
     animation: fadeInUp 0.35s ease-out forwards;
   }

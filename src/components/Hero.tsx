@@ -51,8 +51,8 @@ const Hero = () => {
     }} />
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
-          <div className="grid-12 items-center">
-            <div className={`col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+            <div className={`lg:col-span-7 space-y-4 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               <div className="space-y-3">
                 <div className="inline-block">
                   <span className="text-handwriting text-3xl">
@@ -70,15 +70,15 @@ const Hero = () => {
 
                 <div className="space-y-2">
                   <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно полезно:</p>
-                  <TabsList className="bg-transparent p-0 h-auto gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
-                  <TabsTrigger value="ceo" className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
+                  <TabsList className="bg-transparent p-0 h-auto gap-2 sm:gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
+                  <TabsTrigger value="ceo" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     Я — CEO
                   </TabsTrigger>
-                  <TabsTrigger value="operations" className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
+                  <TabsTrigger value="operations" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     <span className="hidden sm:inline">Я — операционный директор</span>
                     <span className="sm:hidden">Я — Опер. директор</span>
                   </TabsTrigger>
-                  <TabsTrigger value="it" className="text-sm px-3 md:px-4 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
+                  <TabsTrigger value="it" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
@@ -87,7 +87,7 @@ const Hero = () => {
 
               <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
-                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
+                  <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
                     Как внедрять технологии, <span className="font-semibold">не нарушая устойчивость бизнеса</span>
                   </h1>
                   
@@ -95,15 +95,15 @@ const Hero = () => {
                     Получаете <span className="font-semibold">честную оценку процессов, рисков и экономического эффекта</span>: что даст результат, что не окупится, и в какой последовательности двигаться.
                   </p>
                   
-                  <div className="flex flex-col gap-4 pt-2">
-                    <div className="flex flex-col gap-2">
-                      <Button size="lg" asChild>
-                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                          {tabsContent.ceo.button1}
-                        </a>
-                      </Button>
-                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
-                    </div>
+                   <div className="flex flex-col gap-4 pt-2">
+                     <div className="flex flex-col gap-2">
+                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                           {tabsContent.ceo.button1}
+                         </a>
+                       </Button>
+                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                     </div>
                     <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.ceo.button2}
                     </a>
@@ -117,23 +117,23 @@ const Hero = () => {
 
               <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
-                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
-                    <span className="font-semibold">Как убрать узкие места</span> и повысить скорость операционки
-                  </h1>
+                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
+                     <span className="font-semibold">Как убрать узкие места</span> и повысить скорость операционки
+                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
                     Выявляю <span className="font-semibold">дублирование, задержки и точки просадки</span>. Показываю, какие решения действительно ускорят процессы и сократят нагрузку на команду.
                   </p>
                   
-                  <div className="flex flex-col gap-4 pt-2">
-                    <div className="flex flex-col gap-2">
-                      <Button size="lg" asChild>
-                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                          {tabsContent.operations.button1}
-                        </a>
-                      </Button>
-                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
-                    </div>
+                   <div className="flex flex-col gap-4 pt-2">
+                     <div className="flex flex-col gap-2">
+                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                           {tabsContent.operations.button1}
+                         </a>
+                       </Button>
+                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                     </div>
                     <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.operations.button2}
                     </a>
@@ -147,23 +147,23 @@ const Hero = () => {
 
               <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
-                  <h1 className="text-[36px] font-medium leading-tight text-text-heading">
-                    <span className="font-semibold">Как внедрять ИИ без техдолга</span> и архитектурных рисков
-                  </h1>
+                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
+                     <span className="font-semibold">Как внедрять ИИ без техдолга</span> и архитектурных рисков
+                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
                     Даю <span className="font-semibold">независимую оценку интеграций, безопасности и совместимости</span>: какие ИИ-решения впишутся в вашу инфраструктуру и будут устойчивыми в поддержке.
                   </p>
                   
-                  <div className="flex flex-col gap-4 pt-2">
-                    <div className="flex flex-col gap-2">
-                      <Button size="lg" asChild>
-                        <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                          {tabsContent.it.button1}
-                        </a>
-                      </Button>
-                      <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
-                    </div>
+                   <div className="flex flex-col gap-4 pt-2">
+                     <div className="flex flex-col gap-2">
+                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                           {tabsContent.it.button1}
+                         </a>
+                       </Button>
+                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
+                     </div>
                     <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.it.button2}
                     </a>
@@ -176,8 +176,8 @@ const Hero = () => {
               </TabsContent>
             </div>
           
-            <div className={`col-span-5 relative ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-              <OptimizedImage src={alexandraPortrait} alt="Александра Моисеева - AI консультант" className="rounded-lg w-[82%] h-auto object-cover mx-auto" priority sizes="(max-width: 768px) 100vw, 50vw" />
+            <div className={`lg:col-span-5 relative mb-8 lg:mb-0 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+              <OptimizedImage src={alexandraPortrait} alt="Александра Моисеева - AI консультант" className="rounded-lg w-full max-w-[280px] sm:max-w-[320px] lg:w-[82%] lg:max-w-none h-auto object-cover mx-auto" priority sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
           </div>
         </Tabs>

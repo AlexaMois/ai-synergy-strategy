@@ -50,7 +50,7 @@ const Contact = () => {
           </div>
 
           <div className={`mt-12 pt-12 border-t border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
-            <div className="grid md:grid-cols-3 gap-6 text-lg text-text-body">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg text-text-body">
               <div className="p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
                 <p className="font-semibold text-text-heading mb-2">Email</p>
                 <a href="mailto:neiroreshenia@yandex.ru" className="hover:text-accent transition-colors">neiroreshenia@yandex.ru</a>

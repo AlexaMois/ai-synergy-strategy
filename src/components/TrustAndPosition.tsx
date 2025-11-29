@@ -27,9 +27,9 @@ const TrustAndPosition = () => {
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div 
-          className={`max-w-7xl mx-auto bg-background rounded-3xl p-12 md:p-14 shadow-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+          className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
         >
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className="mb-8">
@@ -39,7 +39,7 @@ const TrustAndPosition = () => {
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 auto-rows-fr">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
                   className="p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover"
@@ -98,7 +98,7 @@ const TrustAndPosition = () => {
 
               <div className="space-y-4">
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
+                  className="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -116,7 +116,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
+                  className="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -135,7 +135,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
+                  className="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -154,7 +154,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className="flex items-center gap-4 p-5 rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
+                  className="flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover"
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"

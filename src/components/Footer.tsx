@@ -29,15 +29,15 @@ const Footer = () => {
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-background/80 text-sm">
             <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
-            <span className="text-background/40">·</span>
+            <span className="hidden sm:inline text-background/40">·</span>
             <a href="/#services" onClick={(e) => scrollToSection(e, '#services')} className="hover:text-accent transition-colors">Услуги</a>
-            <span className="text-background/40">·</span>
+            <span className="hidden sm:inline text-background/40">·</span>
             <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
-            <span className="text-background/40">·</span>
+            <span className="hidden sm:inline text-background/40">·</span>
             <a href="/#methodology" onClick={(e) => scrollToSection(e, '#methodology')} className="hover:text-accent transition-colors">Методология</a>
-            <span className="text-background/40">·</span>
+            <span className="hidden sm:inline text-background/40">·</span>
             <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
-            <span className="text-background/40">·</span>
+            <span className="hidden sm:inline text-background/40">·</span>
             <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
           </div>
         </div>

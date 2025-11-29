@@ -75,7 +75,7 @@ const AIFramework = () => {
 
       {/* Круговая схема */}
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto">
+        <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] mx-auto">
           <svg viewBox="0 0 200 200" className="w-full h-full">
             {/* Сектор 0 - Технологии (верхний правый, голубой) */}
             <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer" style={{
@@ -108,24 +108,24 @@ const AIFramework = () => {
             </div>
           </div>
 
-          {/* Статичные подписи секторов - симметрично вокруг круга */}
+          {/* Статичные подписи секторов - симметрично вокруг круга (скрыты на мобильных) */}
           {/* Бизнес - верхний левый (кремовый сектор) */}
-          <div className="absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          <div className="hidden sm:block absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-text-heading whitespace-nowrap">Бизнес</p>
           </div>
           
           {/* Технологии - верхний правый (голубой сектор) */}
-          <div className="absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          <div className="hidden sm:block absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-text-heading whitespace-nowrap">Технологии</p>
           </div>
           
           {/* Процессы - нижний левый (мятный сектор) */}
-          <div className="absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          <div className="hidden sm:block absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-text-heading whitespace-nowrap">Процессы</p>
           </div>
           
           {/* Люди - нижний правый (лавандовый сектор) */}
-          <div className="absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+          <div className="hidden sm:block absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
             <p className="text-sm font-medium text-text-heading whitespace-nowrap">Люди</p>
           </div>
         </div>
