@@ -10,10 +10,10 @@ const AIFramework = () => {
   const [hoveredSector, setHoveredSector] = useState<number | null>(null);
 
   const sectors = [
-    { name: "Бизнес", color: "#D4EDFC" },
-    { name: "Процессы", color: "#E8E0F5" },
-    { name: "Люди", color: "#DFF0F0" },
-    { name: "Технологии", color: "#F6F3EB" }
+    { name: "Технологии", color: "#D4EDFC", position: "right" },
+    { name: "Люди", color: "#E8E0F5", position: "bottom-right" },
+    { name: "Процессы", color: "#DFF0F0", position: "bottom-left" },
+    { name: "Бизнес", color: "#F6F3EB", position: "top-left" }
   ];
 
   const pillars = [
@@ -24,7 +24,7 @@ const AIFramework = () => {
         "Потом: какие решения подойдут?",
         "Считаю эффект до старта."
       ],
-      color: "bg-[#D4EDFC]"
+      color: "bg-[#F6F3EB]"
     },
     {
       title: "Инженерное мышление",
@@ -32,7 +32,7 @@ const AIFramework = () => {
         "Проектирую систему, а не набор инструментов.",
         "Если решение ломает процессы — оно не внедряется."
       ],
-      color: "bg-[#E8E0F5]"
+      color: "bg-[#DFF0F0]"
     },
     {
       title: "Люди в центре",
@@ -40,7 +40,7 @@ const AIFramework = () => {
         "Объясняю, обучаю, снимаю сопротивление.",
         "Технологии не должны пугать."
       ],
-      color: "bg-[#DFF0F0]"
+      color: "bg-[#E8E0F5]"
     },
     {
       title: "Этика и честность",
@@ -48,7 +48,7 @@ const AIFramework = () => {
         "Не беру хайп-проекты ради галочки.",
         "Если автоматизация не окупится — говорю сразу."
       ],
-      color: "bg-[#F6F3EB]"
+      color: "bg-[#D4EDFC]"
     }
   ];
 
@@ -73,9 +73,9 @@ const AIFramework = () => {
 
       {/* Круговая схема */}
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
+        <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto">
           <svg viewBox="0 0 200 200" className="w-full h-full">
-            {/* Сектор 1 - Бизнес */}
+            {/* Сектор 0 - Технологии (верхний правый, голубой) */}
             <path
               d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z"
               fill={sectors[0].color}
@@ -87,7 +87,7 @@ const AIFramework = () => {
               onMouseEnter={() => setHoveredSector(0)}
               onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 2 - Процессы */}
+            {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path
               d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z"
               fill={sectors[1].color}
@@ -99,7 +99,7 @@ const AIFramework = () => {
               onMouseEnter={() => setHoveredSector(1)}
               onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 3 - Люди */}
+            {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path
               d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z"
               fill={sectors[2].color}
@@ -111,7 +111,7 @@ const AIFramework = () => {
               onMouseEnter={() => setHoveredSector(2)}
               onMouseLeave={() => setHoveredSector(null)}
             />
-            {/* Сектор 4 - Технологии */}
+            {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path
               d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z"
               fill={sectors[3].color}
@@ -134,16 +134,26 @@ const AIFramework = () => {
             </div>
           </div>
 
-          {/* Tooltip */}
-          {hoveredSector !== null && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
-              <div className="bg-[#222222] text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in text-center whitespace-nowrap">
-                <p className="text-[14px] md:text-[16px] font-medium">
-                  {sectors[hoveredSector].name}
-                </p>
-              </div>
-            </div>
-          )}
+          {/* Статичные подписи секторов */}
+          {/* Технологии - справа */}
+          <div className="absolute right-[-90px] top-1/2 -translate-y-1/2 bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Технологии</p>
+          </div>
+          
+          {/* Люди - снизу справа */}
+          <div className="absolute right-[-20px] bottom-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Люди</p>
+          </div>
+          
+          {/* Процессы - снизу слева */}
+          <div className="absolute left-[-30px] bottom-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Процессы</p>
+          </div>
+          
+          {/* Бизнес - сверху слева */}
+          <div className="absolute left-[-20px] top-[-35px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
+            <p className="text-sm font-medium text-[#222222] whitespace-nowrap">Бизнес</p>
+          </div>
         </div>
       </div>
 
@@ -182,8 +192,8 @@ const AIFramework = () => {
 
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-3xl font-semibold text-primary">
-          <span className="font-semibold">Результат:</span> решения, которые работают годами, а не «умирают» через месяц.
+        <p className="text-3xl font-semibold text-[#49BED8] animate-fade-in">
+          <span className="inline-block animate-bounce">Результат:</span> решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>
     </section>
