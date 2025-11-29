@@ -65,7 +65,7 @@ const Cases = () => {
   ];
 
   return (
-    <section id="cases" className="py-20 bg-[hsl(var(--bg-light-blue))]" ref={ref}>
+    <section id="cases" className="py-20 bg-background" ref={ref}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Title */}
         <h2 className="section-title text-center">
@@ -87,9 +87,8 @@ const Cases = () => {
             return (
               <div
                 key={index}
-                className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 flex flex-col ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 flex flex-col ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                 style={{
-                  backgroundColor: index === 1 ? 'hsl(var(--bg-light-purple))' : 'hsl(var(--background))',
                   animationDelay: `${index * 0.1}s`
                 }}
               >

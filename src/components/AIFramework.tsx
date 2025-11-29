@@ -27,32 +27,28 @@ const AIFramework = () => {
         "Сначала: зачем это компании?",
         "Потом: какие решения подойдут?",
         "Считаю эффект до старта."
-      ],
-      color: "bg-[#F6F3EB]"
+      ]
     },
     {
       title: "Инженерное мышление",
       points: [
         "Проектирую систему, а не набор инструментов.",
         "Если решение ломает процессы — оно не внедряется."
-      ],
-      color: "bg-[#DFF0F0]"
+      ]
     },
     {
       title: "Люди в центре",
       points: [
         "Объясняю, обучаю, снимаю сопротивление.",
         "Технологии не должны пугать."
-      ],
-      color: "bg-[#E8E0F5]"
+      ]
     },
     {
       title: "Этика и честность",
       points: [
         "Не беру хайп-проекты ради галочки.",
         "Если автоматизация не окупится — говорю сразу."
-      ],
-      color: "bg-[#D4EDFC]"
+      ]
     }
   ];
 
@@ -168,10 +164,11 @@ const AIFramework = () => {
         {pillars.map((pillar, index) => (
           <div
             key={index}
-            className={`${pillar.color} rounded-2xl p-6 shadow-card transition-all duration-300 cursor-pointer ${
+            className={`rounded-2xl p-6 shadow-card transition-all duration-300 cursor-pointer ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{ 
+              backgroundColor: 'hsl(var(--gray-50))',
               transitionDelay: `${200 + index * 75}ms`,
               transform: hoveredPillar === index ? 'scale(1.05)' : 'scale(1)',
               boxShadow: hoveredPillar === index 

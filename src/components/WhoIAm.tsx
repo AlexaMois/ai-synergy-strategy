@@ -36,7 +36,7 @@ const WhoIAm = () => {
         {/* Левая колонка - большая карточка */}
         <div 
           className={`rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ backgroundColor: 'hsl(var(--bg-light-blue))' }}
+          style={{ backgroundColor: 'hsl(var(--gray-50))' }}
         >
           <p className="text-lg leading-relaxed text-text-heading font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
@@ -52,7 +52,7 @@ const WhoIAm = () => {
               key={index}
               className={`rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ 
-                backgroundColor: 'hsl(var(--bg-light-blue))',
+                backgroundColor: 'hsl(var(--gray-50))',
                 transitionDelay: `${150 + index * 75}ms`
               }}
             >
