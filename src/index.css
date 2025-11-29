@@ -62,9 +62,9 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* UI-kit shadows */
-    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.02);
-    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.03);
-    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
     
     /* Subtle gradients */
     --gradient-primary: linear-gradient(135deg, hsl(192 63% 57%) 0%, hsl(192 63% 47%) 100%);
