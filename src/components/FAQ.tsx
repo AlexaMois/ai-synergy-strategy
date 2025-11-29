@@ -93,8 +93,7 @@ const FAQ = () => {
 
           <div className="mt-12 text-center">
             <Button 
-              size="lg" 
-              className="px-8"
+              size="lg"
               asChild
             >
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">

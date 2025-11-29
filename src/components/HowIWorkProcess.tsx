@@ -125,7 +125,6 @@ const HowIWorkProcess = () => {
             </h3>
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">

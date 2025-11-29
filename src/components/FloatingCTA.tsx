@@ -23,7 +23,6 @@ const FloatingCTA = () => {
     >
       <Button
         size="lg"
-        className="h-14 px-4 sm:px-6 text-base font-bold shadow-2xl hover:shadow-accent/50 hover:scale-105 transition-all duration-300 bg-accent text-accent-foreground hover:bg-accent/90"
         asChild
       >
         <a

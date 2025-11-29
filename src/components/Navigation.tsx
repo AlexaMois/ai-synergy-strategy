@@ -136,7 +136,7 @@ const Navigation = () => {
                 </Link>
               )
             )}
-            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Button size="sm" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Консультация
               </a>
@@ -207,7 +207,7 @@ const Navigation = () => {
           </nav>
           
           <div className={`pt-6 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
-            <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Button size="lg" className="w-full" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Консультация
               </a>
