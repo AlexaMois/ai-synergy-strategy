@@ -36,6 +36,18 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { href: "#services", label: "Услуги", isScroll: true },
     { href: "#how", label: "Как работаю", isScroll: true },
@@ -112,27 +124,43 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-text-heading"
+            className="md:hidden text-text-heading z-50 relative transition-transform duration-300 hover:scale-110"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-background border-t border-border pb-4">
-            {navLinks.map((link) => 
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed top-20 right-0 bottom-0 w-[280px] bg-background shadow-2xl z-40 md:hidden transition-transform duration-300 ease-out ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full p-6 overflow-y-auto">
+          <nav className="space-y-2 flex-1">
+            {navLinks.map((link, index) => 
               link.isScroll ? (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
-                  className={`block py-3 transition-colors font-medium ${
+                  className={`block py-3 px-4 rounded-lg transition-all duration-200 font-medium ${
                     activeSection === link.href
-                      ? "text-accent border-l-4 border-accent pl-4"
-                      : "text-text-heading hover:text-accent"
-                  }`}
+                      ? "text-accent bg-[#D4EDFC] border-l-4 border-accent"
+                      : "text-text-heading hover:text-accent hover:bg-[#F1F4F5]"
+                  } ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.label}
                 </a>
@@ -141,23 +169,27 @@ const Navigation = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block py-3 transition-colors font-medium ${
+                  className={`block py-3 px-4 rounded-lg transition-all duration-200 font-medium ${
                     location.pathname === link.href
-                      ? "text-accent border-l-4 border-accent pl-4"
-                      : "text-text-heading hover:text-accent"
-                  }`}
+                      ? "text-accent bg-[#D4EDFC] border-l-4 border-accent"
+                      : "text-text-heading hover:text-accent hover:bg-[#F1F4F5]"
+                  } ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.label}
                 </Link>
               )
             )}
-            <Button size="sm" className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+          </nav>
+          
+          <div className={`pt-6 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
+            <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 Консультация
               </a>
             </Button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
