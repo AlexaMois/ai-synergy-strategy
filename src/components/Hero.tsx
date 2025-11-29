@@ -67,6 +67,10 @@ const Hero = () => {
                   </span>
                 </div>
 
+                <p className="text-lg text-text-body leading-relaxed mb-6">
+                  Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы. Формирую честную картину: где ROI, где эффективность, где имитация.
+                </p>
+
                 <TabsList className="bg-transparent p-0 h-auto mb-6 gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
                   <TabsTrigger 
                     value="ceo" 
@@ -88,10 +92,6 @@ const Hero = () => {
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
-
-                <p className="text-lg text-text-body leading-relaxed mb-6">
-                  Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы. Формирую честную картину: где ROI, где эффективность, где имитация.
-                </p>
               </div>
 
               <TabsContent value="ceo" className="mt-0 animate-fade-in">
