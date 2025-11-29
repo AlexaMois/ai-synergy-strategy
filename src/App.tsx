@@ -9,6 +9,9 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import CasesPage from "./pages/CasesPage";
 import ChecklistPage from "./pages/ChecklistPage";
+import Consent from "./pages/Consent";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +29,9 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/checklist" element={<ChecklistPage />} />
+          <Route path="/consent" element={<Consent />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
