@@ -28,7 +28,29 @@ const CATEGORIES = [
 ];
 
 const CasesPage = () => {
-  const [activeCategory, setActiveCategory] = useState("Все кейсы");
+  const [activeCategories, setActiveCategories] = useState<string[]>(["Все кейсы"]);
+
+  const handleCategoryClick = (category: string) => {
+    if (category === "Все кейсы") {
+      // Если выбран "Все кейсы", сбросить все остальные
+      setActiveCategories(["Все кейсы"]);
+    } else {
+      // Если выбрана конкретная категория
+      setActiveCategories(prev => {
+        // Убираем "Все кейсы" если он был активен
+        const withoutAll = prev.filter(cat => cat !== "Все кейсы");
+        
+        // Переключаем выбранную категорию
+        if (withoutAll.includes(category)) {
+          const newCategories = withoutAll.filter(cat => cat !== category);
+          // Если не осталось выбранных категорий, возвращаем "Все кейсы"
+          return newCategories.length === 0 ? ["Все кейсы"] : newCategories;
+        } else {
+          return [...withoutAll, category];
+        }
+      });
+    }
+  };
 
   const cases: CaseItem[] = [
     {
@@ -235,9 +257,11 @@ const CasesPage = () => {
     }
   ];
 
-  const filteredCases = activeCategory === "Все кейсы" 
+  const filteredCases = activeCategories.includes("Все кейсы")
     ? cases 
-    : cases.filter(caseItem => caseItem.categories.includes(activeCategory));
+    : cases.filter(caseItem => 
+        caseItem.categories.some(cat => activeCategories.includes(cat))
+      );
 
   return (
     <div className="min-h-screen bg-background">
@@ -257,22 +281,25 @@ const CasesPage = () => {
 
           {/* Category Tabs */}
           <div className="mb-12 flex flex-wrap justify-center gap-3">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`
-                  px-6 py-3 rounded-xl border text-sm font-medium
-                  transition-all duration-300 ease-out
-                  ${activeCategory === category 
-                    ? 'bg-primary text-white border-primary shadow-md scale-105' 
-                    : 'bg-white text-text-body border-gray-200 hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.02] hover:shadow-sm'
-                  }
-                `}
-              >
-                {category}
-              </button>
-            ))}
+            {CATEGORIES.map((category) => {
+              const isActive = activeCategories.includes(category);
+              return (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryClick(category)}
+                  className={`
+                    px-6 py-3 rounded-xl border text-sm font-medium
+                    transition-all duration-300 ease-out
+                    ${isActive
+                      ? 'bg-primary text-white border-primary shadow-md scale-105' 
+                      : 'bg-white text-text-body border-gray-200 hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.02] hover:shadow-sm'
+                    }
+                  `}
+                >
+                  {category}
+                </button>
+              );
+            })}
           </div>
 
           {/* Cases Grid */}
