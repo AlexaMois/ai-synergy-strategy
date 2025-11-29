@@ -36,7 +36,7 @@ const Hero = () => {
     <section ref={ref} className="relative bg-background pt-16 pb-12 overflow-hidden">
       {/* N Pattern Background */}
       <div 
-        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] pointer-events-none transition-transform duration-100 ease-out"
+        className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none transition-transform duration-100 ease-out"
         style={{
           backgroundImage: `url(${nPattern})`,
           backgroundRepeat: 'repeat',
@@ -65,26 +65,26 @@ const Hero = () => {
                   </span>
                 </div>
 
-                <TabsList className="bg-transparent p-1 h-auto rounded-xl mb-6 gap-2">
-                  <TabsTrigger value="ceo" className="text-sm px-4 py-2 bg-white text-[#666] border border-[#DDD] rounded-lg data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:border-transparent">
+                <TabsList className="bg-transparent p-0 h-auto mb-6 gap-6 border-b-2 border-gray-200">
+                  <TabsTrigger value="ceo" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
                     Я — CEO
                   </TabsTrigger>
-                  <TabsTrigger value="operations" className="text-sm px-4 py-2 bg-white text-[#666] border border-[#DDD] rounded-lg data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:border-transparent">
+                  <TabsTrigger value="operations" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
                     Я — операционный директор
                   </TabsTrigger>
-                  <TabsTrigger value="it" className="text-sm px-4 py-2 bg-white text-[#666] border border-[#DDD] rounded-lg data-[state=active]:bg-[#D4EDFC] data-[state=active]:text-[#0497BC] data-[state=active]:border-transparent">
+                  <TabsTrigger value="it" className="text-sm px-2 py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent">
                     Я — ИТ-директор
                   </TabsTrigger>
                 </TabsList>
 
-                <p className="text-base text-text-body leading-relaxed mb-6">
+                <p className="text-lg text-text-body leading-relaxed mb-6">
                   Помогаю компаниям понять, какие ИИ- и цифровые решения действительно нужны, а какие только создают хаос, задержки и лишние расходы. Формирую честную картину: где ROI, где эффективность, где имитация.
                 </p>
               </div>
 
               <TabsContent value="ceo" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.ceo.title}
                   </h1>
                   
@@ -92,22 +92,21 @@ const Hero = () => {
                     {tabsContent.ceo.description}
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                  <div className="flex flex-col gap-4 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.ceo.button1}
                       </a>
                     </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    <a 
+                      href="#" 
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.ceo.button2}
-                    </Button>
+                    </a>
                   </div>
 
-                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
+                  <p className="text-xs text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -115,7 +114,7 @@ const Hero = () => {
 
               <TabsContent value="operations" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.operations.title}
                   </h1>
                   
@@ -123,22 +122,21 @@ const Hero = () => {
                     {tabsContent.operations.description}
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                  <div className="flex flex-col gap-4 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.operations.button1}
                       </a>
                     </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    <a 
+                      href="#" 
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.operations.button2}
-                    </Button>
+                    </a>
                   </div>
 
-                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
+                  <p className="text-xs text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
@@ -146,7 +144,7 @@ const Hero = () => {
 
               <TabsContent value="it" className="mt-0">
                 <div className="space-y-6">
-                  <h1 className="text-[43px] md:text-[54px] font-bold leading-tight text-text-heading">
+                  <h1 className="text-[28px] md:text-[38px] font-bold leading-tight text-text-heading">
                     {tabsContent.it.title}
                   </h1>
                   
@@ -154,22 +152,21 @@ const Hero = () => {
                     {tabsContent.it.description}
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold" asChild>
+                  <div className="flex flex-col gap-4 pt-2">
+                    <Button size="lg" className="h-12 px-6 text-base bg-accent text-accent-foreground hover:bg-accent/90 font-bold w-full sm:w-auto" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                         {tabsContent.it.button1}
                       </a>
                     </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="h-12 px-6 text-base border-2 border-text-heading text-text-heading hover:bg-text-heading hover:text-background font-bold"
+                    <a 
+                      href="#" 
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
                     >
                       {tabsContent.it.button2}
-                    </Button>
+                    </a>
                   </div>
 
-                  <p className="text-xs text-[#777] text-center leading-tight mt-4">
+                  <p className="text-xs text-[#777] leading-tight mt-8">
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
