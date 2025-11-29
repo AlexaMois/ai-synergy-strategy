@@ -1,6 +1,8 @@
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Compass, Brain, Puzzle } from "lucide-react";
+import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const HowIWorkProcess = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -123,14 +125,17 @@ const HowIWorkProcess = () => {
             <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
               Узнать, что можно автоматизировать в вашей компании
             </h3>
-            <Button
-              size="lg"
-              asChild
-            >
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Записаться на бесплатный экспресс-аудит
-              </a>
-            </Button>
+            <div className="flex flex-col gap-2 items-center">
+              <Button
+                size="lg"
+                asChild
+              >
+                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                  Записаться на бесплатный экспресс-аудит
+                </a>
+              </Button>
+              <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
+            </div>
           </div>
         </div>
       </div>
