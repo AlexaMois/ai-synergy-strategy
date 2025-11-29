@@ -32,34 +32,17 @@ const WhyItWorks = () => {
       />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-4xl font-bold mb-6 text-text-heading">
-              AI Synergy Framework
+          <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <h2 className="text-4xl font-bold mb-8 text-text-heading">
+              Почему мне доверяют
             </h2>
-            <p className="text-xl text-text-body">
-              Авторский метод, который объединяет бизнес-цели, технологии и людей
+            <p className="text-lg text-text-body leading-relaxed max-w-2xl mx-auto">
+              12+ лет в управлении, финансах и технологиях.<br />
+              Победитель Национальной премии "Бизнес-Успех", 2025.<br />
+              Член Национального фонда искусственного интеллекта.<br />
+              Резидент IT-Парк Казань и КРИТБИ.<br />
+              Сопровождаю проекты до результата — без иллюзий, без хаоса, без "магии ИИ".
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
-              <div className="text-5xl font-bold text-accent mb-3">ROI</div>
-              <p className="text-lg text-text-body">Фокус на измеримой отдаче</p>
-            </div>
-            <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.27s' }}>
-              <div className="text-5xl font-bold text-accent mb-3">Люди</div>
-              <p className="text-lg text-text-body">Команда первична</p>
-            </div>
-            <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.34s' }}>
-              <div className="text-5xl font-bold text-accent mb-3">Этика</div>
-              <p className="text-lg text-text-body">Прозрачность решений</p>
-            </div>
-          </div>
-
-          <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.45s' }}>
-            <blockquote className={`text-handwriting ${isVisible ? 'animate-handwriting' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
-              "Я заставляю ИИ работать,<br />а не производить впечатление"
-            </blockquote>
           </div>
         </div>
       </div>
