@@ -12,7 +12,9 @@ const MyStory = () => {
   const projectsCount = useCountUp({ end: 30, duration: 1800, isVisible, suffix: '+' });
   
   return (
-    <section id="about" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
+    <section id="about" ref={ref} className="relative py-20 overflow-hidden" style={{
+      background: 'linear-gradient(180deg, #F6F8FA 0%, #FAFBFC 100%)'
+    }}>
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
@@ -24,27 +26,30 @@ const MyStory = () => {
         }}
       />
       <div className="container mx-auto px-4">
-        <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          Моя позиция
-        </h2>
+        <div className="max-w-3xl mx-auto px-12 py-16 md:px-16 md:py-20">
+          <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
+          <h2 className={`text-4xl font-bold mb-12 text-center text-text-heading ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            Моя позиция
+          </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-          <div className={`${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <OptimizedImage
-              src={alexandraPortrait}
-              alt="Александра Моисеева"
-              className="rounded-lg w-full"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-
-          <div className={`space-y-5 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-            <p className="text-lg text-text-body leading-relaxed">
-              ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.<br />
-              Любой проект должен давать эффект, а не создавать видимость инноваций.<br />
-              Если ИИ не нужен — я честно скажу об этом сразу.<br />
-              Диагностика — фильтр, без которого нельзя начинать.
-            </p>
+          <div className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <div className="space-y-6 text-center">
+              <p className="text-lg text-text-body leading-[1.6]">
+                ИИ — инструмент, а не повод "повесить" на бизнес лишние расходы.
+              </p>
+              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
+              <p className="text-lg text-text-body leading-[1.6]">
+                Любой проект должен давать эффект, а не создавать видимость инноваций.
+              </p>
+              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
+              <p className="text-lg text-text-body leading-[1.6]">
+                Если ИИ не нужен — я честно скажу об этом сразу.
+              </p>
+              <div className="w-16 h-px bg-gray-200 mx-auto"></div>
+              <p className="text-lg text-text-body leading-[1.6]">
+                Диагностика — фильтр, без которого нельзя начинать.
+              </p>
+            </div>
           </div>
         </div>
       </div>
