@@ -1,10 +1,16 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useParallax } from "@/hooks/use-parallax";
+import brushAccent1 from "@/assets/brush-accent-1.png";
+import brushAccent2 from "@/assets/brush-accent-2.png";
 
 const WhoIAm = () => {
   const { ref, isVisible } = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  const parallaxOffset1 = useParallax(0.15, 40);
+  const parallaxOffset2 = useParallax(0.25, 60);
 
   const rightCards = [
     {
@@ -23,12 +29,36 @@ const WhoIAm = () => {
       ref={ref}
       className="py-16 md:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-[#FAFBFC]"
     >
-      {/* Заголовок с линией */}
-      <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="text-[32px] md:text-[42px] font-semibold text-[#222222] mb-4">
-          Кто я и почему ко мне приходят
-        </h2>
-        <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
+      {/* Заголовок с линией и brush stroke акцентами */}
+      <div className="relative mb-8">
+        {/* Brush stroke левый */}
+        <img 
+          src={brushAccent1}
+          alt=""
+          className="absolute left-[5%] top-[-20px] w-[120px] md:w-[160px] opacity-30 pointer-events-none"
+          style={{ 
+            transform: `translateY(${parallaxOffset1}px)`,
+            filter: 'hue-rotate(180deg) saturate(1.5)'
+          }}
+        />
+        
+        {/* Brush stroke правый */}
+        <img 
+          src={brushAccent2}
+          alt=""
+          className="absolute right-[5%] top-[10px] w-[100px] md:w-[140px] opacity-25 pointer-events-none"
+          style={{ 
+            transform: `translateY(${parallaxOffset2}px) rotate(15deg)`,
+            filter: 'hue-rotate(180deg) saturate(1.5)'
+          }}
+        />
+
+        <div className={`text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <h2 className="text-[32px] md:text-[42px] font-semibold text-[#222222] mb-4">
+            Кто я и почему ко мне приходят
+          </h2>
+          <div className="w-24 h-[2px] bg-[#49BED8] mx-auto"></div>
+        </div>
       </div>
 
       {/* Двухколоночный блок */}
