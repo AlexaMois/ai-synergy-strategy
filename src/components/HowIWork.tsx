@@ -26,7 +26,7 @@ const HowIWork = () => {
   ];
 
   return (
-    <section id="how" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
+    <section id="how" ref={ref} className="relative py-20 bg-secondary overflow-hidden">
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 

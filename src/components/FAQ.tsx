@@ -54,7 +54,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-16 bg-background overflow-hidden">
+    <section ref={ref} className="relative py-20 bg-background overflow-hidden">
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 

@@ -9,9 +9,10 @@ const TrustAndPosition = () => {
   const parallaxOffset = useParallax(0.3);
 
   return (
-    <section ref={ref} className="relative py-16 overflow-hidden" style={{
-      background: 'linear-gradient(180deg, #F8FCFD 0%, #FAFBFC 100%)'
-    }}>
+    <section 
+      ref={ref}
+      className="relative py-20 overflow-hidden bg-[hsl(var(--bg-light-blue))]"
+    >
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
@@ -39,9 +40,9 @@ const TrustAndPosition = () => {
                 {/* Две вертикальные карточки в ряд */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div 
-                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                     style={{ 
-                      backgroundColor: '#F3EEFF',
+                      backgroundColor: 'hsl(var(--bg-light-purple))',
                       animationDelay: '0.1s'
                     }}
                   >
@@ -55,9 +56,9 @@ const TrustAndPosition = () => {
                   </div>
                   
                   <div 
-                    className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                     style={{ 
-                      backgroundColor: '#F3EEFF',
+                      backgroundColor: 'hsl(var(--bg-light-purple))',
                       animationDelay: '0.15s'
                     }}
                   >
@@ -73,9 +74,9 @@ const TrustAndPosition = () => {
                 
                 {/* Одна широкая карточка внизу */}
                 <div 
-                  className={`p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    backgroundColor: '#F3EEFF',
+                    backgroundColor: 'hsl(var(--bg-light-purple))',
                     animationDelay: '0.2s'
                   }}
                 >
@@ -95,9 +96,9 @@ const TrustAndPosition = () => {
 
               <div className="space-y-4">
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                    backgroundColor: 'hsl(var(--bg-light-blue))',
                     animationDelay: '0.1s'
                   }}
                 >
@@ -112,9 +113,9 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                    backgroundColor: 'hsl(var(--bg-light-blue))',
                     animationDelay: '0.15s'
                   }}
                 >
@@ -129,9 +130,9 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                    backgroundColor: 'hsl(var(--bg-light-blue))',
                     animationDelay: '0.2s'
                   }}
                 >
@@ -146,9 +147,9 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex items-start gap-5 p-5 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`flex items-start gap-5 p-6 rounded-2xl shadow-card ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ 
-                    background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)',
+                    backgroundColor: 'hsl(var(--bg-light-blue))',
                     animationDelay: '0.25s'
                   }}
                 >
