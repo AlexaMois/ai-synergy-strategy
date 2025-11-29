@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import TrustMarquee from "@/components/TrustMarquee";
 import TrustAndPosition from "@/components/TrustAndPosition";
+import WhatIDo from "@/components/WhatIDo";
 import Services from "@/components/Services";
 import HowIWork from "@/components/HowIWork";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
@@ -21,6 +22,7 @@ const Index = () => {
       <MarqueeText />
       <TrustAndPosition />
       <TrustMarquee />
+      <WhatIDo />
       <Services />
       <HowIWork />
       <WhoIWorkWith />
