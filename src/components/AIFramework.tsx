@@ -121,38 +121,26 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
-            {/* Текстовые метки с улучшенным дизайном - центрированы в секторах */}
-            {/* Технологии - верхний правый */}
-            <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="112" y="46" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#49BED8" strokeWidth="1.5" />
-              <text x="142" y="63" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#49BED8">
-                Технологии
-              </text>
-            </g>
+            {/* Текстовые метки - только текст, насыщенные цвета, строго по центрам секторов */}
+            {/* Технологии - верхний правый (центр сектора) */}
+            <text x="150" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+              Технологии
+            </text>
             
-            {/* Люди - правый нижний */}
-            <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="122" y="130" width="40" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#A78BCA" strokeWidth="1.5" />
-              <text x="142" y="147" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#8B5FBF">
-                Люди
-              </text>
-            </g>
+            {/* Люди - нижний правый (центр сектора) */}
+            <text x="150" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+              Люди
+            </text>
             
-            {/* Процессы - нижний левый */}
-            <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="28" y="130" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#5FBFB0" strokeWidth="1.5" />
-              <text x="58" y="147" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#3A9F8F">
-                Процессы
-              </text>
-            </g>
+            {/* Процессы - нижний левый (центр сектора) */}
+            <text x="50" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+              Процессы
+            </text>
             
-            {/* Бизнес - верхний левый */}
-            <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="33" y="46" width="50" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#D4AF37" strokeWidth="1.5" />
-              <text x="58" y="63" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#B8941F">
-                Бизнес
-              </text>
-            </g>
+            {/* Бизнес - верхний левый (центр сектора) */}
+            <text x="50" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+              Бизнес
+            </text>
           </svg>
           
           {/* Всплывающие карточки для секторов */}
@@ -178,10 +166,10 @@ const AIFramework = () => {
             </div>
           )}
           
-          {/* Центральная надпись */}
+          {/* Центральная надпись - уменьшена */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center bg-white/90 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
-              <p className="text-[14px] md:text-[16px] font-semibold text-text-heading leading-tight px-4">
+            <div className="text-center bg-white/90 rounded-full w-24 h-24 md:w-32 md:h-32 flex items-center justify-center shadow-lg">
+              <p className="text-[12px] md:text-[14px] font-semibold text-text-heading leading-tight px-3">
                 AI Synergy<br />Framework
               </p>
             </div>
