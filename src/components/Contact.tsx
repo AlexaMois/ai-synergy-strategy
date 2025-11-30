@@ -22,11 +22,11 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Готовы узнать, <span className="font-semibold">где теряются ресурсы?</span>
+            Готовы узнать, <span className="font-semibold">где теряются ресурсы и какой эффект может дать ИИ</span>
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-            Начните с малого — экспресс-аудита.
+            Начните с экспресс-аудита
           </p>
           
           <div className={`flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap ${getStaggeredClass(2, 'animate-scale-in')}`}>
@@ -59,12 +59,12 @@ const Contact = () => {
                 <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">neiroreshenia@yandex.com</a>
               </div>
               <div className="p-4 sm:p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
-                <p className="font-semibold text-text-heading mb-2">Телефон / Telegram / WhatsApp</p>
-                <a href="tel:+79937217367" className="hover:text-accent transition-colors">+7 (993) 721-73-67</a>
+                <p className="font-semibold text-text-heading mb-2">Телефон</p>
+                <a href="tel:+79937217367" className="hover:text-accent transition-colors">+7 993 721 73 67</a>
               </div>
               <div className="p-4 sm:p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
-                <p className="font-semibold text-text-heading mb-2">Telegram-канал</p>
-                <a href="https://t.me/neiroreshenia" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@neiroreshenia</a>
+                <p className="font-semibold text-text-heading mb-2">Telegram</p>
+                <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@AlexandraMois</a>
               </div>
             </div>
           </div>

@@ -35,7 +35,7 @@ const Footer = () => {
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
             <p className="text-background/80 text-base leading-relaxed">
               Инженер по ИИ и цифровой архитектуре<br />
-              Проектирую устойчивые ИИ-решения под цели бизнеса<br />
+              Проектирую устойчивые ИИ решения под цели бизнеса<br />
               Гарантирую честную оценку, экономику и предсказуемый результат
             </p>
           </div>
@@ -60,7 +60,7 @@ const Footer = () => {
                 neiroreshenia@yandex.com
               </a>
               <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
-                Телефон: +7 (993) 721-73-67
+                Телефон: +7 993 721 73 67
               </a>
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
                 Личный Telegram: @AlexandraMois

@@ -44,7 +44,7 @@ const AIFramework = () => {
     color: "#D4EDFC",
     position: "right",
     title: "Технологии",
-    subtitle: "Архитектура, безопасность, масштабируемость",
+    subtitle: "безопасная и масштабируемая архитектура",
     description: "Только те инструменты, которые подходят компании"
   }, {
     name: "Люди",
@@ -58,14 +58,14 @@ const AIFramework = () => {
     color: "#DFF0F0",
     position: "bottom-left",
     title: "Процессы",
-    subtitle: "Логика, куда ИИ действительно может встроиться",
+    subtitle: "логика, в которую ИИ действительно может встроиться",
     description: "Если решение ломает процесс — оно не внедряется"
   }, {
     name: "Бизнес",
     color: "#F6F3EB",
     position: "top-left",
     title: "Бизнес",
-    subtitle: "Чёткие цели и измеримый эффект",
+    subtitle: "чёткие цели и измеримый эффект",
     description: "Понимание, что именно нужно изменить"
   }];
 
@@ -81,7 +81,7 @@ const AIFramework = () => {
       {/* Подзаголовок */}
       <div className={`text-center mb-12 md:mb-16 transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <p className="text-handwriting animate-handwriting tracking-wide text-xl sm:text-2xl md:text-3xl">
-          ИИ работает только тогда, когда совпадают: бизнес, процессы, люди и технологии.
+          ИИ работает только тогда, когда совпадают четыре элемента
         </p>
       </div>
 
@@ -202,7 +202,7 @@ const AIFramework = () => {
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary">
-          Итог: решения, которые живут в компании годами и дают измеримые эффекты, а не превращаются в «игрушки на месяц»
+          Итог: решения, которые живут годами и усиливают компанию, а не превращаются в игрушки на месяц
         </p>
       </div>
     </section>;

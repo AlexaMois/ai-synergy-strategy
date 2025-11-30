@@ -57,13 +57,13 @@ const Hero = () => {
               <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
                   <div className="inline-block">
-                    <span className="text-handwriting text-2xl sm:text-3xl">независимый стратег и инженер ИИ</span>
+                    <span className="text-handwriting text-2xl sm:text-3xl">Независимый стратег и инженер ИИ</span>
                   </div>
 
-                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям выбрать ИИ-решения, которые дают измеримый эффект — и отсекаю те, что превращаются в расходы и перегружают процессы</p>
+                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям выбирать ИИ-решения, которые дают измеримый эффект и отсекаю те, что превращаются в расходы и перегружают процессы</p>
                   
                   <p className="text-lg text-text-body leading-relaxed">
-                    Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
+                    Формирую честную картину процессов: где ROI, где ускорение, где имитация внедрения
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@ const Hero = () => {
 
               <div className="space-y-3">
                 <div className="space-y-2">
-                  <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно важно:</p>
+                  <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно важно</p>
                   <TabsList className="bg-transparent p-0 h-auto gap-2 sm:gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
                   <TabsTrigger value="ceo" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     Я — CEO
@@ -92,11 +92,11 @@ const Hero = () => {
               <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                    Как внедрять технологии так,  <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
+                    Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Получите <span className="font-semibold">честную оценку процессов, рисков и экономики</span>: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться.
+                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -122,11 +122,11 @@ const Hero = () => {
               <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     <span className="font-semibold">Как убрать узкие места</span> и ускорить работу отделов   
+                     Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Показываю, <span className="font-semibold">где теряется время: дублирование, задержки, перегрузка</span>  , а что даёт реальный прирост скорости
+                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -152,11 +152,11 @@ const Hero = () => {
               <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     <span className="font-semibold">Как внедрять ИИ без перегрузки команды </span> и сбоя процессов 
+                     Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Даю независимую оценку: какие решения точно встанут в ваш процесс и не создадут лишней нагрузки.
+                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">

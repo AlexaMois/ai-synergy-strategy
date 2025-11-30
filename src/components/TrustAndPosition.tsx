@@ -42,7 +42,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Почему мне доверяют, <span className="font-semibold">и чем это подтверждено</span>
+                  Почему мне доверяют
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
@@ -67,7 +67,7 @@ const TrustAndPosition = () => {
                     <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    Понимаю процессы изнутри и оцениваю решения через экономику компании.
+                    Понимаю процессы изнутри и оцениваю решения через экономику компании
                   </p>
                 </div>
                 
@@ -79,7 +79,11 @@ const TrustAndPosition = () => {
                     Профессиональное признание
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    Дипломированный специалист по ИИ. Победитель «Бизнес Успех» (2025), член НФИИ, резидент КРИТБИ.
+                    Дипломированный специалист по ИИ<br />
+                    Победитель Бизнес Успех 2025<br />
+                    Член НФИИ<br />
+                    Резидент IT Парк Казань<br />
+                    Резидент КРИТБИ
                   </p>
                 </div>
                 
@@ -92,7 +96,7 @@ const TrustAndPosition = () => {
                     Проверенная эффективность
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    Реальные ROI клиентов — от 200 до 400 процентов в первые месяцы.
+                    ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы
                   </p>
                 </div>
               </div>
@@ -102,7 +106,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Моя позиция, <span className="font-semibold">что отличает подход</span>
+                  Моя позиция
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
@@ -122,7 +126,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">ИИ инструмент управления</span><br />
-                      Он должен усиливать процессы и давать предсказуемый результат.
+                      Он должен усиливать процессы и давать предсказуемый результат
                     </p>
                   </div>
                 </div>
@@ -141,7 +145,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">Инженерный подход</span><br />
-                      Сначала аудит, анализ, архитектура и экономика, затем технологии и конкретные решения.
+                      Сначала аудит, анализ, архитектура и экономика, затем технологии и конкретные решения
                     </p>
                   </div>
                 </div>
@@ -160,7 +164,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">Честность решения</span><br />
-                      Если ИИ не нужен, я прямо об этом скажу. Я инженер по внедрению, а не продавец технологий.
+                      Если ИИ не нужен, я скажу об этом сразу. Я инженер по внедрению, а не продавец технологий
                     </p>
                   </div>
                 </div>
@@ -179,7 +183,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">Индивидуальность решений</span><br />
-                      Подбираю решения под контекст компании: только то, что вы действительно будете использовать.
+                      Подбираю решения под контекст компании: только то, что команда действительно будет использовать
                     </p>
                   </div>
                 </div>
