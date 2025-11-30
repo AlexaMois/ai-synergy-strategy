@@ -45,9 +45,27 @@ const OptimizedImage = ({
 
   // Generate WebP srcSet if regular srcSet is provided
   const webpSrcSet = srcSet ? srcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
-  return <picture>
+  return (
+    <picture>
       {hasWebpVersion && <source srcSet={webpSrcSet || webpSrc} type="image/webp" sizes={sizes} />}
-      
-    </picture>;
+      <img 
+        src={src}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        className={cn(
+          "transition-opacity duration-300",
+          isLoaded ? "opacity-100" : "opacity-0",
+          hasError && "hidden",
+          className
+        )}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
+        sizes={sizes}
+        srcSet={srcSet}
+        {...props}
+      />
+    </picture>
+  );
 };
 export default OptimizedImage;
