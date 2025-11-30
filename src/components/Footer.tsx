@@ -49,9 +49,8 @@ const Footer = () => {
             <p className="text-lg font-semibold mb-4">Навигация</p>
             <div className="flex flex-col gap-2 text-background/80 text-sm">
               <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
-              <a href="/#services" onClick={(e) => scrollToSection(e, '#services')} className="hover:text-accent transition-colors">Услуги</a>
+              <Link to="/services" className="hover:text-accent transition-colors">Услуги</Link>
               <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
-              <a href="/#methodology" onClick={(e) => scrollToSection(e, '#methodology')} className="hover:text-accent transition-colors">Методология</a>
               <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
               <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
             </div>

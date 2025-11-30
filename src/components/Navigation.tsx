@@ -49,9 +49,9 @@ const Navigation = () => {
     label: "Услуги",
     isScroll: false
   }, {
-    href: "#cases",
+    href: "/cases",
     label: "Кейсы",
-    isScroll: true
+    isScroll: false
   }, {
     href: "/about",
     label: "Обо мне",
