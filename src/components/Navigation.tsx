@@ -136,10 +136,11 @@ const Navigation = () => {
 
       {/* Mobile Menu Button - Independent Fixed Element */}
       <button 
-        className="md:hidden fixed top-6 right-4 z-[60] text-text-heading 
+        className="md:hidden fixed top-5 right-4 z-[70] text-text-heading 
                    pointer-events-auto touch-manipulation
-                   min-w-[44px] min-h-[44px] flex items-center justify-center
-                   transition-transform duration-300 hover:scale-110 active:scale-95" 
+                   w-11 h-11 flex items-center justify-center
+                   bg-background/90 backdrop-blur-sm rounded-full shadow-md
+                   transition-all duration-300 hover:scale-110 active:scale-95" 
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
         aria-label="Toggle menu"
       >
