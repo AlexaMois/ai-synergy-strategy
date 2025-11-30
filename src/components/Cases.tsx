@@ -2,7 +2,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
-import { Building2, Mic, Truck, XCircle, Lightbulb, Target, TrendingUp, Briefcase } from "lucide-react";
+import { Building2, Mic, Truck, TrendingUp, Briefcase } from "lucide-react";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -143,18 +143,8 @@ const Cases = () => {
 
                 {/* About / Client */}
                 <div className="mb-4">
-                  <p className="text-sm font-medium text-text-heading mb-1 flex items-center gap-2">
-                    {caseItem.client ? (
-                      <>
-                        <Briefcase className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                        <span>Типовой клиент:</span>
-                      </>
-                    ) : (
-                      <>
-                        <Building2 className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                        <span>О клиенте:</span>
-                      </>
-                    )}
+                  <p className="text-sm font-medium text-text-heading mb-1">
+                    {caseItem.client ? 'Типовой клиент:' : 'О клиенте:'}
                   </p>
                   <p className="text-sm text-text-body leading-relaxed">
                     {caseItem.about}
@@ -170,9 +160,8 @@ const Cases = () => {
                 {/* Problems */}
                 {caseItem.problems && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
-                      <XCircle className="w-4 h-4 text-red-500" strokeWidth={1.5} />
-                      <span>Проблема:</span>
+                    <p className="text-sm font-medium text-text-heading mb-2">
+                      Проблема:
                     </p>
                     <ul className="space-y-1">
                       {caseItem.problems.map((problem, idx) => (
@@ -205,9 +194,8 @@ const Cases = () => {
                 {/* Solution */}
                 {caseItem.solution && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
-                      <Lightbulb className="w-4 h-4 text-yellow-600" strokeWidth={1.5} />
-                      <span>Решение (бюджет {caseItem.solution.budget}):</span>
+                    <p className="text-sm font-medium text-text-heading mb-2">
+                      Решение (бюджет {caseItem.solution.budget}):
                     </p>
                     <ul className="space-y-1">
                       {caseItem.solution.steps.map((step, idx) => (
@@ -223,9 +211,8 @@ const Cases = () => {
                 {/* Quote */}
                 {caseItem.quote && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
-                      <Target className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                      <span>Особенность этого решения:</span>
+                    <p className="text-sm font-medium text-text-heading mb-2">
+                      Особенность этого решения:
                     </p>
                     <p className="text-sm italic text-text-body leading-relaxed">
                       "{caseItem.quote}"
