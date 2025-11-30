@@ -7,6 +7,7 @@ interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 
   priority?: boolean;
   sizes?: string;
   srcSet?: string;
+  useWebP?: boolean; // Enable WebP only when files exist
 }
 
 /**
@@ -34,17 +35,18 @@ const OptimizedImage = ({
   priority = false,
   sizes,
   srcSet,
+  useWebP = false, // Disabled by default to prevent 404s
   ...props
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // Generate WebP version path (if original is jpg/png)
-  const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-  const hasWebpVersion = /\.(jpg|jpeg|png)$/i.test(src);
+  // Generate WebP version path only if explicitly enabled
+  const webpSrc = useWebP ? src.replace(/\.(jpg|jpeg|png)$/i, '.webp') : null;
+  const hasWebpVersion = useWebP && /\.(jpg|jpeg|png)$/i.test(src);
 
-  // Generate WebP srcSet if regular srcSet is provided
-  const webpSrcSet = srcSet ? srcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
+  // Generate WebP srcSet if regular srcSet is provided and WebP enabled
+  const webpSrcSet = useWebP && srcSet ? srcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
   return (
     <picture>
       {hasWebpVersion && <source srcSet={webpSrcSet || webpSrc} type="image/webp" sizes={sizes} />}
