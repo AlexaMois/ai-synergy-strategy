@@ -9,7 +9,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
-import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon, HelpCircle } from "lucide-react";
+import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon } from "lucide-react";
 import { JSX } from "react";
 
 const FAQ = () => {
@@ -148,8 +148,7 @@ const FAQ = () => {
       />
       <div className="container mx-auto px-4">
         <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
-          <HelpCircle className="w-8 h-8 text-primary inline-block mr-3 mb-1" strokeWidth={1.5} />
-          Частые вопросы
+          Частые вопросы, <span className="font-semibold">честные ответы</span>
         </h2>
 
         <div className={`max-w-4xl mx-auto ${getStaggeredClass(1, 'animate-fade-in-up')}`}>

@@ -42,7 +42,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Почему мне доверяют
+                  Почему мне доверяют, <span className="font-semibold">реальный опыт</span>
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
@@ -106,7 +106,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Моя позиция
+                  Моя позиция, <span className="font-semibold">честный подход</span>
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>

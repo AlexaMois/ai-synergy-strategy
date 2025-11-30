@@ -17,12 +17,14 @@ const ServicesPage = () => {
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center">
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-text-heading mb-6 leading-tight">
-                Услуги: инженерный подход к ИИ, который усиливает бизнес, а не усложняет его
+              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium text-text-heading mb-4 leading-tight">
+                Услуги, <span className="font-semibold">инженерный подход к ИИ</span>
               </h1>
+              <p className="text-base sm:text-lg text-text-body leading-relaxed max-w-3xl mx-auto mb-2">
+                Который усиливает бизнес, а не усложняет его
+              </p>
               <p className="text-base sm:text-lg text-text-body leading-relaxed max-w-3xl mx-auto">
-                Работаю с компаниями от 3 до 300 сотрудников.<br />
-                Помогаю руководителям понять, какие ИИ-решения действительно дадут пользу, что можно усилить без больших инвестиций, и какие внедрения лучше отложить.
+                Работаю с компаниями от 3 до 300 сотрудников. Помогаю руководителям понять, какие ИИ-решения действительно дадут пользу, что можно усилить без больших инвестиций, и какие внедрения лучше отложить.
               </p>
             </div>
           </div>
