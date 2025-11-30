@@ -37,7 +37,7 @@ const TrustAndPosition = () => {
         <div 
           className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-hover ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}
         >
-          <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-12">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className="mb-8">
@@ -47,7 +47,7 @@ const TrustAndPosition = () => {
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
