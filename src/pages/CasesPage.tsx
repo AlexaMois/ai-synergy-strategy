@@ -349,7 +349,7 @@ const CasesPage = () => {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="section-title mb-4">
-              Кейсы и результаты внедрения ИИ
+              Кейсы и результаты, <span className="font-semibold">измеримый эффект</span>
             </h1>
             <p className="text-lg text-text-body max-w-3xl mx-auto">
               Реальные примеры аудита процессов, автоматизации и ИИ-решений для бизнеса

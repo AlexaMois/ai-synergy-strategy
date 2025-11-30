@@ -156,8 +156,8 @@ const ResourcesPage = () => {
           {/* Hero Section */}
           <section className="py-10 md:py-16 lg:py-20">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-text-heading leading-tight mb-4">
-                Библиотека материалов
+              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium text-text-heading leading-tight mb-4">
+                Библиотека материалов, <span className="font-semibold">для самостоятельной работы</span>
               </h1>
               <p className="text-base sm:text-lg text-[#6A6A6A] leading-relaxed">
                 Чек-листы, гайды, архитектуры кейсов и видео для самостоятельной оценки AI-готовности компании
@@ -202,7 +202,7 @@ const ResourcesPage = () => {
                         <div className="text-xs font-medium text-primary mb-2">
                           {resource.type}
                         </div>
-                        <h3 className="text-lg font-semibold text-text-heading mb-2 leading-tight">
+                        <h3 className="text-lg font-medium text-text-heading mb-2 leading-tight">
                           {resource.title}
                         </h3>
                         <p className="text-sm text-[#6A6A6A] leading-relaxed mb-4">
@@ -238,8 +238,8 @@ const ResourcesPage = () => {
           {/* CTA Section */}
           <section className="py-10 md:py-16 lg:py-20">
             <div className="bg-[#F0F9FB] rounded-[24px] p-8 md:p-12 text-center">
-              <h2 className="text-[24px] md:text-[30px] font-semibold text-text-heading mb-4">
-                Нужна помощь с внедрением?
+              <h2 className="text-[24px] md:text-[30px] font-medium text-text-heading mb-4">
+                Нужна помощь, <span className="font-semibold">с внедрением ИИ?</span>
               </h2>
               <p className="text-base text-[#6A6A6A] mb-6 max-w-2xl mx-auto">
                 Запишитесь на бесплатный экспресс-аудит процессов — за 30 минут найдём точки роста и определим, где ИИ даст эффект быстрее всего

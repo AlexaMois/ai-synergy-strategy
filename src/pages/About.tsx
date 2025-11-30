@@ -79,8 +79,8 @@ const About = () => {
               <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-semibold text-text-heading text-left">
-                      Кто я и почему мне доверяют
+                    <h2 className="text-2xl md:text-3xl font-medium text-text-heading text-left">
+                      Кто я, <span className="font-semibold">и почему мне доверяют</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
                   </div>
@@ -135,7 +135,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
-                    <h3 className="text-lg md:text-xl font-semibold text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
                       Когда честность важнее должности
                     </h3>
                   </div>
@@ -151,7 +151,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
-                    <h3 className="text-lg md:text-xl font-semibold text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
                       Почему я ушла из банков: выбор ответственности
                     </h3>
                   </div>
@@ -168,7 +168,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
-                    <h3 className="text-lg md:text-xl font-semibold text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
                       От маркетинга к инженерии ИИ: переход в глубину
                     </h3>
                   </div>
@@ -185,7 +185,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
-                    <h3 className="text-lg md:text-xl font-semibold text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
                       Выгорание и вывод: зрелость важнее скорости
                     </h3>
                   </div>
@@ -205,7 +205,7 @@ const About = () => {
         <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
-              Мой инженерный путь в ИИ
+              Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
             </h2>
             <p className={`text-lg text-text-body text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{ animationDelay: '0.1s' }}>
               Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
@@ -355,19 +355,19 @@ const About = () => {
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Multi-Agent Systems (многоагентные системы)</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Multi-Agent Systems (многоагентные системы)</h4>
                       <p className="text-text-body text-sm mb-2">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
                       <p className="text-sm font-medium text-text-body">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">RAG (система поиска и генерации)</h4>
+                      <h4 className="font-medium text-text-heading mb-2">RAG (система поиска и генерации)</h4>
                       <p className="text-text-body text-sm mb-2">ИИ ищет информацию в вашей базе, не фантазирует</p>
                       <p className="text-sm font-medium text-text-body">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Локальные модели</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Локальные модели</h4>
                       <p className="text-text-body text-sm mb-2">Для России: Яндекс.ГПТ, собственные модели</p>
                       <p className="text-text-body text-sm mb-2">Для других стран: Mistral, LLaMA</p>
                       <p className="text-text-body text-sm font-medium">Главное: ваши данные не на серверах OpenAI</p>
@@ -391,7 +391,7 @@ const About = () => {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-text-heading mb-3">Независимость</h3>
+                <h3 className="text-xl font-medium text-text-heading mb-3">Независимость</h3>
                 <p className="text-base text-text-body leading-relaxed">
                   Выбираю решения под задачу, а не под платформу. Архитектура всегда независима — без привязки к вендорам. Для одной компании подходит Perplexity, для другой — Make, для третьей — закрытая LLM. Я работаю на результат, не на комиссионные.
                 </p>
@@ -401,7 +401,7 @@ const About = () => {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <Lightbulb className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-text-heading mb-3">Инженерность</h3>
+                <h3 className="text-xl font-medium text-text-heading mb-3">Инженерность</h3>
                 <p className="text-base text-text-body leading-relaxed">
                   ИИ — это архитектура, а не эффектность. Я собираю системы, которые живут после моего ухода.
                 </p>
@@ -411,7 +411,7 @@ const About = () => {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <Heart className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-text-heading mb-3">Человечность</h3>
+                <h3 className="text-xl font-medium text-text-heading mb-3">Человечность</h3>
                 <p className="text-base text-text-body leading-relaxed">
                   Я объясняю технологии так, что их понимают управленцы и сотрудники. ИИ не должен пугать — он должен помогать.
                 </p>
@@ -440,8 +440,8 @@ const About = () => {
               <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-semibold text-text-heading text-left">
-                      Мои слабые стороны <span className="text-base font-normal text-text-body">(и почему я про них говорю)</span>
+                    <h2 className="text-2xl md:text-3xl font-medium text-text-heading text-left">
+                      Мои слабые стороны, <span className="font-semibold">и почему я про них говорю</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${weakSidesOpen ? 'rotate-180' : ''}`} />
                   </div>
@@ -450,7 +450,7 @@ const About = () => {
                   <div className="mt-6 space-y-8 text-base text-text-body leading-relaxed">
                     {/* Weak Side 1 */}
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-text-heading mb-3">
                         Я не работаю с компаниями меньше 15 человек
                       </h3>
                       <div className="space-y-3">
@@ -467,7 +467,7 @@ const About = () => {
 
                     {/* Weak Side 2 */}
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-text-heading mb-3">
                         Я не люблю спешку (и требую 4–8 недель на хорошее решение)
                       </h3>
                       <div className="space-y-3">
@@ -492,7 +492,7 @@ const About = () => {
 
                     {/* Weak Side 3 */}
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-text-heading mb-3">
                         Я не беру проекты, где руководство не готово к переменам
                       </h3>
                       <div className="space-y-3">
@@ -518,7 +518,7 @@ const About = () => {
 
                     {/* Weak Side 4 */}
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-text-heading mb-3">
                         Я не буду внедрять ИИ, если в процессах хаос
                       </h3>
                       <div className="space-y-3">
