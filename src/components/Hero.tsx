@@ -51,7 +51,7 @@ const Hero = () => {
     }} />
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 items-center">
             <div className={`lg:col-span-7 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               {/* Верхний блок с градиентной обводкой */}
               <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
