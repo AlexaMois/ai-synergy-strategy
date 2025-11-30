@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,6 +9,7 @@ const Navigation = () => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -67,6 +68,15 @@ const Navigation = () => {
   }];
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // If we're not on the homepage, navigate there first with the hash
+    if (location.pathname !== '/') {
+      navigate(`/${href}`);
+      return;
+    }
+    
+    // If we're on homepage, scroll to element
     const element = document.querySelector(href);
     if (element) {
       const navHeight = 80; // Height of fixed navigation
@@ -76,7 +86,6 @@ const Navigation = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
-      setIsMobileMenuOpen(false);
     }
   };
 
