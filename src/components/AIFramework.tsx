@@ -121,35 +121,35 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
-            {/* Текстовые метки с улучшенным дизайном */}
+            {/* Текстовые метки с улучшенным дизайном - центрированы в секторах */}
             {/* Технологии - верхний правый */}
             <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="120" y="32" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#49BED8" strokeWidth="1.5" />
-              <text x="150" y="49" textAnchor="middle" className="text-[12px] md:text-[14px] font-semibold" fill="#49BED8">
+              <rect x="112" y="46" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#49BED8" strokeWidth="1.5" />
+              <text x="142" y="63" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#49BED8">
                 Технологии
               </text>
             </g>
             
             {/* Люди - правый нижний */}
             <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="130" y="144" width="40" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#A78BCA" strokeWidth="1.5" />
-              <text x="150" y="161" textAnchor="middle" className="text-[12px] md:text-[14px] font-semibold" fill="#8B5FBF">
+              <rect x="122" y="130" width="40" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#A78BCA" strokeWidth="1.5" />
+              <text x="142" y="147" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#8B5FBF">
                 Люди
               </text>
             </g>
             
             {/* Процессы - нижний левый */}
             <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="20" y="144" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#5FBFB0" strokeWidth="1.5" />
-              <text x="50" y="161" textAnchor="middle" className="text-[12px] md:text-[14px] font-semibold" fill="#3A9F8F">
+              <rect x="28" y="130" width="60" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#5FBFB0" strokeWidth="1.5" />
+              <text x="58" y="147" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#3A9F8F">
                 Процессы
               </text>
             </g>
             
             {/* Бизнес - верхний левый */}
             <g className="pointer-events-none" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>
-              <rect x="25" y="32" width="50" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#D4AF37" strokeWidth="1.5" />
-              <text x="50" y="49" textAnchor="middle" className="text-[12px] md:text-[14px] font-semibold" fill="#B8941F">
+              <rect x="33" y="46" width="50" height="24" rx="12" fill="white" fillOpacity="0.98" stroke="#D4AF37" strokeWidth="1.5" />
+              <text x="58" y="63" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#B8941F">
                 Бизнес
               </text>
             </g>
