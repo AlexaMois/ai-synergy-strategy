@@ -208,44 +208,142 @@ const About = () => {
               Мой инженерный путь в ИИ
             </h2>
             <p className={`text-lg text-text-body text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{ animationDelay: '0.1s' }}>
-              Я не «освоила» ИИ. Я его изучила глубоко, как инженер.
+              Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
+              За последние 3 года я вложила 2000+ часов в специализированное образование.
             </p>
             
             <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
-              <ul className="space-y-4 text-base text-text-body">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>7 специализированных программ по ИИ</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Сколково, SDS KAEO (уровень 5)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Диплом на тему «ИИ-управление МСП»</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Пишу технические спецификации и код на базовом уровне — чтобы проектировать архитектуру, понятную любой команде.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Партнёрства с TT Consulting и Combox Technology</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Опыт трёх стартапов в сфере ИИ</span>
-                </li>
-              </ul>
-              
-              <div className="mt-8 pt-6 border-t border-border">
-                <p className="text-base text-text-body font-medium">
-                  <span className="text-primary">Фокус:</span> архитектура, логика, связность процессов, защищённые контуры, многоагентные системы, RAG, локальные модели.
-                </p>
-                <p className="text-base text-text-body font-medium mt-4">
-                  Это позволяет мне проектировать системы, не зависящие от конкретных разработчиков.
-                </p>
+              <div className="space-y-8">
+                {/* Education Section */}
+                <div>
+                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
+                    <span className="text-2xl">📚</span> Образование:
+                  </h3>
+                  <ul className="space-y-3 text-base text-text-body ml-8">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <div>
+                        <strong>7 специализированных программ по ИИ</strong>
+                        <ul className="mt-2 space-y-1 ml-4 text-sm">
+                          <li>- Сколково (Руководство проектами на основе ИИ)</li>
+                          <li>- SDS KAEO (уровень 5 — самый высокий)</li>
+                          <li>- Курсы по инженерии подсказок (от OpenAI и Anthropic)</li>
+                          <li>- Продвинутые архитектуры поиска и генерации</li>
+                          <li>- Multi-Agent Systems (многоагентные системы)</li>
+                          <li>- Локальные языковые модели (LLaMA, Mistral)</li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <div>
+                        <strong>Дипломированный специалист:</strong>
+                        <ul className="mt-2 space-y-1 ml-4 text-sm">
+                          <li>- Диплом на тему «Управление ИИ в малом бизнесе»</li>
+                          <li>- Сертификат SDS KAEO (уровень 5)</li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Practical Experience Section */}
+                <div>
+                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
+                    <span className="text-2xl">💻</span> Практический опыт:
+                  </h3>
+                  <ul className="space-y-3 text-base text-text-body ml-8">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <span>Собственный код (Python, Node.js, интерфейсы) → управляю разработчиками на уровне архитектуры</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <div>
+                        <strong>3 активных проекта в сфере ИИ</strong> (развиваются на собственные средства):
+                        <ul className="mt-2 space-y-1 ml-4 text-sm">
+                          <li>- GolossOK (голосовой помощник) — 8 месяцев на рынке</li>
+                          <li>- Платформа исследований ИИ — используется 20+ компаниями</li>
+                          <li>- Парсер для документов на основе ИИ — готовится к масштабированию</li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Partnerships Section */}
+                <div>
+                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
+                    <span className="text-2xl">🤝</span> Партнёрства:
+                  </h3>
+                  <ul className="space-y-3 text-base text-text-body ml-8">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <span><strong>TT Consulting</strong> — постоянное партнёрское соглашение для крупных проектов (полная разработка + объединение систем, я контролирую архитектуру)</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary flex-shrink-0 mt-1">•</span>
+                      <span><strong>Combox Technology</strong> — партнёр для интерфейсов и объединения систем (независимая проверка качества на 100%)</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Focus Section */}
+                <div>
+                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
+                    <span className="text-2xl">🎯</span> Мой фокус (не пустые слова, а практика):
+                  </h3>
+                  <div className="space-y-4 ml-8">
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">1️⃣ Архитектура</strong><br />
+                        <span className="text-sm">Пример: Крайпотребсоюз → Спроектировала рабочий процесс на Bpium (вместо 8 сотрудников — 0.5 полной занятости)</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">2️⃣ Логика процессов</strong><br />
+                        <span className="text-sm">Пример: Грузовой Экспресс → Спроектировала бот Telegram с автоматическим разносом в таблицы → Результат: экономия 4 часов/неделю, точность 99%</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">3️⃣ Объединение систем (интеграции)</strong><br />
+                        <span className="text-sm">Пример: GolossOK → Голосовой помощник, объединённый с CRM, Telegram, таблицами → Результат: ×5 скорость обработки заявок, точность распознавания 99%</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">4️⃣ Защищённые контуры (безопасность)</strong><br />
+                        <span className="text-sm">Никогда не отправляю персональные данные в облако без согласия. Локальные модели + закрытые интерфейсы только</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">5️⃣ Multi-Agent Systems (многоагентные системы)</strong><br />
+                        <span className="text-sm">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем. Пример: система проверки договоров + система согласований + система архива</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">6️⃣ RAG (система поиска и генерации)</strong><br />
+                        <span className="text-sm">ИИ ищет информацию в вашей базе, а не фантазирует. Пример: поиск по 5000+ договорам Крайпотребсоюза</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-base text-text-body">
+                        <strong className="text-primary">7️⃣ Локальные модели</strong><br />
+                        <span className="text-sm">Ваши данные остаются на вашем сервере, не в облаке OpenAI. Примеры: Mistral, LLaMA, Яндекс.ГПТ (для России)</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-border">
+                  <p className="text-base text-text-body font-medium italic">
+                    Вывод: это не «модный тренд» из социальных сетей. Это инструменты, которые я использую в реальных проектах КАЖДЫЙ ДЕНЬ.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -313,15 +411,142 @@ const About = () => {
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="text-2xl md:text-3xl font-semibold text-text-heading text-left">
-                      Мои слабые стороны <span className="text-base font-normal text-text-body">(и почему это важно)</span>
+                      🔴 Мои слабые стороны <span className="text-base font-normal text-text-body">(и почему я про них говорю)</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${weakSidesOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <p className="mt-6 text-base text-text-body leading-relaxed">
-                    Я могу перерабатывать, иногда ухожу в перфекционизм, а публичные выступления для меня всегда вызов. Знаю свои слабые стороны и учитываю их в работе — так же, как учитываю проектные риски.
-                  </p>
+                  <div className="mt-6 space-y-8 text-base text-text-body leading-relaxed">
+                    {/* Weak Side 1 */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                        Я не работаю с компаниями меньше 15 человек
+                      </h3>
+                      <div className="space-y-3">
+                        <p>
+                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          Слишком мало данных, чтобы построить качественное решение. ИИ работает на данных — если их мало, результат будет случайным. Плюс, невыгодно экономически (мой минимум затрат не окупится).
+                        </p>
+                        <p>
+                          <span className="text-green-600 font-medium">✅ Что я рекомендую вместо этого?</span><br />
+                          Если у вас 5–15 человек → используйте готовые инструменты типа ChatGPT, Make, n8n. Не переплачивайте за консультацию. Напишите мне всё равно — дам совет за час.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Weak Side 2 */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                        Я не люблю спешку (и требую 4–8 недель на хорошее решение)
+                      </h3>
+                      <div className="space-y-3">
+                        <p>
+                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          Спешка = 80% провалов внедрения. Я не рискну вашим бюджетом ради того, чтобы сказать «готово». Хорошее решение требует:
+                        </p>
+                        <ul className="ml-6 space-y-1">
+                          <li>• Разбора существующих процессов (2–3 недели)</li>
+                          <li>• Проектирования архитектуры (2–4 недели)</li>
+                          <li>• Тестирования на малой группе (1–2 недели)</li>
+                        </ul>
+                        <p className="text-red-600 font-medium">
+                          ❌ Если нужно быстро = я не ваш консультант.
+                        </p>
+                        <p>
+                          <span className="text-green-600 font-medium">✅ Что это значит?</span><br />
+                          Я не беру срочные проекты. Это раздражает клиентов, которые хотят результат «вчера», но это спасает от провалов тех, кто готов ждать.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Weak Side 3 */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                        Я не беру проекты, где руководство не готово к переменам
+                      </h3>
+                      <div className="space-y-3">
+                        <p>
+                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          ИИ — это не кнопка, которая нажимается и работает. Это изменение процессов. Если руководитель говорит «внедрите ИИ, но ничего не меняйте» → проект провалится.
+                        </p>
+                        <p>Мне нужно:</p>
+                        <ul className="ml-6 space-y-1">
+                          <li>• Руководство, которое готово менять процессы</li>
+                          <li>• Команда, которая согласна использовать новые инструменты</li>
+                          <li>• Понимание, что первый месяц будет медленнее (люди учатся)</li>
+                        </ul>
+                        <p className="text-red-600 font-medium">
+                          ❌ Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
+                        </p>
+                        <p>
+                          <span className="text-green-600 font-medium">✅ Что это значит?</span><br />
+                          Я предварительно провожу диагностику готовности команды. Если готовности нет → я скажу «нет» и не возьму деньги. Это экономит вам бюджет.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Weak Side 4 */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-text-heading mb-3">
+                        Я не буду внедрять ИИ, если в процессах хаос
+                      </h3>
+                      <div className="space-y-3">
+                        <p>
+                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          Помнишь мою фразу: «Если в компании порядок — ИИ усиливает порядок. Если хаос — ИИ усиливает хаос»?
+                        </p>
+                        <p>Вот это буквально. Если ваши процессы сейчас хаотичны:</p>
+                        <ul className="ml-6 space-y-1">
+                          <li>• Нет документирования</li>
+                          <li>• Нет стандартов</li>
+                          <li>• Каждый делает «как он хочет»</li>
+                        </ul>
+                        <p>
+                          То ИИ просто усилит этот хаос. Вместо решения получите «красивый инструмент, который производит мусор».
+                        </p>
+                        <p className="text-red-600 font-medium">
+                          ❌ Сначала нужно навести порядок, потом внедрять ИИ.
+                        </p>
+                        <p>
+                          <span className="text-green-600 font-medium">✅ Что я делаю?</span><br />
+                          На диагностике я смотрю на ваши процессы. Если вижу хаос → я рекомендую сначала навести порядок (может быть, за 1–2 недели), потом уже ИИ. Это экономит деньги и даёт результат.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Summary */}
+                    <div className="pt-6 border-t-2 border-green-200">
+                      <h3 className="text-xl font-bold text-text-heading mb-4">
+                        🟢 ИТОГ: Почему эти «слабые стороны» — это ваше преимущество?
+                      </h3>
+                      <p className="mb-4 font-semibold text-primary">
+                        Если я отказываю в проекте → это значит, я берегу ваш бюджет.
+                      </p>
+                      <p className="mb-3">Мой подход:</p>
+                      <ul className="ml-6 space-y-2">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span>Я скажу «нет», если проект обречён</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span>Я потребую времени, даже если вы спешите</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span>Я потребую воли к переменам, даже если это неудобно</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span>Я потребую порядка в процессах, даже если это требует переделки</span>
+                        </li>
+                      </ul>
+                      <p className="mt-4 font-semibold">
+                        Зато когда мы начнём работать → я гарантирую результат.
+                      </p>
+                    </div>
+                  </div>
                 </CollapsibleContent>
               </div>
             </Collapsible>
@@ -331,47 +556,94 @@ const About = () => {
         {/* Credentials */}
         <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className={`section-title text-center mb-12 ${credentialsAnimation('animate-fade-in-up')}`}>
-              Где мой профессионализм проверен фактами
+            <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
+              ✅ Где мой профессионализм проверен фактами
             </h2>
             
-            <div ref={statsRef as any} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                "Резидент ИТ-парка Казани",
-                "Резидент КРИТБИ Красноярска",
-                "Победитель «Бизнес-Успех» (2025)",
-                "Член Национального Фонда Искусственного Интеллекта",
-                "Спикер AI-Summit, Kazan Digital Week, NeuroTechRussia",
-                "Сертификат SDS KAEO, уровень 5"
-              ].map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]"
-                >
-                  {item}
+            <div ref={statsRef as any} className="space-y-6">
+              {/* Credentials Grid */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  "Резидент IT Park Казани",
+                  "Резидент центра поддержки и развития инноваций Красноярска",
+                  "Победитель конкурса «Бизнес-Успех» (2025)",
+                  "Член Национального фонда искусственного интеллекта",
+                  "Сертификат SDS KAEO, уровень 5 (самый высокий)"
+                ].map((item, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]"
+                  >
+                    {item}
+                  </div>
+                ))}
+                
+                <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                  <strong>Выступающая на конференциях:</strong>
+                  <ul className="mt-2 text-xs space-y-1">
+                    <li>• ИИ-Саммит (2024)</li>
+                    <li>• Казанская неделя цифровизации (2024)</li>
+                    <li>• Неделя нейротехнологий России (2025)</li>
+                  </ul>
                 </div>
-              ))}
-              
-              {/* Animated metrics */}
-              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
-                  {projectsCount}
-                </span>
-                <span className="text-text-body">внедрений ИИ</span>
               </div>
-              
-              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
-                  {auditsCount}
-                </span>
-                <span className="text-text-body">анализов процессов</span>
+
+              {/* Projects Stats */}
+              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
+                <h3 className="text-xl font-semibold text-text-heading mb-6 text-center">
+                  36+ проектов на основе ИИ за 7 лет:
+                </h3>
+                <div className="grid sm:grid-cols-3 gap-4 mb-6">
+                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">14</div>
+                    <div className="text-sm text-text-body">в торговле (Крайпотребсоюз и сети магазинов)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI 250–400%</div>
+                  </div>
+                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">12</div>
+                    <div className="text-sm text-text-body">в логистике (Грузовой Экспресс и др.)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI 180–320%</div>
+                  </div>
+                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">10</div>
+                    <div className="text-sm text-text-body">в программных продуктах (SaaS)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI 200–400%</div>
+                  </div>
+                </div>
               </div>
-              
-              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
+
+              {/* Consultations Stats */}
+              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
+                <div className="text-center mb-4">
+                  <span className="text-4xl md:text-5xl font-bold text-primary block mb-2">
+                    {auditsCount}
+                  </span>
+                  <span className="text-lg text-text-body">консультаций и диагностик</span>
+                  <p className="text-sm text-text-body mt-2">(среднее: 2–3 часа на диагностику)</p>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4 mt-6">
+                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
+                    <div className="text-2xl font-bold text-green-600 mb-2">60%</div>
+                    <div className="text-sm text-text-body">компаний после диагностики начинают внедрение</div>
+                  </div>
+                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
+                    <div className="text-2xl font-bold text-primary mb-2">40%</div>
+                    <div className="text-sm text-text-body">понимают, что им ИИ вообще не нужен<br />(и это тоже результат!)</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ROI Highlight */}
+              <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 text-center border-2 border-primary/20">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">
                   {roiMinCount}–{roiMaxCount}%
-                </span>
-                <span className="text-text-body">ROI</span>
+                </div>
+                <div className="text-lg md:text-xl font-semibold text-text-heading mb-2">
+                  ROI В ПЕРВЫЕ 3 МЕСЯЦА после запуска
+                </div>
+                <div className="text-sm text-text-body">
+                  (не за год — за квартал!)
+                </div>
               </div>
             </div>
           </div>
