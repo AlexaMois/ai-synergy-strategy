@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
-import alexandraHeadshot from "@/assets/alexandra-portrait-nobg.png";
+import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
@@ -185,7 +185,7 @@ const Hero = () => {
               <img 
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
-                className="w-full max-w-xl lg:max-w-2xl h-auto object-contain"
+                className="w-full max-w-lg lg:max-w-xl h-auto object-contain"
               />
             </div>
           </div>
