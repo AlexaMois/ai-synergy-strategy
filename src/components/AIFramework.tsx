@@ -123,22 +123,22 @@ const AIFramework = () => {
             
             {/* Текстовые метки - только текст, насыщенные цвета, строго по центрам секторов */}
             {/* Технологии - верхний правый (центр сектора) */}
-            <text x="150" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="150" y="53" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Технологии
             </text>
             
             {/* Люди - нижний правый (центр сектора) */}
-            <text x="150" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="150" y="153" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Люди
             </text>
             
             {/* Процессы - нижний левый (центр сектора) */}
-            <text x="50" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="50" y="153" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Процессы
             </text>
             
             {/* Бизнес - верхний левый (центр сектора) */}
-            <text x="50" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="50" y="53" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Бизнес
             </text>
           </svg>
