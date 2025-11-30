@@ -29,7 +29,7 @@ const Contact = () => {
             Начните с малого — экспресс-аудита.
           </p>
           
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${getStaggeredClass(2, 'animate-scale-in')}`}>
+          <div className={`flex flex-row gap-4 justify-center items-center flex-wrap ${getStaggeredClass(2, 'animate-scale-in')}`}>
             <div className="flex flex-col gap-2 items-center">
               <Button size="lg" asChild>
                 <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
