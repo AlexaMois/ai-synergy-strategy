@@ -181,18 +181,20 @@ const Hero = () => {
             </div>
           
             <div className={`lg:col-span-5 relative mb-8 lg:mb-0 flex justify-center lg:justify-end ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-              <OptimizedImage 
-                src={alexandraPortrait} 
-                alt="Александра Моисеева - AI консультант" 
-                className="w-full max-w-sm lg:max-w-md h-auto object-contain" 
-                priority 
-                responsive
-                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 400px"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+              <div className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] h-[400px] sm:h-[450px] lg:h-[500px] overflow-hidden">
+                <OptimizedImage 
+                  src={alexandraPortrait} 
+                  alt="Александра Моисеева - AI консультант" 
+                  className="w-full h-full object-cover object-[center_20%] scale-125" 
+                  priority 
+                  responsive
+                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 320px, 380px"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+              </div>
             </div>
           </div>
         </Tabs>
