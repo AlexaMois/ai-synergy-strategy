@@ -16,7 +16,7 @@ const ServicesOverview = () => {
     {
       icon: Layers,
       title: "Стратегия и архитектура",
-      description: "Проектирую масштабируемую систему: безопасные интеграции, выбор технологий, последовательность внедрения и расчёт эффекта.",
+      description: "Проектирую масштабируемую систему, безопасные интеграции, выбор технологий, последовательность внедрения, расчет эффекта",
       link: "/services#strategy",
       linkText: "Подробнее об архитектуре"
     },
@@ -38,11 +38,8 @@ const ServicesOverview = () => {
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h2 className="section-title text-center leading-tight mb-4">
-              Что я делаю
+              Системное внедрение ИИ под задачи компании
             </h2>
-            <p className="text-lg text-text-body max-w-3xl mx-auto">
-              Помогаю компаниям внедрять ИИ через диагностику, архитектуру и сопровождение — с фокусом на реальные результаты и ROI.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
