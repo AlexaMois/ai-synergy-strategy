@@ -126,12 +126,21 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-text-heading z-50 relative transition-transform duration-300 hover:scale-110" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile menu button removed from here - now separate fixed element below */}
         </div>
       </div>
+
+      {/* Mobile Menu Button - Independent Fixed Element */}
+      <button 
+        className="md:hidden fixed top-6 right-4 z-[60] text-text-heading 
+                   pointer-events-auto touch-manipulation
+                   min-w-[44px] min-h-[44px] flex items-center justify-center
+                   transition-transform duration-300 hover:scale-110 active:scale-95" 
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
       {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden animate-fade-in" onClick={() => setIsMobileMenuOpen(false)} />}
