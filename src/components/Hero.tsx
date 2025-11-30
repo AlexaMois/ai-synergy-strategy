@@ -185,7 +185,7 @@ const Hero = () => {
                 <OptimizedImage 
                   src={alexandraPortrait} 
                   alt="Александра Моисеева - AI консультант" 
-                  className="w-full h-full object-cover object-[center_20%] scale-125" 
+                  className="w-full h-full object-cover object-top" 
                   priority 
                   responsive
                   sizes="(max-width: 640px) 280px, (max-width: 1024px) 320px, 380px"
