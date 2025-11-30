@@ -190,7 +190,8 @@ const Hero = () => {
                     alt="Александра Моисеева - AI консультант" 
                     className="w-full h-full object-cover object-top" 
                     priority 
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    responsive
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, (max-width: 1280px) 35vw, 400px"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
