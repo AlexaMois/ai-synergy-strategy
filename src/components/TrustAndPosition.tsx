@@ -41,7 +41,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Почему мне доверяют
+                  Почему мне доверяют, <span className="font-semibold">и чем это подтверждено</span>
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
