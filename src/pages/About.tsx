@@ -10,6 +10,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState } from "react";
 import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useCountUp } from "@/hooks/use-count-up";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 
 const About = () => {
@@ -21,6 +23,13 @@ const About = () => {
   const { ref: positionRef, getAnimationClass: positionAnimation } = useMobileAnimations({ threshold: 0.1 });
   const { ref: quoteRef, getAnimationClass: quoteAnimation } = useMobileAnimations({ threshold: 0.1 });
   const { ref: credentialsRef, getAnimationClass: credentialsAnimation } = useMobileAnimations({ threshold: 0.1 });
+  const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver({ threshold: 0.2 });
+  
+  // Animated counters for key metrics
+  const projectsCount = useCountUp({ end: 36, duration: 1800, isVisible: statsVisible, suffix: '+' });
+  const auditsCount = useCountUp({ end: 350, duration: 1800, isVisible: statsVisible, suffix: '+' });
+  const roiMinCount = useCountUp({ end: 200, duration: 1800, isVisible: statsVisible });
+  const roiMaxCount = useCountUp({ end: 400, duration: 1800, isVisible: statsVisible });
 
   return (
     <PageTransition>
@@ -344,17 +353,14 @@ const About = () => {
               Где мой профессионализм проверен фактами
             </h2>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div ref={statsRef as any} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 "Резидент ИТ-парка Казани",
                 "Резидент КРИТБИ Красноярска",
                 "Победитель «Бизнес-Успех» (2025)",
                 "Член Национального Фонда Искусственного Интеллекта",
                 "Спикер AI-Summit, Kazan Digital Week, NeuroTechRussia",
-                "Сертификат SDS KAEO, уровень 5",
-                "36+ ИИ-проектов",
-                "350+ аудитов",
-                "ROI клиентов 200–400%"
+                "Сертификат SDS KAEO, уровень 5"
               ].map((item, index) => (
                 <div 
                   key={index}
@@ -363,6 +369,28 @@ const About = () => {
                   {item}
                 </div>
               ))}
+              
+              {/* Animated metrics */}
+              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
+                  {projectsCount}
+                </span>
+                <span className="text-text-body">ИИ-проектов</span>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
+                  {auditsCount}
+                </span>
+                <span className="text-text-body">аудитов</span>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
+                  {roiMinCount}–{roiMaxCount}%
+                </span>
+                <span className="text-text-body">ROI клиентов</span>
+              </div>
             </div>
           </div>
         </section>
