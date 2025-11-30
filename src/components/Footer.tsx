@@ -37,9 +37,10 @@ const Footer = () => {
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
-            <p className="text-background/60 text-sm mb-4">AI-консультант</p>
-            <p className="text-background/80 text-sm leading-relaxed">
-              Помогаю компаниям внедрять AI без хаоса и иллюзий — через диагностику, архитектуру и сопровождение.
+            <p className="text-background/80 text-base leading-relaxed">
+              Инженер по ИИ и цифровой архитектуре<br />
+              Проектирую устойчивые ИИ-решения под цели бизнеса<br />
+              Гарантирую честную оценку, экономику и предсказуемый результат
             </p>
           </div>
 
@@ -59,12 +60,15 @@ const Footer = () => {
           {/* Колонка 3: Контакты */}
           <div>
             <p className="text-lg font-semibold mb-4">Контакты</p>
-            <div className="flex flex-col gap-2 text-background/80 text-sm">
-              <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">
+            <div className="flex flex-col gap-3 text-background/80">
+              <a href="mailto:neiroreshenia@yandex.com" className="text-sm hover:text-accent transition-colors">
                 neiroreshenia@yandex.com
               </a>
-              <a href="https://нейрорешения.рф" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                https://нейрорешения.рф
+              <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
+                Телефон: +7 (993) 721-73-67
+              </a>
+              <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
+                Личный Telegram: @AlexandraMois
               </a>
             </div>
           </div>
