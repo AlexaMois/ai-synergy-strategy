@@ -82,21 +82,36 @@ const AIFramework = () => {
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 0 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[0])} onMouseLeave={() => setHoveredPillar(null)} />
+            <text x="150" y="50" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
+              Технологии
+            </text>
+            
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 1 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[1])} onMouseLeave={() => setHoveredPillar(null)} />
+            <text x="150" y="150" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
+              Люди
+            </text>
+            
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 2 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[2])} onMouseLeave={() => setHoveredPillar(null)} />
+            <text x="50" y="150" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
+              Процессы
+            </text>
+            
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 3 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[3])} onMouseLeave={() => setHoveredPillar(null)} />
+            <text x="50" y="50" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
+              Бизнес
+            </text>
           </svg>
           
           {/* Центральная надпись */}
@@ -108,26 +123,6 @@ const AIFramework = () => {
             </div>
           </div>
 
-          {/* Статичные подписи секторов - симметрично вокруг круга (скрыты на мобильных) */}
-          {/* Бизнес - верхний левый (кремовый сектор) */}
-          <div className="hidden sm:block absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Бизнес</p>
-          </div>
-          
-          {/* Технологии - верхний правый (голубой сектор) */}
-          <div className="hidden sm:block absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Технологии</p>
-          </div>
-          
-          {/* Процессы - нижний левый (мятный сектор) */}
-          <div className="hidden sm:block absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Процессы</p>
-          </div>
-          
-          {/* Люди - нижний правый (лавандовый сектор) */}
-          <div className="hidden sm:block absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Люди</p>
-          </div>
         </div>
       </div>
 
