@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -20,7 +20,6 @@ const CATEGORIES = [
 ];
 
 const Blog = () => {
-  const { toast } = useToast();
   const [activeCategories, setActiveCategories] = useState<string[]>(["Все статьи"]);
 
   const handleCategoryClick = (category: string) => {
@@ -38,19 +37,6 @@ const Blog = () => {
         }
       });
     }
-  };
-  
-  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get('email');
-    
-    toast({
-      title: "Спасибо за подписку!",
-      description: `Мы отправим новые статьи на ${email}`,
-    });
-    
-    e.currentTarget.reset();
   };
 
   const posts = [
@@ -195,23 +181,20 @@ const Blog = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="bg-[#D4EDFC] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-heading mb-4">
-              Подпишитесь на рассылку
+              Больше разборов об ИИ — в Telegram
             </h2>
             <p className="text-lg text-text-body mb-8">
-              Получайте новые статьи и практические материалы о внедрении ИИ раз в две недели
+              Подписывайтесь на канал „Нейрорешения", если хотите получать новые кейсы, разборы и наблюдения из проектов без хайпа и сложных терминов
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                name="email"
-                placeholder="Ваш email"
-                required
-                className="flex-1 px-6 py-3 rounded-xl border-2 border-transparent focus:border-accent focus:outline-none text-base"
-              />
-              <Button type="submit" size="lg" className="px-8">
-                Подписаться
+            <a 
+              href="https://t.me/neiroreshenia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="px-8">
+                Перейти в Telegram-канал
               </Button>
-            </form>
+            </a>
           </div>
         </div>
       </section>
