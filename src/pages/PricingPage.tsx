@@ -4,7 +4,7 @@ import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Building2, Search, Layers, Users, CheckCircle, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
+import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 
 const PricingPage = () => {
   const companyServices = [
@@ -267,10 +267,10 @@ const PricingPage = () => {
                             {service.duration}
                           </p>
                           
-                          <ul className="space-y-2">
+                           <ul className="space-y-2">
                             {service.details.map((detail, detailIndex) => (
                               <li key={detailIndex} className="text-sm text-text-body flex items-start gap-2">
-                                <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                                <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                                 <span>{detail}</span>
                               </li>
                             ))}
@@ -357,15 +357,15 @@ const PricingPage = () => {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2 text-sm text-text-body">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                    <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                     <span>Пилот перед масштабированием — тестируем на небольшой команде</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-body">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                    <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                     <span>Возврат ретейнера за месяц, если не достигнем метрик</span>
                   </li>
                   <li className="flex items-start gap-2 text-sm text-text-body">
-                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                    <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                     <span>Совместная ответственность — я сопровождаю до достижения результата</span>
                   </li>
                 </ul>
@@ -387,16 +387,16 @@ const PricingPage = () => {
                     Логистическая компания, 15 человек. Потратили всего 12 000 ₽ на автоматизацию через Telegram-бота.
                   </p>
                   <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" strokeWidth={2} />
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary font-semibold mt-0.5">•</span>
                       <span className="text-sm text-text-body">Экономия 3–4 часа в неделю</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" strokeWidth={2} />
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary font-semibold mt-0.5">•</span>
                       <span className="text-sm text-text-body">99% точность маршрутов</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600" strokeWidth={2} />
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary font-semibold mt-0.5">•</span>
                       <span className="text-sm text-text-body">Окупаемость за 3 недели</span>
                     </div>
                   </div>
