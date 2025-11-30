@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
-import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
+import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
@@ -180,7 +180,14 @@ const Hero = () => {
               </TabsContent>
             </div>
           
-            
+            {/* Правая колонка с фото */}
+            <div className={`lg:col-span-5 flex items-center justify-center ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+              <img 
+                src={alexandraHeadshot} 
+                alt="Александра Моисеева — независимый стратег и инженер ИИ"
+                className="w-full max-w-sm lg:max-w-md h-auto object-contain"
+              />
+            </div>
           </div>
         </Tabs>
       </div>
