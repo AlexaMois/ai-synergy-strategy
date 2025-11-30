@@ -37,7 +37,7 @@ const SixQuestions = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">
-            Все хотят ИИ, <span className="font-semibold">но почти никто не понимает, какие задачи он должен решать</span>
+            Все хотят ИИ, <span className="font-semibold">но почти никто не понимает, какую задачу он должен решать</span>
           </h2>
           <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
             С этого начинается диагностика:

@@ -89,10 +89,10 @@ const TrustAndPosition = () => {
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
-                    Подтвержденный результат
+                    Проверенная эффективность
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы.
+                    Реальные ROI клиентов — от 200 до 400 процентов в первые месяцы.
                   </p>
                 </div>
               </div>

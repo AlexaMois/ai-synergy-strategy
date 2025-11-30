@@ -60,7 +60,7 @@ const Hero = () => {
                     <span className="text-handwriting text-2xl sm:text-3xl">независимый стратег и инженер ИИ</span>
                   </div>
 
-                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям принять взвешенное решение: какие цифровые и ИИ-решения действительно дадут прибыль и ускорение, а какие обернутся лишними расходами и расфокусировкой.</p>
+                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям выбрать ИИ-решения, которые дают измеримый эффект — и отсекаю те, что превращаются в расходы и перегружают процессы</p>
                   
                   <p className="text-lg text-text-body leading-relaxed">
                     Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
