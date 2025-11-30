@@ -18,16 +18,10 @@ const AdditionalServices = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h2 
-            className={`section-title text-center leading-tight mb-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+            className={`section-title text-center leading-tight mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           >
-            Дополнительные решения
+            Дополнительные решения, <span className="font-semibold">под отдельные задачи</span>
           </h2>
-          <p 
-            className={`text-lg text-text-body text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.1s' }}
-          >
-            Для отдельных задач или быстрых улучшений
-          </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {additionalServices.map((service, index) => (

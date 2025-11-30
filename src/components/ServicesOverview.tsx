@@ -68,7 +68,7 @@ const ServicesOverview = () => {
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h2 className="section-title text-center leading-tight mb-4">
-              Системное внедрение ИИ под задачи компании
+              Системное внедрение ИИ, <span className="font-semibold">под задачи компании</span>
             </h2>
           </div>
 
@@ -88,7 +88,7 @@ const ServicesOverview = () => {
                       <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-text-heading mb-3 leading-tight">
+                    <h3 className="text-xl font-medium text-text-heading mb-3 leading-tight">
                       {service.title}
                     </h3>
                     

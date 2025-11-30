@@ -224,7 +224,7 @@ const ServicesDetailed = () => {
                       
                       {/* Title and Subtitle */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl sm:text-2xl font-semibold text-text-heading mb-2 leading-tight">
+                        <h3 className="text-xl sm:text-2xl font-medium text-text-heading mb-2 leading-tight">
                           {service.title}
                         </h3>
                         <p className="text-base sm:text-lg text-primary font-medium italic leading-relaxed">
@@ -238,7 +238,7 @@ const ServicesDetailed = () => {
                     <div className="space-y-6 pt-6 border-t border-border/20">
                       {service.sections.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-2">
-                          <h4 className="text-lg font-semibold text-text-heading">
+                          <h4 className="text-lg font-medium text-text-heading">
                             {section.heading}
                           </h4>
                           {section.content && (
