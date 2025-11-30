@@ -49,8 +49,7 @@ const About = () => {
                   Независимый стратег и инженер ИИ
                 </p>
                 <p className="text-lg text-text-body leading-relaxed mb-8">
-                  Спокойная сила. Честный подход. Архитектура решений без привязки к вендорам.<br/>
-                  Помогаю компаниям внедрять ИИ так, чтобы он давал измеримый результат, а не создавал новые риски.
+                  Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
                 <Button 
                   size="lg"
@@ -81,7 +80,7 @@ const About = () => {
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="text-2xl md:text-3xl font-semibold text-text-heading text-left">
-                      Коротко обо мне
+                      Кто я и почему мне доверяют
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
                   </div>
@@ -117,7 +116,7 @@ const About = () => {
                   onClick={() => setBriefOpen(true)}
                   className="text-primary hover:text-primary/80 transition-colors font-medium"
                 >
-                  Смотреть подробнее →
+                  Подробнее обо мне →
                 </button>
               </div>
             )}
@@ -137,14 +136,13 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
                     <h3 className="text-lg md:text-xl font-semibold text-text-heading">
-                      Ответственность, которой не ждёшь в 27 лет
+                      Когда честность важнее должности
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
                   <p className="text-base text-text-body leading-relaxed">
-                    История про кредитный кооператив. 60 пайщиков. Фиктивные займы. Необходимость выйти и сказать правду. 
-                    Полное восстановление доверия и средств. Это сформировало мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
+                    В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств. Мы вернули доверие и большую часть вложений. Это сформировало мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -154,7 +152,7 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
                     <h3 className="text-lg md:text-xl font-semibold text-text-heading">
-                      Почему я ушла из банков и операционки
+                      Почему я ушла из банков: выбор ответственности
                     </h3>
                   </div>
                 </AccordionTrigger>
@@ -171,7 +169,7 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
                     <h3 className="text-lg md:text-xl font-semibold text-text-heading">
-                      Маркетинг → ИИ: момент, когда всё стало на свои места
+                      От маркетинга к инженерии ИИ: переход в глубину
                     </h3>
                   </div>
                 </AccordionTrigger>
@@ -188,7 +186,7 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
                     <h3 className="text-lg md:text-xl font-semibold text-text-heading">
-                      Сложные уроки и выгорание
+                      Выгорание и вывод: зрелость важнее скорости
                     </h3>
                   </div>
                 </AccordionTrigger>
@@ -229,7 +227,7 @@ const About = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Собственный код (чтобы уметь управлять разработчиками)</span>
+                  <span>Пишу технические спецификации и код на базовом уровне — чтобы проектировать архитектуру, понятную любой команде.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
@@ -244,6 +242,9 @@ const About = () => {
               <div className="mt-8 pt-6 border-t border-border">
                 <p className="text-base text-text-body font-medium">
                   <span className="text-primary">Фокус:</span> архитектура, логика, связность процессов, защищённые контуры, многоагентные системы, RAG, локальные модели.
+                </p>
+                <p className="text-base text-text-body font-medium mt-4">
+                  Это позволяет мне проектировать системы, не зависящие от конкретных разработчиков.
                 </p>
               </div>
             </div>
@@ -264,7 +265,7 @@ const About = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-text-heading mb-3">Независимость</h3>
                 <p className="text-base text-text-body leading-relaxed">
-                  Я не продаю платформы. Не лоббирую решения. Для одной компании подходит Perplexity, для другой — Make, для третьей — закрытая LLM. Я работаю на результат, не на комиссионные.
+                  Выбираю решения под задачу, а не под платформу. Архитектура всегда независима — без привязки к вендорам. Для одной компании подходит Perplexity, для другой — Make, для третьей — закрытая LLM. Я работаю на результат, не на комиссионные.
                 </p>
               </div>
 
@@ -295,15 +296,10 @@ const About = () => {
         <section ref={quoteRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-3xl">
             <div className={`bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 md:p-12 border-l-4 border-primary ${quoteAnimation('animate-fade-in-up')}`}>
-              <blockquote className="space-y-6">
-                <p className="text-xl md:text-2xl font-medium text-text-heading leading-relaxed italic">
-                  «Работа с ИИ — это отражение вашего внутреннего. Как вы работаете — так ИИ будет работать с вами.»
+              <blockquote>
+                <p className="text-xl md:text-2xl font-medium text-text-heading leading-relaxed">
+                  ИИ усиливает то, что уже есть в компании: порядок — усиливает порядок, перегруз — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
                 </p>
-                <div className="text-base text-text-body leading-relaxed space-y-2">
-                  <p>Если в компании порядок — ИИ усиливает порядок.</p>
-                  <p>Если хаотичность — ИИ усиливает хаотичность.</p>
-                  <p className="font-medium text-primary">Поэтому я начинаю с архитектуры, а не с кнопок.</p>
-                </div>
               </blockquote>
             </div>
           </div>
@@ -323,22 +319,8 @@ const About = () => {
                   </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <ul className="mt-6 space-y-4 text-base text-text-body">
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary flex-shrink-0 mt-1">—</span>
-                      <span>Я слишком много работаю. Иногда теряю баланс.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary flex-shrink-0 mt-1">—</span>
-                      <span>Боюсь больших сцен — но беру ответственность, когда это важно.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary flex-shrink-0 mt-1">—</span>
-                      <span>Я добрая. Иногда это мешает в переговорах, но помогает в работе с людьми.</span>
-                    </li>
-                  </ul>
-                  <p className="mt-6 text-base text-text-body italic">
-                    Эти качества делают меня живым человеком, а не «идеальным экспертом».
+                  <p className="mt-6 text-base text-text-body leading-relaxed">
+                    Я могу перерабатывать, иногда ухожу в перфекционизм, а публичные выступления для меня всегда вызов. Знаю свои слабые стороны и учитываю их в работе — так же, как учитываю проектные риски.
                   </p>
                 </CollapsibleContent>
               </div>
@@ -375,21 +357,21 @@ const About = () => {
                 <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
                   {projectsCount}
                 </span>
-                <span className="text-text-body">ИИ-проектов</span>
+                <span className="text-text-body">внедрений ИИ</span>
               </div>
               
               <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
                 <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
                   {auditsCount}
                 </span>
-                <span className="text-text-body">аудитов</span>
+                <span className="text-text-body">анализов процессов</span>
               </div>
               
               <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
                 <span className="text-primary text-xl md:text-2xl font-bold block mb-1">
                   {roiMinCount}–{roiMaxCount}%
                 </span>
-                <span className="text-text-body">ROI клиентов</span>
+                <span className="text-text-body">ROI</span>
               </div>
             </div>
           </div>
@@ -408,7 +390,7 @@ const About = () => {
                   <UserCheck className="w-12 h-12 text-gray-400" />
                 </div>
                 <p className="text-base text-text-body italic leading-relaxed">
-                  «У Александры чёрный пояс по нейронкам — она укладывает ИИ на лопатки.»
+                  «У Александры чёрный пояс по нейронкам — она показывает, как использовать ИИ инженерно, а не поверхностно.»
                 </p>
               </div>
 
@@ -417,7 +399,7 @@ const About = () => {
                   <UserCheck className="w-12 h-12 text-gray-400" />
                 </div>
                 <p className="text-base text-text-body italic leading-relaxed">
-                  «Спасибо за настойчивость. Если бы ты не настояла — мы бы так и остались в старых процессах.»
+                  «Спасибо за настойчивость — без твоего анализа мы бы не увидели реальные точки эффекта.»
                 </p>
               </div>
 
@@ -426,7 +408,7 @@ const About = () => {
                   <UserCheck className="w-12 h-12 text-gray-400" />
                 </div>
                 <p className="text-base text-text-body italic leading-relaxed">
-                  «Первый человек, который сказал нам правду, а не красивую презентацию».
+                  «Первый специалист, который показал реальные цифры и риски, а не красивую презентацию.»
                 </p>
               </div>
             </div>
@@ -452,7 +434,7 @@ const About = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Разработчик под задачи</span>
+                  <span>Инженер под конкретный проект</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
@@ -477,7 +459,7 @@ const About = () => {
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 text-center">
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
               <p className="text-base md:text-lg text-text-body leading-relaxed">
-                Когда проект закрыт — я ухожу в природу, выключаю телефон или смотрю сериал с мороженым.
+                Когда проект закрыт — я ухожу в природу, просто выключаю телефон и даю мозгу тишину — в этот момент приходит новая ясность.
                 <br/><br/>
                 <span className="font-medium text-text-heading">
                   Это мой способ сохранять ясность и тот самый спокойный стиль работы.
@@ -502,7 +484,7 @@ const About = () => {
               onClick={() => window.open('https://hh.ru', '_blank')}
               className="gap-2"
             >
-              Смотреть резюме на HH.ru
+              Посмотреть полное резюме (PDF)
               <ExternalLink className="w-4 h-4" />
             </Button>
           </div>
