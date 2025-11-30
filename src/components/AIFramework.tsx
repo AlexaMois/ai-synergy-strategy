@@ -121,24 +121,24 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
-            {/* Текстовые метки - по центрам секторов, повернуты к центру, на равном расстоянии от края */}
-            {/* Технологии - верхний правый (45°, расстояние 68 от центра) */}
-            <text x="148" y="52" textAnchor="middle" className="text-[11px] md:text-[13px] font-bold pointer-events-none" fill="#0891B2" transform="rotate(-45, 148, 52)" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            {/* Текстовые метки - только текст, насыщенные цвета, строго по центрам секторов */}
+            {/* Технологии - верхний правый (центр сектора) */}
+            <text x="150" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Технологии
             </text>
             
-            {/* Люди - нижний правый (135°, расстояние 68 от центра) */}
-            <text x="148" y="148" textAnchor="middle" className="text-[11px] md:text-[13px] font-bold pointer-events-none" fill="#7C3AED" transform="rotate(45, 148, 148)" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            {/* Люди - нижний правый (центр сектора) */}
+            <text x="150" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Люди
             </text>
             
-            {/* Процессы - нижний левый (225°, расстояние 68 от центра) */}
-            <text x="52" y="148" textAnchor="middle" className="text-[11px] md:text-[13px] font-bold pointer-events-none" fill="#0D9488" transform="rotate(135, 52, 148)" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            {/* Процессы - нижний левый (центр сектора) */}
+            <text x="50" y="153" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Процессы
             </text>
             
-            {/* Бизнес - верхний левый (315°, расстояние 68 от центра) */}
-            <text x="52" y="52" textAnchor="middle" className="text-[11px] md:text-[13px] font-bold pointer-events-none" fill="#D97706" transform="rotate(-135, 52, 52)" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            {/* Бизнес - верхний левый (центр сектора) */}
+            <text x="50" y="53" textAnchor="middle" className="text-[13px] md:text-[15px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Бизнес
             </text>
           </svg>
