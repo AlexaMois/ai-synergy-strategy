@@ -7,6 +7,7 @@ import portraitImage from "@/assets/alexandra-portrait.jpg";
 import WhoIAm from "@/components/WhoIAm";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import Partners from "@/components/Partners";
+import WhatIDo from "@/components/WhatIDo";
 
 const About = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -136,6 +137,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <WhatIDo />
 
       {/* Credentials Section */}
       <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
