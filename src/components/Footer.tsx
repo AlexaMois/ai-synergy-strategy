@@ -47,6 +47,7 @@ const Footer = () => {
               <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
               <Link to="/services" className="hover:text-accent transition-colors">Услуги</Link>
               <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
+              <Link to="/resources" className="hover:text-accent transition-colors">Материалы</Link>
               <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
               <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
             </div>

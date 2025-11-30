@@ -54,6 +54,10 @@ const Navigation = () => {
     label: "Кейсы",
     isScroll: false
   }, {
+    href: "/resources",
+    label: "Материалы",
+    isScroll: false
+  }, {
     href: "/about",
     label: "Обо мне",
     isScroll: false
