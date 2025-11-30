@@ -152,10 +152,10 @@ const AIFramework = () => {
           {hoveredSector !== null && (
             <div 
               className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg transition-all duration-300 animate-fade-in z-20 max-w-[280px] sm:max-w-[320px]
-                ${hoveredSector === 0 ? 'right-[-120px] sm:right-[-160px] top-[50%] -translate-y-1/2' : ''}
-                ${hoveredSector === 1 ? 'bottom-[-140px] sm:bottom-[-160px] left-[50%] -translate-x-1/2' : ''}
-                ${hoveredSector === 2 ? 'left-[-120px] sm:left-[-160px] top-[50%] -translate-y-1/2' : ''}
-                ${hoveredSector === 3 ? 'top-[-140px] sm:top-[-160px] left-[50%] -translate-x-1/2' : ''}
+                ${hoveredSector === 0 ? 'right-[-120px] sm:right-[-160px] top-[10%] sm:top-[15%]' : ''}
+                ${hoveredSector === 1 ? 'bottom-[10%] sm:bottom-[15%] right-[-120px] sm:right-[-160px]' : ''}
+                ${hoveredSector === 2 ? 'left-[-120px] sm:left-[-160px] bottom-[10%] sm:bottom-[15%]' : ''}
+                ${hoveredSector === 3 ? 'top-[10%] sm:top-[15%] left-[-120px] sm:left-[-160px]' : ''}
               `}
             >
               <h4 className="text-lg sm:text-xl font-semibold text-text-heading mb-2">
