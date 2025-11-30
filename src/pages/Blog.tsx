@@ -103,6 +103,7 @@ const Blog = () => {
         </Helmet>
         <Navigation />
       
+      <main>
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
@@ -201,6 +202,7 @@ const Blog = () => {
           </div>
         </div>
       </section>
+      </main>
 
         <Footer />
         <BackToTop />

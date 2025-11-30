@@ -11,6 +11,7 @@ const CaseStudyKraypotrebsoyuz = () => {
       <div className="min-h-screen">
         <Navigation />
         
+        <main>
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -215,6 +216,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             </Button>
           </div>
         </section>
+        </main>
         
         <Footer />
         <BackToTop />

@@ -77,6 +77,7 @@ const ChecklistPage = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
+      <main>
       <div className="container mx-auto py-12 md:py-20">
         {/* Header with Download Button */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
@@ -199,9 +200,10 @@ const ChecklistPage = () => {
                 Записаться на экспресс-аудит
               </a>
             </Button>
-          </section>
-        </div>
+        </section>
       </div>
+      </div>
+      </main>
 
       <Footer />
     </div>
