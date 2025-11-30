@@ -161,7 +161,7 @@ const BlogPost = () => {
               </section>
             ))}
 
-            <div className="bg-[#D4EDFC] rounded-2xl p-8 my-12">
+            <div className="bg-[#D4EDFC] rounded-2xl p-4 sm:p-6 md:p-8 my-12">
               <p className="text-lg text-text-body leading-relaxed font-medium">
                 {post.content.conclusion}
               </p>
@@ -169,7 +169,7 @@ const BlogPost = () => {
           </div>
 
           <div className="border-t border-[#E6EAEC] pt-12 mt-12">
-            <div className="bg-[#FAFBFC] rounded-2xl p-8 text-center">
+            <div className="bg-[#FAFBFC] rounded-2xl p-4 sm:p-6 md:p-8 text-center">
               <h3 className="text-2xl font-semibold text-text-heading mb-4">
                 Хотите внедрить ИИ без ошибок?
               </h3>
@@ -201,7 +201,7 @@ const BlogPost = () => {
                 <Link 
                   key={relatedPost.slug} 
                   to={`/blog/${relatedPost.slug}`}
-                  className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1"
+                  className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-xs font-medium text-accent bg-[#D4EDFC] px-3 py-1 rounded-full">

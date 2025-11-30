@@ -133,7 +133,7 @@ const AIFramework = () => {
 
       {/* 4 карточки-столпа */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {pillars.map((pillar, index) => <div key={index} className={`rounded-2xl p-6 shadow-card transition-all duration-300 cursor-pointer gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
+        {pillars.map((pillar, index) => <div key={index} className={`rounded-2xl p-4 sm:p-6 shadow-card transition-all duration-300 cursor-pointer gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
         backgroundColor: 'hsl(var(--gray-50))',
         transitionDelay: `${200 + index * 75}ms`,
         transform: hoveredPillar === index ? 'scale(1.05)' : 'scale(1)',
@@ -152,7 +152,7 @@ const AIFramework = () => {
       </div>
 
       {/* Итоговая плашка */}
-      <div className={`bg-white rounded-2xl p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <p className="text-2xl md:text-3xl font-semibold text-primary">
           Результат: решения, которые работают годами, а не «умирают» через месяц.
         </p>

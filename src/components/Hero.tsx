@@ -54,7 +54,7 @@ const Hero = () => {
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
             <div className={`lg:col-span-7 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               {/* Верхний блок с градиентной обводкой */}
-              <div className="p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+              <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
                   <div className="inline-block">
                     <span className="text-handwriting text-3xl">
@@ -186,7 +186,7 @@ const Hero = () => {
           
             <div className={`lg:col-span-5 relative mb-8 lg:mb-0 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
               {/* Блок с градиентной обводкой — симметричный левому */}
-              <div className="p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+              <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 {/* Контейнер с пропорциями 4:5 */}
                 <div className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden rounded-xl bg-gray-50">
                   <OptimizedImage 

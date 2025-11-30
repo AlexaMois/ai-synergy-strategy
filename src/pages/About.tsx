@@ -48,7 +48,7 @@ const About = () => {
           </h2>
           
           <div className="space-y-8">
-            <div className={`bg-white rounded-2xl p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+            <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
               <h3 className="text-2xl font-semibold text-text-heading mb-4">
                 15 лет в управлении и финансах
               </h3>
@@ -58,7 +58,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className={`bg-white rounded-2xl p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+            <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
               <h3 className="text-2xl font-semibold text-text-heading mb-4">
                 Переход в ИИ и цифровизацию
               </h3>
@@ -69,7 +69,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className={`bg-white rounded-2xl p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+            <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
               <h3 className="text-2xl font-semibold text-text-heading mb-4">
                 30+ проектов, 350+ консультаций
               </h3>
@@ -91,7 +91,7 @@ const About = () => {
           </h2>
           
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[#F1F4F5] rounded-2xl p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+            <div className="bg-[#F1F4F5] rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
               <h3 className="text-xl font-semibold text-text-heading mb-4">
                 Инженерное мышление
               </h3>
@@ -101,7 +101,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-[#F1F4F5] rounded-2xl p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+            <div className="bg-[#F1F4F5] rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
               <h3 className="text-xl font-semibold text-text-heading mb-4">
                 Фокус на экономике
               </h3>
@@ -111,7 +111,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-[#F1F4F5] rounded-2xl p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+            <div className="bg-[#F1F4F5] rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
               <h3 className="text-xl font-semibold text-text-heading mb-4">
                 Люди в центре
               </h3>
@@ -121,7 +121,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-[#F1F4F5] rounded-2xl p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+            <div className="bg-[#F1F4F5] rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
               <h3 className="text-xl font-semibold text-text-heading mb-4">
                 Честность превыше всего
               </h3>
@@ -142,22 +142,22 @@ const About = () => {
           </h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Член НФИИ</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Резидент IT-Парк Казань</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Резидент КРИТБИ</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Бизнес-Успех 2025</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Зампред ИТ-комитета ОПОРЫ России</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] text-center">
               <p className="text-lg font-medium text-text-heading">Спикер AI Summit Russia</p>
             </div>
           </div>

@@ -71,7 +71,7 @@ const HowIWorkProcess = () => {
               return (
                 <div
                   key={index}
-                  className={`p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(index + 1)}`}
+                  className={`p-4 sm:p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(index + 1)}`}
                   style={{
                     backgroundColor: 'hsl(var(--gray-50))'
                   }}

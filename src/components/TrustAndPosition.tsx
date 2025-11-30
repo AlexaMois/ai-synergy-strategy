@@ -42,7 +42,7 @@ const TrustAndPosition = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
-                  className={`p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
+                  className={`p-4 sm:p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
                 >
                   <p className="text-lg text-text-body leading-relaxed">
                     Помогаю компаниям получать измеримую пользу от ИИ, а не создавать лишние расходы.
@@ -51,7 +51,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 2 */}
                 <div 
-                  className={`p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
+                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     12+ лет в управлении, финансах и операционке
@@ -63,7 +63,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 3 */}
                 <div 
-                  className={`p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(2)}`}
+                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(2)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Профессиональное признание
@@ -75,7 +75,7 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
-                  className={`p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
+                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Подтверждённый результат
@@ -98,7 +98,7 @@ const TrustAndPosition = () => {
 
               <div className="space-y-4">
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
+                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -116,7 +116,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(5)}`}
+                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(5)}`}
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -135,7 +135,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(6)}`}
+                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(6)}`}
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -154,7 +154,7 @@ const TrustAndPosition = () => {
                 </div>
 
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(7)}`}
+                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(7)}`}
                 >
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"

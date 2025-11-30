@@ -87,7 +87,7 @@ const Cases = () => {
             return (
               <div
                 key={index}
-                className={`p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${getStaggeredClass(index)}`}
+                className={`p-4 sm:p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${getStaggeredClass(index)}`}
               >
                 {/* Icon and Company */}
                 <div className="flex items-start gap-4 mb-4">
