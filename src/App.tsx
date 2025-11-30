@@ -16,6 +16,7 @@ import CaseStudyCargoExpress from "./pages/CaseStudyCargoExpress";
 import GolossokDemo from "./pages/GolossokDemo";
 import GolossokPricing from "./pages/GolossokPricing";
 import ChecklistPage from "./pages/ChecklistPage";
+import ResourcesPage from "./pages/ResourcesPage";
 import Consent from "./pages/Consent";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/golossok-demo" element={<GolossokDemo />} />
           <Route path="/golossok-pricing" element={<GolossokPricing />} />
           <Route path="/checklist" element={<ChecklistPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/consent" element={<Consent />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
