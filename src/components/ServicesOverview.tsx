@@ -101,12 +101,7 @@ const ServicesOverview = () => {
                       <div className="mb-4 space-y-2">
                         {service.pricing.map((price, i) => (
                           <div key={i} className="flex items-start gap-2">
-                            <span className="text-primary text-lg">
-                              {i === 0 && service.pricing.length === 2 ? '💰' : 
-                               i === 1 && service.pricing.length === 2 ? '⏱️' :
-                               i === 0 && service.title.includes('Сопровождение') ? '📈' :
-                               i === 1 && service.title.includes('Сопровождение') ? '🔒' : '📊'}
-                            </span>
+                            <span className="text-primary font-medium">•</span>
                             <span className="text-sm text-text-body leading-snug">{price}</span>
                           </div>
                         ))}
