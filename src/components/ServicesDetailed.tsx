@@ -1,5 +1,6 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Search, Layers, ShieldCheck } from "lucide-react";
 
 const ServicesDetailed = () => {
@@ -200,77 +201,78 @@ const ServicesDetailed = () => {
   return (
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto space-y-16">
-          {services.map((service, serviceIndex) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.number}
-                className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${serviceIndex * 0.2}s` }}
-              >
-                {/* Service Header */}
-                <div className="mb-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0">
-                      <Icon className="w-12 h-12" style={{ color: '#49BED8' }} strokeWidth={1.5} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-5xl font-bold text-primary opacity-30 mb-2">
-                        {service.number}
+        <div className="max-w-5xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-6">
+            {services.map((service, serviceIndex) => {
+              const Icon = service.icon;
+              return (
+                <AccordionItem
+                  key={service.number}
+                  value={service.number}
+                  className={`bg-white rounded-2xl shadow-card hover:shadow-hover transition-all duration-300 border border-border/30 overflow-hidden ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  style={{ animationDelay: `${serviceIndex * 0.15}s` }}
+                >
+                  <AccordionTrigger className="px-6 py-6 sm:px-8 sm:py-8 hover:no-underline hover:bg-primary-light/10 transition-colors [&[data-state=open]]:bg-primary-light/20">
+                    <div className="flex items-start gap-4 sm:gap-6 w-full text-left">
+                      {/* Number and Icon */}
+                      <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                        <div className="text-4xl sm:text-5xl font-bold text-primary/30">
+                          {service.number}
+                        </div>
+                        <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary" strokeWidth={1.5} />
                       </div>
-                      <h2 className="text-2xl sm:text-3xl font-semibold text-text-heading mb-2">
-                        {service.title}
-                      </h2>
-                      <p className="text-handwriting text-lg">
-                        {service.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Service Content */}
-                <div className="space-y-6 pl-0 sm:pl-16">
-                  {service.sections.map((section, sectionIndex) => (
-                    <div key={sectionIndex} className="space-y-2">
-                      <h3 className="text-lg font-semibold text-text-heading">
-                        {section.heading}
-                      </h3>
-                      {section.content && (
-                        <p className="text-base text-text-body leading-relaxed whitespace-pre-line">
-                          {section.content}
+                      
+                      {/* Title and Subtitle */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl sm:text-2xl font-semibold text-text-heading mb-2 leading-tight">
+                          {service.title}
+                        </h3>
+                        <p className="text-base sm:text-lg text-primary font-medium italic leading-relaxed">
+                          {service.subtitle}
                         </p>
-                      )}
-                      {section.list && (
-                        <ul className="space-y-1.5 ml-4">
-                          {section.list.map((item, itemIndex) => (
-                            <li key={itemIndex} className="text-base text-text-body leading-relaxed flex">
-                              <span className="mr-2 text-primary">—</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                      </div>
                     </div>
-                  ))}
+                  </AccordionTrigger>
 
-                  {/* CTA Button */}
-                  <div className="pt-6">
-                    <Button size="lg" asChild>
-                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                        {service.cta}
-                      </a>
-                    </Button>
-                  </div>
-                </div>
+                  <AccordionContent className="px-6 sm:px-8 pb-8">
+                    <div className="space-y-6 pt-6 border-t border-border/20">
+                      {service.sections.map((section, sectionIndex) => (
+                        <div key={sectionIndex} className="space-y-2">
+                          <h4 className="text-lg font-semibold text-text-heading">
+                            {section.heading}
+                          </h4>
+                          {section.content && (
+                            <p className="text-base text-text-body leading-relaxed whitespace-pre-line">
+                              {section.content}
+                            </p>
+                          )}
+                          {section.list && (
+                            <ul className="space-y-2 ml-4">
+                              {section.list.map((item, itemIndex) => (
+                                <li key={itemIndex} className="text-base text-text-body leading-relaxed flex">
+                                  <span className="mr-2 text-primary flex-shrink-0">—</span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
 
-                {/* Divider */}
-                {serviceIndex < services.length - 1 && (
-                  <div className="mt-16 border-t border-gray-200"></div>
-                )}
-              </div>
-            );
-          })}
+                      {/* CTA Button */}
+                      <div className="pt-4">
+                        <Button size="lg" className="w-full sm:w-auto" asChild>
+                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                            {service.cta}
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
         </div>
       </div>
     </section>
