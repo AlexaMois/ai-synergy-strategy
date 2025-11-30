@@ -38,7 +38,7 @@ const SixQuestions = () => {
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">
             Компании приходят за ИИ.{" "}
-            <span className="font-semibold">Чаще им нужен не ИИ, а ответы.</span>
+            <span className="font-semibold"> какие задачи он должен и может решать</span>
           </h2>
           <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
             Чтобы понять, даст ли технология пользу, я начинаю с шести простых
