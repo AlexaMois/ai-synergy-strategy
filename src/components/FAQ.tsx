@@ -9,7 +9,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
-import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon, HelpCircle, CheckCircle } from "lucide-react";
+import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon, HelpCircle } from "lucide-react";
 import { JSX } from "react";
 
 const FAQ = () => {
@@ -20,8 +20,7 @@ const FAQ = () => {
       question: "Сколько стоит внедрение ИИ?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Зависит от сложности:
           </p>
           <ul className="space-y-1.5 ml-4">
@@ -40,8 +39,7 @@ const FAQ = () => {
       question: "Сколько времени занимает внедрение?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Среднее:
           </p>
           <ul className="space-y-1.5 ml-4">
@@ -60,8 +58,7 @@ const FAQ = () => {
       question: "Команда поймёт, что происходит?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Да, это мой приоритет.
           </p>
           <p>Я:</p>
@@ -80,8 +77,7 @@ const FAQ = () => {
       question: "А если решение не сработает?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Три варианта страховки:
           </p>
           <div className="ml-4 space-y-2">
@@ -103,18 +99,17 @@ const FAQ = () => {
       question: "Вы работаете с нашей отраслью?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Я работала или работаю сейчас почти со всеми отраслями:
           </p>
           <ul className="space-y-1 ml-4">
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Ретейл (Крайпотребсоюз)</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Логистика (Грузовой Экспресс)</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> SaaS (GolossOK)</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Производство</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> HR и рекрутмент</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Финтех</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Call-центры</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Ретейл (Крайпотребсоюз)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Логистика (Грузовой Экспресс)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> SaaS (GolossOK)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Производство</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> HR и рекрутмент</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Финтех</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Call-центры</li>
           </ul>
           <p className="font-medium">ГЛАВНОЕ: я не ищу стандартное решение "для вашей отрасли". Я ищу решение именно для вашей компании — её процессов и данных.</p>
         </div>
@@ -125,16 +120,15 @@ const FAQ = () => {
       question: "Будем зависеть от вас?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+          <p className="font-medium">
             Нет. Моя задача — сделать вас независимыми.
           </p>
           <p>После моего ухода:</p>
           <ul className="space-y-1.5 ml-4">
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Ваша команда может управлять системой самостоятельно</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Я документирую всё (инструкции, коды, архитектура)</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Вы можете нанять разработчика для поддержки (я подскажу, что ему нужно)</li>
-            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Система работает на открытых инструментах (не привязана к одному вендору)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Ваша команда может управлять системой самостоятельно</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Я документирую всё (инструкции, коды, архитектура)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Вы можете нанять разработчика для поддержки (я подскажу, что ему нужно)</li>
+            <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Система работает на открытых инструментах (не привязана к одному вендору)</li>
           </ul>
           <p className="italic">Мой подход: "Если я тебя чему-то научила, но ты всё ещё зависишь от меня — я сделала что-то не так".</p>
         </div>

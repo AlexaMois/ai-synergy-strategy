@@ -216,9 +216,7 @@ const About = () => {
               <div className="space-y-8">
                 {/* Education Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🎓</span> Образование (последние 3 года, 2000+ часов):
-                  </h3>
+                  <h3 className="text-xl font-semibold text-text-heading mb-6">Образование (последние 3 года, 2000+ часов)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-text-heading mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
@@ -269,9 +267,7 @@ const About = () => {
 
                 {/* Practical Experience Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
-                    <span className="text-2xl">💻</span> Практический опыт:
-                  </h3>
+                  <h3 className="text-xl font-semibold text-text-heading mb-6">Практический опыт</h3>
                   <ul className="space-y-3 text-base text-text-body ml-8">
                     <li className="flex items-start gap-3">
                       <span className="text-primary flex-shrink-0 mt-1">•</span>
@@ -293,9 +289,7 @@ const About = () => {
 
                 {/* Partnerships Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🤝</span> Партнёрства (постоянные, не разовые):
-                  </h3>
+                  <h3 className="text-xl font-semibold text-text-heading mb-6">Партнёрства (постоянные, не разовые)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-text-heading mb-2">TT Consulting</p>
@@ -320,10 +314,10 @@ const About = () => {
                     <div className="mt-4 p-4 bg-primary-light/20 rounded-lg">
                       <p className="font-medium mb-2">Моя роль: я не просто «нашла подрядчиков». Я контролирую:</p>
                       <ul className="space-y-1 text-sm text-text-body">
-                        <li>✅ Архитектуру (правильный ли подход?)</li>
-                        <li>✅ Сроки (вовремя ли?)</li>
-                        <li>✅ Качество (работает ли как надо?)</li>
-                        <li>✅ Результат (достигли ли целей?)</li>
+                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Архитектуру (правильный ли подход?)</li>
+                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Сроки (вовремя ли?)</li>
+                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Качество (работает ли как надо?)</li>
+                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Результат (достигли ли целей?)</li>
                       </ul>
                       <p className="text-sm text-text-body mt-2 italic">
                         Если подрядчик не справляется → я беру на себя или ищу другого. Финальный результат — на мне.
@@ -334,51 +328,49 @@ const About = () => {
 
                 {/* Focus Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🎯</span> Мой фокус (это не пустые слова — примеры из реальных проектов):
-                  </h3>
-                  <div className="space-y-4 ml-8">
-                    <div>
-                      <p className="font-medium mb-1">🏗️ Архитектура</p>
-                      <p className="text-sm text-text-body">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
-                      <p className="text-sm text-text-body">Результат: экономия 92% времени, 8 человек → половина полной занятости, ROI 278%</p>
-                    </div>
-                    
-                    <div>
-                      <p className="font-medium mb-1">🔀 Логика процессов</p>
-                      <p className="text-sm text-text-body">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
-                      <p className="text-sm text-text-body">Результат: экономия 4 часов/неделю, точность 99%, окупаемость 3 недели</p>
+                  <h3 className="text-xl font-semibold text-text-heading mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
+                  <div className="space-y-4">
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Архитектура</h4>
+                      <p className="text-text-body text-sm mb-2">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
+                      <p className="text-sm text-primary font-medium">Результат: экономия 92% времени, 8 человек → половина полной занятости, ROI 278%</p>
                     </div>
 
-                    <div>
-                      <p className="font-medium mb-1">🔗 Объединение систем (интеграции)</p>
-                      <p className="text-sm text-text-body">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
-                      <p className="text-sm text-text-body">Результат: ×5 скорость обработки заявок, точность распознавания 99%</p>
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Логика процессов</h4>
+                      <p className="text-text-body text-sm mb-2">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
+                      <p className="text-sm text-primary font-medium">Результат: экономия 4 часов/неделю, точность 99%, окупаемость 3 недели</p>
                     </div>
 
-                    <div>
-                      <p className="font-medium mb-1">🔐 Защищённые контуры (данные не в облаке)</p>
-                      <p className="text-sm text-text-body">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
-                      <p className="text-sm text-text-body">Ваши данные остаются на вашем сервере</p>
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Объединение систем (интеграции)</h4>
+                      <p className="text-text-body text-sm mb-2">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
+                      <p className="text-sm text-primary font-medium">Результат: ×5 скорость обработки заявок, точность распознавания 99%</p>
                     </div>
-                    
-                    <div>
-                      <p className="font-medium mb-1">🤖 Multi-Agent Systems (многоагентные системы)</p>
-                      <p className="text-sm text-text-body">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
-                      <p className="text-sm text-text-body">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
+
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Защищённые контуры (данные не в облаке)</h4>
+                      <p className="text-text-body text-sm mb-2">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
+                      <p className="text-sm font-medium text-text-body">Ваши данные остаются на вашем сервере</p>
                     </div>
-                    
-                    <div>
-                      <p className="font-medium mb-1">📚 RAG (система поиска и генерации)</p>
-                      <p className="text-sm text-text-body">ИИ ищет информацию в вашей базе, не фантазирует</p>
-                      <p className="text-sm text-text-body">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
+
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Multi-Agent Systems (многоагентные системы)</h4>
+                      <p className="text-text-body text-sm mb-2">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
+                      <p className="text-sm font-medium text-text-body">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
                     </div>
-                    
-                    <div>
-                      <p className="font-medium mb-1">🏠 Локальные модели</p>
-                      <p className="text-sm text-text-body">Для России: Яндекс.ГПТ, собственные модели</p>
-                      <p className="text-sm text-text-body">Для других стран: Mistral, LLaMA</p>
-                      <p className="text-sm text-text-body">Главное: ваши данные не на серверах OpenAI</p>
+
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">RAG (система поиска и генерации)</h4>
+                      <p className="text-text-body text-sm mb-2">ИИ ищет информацию в вашей базе, не фантазирует</p>
+                      <p className="text-sm font-medium text-text-body">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
+                    </div>
+
+                    <div className="bg-primary-light/10 rounded-xl p-5">
+                      <h4 className="font-semibold text-text-heading mb-2">Локальные модели</h4>
+                      <p className="text-text-body text-sm mb-2">Для России: Яндекс.ГПТ, собственные модели</p>
+                      <p className="text-text-body text-sm mb-2">Для других стран: Mistral, LLaMA</p>
+                      <p className="text-text-body text-sm font-medium">Главное: ваши данные не на серверах OpenAI</p>
                     </div>
                   </div>
                 </div>
@@ -449,7 +441,7 @@ const About = () => {
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="text-2xl md:text-3xl font-semibold text-text-heading text-left">
-                      🔴 Мои слабые стороны <span className="text-base font-normal text-text-body">(и почему я про них говорю)</span>
+                      Мои слабые стороны <span className="text-base font-normal text-text-body">(и почему я про них говорю)</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${weakSidesOpen ? 'rotate-180' : ''}`} />
                   </div>
@@ -463,11 +455,11 @@ const About = () => {
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          <span className="font-medium text-text-heading">Почему?</span><br />
                           Слишком мало данных, чтобы построить качественное решение. ИИ работает на данных — если их мало, результат будет случайным. Плюс, невыгодно экономически (мой минимум затрат не окупится).
                         </p>
                         <p>
-                          <span className="text-green-600 font-medium">✅ Что я рекомендую вместо этого?</span><br />
+                          <span className="font-semibold text-primary">Что я рекомендую вместо этого?</span><br />
                           Если у вас 5–15 человек → используйте готовые инструменты типа ChatGPT, Make, n8n. Не переплачивайте за консультацию. Напишите мне всё равно — дам совет за час.
                         </p>
                       </div>
@@ -480,7 +472,7 @@ const About = () => {
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          <span className="font-medium text-text-heading">Почему?</span><br />
                           Спешка = 80% провалов внедрения. Я не рискну вашим бюджетом ради того, чтобы сказать «готово». Хорошее решение требует:
                         </p>
                         <ul className="ml-6 space-y-1">
@@ -488,11 +480,11 @@ const About = () => {
                           <li>• Проектирования архитектуры (2–4 недели)</li>
                           <li>• Тестирования на малой группе (1–2 недели)</li>
                         </ul>
-                        <p className="text-red-600 font-medium">
-                          ❌ Если нужно быстро = я не ваш консультант.
+                        <p className="font-medium text-text-heading">
+                          Если нужно быстро = я не ваш консультант.
                         </p>
                         <p>
-                          <span className="text-green-600 font-medium">✅ Что это значит?</span><br />
+                          <span className="font-semibold text-primary">Что это значит?</span><br />
                           Я не беру срочные проекты. Это раздражает клиентов, которые хотят результат «вчера», но это спасает от провалов тех, кто готов ждать.
                         </p>
                       </div>
@@ -505,7 +497,7 @@ const About = () => {
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          <span className="font-medium text-text-heading">Почему?</span><br />
                           ИИ — это не кнопка, которая нажимается и работает. Это изменение процессов. Если руководитель говорит «внедрите ИИ, но ничего не меняйте» → проект провалится.
                         </p>
                         <p>Мне нужно:</p>
@@ -514,11 +506,11 @@ const About = () => {
                           <li>• Команда, которая согласна использовать новые инструменты</li>
                           <li>• Понимание, что первый месяц будет медленнее (люди учатся)</li>
                         </ul>
-                        <p className="text-red-600 font-medium">
-                          ❌ Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
+                        <p className="font-medium text-text-heading">
+                          Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
                         </p>
                         <p>
-                          <span className="text-green-600 font-medium">✅ Что это значит?</span><br />
+                          <span className="font-semibold text-primary">Что это значит?</span><br />
                           Я предварительно провожу диагностику готовности команды. Если готовности нет → я скажу «нет» и не возьму деньги. Это экономит вам бюджет.
                         </p>
                       </div>
@@ -531,7 +523,7 @@ const About = () => {
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="text-red-600 font-medium">❌ Почему?</span><br />
+                          <span className="font-medium text-text-heading">Почему?</span><br />
                           Помнишь мою фразу: «Если в компании порядок — ИИ усиливает порядок. Если хаос — ИИ усиливает хаос»?
                         </p>
                         <p>Вот это буквально. Если ваши процессы сейчас хаотичны:</p>
@@ -543,20 +535,20 @@ const About = () => {
                         <p>
                           То ИИ просто усилит этот хаос. Вместо решения получите «красивый инструмент, который производит мусор».
                         </p>
-                        <p className="text-red-600 font-medium">
-                          ❌ Сначала нужно навести порядок, потом внедрять ИИ.
+                        <p className="font-medium text-text-heading">
+                          Сначала нужно навести порядок, потом внедрять ИИ.
                         </p>
                         <p>
-                          <span className="text-green-600 font-medium">✅ Что я делаю?</span><br />
+                          <span className="font-semibold text-primary">Что я делаю?</span><br />
                           На диагностике я смотрю на ваши процессы. Если вижу хаос → я рекомендую сначала навести порядок (может быть, за 1–2 недели), потом уже ИИ. Это экономит деньги и даёт результат.
                         </p>
                       </div>
                     </div>
 
                     {/* Summary */}
-                    <div className="pt-6 border-t-2 border-green-200">
+                    <div className="pt-6 border-t-2 border-primary/20">
                       <h3 className="text-xl font-bold text-text-heading mb-4">
-                        🟢 ИТОГ: Почему эти «слабые стороны» — это ваше преимущество?
+                        Итог: Почему эти «слабые стороны» — это ваше преимущество?
                       </h3>
                       <p className="mb-4 font-semibold text-primary">
                         Если я отказываю в проекте → это значит, я берегу ваш бюджет.
@@ -564,19 +556,19 @@ const About = () => {
                       <p className="mb-3">Мой подход:</p>
                       <ul className="ml-6 space-y-2">
                         <li className="flex items-start gap-2">
-                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span className="text-primary font-semibold flex-shrink-0">•</span>
                           <span>Я скажу «нет», если проект обречён</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span className="text-primary font-semibold flex-shrink-0">•</span>
                           <span>Я потребую времени, даже если вы спешите</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span className="text-primary font-semibold flex-shrink-0">•</span>
                           <span>Я потребую воли к переменам, даже если это неудобно</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-green-600 flex-shrink-0">✅</span>
+                          <span className="text-primary font-semibold flex-shrink-0">•</span>
                           <span>Я потребую порядка в процессах, даже если это требует переделки</span>
                         </li>
                       </ul>
