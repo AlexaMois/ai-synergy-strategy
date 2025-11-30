@@ -96,7 +96,7 @@ const Blog = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
               <Link to={`/blog/${post.slug}`} key={index}>
-                <article className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
+                <article className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
                 >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-medium text-accent bg-[#D4EDFC] px-3 py-1 rounded-full">
@@ -133,7 +133,7 @@ const Blog = () => {
       {/* Newsletter Section */}
       <section className="py-10 md:py-14 lg:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-[#D4EDFC] rounded-2xl p-8 md:p-12 text-center">
+          <div className="bg-[#D4EDFC] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 text-center">
             <h2 className="text-3xl font-bold text-text-heading mb-4">
               Подпишитесь на рассылку
             </h2>

@@ -31,7 +31,7 @@ const MyStory = () => {
 
           <div className="space-y-4">
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(0, 'animate-fade-in-up')}`}
+              className={`flex items-start gap-6 p-4 sm:p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(0, 'animate-fade-in-up')}`}
               style={{ 
                 background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
@@ -47,7 +47,7 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(1, 'animate-fade-in-up')}`}
+              className={`flex items-start gap-6 p-4 sm:p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(1, 'animate-fade-in-up')}`}
               style={{ 
                 background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
@@ -63,7 +63,7 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(2, 'animate-fade-in-up')}`}
+              className={`flex items-start gap-6 p-4 sm:p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(2, 'animate-fade-in-up')}`}
               style={{ 
                 background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}
@@ -79,7 +79,7 @@ const MyStory = () => {
             </div>
 
             <div 
-              className={`flex items-start gap-6 p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(3, 'animate-fade-in-up')}`}
+              className={`flex items-start gap-6 p-4 sm:p-6 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)] ${getStaggeredClass(3, 'animate-fade-in-up')}`}
               style={{ 
                 background: 'linear-gradient(180deg, #F8FCFE 0%, #F4F9FB 100%)'
               }}

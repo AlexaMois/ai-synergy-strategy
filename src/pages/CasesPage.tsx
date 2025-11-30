@@ -380,7 +380,7 @@ const CasesPage = () => {
             {filteredCases.map((caseItem) => (
               <div
                 key={caseItem.id}
-                className="bg-white rounded-[20px] shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] p-6 md:p-8 gradient-border gradient-border-hover"
+                className="bg-white rounded-[20px] shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] p-4 sm:p-6 md:p-8 gradient-border gradient-border-hover"
               >
                 {/* Image Placeholder */}
                 <div className="w-full h-[120px] bg-gray-100 rounded-xl mb-6 flex items-center justify-center">

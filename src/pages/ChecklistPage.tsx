@@ -97,7 +97,7 @@ const ChecklistPage = () => {
         {/* Content for PDF export */}
         <div id="checklist-content" className="space-y-12">
           {/* Author Info */}
-          <div className="flex items-center gap-6 bg-gray-50 p-6 rounded-lg">
+          <div className="flex items-center gap-6 bg-gray-50 p-4 sm:p-6 rounded-lg">
             <OptimizedImage 
               src={alexandraPortrait} 
               alt="Александра Моисеева" 
@@ -114,7 +114,7 @@ const ChecklistPage = () => {
           </div>
 
           {/* Introduction */}
-          <section className="bg-primary-light p-8 rounded-lg">
+          <section className="bg-primary-light p-4 sm:p-6 md:p-8 rounded-lg">
             <h2 className="text-2xl font-medium text-text-heading mb-4">
               Вступление
             </h2>
@@ -138,7 +138,7 @@ const ChecklistPage = () => {
             </h2>
             <div className="space-y-6">
               {questions.map((item) => (
-                <div key={item.number} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div key={item.number} className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                       <span className="text-xl font-semibold text-white">
@@ -160,7 +160,7 @@ const ChecklistPage = () => {
           </section>
 
           {/* What to Do Next */}
-          <section className="bg-gray-50 p-8 rounded-lg">
+          <section className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg">
             <h2 className="text-2xl font-medium text-text-heading mb-4">
               Что делать дальше
             </h2>
@@ -170,7 +170,7 @@ const ChecklistPage = () => {
           </section>
 
           {/* Author's Recommendation */}
-          <section className="bg-primary-light p-8 rounded-lg">
+          <section className="bg-primary-light p-4 sm:p-6 md:p-8 rounded-lg">
             <h2 className="text-2xl font-medium text-text-heading mb-4">
               Рекомендация от автора
             </h2>

@@ -77,7 +77,7 @@ const Consent = () => {
               </p>
             </section>
 
-            <div className="bg-gray-50 p-6 rounded-lg mt-8">
+            <div className="bg-gray-50 p-4 sm:p-6 rounded-lg mt-8">
               <p className="font-medium text-foreground mb-2">ИП Моисеева Александра Алексеевна</p>
               <p>Email: neiroreshenia@yandex.com</p>
               <p>Телефон: 8 (993) 721-73-67</p>

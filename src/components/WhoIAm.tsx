@@ -35,7 +35,7 @@ const WhoIAm = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Левая колонка - большая карточка */}
         <div 
-          className={`rounded-2xl p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`rounded-2xl p-4 sm:p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           style={{ backgroundColor: 'hsl(var(--gray-50))' }}
         >
           <p className="text-lg leading-relaxed text-text-heading font-normal">

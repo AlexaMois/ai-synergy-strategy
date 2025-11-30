@@ -42,7 +42,7 @@ const WhatIDo = () => {
               return (
                 <div
                   key={index}
-                  className={`p-6 rounded-2xl shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-4 sm:p-6 rounded-2xl shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
                     backgroundColor: 'hsl(var(--gray-50))',
                     animationDelay: `${index * 0.1}s`
