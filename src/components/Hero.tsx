@@ -101,7 +101,7 @@ const Hero = () => {
                   
                    <div className="flex flex-col gap-4 pt-2">
                      <div className="flex flex-col gap-2">
-                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                            {tabsContent.ceo.button1}
                          </a>
@@ -131,7 +131,7 @@ const Hero = () => {
                   
                    <div className="flex flex-col gap-4 pt-2">
                      <div className="flex flex-col gap-2">
-                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                            {tabsContent.operations.button1}
                          </a>
@@ -161,7 +161,7 @@ const Hero = () => {
                   
                    <div className="flex flex-col gap-4 pt-2">
                      <div className="flex flex-col gap-2">
-                       <Button size="lg" className="w-full sm:w-auto" asChild>
+                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                            {tabsContent.it.button1}
                          </a>

@@ -29,9 +29,12 @@ const Contact = () => {
             Начните с малого — экспресс-аудита.
           </p>
           
-          <div className={`flex flex-row gap-4 justify-center items-center flex-wrap ${getStaggeredClass(2, 'animate-scale-in')}`}>
+          <div className={`flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap ${getStaggeredClass(2, 'animate-scale-in')}`}>
             <div className="flex flex-col gap-2 items-center">
-              <Button size="lg" asChild>
+              <Button 
+                className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
+                asChild
+              >
                 <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                   Пройти экспресс-аудит процессов
                 </a>
@@ -39,7 +42,7 @@ const Contact = () => {
               <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
             </div>
             <Button 
-              size="lg" 
+              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
               variant="outline" 
               asChild
             >
