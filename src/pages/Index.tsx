@@ -4,7 +4,6 @@ import MarqueeText from "@/components/MarqueeText";
 import SixQuestions from "@/components/SixQuestions";
 import TrustMarquee from "@/components/TrustMarquee";
 import TrustAndPosition from "@/components/TrustAndPosition";
-import WhatIDo from "@/components/WhatIDo";
 import Cases from "@/components/Cases";
 import AIFramework from "@/components/AIFramework";
 import FAQ from "@/components/FAQ";
@@ -20,7 +19,6 @@ const Index = () => {
       <MarqueeText />
       <SixQuestions />
       <TrustAndPosition />
-      <WhatIDo />
       <TrustMarquee />
       <Cases />
       <AIFramework />
