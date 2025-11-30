@@ -184,7 +184,7 @@ const Hero = () => {
               <OptimizedImage 
                 src={alexandraPortrait} 
                 alt="Александра Моисеева - AI консультант" 
-                className="w-full max-w-sm lg:max-w-md h-auto object-contain shadow-card transition-shadow duration-300" 
+                className="w-full max-w-sm lg:max-w-md h-auto object-contain" 
                 priority 
                 responsive
                 sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 400px"
