@@ -82,36 +82,57 @@ const AIFramework = () => {
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 0 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[0])} onMouseLeave={() => setHoveredPillar(null)} />
-            <text x="150" y="50" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
-              Технологии
-            </text>
             
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 1 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[1])} onMouseLeave={() => setHoveredPillar(null)} />
-            <text x="150" y="150" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
-              Люди
-            </text>
             
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 2 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[2])} onMouseLeave={() => setHoveredPillar(null)} />
-            <text x="50" y="150" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
-              Процессы
-            </text>
             
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
             opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 3 ? 1 : 0.6
           }} onMouseEnter={() => setHoveredPillar(sectorToPillar[3])} onMouseLeave={() => setHoveredPillar(null)} />
-            <text x="50" y="50" textAnchor="middle" className="text-sm md:text-base font-medium fill-text-heading pointer-events-none">
-              Бизнес
-            </text>
+            
+            {/* Текстовые метки с фоном */}
+            {/* Технологии - верхний правый */}
+            <g className="pointer-events-none">
+              <rect x="125" y="35" width="50" height="20" rx="8" fill="white" fillOpacity="0.9" />
+              <text x="150" y="48" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#222222">
+                Технологии
+              </text>
+            </g>
+            
+            {/* Люди - правый нижний */}
+            <g className="pointer-events-none">
+              <rect x="135" y="145" width="30" height="20" rx="8" fill="white" fillOpacity="0.9" />
+              <text x="150" y="158" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#222222">
+                Люди
+              </text>
+            </g>
+            
+            {/* Процессы - нижний левый */}
+            <g className="pointer-events-none">
+              <rect x="25" y="145" width="50" height="20" rx="8" fill="white" fillOpacity="0.9" />
+              <text x="50" y="158" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#222222">
+                Процессы
+              </text>
+            </g>
+            
+            {/* Бизнес - верхний левый */}
+            <g className="pointer-events-none">
+              <rect x="30" y="35" width="40" height="20" rx="8" fill="white" fillOpacity="0.9" />
+              <text x="50" y="48" textAnchor="middle" className="text-[11px] md:text-[13px] font-semibold" fill="#222222">
+                Бизнес
+              </text>
+            </g>
           </svg>
           
           {/* Центральная надпись */}
