@@ -41,16 +41,18 @@ const Index = () => {
   
   return <div className="min-h-screen">
       <Navigation />
-      <Hero />
-      <MarqueeText />
-      <SixQuestions />
-      <TrustAndPosition />
-      <TrustMarquee />
-      <ServicesOverview />
-      <Cases />
-      <AIFramework />
-      <FAQ />
-      <Contact />
+      <main>
+        <Hero />
+        <MarqueeText />
+        <SixQuestions />
+        <TrustAndPosition />
+        <TrustMarquee />
+        <ServicesOverview />
+        <Cases />
+        <AIFramework />
+        <FAQ />
+        <Contact />
+      </main>
       <Footer />
       <BackToTop />
       <FloatingCTA />

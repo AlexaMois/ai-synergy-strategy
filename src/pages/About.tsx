@@ -35,6 +35,7 @@ const About = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
       
+        <main>
         {/* Hero Section */}
         <section ref={heroRef} className="pt-32 pb-10 md:pb-16 lg:pb-20">
           <div className="container mx-auto px-4 max-w-6xl">
@@ -810,6 +811,7 @@ const About = () => {
             </Button>
           </div>
         </section>
+        </main>
 
         <Footer />
         <BackToTop />
