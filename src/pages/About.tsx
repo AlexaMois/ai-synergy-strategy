@@ -42,6 +42,8 @@ const About = () => {
                 src={portraitImage}
                 alt="Александра Моисеева"
                 className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
+                responsive
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 448px"
               />
             </div>
           </div>
