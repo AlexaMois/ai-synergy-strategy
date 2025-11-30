@@ -168,7 +168,7 @@ const AIFramework = () => {
           {hoveredSector !== null && (
             <div 
               ref={cardRef}
-              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg animate-scale-fade-in z-20 w-[260px] sm:w-[300px]
+              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg z-20 w-[260px] sm:w-[300px] animate-scale-fade-in
                 ${hoveredSector === 0 ? 'top-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
                 ${hoveredSector === 1 ? 'bottom-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
                 ${hoveredSector === 2 ? 'bottom-[5%] right-[calc(50%+120px)] sm:right-[calc(50%+180px)]' : ''}
