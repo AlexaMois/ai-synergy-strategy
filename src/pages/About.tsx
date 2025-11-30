@@ -4,6 +4,9 @@ import BackToTop from "@/components/BackToTop";
 import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import portraitImage from "@/assets/alexandra-portrait.jpg";
+import WhoIAm from "@/components/WhoIAm";
+import WhoIWorkWith from "@/components/WhoIWorkWith";
+import Partners from "@/components/Partners";
 
 const About = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -163,6 +166,10 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <WhoIAm />
+      <WhoIWorkWith />
+      <Partners />
 
       <Footer />
       <BackToTop />

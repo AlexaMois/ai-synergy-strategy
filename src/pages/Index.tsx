@@ -4,16 +4,9 @@ import MarqueeText from "@/components/MarqueeText";
 import SixQuestions from "@/components/SixQuestions";
 import TrustMarquee from "@/components/TrustMarquee";
 import TrustAndPosition from "@/components/TrustAndPosition";
-import Partners from "@/components/Partners";
 import WhatIDo from "@/components/WhatIDo";
-import HowIWorkProcess from "@/components/HowIWorkProcess";
-import Services from "@/components/Services";
-import HowIWork from "@/components/HowIWork";
-import WhoIWorkWith from "@/components/WhoIWorkWith";
-import Authority from "@/components/Authority";
 import Cases from "@/components/Cases";
 import AIFramework from "@/components/AIFramework";
-import WhoIAm from "@/components/WhoIAm";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -27,17 +20,10 @@ const Index = () => {
       <MarqueeText />
       <SixQuestions />
       <TrustAndPosition />
-      <Partners />
       <WhatIDo />
       <TrustMarquee />
-      <HowIWorkProcess />
       <Cases />
       <AIFramework />
-      <WhoIAm />
-      <Services />
-      <HowIWork />
-      <WhoIWorkWith />
-      
       <FAQ />
       <Contact />
       <Footer />

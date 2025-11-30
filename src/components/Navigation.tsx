@@ -51,8 +51,7 @@ const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { href: "#services", label: "Услуги", isScroll: true },
-    { href: "#how", label: "Как работаю", isScroll: true },
+    { href: "/services", label: "Услуги", isScroll: false },
     { href: "#cases", label: "Кейсы", isScroll: true },
     { href: "/about", label: "Обо мне", isScroll: false },
     { href: "/blog", label: "Блог", isScroll: false },
