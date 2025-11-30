@@ -128,7 +128,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
                   {link.label}
                 </a> : <Link key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
@@ -146,7 +146,7 @@ const Navigation = () => {
 
     {/* Mobile Menu Button - Independent Fixed Element */}
     <button 
-      className="md:hidden fixed top-5 right-4 z-[70] text-text-heading 
+      className="lg:hidden fixed top-5 right-4 z-[70] text-text-heading
                  pointer-events-auto touch-manipulation
                  w-11 h-11 flex items-center justify-center
                  bg-background/90 backdrop-blur-sm rounded-full shadow-md
@@ -160,14 +160,14 @@ const Navigation = () => {
     {/* Mobile Menu Backdrop */}
     {isMobileMenuOpen && (
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] md:hidden animate-fade-in" 
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] lg:hidden animate-fade-in"
         onClick={() => setIsMobileMenuOpen(false)} 
       />
     )}
 
     {/* Mobile Navigation Drawer */}
     <div 
-      className={`fixed top-0 right-0 h-full w-[280px] bg-background shadow-2xl z-[60] md:hidden transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`} 
+      className={`fixed top-0 right-0 h-full w-[280px] bg-background shadow-2xl z-[60] lg:hidden transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       onTouchStart={handleTouchStart} 
       onTouchMove={handleTouchMove} 
       onTouchEnd={handleTouchEnd}

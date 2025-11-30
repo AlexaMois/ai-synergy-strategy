@@ -86,7 +86,7 @@ const AIFramework = () => {
       </div>
 
       {/* Мобильная версия - 4 простых карточки */}
-      <div className={`md:hidden grid grid-cols-2 gap-4 mb-8 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`lg:hidden grid grid-cols-2 gap-4 mb-8 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         {sectors.map((sector, index) => (
           <div 
             key={index}
@@ -104,10 +104,10 @@ const AIFramework = () => {
       </div>
 
       {/* Десктопная версия - Круговая схема */}
-      <div className={`hidden md:flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <div className={`hidden lg:flex justify-center mb-12 lg:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
         <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex flex-col items-center justify-center" style={{ minHeight: '400px' }}>
           
-          <svg viewBox="0 0 200 200" className="w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
+          <svg viewBox="0 0 200 200" className="w-[300px] h-[300px] lg:w-[360px] lg:h-[360px]">
             {/* Анимированная пунктирная обводка для индикации интерактивности */}
             <circle 
               cx="100" 
