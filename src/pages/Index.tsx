@@ -18,10 +18,10 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
-      <ServicesOverview />
       <SixQuestions />
       <TrustAndPosition />
       <TrustMarquee />
+      <ServicesOverview />
       <Cases />
       <AIFramework />
       <FAQ />
