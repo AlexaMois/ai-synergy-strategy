@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { ArrowRight, Search, Layers, Users } from "lucide-react";
+import { ArrowRight, Search, Layers, Users, DollarSign, Clock, ShieldCheck, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ServicesOverview = () => {
@@ -99,12 +99,24 @@ const ServicesOverview = () => {
                     {/* Pricing */}
                     {service.pricing && (
                       <div className="mb-4 space-y-2">
-                        {service.pricing.map((price, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <span className="text-primary font-medium">•</span>
-                            <span className="text-sm text-text-body leading-snug">{price}</span>
-                          </div>
-                        ))}
+                        {service.pricing.map((price, i) => {
+                          // Определяем иконку по содержанию текста
+                          let IconComponent = DollarSign;
+                          if (price.toLowerCase().includes('компани') || price.toLowerCase().includes('человек')) {
+                            IconComponent = Building2;
+                          } else if (price.toLowerCase().includes('недел') || price.toLowerCase().includes('месяц') || price.toLowerCase().includes('управление')) {
+                            IconComponent = Clock;
+                          } else if (price.toLowerCase().includes('гарантия') || price.toLowerCase().includes('вернём')) {
+                            IconComponent = ShieldCheck;
+                          }
+                          
+                          return (
+                            <div key={i} className="flex items-start gap-2">
+                              <IconComponent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                              <span className="text-sm text-text-body leading-snug">{price}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                     
@@ -124,7 +136,7 @@ const ServicesOverview = () => {
                         <ul className="space-y-1.5">
                           {service.details.map((detail, i) => (
                             <li key={i} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                              <span className="text-primary mt-0.5">•</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
                               <span>{detail}</span>
                             </li>
                           ))}
