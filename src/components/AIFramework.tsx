@@ -8,7 +8,7 @@ const AIFramework = () => {
     threshold: 0.1,
     triggerOnce: true
   });
-  const [hoveredSector, setHoveredSector] = useState<number | null>(null);
+  const [hoveredSector, setHoveredSector] = useState<number | null>(0);
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Закрытие карточки при клике вне её
