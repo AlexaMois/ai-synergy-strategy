@@ -10,6 +10,10 @@ import ServicesPage from "./pages/ServicesPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import CasesPage from "./pages/CasesPage";
+import CaseStudyKraypotrebsoyuz from "./pages/CaseStudyKraypotrebsoyuz";
+import CaseStudyCargoExpress from "./pages/CaseStudyCargoExpress";
+import GolossokDemo from "./pages/GolossokDemo";
+import GolossokPricing from "./pages/GolossokPricing";
 import ChecklistPage from "./pages/ChecklistPage";
 import Consent from "./pages/Consent";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -37,6 +41,10 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/cases" element={<CasesPage />} />
+          <Route path="/case-studies/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
+          <Route path="/case-studies/cargo-express" element={<CaseStudyCargoExpress />} />
+          <Route path="/golossok-demo" element={<GolossokDemo />} />
+          <Route path="/golossok-pricing" element={<GolossokPricing />} />
           <Route path="/checklist" element={<ChecklistPage />} />
           <Route path="/consent" element={<Consent />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

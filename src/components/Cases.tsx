@@ -314,13 +314,50 @@ const Cases = () => {
                 </div>
 
                 {/* Link */}
-                <div className="mt-auto">
-                  <a 
-                    href="/cases" 
-                    className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
-                  >
-                    <span>{caseItem.features ? "Посмотреть как это работает (видео 2 мин)" : "Смотреть детальный разбор этого кейса"} →</span>
-                  </a>
+                <div className="mt-auto space-y-2">
+                  {/* Case-specific links */}
+                  {index === 0 && (
+                    <a 
+                      href="/case-studies/kraypotrebsoyuz" 
+                      className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
+                    >
+                      <span>Смотреть детальный разбор этого кейса →</span>
+                    </a>
+                  )}
+                  {index === 1 && (
+                    <>
+                      <a 
+                        href="/golossok-demo" 
+                        className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300 block mb-2"
+                      >
+                        <span>Посмотреть как это работает (видео 2 мин) →</span>
+                      </a>
+                      <a 
+                        href="/golossok-pricing" 
+                        className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
+                      >
+                        <span>Купить доступ или запросить пробный период →</span>
+                      </a>
+                    </>
+                  )}
+                  {index === 2 && (
+                    <>
+                      <a 
+                        href="/case-studies/cargo-express" 
+                        className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300 block mb-2"
+                      >
+                        <span>Смотреть детальный разбор этого кейса →</span>
+                      </a>
+                      <a 
+                        href="/resources/cargo-express-architecture.pdf" 
+                        className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>Скачать архитектуру системы →</span>
+                      </a>
+                    </>
+                  )}
                 </div>
 
                 {/* Main Metric - at bottom */}
