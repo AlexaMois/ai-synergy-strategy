@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    // Extract the hash from href (e.g., "/#services" -> "#services")
+    // Extract the hash from href (e.g., "/#contact" -> "contact")
     const hash = href.includes('#') ? href.split('#')[1] : '';
     
     if (!hash) return;
     
-    // If we're not on the homepage, navigate there first
-    if (window.location.pathname !== '/') {
-      window.location.href = `/#${hash}`;
+    // If we're not on the homepage, navigate there first with the hash
+    if (location.pathname !== '/') {
+      navigate(`/#${hash}`);
       return;
     }
     
