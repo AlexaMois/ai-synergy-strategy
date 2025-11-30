@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
+import SixQuestions from "@/components/SixQuestions";
 import TrustMarquee from "@/components/TrustMarquee";
 import TrustAndPosition from "@/components/TrustAndPosition";
 import Partners from "@/components/Partners";
@@ -24,6 +25,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
+      <SixQuestions />
       <TrustAndPosition />
       <Partners />
       <WhatIDo />
