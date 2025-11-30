@@ -1,0 +1,22 @@
+import { Home } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+
+const BackToHome = () => {
+  const location = useLocation();
+  
+  // Показываем только на внутренних страницах
+  if (location.pathname === '/') return null;
+  
+  return (
+    <Link
+      to="/"
+      className="fixed bottom-24 left-6 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
+      aria-label="На главную"
+    >
+      <Home size={20} />
+      <span className="text-sm font-medium hidden sm:inline">Домой</span>
+    </Link>
+  );
+};
+
+export default BackToHome;

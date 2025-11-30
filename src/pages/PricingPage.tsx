@@ -2,7 +2,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 
@@ -198,7 +197,6 @@ const PricingPage = () => {
     <PageTransition>
       <div className="min-h-screen">
         <Navigation />
-        <PageBreadcrumbs currentPage="Цены" />
         
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">

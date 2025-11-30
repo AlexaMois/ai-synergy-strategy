@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "@/components/ScrollToTop";
+import BackToHome from "@/components/BackToHome";
 import Index from "./pages/Index";
 
 // Lazy load non-critical pages
@@ -46,6 +47,7 @@ const App = () => (
         }}
       >
         <ScrollToTop />
+        <BackToHome />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />

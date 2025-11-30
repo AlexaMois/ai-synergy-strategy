@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -35,7 +34,6 @@ const About = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
-        <PageBreadcrumbs currentPage="Обо мне" />
       
         {/* Hero Section */}
         <section ref={heroRef} className="pt-32 pb-10 md:pb-16 lg:pb-20">
