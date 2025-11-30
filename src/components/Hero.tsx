@@ -57,9 +57,7 @@ const Hero = () => {
               <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
                   <div className="inline-block">
-                    <span className="text-handwriting text-2xl sm:text-3xl">
-                      независимый стратег инженер ИИ
-                    </span>
+                    <span className="text-handwriting text-2xl sm:text-3xl">независимый стратег и инженер ИИ</span>
                   </div>
 
                   <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям принять обоснованное решение, какие цифровые и ИИ решения дадут реальную ценность и эффект, а какие создадут неоправданные инвестиции и нену</p>
