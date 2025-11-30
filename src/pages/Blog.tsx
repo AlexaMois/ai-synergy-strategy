@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const Blog = () => {
   const { toast } = useToast();
@@ -74,8 +76,10 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
+        <PageBreadcrumbs currentPage="Блог" />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
@@ -156,9 +160,10 @@ const Blog = () => {
         </div>
       </section>
 
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </PageTransition>
   );
 };
 

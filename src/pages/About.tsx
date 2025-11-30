@@ -8,13 +8,17 @@ import WhoIAm from "@/components/WhoIAm";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import Partners from "@/components/Partners";
 import WhatIDo from "@/components/WhatIDo";
+import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const About = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
+        <PageBreadcrumbs currentPage="Обо мне" />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
@@ -174,9 +178,10 @@ const About = () => {
       <WhoIWorkWith />
       <Partners />
 
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </PageTransition>
   );
 };
 

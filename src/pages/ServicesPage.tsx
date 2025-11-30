@@ -4,11 +4,15 @@ import BackToTop from "@/components/BackToTop";
 import Services from "@/components/Services";
 import HowIWorkProcess from "@/components/HowIWorkProcess";
 import HowIWork from "@/components/HowIWork";
+import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
+        <PageBreadcrumbs currentPage="Услуги" />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
@@ -29,9 +33,10 @@ const ServicesPage = () => {
       <HowIWorkProcess />
       <HowIWork />
       
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </PageTransition>
   );
 };
 
