@@ -4,14 +4,12 @@ import BackToTop from "@/components/BackToTop";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const ServicesPage = () => {
   return (
     <PageTransition>
       <div className="min-h-screen">
         <Navigation />
-        <PageBreadcrumbs currentPage="Услуги" />
       
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">

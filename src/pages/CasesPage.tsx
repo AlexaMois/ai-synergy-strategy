@@ -4,7 +4,6 @@ import BackToTop from "@/components/BackToTop";
 import { Image } from "lucide-react";
 import { useState } from "react";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 interface CaseItem {
   id: number;
@@ -342,7 +341,6 @@ const CasesPage = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
-        <PageBreadcrumbs currentPage="Кейсы" />
       
       <main className="py-10 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 max-w-7xl">

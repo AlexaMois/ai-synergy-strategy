@@ -2,7 +2,6 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { 
   FileText, 
@@ -150,7 +149,6 @@ const ResourcesPage = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
-        <PageBreadcrumbs currentPage="Библиотека материалов" />
         
         <main className="container mx-auto px-4 max-w-6xl">
           {/* Hero Section */}

@@ -6,7 +6,6 @@ import { Calendar, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { useState } from "react";
 
 const CATEGORIES = [
@@ -103,7 +102,6 @@ const Blog = () => {
           <meta name="keywords" content="блог об ИИ, внедрение искусственного интеллекта, методология AI, ROI от ИИ, автоматизация процессов, обучение команды ИИ, российские LLM, аналитика ИИ проектов" />
         </Helmet>
         <Navigation />
-        <PageBreadcrumbs currentPage="Блог" />
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-background">

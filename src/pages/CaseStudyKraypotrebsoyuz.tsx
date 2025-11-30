@@ -2,7 +2,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign } from "lucide-react";
 
@@ -11,7 +10,6 @@ const CaseStudyKraypotrebsoyuz = () => {
     <PageTransition>
       <div className="min-h-screen">
         <Navigation />
-        <PageBreadcrumbs currentPage="Кейс: Крайпотребсоюз" />
         
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">

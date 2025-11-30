@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -101,7 +100,6 @@ const BlogPost = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
-        <PageBreadcrumbs currentPage={post.title} />
       
       <article className="pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
