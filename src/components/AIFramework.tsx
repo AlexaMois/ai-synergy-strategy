@@ -85,18 +85,29 @@ const AIFramework = () => {
         </p>
       </div>
 
-      {/* Круговая схема */}
-      <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex flex-col items-center justify-center" style={{ minHeight: '400px' }}>
-          {/* Подсказка для мобильных устройств */}
-          <div className="lg:hidden mb-4 flex items-center gap-2 text-sm text-text-subtle animate-pulse">
-            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-            </svg>
-            <span>Нажмите на сектор круга для подробностей</span>
+      {/* Мобильная версия - 4 простых карточки */}
+      <div className={`md:hidden grid grid-cols-2 gap-4 mb-8 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        {sectors.map((sector, index) => (
+          <div 
+            key={index}
+            className="p-4 rounded-xl shadow-card gradient-border"
+            style={{ backgroundColor: sector.color }}
+          >
+            <h4 className="font-semibold text-text-heading mb-2 text-base">
+              {sector.title}
+            </h4>
+            <p className="text-sm text-text-body leading-relaxed">
+              {sector.subtitle}
+            </p>
           </div>
+        ))}
+      </div>
+
+      {/* Десктопная версия - Круговая схема */}
+      <div className={`hidden md:flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+        <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex flex-col items-center justify-center" style={{ minHeight: '400px' }}>
           
-          <svg viewBox="0 0 200 200" className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px]">
+          <svg viewBox="0 0 200 200" className="w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
             {/* Анимированная пунктирная обводка для индикации интерактивности */}
             <circle 
               cx="100" 
@@ -116,7 +127,7 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6,
             transform: hoveredSector === 0 ? 'scale(1.02)' : 'scale(1)',
             transformOrigin: '100px 100px'
-          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(0)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(0)} />
+          }} onMouseEnter={() => setHoveredSector(0)} onMouseLeave={() => setHoveredSector(null)} onClick={() => handleSectorInteraction(0)} />
             
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
@@ -124,7 +135,7 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6,
             transform: hoveredSector === 1 ? 'scale(1.02)' : 'scale(1)',
             transformOrigin: '100px 100px'
-          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(1)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(1)} />
+          }} onMouseEnter={() => setHoveredSector(1)} onMouseLeave={() => setHoveredSector(null)} onClick={() => handleSectorInteraction(1)} />
             
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
@@ -132,7 +143,7 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6,
             transform: hoveredSector === 2 ? 'scale(1.02)' : 'scale(1)',
             transformOrigin: '100px 100px'
-          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(2)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(2)} />
+          }} onMouseEnter={() => setHoveredSector(2)} onMouseLeave={() => setHoveredSector(null)} onClick={() => handleSectorInteraction(2)} />
             
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
@@ -140,26 +151,26 @@ const AIFramework = () => {
             opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6,
             transform: hoveredSector === 3 ? 'scale(1.02)' : 'scale(1)',
             transformOrigin: '100px 100px'
-          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
+          }} onMouseEnter={() => setHoveredSector(3)} onMouseLeave={() => setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
             {/* Текстовые метки - только текст, насыщенные цвета, строго по центрам секторов */}
             {/* Технологии - верхний правый (центр сектора) */}
-            <text x="150" y="53" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="150" y="53" textAnchor="middle" className="text-[12px] font-bold pointer-events-none" fill="#0891B2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Технологии
             </text>
             
             {/* Люди - нижний правый (центр сектора) */}
-            <text x="150" y="153" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="150" y="153" textAnchor="middle" className="text-[12px] font-bold pointer-events-none" fill="#7C3AED" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Люди
             </text>
             
             {/* Процессы - нижний левый (центр сектора) */}
-            <text x="50" y="153" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="50" y="153" textAnchor="middle" className="text-[12px] font-bold pointer-events-none" fill="#0D9488" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Процессы
             </text>
             
             {/* Бизнес - верхний левый (центр сектора) */}
-            <text x="50" y="53" textAnchor="middle" className="text-[10px] md:text-[12px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
+            <text x="50" y="53" textAnchor="middle" className="text-[12px] font-bold pointer-events-none" fill="#D97706" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}>
               Бизнес
             </text>
           </svg>
@@ -168,17 +179,17 @@ const AIFramework = () => {
           {hoveredSector !== null && (
             <div 
               ref={cardRef}
-              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg z-20 w-[260px] sm:w-[300px] animate-scale-fade-in
-                ${hoveredSector === 0 ? 'top-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
-                ${hoveredSector === 1 ? 'bottom-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
-                ${hoveredSector === 2 ? 'bottom-[5%] right-[calc(50%+120px)] sm:right-[calc(50%+180px)]' : ''}
-                ${hoveredSector === 3 ? 'top-[5%] right-[calc(50%+120px)] sm:right-[calc(50%+180px)]' : ''}
+              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg z-20 w-[300px] animate-scale-fade-in
+                ${hoveredSector === 0 ? 'top-[5%] left-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 1 ? 'bottom-[5%] left-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 2 ? 'bottom-[5%] right-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 3 ? 'top-[5%] right-[calc(50%+180px)]' : ''}
               `}
             >
-              <h4 className="text-lg sm:text-xl font-semibold text-text-heading mb-2">
+              <h4 className="text-xl font-semibold text-text-heading mb-2">
                 {sectors[hoveredSector].title}
               </h4>
-              <p className="text-sm sm:text-base text-text-body mb-2 leading-relaxed">
+              <p className="text-base text-text-body mb-2 leading-relaxed">
                 {sectors[hoveredSector].subtitle}
               </p>
               <p className="text-sm text-text-body/80 leading-relaxed">
@@ -189,8 +200,8 @@ const AIFramework = () => {
           
           {/* Центральная надпись - уменьшена */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center bg-white/90 rounded-full w-24 h-24 md:w-32 md:h-32 flex items-center justify-center shadow-lg">
-              <p className="text-[12px] md:text-[14px] font-semibold text-text-heading leading-tight px-3">
+            <div className="text-center bg-white/90 rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
+              <p className="text-[14px] font-semibold text-text-heading leading-tight px-3">
                 AI Synergy<br />Framework
               </p>
             </div>
