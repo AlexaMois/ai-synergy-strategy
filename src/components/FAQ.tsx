@@ -9,7 +9,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
 import brushAccent from "@/assets/brush-accent-1.png";
-import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon } from "lucide-react";
+import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon, HelpCircle, CheckCircle } from "lucide-react";
 import { JSX } from "react";
 
 const FAQ = () => {
@@ -20,7 +20,10 @@ const FAQ = () => {
       question: "Сколько стоит внедрение ИИ?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Зависит от сложности:</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Зависит от сложности:
+          </p>
           <ul className="space-y-1.5 ml-4">
             <li>• Аудит: 6–200 тыс. ₽ (в зависимости от размера компании)</li>
             <li>• Стратегия + архитектура: 60–400 тыс. ₽</li>
@@ -37,7 +40,10 @@ const FAQ = () => {
       question: "Сколько времени занимает внедрение?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Среднее:</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Среднее:
+          </p>
           <ul className="space-y-1.5 ml-4">
             <li>• Аудит: 3–4 недели</li>
             <li>• Архитектура + выбор инструментов: 4–8 недель</li>
@@ -54,7 +60,10 @@ const FAQ = () => {
       question: "Команда поймёт, что происходит?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Да, это мой приоритет.</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Да, это мой приоритет.
+          </p>
           <p>Я:</p>
           <ul className="space-y-1.5 ml-4">
             <li>• Объясняю технологию на языке управления, а не на языке кодеров</li>
@@ -71,15 +80,18 @@ const FAQ = () => {
       question: "А если решение не сработает?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Три варианта страховки:</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Три варианта страховки:
+          </p>
           <div className="ml-4 space-y-2">
-            <p><strong>1️⃣ Гарантия за мной:</strong><br />
+            <p><strong>1. Гарантия за мной:</strong><br />
             Если в течение 1 месяца после внедрения не достигнем обещанных метрик → я верну вам ретейнер за этот месяц.</p>
             
-            <p><strong>2️⃣ Пилот перед полным внедрением:</strong><br />
+            <p><strong>2. Пилот перед полным внедрением:</strong><br />
             Сначала тестируем на подразделении (3–5 человек). Если не работает → откатываемся без потерь.</p>
             
-            <p><strong>3️⃣ Совместная ответственность:</strong><br />
+            <p><strong>3. Совместная ответственность:</strong><br />
             Я не просто передаю отчёт и ухожу. Я сопровождаю 3 месяца и отвечаю за результат вместе с вами.</p>
           </div>
           <p>Реальная статистика: у моих клиентов 92% успеха с первой попытки.</p>
@@ -91,15 +103,18 @@ const FAQ = () => {
       question: "Вы работаете с нашей отраслью?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Я работала или работаю сейчас почти со всеми отраслями:</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Я работала или работаю сейчас почти со всеми отраслями:
+          </p>
           <ul className="space-y-1 ml-4">
-            <li>✅ Ретейл (Крайпотребсоюз)</li>
-            <li>✅ Логистика (Грузовой Экспресс)</li>
-            <li>✅ SaaS (GolossOK)</li>
-            <li>✅ Производство</li>
-            <li>✅ HR и рекрутмент</li>
-            <li>✅ Финтех</li>
-            <li>✅ Call-центры</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Ретейл (Крайпотребсоюз)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Логистика (Грузовой Экспресс)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> SaaS (GolossOK)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Производство</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> HR и рекрутмент</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Финтех</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Call-центры</li>
           </ul>
           <p className="font-medium">ГЛАВНОЕ: я не ищу стандартное решение "для вашей отрасли". Я ищу решение именно для вашей компании — её процессов и данных.</p>
         </div>
@@ -110,13 +125,16 @@ const FAQ = () => {
       question: "Будем зависеть от вас?",
       answer: (
         <div className="space-y-3">
-          <p className="font-medium">✅ Нет. Моя задача — сделать вас независимыми.</p>
+          <p className="font-medium flex items-center gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+            Нет. Моя задача — сделать вас независимыми.
+          </p>
           <p>После моего ухода:</p>
           <ul className="space-y-1.5 ml-4">
-            <li>✅ Ваша команда может управлять системой самостоятельно</li>
-            <li>✅ Я документирую всё (инструкции, коды, архитектура)</li>
-            <li>✅ Вы можете нанять разработчика для поддержки (я подскажу, что ему нужно)</li>
-            <li>✅ Система работает на открытых инструментах (не привязана к одному вендору)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Ваша команда может управлять системой самостоятельно</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Я документирую всё (инструкции, коды, архитектура)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Вы можете нанять разработчика для поддержки (я подскажу, что ему нужно)</li>
+            <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-green-600" strokeWidth={2} /> Система работает на открытых инструментах (не привязана к одному вендору)</li>
           </ul>
           <p className="italic">Мой подход: "Если я тебя чему-то научила, но ты всё ещё зависишь от меня — я сделала что-то не так".</p>
         </div>
@@ -136,7 +154,8 @@ const FAQ = () => {
       />
       <div className="container mx-auto px-4">
         <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
-          ❓ Частые вопросы
+          <HelpCircle className="w-8 h-8 text-primary inline-block mr-3 mb-1" strokeWidth={1.5} />
+          Частые вопросы
         </h2>
 
         <div className={`max-w-4xl mx-auto ${getStaggeredClass(1, 'animate-fade-in-up')}`}>

@@ -2,7 +2,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
-import { Building2, Mic, Truck } from "lucide-react";
+import { Building2, Mic, Truck, XCircle, Lightbulb, Target, TrendingUp, CheckCircle, Briefcase } from "lucide-react";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -11,7 +11,7 @@ const Cases = () => {
   const cases = [
     {
       icon: Building2,
-      company: "🏢 Крайпотребсоюз (120+ организаций-членов, Краснодарский край)",
+      company: "Крайпотребсоюз (120+ организаций-членов, Краснодарский край)",
       about: "Краснодарский краевой союз потребительских кооперативов — региональное объединение, управляющее сетью товарных кооперативов. Штат: ~50 человек, множество филиалов, тысячи договоров в год.",
       problems: [
         "600+ часов в месяц на оформление и обработку договоров вручную",
@@ -42,7 +42,7 @@ const Cases = () => {
     },
     {
       icon: Mic,
-      company: "🎤 GolossOK — Голосовой ассистент для операционных задач",
+      company: "GolossOK — Голосовой ассистент для операционных задач",
       about: "Собственный AI-продукт Александры для компаний, которым нужна голосовая автоматизация операций (создание заявок, управление статусами, отчёты голосом).",
       client: "Компания с 30–100 сотрудниками, много операционной работы (call-центры, логистика, HR, управление проектами).",
       features: [
@@ -66,7 +66,7 @@ const Cases = () => {
     },
     {
       icon: Truck,
-      company: "🚚 Грузовой Экспресс — Логистическая компания (15 человек, Красноярск)",
+      company: "Грузовой Экспресс — Логистическая компания (15 человек, Красноярск)",
       about: "Местная логистическая компания, доставляющая грузы по Красноярску и краю. 10 водителей, 3 диспетчера, 40–60 заявок/день.",
       problems: [
         "Диспетчеры вручную вводили всё в таблицу (2–3 часа/день)",
@@ -143,8 +143,18 @@ const Cases = () => {
 
                 {/* About / Client */}
                 <div className="mb-4">
-                  <p className="text-sm font-medium text-text-heading mb-1">
-                    {caseItem.client ? "💼 Типовой клиент:" : "О клиенте:"}
+                  <p className="text-sm font-medium text-text-heading mb-1 flex items-center gap-2">
+                    {caseItem.client ? (
+                      <>
+                        <Briefcase className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                        <span>Типовой клиент:</span>
+                      </>
+                    ) : (
+                      <>
+                        <Building2 className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                        <span>О клиенте:</span>
+                      </>
+                    )}
                   </p>
                   <p className="text-sm text-text-body leading-relaxed">
                     {caseItem.about}
@@ -160,7 +170,10 @@ const Cases = () => {
                 {/* Problems */}
                 {caseItem.problems && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">❌ Проблема:</p>
+                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
+                      <XCircle className="w-4 h-4 text-red-500" strokeWidth={1.5} />
+                      <span>Проблема:</span>
+                    </p>
                     <ul className="space-y-1">
                       {caseItem.problems.map((problem, idx) => (
                         <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
@@ -175,7 +188,10 @@ const Cases = () => {
                 {/* Features */}
                 {caseItem.features && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">✔️ Возможности:</p>
+                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
+                      <span>Возможности:</span>
+                    </p>
                     <ul className="space-y-1">
                       {caseItem.features.map((feature, idx) => (
                         <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
@@ -190,8 +206,9 @@ const Cases = () => {
                 {/* Solution */}
                 {caseItem.solution && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">
-                      💡 Решение (бюджет {caseItem.solution.budget}):
+                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
+                      <Lightbulb className="w-4 h-4 text-yellow-600" strokeWidth={1.5} />
+                      <span>Решение (бюджет {caseItem.solution.budget}):</span>
                     </p>
                     <ul className="space-y-1">
                       {caseItem.solution.steps.map((step, idx) => (
@@ -207,7 +224,10 @@ const Cases = () => {
                 {/* Quote */}
                 {caseItem.quote && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">🎯 Особенность этого решения:</p>
+                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
+                      <Target className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                      <span>Особенность этого решения:</span>
+                    </p>
                     <p className="text-sm italic text-text-body leading-relaxed">
                       "{caseItem.quote}"
                     </p>
@@ -219,8 +239,9 @@ const Cases = () => {
 
                 {/* Results */}
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-text-heading mb-2">
-                    📈 Результаты ({caseItem.results.period}):
+                  <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                    <span>Результаты ({caseItem.results.period}):</span>
                   </p>
                   <ul className="space-y-1.5">
                     {caseItem.results.items.map((result, idx) => {
@@ -235,7 +256,7 @@ const Cases = () => {
                       if (match92) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>Экономия <span className="font-semibold text-primary">{count92}%</span> времени на обработку (~550 часов/месяц)</span>
                           </li>
                         );
@@ -243,7 +264,7 @@ const Cases = () => {
                       if (match80) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>Сокращение ФОТ на эту операцию на <span className="font-semibold text-primary">{count80}%</span></span>
                           </li>
                         );
@@ -251,7 +272,7 @@ const Cases = () => {
                       if (match278) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>ROI <span className="font-semibold text-primary">{count278}%</span> (окупилось за 3 недели)</span>
                           </li>
                         );
@@ -259,7 +280,7 @@ const Cases = () => {
                       if (match5) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>×<span className="font-semibold text-primary">{count5}</span> скорость обработки заявок (вместо 3 минут — 30 сек)</span>
                           </li>
                         );
@@ -267,7 +288,7 @@ const Cases = () => {
                       if (match99) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>Точность <span className="font-semibold text-primary">{count99}%</span> {result.includes('маршрутов') ? 'маршрутов (вместо 70%)' : 'распознавания'}</span>
                           </li>
                         );
@@ -275,7 +296,7 @@ const Cases = () => {
                       if (match3) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <span className="text-primary mt-0.5">✅</span>
+                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                             <span>Экономия <span className="font-semibold text-primary">{count3}–4</span> часа в неделю (диспетчеры)</span>
                           </li>
                         );
@@ -284,7 +305,7 @@ const Cases = () => {
                       // Default render without animation
                       return (
                         <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                          <span className="text-primary mt-0.5">✅</span>
+                          <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
                           <span>{result}</span>
                         </li>
                       );
