@@ -25,7 +25,7 @@ const WhatIDo = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-background"
+      className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">

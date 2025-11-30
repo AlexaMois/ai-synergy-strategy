@@ -9,7 +9,7 @@ const WhyItWorks = () => {
   const parallaxOffset = useParallax(0.25);
 
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden" style={{
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden" style={{
       background: 'linear-gradient(180deg, #F8FCFD 0%, #FAFBFC 100%)'
     }}>
       {/* N Pattern Background */}

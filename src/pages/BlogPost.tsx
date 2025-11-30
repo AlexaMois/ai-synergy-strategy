@@ -191,7 +191,7 @@ const BlogPost = () => {
       </article>
 
       {relatedPosts.length > 0 && (
-        <section className="py-16 bg-[#FAFBFC]">
+        <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-semibold text-text-heading mb-8 text-center">
               Читайте также

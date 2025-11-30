@@ -340,7 +340,7 @@ const CasesPage = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="py-20">
+      <main className="py-10 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Hero Section */}
           <div className="text-center mb-16">

@@ -11,7 +11,7 @@ const TrustAndPosition = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-background"
+      className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background"
     >
       {/* Brush Accent */}
       <OptimizedImage 
@@ -29,7 +29,7 @@ const TrustAndPosition = () => {
         <div 
           className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-hover ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}
         >
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className="mb-8">

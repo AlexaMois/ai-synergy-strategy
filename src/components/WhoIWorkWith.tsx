@@ -8,7 +8,7 @@ const WhoIWorkWith = () => {
   const parallaxOffset = useParallax(0.35);
 
   return (
-    <section ref={ref} className="relative py-20 bg-background overflow-hidden">
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 

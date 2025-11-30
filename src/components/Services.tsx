@@ -24,7 +24,7 @@ const Services = () => {
     description: "Обучаю команду работе с ИИ. Сопровождаю пилоты и запуски. Помогаю избежать ошибок и достичь целевых метрик."
   }];
   return (
-    <section id="services" ref={ref} className="relative py-20 bg-background overflow-hidden">
+    <section id="services" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       {/* Brush Accent */}
       <OptimizedImage 
         src={brushAccent} 
