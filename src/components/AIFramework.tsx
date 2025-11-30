@@ -87,7 +87,15 @@ const AIFramework = () => {
 
       {/* Круговая схема */}
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex items-center justify-center" style={{ minHeight: '400px' }}>
+        <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex flex-col items-center justify-center" style={{ minHeight: '400px' }}>
+          {/* Подсказка для мобильных устройств */}
+          <div className="lg:hidden mb-4 flex items-center gap-2 text-sm text-text-subtle animate-pulse">
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            </svg>
+            <span>Нажмите на сектор круга для подробностей</span>
+          </div>
+          
           <svg viewBox="0 0 200 200" className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px]">
             {/* Сектор 0 - Технологии (верхний правый, голубой) */}
             <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
