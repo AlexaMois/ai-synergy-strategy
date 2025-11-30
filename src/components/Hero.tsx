@@ -62,9 +62,7 @@ const Hero = () => {
                     </span>
                   </div>
 
-                  <p className="text-lg text-text-body leading-relaxed font-semibold">
-                    Помогаю компаниям понять, какие ИИ-решения дают реальную ценность, а какие создают издержки и расфокусировку.
-                  </p>
+                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям принять обоснованное решение, какие цифровые и ИИ решения дадут реальную ценность и эффект, а какие создадут неоправданные инвестиции и нену</p>
                   
                   <p className="text-lg text-text-body leading-relaxed">
                     Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
@@ -189,13 +187,7 @@ const Hero = () => {
               <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 {/* Контейнер с пропорциями 4:5 */}
                 <div className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden rounded-xl bg-gray-50">
-                  <OptimizedImage 
-                    src={alexandraPortrait} 
-                    alt="Александра Моисеева - AI консультант" 
-                    className="w-full h-full object-cover object-top"
-                    priority 
-                    sizes="(max-width: 768px) 100vw, 50vw" 
-                  />
+                  <OptimizedImage src={alexandraPortrait} alt="Александра Моисеева - AI консультант" className="w-full h-full object-cover object-top" priority sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
               </div>
             </div>
