@@ -185,7 +185,7 @@ const Hero = () => {
               <img 
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
-                className="w-full max-w-sm lg:max-w-md h-auto object-contain"
+                className="w-full max-w-md lg:max-w-lg h-auto object-contain"
               />
             </div>
           </div>
