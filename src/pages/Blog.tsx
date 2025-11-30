@@ -7,9 +7,38 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import { useState } from "react";
+
+const CATEGORIES = [
+  "Все статьи",
+  "Внедрение ИИ",
+  "Методология",
+  "Аналитика",
+  "Управление",
+  "Технологии",
+  "Обучение",
+];
 
 const Blog = () => {
   const { toast } = useToast();
+  const [activeCategories, setActiveCategories] = useState<string[]>(["Все статьи"]);
+
+  const handleCategoryClick = (category: string) => {
+    if (category === "Все статьи") {
+      setActiveCategories(["Все статьи"]);
+    } else {
+      setActiveCategories(prev => {
+        const withoutAll = prev.filter(cat => cat !== "Все статьи");
+        
+        if (withoutAll.includes(category)) {
+          const newCategories = withoutAll.filter(cat => cat !== category);
+          return newCategories.length === 0 ? ["Все статьи"] : newCategories;
+        } else {
+          return [...withoutAll, category];
+        }
+      });
+    }
+  };
   
   const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,6 +104,10 @@ const Blog = () => {
     }
   ];
 
+  const filteredPosts = activeCategories.includes("Все статьи")
+    ? posts 
+    : posts.filter(post => activeCategories.includes(post.category));
+
   return (
     <PageTransition>
       <div className="min-h-screen">
@@ -93,11 +126,35 @@ const Blog = () => {
         </div>
       </section>
 
+      {/* Category Tabs */}
+      <section className="py-8 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {CATEGORIES.map((category) => (
+              <button
+                key={category}
+                onClick={() => handleCategoryClick(category)}
+                className={`
+                  px-5 py-2.5 rounded-xl text-sm font-medium
+                  transition-all duration-300
+                  ${activeCategories.includes(category)
+                    ? 'bg-primary text-white shadow-md scale-[1.02]'
+                    : 'bg-white text-[#666] border border-[#DDD] hover:bg-primary/10 hover:border-primary/30 hover:scale-[1.02]'
+                  }
+                `}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Blog Posts Grid */}
       <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <Link to={`/blog/${post.slug}`} key={index}>
                 <article className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
                 >
