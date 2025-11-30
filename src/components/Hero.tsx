@@ -52,7 +52,7 @@ const Hero = () => {
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-            <div className={`lg:col-span-7 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className={`lg:col-span-7 space-y-6 relative z-10 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               {/* Верхний блок с градиентной обводкой */}
               <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
@@ -181,11 +181,11 @@ const Hero = () => {
             </div>
           
             {/* Правая колонка с фото */}
-            <div className={`lg:col-span-5 flex items-center justify-center ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+            <div className={`lg:col-span-5 flex items-center justify-center relative z-0 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
               <img 
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
-                className="w-full max-w-lg lg:max-w-xl h-auto object-contain"
+                className="w-full max-w-lg lg:max-w-xl h-auto object-contain lg:-ml-16"
               />
             </div>
           </div>
