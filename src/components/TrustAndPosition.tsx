@@ -1,12 +1,19 @@
 import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useParallax } from "@/hooks/use-parallax";
+import { useCountUp } from "@/hooks/use-count-up";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const TrustAndPosition = () => {
   const { ref, getAnimationClass, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
+  
+  // Counter animation for ROI numbers
+  const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
+  const count200 = useCountUp({ end: 200, duration: 1800, isVisible: counterVisible });
+  const count400 = useCountUp({ end: 400, duration: 1800, isVisible: counterVisible });
 
   return (
     <section 
@@ -78,13 +85,14 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
+                  ref={counterRef as any}
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Подтвержденный результат
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    ROI клиентов от 200 до 400 процентов в первые месяцы.
+                    ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы.
                   </p>
                 </div>
               </div>
