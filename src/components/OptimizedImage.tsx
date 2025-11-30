@@ -1,6 +1,5 @@
 import { ImgHTMLAttributes, useState } from 'react';
 import { cn } from '@/lib/utils';
-
 interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string;
   alt: string;
@@ -28,14 +27,14 @@ interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 
  *   priority // Use for above-the-fold images
  * />
  */
-const OptimizedImage = ({ 
-  src, 
-  alt, 
-  className, 
+const OptimizedImage = ({
+  src,
+  alt,
+  className,
   priority = false,
   sizes,
   srcSet,
-  ...props 
+  ...props
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -46,35 +45,9 @@ const OptimizedImage = ({
 
   // Generate WebP srcSet if regular srcSet is provided
   const webpSrcSet = srcSet ? srcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
-
-  return (
-    <picture>
-      {hasWebpVersion && (
-        <source 
-          srcSet={webpSrcSet || webpSrc}
-          type="image/webp"
-          sizes={sizes}
-        />
-      )}
-      <img
-        src={src}
-        srcSet={srcSet}
-        alt={alt}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding={priority ? 'sync' : 'async'}
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
-        className={cn(
-          'transition-opacity duration-300',
-          isLoaded ? 'opacity-100' : 'opacity-0',
-          hasError && 'hidden',
-          className
-        )}
-        sizes={sizes}
-        {...props}
-      />
-    </picture>
-  );
+  return <picture>
+      {hasWebpVersion && <source srcSet={webpSrcSet || webpSrc} type="image/webp" sizes={sizes} />}
+      
+    </picture>;
 };
-
 export default OptimizedImage;
