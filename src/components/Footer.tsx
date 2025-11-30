@@ -21,14 +21,7 @@ const Footer = () => {
     // If we're on homepage, scroll to element
     const element = document.querySelector(`#${hash}`);
     if (element) {
-      const navHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
