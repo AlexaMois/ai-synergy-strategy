@@ -1,63 +1,64 @@
 import { useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+
 const AIFramework = () => {
-  const {
-    ref,
-    isVisible
-  } = useIntersectionObserver({
+  const { ref, isVisible } = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true
   });
-  const [hoveredPillar, setHoveredPillar] = useState<number | null>(null);
+  
+  const [hoveredSector, setHoveredSector] = useState<number | null>(null);
 
-  // Маппинг между секторами круга и карточками
-  const sectorToPillar: {
-    [key: number]: number;
-  } = {
-    0: 3,
-    1: 2,
-    2: 1,
-    3: 0
+  const sectors = [
+    {
+      name: "Бизнес",
+      title: "Чёткие цели и измеримый эффект",
+      description: "Понимание, что именно нужно изменить",
+      position: "top"
+    },
+    {
+      name: "Технологии",
+      title: "Архитектура, безопасность, масштабируемость",
+      description: "Только те инструменты, которые подходят компании",
+      position: "right"
+    },
+    {
+      name: "Люди",
+      title: "Понимание, обучение, отсутствие сопротивления",
+      description: "Технологии не должны пугать команду",
+      position: "bottom"
+    },
+    {
+      name: "Процессы",
+      title: "Логика, куда ИИ действительно может встроиться",
+      description: "Если решение ломает процесс — оно не внедряется",
+      position: "left"
+    }
+  ];
+
+  const getTooltipPosition = (position: string) => {
+    const baseClasses = "absolute bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg max-w-[240px] transition-all duration-300 pointer-events-none z-10";
+    
+    switch(position) {
+      case "top":
+        return `${baseClasses} bottom-full left-1/2 -translate-x-1/2 mb-4`;
+      case "right":
+        return `${baseClasses} left-full top-1/2 -translate-y-1/2 ml-4`;
+      case "bottom":
+        return `${baseClasses} top-full left-1/2 -translate-x-1/2 mt-4`;
+      case "left":
+        return `${baseClasses} right-full top-1/2 -translate-y-1/2 mr-4`;
+      default:
+        return baseClasses;
+    }
   };
-  const pillarToSector: {
-    [key: number]: number;
-  } = {
-    0: 3,
-    1: 2,
-    2: 1,
-    3: 0
-  };
-  const sectors = [{
-    name: "Технологии",
-    color: "#D4EDFC",
-    position: "right"
-  }, {
-    name: "Люди",
-    color: "#E8E0F5",
-    position: "bottom-right"
-  }, {
-    name: "Процессы",
-    color: "#DFF0F0",
-    position: "bottom-left"
-  }, {
-    name: "Бизнес",
-    color: "#F6F3EB",
-    position: "top-left"
-  }];
-  const pillars = [{
-    title: "Фокус на цели бизнеса",
-    points: ["Сначала: зачем это компании?", "Потом: какие решения подойдут?", "Считаю эффект до старта."]
-  }, {
-    title: "Инженерное мышление",
-    points: ["Проектирую систему, а не набор инструментов.", "Если решение ломает процессы — оно не внедряется."]
-  }, {
-    title: "Люди в центре",
-    points: ["Объясняю, обучаю, снимаю сопротивление.", "Технологии не должны пугать."]
-  }, {
-    title: "Этика и честность",
-    points: ["Не беру хайп-проекты ради галочки.", "Если автоматизация не окупится — говорю сразу."]
-  }];
-  return <section id="methodology" ref={ref} className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
+
+  return (
+    <section 
+      id="methodology" 
+      ref={ref} 
+      className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background"
+    >
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <h2 className="section-title text-center leading-tight">
@@ -68,95 +69,132 @@ const AIFramework = () => {
 
       {/* Подзаголовок */}
       <div className={`text-center mb-12 md:mb-16 transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-handwriting animate-handwriting tracking-wide text-xl sm:text-2xl md:text-3xl">
+        <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
           ИИ работает только тогда, когда совпадают: бизнес, процессы, люди и технологии.
         </p>
       </div>
 
-      {/* Круговая схема */}
+      {/* Круговая схема с тонким кольцом */}
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] mx-auto">
+        <div className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] mx-auto">
           <svg viewBox="0 0 200 200" className="w-full h-full">
-            {/* Сектор 0 - Технологии (верхний правый, голубой) */}
-            <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer" style={{
-            filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
-            opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 0 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredPillar(sectorToPillar[0])} onMouseLeave={() => setHoveredPillar(null)} />
-            {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
-            <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer" style={{
-            filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
-            opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 1 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredPillar(sectorToPillar[1])} onMouseLeave={() => setHoveredPillar(null)} />
-            {/* Сектор 2 - Процессы (нижний левый, мятный) */}
-            <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer" style={{
-            filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
-            opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 2 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredPillar(sectorToPillar[2])} onMouseLeave={() => setHoveredPillar(null)} />
-            {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
-            <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer" style={{
-            filter: hoveredPillar !== null && pillarToSector[hoveredPillar] === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
-            opacity: hoveredPillar === null || pillarToSector[hoveredPillar] === 3 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredPillar(sectorToPillar[3])} onMouseLeave={() => setHoveredPillar(null)} />
+            {/* Тонкое кольцо, разделённое на 4 сектора */}
+            <defs>
+              <mask id="ring-mask">
+                <circle cx="100" cy="100" r="100" fill="white"/>
+                <circle cx="100" cy="100" r="70" fill="black"/>
+              </mask>
+            </defs>
+
+            {/* Сектор 0 - Бизнес (верх) */}
+            <path 
+              d="M 100 0 A 100 100 0 0 1 200 100 L 170 100 A 70 70 0 0 0 100 30 Z" 
+              fill="transparent"
+              stroke="hsl(var(--primary))"
+              strokeWidth="1.5"
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.4,
+                strokeWidth: hoveredSector === 0 ? '2.5' : '1.5'
+              }}
+              onMouseEnter={() => setHoveredSector(0)}
+              onMouseLeave={() => setHoveredSector(null)}
+              onClick={() => setHoveredSector(hoveredSector === 0 ? null : 0)}
+            />
+
+            {/* Сектор 1 - Технологии (право) */}
+            <path 
+              d="M 200 100 A 100 100 0 0 1 100 200 L 100 170 A 70 70 0 0 0 170 100 Z" 
+              fill="transparent"
+              stroke="hsl(var(--primary))"
+              strokeWidth="1.5"
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.4,
+                strokeWidth: hoveredSector === 1 ? '2.5' : '1.5'
+              }}
+              onMouseEnter={() => setHoveredSector(1)}
+              onMouseLeave={() => setHoveredSector(null)}
+              onClick={() => setHoveredSector(hoveredSector === 1 ? null : 1)}
+            />
+
+            {/* Сектор 2 - Люди (низ) */}
+            <path 
+              d="M 100 200 A 100 100 0 0 1 0 100 L 30 100 A 70 70 0 0 0 100 170 Z" 
+              fill="transparent"
+              stroke="hsl(var(--primary))"
+              strokeWidth="1.5"
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.4,
+                strokeWidth: hoveredSector === 2 ? '2.5' : '1.5'
+              }}
+              onMouseEnter={() => setHoveredSector(2)}
+              onMouseLeave={() => setHoveredSector(null)}
+              onClick={() => setHoveredSector(hoveredSector === 2 ? null : 2)}
+            />
+
+            {/* Сектор 3 - Процессы (лево) */}
+            <path 
+              d="M 0 100 A 100 100 0 0 1 100 0 L 100 30 A 70 70 0 0 0 30 100 Z" 
+              fill="transparent"
+              stroke="hsl(var(--primary))"
+              strokeWidth="1.5"
+              className="transition-all duration-300 cursor-pointer"
+              style={{
+                opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.4,
+                strokeWidth: hoveredSector === 3 ? '2.5' : '1.5'
+              }}
+              onMouseEnter={() => setHoveredSector(3)}
+              onMouseLeave={() => setHoveredSector(null)}
+              onClick={() => setHoveredSector(hoveredSector === 3 ? null : 3)}
+            />
+
+            {/* Подписи на секторах */}
+            <text x="100" y="20" textAnchor="middle" className="text-[10px] font-medium fill-text-heading">Бизнес</text>
+            <text x="180" y="105" textAnchor="middle" className="text-[10px] font-medium fill-text-heading">Технологии</text>
+            <text x="100" y="190" textAnchor="middle" className="text-[10px] font-medium fill-text-heading">Люди</text>
+            <text x="20" y="105" textAnchor="middle" className="text-[10px] font-medium fill-text-heading">Процессы</text>
           </svg>
           
           {/* Центральная надпись */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center bg-white/90 rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-lg">
-              <p className="text-[14px] md:text-[16px] font-semibold text-text-heading leading-tight px-4">
+            <div className="text-center bg-white rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-sm">
+              <p className="text-sm md:text-base font-semibold text-text-heading leading-tight px-4">
                 AI Synergy<br />Framework
               </p>
             </div>
           </div>
 
-          {/* Статичные подписи секторов - симметрично вокруг круга (скрыты на мобильных) */}
-          {/* Бизнес - верхний левый (кремовый сектор) */}
-          <div className="hidden sm:block absolute left-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Бизнес</p>
-          </div>
-          
-          {/* Технологии - верхний правый (голубой сектор) */}
-          <div className="hidden sm:block absolute right-[-75px] top-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Технологии</p>
-          </div>
-          
-          {/* Процессы - нижний левый (мятный сектор) */}
-          <div className="hidden sm:block absolute left-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Процессы</p>
-          </div>
-          
-          {/* Люди - нижний правый (лавандовый сектор) */}
-          <div className="hidden sm:block absolute right-[-75px] bottom-[-40px] bg-white px-3 py-1.5 rounded-lg shadow-sm">
-            <p className="text-sm font-medium text-text-heading whitespace-nowrap">Люди</p>
-          </div>
+          {/* Всплывающие карточки рядом с секторами */}
+          {sectors.map((sector, index) => (
+            <div
+              key={index}
+              className={`${getTooltipPosition(sector.position)} ${
+                hoveredSector === index 
+                  ? 'opacity-100 visible scale-100' 
+                  : 'opacity-0 invisible scale-95'
+              }`}
+            >
+              <h4 className="text-sm font-semibold text-text-heading mb-1.5 leading-snug">
+                {sector.title}
+              </h4>
+              <p className="text-xs text-text-secondary leading-relaxed">
+                {sector.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* 4 карточки-столпа */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {pillars.map((pillar, index) => <div key={index} className={`rounded-2xl p-4 sm:p-6 shadow-card transition-all duration-300 cursor-pointer gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
-        backgroundColor: 'hsl(var(--gray-50))',
-        transitionDelay: `${200 + index * 75}ms`,
-        transform: hoveredPillar === index ? 'scale(1.05)' : 'scale(1)',
-        boxShadow: hoveredPillar === index ? '0 4px 12px rgba(73, 190, 216, 0.15)' : 'var(--shadow-card)',
-        opacity: hoveredPillar === null || hoveredPillar === index ? 1 : 0.7
-      }} onMouseEnter={() => setHoveredPillar(index)} onMouseLeave={() => setHoveredPillar(null)}>
-            <h3 className="text-2xl font-medium text-text-heading mb-4">
-              {pillar.title}
-            </h3>
-            <div className="space-y-3">
-              {pillar.points.map((point, idx) => <p key={idx} className="text-lg text-text-body leading-relaxed">
-                  {point}
-                </p>)}
-            </div>
-          </div>)}
-      </div>
-
       {/* Итоговая плашка */}
-      <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-card transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary">
           Результат: решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AIFramework;
