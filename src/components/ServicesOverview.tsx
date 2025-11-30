@@ -10,6 +10,12 @@ const ServicesOverview = () => {
       icon: Search,
       title: "Аудит и диагностика",
       description: "Определяю, где ИИ даст отдачу, а где не сработает. Выявляю точки потерь, зрелость данных и готовность команды.",
+      pricing: [
+        "Для компаний 10–50 человек: 6–15 тыс. ₽",
+        "Для компаний 50–200 человек: 25–60 тыс. ₽",
+        "Для компаний 200+ человек: 80–200 тыс. ₽"
+      ],
+      format: "Формат: 3–4 недели, 2–3 встречи, финальный отчёт с roadmap",
       link: "/services#audit",
       linkText: "Подробнее об аудите"
     },
@@ -17,6 +23,18 @@ const ServicesOverview = () => {
       icon: Layers,
       title: "Стратегия и архитектура",
       description: "Проектирую масштабируемую систему, безопасные интеграции, выбор технологий, последовательность внедрения, расчет эффекта",
+      pricing: [
+        "Зависит от сложности: от 60 тыс. до 400 тыс. ₽",
+        "4–8 недель + управление внедрением"
+      ],
+      details: [
+        "Анализ текущих процессов и систем",
+        "Проектирование AI-решения под ваши данные",
+        "Выбор инструментов (без привязки к вендорам)",
+        "Расчёт ROI и бюджета",
+        "План внедрения по этапам"
+      ],
+      detailsTitle: "Включает:",
       link: "/services#strategy",
       linkText: "Подробнее об архитектуре"
     },
@@ -24,6 +42,18 @@ const ServicesOverview = () => {
       icon: Users,
       title: "Сопровождение и независимая экспертиза",
       description: "Проверяю подрядчиков, контролирую качество, обучаю команду. Довожу решения до измеримого результата.",
+      pricing: [
+        "Месячный ретейнер: от 50 тыс. до 150 тыс. ₽",
+        "Гарантия: если не достигнем метрик — вернём деньги за 1 месяц"
+      ],
+      details: [
+        "Еженедельные контрольные встречи",
+        "Проверка качества от подрядчиков",
+        "Обучение вашей команды",
+        "Корректировки процессов на лету",
+        "Финальная сдача с метриками"
+      ],
+      detailsTitle: "Что входит:",
       link: "/services#support",
       linkText: "Подробнее о сопровождении"
     }
@@ -62,16 +92,56 @@ const ServicesOverview = () => {
                       {service.title}
                     </h3>
                     
-                    <p className="text-base text-text-body leading-relaxed mb-4 flex-grow">
+                    <p className="text-base text-text-body leading-relaxed mb-4">
                       {service.description}
                     </p>
                     
+                    {/* Pricing */}
+                    {service.pricing && (
+                      <div className="mb-4 space-y-2">
+                        {service.pricing.map((price, i) => (
+                          <div key={i} className="flex items-start gap-2">
+                            <span className="text-primary text-lg">
+                              {i === 0 && service.pricing.length === 2 ? '💰' : 
+                               i === 1 && service.pricing.length === 2 ? '⏱️' :
+                               i === 0 && service.title.includes('Сопровождение') ? '📈' :
+                               i === 1 && service.title.includes('Сопровождение') ? '🔒' : '📊'}
+                            </span>
+                            <span className="text-sm text-text-body leading-snug">{price}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Format */}
+                    {service.format && (
+                      <p className="text-sm text-text-body mb-4 italic">
+                        {service.format}
+                      </p>
+                    )}
+                    
+                    {/* Details list */}
+                    {service.details && (
+                      <div className="mb-4">
+                        <p className="text-sm font-medium text-text-heading mb-2">
+                          {service.detailsTitle}
+                        </p>
+                        <ul className="space-y-1.5">
+                          {service.details.map((detail, i) => (
+                            <li key={i} className="text-sm text-text-body leading-snug flex items-start gap-2">
+                              <span className="text-primary mt-0.5">•</span>
+                              <span>{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
                     <Link 
                       to={service.link}
-                      className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
+                      className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300 mt-auto"
                     >
-                      <span>{service.linkText}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>{service.linkText} →</span>
                     </Link>
                   </div>
                 </div>
