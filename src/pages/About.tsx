@@ -87,20 +87,20 @@ const About = () => {
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="mt-6 space-y-6 text-text-body">
-                    <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-2">Кто я:</h3>
+                  <div>
+                      <p className="text-handwriting mb-2">Кто я</p>
                       <p className="text-base leading-relaxed">
                         стратег и инженер по внедрению ИИ с 13+ годами опыта в управлении, финансах и операционке.
                       </p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-2">Что делаю:</h3>
+                      <p className="text-handwriting mb-2">Что делаю</p>
                       <p className="text-base leading-relaxed">
                         диагностирую, проектирую и сопровождаю ИИ-решения под реальные задачи бизнеса.
                       </p>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-text-heading mb-2">Почему ко мне приходят:</h3>
+                      <p className="text-handwriting mb-2">Почему ко мне приходят</p>
                       <p className="text-base leading-relaxed">
                         я не продаю инструменты — я выбираю правильные решения для компании, без привязки к платформам.
                       </p>
@@ -216,7 +216,7 @@ const About = () => {
               <div className="space-y-8">
                 {/* Education Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-6">Образование (последние 3 года, 2000+ часов)</h3>
+                  <h3 className="text-xl font-medium text-text-heading mb-6">Образование (последние 3 года, 2000+ часов)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-text-heading mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
@@ -267,7 +267,7 @@ const About = () => {
 
                 {/* Practical Experience Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-6">Практический опыт</h3>
+                  <h3 className="text-xl font-medium text-text-heading mb-6">Практический опыт</h3>
                   <ul className="space-y-3 text-base text-text-body ml-8">
                     <li className="flex items-start gap-3">
                       <span className="text-primary flex-shrink-0 mt-1">•</span>
@@ -289,7 +289,7 @@ const About = () => {
 
                 {/* Partnerships Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-6">Партнёрства (постоянные, не разовые)</h3>
+                  <h3 className="text-xl font-medium text-text-heading mb-6">Партнёрства (постоянные, не разовые)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-text-heading mb-2">TT Consulting</p>
@@ -328,28 +328,28 @@ const About = () => {
 
                 {/* Focus Section */}
                 <div>
-                  <h3 className="text-xl font-semibold text-text-heading mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
+                  <h3 className="text-xl font-medium text-text-heading mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
                   <div className="space-y-4">
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Архитектура</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Архитектура</h4>
                       <p className="text-text-body text-sm mb-2">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
                       <p className="text-sm text-primary font-medium">Результат: экономия 92% времени, 8 человек → половина полной занятости, ROI 278%</p>
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Логика процессов</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Логика процессов</h4>
                       <p className="text-text-body text-sm mb-2">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
                       <p className="text-sm text-primary font-medium">Результат: экономия 4 часов/неделю, точность 99%, окупаемость 3 недели</p>
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Объединение систем (интеграции)</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Объединение систем (интеграции)</h4>
                       <p className="text-text-body text-sm mb-2">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
                       <p className="text-sm text-primary font-medium">Результат: ×5 скорость обработки заявок, точность распознавания 99%</p>
                     </div>
 
                     <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-semibold text-text-heading mb-2">Защищённые контуры (данные не в облаке)</h4>
+                      <h4 className="font-medium text-text-heading mb-2">Защищённые контуры (данные не в облаке)</h4>
                       <p className="text-text-body text-sm mb-2">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
                       <p className="text-sm font-medium text-text-body">Ваши данные остаются на вашем сервере</p>
                     </div>
@@ -459,7 +459,7 @@ const About = () => {
                           Слишком мало данных, чтобы построить качественное решение. ИИ работает на данных — если их мало, результат будет случайным. Плюс, невыгодно экономически (мой минимум затрат не окупится).
                         </p>
                         <p>
-                          <span className="font-semibold text-primary">Что я рекомендую вместо этого?</span><br />
+                          <span className="font-medium text-primary">Что я рекомендую вместо этого?</span><br />
                           Если у вас 5–15 человек → используйте готовые инструменты типа ChatGPT, Make, n8n. Не переплачивайте за консультацию. Напишите мне всё равно — дам совет за час.
                         </p>
                       </div>
@@ -484,7 +484,7 @@ const About = () => {
                           Если нужно быстро = я не ваш консультант.
                         </p>
                         <p>
-                          <span className="font-semibold text-primary">Что это значит?</span><br />
+                          <span className="font-medium text-primary">Что это значит?</span><br />
                           Я не беру срочные проекты. Это раздражает клиентов, которые хотят результат «вчера», но это спасает от провалов тех, кто готов ждать.
                         </p>
                       </div>
@@ -510,7 +510,7 @@ const About = () => {
                           Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
                         </p>
                         <p>
-                          <span className="font-semibold text-primary">Что это значит?</span><br />
+                          <span className="font-medium text-primary">Что это значит?</span><br />
                           Я предварительно провожу диагностику готовности команды. Если готовности нет → я скажу «нет» и не возьму деньги. Это экономит вам бюджет.
                         </p>
                       </div>
@@ -539,7 +539,7 @@ const About = () => {
                           Сначала нужно навести порядок, потом внедрять ИИ.
                         </p>
                         <p>
-                          <span className="font-semibold text-primary">Что я делаю?</span><br />
+                          <span className="font-medium text-primary">Что я делаю?</span><br />
                           На диагностике я смотрю на ваши процессы. Если вижу хаос → я рекомендую сначала навести порядок (может быть, за 1–2 недели), потом уже ИИ. Это экономит деньги и даёт результат.
                         </p>
                       </div>
@@ -550,25 +550,25 @@ const About = () => {
                       <h3 className="text-xl font-bold text-text-heading mb-4">
                         Итог: Почему эти «слабые стороны» — это ваше преимущество?
                       </h3>
-                      <p className="mb-4 font-semibold text-primary">
+                      <p className="mb-4 font-medium text-primary">
                         Если я отказываю в проекте → это значит, я берегу ваш бюджет.
                       </p>
                       <p className="mb-3">Мой подход:</p>
                       <ul className="ml-6 space-y-2">
                         <li className="flex items-start gap-2">
-                          <span className="text-primary font-semibold flex-shrink-0">•</span>
+                          <span className="text-primary flex-shrink-0">•</span>
                           <span>Я скажу «нет», если проект обречён</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-primary font-semibold flex-shrink-0">•</span>
+                          <span className="text-primary flex-shrink-0">•</span>
                           <span>Я потребую времени, даже если вы спешите</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-primary font-semibold flex-shrink-0">•</span>
+                          <span className="text-primary flex-shrink-0">•</span>
                           <span>Я потребую воли к переменам, даже если это неудобно</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-primary font-semibold flex-shrink-0">•</span>
+                          <span className="text-primary flex-shrink-0">•</span>
                           <span>Я потребую порядка в процессах, даже если это требует переделки</span>
                         </li>
                       </ul>

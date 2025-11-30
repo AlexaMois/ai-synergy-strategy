@@ -392,7 +392,7 @@ const CasesPage = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-text-heading mb-4 leading-tight">
+                <h3 className="text-lg font-medium text-text-heading mb-4 leading-tight">
                   {caseItem.title}
                 </h3>
 
