@@ -59,9 +59,12 @@ const Footer = () => {
               <a href="mailto:neiroreshenia@yandex.com" className="text-sm hover:text-accent transition-colors">
                 neiroreshenia@yandex.com
               </a>
-              <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
-                Телефон: +7 993 721 73 67
-              </a>
+              <div>
+                <p className="text-sm text-background/90 mb-1">Телефон</p>
+                <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
+                  +7 993 721 73 67
+                </a>
+              </div>
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
                 Личный Telegram: @AlexandraMois
               </a>
@@ -76,8 +79,8 @@ const Footer = () => {
             <div>
               <p className="text-background/90 font-medium mb-2">Реквизиты ИП</p>
               <p>ИП Моисеева Александра Алексеевна</p>
-              <p>ИНН: 245906802500</p>
-              <p>ОГРНИП: 323246800027635</p>
+              <p>ИНН 245906802500</p>
+              <p>ОГРНИП 323246800027635</p>
             </div>
 
             {/* Юридические документы */}

@@ -97,7 +97,7 @@ const FAQ = () => {
               asChild
             >
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Запросить экспресс-аудит
+                Пройти экспресс-аудит процессов
               </a>
             </Button>
           </div>
