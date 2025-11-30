@@ -10,11 +10,10 @@ const TrustAndPosition = () => {
   const { ref, getAnimationClass, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
   const parallaxOffset = useParallax(0.3);
   
-  // Counter animation for ROI numbers and years
+  // Counter animation for ROI numbers
   const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
   const count200 = useCountUp({ end: 200, duration: 1800, isVisible: counterVisible });
   const count400 = useCountUp({ end: 400, duration: 1800, isVisible: counterVisible });
-  const count12 = useCountUp({ end: 12, duration: 1800, isVisible: counterVisible });
 
   return (
     <section 
@@ -52,6 +51,9 @@ const TrustAndPosition = () => {
                 <div 
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
                 >
+                  <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
+                    Реальная польза
+                  </p>
                   <p className="text-lg text-text-body leading-relaxed">
                     Показываю, где ИИ дает измеримый эффект, а где превращается в лишние затраты.
                   </p>
@@ -59,11 +61,13 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 2 */}
                 <div 
-                  ref={counterRef as any}
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
                 >
+                  <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
+                    12+ лет в управлении и операционке
+                  </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    <span className="font-semibold text-primary">{count12}+ лет</span> в управлении и операционке. Понимаю процессы изнутри и оцениваю решения через экономику компании.
+                    Понимаю процессы изнутри и оцениваю решения через экономику компании.
                   </p>
                 </div>
                 
@@ -81,8 +85,12 @@ const TrustAndPosition = () => {
                 
                 {/* Карточка 4 */}
                 <div 
+                  ref={counterRef as any}
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
                 >
+                  <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
+                    Подтвержденный результат
+                  </p>
                   <p className="text-lg text-text-body leading-relaxed">
                     ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы.
                   </p>
