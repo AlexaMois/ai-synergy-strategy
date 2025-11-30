@@ -186,6 +186,9 @@ const Hero = () => {
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
                 className="w-full max-w-xl lg:max-w-2xl h-auto object-contain"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </div>

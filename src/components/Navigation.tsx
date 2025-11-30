@@ -11,26 +11,36 @@ const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
 
-      // Determine active section
-      const sections = ["services", "how", "cases", "about", "methodology", "interviews", "contact"];
-      const scrollPosition = window.scrollY + 100;
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetBottom = offsetTop + element.offsetHeight;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(`#${section}`);
-            break;
+          // Determine active section
+          const sections = ["services", "how", "cases", "about", "methodology", "interviews", "contact"];
+          const scrollPosition = window.scrollY + 100;
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const offsetTop = element.offsetTop;
+              const offsetBottom = offsetTop + element.offsetHeight;
+              if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                setActiveSection(`#${section}`);
+                break;
+              }
+            }
           }
-        }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+    
     handleScroll(); // Initial call
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
