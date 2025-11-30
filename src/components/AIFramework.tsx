@@ -97,28 +97,49 @@ const AIFramework = () => {
           </div>
           
           <svg viewBox="0 0 200 200" className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px]">
+            {/* Анимированная пунктирная обводка для индикации интерактивности */}
+            <circle 
+              cx="100" 
+              cy="100" 
+              r="102" 
+              fill="none" 
+              stroke="#49BED8" 
+              strokeWidth="1.5" 
+              strokeDasharray="6 4"
+              opacity="0.4"
+              className="animate-[spin_20s_linear_infinite]"
+            />
+            
             {/* Сектор 0 - Технологии (верхний правый, голубой) */}
             <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
-            opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
+            opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6,
+            transform: hoveredSector === 0 ? 'scale(1.02)' : 'scale(1)',
+            transformOrigin: '100px 100px'
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(0)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(0)} />
             
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
             <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
-            opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
+            opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6,
+            transform: hoveredSector === 1 ? 'scale(1.02)' : 'scale(1)',
+            transformOrigin: '100px 100px'
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(1)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(1)} />
             
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
             <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
-            opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
+            opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6,
+            transform: hoveredSector === 2 ? 'scale(1.02)' : 'scale(1)',
+            transformOrigin: '100px 100px'
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(2)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(2)} />
             
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
             <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
-            opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
+            opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6,
+            transform: hoveredSector === 3 ? 'scale(1.02)' : 'scale(1)',
+            transformOrigin: '100px 100px'
           }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
             {/* Текстовые метки - только текст, насыщенные цвета, строго по центрам секторов */}
