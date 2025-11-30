@@ -14,6 +14,7 @@ const TrustAndPosition = () => {
   const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
   const count200 = useCountUp({ end: 200, duration: 1800, isVisible: counterVisible });
   const count400 = useCountUp({ end: 400, duration: 1800, isVisible: counterVisible });
+  const count12 = useCountUp({ end: 12, duration: 1800, isVisible: counterVisible });
 
   return (
     <section 
@@ -59,12 +60,11 @@ const TrustAndPosition = () => {
                   </p>
                 </div>
                 
-                {/* Карточка 2 */}
                 <div 
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
-                    12+ лет в управлении и операционке
+                    <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
                     Понимаю процессы изнутри и оцениваю решения через экономику компании.
