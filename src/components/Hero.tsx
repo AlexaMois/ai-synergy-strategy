@@ -36,7 +36,7 @@ const Hero = () => {
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     }
   };
-  return <section ref={ref} className="relative bg-background py-10 md:py-16 lg:py-20 overflow-hidden">
+  return <section ref={ref} className="relative bg-background pt-24 pb-8 sm:pt-28 sm:pb-10 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16 overflow-hidden">
       {/* N Pattern Background */}
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none transition-transform duration-100 ease-out" style={{
       backgroundImage: `url(${nPattern})`,
@@ -52,9 +52,9 @@ const Hero = () => {
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 items-center">
-            <div className={`lg:col-span-7 space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className={`lg:col-span-7 space-y-4 sm:space-y-5 md:space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
               {/* Верхний блок с градиентной обводкой */}
-              <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+              <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
                   <div className="inline-block">
                     <span className="text-handwriting text-2xl sm:text-3xl">Независимый стратег и инженер ИИ</span>
@@ -67,9 +67,6 @@ const Hero = () => {
                   </p>
                 </div>
               </div>
-
-              {/* Визуальная пауза */}
-              <div className="h-2"></div>
 
               <div className="space-y-3">
                 <div className="space-y-2">
