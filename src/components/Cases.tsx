@@ -2,7 +2,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
-import { Building2, Mic, Truck, XCircle, Lightbulb, Target, TrendingUp, CheckCircle, Briefcase } from "lucide-react";
+import { Building2, Mic, Truck, XCircle, Lightbulb, Target, TrendingUp, Briefcase } from "lucide-react";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -188,9 +188,8 @@ const Cases = () => {
                 {/* Features */}
                 {caseItem.features && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600" strokeWidth={1.5} />
-                      <span>Возможности:</span>
+                    <p className="text-sm font-medium text-text-heading mb-2">
+                      Возможности:
                     </p>
                     <ul className="space-y-1">
                       {caseItem.features.map((feature, idx) => (
@@ -256,7 +255,7 @@ const Cases = () => {
                       if (match92) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>Экономия <span className="font-semibold text-primary">{count92}%</span> времени на обработку (~550 часов/месяц)</span>
                           </li>
                         );
@@ -264,7 +263,7 @@ const Cases = () => {
                       if (match80) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>Сокращение ФОТ на эту операцию на <span className="font-semibold text-primary">{count80}%</span></span>
                           </li>
                         );
@@ -272,7 +271,7 @@ const Cases = () => {
                       if (match278) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>ROI <span className="font-semibold text-primary">{count278}%</span> (окупилось за 3 недели)</span>
                           </li>
                         );
@@ -280,7 +279,7 @@ const Cases = () => {
                       if (match5) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>×<span className="font-semibold text-primary">{count5}</span> скорость обработки заявок (вместо 3 минут — 30 сек)</span>
                           </li>
                         );
@@ -288,7 +287,7 @@ const Cases = () => {
                       if (match99) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>Точность <span className="font-semibold text-primary">{count99}%</span> {result.includes('маршрутов') ? 'маршрутов (вместо 70%)' : 'распознавания'}</span>
                           </li>
                         );
@@ -296,7 +295,7 @@ const Cases = () => {
                       if (match3) {
                         return (
                           <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                            <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                             <span>Экономия <span className="font-semibold text-primary">{count3}–4</span> часа в неделю (диспетчеры)</span>
                           </li>
                         );
@@ -305,7 +304,7 @@ const Cases = () => {
                       // Default render without animation
                       return (
                         <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                          <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                           <span>{result}</span>
                         </li>
                       );

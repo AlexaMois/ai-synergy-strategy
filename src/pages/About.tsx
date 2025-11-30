@@ -587,7 +587,7 @@ const About = () => {
         <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
-              ✅ Где мой профессионализм проверен фактами
+              Где мой профессионализм проверен фактами
             </h2>
             
             <div ref={statsRef as any} className="space-y-6">
