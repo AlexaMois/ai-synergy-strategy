@@ -638,4 +638,10 @@ All colors MUST be HSL.
     filter: grayscale(0%);
     opacity: 1;
   }
+  
+  /* Touch optimization for mobile */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
