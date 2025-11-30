@@ -83,7 +83,7 @@ const Hero = () => {
                     <span className="sm:hidden">Я — Опер. директор</span>
                   </TabsTrigger>
                   <TabsTrigger value="it" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
-                    Я — ИТ-директор
+                    Я — руководитель отдела
                   </TabsTrigger>
                 </TabsList>
                 </div>
@@ -156,7 +156,7 @@ const Hero = () => {
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Даю <span className="font-semibold">независимую оценку интеграций, безопасности и совместимости</span>: какие ИИ-решения впишутся в вашу инфраструктуру и будут устойчивыми в поддержке.
+                    Даю независимую оценку: какие решения точно встанут в ваш процесс и не создадут лишней нагрузки.
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
