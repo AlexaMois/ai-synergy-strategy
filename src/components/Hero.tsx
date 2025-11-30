@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
-import alexandraPortrait from "@/assets/alexandra-portrait.jpg";
+import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 import nPattern from "@/assets/n-pattern.png";
 import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
@@ -180,16 +180,23 @@ const Hero = () => {
               </TabsContent>
             </div>
           
-            <div className={`lg:col-span-5 relative mb-8 lg:mb-0 flex justify-center lg:justify-end ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-              <div className="w-full max-w-[560px] sm:max-w-[640px] lg:max-w-[760px] h-[800px] sm:h-[900px] lg:h-[1000px] overflow-hidden">
-                <OptimizedImage 
-                  src={alexandraPortrait} 
-                  alt="Александра Моисеева - AI консультант" 
-                  className="w-full h-full object-cover object-top" 
-                  priority 
-                  responsive
-                  sizes="(max-width: 640px) 560px, (max-width: 1024px) 640px, 760px"
-                />
+            <div className={`lg:col-span-5 relative mb-8 lg:mb-0 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+              {/* Блок с градиентной обводкой — симметричный левому */}
+              <div className="p-4 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
+                {/* Контейнер с пропорциями 4:5 */}
+                <div className="relative w-full aspect-[4/5] flex items-center justify-center overflow-hidden rounded-xl bg-gray-50">
+                  <OptimizedImage 
+                    src={alexandraPortrait} 
+                    alt="Александра Моисеева - AI консультант" 
+                    className="w-full h-full object-cover object-top" 
+                    priority 
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

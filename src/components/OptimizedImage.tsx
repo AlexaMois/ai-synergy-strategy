@@ -8,7 +8,6 @@ interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 
   priority?: boolean;
   sizes?: string;
   srcSet?: string;
-  responsive?: boolean; // Auto-generate responsive srcset
 }
 
 /**
@@ -36,7 +35,6 @@ const OptimizedImage = ({
   priority = false,
   sizes,
   srcSet,
-  responsive = false,
   ...props 
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,13 +44,8 @@ const OptimizedImage = ({
   const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
   const hasWebpVersion = /\.(jpg|jpeg|png)$/i.test(src);
 
-  // Generate responsive srcSet for different screen densities if responsive is enabled
-  const responsiveSrcSet = responsive && !srcSet
-    ? `${src} 1x, ${src} 2x`
-    : srcSet;
-
   // Generate WebP srcSet if regular srcSet is provided
-  const webpSrcSet = responsiveSrcSet ? responsiveSrcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
+  const webpSrcSet = srcSet ? srcSet.replace(/\.(jpg|jpeg|png)/gi, '.webp') : undefined;
 
   return (
     <picture>
@@ -65,11 +58,10 @@ const OptimizedImage = ({
       )}
       <img
         src={src}
-        srcSet={responsiveSrcSet}
+        srcSet={srcSet}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding={priority ? 'sync' : 'async'}
-        fetchPriority={priority ? 'high' : 'auto'}
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
         className={cn(

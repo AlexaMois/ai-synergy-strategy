@@ -102,8 +102,6 @@ const ChecklistPage = () => {
               src={alexandraPortrait} 
               alt="Александра Моисеева" 
               className="w-20 h-20 rounded-full object-cover"
-              responsive
-              sizes="80px"
             />
             <div>
               <p className="text-lg font-medium text-text-heading">
