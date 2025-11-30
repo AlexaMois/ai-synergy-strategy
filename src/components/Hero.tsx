@@ -122,11 +122,11 @@ const Hero = () => {
               <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     <span className="font-semibold">Как убрать узкие места</span> и повысить скорость операционки
+                     <span className="font-semibold">Как убрать узкие места</span> и ускорить работу отделов   
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Выявляю <span className="font-semibold">дублирование, задержки и точки просадки</span>. Показываю, какие решения действительно ускорят процессы и сократят нагрузку на команду.
+                    Показываю <span className="font-semibold">дублирование, задержки и точки просадки</span> ,а что даёт реальный прирост скорости
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
