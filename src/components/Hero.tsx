@@ -126,7 +126,7 @@ const Hero = () => {
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Показываю, <span className="font-semibold">дублирование, задержки и точки просадки</span>  , а что даёт реальный прирост скорости
+                    Показываю, <span className="font-semibold">где теряется время: дублирование, задержки, перегрузка</span>  , а что даёт реальный прирост скорости
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
