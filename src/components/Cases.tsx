@@ -2,7 +2,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
-import { Building2, Mic, Truck, TrendingUp, Briefcase } from "lucide-react";
+import { Building2, Mic, Truck, Briefcase } from "lucide-react";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -143,7 +143,7 @@ const Cases = () => {
 
                 {/* About / Client */}
                 <div className="mb-4">
-                  <p className="text-sm font-medium text-text-heading mb-1">
+                  <p className="text-handwriting mb-1">
                     {caseItem.client ? 'Типовой клиент:' : 'О клиенте:'}
                   </p>
                   <p className="text-sm text-text-body leading-relaxed">
@@ -160,7 +160,7 @@ const Cases = () => {
                 {/* Problems */}
                 {caseItem.problems && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">
+                    <p className="text-handwriting mb-2">
                       Проблема:
                     </p>
                     <ul className="space-y-1">
@@ -177,7 +177,7 @@ const Cases = () => {
                 {/* Features */}
                 {caseItem.features && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">
+                    <p className="text-handwriting mb-2">
                       Возможности:
                     </p>
                     <ul className="space-y-1">
@@ -194,7 +194,7 @@ const Cases = () => {
                 {/* Solution */}
                 {caseItem.solution && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">
+                    <p className="text-handwriting mb-2">
                       Решение (бюджет {caseItem.solution.budget}):
                     </p>
                     <ul className="space-y-1">
@@ -211,7 +211,7 @@ const Cases = () => {
                 {/* Quote */}
                 {caseItem.quote && (
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-text-heading mb-2">
+                    <p className="text-handwriting mb-2">
                       Особенность этого решения:
                     </p>
                     <p className="text-sm italic text-text-body leading-relaxed">
@@ -225,9 +225,8 @@ const Cases = () => {
 
                 {/* Results */}
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-text-heading mb-2 flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                    <span>Результаты ({caseItem.results.period}):</span>
+                  <p className="text-handwriting mb-2">
+                    Результаты ({caseItem.results.period}):
                   </p>
                   <ul className="space-y-1.5">
                     {caseItem.results.items.map((result, idx) => {
