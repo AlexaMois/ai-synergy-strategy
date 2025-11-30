@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 const AIFramework = () => {
   const {
@@ -9,6 +9,34 @@ const AIFramework = () => {
     triggerOnce: true
   });
   const [hoveredSector, setHoveredSector] = useState<number | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Закрытие карточки при клике вне её
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (hoveredSector !== null && cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        // Проверяем, что клик не по SVG сектору
+        const target = event.target as Element;
+        if (!target.closest('svg')) {
+          setHoveredSector(null);
+        }
+      }
+    };
+
+    if (hoveredSector !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [hoveredSector]);
+
+  const handleSectorInteraction = (sectorIndex: number) => {
+    setHoveredSector(hoveredSector === sectorIndex ? null : sectorIndex);
+  };
 
   // Маппинг между секторами круга и карточками
   const sectors = [{
@@ -62,28 +90,28 @@ const AIFramework = () => {
         <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex items-center justify-center" style={{ minHeight: '400px' }}>
           <svg viewBox="0 0 200 200" className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px]">
             {/* Сектор 0 - Технологии (верхний правый, голубой) */}
-            <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer" style={{
+            <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
             opacity: hoveredSector === null || hoveredSector === 0 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredSector(0)} onMouseLeave={() => setHoveredSector(null)} onClick={() => setHoveredSector(hoveredSector === 0 ? null : 0)} />
+          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(0)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(0)} />
             
             {/* Сектор 1 - Люди (правый нижний, фиолетовый) */}
-            <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer" style={{
+            <path d="M 100 100 L 200 100 A 100 100 0 0 1 100 200 Z" fill={sectors[1].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 1 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(232, 224, 245, 0.5))' : 'none',
             opacity: hoveredSector === null || hoveredSector === 1 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredSector(1)} onMouseLeave={() => setHoveredSector(null)} onClick={() => setHoveredSector(hoveredSector === 1 ? null : 1)} />
+          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(1)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(1)} />
             
             {/* Сектор 2 - Процессы (нижний левый, мятный) */}
-            <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer" style={{
+            <path d="M 100 100 L 100 200 A 100 100 0 0 1 0 100 Z" fill={sectors[2].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 2 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(223, 240, 240, 0.5))' : 'none',
             opacity: hoveredSector === null || hoveredSector === 2 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredSector(2)} onMouseLeave={() => setHoveredSector(null)} onClick={() => setHoveredSector(hoveredSector === 2 ? null : 2)} />
+          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(2)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(2)} />
             
             {/* Сектор 3 - Бизнес (верхний левый, бежевый) */}
-            <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer" style={{
+            <path d="M 100 100 L 0 100 A 100 100 0 0 1 100 0 Z" fill={sectors[3].color} className="transition-all duration-300 cursor-pointer touch-manipulation" style={{
             filter: hoveredSector === 3 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(227, 244, 249, 0.5))' : 'none',
             opacity: hoveredSector === null || hoveredSector === 3 ? 1 : 0.6
-          }} onMouseEnter={() => setHoveredSector(3)} onMouseLeave={() => setHoveredSector(null)} onClick={() => setHoveredSector(hoveredSector === 3 ? null : 3)} />
+          }} onMouseEnter={() => window.innerWidth >= 1024 && setHoveredSector(3)} onMouseLeave={() => window.innerWidth >= 1024 && setHoveredSector(null)} onClick={() => handleSectorInteraction(3)} />
             
             {/* Текстовые метки с фоном */}
             {/* Технологии - верхний правый */}
@@ -122,6 +150,7 @@ const AIFramework = () => {
           {/* Всплывающие карточки для секторов */}
           {hoveredSector !== null && (
             <div 
+              ref={cardRef}
               className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg animate-scale-fade-in z-20 w-[260px] sm:w-[300px]
                 ${hoveredSector === 0 ? 'top-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
                 ${hoveredSector === 1 ? 'bottom-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
