@@ -114,9 +114,9 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`transition-all duration-300 font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out ${activeSection === link.href ? "text-accent after:w-full after:opacity-100" : "text-text-heading hover:text-accent after:w-0 after:opacity-0"}`}>
+            {navLinks.map(link => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
                   {link.label}
-                </a> : <Link key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100" : "text-text-heading hover:text-accent after:w-0 after:opacity-0"}`}>
+                </a> : <Link key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
                   {link.label}
                 </Link>)}
             <Button size="sm" asChild>
@@ -140,11 +140,11 @@ const Navigation = () => {
       <div className={`fixed top-20 right-0 bottom-0 w-[280px] bg-background shadow-2xl z-40 md:hidden transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
         <div className="flex flex-col h-full p-6 overflow-y-auto">
           <nav className="space-y-2 flex-1">
-            {navLinks.map((link, index) => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-lg transition-all duration-200 font-medium ${activeSection === link.href ? "text-accent bg-[#D4EDFC] border-l-4 border-accent" : "text-text-heading hover:text-accent hover:bg-[#F1F4F5]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+            {navLinks.map((link, index) => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${activeSection === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
             animationDelay: `${index * 50}ms`
           }}>
                   {link.label}
-                </a> : <Link key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-lg transition-all duration-200 font-medium ${location.pathname === link.href ? "text-accent bg-[#D4EDFC] border-l-4 border-accent" : "text-text-heading hover:text-accent hover:bg-[#F1F4F5]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+                </a> : <Link key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
             animationDelay: `${index * 50}ms`
           }}>
                   {link.label}
