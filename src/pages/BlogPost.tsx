@@ -6,6 +6,8 @@ import BackToTop from "@/components/BackToTop";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
+import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -96,8 +98,10 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <PageBreadcrumbs currentPage={post.title} />
       
       <article className="pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -228,9 +232,10 @@ const BlogPost = () => {
         </section>
       )}
 
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </PageTransition>
   );
 };
 
