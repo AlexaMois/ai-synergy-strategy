@@ -1,10 +1,12 @@
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
 import { Building2, Mic, Truck } from "lucide-react";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
+  const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.3 });
 
   const cases = [
     {
@@ -68,16 +70,24 @@ const Cases = () => {
         </h2>
 
         {/* Cases Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div ref={counterRef as any} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {cases.map((caseItem, index) => {
             const Icon = caseItem.icon;
             const metricCount = useCountUp({
               end: caseItem.mainMetric.value,
               duration: 1800,
-              isVisible,
+              isVisible: counterVisible,
               prefix: caseItem.mainMetric.prefix,
               suffix: caseItem.mainMetric.suffix
             });
+            
+            // Animated counters for individual metrics
+            const count92 = useCountUp({ end: 92, duration: 1800, isVisible: counterVisible });
+            const count80 = useCountUp({ end: 80, duration: 1800, isVisible: counterVisible });
+            const count278 = useCountUp({ end: 278, duration: 1800, isVisible: counterVisible });
+            const count5 = useCountUp({ end: 5, duration: 1800, isVisible: counterVisible });
+            const count99 = useCountUp({ end: 99, duration: 1800, isVisible: counterVisible });
+            const count3 = useCountUp({ end: 3, duration: 1800, isVisible: counterVisible });
             
             return (
               <div
@@ -120,11 +130,42 @@ const Cases = () => {
                 <div className="mb-6">
                   <p className="text-handwriting mb-2">Результаты:</p>
                   <ul className="space-y-1.5">
-                    {caseItem.results.map((result, idx) => (
-                      <li key={idx} className="text-lg text-text-secondary leading-relaxed">
-                        {result}
-                      </li>
-                    ))}
+                    {index === 0 && (
+                      <>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          экономия <span className="font-semibold text-primary">{count92}%</span> времени
+                        </li>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          сокращение ФОТ на <span className="font-semibold text-primary">{count80}%</span>
+                        </li>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          ROI <span className="font-semibold text-primary">{count278}%</span>
+                        </li>
+                      </>
+                    )}
+                    {index === 1 && (
+                      <>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          ×<span className="font-semibold text-primary">{count5}</span> скорость обработки
+                        </li>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          интеграция в CRM и Telegram
+                        </li>
+                      </>
+                    )}
+                    {index === 2 && (
+                      <>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          экономия <span className="font-semibold text-primary">{count3}–4</span> часа в неделю
+                        </li>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          точность <span className="font-semibold text-primary">{count99}%</span>
+                        </li>
+                        <li className="text-lg text-text-secondary leading-relaxed">
+                          окупаемость <span className="font-semibold text-primary">{count3}</span> недели
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
 
