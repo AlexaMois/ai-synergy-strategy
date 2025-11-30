@@ -68,7 +68,7 @@ const AIFramework = () => {
 
       {/* Подзаголовок */}
       <div className={`text-center mb-12 md:mb-16 transition-all duration-700 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-handwriting animate-handwriting tracking-wide text-3xl">
+        <p className="text-handwriting animate-handwriting tracking-wide text-xl sm:text-2xl md:text-3xl">
           ИИ работает только тогда, когда совпадают: бизнес, процессы, люди и технологии.
         </p>
       </div>
@@ -153,7 +153,7 @@ const AIFramework = () => {
 
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-2xl md:text-3xl font-semibold text-primary">
+        <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary">
           Результат: решения, которые работают годами, а не «умирают» через месяц.
         </p>
       </div>

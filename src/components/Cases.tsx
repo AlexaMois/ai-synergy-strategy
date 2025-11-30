@@ -137,7 +137,7 @@ const Cases = () => {
                 <div 
                   className="mt-auto pt-4 border-t-2 border-primary/20"
                 >
-                  <p className="text-3xl font-semibold text-primary text-center">
+                  <p className="text-2xl sm:text-3xl font-semibold text-primary text-center">
                     {metricCount}
                   </p>
                 </div>

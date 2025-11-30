@@ -18,7 +18,7 @@ const Terms = () => {
         </Link>
 
         <article className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-semibold text-foreground mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-4">
             Договор-оферта на оказание услуг № 6
           </h1>
           

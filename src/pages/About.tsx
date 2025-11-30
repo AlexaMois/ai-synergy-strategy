@@ -17,7 +17,7 @@ const About = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-text-heading mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading mb-6">
                 Александра Моисеева
               </h1>
               <p className="text-xl text-accent font-medium mb-6">
@@ -43,7 +43,7 @@ const About = () => {
       {/* Experience Section */}
       <section ref={ref} className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className={`text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-text-heading mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Путь и опыт
           </h2>
           
@@ -86,7 +86,7 @@ const About = () => {
       {/* Philosophy Section */}
       <section className="py-10 md:py-14 lg:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-text-heading mb-12 text-center">
             Моя философия работы
           </h2>
           
@@ -137,7 +137,7 @@ const About = () => {
       {/* Credentials Section */}
       <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-text-heading mb-12 text-center">
             Признание и достижения
           </h2>
           
