@@ -59,8 +59,8 @@ const AIFramework = () => {
 
       {/* Круговая схема */}
       <div className={`flex justify-center mb-12 md:mb-16 transition-all duration-700 delay-150 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] mx-auto min-h-[400px] md:min-h-[500px]">
-          <svg viewBox="0 0 200 200" className="w-full h-full">
+        <div className="relative w-full max-w-[600px] md:max-w-[800px] mx-auto flex items-center justify-center" style={{ minHeight: '400px' }}>
+          <svg viewBox="0 0 200 200" className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px]">
             {/* Сектор 0 - Технологии (верхний правый, голубой) */}
             <path d="M 100 100 L 100 0 A 100 100 0 0 1 200 100 Z" fill={sectors[0].color} className="transition-all duration-300 cursor-pointer" style={{
             filter: hoveredSector === 0 ? 'brightness(1.15) drop-shadow(0 4px 12px rgba(73, 190, 216, 0.3))' : 'none',
@@ -122,11 +122,11 @@ const AIFramework = () => {
           {/* Всплывающие карточки для секторов */}
           {hoveredSector !== null && (
             <div 
-              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg transition-all duration-300 animate-fade-in z-20 max-w-[280px] sm:max-w-[320px]
-                ${hoveredSector === 0 ? 'right-[-120px] sm:right-[-160px] top-[10%] sm:top-[15%]' : ''}
-                ${hoveredSector === 1 ? 'bottom-[10%] sm:bottom-[15%] right-[-120px] sm:right-[-160px]' : ''}
-                ${hoveredSector === 2 ? 'left-[-120px] sm:left-[-160px] bottom-[10%] sm:bottom-[15%]' : ''}
-                ${hoveredSector === 3 ? 'top-[10%] sm:top-[15%] left-[-120px] sm:left-[-160px]' : ''}
+              className={`absolute bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg animate-scale-fade-in z-20 w-[260px] sm:w-[300px]
+                ${hoveredSector === 0 ? 'top-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 1 ? 'bottom-[5%] left-[calc(50%+120px)] sm:left-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 2 ? 'bottom-[5%] right-[calc(50%+120px)] sm:right-[calc(50%+180px)]' : ''}
+                ${hoveredSector === 3 ? 'top-[5%] right-[calc(50%+120px)] sm:right-[calc(50%+180px)]' : ''}
               `}
             >
               <h4 className="text-lg sm:text-xl font-semibold text-text-heading mb-2">
