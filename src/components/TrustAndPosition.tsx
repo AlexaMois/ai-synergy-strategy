@@ -45,7 +45,7 @@ const TrustAndPosition = () => {
                   className={`p-4 sm:p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
                 >
                   <p className="text-lg text-text-body leading-relaxed">
-                    Помогаю компаниям получать измеримую пользу от ИИ, а не создавать лишние расходы.
+                    Показываю, где ИИ дает измеримый эффект, а где превращается в лишние затраты.
                   </p>
                 </div>
                 
@@ -54,10 +54,10 @@ const TrustAndPosition = () => {
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
-                    12+ лет в управлении, финансах и операционке
+                    12+ лет в управлении и операционке
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    Понимаю процессы изнутри и оцениваю решения через экономику.
+                    Понимаю процессы изнутри и оцениваю решения через экономику компании.
                   </p>
                 </div>
                 
@@ -69,7 +69,7 @@ const TrustAndPosition = () => {
                     Профессиональное признание
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    Победитель «Бизнес-Успех» (2025), член НФИИ, резидент IT-Парк Казань и КРИТБИ.
+                    Дипломированный специалист по ИИ. Победитель «Бизнес Успех» (2025), член НФИИ, резидент КРИТБИ.
                   </p>
                 </div>
                 
@@ -78,10 +78,10 @@ const TrustAndPosition = () => {
                   className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
                 >
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
-                    Подтверждённый результат
+                    Подтвержденный результат
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    36+ проектов, ROI клиентов 200–400% в первые месяцы внедрения.
+                    ROI клиентов от 200 до 400 процентов в первые месяцы работы.
                   </p>
                 </div>
               </div>
@@ -110,7 +110,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
-                      ИИ — это инструмент управления. Он должен усиливать процессы и приносить предсказуемый эффект.
+                      <span className="font-semibold">ИИ инструмент управления</span><br />
+                      Он должен усиливать процессы и давать предсказуемый результат.
                     </p>
                   </div>
                 </div>
@@ -129,7 +130,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">Инженерный подход</span><br />
-                      Диагностика, архитектура, экономика — только после этого технологии.
+                      Сначала аудит, анализ, архитектура и экономика, затем технологии и конкретные решения.
                     </p>
                   </div>
                 </div>
@@ -148,7 +149,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
                       <span className="font-semibold">Честность решения</span><br />
-                      Если автоматизация не окупится или не нужна, я говорю об этом сразу.
+                      Если ИИ не нужен, я прямо об этом скажу. Я инженер по внедрению, а не продавец технологий.
                     </p>
                   </div>
                 </div>
@@ -166,8 +167,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-lg text-text-body leading-relaxed">
-                      <span className="font-semibold">Устойчивость и независимость</span><br />
-                      Строю системы, которые компания может поддерживать сама, без внешней зависимости.
+                      <span className="font-semibold">Индивидуальность решений</span><br />
+                      Подбираю решения под контекст компании: только то, что вы действительно будете использовать.
                     </p>
                   </div>
                 </div>
