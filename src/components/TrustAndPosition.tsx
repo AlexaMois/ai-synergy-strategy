@@ -34,7 +34,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="text-[30px] font-medium text-text-heading mb-3 leading-tight">
-                  Почему мне доверяют, <span className="font-semibold">и чем это подтверждено</span>
+                  Почему мне доверяют
                 </h2>
                 <div className="w-full h-px bg-gray-200"></div>
               </div>
@@ -42,8 +42,11 @@ const TrustAndPosition = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
                 <div 
-                  className={`p-4 sm:p-6 rounded-xl text-center flex items-center justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
+                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
                 >
+                  <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
+                    Реальная польза
+                  </p>
                   <p className="text-lg text-text-body leading-relaxed">
                     Показываю, где ИИ дает измеримый эффект, а где превращается в лишние затраты.
                   </p>
@@ -81,7 +84,7 @@ const TrustAndPosition = () => {
                     Подтвержденный результат
                   </p>
                   <p className="text-lg text-text-body leading-relaxed">
-                    ROI клиентов от 200 до 400 процентов в первые месяцы работы.
+                    ROI клиентов от 200 до 400 процентов в первые месяцы.
                   </p>
                 </div>
               </div>
