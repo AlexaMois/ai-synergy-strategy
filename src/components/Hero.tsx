@@ -36,7 +36,7 @@ const Hero = () => {
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     }
   };
-  return <section ref={ref} className="relative bg-background py-20 overflow-hidden">
+  return <section ref={ref} className="relative bg-background py-10 md:py-16 lg:py-20 overflow-hidden">
       {/* N Pattern Background */}
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none transition-transform duration-100 ease-out" style={{
       backgroundImage: `url(${nPattern})`,

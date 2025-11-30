@@ -41,7 +41,7 @@ const About = () => {
       </section>
 
       {/* Experience Section */}
-      <section ref={ref} className="py-16 bg-[#FAFBFC]">
+      <section ref={ref} className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className={`text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             Путь и опыт
@@ -84,7 +84,7 @@ const About = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-16 bg-background">
+      <section className="py-10 md:py-14 lg:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center">
             Моя философия работы
@@ -135,7 +135,7 @@ const About = () => {
       </section>
 
       {/* Credentials Section */}
-      <section className="py-16 bg-[#FAFBFC]">
+      <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-text-heading mb-12 text-center">
             Признание и достижения

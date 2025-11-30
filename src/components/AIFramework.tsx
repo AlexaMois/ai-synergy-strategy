@@ -57,7 +57,7 @@ const AIFramework = () => {
     title: "Этика и честность",
     points: ["Не беру хайп-проекты ради галочки.", "Если автоматизация не окупится — говорю сразу."]
   }];
-  return <section id="methodology" ref={ref} className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
+  return <section id="methodology" ref={ref} className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <h2 className="section-title text-center leading-tight">

@@ -91,7 +91,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-16 bg-[#FAFBFC]">
+      <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
@@ -131,7 +131,7 @@ const Blog = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-background">
+      <section className="py-10 md:py-14 lg:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="bg-[#D4EDFC] rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-3xl font-bold text-text-heading mb-4">

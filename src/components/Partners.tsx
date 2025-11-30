@@ -16,7 +16,7 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-10 md:py-14 lg:py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="section-title text-center mb-12">
           Партнёры и экосистемы

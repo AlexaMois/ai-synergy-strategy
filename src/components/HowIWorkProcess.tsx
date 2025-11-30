@@ -52,7 +52,7 @@ const HowIWorkProcess = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-20 overflow-hidden bg-white"
+      className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-white"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">

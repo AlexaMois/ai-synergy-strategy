@@ -21,7 +21,7 @@ const WhoIAm = () => {
   return (
     <section 
       ref={ref}
-      className="py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-white"
+      className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-white"
     >
       {/* Заголовок с линией */}
       <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
