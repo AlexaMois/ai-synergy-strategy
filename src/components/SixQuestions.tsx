@@ -102,7 +102,7 @@ const SixQuestions = () => {
           <p className="text-lg md:text-xl text-text-body mb-4">
             После этого половина хотелок «давайте внедрим ИИ» рассыпается сама.
           </p>
-          <p className="text-xl md:text-2xl font-semibold text-text-heading">
+          <p className="text-xl md:text-2xl font-iriska font-bold text-primary">
             Остаётся только то, что действительно работает и окупается.
           </p>
         </div>
