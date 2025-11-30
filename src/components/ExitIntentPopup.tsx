@@ -94,7 +94,7 @@ const ExitIntentPopup = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
-              size="lg"
+              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base"
               asChild
             >
               <a
@@ -103,12 +103,12 @@ const ExitIntentPopup = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2"
               >
-                <Calendar className="h-5 w-5" />
+                <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
                 Записаться на аудит
               </a>
             </Button>
             <Button
-              size="lg"
+              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base"
               variant="outline"
               onClick={handleClose}
             >
