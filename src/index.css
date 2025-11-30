@@ -203,6 +203,13 @@ All colors MUST be HSL.
     color: hsl(var(--text-heading));
   }
   
+  /* Prevent line breaks in accented heading parts */
+  h1 span.font-semibold,
+  h2 span.font-semibold,
+  h3 span.font-semibold {
+    white-space: nowrap;
+  }
+  
   p {
     font-size: 16px;
     line-height: 1.6;
