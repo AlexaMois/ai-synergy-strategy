@@ -50,7 +50,7 @@ const Services = () => {
               }`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="text-5xl font-bold text-primary mb-4 opacity-30">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 opacity-30">
                 {service.number}
               </div>
               <h3 className="text-xl font-semibold text-text-heading mb-3">

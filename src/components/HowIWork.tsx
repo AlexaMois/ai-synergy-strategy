@@ -51,7 +51,7 @@ const HowIWork = () => {
                 style={{ animationDelay: `${0.2 + index * 0.07}s` }}
               >
               <div className="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-accent flex items-center justify-center shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 hover:border-primary">
-                <span className="text-3xl font-semibold text-accent">{step.number}</span>
+                <span className="text-2xl sm:text-3xl font-semibold text-accent">{step.number}</span>
               </div>
                 <h3 className="text-2xl font-medium mb-3 text-text-heading">{step.title}</h3>
                 <p className="text-lg text-text-body leading-relaxed">{step.description}</p>

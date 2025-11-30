@@ -109,7 +109,7 @@ const HowIWorkProcess = () => {
           <div 
             className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] bg-white gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
           >
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
               Узнать, что можно автоматизировать в вашей компании
             </h3>
             <div className="flex flex-col gap-2 items-center">

@@ -126,7 +126,7 @@ const BlogPost = () => {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading leading-tight mb-6">
               {post.title}
             </h1>
 
@@ -193,7 +193,7 @@ const BlogPost = () => {
       {relatedPosts.length > 0 && (
         <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="text-3xl font-semibold text-text-heading mb-8 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-text-heading mb-8 text-center">
               Читайте также
             </h2>
             <div className="grid md:grid-cols-3 gap-8">

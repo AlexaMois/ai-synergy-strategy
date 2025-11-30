@@ -80,7 +80,7 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading mb-6">
             Блог об ИИ без иллюзий
           </h1>
           <p className="text-xl text-text-body max-w-3xl mx-auto">
@@ -134,7 +134,7 @@ const Blog = () => {
       <section className="py-10 md:py-14 lg:py-16 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="bg-[#D4EDFC] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 text-center">
-            <h2 className="text-3xl font-bold text-text-heading mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-text-heading mb-4">
               Подпишитесь на рассылку
             </h2>
             <p className="text-lg text-text-body mb-8">

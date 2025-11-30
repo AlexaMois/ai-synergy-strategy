@@ -81,7 +81,7 @@ const ChecklistPage = () => {
         {/* Header with Download Button */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
           <div>
-            <h1 className="text-3xl md:text-4xl font-medium text-text-heading mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-text-heading mb-2">
               ЧЕК-ЛИСТ
             </h1>
             <p className="text-xl md:text-2xl text-primary font-medium">
