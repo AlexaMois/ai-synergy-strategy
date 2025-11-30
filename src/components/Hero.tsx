@@ -60,7 +60,7 @@ const Hero = () => {
                     <span className="text-handwriting text-2xl sm:text-3xl">независимый стратег и инженер ИИ</span>
                   </div>
 
-                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям принять обоснованное решение, какие цифровые и ИИ-решения обеспечивают реальный результат и ценность, что приводит к неоправданным инвестициям и ненужной экономике.</p>
+                  <p className="text-lg text-text-body leading-relaxed font-semibold">Помогаю компаниям принять взвешенное решение: какие цифровые и ИИ-решения действительно дадут прибыль и ускорение, а какие обернутся лишними расходами и расфокусировкой.</p>
                   
                   <p className="text-lg text-text-body leading-relaxed">
                     Формирую честную картину процессов: где ROI, где ускорение, где «имитация внедрения».
@@ -73,7 +73,7 @@ const Hero = () => {
 
               <div className="space-y-3">
                 <div className="space-y-2">
-                  <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно актуально:</p>
+                  <p className="text-xs text-text-subtle uppercase tracking-wide">Кому это особенно важно:</p>
                   <TabsList className="bg-transparent p-0 h-auto gap-2 sm:gap-4 md:gap-6 border-b border-gray-200 flex-wrap justify-start w-full">
                   <TabsTrigger value="ceo" className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 sm:py-3 bg-transparent text-[#666] border-b-2 border-transparent rounded-none transition-all duration-200 hover:text-[#0497BC] hover:bg-[#F8FCFD] data-[state=active]:text-[#0497BC] data-[state=active]:border-[#49BED8] data-[state=active]:bg-transparent data-[state=active]:font-medium">
                     Я — CEO
