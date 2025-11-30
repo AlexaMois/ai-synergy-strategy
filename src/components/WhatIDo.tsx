@@ -31,7 +31,7 @@ const WhatIDo = () => {
         <div className="max-w-5xl mx-auto">
           <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h2 className="section-title text-center leading-tight">
-              Что я делаю, <span className="font-semibold">и чем отличаюсь</span>
+              Что я делаю: <span className="font-semibold">от диагностики до доведения решений до результата</span>
             </h2>
             <div className="w-24 h-px bg-gray-300 mx-auto"></div>
           </div>
