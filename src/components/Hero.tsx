@@ -152,7 +152,7 @@ const Hero = () => {
               <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     <span className="font-semibold">Как внедрять ИИ без техдолга</span> и архитектурных рисков
+                     <span className="font-semibold">Как внедрять ИИ без перегрузки команды </span> и сбоя процессов 
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
