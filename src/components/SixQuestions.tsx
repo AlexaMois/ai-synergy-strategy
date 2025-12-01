@@ -42,11 +42,10 @@ const SixQuestions = () => {
       <div className="container mx-auto px-4 max-w-[1200px]">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">Диагностика ИИ-проектов: 6 вопросов, которые разделяют выгоду от пустой траты<span className="font-semibold">6 вопросов, которые разделяют выгоду от пустой траты</span>
+          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">
+            Диагностика ИИ-проектов: 6 вопросов, которые разделяют выгоду от пустой траты
+            <span className="font-semibold"> С этого начинается честный расчёт ROI</span>
           </h2>
-          <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
-            С этого начинается честный расчёт ROI
-          </p>
         </div>
 
         {/* Questions Grid */}
@@ -77,9 +76,8 @@ const SixQuestions = () => {
         <div className={`bg-white rounded-2xl p-8 md:p-10 shadow-card gradient-border text-center max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{
         transitionDelay: isVisible ? "700ms" : "0ms"
       }}>
-          <p className="text-lg md:text-xl text-text-body leading-relaxed">После ответов:  вы знаете точно, во что и как инвестировать, или понимаете, что ИИ вам сейчас не нужен (и сохраняете бюджет).
-          <br />
-            либо понимаете, что ИИ вам сейчас не нужен (и сохраняете бюджет).
+          <p className="text-handwriting text-lg md:text-xl leading-relaxed">
+            После диагностики: либо вы знаете точно, во что и как инвестировать, либо понимаете, что ИИ вам сейчас не нужен (и сохраняете бюджет).
           </p>
         </div>
       </div>
