@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { ArrowRight, Search, Layers, Users, DollarSign, Clock, ShieldCheck, Building2 } from "lucide-react";
+import { ArrowRight, Search, Layers, Users, Coins, Clock, ShieldCheck, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ServicesOverview = () => {
@@ -107,7 +107,7 @@ const ServicesOverview = () => {
                       <div className="mb-4 space-y-2">
                         {service.pricing.map((price, i) => {
                           // Определяем иконку по содержанию текста
-                          let IconComponent = DollarSign;
+                          let IconComponent = Coins;
                           if (price.toLowerCase().includes('компани') || price.toLowerCase().includes('человек')) {
                             IconComponent = Building2;
                           } else if (price.toLowerCase().includes('недел') || price.toLowerCase().includes('месяц') || price.toLowerCase().includes('управление')) {
