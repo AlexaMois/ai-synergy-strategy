@@ -82,11 +82,11 @@ const Hero = () => {
               <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                    {tabsContent.ceo.title}
+                    Прозрачность инвестиций и <span className="font-semibold">контроль над внедрением</span>
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.ceo.description}
+                    Вы получаете <span className="font-semibold">независимую оценку</span> проектов и смет. Я гарантирую, что каждый вложенный рубль работает на <span className="font-semibold">бизнес-цели</span>, а не на эксперименты с технологиями.
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -112,11 +112,11 @@ const Hero = () => {
               <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     {tabsContent.operations.title}
+                     Управляемый процесс внедрения <span className="font-semibold">с предсказуемым результатом</span>
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.operations.description}
+                    Я выстраиваю архитектуру так, что ИИ <span className="font-semibold">бесшовно встраивается</span> в текущие задачи. Вы получаете <span className="font-semibold">отлаженную систему</span>, четкие регламенты и обученную команду.
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -142,11 +142,11 @@ const Hero = () => {
               <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     {tabsContent.it.title}
+                     Рост эффективности <span className="font-semibold">вашего подразделения</span>
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    {tabsContent.it.description}
+                    ИИ берет на себя рутинные операции и отчетность. Вы и ваша команда <span className="font-semibold">освобождаете время</span> для <span className="font-semibold">важных задач</span>, повышая общую производительность отдела.
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
