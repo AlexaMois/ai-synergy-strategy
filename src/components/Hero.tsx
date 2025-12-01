@@ -79,17 +79,17 @@ const Hero = () => {
                 </div>
               </div>
 
-              <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
+              <TabsContent value="ceo" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
-                  <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
+                  <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
                     Прозрачность инвестиций и <span className="font-semibold">контроль над внедрением</span>
                   </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
                     Вы получаете <span className="font-semibold">независимую оценку</span> проектов и смет. Я гарантирую, что каждый вложенный рубль работает на <span className="font-semibold">бизнес-цели</span>, а не на эксперименты с технологиями.
                   </p>
                   
-                   <div className="flex flex-col gap-4 pt-2">
+                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{ animationDelay: '0.25s', animationFillMode: 'both' }}>
                      <div className="flex flex-col gap-2">
                        <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -103,23 +103,23 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-sm text-text-subtle leading-tight mt-8">
+                  <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{ animationDelay: '0.35s', animationFillMode: 'both' }}>
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
               </TabsContent>
 
-              <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
+              <TabsContent value="operations" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
-                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
+                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
                      Управляемый процесс внедрения <span className="font-semibold">с предсказуемым результатом</span>
                    </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
                     Я выстраиваю архитектуру так, что ИИ <span className="font-semibold">бесшовно встраивается</span> в текущие задачи. Вы получаете <span className="font-semibold">отлаженную систему</span>, четкие регламенты и обученную команду.
                   </p>
                   
-                   <div className="flex flex-col gap-4 pt-2">
+                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{ animationDelay: '0.25s', animationFillMode: 'both' }}>
                      <div className="flex flex-col gap-2">
                        <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -133,23 +133,23 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-sm text-text-subtle leading-tight mt-8">
+                  <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{ animationDelay: '0.35s', animationFillMode: 'both' }}>
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
               </TabsContent>
 
-              <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
+              <TabsContent value="it" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
-                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
+                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
                      Рост эффективности <span className="font-semibold">вашего подразделения</span>
                    </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl">
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
                     ИИ берет на себя рутинные операции и отчетность. Вы и ваша команда <span className="font-semibold">освобождаете время</span> для <span className="font-semibold">важных задач</span>, повышая общую производительность отдела.
                   </p>
                   
-                   <div className="flex flex-col gap-4 pt-2">
+                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{ animationDelay: '0.25s', animationFillMode: 'both' }}>
                      <div className="flex flex-col gap-2">
                        <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                          <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -163,7 +163,7 @@ const Hero = () => {
                     </a>
                   </div>
 
-                  <p className="text-sm text-text-subtle leading-tight mt-8">
+                  <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{ animationDelay: '0.35s', animationFillMode: 'both' }}>
                     36+ проектов · 350+ консультаций · ROI клиентов 200–400%
                   </p>
                 </div>
