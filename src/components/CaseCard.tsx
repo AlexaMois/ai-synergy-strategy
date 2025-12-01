@@ -6,11 +6,13 @@ interface CaseCardProps {
     icon: LucideIcon;
     company: string;
     about: string;
+    aboutLabel?: string;
     client?: string;
+    situation?: string;
     problems?: string[];
     features?: string[];
     solution?: {
-      budget: string;
+      budget?: string;
       steps: string[];
     };
     quote?: string;
@@ -59,17 +61,31 @@ const CaseCard = ({ caseItem, index, counterVisible, staggerClass }: CaseCardPro
       </div>
 
       {/* About / Client */}
-      <div className="mb-4">
-        <p className="text-handwriting mb-1">
-          {caseItem.client ? 'Типовой клиент:' : 'О клиенте:'}
-        </p>
-        <p className="text-sm text-text-body leading-relaxed">
-          {caseItem.about}
-        </p>
-        {caseItem.client && (
-          <p className="text-sm text-text-body leading-relaxed mt-2">{caseItem.client}</p>
-        )}
-      </div>
+      {caseItem.about && (
+        <div className="mb-4">
+          <p className="text-handwriting mb-1">
+            {caseItem.aboutLabel || (caseItem.client ? 'Типовой клиент:' : 'Клиент:')}
+          </p>
+          <p className="text-sm text-text-body leading-relaxed">
+            {caseItem.about}
+          </p>
+          {caseItem.client && (
+            <p className="text-sm text-text-body leading-relaxed mt-2">{caseItem.client}</p>
+          )}
+        </div>
+      )}
+
+      {/* Situation */}
+      {caseItem.situation && (
+        <div className="mb-4">
+          <p className="text-handwriting mb-1">
+            Ситуация:
+          </p>
+          <p className="text-sm text-text-body leading-relaxed">
+            {caseItem.situation}
+          </p>
+        </div>
+      )}
 
       {/* Divider */}
       <div className="h-px bg-gray-200 my-3"></div>
@@ -112,7 +128,7 @@ const CaseCard = ({ caseItem, index, counterVisible, staggerClass }: CaseCardPro
       {caseItem.solution && (
         <div className="mb-4">
           <p className="text-handwriting mb-2">
-            Решение (бюджет {caseItem.solution.budget}):
+            {caseItem.solution.budget ? `Решение (бюджет ${caseItem.solution.budget}):` : 'Инженерное решение:'}
           </p>
           <ul className="space-y-1">
             {caseItem.solution.steps.map((step, idx) => (
@@ -143,7 +159,7 @@ const CaseCard = ({ caseItem, index, counterVisible, staggerClass }: CaseCardPro
       {/* Results */}
       <div className="mb-6">
         <p className="text-handwriting mb-2">
-          Результаты ({caseItem.results.period}):
+          {caseItem.results.period ? `Результаты (${caseItem.results.period}):` : 'Результат:'}
         </p>
         <ul className="space-y-1.5">
           {caseItem.results.items.map((result, idx) => {
@@ -217,41 +233,13 @@ const CaseCard = ({ caseItem, index, counterVisible, staggerClass }: CaseCardPro
 
       {/* Link */}
       <div className="mt-auto space-y-2">
-        {/* Case-specific links */}
-        {index === 0 && (
-          <a 
-            href="/case-studies/kraypotrebsoyuz" 
-            className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
-          >
-            <span>Смотреть детальный разбор этого кейса →</span>
-          </a>
-        )}
-        {index === 1 && (
-          <>
-            <a 
-              href="/golossok-demo" 
-              className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300 block mb-2"
-            >
-              <span>Посмотреть как это работает (видео 2 мин) →</span>
-            </a>
-            <a 
-              href="/golossok-pricing" 
-              className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
-            >
-              <span>Купить доступ или запросить пробный период →</span>
-            </a>
-          </>
-        )}
-        {index === 2 && (
-          <>
-            <a 
-              href="/case-studies/cargo-express" 
-              className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300 block"
-            >
-              <span>Смотреть детальный разбор кейса →</span>
-            </a>
-          </>
-        )}
+        {/* Case-specific links - all cases now have same link */}
+        <a 
+          href={index === 0 ? "/case-studies/kraypotrebsoyuz" : index === 2 ? "/case-studies/cargo-express" : "#"} 
+          className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
+        >
+          <span>Читать подробный разбор кейса →</span>
+        </a>
       </div>
     </div>
   );
