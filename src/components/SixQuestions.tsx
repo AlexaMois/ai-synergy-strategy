@@ -42,7 +42,7 @@ const SixQuestions = () => {
       <div className="container mx-auto px-4 max-w-[1200px]">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">Аудит и анализ ИИ-проектов: <span className="font-semibold">6 вопросов, которые разделяют выгоду от пустой траты</span>
+          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">Аудит и анализ: <span className="font-semibold">6 вопросов, которые разделяют выгоду от пустой траты</span>
           </h2>
           <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
             С этого начинается честный расчёт ROI
