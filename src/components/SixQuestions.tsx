@@ -37,10 +37,10 @@ const SixQuestions = () => {
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">
-            Диагностика ИИ-проектов: 6 вопросов, которые разделяют выгоду от пустой траты <span className="font-semibold">С этого начинается честный расчёт ROI</span>
+            Диагностика ИИ-проектов: 6 вопросов, которые разделяют выгоду от пустой траты <span className="font-semibold">6 вопросов, которые разделяют выгоду от пустой траты</span>
           </h2>
           <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
-            С этого начинается диагностика
+            С этого начинается честный расчёт ROI
           </p>
         </div>
 
