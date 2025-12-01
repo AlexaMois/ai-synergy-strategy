@@ -9,7 +9,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Любую задачу можно решить за <span className="font-semibold">пять минут</span> или за <span className="font-semibold">пять миллионов</span>. Выбор за вами.
+            Любую задачу можно решить за <span className="font-semibold"><span className="text-5xl">5</span> минут</span> или за <span className="font-semibold"><span className="text-5xl">5</span> миллионов</span>. Выбор за вами.
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
