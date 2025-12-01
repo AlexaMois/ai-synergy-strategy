@@ -77,8 +77,7 @@ const SixQuestions = () => {
         <div className={`bg-white rounded-2xl p-8 md:p-10 shadow-card gradient-border text-center max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{
         transitionDelay: isVisible ? "700ms" : "0ms"
       }}>
-          <p className="text-lg md:text-xl text-text-body leading-relaxed">После ответов:  вы знаете точно, во что и как инвестировать,
-или понимаете, что ИИ вам сейчас не нужен (и сохраняете бюджет).<br />
+          <p className="text-lg md:text-xl text-text-body leading-relaxed">После ответов:  вы знаете точно, во что и как инвестировать, или понимаете, что ИИ вам сейчас не нужен (и сохраняете бюджет).​<br />
             ​
           </p>
         </div>
