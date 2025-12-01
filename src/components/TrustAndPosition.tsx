@@ -71,12 +71,8 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Профессиональное признание
                   </p>
-                  <p className="text-lg text-text-body leading-relaxed">Дипломированный специалист по ИИ
-Член ОПОРА РОССИИ
-Член НФИИ
-Резидент IT Парк Казань
-Резидент КРИТБИ<br />
-                    Победитель Бизнес Успех 2025<br />
+                  <p className="text-lg text-text-body leading-relaxed">Дипломированный специалист по ИИ <br />
+                    Член ОПОРА РОССИИ<br />
                     Член НФИИ<br />
                     Резидент IT Парк Казань<br />
                     Резидент КРИТБИ
