@@ -16,20 +16,20 @@ const Hero = () => {
   const parallaxOffset = useParallax(0.3);
   const tabsContent = {
     ceo: {
-      title: "Как внедрять технологии, не нарушая устойчивость бизнеса",
-      description: "Получаете честную оценку процессов, рисков и экономического эффекта: что даст результат, что не окупится, и в какой последовательности двигаться.",
+      title: "Прозрачность инвестиций и контроль над внедрением",
+      description: "Вы получаете независимую оценку проектов и смет. Я гарантирую, что каждый вложенный рубль работает на бизнес-цели, а не на эксперименты с технологиями.",
       button1: "Пройти экспресс-аудит процессов",
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     },
     operations: {
-      title: "Как убрать узкие места и повысить скорость операционки",
-      description: "Выявляю дублирование, задержки и точки просадки. Показываю, какие решения действительно ускорят процессы и сократят нагрузку на команду.",
+      title: "Управляемый процесс внедрения с предсказуемым результатом",
+      description: "Я выстраиваю архитектуру так, что ИИ бесшовно встраивается в текущие задачи. Вы получаете отлаженную систему, четкие регламенты и обученную команду.",
       button1: "Пройти экспресс-аудит процессов",
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     },
     it: {
-      title: "Как внедрять ИИ без техдолга и архитектурных рисков",
-      description: "Даю независимую оценку интеграций, безопасности и совместимости: какие ИИ-решения впишутся в вашу инфраструктуру и будут устойчивыми в поддержке.",
+      title: "Рост эффективности вашего подразделения",
+      description: "ИИ берет на себя рутинные операции и отчетность. Вы и ваша команда освобождаете время для важных задач, повышая общую производительность отдела.",
       button1: "Пройти экспресс-аудит процессов",
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     }
@@ -82,11 +82,11 @@ const Hero = () => {
               <TabsContent value="ceo" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                    Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
+                    {tabsContent.ceo.title}
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
+                    {tabsContent.ceo.description}
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -112,11 +112,11 @@ const Hero = () => {
               <TabsContent value="operations" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
+                     {tabsContent.operations.title}
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
+                    {tabsContent.operations.description}
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
@@ -142,11 +142,11 @@ const Hero = () => {
               <TabsContent value="it" className="mt-0 data-[state=active]:animate-fade-in transition-all duration-300">
                 <div className="space-y-4">
                    <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading">
-                     Как внедрять технологии так, <span className="font-semibold">чтобы бизнес оставался устойчивым</span>
+                     {tabsContent.it.title}
                    </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl">
-                    Получите независимую оценку процессов, рисков и экономики: какие решения дадут эффект, во что не стоит вкладываться и в какой последовательности двигаться
+                    {tabsContent.it.description}
                   </p>
                   
                    <div className="flex flex-col gap-4 pt-2">
