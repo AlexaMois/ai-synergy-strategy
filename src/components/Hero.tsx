@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import nPattern from "@/assets/n-pattern.png";
-import brushAccent from "@/assets/brush-accent-1.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
@@ -43,11 +41,6 @@ const Hero = () => {
       backgroundRepeat: 'repeat',
       backgroundSize: '120px',
       transform: `translateY(${parallaxOffset * 0.1}px)`
-    }} />
-      {/* Brush Accent */}
-      <OptimizedImage src={brushAccent} alt="" className={`absolute top-1/4 right-1/4 w-80 opacity-20 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`} style={{
-      transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-15deg)`,
-      animationDelay: '0.2s'
     }} />
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">

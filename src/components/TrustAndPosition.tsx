@@ -1,14 +1,10 @@
-import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { useParallax } from "@/hooks/use-parallax";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import brushAccent from "@/assets/brush-accent-1.png";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const TrustAndPosition = () => {
   const { ref, getAnimationClass, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.3);
   
   // Counter animation for ROI numbers
   const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
@@ -21,17 +17,6 @@ const TrustAndPosition = () => {
       ref={ref}
       className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background"
     >
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute top-1/2 right-20 w-[340px] opacity-12 pointer-events-none transition-all duration-600 ease-out ${getAnimationClass('animate-fade-slide-up', 'animate-mobile-fade-scale')}`}
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.5}px) rotate(-50deg)`,
-          animationDelay: '0.1s'
-        }}
-      />
-      
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div 

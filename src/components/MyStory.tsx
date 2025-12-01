@@ -1,27 +1,13 @@
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { useParallax } from "@/hooks/use-parallax";
-import brushAccent from "@/assets/brush-accent-1.png";
-import OptimizedImage from "@/components/OptimizedImage";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const MyStory = () => {
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.3);
   
   return (
     <section id="about" ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden" style={{
       background: 'linear-gradient(180deg, #F6F8FA 0%, #FAFBFC 100%)'
     }}>
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute bottom-20 right-10 w-[450px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${getAnimationClass('animate-fade-slide-up', 'animate-mobile-fade-scale')}`}
-        style={{ 
-          transform: `translateY(${parallaxOffset * 0.5}px) rotate(-30deg)`,
-          animationDelay: '0.2s'
-        }}
-      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>

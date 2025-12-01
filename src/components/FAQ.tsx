@@ -5,16 +5,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import OptimizedImage from "@/components/OptimizedImage";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { useParallax } from "@/hooks/use-parallax";
-import brushAccent from "@/assets/brush-accent-1.png";
 import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon } from "lucide-react";
 import { JSX } from "react";
 
 const FAQ = () => {
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.35);
   const faqs: { question: string; answer: string | JSX.Element; icon: LucideIcon }[] = [
     {
       question: "Сколько стоит внедрение ИИ?",
@@ -139,13 +135,6 @@ const FAQ = () => {
 
   return (
     <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className="absolute top-20 left-20 w-[400px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(25deg)` }}
-      />
       <div className="container mx-auto px-4">
         <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           Частые вопросы, <span className="font-semibold">честные ответы</span>
