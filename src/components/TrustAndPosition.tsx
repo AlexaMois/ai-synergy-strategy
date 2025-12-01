@@ -2,26 +2,41 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useCountUp } from "@/hooks/use-count-up";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
-
 const TrustAndPosition = () => {
-  const { ref, getAnimationClass, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
-  
-  // Counter animation for ROI numbers
-  const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
-  const count200 = useCountUp({ end: 200, duration: 1800, isVisible: counterVisible });
-  const count400 = useCountUp({ end: 400, duration: 1800, isVisible: counterVisible });
-  const count12 = useCountUp({ end: 12, duration: 1800, isVisible: counterVisible });
+  const {
+    ref,
+    getAnimationClass,
+    getStaggeredClass
+  } = useMobileAnimations({
+    threshold: 0.2
+  });
 
-  return (
-    <section 
-      ref={ref}
-      className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background"
-    >
+  // Counter animation for ROI numbers
+  const {
+    ref: counterRef,
+    isVisible: counterVisible
+  } = useIntersectionObserver({
+    threshold: 0.5
+  });
+  const count200 = useCountUp({
+    end: 200,
+    duration: 1800,
+    isVisible: counterVisible
+  });
+  const count400 = useCountUp({
+    end: 400,
+    duration: 1800,
+    isVisible: counterVisible
+  });
+  const count12 = useCountUp({
+    end: 12,
+    duration: 1800,
+    isVisible: counterVisible
+  });
+  return <section ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background">
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
-        <div 
-          className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-hover ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}
-        >
+        <div className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-hover ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
@@ -34,20 +49,15 @@ const TrustAndPosition = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
-                <div 
-                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}
-                >
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(0)}`}>
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Реальная польза
                   </p>
-                  <p className="text-lg text-text-body leading-relaxed">
-                    Показываю, где ИИ дает измеримый эффект, а где превращается в лишние затраты
-                  </p>
+                  <p className="text-lg text-text-body leading-relaxed">Показываю, где ИИ дает измеримый эффект, 
+а где превращается в лишние затраты</p>
                 </div>
                 
-                <div 
-                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}
-                >
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(1)}`}>
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
                   </p>
@@ -57,14 +67,15 @@ const TrustAndPosition = () => {
                 </div>
                 
                 {/* Карточка 3 */}
-                <div 
-                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(2)}`}
-                >
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(2)}`}>
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Профессиональное признание
                   </p>
-                  <p className="text-lg text-text-body leading-relaxed">
-                    Дипломированный специалист по ИИ<br />
+                  <p className="text-lg text-text-body leading-relaxed">Дипломированный специалист по ИИ
+Член ОПОРА РОССИИ
+Член НФИИ
+Резидент IT Парк Казань
+Резидент КРИТБИ<br />
                     Победитель Бизнес Успех 2025<br />
                     Член НФИИ<br />
                     Резидент IT Парк Казань<br />
@@ -73,10 +84,7 @@ const TrustAndPosition = () => {
                 </div>
                 
                 {/* Карточка 4 */}
-                <div 
-                  ref={counterRef as any}
-                  className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}
-                >
+                <div ref={counterRef as any} className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(3)}`}>
                   <p className="text-lg font-semibold text-text-heading leading-relaxed mb-2">
                     Проверенная эффективность
                   </p>
@@ -97,15 +105,10 @@ const TrustAndPosition = () => {
               </div>
 
               <div className="space-y-4">
-                <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
-                >
-                  <div 
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
-                    }}
-                  >
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(4)}`}>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                }}>
                     <Target className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -116,15 +119,10 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(5)}`}
-                >
-                  <div 
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
-                    }}
-                  >
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(5)}`}>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                }}>
                     <TrendingUp className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -135,15 +133,10 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(6)}`}
-                >
-                  <div 
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
-                    }}
-                  >
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(6)}`}>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                }}>
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -154,15 +147,10 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(7)}`}
-                >
-                  <div 
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
-                    }}
-                  >
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${getStaggeredClass(7)}`}>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, #49BED8 0%, #D4EDFC 100%)'
+                }}>
                     <Search className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -177,8 +165,6 @@ const TrustAndPosition = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default TrustAndPosition;
