@@ -1,15 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-
 const Contact = () => {
-  const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
-  
-  return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
+  const {
+    ref,
+    getStaggeredClass
+  } = useMobileAnimations({
+    threshold: 0.2
+  });
+  return <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Любую задачу можно решить за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(1, 'animate-scale-in')}`}>5</span> минут</span> или за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(2, 'animate-scale-in')}`}>5</span> миллионов</span>. Выбор за вами.
+          <h2 className="">
+            Любую задачу в ИИ можно решить за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(1, 'animate-scale-in')}`}>5</span> минут</span> или за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(2, 'animate-scale-in')}`}>5</span> миллионов</span>. Выбор за вами.
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
@@ -18,19 +20,12 @@ const Contact = () => {
           
           <div className={`flex flex-col gap-4 items-center ${getStaggeredClass(4, 'animate-scale-in')}`}>
             <div className="flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap">
-              <Button 
-                className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
-                asChild
-              >
+              <Button className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap" asChild>
                 <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                   Обсудить задачу
                 </a>
               </Button>
-              <Button 
-                className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
-                variant="outline" 
-                asChild
-              >
+              <Button className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap" variant="outline" asChild>
                 <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer">
                   Написать в Telegram
                 </a>
@@ -59,8 +54,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
