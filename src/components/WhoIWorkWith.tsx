@@ -1,24 +1,10 @@
-import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useParallax } from "@/hooks/use-parallax";
-import brushAccent from "@/assets/brush-accent-1.png";
 
 const WhoIWorkWith = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.35);
 
   return (
     <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute bottom-20 left-16 w-[380px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
-        style={{ 
-          transform: `translateY(${-parallaxOffset * 0.6}px) rotate(35deg)`,
-          animationDelay: '0.15s'
-        }}
-      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

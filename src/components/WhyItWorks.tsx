@@ -1,8 +1,6 @@
-import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import nPattern from "@/assets/n-pattern.png";
-import brushAccent from "@/assets/brush-accent-1.png";
 
 const WhyItWorks = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -19,17 +17,7 @@ const WhyItWorks = () => {
           backgroundImage: `url(${nPattern})`,
           backgroundRepeat: 'repeat',
           backgroundSize: '100px',
-          transform: `translateY(${parallaxOffset * 0.08}px)`
-        }}
-      />
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute bottom-32 right-20 w-96 opacity-20 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
-        style={{ 
-          transform: `translateY(${parallaxOffset * 0.6}px) rotate(-45deg)`,
-          animationDelay: '0.25s'
+        transform: `translateY(${parallaxOffset * 0.08}px)`
         }}
       />
       <div className="container mx-auto px-4">

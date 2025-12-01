@@ -1,24 +1,13 @@
 import { Button } from "@/components/ui/button";
-import OptimizedImage from "@/components/OptimizedImage";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { useParallax } from "@/hooks/use-parallax";
-import brushAccent from "@/assets/brush-accent-1.png";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const Contact = () => {
   const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.35);
   
   return (
     <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className="absolute top-1/2 right-10 w-[450px] opacity-15 pointer-events-none transition-transform duration-100 ease-out"
-        style={{ transform: `translateY(${-parallaxOffset * 0.7}px) rotate(-12deg)` }}
-      />
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>

@@ -1,12 +1,8 @@
-import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useParallax } from "@/hooks/use-parallax";
 import { Button } from "@/components/ui/button";
-import brushAccent from "@/assets/brush-accent-1.png";
 
 const HowIWork = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.3);
   const steps = [
     {
       number: "1",
@@ -27,16 +23,6 @@ const HowIWork = () => {
 
   return (
     <section id="how" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-white overflow-hidden">
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute top-32 right-16 w-[420px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`}
-        style={{ 
-          transform: `translateY(${parallaxOffset * 0.5}px) rotate(-20deg)`,
-          animationDelay: '0.15s'
-        }}
-      />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>

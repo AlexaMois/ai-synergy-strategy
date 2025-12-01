@@ -1,7 +1,5 @@
-import OptimizedImage from "@/components/OptimizedImage";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useParallax } from "@/hooks/use-parallax";
-import brushAccent from "@/assets/brush-accent-1.png";
+
 const Services = () => {
   const {
     ref,
@@ -9,7 +7,6 @@ const Services = () => {
   } = useIntersectionObserver({
     threshold: 0.2
   });
-  const parallaxOffset = useParallax(0.4);
   const services = [{
     number: "01",
     title: "Аудит и диагностика",
@@ -25,17 +22,6 @@ const Services = () => {
   }];
   return (
     <section id="services" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
-      {/* Brush Accent */}
-      <OptimizedImage 
-        src={brushAccent} 
-        alt="" 
-        className={`absolute top-20 left-10 w-[500px] opacity-15 pointer-events-none transition-all duration-600 ease-out ${isVisible ? 'animate-fade-slide-up' : 'opacity-0'}`} 
-        style={{
-          transform: `translateY(${-parallaxOffset * 0.8}px) rotate(12deg)`,
-          animationDelay: '0.2s'
-        }} 
-      />
-      
       <div className="container mx-auto px-4">
         <h2 className="section-title text-center leading-tight mb-10">
           Услуги, <span className="font-semibold">которые я предлагаю</span>
