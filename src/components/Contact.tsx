@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="">
-            <span className="whitespace-nowrap">Любую задачу в ИИ можно решить за <span className="font-semibold"><span className={`text-4xl inline-block ${getStaggeredClass(1, 'animate-scale-in')}`}>5</span> минут</span> или за <span className="font-semibold"><span className={`text-4xl inline-block ${getStaggeredClass(2, 'animate-scale-in')}`}>5</span> миллионов</span>.</span> Выбор за вами.
+            <span className="md:whitespace-nowrap">Любую задачу в ИИ можно решить за <span className="font-semibold"><span className={`text-4xl inline-block ${getStaggeredClass(1, 'animate-scale-in')}`}>5</span> минут</span> или за <span className="font-semibold"><span className={`text-4xl inline-block ${getStaggeredClass(2, 'animate-scale-in')}`}>5</span> миллионов</span>.</span> Выбор за вами.
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
