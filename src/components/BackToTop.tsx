@@ -29,12 +29,12 @@ const BackToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-24 right-6 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2 ${
+      className={`fixed bottom-4 sm:bottom-6 md:bottom-24 right-4 sm:right-6 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       }`}
       aria-label="Вернуться наверх"
     >
-      <ArrowUp size={20} />
+      <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
       <span className="text-sm font-medium hidden sm:inline">Наверх</span>
     </button>
   );
