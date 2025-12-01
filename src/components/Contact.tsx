@@ -9,14 +9,14 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Любую задачу можно решить за <span className="font-semibold"><span className="text-5xl">5</span> минут</span> или за <span className="font-semibold"><span className="text-5xl">5</span> миллионов</span>. Выбор за вами.
+            Любую задачу можно решить за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(1, 'animate-scale-in')}`}>5</span> минут</span> или за <span className="font-semibold"><span className={`text-5xl inline-block ${getStaggeredClass(2, 'animate-scale-in')}`}>5</span> миллионов</span>. Выбор за вами.
           </h2>
           
-          <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
+          <p className={`text-handwriting mb-10 ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
             Начните с архитектурной сессии, чтобы не переплачивать за лишние технологии.
           </p>
           
-          <div className={`flex flex-col gap-4 items-center ${getStaggeredClass(2, 'animate-scale-in')}`}>
+          <div className={`flex flex-col gap-4 items-center ${getStaggeredClass(4, 'animate-scale-in')}`}>
             <div className="flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap">
               <Button 
                 className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
@@ -41,7 +41,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className={`mt-12 pt-12 border-t border-border ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
+          <div className={`mt-12 pt-12 border-t border-border ${getStaggeredClass(5, 'animate-fade-in-up')}`}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg text-text-body">
               <div className="p-4 sm:p-6 rounded-xl bg-[hsl(var(--gray-50))] shadow-card transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover">
                 <p className="font-semibold text-text-heading mb-2">Email</p>
