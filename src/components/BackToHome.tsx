@@ -10,7 +10,7 @@ const BackToHome = () => {
   return (
     <Link
       to="/"
-      className="fixed bottom-24 right-20 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
+      className="fixed bottom-24 right-36 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
       aria-label="На главную"
     >
       <Home size={20} />
