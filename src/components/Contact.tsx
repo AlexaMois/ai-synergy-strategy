@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 
 const Contact = () => {
   const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -11,7 +9,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Любую задачу можно решить за <span className="text-primary font-semibold"><span className="inline-block animate-pulse">5</span> минут</span> или за <span className="text-primary font-semibold"><span className="inline-block animate-pulse">5</span> миллионов</span>. Выбор за вами.
+            Любую задачу можно решить за <span className="font-semibold">пять минут</span> или за <span className="font-semibold">пять миллионов</span>. Выбор за вами.
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
@@ -19,18 +17,15 @@ const Contact = () => {
           </p>
           
           <div className={`flex flex-col gap-4 items-center ${getStaggeredClass(2, 'animate-scale-in')}`}>
-            <div className="flex flex-row gap-3 sm:gap-4 justify-center items-start flex-wrap">
-              <div className="flex flex-col gap-2 items-center">
-                <Button 
-                  className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
-                  asChild
-                >
-                  <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                    Обсудить задачу
-                  </a>
-                </Button>
-                <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
-              </div>
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap">
+              <Button 
+                className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
+                asChild
+              >
+                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                  Обсудить задачу
+                </a>
+              </Button>
               <Button 
                 className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
                 variant="outline" 
