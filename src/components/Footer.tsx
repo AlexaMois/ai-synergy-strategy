@@ -1,32 +1,30 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
+
     // Extract the hash from href (e.g., "/#contact" -> "contact")
     const hash = href.includes('#') ? href.split('#')[1] : '';
-    
     if (!hash) return;
-    
+
     // If we're not on the homepage, navigate there first with the hash
     if (location.pathname !== '/') {
       navigate(`/#${hash}`);
       return;
     }
-    
+
     // If we're on homepage, scroll to element
     const element = document.querySelector(`#${hash}`);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }
   };
-
-  return (
-    <footer className="bg-dark-bg text-background py-12">
+  return <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -49,7 +47,7 @@ const Footer = () => {
               <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
               <Link to="/resources" className="hover:text-accent transition-colors">Материалы</Link>
               <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
-              <a href="/#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
+              <a href="/#contact" onClick={e => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
             </div>
           </div>
 
@@ -61,7 +59,7 @@ const Footer = () => {
                 neiroreshenia@yandex.com
               </a>
               <div>
-                <p className="text-sm text-background/90 mb-1">Телефон</p>
+                <p className="text-sm text-background/90 mb-1">​</p>
                 <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
                   +7 993 721 73 67
                 </a>
@@ -110,8 +108,6 @@ const Footer = () => {
           <p>© ИП Моисеева Александра Алексеевна, 2023–2025. Все права защищены.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
