@@ -11,34 +11,39 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
-            Готовы узнать, <span className="font-semibold">где теряются ресурсы и какой эффект может дать ИИ</span>
+            Любую задачу можно решить за <span className="text-primary font-semibold"><span className="inline-block animate-pulse">5</span> минут</span> или за <span className="text-primary font-semibold"><span className="inline-block animate-pulse">5</span> миллионов</span>. Выбор за вами.
           </h2>
           
           <p className={`text-handwriting mb-10 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-            Начните с экспресс-аудита
+            Начните с архитектурной сессии, чтобы не переплачивать за лишние технологии.
           </p>
           
-          <div className={`flex flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap ${getStaggeredClass(2, 'animate-scale-in')}`}>
-            <div className="flex flex-col gap-2 items-center">
+          <div className={`flex flex-col gap-4 items-center ${getStaggeredClass(2, 'animate-scale-in')}`}>
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center items-start flex-wrap">
+              <div className="flex flex-col gap-2 items-center">
+                <Button 
+                  className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
+                  asChild
+                >
+                  <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
+                    Обсудить задачу
+                  </a>
+                </Button>
+                <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
+              </div>
               <Button 
                 className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
+                variant="outline" 
                 asChild
               >
-                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                  Пройти экспресс-аудит процессов
+                <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer">
+                  Написать в Telegram
                 </a>
               </Button>
-              <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
             </div>
-            <Button 
-              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap"
-              variant="outline" 
-              asChild
-            >
-              <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer">
-                Написать в Telegram
-              </a>
-            </Button>
+            <p className="text-sm text-muted-foreground text-center">
+              Честно скажу, если ИИ вам пока не нужен.
+            </p>
           </div>
 
           <div className={`mt-12 pt-12 border-t border-border ${getStaggeredClass(3, 'animate-fade-in-up')}`}>
