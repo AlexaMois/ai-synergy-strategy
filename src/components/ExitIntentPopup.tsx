@@ -54,10 +54,10 @@ const ExitIntentPopup = () => {
         {/* Content */}
         <div className="p-8 sm:p-10">
           <DialogHeader className="mb-6">
-            <DialogTitle className="text-2xl sm:text-3xl font-normal text-center text-[#222222] mb-4 leading-tight">
+            <DialogTitle className="text-2xl sm:text-3xl font-golos font-normal text-center text-[#222222] mb-4 leading-tight">
               Вы теряете миллионы, <span className="font-semibold">на неправильном выборе ИИ</span>
             </DialogTitle>
-            <DialogDescription className="text-base sm:text-lg text-center text-[#444444] whitespace-nowrap">
+            <DialogDescription className="text-base sm:text-lg font-raleway text-center text-[#444444]">
               За <span className="font-semibold text-primary">30 минут</span> я выясню, есть ли смысл вообще говорить об ИИ
             </DialogDescription>
           </DialogHeader>
@@ -65,38 +65,37 @@ const ExitIntentPopup = () => {
           <div className="space-y-3 mb-8">
             <div className="flex items-start gap-3">
               <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base text-[#444444]">
+              <p className="text-base font-raleway text-[#444444]">
                 Найду главные боли в ваших процессах, которые может решить ИИ
               </p>
             </div>
             <div className="flex items-start gap-3">
               <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base text-[#444444]">
+              <p className="text-base font-raleway text-[#444444]">
                 Честно скажу, если ИИ вам сейчас не нужен и почему
               </p>
             </div>
             <div className="flex items-start gap-3">
               <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base text-[#444444]">
+              <p className="text-base font-raleway text-[#444444]">
                 Предложу следующий шаг (если он имеет смысл)
               </p>
             </div>
           </div>
 
           <div className="flex flex-col gap-3 mb-6">
-            <Button className="w-full" asChild>
+            <Button asChild>
               <a
                 href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center gap-0.5 py-3"
+                className="flex flex-col items-center gap-0.5"
               >
                 <span className="font-medium">Записаться на аудит</span>
                 <span className="text-xs opacity-90">30 минут, без обязательств</span>
               </a>
             </Button>
             <Button
-              className="w-full py-3"
               variant="outline"
               onClick={() => {
                 toast({
@@ -112,7 +111,7 @@ const ExitIntentPopup = () => {
             </Button>
           </div>
 
-          <p className="text-center text-sm text-[#6A6A6A]">
+          <p className="text-center text-sm font-raleway text-[#6A6A6A]">
             Без впаривания, без волшебства. Только честная диагностика.
           </p>
         </div>
