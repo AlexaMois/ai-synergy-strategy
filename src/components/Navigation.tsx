@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import DisabledLink from "@/components/DisabledLink";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -131,9 +132,9 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
                   {link.label}
-                </a> : <Link key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
+                </a> : <DisabledLink key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
                   {link.label}
-                </Link>)}
+                </DisabledLink>)}
             <Button size="sm" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                 ​Экспресс-аудит
@@ -178,11 +179,11 @@ const Navigation = () => {
             animationDelay: `${index * 50}ms`
           }}>
               {link.label}
-            </a> : <Link key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+            </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
             animationDelay: `${index * 50}ms`
           }}>
               {link.label}
-            </Link>)}
+            </DisabledLink>)}
         </nav>
         
         <div className={`pt-6 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{

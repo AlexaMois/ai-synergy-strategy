@@ -3,6 +3,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
 import { Building2, Mic, Truck } from "lucide-react";
 import CaseCard from "./CaseCard";
+import { toast } from "@/hooks/use-toast";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -104,9 +105,14 @@ const Cases = () => {
             <Button 
               size="lg" 
               className="text-lg px-8"
-              asChild
+              onClick={() => {
+                toast({
+                  title: "Эта страница находится в разработке",
+                  description: "Скоро здесь появится полезная информация",
+                });
+              }}
             >
-              <a href="/cases">Посмотреть все кейсы</a>
+              Посмотреть все кейсы
             </Button>
         </div>
       </div>

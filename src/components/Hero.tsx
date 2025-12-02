@@ -6,6 +6,7 @@ import nPattern from "@/assets/n-pattern.png";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useParallax } from "@/hooks/use-parallax";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
+import { toast } from "@/hooks/use-toast";
 const Hero = () => {
   const {
     ref,
@@ -98,7 +99,17 @@ const Hero = () => {
                        </Button>
                        <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                      </div>
-                    <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                     <a 
+                      href="/checklist" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast({
+                          title: "Эта страница находится в разработке",
+                          description: "Скоро здесь появится полезная информация",
+                        });
+                      }}
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
+                    >
                       {tabsContent.ceo.button2}
                     </a>
                   </div>
@@ -128,7 +139,17 @@ const Hero = () => {
                        </Button>
                        <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                      </div>
-                    <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    <a 
+                      href="/checklist" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast({
+                          title: "Эта страница находится в разработке",
+                          description: "Скоро здесь появится полезная информация",
+                        });
+                      }}
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
+                    >
                       {tabsContent.operations.button2}
                     </a>
                   </div>
@@ -158,7 +179,17 @@ const Hero = () => {
                        </Button>
                        <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                      </div>
-                    <a href="/checklist" className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    <a 
+                      href="/checklist" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast({
+                          title: "Эта страница находится в разработке",
+                          description: "Скоро здесь появится полезная информация",
+                        });
+                      }}
+                      className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium"
+                    >
                       {tabsContent.it.button2}
                     </a>
                   </div>

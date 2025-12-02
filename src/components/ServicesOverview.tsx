@@ -1,6 +1,6 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { ArrowRight, Search, Layers, Users, Coins, Clock, ShieldCheck, Building2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import DisabledLink from "@/components/DisabledLink";
 
 const ServicesOverview = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
@@ -143,12 +143,12 @@ const ServicesOverview = () => {
                       </div>
                     )}
                     
-                    <Link 
+                    <DisabledLink 
                       to={service.link}
                       className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300 mt-auto"
                     >
                       <span>{service.linkText} →</span>
-                    </Link>
+                    </DisabledLink>
                   </div>
                 </div>
               );
