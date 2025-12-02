@@ -7,7 +7,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Calendar, CheckCircle2 } from "lucide-react";
+import { X, Calendar, Check } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,81 +41,81 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-2 border-accent">
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden">
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-10"
+          className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10"
         >
           <X className="h-5 w-5" />
           <span className="sr-only">Закрыть</span>
         </button>
 
-        {/* Header with accent background */}
-        <div className="bg-gradient-to-r from-[#D4EDFC] to-[#E8E0F5] p-8 pb-6">
-          <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-[#222222] mb-3">
-              Подождите! Не уходите с пустыми руками
+        {/* Content */}
+        <div className="p-8 sm:p-10">
+          <DialogHeader className="mb-6">
+            <DialogTitle className="text-2xl sm:text-3xl text-center text-[#222222] mb-4">
+              Вы теряете миллионы,{" "}
+              <span className="font-semibold">на неправильном выборе ИИ</span>
             </DialogTitle>
-            <DialogDescription className="text-lg text-[#444444]">
-              Получите бесплатный 30-минутный экспресс-аудит процессов
+            <DialogDescription className="text-base sm:text-lg text-center text-[#444444]">
+              За 30 минут я выясню, есть ли смысл вообще говорить об ИИ
             </DialogDescription>
           </DialogHeader>
-        </div>
 
-        {/* Content */}
-        <div className="p-8 pt-6">
-          <div className="space-y-4 mb-6">
+          <div className="space-y-4 mb-8">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-1" />
+              <Check className="h-5 w-5 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1.5} />
               <p className="text-base text-[#444444]">
-                Узнайте, где ваша компания теряет деньги и время
+                Найду главные боли в ваших процессах, которые может решить ИИ
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-1" />
+              <Check className="h-5 w-5 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1.5} />
               <p className="text-base text-[#444444]">
-                Получите конкретные рекомендации по автоматизации
+                Честно скажу, если ИИ вам сейчас не нужен и почему
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-1" />
+              <Check className="h-5 w-5 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1.5} />
               <p className="text-base text-[#444444]">
-                Поймёте, какие решения дадут ROI уже в первые месяцы
+                Предложу следующий шаг (если он имеет смысл)
               </p>
             </div>
           </div>
 
-          <div className="bg-[#F1F4F5] rounded-xl p-4 mb-6">
-            <p className="text-center text-sm text-[#444444]">
-              <span className="font-semibold text-[#222222]">Это бесплатно.</span> Без навязывания услуг. 
-              Только честный разбор ваших процессов.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 mb-6">
             <Button
-              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base"
+              className="h-auto py-3 px-6 text-sm sm:text-base flex flex-col items-center gap-1"
               asChild
             >
               <a
                 href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
               >
-                <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
-                Записаться на аудит
+                <span className="font-semibold">Записаться на аудит</span>
+                <span className="text-xs opacity-90">30 минут, без обязательств</span>
               </a>
             </Button>
             <Button
-              className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base"
+              className="h-auto py-3 px-6 text-sm sm:text-base flex flex-col items-center gap-1"
               variant="outline"
-              onClick={handleClose}
+              onClick={() => {
+                toast({
+                  title: "Эта страница находится в разработке",
+                  description: "Скоро здесь появится полезная информация",
+                });
+              }}
             >
-              Может быть позже
+              <span className="font-semibold">Скачать мой чеклист диагностики</span>
+              <span className="text-xs opacity-75">Сами оцените готовность</span>
             </Button>
           </div>
+
+          <p className="text-center text-sm text-[#6A6A6A]">
+            Без впаривания, без волшебства. Только честная диагностика.
+          </p>
         </div>
       </DialogContent>
     </Dialog>
