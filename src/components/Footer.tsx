@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import DisabledLink from "@/components/DisabledLink";
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,11 +43,11 @@ const Footer = () => {
           <div>
             <p className="text-lg font-semibold mb-4">Навигация</p>
             <div className="flex flex-col gap-2 text-background/80 text-sm">
-              <Link to="/about" className="hover:text-accent transition-colors">Обо мне</Link>
-              <Link to="/services" className="hover:text-accent transition-colors">Услуги</Link>
-              <Link to="/cases" className="hover:text-accent transition-colors">Кейсы</Link>
-              <Link to="/resources" className="hover:text-accent transition-colors">Материалы</Link>
-              <Link to="/blog" className="hover:text-accent transition-colors">Блог</Link>
+              <DisabledLink to="/about" className="hover:text-accent transition-colors">Обо мне</DisabledLink>
+              <DisabledLink to="/services" className="hover:text-accent transition-colors">Услуги</DisabledLink>
+              <DisabledLink to="/cases" className="hover:text-accent transition-colors">Кейсы</DisabledLink>
+              <DisabledLink to="/resources" className="hover:text-accent transition-colors">Материалы</DisabledLink>
+              <DisabledLink to="/blog" className="hover:text-accent transition-colors">Блог</DisabledLink>
               <a href="/#contact" onClick={e => scrollToSection(e, '#contact')} className="hover:text-accent transition-colors">Контакты</a>
             </div>
           </div>
