@@ -1,175 +1,51 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Александра Моисеева — Независимый стратег-инженер по ИИ</title>
-    <meta name="description" content="Консультант по ИИ и автоматизации бизнес-процессов. Специализируюсь на цифровой трансформации и внедрении AI решений для среднего бизнеса.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            width: 100%;
-            padding: 60px 40px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .subtitle {
-            font-size: 1.3em;
-            color: #666;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        .description {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 40px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .highlight {
-            color: #667eea;
-            font-weight: 600;
-        }
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .service-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-        .service-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1em;
-        }
-        .service-card p {
-            font-size: 0.95em;
-            color: #666;
-        }
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px 40px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-top: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        .contact-info {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            font-size: 0.95em;
-            color: #666;
-        }
-        .contact-info p {
-            margin: 10px 0;
-        }
-        .contact-info a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        .badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin: 5px;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="description" content="Любую бизнес-задачу можно решить с помощью ИИ за 5 минут или за 5 миллионов.
+Разница не в технологиях, а в архитектуре. Я проектирую ИИ-решения, которые встраиваются в ваши процессы, а не ломают их.">
+    <meta name="author" content="Александра Моисеева" />
+
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@AlexandraMoiseeva" />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Golos+Text:wght@400;600;700&family=Caveat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Golos+Text:wght@400;600;700&family=Caveat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Golos+Text:wght@400;600;700&family=Caveat:wght@400;500;600;700&display=swap">
+    </noscript>
+    
+    <!-- Preload critical images for better LCP -->
+    <link rel="preload" as="image" href="/src/assets/alexandra-portrait.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/src/assets/alexandra-portrait.jpg" type="image/jpeg" />
+    
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Александра Моисеева — Независимый стратег-инженер по ИИ">
+  <meta name="twitter:title" content="Александра Моисеева — Независимый стратег-инженер по ИИ">
+  <meta property="og:description" content="Любую бизнес-задачу можно решить с помощью ИИ за 5 минут или за 5 миллионов.
+Разница не в технологиях, а в архитектуре. Я проектирую ИИ-решения, которые встраиваются в ваши процессы, а не ломают их.">
+  <meta name="twitter:description" content="Любую бизнес-задачу можно решить с помощью ИИ за 5 минут или за 5 миллионов.
+Разница не в технологиях, а в архитектуре. Я проектирую ИИ-решения, которые встраиваются в ваши процессы, а не ломают их.">
 </head>
-<body>
-    <div class="container">
-        <h1>Александра Моисеева</h1>
-        <p class="subtitle">Независимый стратег-инженер по ИИ</p>
-        
-        <p class="description">
-            Помогу вашему бизнесу внедрить <span class="highlight">AI решения</span> и <span class="highlight">автоматизировать</span> ключевые процессы. Работаю с компаниями любого размера — от стартапов до корпораций.
-        </p>
 
-        <div class="services">
-            <div class="service-card">
-                <h3>🤖 AI Консалтинг</h3>
-                <p>Стратегия внедрения ИИ, подбор решений</p>
-            </div>
-            <div class="service-card">
-                <h3>⚙️ Автоматизация</h3>
-                <p>Оптимизация бизнес-процессов</p>
-            </div>
-            <div class="service-card">
-                <h3>📊 Digital Transformation</h3>
-                <p>Цифровая трансформация компании</p>
-            </div>
-            <div class="service-card">
-                <h3>👨‍🏫 Корпоративное обучение</h3>
-                <p>Тренинги по ИИ для команд</p>
-            </div>
-        </div>
-
-        <div style="margin: 30px 0;">
-            <span class="badge">Automation</span>
-            <span class="badge">AI/ML</span>
-            <span class="badge">BPMN</span>
-            <span class="badge">Digital Transformation</span>
-            <span class="badge">Business Process</span>
-        </div>
-
-        <button class="cta-button" onclick="location.href='mailto:hello@aleksamois.ru'">Начать проект</button>
-
-        <div class="contact-info">
-            <p>💬 Telegram: <a href="https://t.me/aleksandramoiseva" target="_blank">@aleksandramoiseva</a></p>
-            <p>📧 Email: <a href="mailto:hello@aleksamois.ru">hello@aleksamois.ru</a></p>
-            <p style="margin-top: 20px; color: #999; font-size: 0.9em;">
-                © 2025 Александра Моисеева. Все права защищены.
-            </p>
-        </div>
-    </div>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
