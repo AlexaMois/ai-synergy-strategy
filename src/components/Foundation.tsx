@@ -75,8 +75,9 @@ const Foundation = () => {
             const Icon = service.icon;
             return (
               <div key={service.title} className="flex items-center gap-4 md:gap-6">
-                <div
-                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover gradient-border transition-all duration-500 w-full md:w-[320px] flex flex-col ${
+                <DisabledLink 
+                  to={service.link}
+                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover hover:scale-[1.02] gradient-border transition-all duration-500 w-full md:w-[320px] flex flex-col cursor-pointer ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
@@ -111,13 +112,10 @@ const Foundation = () => {
                     </ul>
                   </div>
                   
-                  <DisabledLink 
-                    to={service.link}
-                    className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300 mt-auto"
-                  >
-                    <span>{service.linkText} →</span>
-                  </DisabledLink>
-                </div>
+                  <span className="inline-flex items-center gap-2 text-primary font-medium mt-auto">
+                    {service.linkText} →
+                  </span>
+                </DisabledLink>
                 
                 {index < services.length - 1 && (
                   <ArrowRight 
