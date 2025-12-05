@@ -83,32 +83,38 @@ const ExitIntentPopup = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 mb-6">
-            <Button asChild>
-              <a
-                href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-0.5"
-              >
-                <span className="font-medium">Записаться на аудит</span>
-                <span className="text-xs opacity-90">30 минут, без обязательств</span>
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => {
-                toast({
-                  title: "Эта страница находится в разработке",
-                  description: "Скоро здесь появится полезная информация",
-                });
-              }}
-            >
-              <span className="flex flex-col items-center gap-0.5">
-                <span className="font-medium">Скачать чеклист диагностики</span>
-                <span className="text-xs opacity-75">Сами оцените готовность</span>
+          <div className="flex flex-row gap-4 mb-6">
+            <div className="flex-1 flex flex-col items-center">
+              <Button asChild className="w-full py-3.5 text-base">
+                <a
+                  href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Записаться на аудит
+                </a>
+              </Button>
+              <span className="text-xs text-[#6A6A6A] mt-2 font-raleway">
+                30 минут, без обязательств
               </span>
-            </Button>
+            </div>
+            <div className="flex-1 flex flex-col items-center">
+              <Button
+                variant="outline"
+                className="w-full py-3.5 text-base"
+                onClick={() => {
+                  toast({
+                    title: "Эта страница находится в разработке",
+                    description: "Скоро здесь появится полезная информация",
+                  });
+                }}
+              >
+                Скачать чеклист диагностики
+              </Button>
+              <span className="text-xs text-[#6A6A6A] mt-2 font-raleway">
+                Сами оцените готовность
+              </span>
+            </div>
           </div>
 
           <p className="text-center text-sm font-raleway text-[#6A6A6A]">
