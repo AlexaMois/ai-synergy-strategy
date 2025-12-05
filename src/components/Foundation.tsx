@@ -1,24 +1,64 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search, Layers, Users, Coins } from "lucide-react";
+import DisabledLink from "@/components/DisabledLink";
 
 const Foundation = () => {
   const { ref, isVisible } = useIntersectionObserver();
 
-  const steps = [
+  const services = [
     {
       number: "01",
+      icon: Search,
       title: "Диагностика",
-      description: "Анализ процессов и выявление точек роста"
+      subtitle: "Аудит зрелости",
+      description: "Честная оценка: нужен ли вам ИИ и где он окупится.",
+      pricing: "от 15 000 ₽",
+      details: [
+        "Анализ процессов",
+        "Оценка зрелости данных",
+        "Карта рисков",
+        "Расчет ROI",
+        "План внедрения",
+        "Честный ответ: где ИИ не нужен"
+      ],
+      link: "/services#audit",
+      linkText: "Подробнее об аудите"
     },
     {
       number: "02",
+      icon: Layers,
       title: "Архитектура",
-      description: "Проектирование решения под задачи бизнеса"
+      subtitle: "Проектирование решений",
+      description: "Проект системы, которая встраивается в бизнес, а не ломает его.",
+      pricing: "от 60 000 ₽",
+      details: [
+        "Проектирование AI-архитектуры",
+        "Выбор технологий (без комиссий)",
+        "Схема интеграции",
+        "ТЗ для подрядчиков",
+        "Расчет бюджета",
+        "Документация и регламенты"
+      ],
+      link: "/services#strategy",
+      linkText: "Подробнее об архитектуре"
     },
     {
       number: "03",
+      icon: Users,
       title: "Сопровождение",
-      description: "Внедрение и контроль результата"
+      subtitle: "Контроль внедрения",
+      description: "Ваша страховка: контроль подрядчиков и обучение команды.",
+      pricing: "от 50 000 ₽/мес",
+      details: [
+        "Еженедельный контроль",
+        "Проверка подрядчиков",
+        "Обучение команды",
+        "Регламенты работы",
+        "Корректировки без доплат",
+        "Гарантия до метрик"
+      ],
+      link: "/services#support",
+      linkText: "Подробнее о сопровождении"
     }
   ];
 
@@ -26,40 +66,74 @@ const Foundation = () => {
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2 
-          className={`text-2xl md:text-3xl font-medium text-foreground mb-10 md:mb-14 text-center transition-all duration-700 ${
+          className={`section-title text-center mb-10 md:mb-14 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           Фундамент, <span className="font-semibold">три этапа работы</span>
         </h2>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
-          {steps.map((step, index) => (
-            <div key={step.number} className="flex items-center gap-4 md:gap-6">
-              <div
-                className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover gradient-border transition-all duration-500 w-full md:w-[280px] ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                <span className="text-primary text-sm font-medium mb-2 block">
-                  {step.number}
-                </span>
-                <h3 className="text-lg font-medium text-foreground mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {step.description}
-                </p>
+        <div className="flex flex-col md:flex-row items-stretch justify-center gap-4 md:gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <div key={service.number} className="flex items-center gap-4 md:gap-6">
+                <div
+                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover gradient-border transition-all duration-500 w-full md:w-[320px] flex flex-col ${
+                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
+                  <span className="text-primary text-sm font-medium mb-3 block">
+                    {service.number}
+                  </span>
+                  
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  </div>
+                  
+                  <h3 className="text-xl font-medium text-foreground mb-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-primary mb-3">{service.subtitle}</p>
+                  
+                  <p className="text-base text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 mb-4">
+                    <Coins className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                    <span className="text-sm font-medium text-foreground">{service.pricing}</span>
+                  </div>
+                  
+                  <div className="mb-4 flex-grow">
+                    <p className="text-sm font-medium text-foreground mb-2">Включает:</p>
+                    <ul className="space-y-1.5">
+                      {service.details.map((detail, i) => (
+                        <li key={i} className="text-sm text-muted-foreground leading-snug flex items-start gap-2">
+                          <ArrowRight className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <DisabledLink 
+                    to={service.link}
+                    className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300 mt-auto"
+                  >
+                    <span>{service.linkText} →</span>
+                  </DisabledLink>
+                </div>
+                
+                {index < services.length - 1 && (
+                  <ArrowRight 
+                    className="hidden md:block text-primary w-6 h-6 flex-shrink-0" 
+                  />
+                )}
               </div>
-              
-              {index < steps.length - 1 && (
-                <ArrowRight 
-                  className="hidden md:block text-primary w-6 h-6 flex-shrink-0" 
-                />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
