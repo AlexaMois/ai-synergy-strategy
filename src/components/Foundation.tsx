@@ -7,7 +7,6 @@ const Foundation = () => {
 
   const services = [
     {
-      number: "01",
       icon: Search,
       title: "Диагностика",
       subtitle: "Аудит зрелости",
@@ -25,7 +24,6 @@ const Foundation = () => {
       linkText: "Подробнее об аудите"
     },
     {
-      number: "02",
       icon: Layers,
       title: "Архитектура",
       subtitle: "Проектирование решений",
@@ -43,7 +41,6 @@ const Foundation = () => {
       linkText: "Подробнее об архитектуре"
     },
     {
-      number: "03",
       icon: Users,
       title: "Сопровождение",
       subtitle: "Контроль внедрения",
@@ -77,17 +74,13 @@ const Foundation = () => {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div key={service.number} className="flex items-center gap-4 md:gap-6">
+              <div key={service.title} className="flex items-center gap-4 md:gap-6">
                 <div
                   className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover gradient-border transition-all duration-500 w-full md:w-[320px] flex flex-col ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <span className="text-primary text-sm font-medium mb-3 block">
-                    {service.number}
-                  </span>
-                  
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
                   </div>
