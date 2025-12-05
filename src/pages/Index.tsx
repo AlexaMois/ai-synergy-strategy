@@ -3,10 +3,13 @@ import { useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
-import ServicesOverview from "@/components/ServicesOverview";
-import SixQuestions from "@/components/SixQuestions";
 import TrustMarquee from "@/components/TrustMarquee";
 import TrustAndPosition from "@/components/TrustAndPosition";
+import ServicesOverview from "@/components/ServicesOverview";
+import Foundation from "@/components/Foundation";
+import Fork from "@/components/Fork";
+import HowIChoose from "@/components/HowIChoose";
+import SixQuestions from "@/components/SixQuestions";
 import Cases from "@/components/Cases";
 import AIFramework from "@/components/AIFramework";
 import FAQ from "@/components/FAQ";
@@ -44,10 +47,13 @@ const Index = () => {
       <main>
         <Hero />
         <MarqueeText />
-        <SixQuestions />
         <TrustAndPosition />
         <TrustMarquee />
         <ServicesOverview />
+        <Foundation />
+        <Fork />
+        <HowIChoose />
+        <SixQuestions />
         <Cases />
         <AIFramework />
         <FAQ />
