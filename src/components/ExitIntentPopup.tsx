@@ -83,7 +83,7 @@ const ExitIntentPopup = () => {
             </div>
           </div>
 
-          <div className="flex flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="flex-1 flex flex-col items-center">
               <Button asChild className="w-full py-3.5 text-base">
                 <a
