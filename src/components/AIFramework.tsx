@@ -10,29 +10,39 @@ const AIFramework = () => {
   });
 
   // Данные для 4 карточек
-  const sectors = [{
-    title: "БИЗНЕС",
-    subtitle: "Четкие цели и измеримый эффект",
-    description: "Мы не стартуем с вопроса «какой ИИ купить?». Мы начинаем с вопроса «Зачем?». Я нахожу конкретные метрики (деньги, время, ошибки), которые нужно улучшить. Где нет цели — там нет внедрения.",
-    color: "#F6F3EB"
-  }, {
-    title: "ТЕХНОЛОГИИ",
-    subtitle: "Безопасность, этика и архитектура",
-    description: "Не всем можно в облака. Я подбираю стек строго под ваши ограничения безопасности. Кому-то ставим закрытый контур (Local LLM), кому-то подключаем API. Всегда соблюдаем цифровую гигиену и NDA.",
-    color: "#D4EDFC"
-  }, {
-    title: "ПРОЦЕССЫ",
-    subtitle: "Порядок и архитектура прежде всего",
-    description: "ИИ работает только в отлаженных системах. Сначала мы выстраиваем логику процесса: кто, что и когда делает. Затем автоматизируем его. Решение должно органично встраиваться в работу и усиливать её.",
-    color: "#DFF0F0"
-  }, {
-    title: "ЛЮДИ",
-    subtitle: "Понимание, обучение и поддержка",
-    description: "Самый умный бот бесполезен, если его саботируют. Я обучаю вашу команду, пишу простые регламенты и объясняю ценность. Сотрудники видят в ИИ помощника и становятся вашими союзниками.",
-    color: "#E8E0F5"
-  }];
+  const sectors = [
+    {
+      number: "01",
+      title: "БИЗНЕС: Четкие цели и деньги на выходе",
+      question: "У вас есть подсчёт брака за месяц? Известна ли цена одной ошибки в документе? Есть ли цель снизить потери на X%?",
+      answer: "Мы не спрашиваем «какой ИИ купить?» и не говорим «это инновационно». Мы спрашиваем: сколько вы потеряли в прошлом месяце? Если нет четкой цели — я говорю прямо: начните с другого, это еще не ваш проект.",
+      color: "#F6F3EB"
+    },
+    {
+      number: "02",
+      title: "ТЕХНОЛОГИИ: Безопасность и архитектура",
+      question: "Ваши данные могут идти в облако (Google, OpenAI) или нужна локальная система (Local LLM)? Какие ограничения по 152-ФЗ?",
+      answer: "Не все данные могут в облако. Я подбираю стек под вашу реальность: локальные модели, защищённые API, зашифрованные каналы. Соблюдаем NDA, не светим данные.",
+      color: "#D4EDFC"
+    },
+    {
+      number: "03",
+      title: "ПРОЦЕССЫ: Порядок прежде технологии",
+      question: "Кто сейчас вводит первичку вручную? Есть ли ясная логика: кто вводит → кто проверяет → кто утверждает?",
+      answer: "ИИ не спасает хаос, он усиливает рабочие системы. Сначала выстраиваем логику, потом встраиваем ИИ. Система работает на вас, не создаёт бардак.",
+      color: "#DFF0F0"
+    },
+    {
+      number: "04",
+      title: "ЛЮДИ: Союзники, не сопротивление",
+      question: "Ваш мастер готов говорить в голосовый диктофон или будет возмущаться? Согласится ли менеджер с проверкой системой? Вверит ли бухгалтер данные в 1С или будет дублировать в Excel?",
+      answer: "Если вижу блокировщиков — начинаю не с ИИ, а с выравнивания команды. Это добавляет 2–4 недели, но система потом работает годами.",
+      color: "#E8E0F5"
+    }
+  ];
 
-  return <section id="methodology" ref={ref} className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
+  return (
+    <section id="methodology" ref={ref} className="py-10 md:py-16 lg:py-20 px-6 md:px-20 max-w-[1360px] mx-auto bg-background">
       {/* Заголовок с линией */}
       <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <h2 className="section-title text-center leading-tight">
@@ -57,15 +67,28 @@ const AIFramework = () => {
               className="p-6 md:p-8 rounded-2xl shadow-card gradient-border hover:shadow-hover transition-all duration-300"
               style={{ backgroundColor: sector.color }}
             >
-              <h3 className="text-lg md:text-xl font-bold text-text-heading mb-3">
-                {sector.title}
-              </h3>
-              <h4 className="text-base md:text-lg font-semibold text-text-heading mb-4">
-                {sector.subtitle}
-              </h4>
-              <p className="text-sm md:text-base text-text-body leading-relaxed">
-                {sector.description}
-              </p>
+              <div className="flex items-start gap-3 mb-4">
+                <span className="text-2xl font-bold text-primary leading-none">
+                  {sector.number}
+                </span>
+                <h3 className="text-lg md:text-xl font-bold text-text-heading leading-tight">
+                  {sector.title}
+                </h3>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <span className="text-xs font-medium text-primary uppercase tracking-wide">Вопрос для вас</span>
+                  <p className="text-sm md:text-base text-muted-foreground mt-1">
+                    {sector.question}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-xs font-medium text-primary uppercase tracking-wide">Что я делаю</span>
+                  <p className="text-sm md:text-base text-text-body leading-relaxed mt-1">
+                    {sector.answer}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -83,9 +106,11 @@ const AIFramework = () => {
       {/* Итоговая плашка */}
       <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <p className="text-lg sm:text-xl md:text-2xl font-medium text-text-heading leading-relaxed">
-          Вы получаете систему, которая живет годами и усиливает бизнес. Это рабочий актив, а не временная игрушка.
+          Вы получаете систему, которая работает годами и приносит деньги. Это не эксперимент, а рабочий актив.
         </p>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AIFramework;
