@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Phone, Mail, Send, MapPin } from "lucide-react";
 import DisabledLink from "@/components/DisabledLink";
 const Footer = () => {
   const navigate = useNavigate();
@@ -56,23 +57,29 @@ const Footer = () => {
           <div>
             <p className="text-lg font-semibold mb-4">Контакты</p>
             <div className="flex flex-col gap-3 text-background/80">
-              <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
+              <a href="tel:+79937217367" className="flex items-center gap-2 text-base hover:text-accent transition-colors">
+                <Phone className="w-4 h-4 text-primary" />
                 +7 993 721 73 67
               </a>
-              <a href="mailto:ai@aleksamois.ru" className="text-sm hover:text-accent transition-colors">
+              <a href="mailto:ai@aleksamois.ru" className="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                <Mail className="w-4 h-4 text-primary" />
                 ai@aleksamois.ru
               </a>
-              <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
+              <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+                <Send className="w-4 h-4 text-primary" />
                 Telegram: @AlexandraMois
               </a>
               <a 
                 href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-background/60 text-sm pt-2 block hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-accent transition-colors"
               >
-                Красноярск, ул. Красной Гвардии, 24, офис 224<br />
-                <span className="text-background/50">(работаю online/offline по России)</span>
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>
+                  Красноярск, ул. Красной Гвардии, 24, офис 224<br />
+                  <span className="text-background/50">(работаю online/offline по России)</span>
+                </span>
               </a>
             </div>
           </div>
