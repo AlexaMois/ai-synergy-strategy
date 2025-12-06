@@ -33,10 +33,9 @@ const Footer = () => {
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
-            <p className="text-background/80 text-base leading-relaxed">Инженер по ИИ и цифровой архитектуре 
-Гарантирую честную оценку, экономику и предсказуемый результат<br />
-              ​<br />
-              Гарантирую честную оценку, экономику и предсказуемый результат
+            <p className="text-background/80 text-base leading-relaxed">Инженер по ИИ и цифровой архитектуре <br />
+              ​Гарантирую честную оценку, экономику и предсказуемый результат<br />
+              ​
             </p>
           </div>
 
@@ -69,12 +68,7 @@ const Footer = () => {
                 <Send className="w-4 h-4 text-primary" />
                 Telegram: @AlexandraMois
               </a>
-              <a 
-                href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-accent transition-colors"
-              >
+              <a href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-accent transition-colors">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
                 <span>
                   Красноярск, ул. Красной Гвардии, 24, офис 224<br />
