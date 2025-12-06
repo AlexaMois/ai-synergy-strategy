@@ -65,10 +65,15 @@ const Footer = () => {
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
                 Telegram: @AlexandraMois
               </a>
-              <p className="text-background/60 text-sm pt-2">
+              <a 
+                href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-background/60 text-sm pt-2 block hover:text-accent transition-colors"
+              >
                 Красноярск, ул. Красной Гвардии, 24, офис 224<br />
                 <span className="text-background/50">(работаю online/offline по России)</span>
-              </p>
+              </a>
             </div>
           </div>
         </div>
