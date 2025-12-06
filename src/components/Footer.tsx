@@ -32,10 +32,14 @@ const Footer = () => {
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
-            <p className="text-background/80 text-base leading-relaxed">
+            <p className="text-background/80 text-base leading-relaxed mb-4">
               Инженер по ИИ и цифровой архитектуре<br />
               Проектирую устойчивые ИИ решения под цели бизнеса<br />
               Гарантирую честную оценку, экономику и предсказуемый результат
+            </p>
+            <p className="text-background/60 text-sm">
+              Красноярск, ул. Красной Гвардии, 24, офис 224<br />
+              <span className="text-background/50">(работаю online/offline по России)</span>
             </p>
           </div>
 
@@ -56,31 +60,34 @@ const Footer = () => {
           <div>
             <p className="text-lg font-semibold mb-4">Контакты</p>
             <div className="flex flex-col gap-3 text-background/80">
-              <a href="mailto:neiroreshenia@yandex.com" className="text-sm hover:text-accent transition-colors">
-                neiroreshenia@yandex.com
+              <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
+                +7 993 721 73 67
               </a>
-              <div>
-                <p className="text-sm text-background/90 mb-1">​</p>
-                <a href="tel:+79937217367" className="text-base hover:text-accent transition-colors">
-                  +7 993 721 73 67
-                </a>
-              </div>
+              <a href="mailto:ai@aleksamois.ru" className="text-sm hover:text-accent transition-colors">
+                ai@aleksamois.ru
+              </a>
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
-                Личный Telegram: @AlexandraMois
+                Telegram: @AlexandraMois
               </a>
             </div>
           </div>
         </div>
 
-        {/* Юридическая информация */}
+        {/* Сертификаты и документы */}
         <div className="border-t border-background/20 pt-6 mb-6">
           <div className="grid md:grid-cols-2 gap-6 text-sm text-background/70">
-            {/* Реквизиты */}
+            {/* Сертификаты */}
             <div>
-              <p className="text-background/90 font-medium mb-2">Реквизиты ИП</p>
-              <p>ИП Моисеева Александра Алексеевна</p>
-              <p>ИНН 245906802500</p>
-              <p>ОГРНИП 323246800027635</p>
+              <p className="text-background/90 font-medium mb-2">Сертификаты</p>
+              <p>Дипломированный специалист по ИИ / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
+              <a 
+                href="/documents/requisites.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block mt-3 text-accent hover:text-accent/80 transition-colors"
+              >
+                Скачать PDF с реквизитами и документами →
+              </a>
             </div>
 
             {/* Юридические документы */}
@@ -97,8 +104,8 @@ const Footer = () => {
                   Договор-оферта
                 </Link>
               </div>
-              <p className="mt-3">
-                По вопросам ПДн: <a href="mailto:neiroreshenia@yandex.com" className="hover:text-accent transition-colors">neiroreshenia@yandex.com</a>
+              <p className="mt-3 text-background/50 text-xs">
+                ИП Моисеева А.А. / ИНН 245906802500 / ОГРНИП 323246800027635
               </p>
             </div>
           </div>
