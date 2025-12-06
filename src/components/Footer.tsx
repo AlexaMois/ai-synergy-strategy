@@ -32,8 +32,8 @@ const Footer = () => {
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
-            <p className="text-background/80 text-base leading-relaxed">
-              Инженер по ИИ и цифровой архитектуре<br />
+            <p className="text-background/80 text-base leading-relaxed">Инженер по ИИ и цифровой архитектуре
+Гарантирую честную оценку, экономику и предсказуемый результат<br />
               Проектирую устойчивые ИИ решения под цели бизнеса<br />
               Гарантирую честную оценку, экономику и предсказуемый результат
             </p>
@@ -80,12 +80,7 @@ const Footer = () => {
             <div>
               <p className="text-background/90 font-medium mb-2">Сертификаты</p>
               <p>Дипломированный специалист по ИИ / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
-              <a 
-                href="/documents/requisites.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block mt-3 text-accent hover:text-accent/80 transition-colors"
-              >
+              <a href="/documents/requisites.pdf" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-accent hover:text-accent/80 transition-colors">
                 Скачать PDF с реквизитами и документами →
               </a>
             </div>
