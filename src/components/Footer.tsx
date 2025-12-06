@@ -28,7 +28,7 @@ const Footer = () => {
   return <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
@@ -75,7 +75,7 @@ const Footer = () => {
 
         {/* Сертификаты и документы */}
         <div className="border-t border-background/20 pt-6 mb-6">
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-background/70">
+          <div className="grid sm:grid-cols-2 gap-6 text-sm text-background/70">
             {/* Сертификаты */}
             <div>
               <p className="text-background/90 font-medium mb-2">Сертификаты</p>

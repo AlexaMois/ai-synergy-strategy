@@ -77,7 +77,7 @@ const Foundation = () => {
               <div key={service.title} className="flex items-center gap-4 md:gap-6">
                 <DisabledLink 
                   to={service.link}
-                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover hover:scale-[1.02] gradient-border transition-all duration-500 w-full md:w-[320px] flex flex-col cursor-pointer ${
+                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover hover:scale-[1.02] gradient-border transition-all duration-500 w-full flex-1 md:min-w-[280px] md:max-w-[340px] flex flex-col cursor-pointer ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
