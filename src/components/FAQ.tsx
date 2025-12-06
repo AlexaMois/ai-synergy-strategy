@@ -6,75 +6,77 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { DollarSign, Clock, Users, Shield, Briefcase, Unlock, LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { JSX } from "react";
 
 const FAQ = () => {
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
-  const faqs: { question: string; answer: string | JSX.Element; icon: LucideIcon }[] = [
+  const faqs: { question: string; answer: JSX.Element }[] = [
     {
-      question: "Сколько стоит внедрение ИИ?",
+      question: "Сколько стоит?",
       answer: (
         <div className="space-y-3">
-          <p>Цена определяется архитектурой решения, а не технологией.</p>
-          <p>Моя задача — найти вариант с максимальной отдачей на вложенный рубль.</p>
-          <p>Это может быть как простая настройка сервиса, так и сложная интеграция. Главное — я всегда начинаю с расчета экономики проекта.</p>
+          <div className="space-y-1">
+            <p>Разбор процесса: от 15 000 ₽</p>
+            <p>План внедрения: от 60 000 ₽</p>
+            <p>Пилот внедрения: 200–500 тыс.</p>
+            <p>Полное внедрение: 500 тыс. — 2 млн</p>
+          </div>
+          <p>ROI считаю на каждом этапе. Если метрики не растут — переделываю за свой счёт.</p>
         </div>
       ),
-      icon: DollarSign,
     },
     {
-      question: "Сколько времени занимает внедрение?",
+      question: "Когда окупится?",
       answer: (
         <div className="space-y-3">
-          <p>Я уделяю максимум времени проектированию и техзаданию. В этом 70% успеха всего проекта.</p>
-          <p>Вдумчивая архитектура на старте гарантирует быстрое и безошибочное внедрение на финише.</p>
+          <p>Первый результат (экономия времени, ошибки −30–50%) — через 4–8 недель.</p>
+          <p>Полная окупаемость — через 3–6 месяцев.</p>
+          <p>Не беру проекты с окупаемостью &gt;6 месяцев.</p>
         </div>
       ),
-      icon: Clock,
     },
     {
-      question: "Команда поймёт, что происходит?",
+      question: "Люди будут сопротивляться?",
       answer: (
         <div className="space-y-3">
-          <p>Да, работа с людьми — в том числе основа моего подхода.</p>
-          <p>Я встраиваю ИИ в привычные коллективу процессы и показываю, как ту же самую задачу можно делать по-другому.</p>
-          <p>После обучения сотрудники просто начинают использовать ИИ для тех же самых задач. Таким образом, задачи выполняются быстрее.</p>
+          <p>Да, если их не подготовить. Я показываю каждому выгоду лично:</p>
+          <div className="space-y-1">
+            <p>• Менеджер видит: лиды не теряются</p>
+            <p>• Мастер видит: не нужно писать отчёты</p>
+            <p>• Бухгалтер видит: первичка сама вбивается</p>
+          </div>
+          <p>Они просят ИИ, чтобы убрать рутину.</p>
         </div>
       ),
-      icon: Users,
     },
     {
-      question: "А если решение не сработает?",
+      question: "А если ИИ не подойдёт?",
       answer: (
         <div className="space-y-3">
-          <p>Мы можем исключить этот риск только на этапе Аудита, пройдя его полностью.</p>
-          <p>После Аудита вы получаете все точки для внедрения ИИ, точный расчет окупаемости и выбор из нескольких вариантов реализации.</p>
-          <p>Тогда у вас нет риска, что решение окажется бесполезным.</p>
+          <p>После разбора я считаю ROI и говорю честно: вот результат или не трогайте ИИ, хватит процесса.</p>
+          <p>В 30% случаев я говорю «не трогайте». Это экономия: вы не потратите деньги на эксперименты.</p>
         </div>
       ),
-      icon: Shield,
     },
     {
       question: "Вы работаете с нашей отраслью?",
       answer: (
         <div className="space-y-3">
-          <p>Я работаю с бизнес-процессами: наймом, продажами, логистикой, учетом.</p>
-          <p>Эти механизмы универсальны для любого бизнеса.</p>
-          <p>Я использую свой опыт, чтобы ускорить ваши данные и сделать процессы прозрачными.</p>
+          <p>Я работаю с процессами: закупки, продажи, документы, склад.</p>
+          <p>36 проектов в производстве, торговле, логистике, строительстве.</p>
+          <p>Я уже видел ваши боли в других компаниях и знаю, как их закрыть.</p>
         </div>
       ),
-      icon: Briefcase,
     },
     {
-      question: "Будем ли мы зависеть от вас?",
+      question: "Зависим ли я от вас после внедрения?",
       answer: (
         <div className="space-y-3">
-          <p>Вы получаете полный комплект: работающий софт, документацию, регламенты и обученную команду.</p>
-          <p>В итоге у вас остается актив, который продолжает работать и развиваться самостоятельно и независимо от меня.</p>
+          <p>Нет. Вы получаете документацию, регламенты, обученную команду, чек-листы.</p>
+          <p>Система работает без меня. Я на связи, но вы не зависите от меня.</p>
         </div>
       ),
-      icon: Unlock,
     },
   ];
 
@@ -87,38 +89,29 @@ const FAQ = () => {
 
         <div className={`max-w-4xl mx-auto ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => {
-              const IconComponent = faq.icon;
-              return (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border-b-2 border-border pb-3"
-                >
-                  <AccordionTrigger className="text-left text-base font-medium text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
-                    <div className="flex items-center gap-3">
-                      <IconComponent className="h-5 w-5 text-accent shrink-0" />
-                      <span>{faq.question}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-base text-text-body leading-relaxed pt-3 pl-8">
-                    {typeof faq.answer === 'string' ? faq.answer : faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              );
-            })}
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border-b-2 border-border pb-3"
+              >
+                <AccordionTrigger className="text-left text-base font-medium text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
+                  <span>{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-text-body leading-relaxed pt-3">
+                  {faq.answer}
+                  <div className="mt-4">
+                    <Button variant="outline" size="sm" asChild>
+                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        Разобрать мой процесс
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
-
-          <div className="mt-12 text-center">
-            <Button 
-              className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base"
-              asChild
-            >
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Пройти экспресс-аудит процессов
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
     </section>
