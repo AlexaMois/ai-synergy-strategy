@@ -27,7 +27,7 @@ const Hero = () => {
       button2: "Сколько я теряю сейчас"
     }
   };
-  return <section className="relative bg-background pt-24 pb-8 sm:pt-28 sm:pb-10 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16 overflow-hidden hero-skeleton">
+  return <section className="relative bg-background pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 overflow-hidden hero-skeleton">
       {/* N Pattern Background - static, no parallax to reduce reflows */}
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none" style={{
       backgroundImage: `url(${nPattern})`,
