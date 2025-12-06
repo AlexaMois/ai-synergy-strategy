@@ -3,18 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AvailabilityBadge from "@/components/AvailabilityBadge";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import nPattern from "@/assets/n-pattern.png";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useParallax } from "@/hooks/use-parallax";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 import { toast } from "@/hooks/use-toast";
+
 const Hero = () => {
-  const {
-    ref,
-    isVisible
-  } = useIntersectionObserver({
-    threshold: 0.2
-  });
-  const parallaxOffset = useParallax(0.3);
   const tabsContent = {
     ceo: {
       title: "Прозрачность инвестиций и контроль над внедрением",
@@ -35,18 +27,17 @@ const Hero = () => {
       button2: 'Скачать чек-лист "10 вопросов перед внедрением ИИ"'
     }
   };
-  return <section ref={ref} className="relative bg-background pt-24 pb-8 sm:pt-28 sm:pb-10 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16 overflow-hidden">
-      {/* N Pattern Background */}
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none transition-transform duration-100 ease-out" style={{
+  return <section className="relative bg-background pt-24 pb-8 sm:pt-28 sm:pb-10 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16 overflow-hidden hero-skeleton">
+      {/* N Pattern Background - static, no parallax to reduce reflows */}
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none" style={{
       backgroundImage: `url(${nPattern})`,
       backgroundRepeat: 'repeat',
-      backgroundSize: '120px',
-      transform: `translateY(${parallaxOffset * 0.1}px)`
+      backgroundSize: '120px'
     }} />
       <div className="container mx-auto">
         <Tabs defaultValue="ceo" className="w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 items-center">
-            <div className={`lg:col-span-7 space-y-4 sm:space-y-5 md:space-y-6 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5 md:space-y-6 animate-fade-in-left">
               {/* Верхний блок с градиентной обводкой */}
               <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-3">
@@ -202,13 +193,12 @@ const Hero = () => {
             </div>
           
             {/* Правая колонка с фото */}
-            <div className={`lg:col-span-5 flex items-center justify-center ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
+            <div className="lg:col-span-5 flex items-center justify-center animate-fade-in-right">
               <img 
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
                 width="522"
                 height="630"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 522px"
                 className="w-full max-w-xl lg:max-w-2xl h-auto object-contain"
                 loading="eager"
                 fetchPriority="high"
