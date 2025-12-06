@@ -206,8 +206,9 @@ const Hero = () => {
               <img 
                 src={alexandraHeadshot} 
                 alt="Александра Моисеева — независимый стратег и инженер ИИ"
-                width="928"
-                height="1120"
+                width="522"
+                height="630"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 522px"
                 className="w-full max-w-xl lg:max-w-2xl h-auto object-contain"
                 loading="eager"
                 fetchPriority="high"
