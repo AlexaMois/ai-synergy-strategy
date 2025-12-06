@@ -25,9 +25,14 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Golos+Text:wght@400;600;700&family=Caveat:wght@400;500;600;700&display=swap">
     </noscript>
     
-    <!-- Preload critical images for better LCP -->
-    <link rel="preload" as="image" href="/src/assets/alexandra-portrait.webp" type="image/webp" />
-    <link rel="preload" as="image" href="/src/assets/alexandra-portrait.jpg" type="image/jpeg" />
+    <!-- Preload critical images for better LCP/FCP -->
+    <link rel="preload" as="image" href="/src/assets/alexandra-headshot.png" type="image/png" fetchpriority="high" />
+    
+    <!-- Inline critical CSS for faster FCP -->
+    <style>
+      body { margin: 0; font-family: 'Golos Text', system-ui, sans-serif; }
+      #root { min-height: 100vh; }
+    </style>
     
   
   
