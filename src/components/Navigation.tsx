@@ -70,7 +70,7 @@ const Navigation = () => {
     isScroll: false
   }, {
     href: "/about",
-    label: "Обо мне",
+    label: "О подходе",
     isScroll: false
   }, {
     href: "/blog",
@@ -137,7 +137,7 @@ const Navigation = () => {
                 </DisabledLink>)}
             <Button size="sm" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                ​Экспресс-аудит
+                Разобрать один процесс
               </a>
             </Button>
           </div>
@@ -191,7 +191,7 @@ const Navigation = () => {
         }}>
           <Button size="lg" className="w-full" asChild>
             <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-              Консультация
+              Разобрать один процесс
             </a>
           </Button>
         </div>
