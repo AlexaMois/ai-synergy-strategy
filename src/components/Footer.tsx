@@ -32,14 +32,10 @@ const Footer = () => {
           {/* Колонка 1: О компании */}
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
-            <p className="text-background/80 text-base leading-relaxed mb-4">
+            <p className="text-background/80 text-base leading-relaxed">
               Инженер по ИИ и цифровой архитектуре<br />
               Проектирую устойчивые ИИ решения под цели бизнеса<br />
               Гарантирую честную оценку, экономику и предсказуемый результат
-            </p>
-            <p className="text-background/60 text-sm">
-              Красноярск, ул. Красной Гвардии, 24, офис 224<br />
-              <span className="text-background/50">(работаю online/offline по России)</span>
             </p>
           </div>
 
@@ -69,6 +65,10 @@ const Footer = () => {
               <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-accent transition-colors">
                 Telegram: @AlexandraMois
               </a>
+              <p className="text-background/60 text-sm pt-2">
+                Красноярск, ул. Красной Гвардии, 24, офис 224<br />
+                <span className="text-background/50">(работаю online/offline по России)</span>
+              </p>
             </div>
           </div>
         </div>
