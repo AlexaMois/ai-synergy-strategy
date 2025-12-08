@@ -16,7 +16,7 @@ const Hero = () => {
     },
     production: {
       title: "ИИ видит узкие места, прогнозирует закупки, ловит брак",
-      description: "Люди вводят данные вручную, простои невидимы. Брак −40%, штрафы −80%, окупилось за 4 месяца.",
+      description: "Люди вводят данные вручную, простои невидимы?\nБрак −40%, штрафы −80%, окупилось за 4 месяца.",
       button1: "Разобрать один процесс",
       button2: "Сколько я теряю сейчас"
     },
@@ -154,7 +154,7 @@ const Hero = () => {
                     {tabsContent.production.title}
                   </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
                     animationDelay: '0.15s',
                     animationFillMode: 'both'
                   }}>
