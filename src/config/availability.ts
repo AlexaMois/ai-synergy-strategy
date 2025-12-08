@@ -1,6 +1,6 @@
 // Centralized availability configuration
 // Update this value to reflect current availability
-export const AVAILABLE_SLOTS_THIS_WEEK = 5;
+export const AVAILABLE_SLOTS_THIS_WEEK = 2;
 
 // TODO: Replace with Google Calendar API integration
 // Example API endpoint: /api/availability
