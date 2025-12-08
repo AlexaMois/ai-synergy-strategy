@@ -22,7 +22,7 @@ const Hero = () => {
     },
     sales: {
       title: "Автоответчик 24/7, квалификация 30 сек",
-      description: "Заявки теряются, ответ 2 часа. Реакция 2ч → 3мин, конверсия +35%, чек +18%.",
+      description: "Заявки теряются, ответ 2 часа?\nРеакция 2ч → 3мин, конверсия +35%, чек +18%.",
       button1: "Разобрать один процесс",
       button2: "Сколько я теряю сейчас"
     }
@@ -202,7 +202,7 @@ const Hero = () => {
                     {tabsContent.sales.title}
                   </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
                     animationDelay: '0.15s',
                     animationFillMode: 'both'
                   }}>
