@@ -10,7 +10,7 @@ const Hero = () => {
   const tabsContent = {
     owner: {
       title: "Видишь маржу, простои, узкие места в реальном времени",
-      description: "Растёшь по выручке, но не по прибыли. Прибыль +23% за год, директор вышел из аврала (80+ человек).",
+      description: "Растёшь по выручке, но не по прибыли?\nПрибыль +23% за год, директор вышел из аврала (80+ человек).",
       button1: "Разобрать один процесс",
       button2: "Сколько я теряю сейчас"
     },
@@ -106,7 +106,7 @@ const Hero = () => {
                     {tabsContent.owner.title}
                   </h1>
                   
-                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in" style={{
+                  <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
                     animationDelay: '0.15s',
                     animationFillMode: 'both'
                   }}>
