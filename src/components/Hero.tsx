@@ -55,7 +55,7 @@ const Hero = () => {
                   
                   <div className="space-y-1">
                     <p className="text-xs font-medium text-text-subtle uppercase tracking-wide">За 3–6 месяцев:</p>
-                    <ul className="text-sm text-text-body leading-snug grid grid-cols-2 gap-x-4 gap-y-0.5 list-none pl-0">
+                    <ul className="text-sm text-text-body leading-snug grid grid-cols-2 gap-x-2 gap-y-0.5 list-none pl-0">
                       <li className="flex items-start gap-1.5">
                         <span className="text-primary text-xs mt-0.5">•</span>
                         <span>Ответ на лида — в минуты</span>
