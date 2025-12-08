@@ -53,27 +53,27 @@ const Hero = () => {
                     Менеджеры не успевают на лиды? Первичка вбивается вручную? Склад то забит, то пуст? Маржу видите 20-го?
                   </p>
                   
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium text-text-heading">За 3–6 месяцев:</p>
-                    <ul className="text-base text-text-body leading-relaxed space-y-1.5 list-none pl-0">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">•</span>
-                        <span>Ответ на лида — в минуты, не в часы</span>
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium text-text-subtle uppercase tracking-wide">За 3–6 месяцев:</p>
+                    <ul className="text-sm text-text-body leading-snug space-y-0.5 list-none pl-0">
+                      <li className="flex items-start gap-1.5">
+                        <span className="text-primary text-xs mt-0.5">•</span>
+                        <span>Ответ на лида — в минуты</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">•</span>
-                        <span>Первичка — автоматом, без ручного ввода</span>
+                      <li className="flex items-start gap-1.5">
+                        <span className="text-primary text-xs mt-0.5">•</span>
+                        <span>Первичка — автоматом</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">•</span>
-                        <span>Склад — по прогнозу, без затоваривания</span>
+                      <li className="flex items-start gap-1.5">
+                        <span className="text-primary text-xs mt-0.5">•</span>
+                        <span>Склад — по прогнозу</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">•</span>
-                        <span>Маржа — видна каждый день, не 20-го</span>
+                      <li className="flex items-start gap-1.5">
+                        <span className="text-primary text-xs mt-0.5">•</span>
+                        <span>Маржа — каждый день</span>
                       </li>
                     </ul>
-                    <p className="text-sm font-semibold text-primary pt-1">Гарантирую ROI 200–400% или не беру проект.</p>
+                    <p className="text-xs font-semibold text-primary">ROI 200–400% или не беру проект.</p>
                   </div>
                 </div>
               </div>
