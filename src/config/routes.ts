@@ -22,6 +22,10 @@ export const isRouteAllowed = (path: string): boolean => {
   if (path.startsWith('#')) return true;
   // Разрешаем внешние ссылки
   if (path.startsWith('http') || path.startsWith('mailto:') || path.startsWith('tel:')) return true;
-  // Проверяем по списку
+  // Разрешаем динамические маршруты блога (/blog/:slug)
+  if (path.startsWith('/blog/')) return true;
+  // Разрешаем динамические маршруты кейсов (/case-studies/:slug)
+  if (path.startsWith('/case-studies/')) return true;
+  // Проверяем по списку статических маршрутов
   return ALLOWED_ROUTES.includes(path);
 };
