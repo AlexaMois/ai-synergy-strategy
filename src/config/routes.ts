@@ -1,9 +1,20 @@
 // Маршруты, которые работают (всё остальное показывает "в разработке")
 export const ALLOWED_ROUTES = [
-  '/',           // Главная
-  '/consent',    // Юридические документы
+  '/',
+  '/consent',
   '/privacy-policy',
   '/terms',
+  '/services',
+  '/cases',
+  '/resources',
+  '/about',
+  '/blog',
+  '/checklist',
+  '/pricing',
+  '/golossok-demo',
+  '/golossok-pricing',
+  '/case-studies/kraypotrebsoyuz',
+  '/case-studies/cargo-express',
 ];
 
 export const isRouteAllowed = (path: string): boolean => {
