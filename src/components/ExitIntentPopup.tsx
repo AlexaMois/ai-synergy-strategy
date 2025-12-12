@@ -102,7 +102,7 @@ const ExitIntentPopup = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="flex-1 flex flex-col items-center">
               <Button 
-                className="w-full py-3.5 text-base bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary animate-pulse shadow-lg"
+                className="w-full py-3.5 text-base bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-lg"
                 onClick={scrollToContact}
               >
                 <Phone size={16} className="mr-2" />
