@@ -233,6 +233,14 @@ const Navigation = () => {
           ))}
         </nav>
         
+        {/* Phone number in mobile menu */}
+        <a 
+          href={phoneLink} 
+          className="flex items-center gap-2 py-3 px-4 mt-4 rounded-lg text-text-heading hover:text-accent hover:bg-gray-50 transition-all duration-300 font-medium border-t border-gray-100 pt-6"
+        >
+          <Phone className="h-5 w-5" />
+          {phoneNumber}
+        </a>
       </div>
     </div>
   </>;
