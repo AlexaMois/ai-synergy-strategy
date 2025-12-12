@@ -20,7 +20,8 @@ All colors MUST be HSL.
     --primary: 192 63% 57%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-dark: 192 63% 47%;
+    --primary-dark: 192 70% 38%;
+    --primary-light: 192 70% 65%;
     --primary-soft: 202 80% 91%;
     
     --secondary: 210 25% 98%;

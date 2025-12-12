@@ -165,7 +165,7 @@ const Navigation = () => {
             </a>
             <Button 
               size="sm" 
-              className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-lg"
+              className="bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg"
               onClick={(e) => scrollToSection(e as any, '#contact')}
             >
               <Phone size={14} />
@@ -253,7 +253,7 @@ const Navigation = () => {
           </a>
           <Button 
             size="sm" 
-            className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-lg"
+            className="w-full bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg"
             onClick={(e) => scrollToSection(e as any, '#contact')}
           >
             <Phone size={14} />
