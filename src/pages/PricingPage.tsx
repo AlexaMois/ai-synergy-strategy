@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
@@ -434,6 +435,7 @@ const PricingPage = () => {
             </Button>
           </div>
         </section>
+        <Contact />
         </main>
         
         <Footer />

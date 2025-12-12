@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
@@ -31,6 +32,7 @@ const ServicesPage = () => {
 
         <ServicesDetailed />
         <AdditionalServices />
+        <Contact />
         </main>
       
         <Footer />
