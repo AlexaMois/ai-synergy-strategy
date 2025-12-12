@@ -85,55 +85,6 @@ const Hero = () => {
               </div>
             </div>
           </div>
-
-          {/* Анимированный мазок кисти справа */}
-          <div className="hidden lg:flex col-span-4 items-center justify-center p-6 lg:p-8">
-            <div className="relative w-full flex items-center justify-center">
-              <svg 
-                viewBox="0 0 400 180" 
-                className="w-full h-auto animate-brush-draw"
-                preserveAspectRatio="xMidYMid meet"
-                style={{ 
-                  filter: 'drop-shadow(0 6px 20px hsl(var(--primary) / 0.25))',
-                  maxHeight: '200px'
-                }}
-              >
-                <defs>
-                  <linearGradient id="brushGradient" x1="0%" y1="50%" x2="100%" y2="50%">
-                    <stop offset="0%" stopColor="#49BED8" stopOpacity="0.95" />
-                    <stop offset="40%" stopColor="#49BED8" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#49BED8" stopOpacity="0.75" />
-                  </linearGradient>
-                </defs>
-                
-                {/* Широкий горизонтальный мазок кисти */}
-                <path 
-                  d="M10 95 
-                     Q40 45 100 70 
-                     T180 55 
-                     T270 65 
-                     T350 80 
-                     Q390 90 385 100
-                     Q370 140 300 130 
-                     T180 135 
-                     T80 125 
-                     T20 110 
-                     Q5 105 10 95 Z"
-                  fill="url(#brushGradient)"
-                />
-                
-                {/* Дополнительные штрихи для текстуры */}
-                <path 
-                  d="M50 85 Q120 65 200 75 T340 70"
-                  fill="none"
-                  stroke="#49BED8"
-                  strokeWidth="8"
-                  strokeOpacity="0.3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -117,27 +117,10 @@ export default {
             height: "0",
           },
         },
-        "brush-draw": {
-          "0%": {
-            clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
-            opacity: "0",
-          },
-          "10%": {
-            opacity: "0.6",
-          },
-          "25%": {
-            opacity: "1",
-          },
-          "100%": {
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            opacity: "1",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "brush-draw": "brush-draw 1.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards",
       },
     },
   },
