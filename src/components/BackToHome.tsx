@@ -10,11 +10,11 @@ const BackToHome = () => {
   return (
     <Link
       to="/"
-      className="fixed bottom-4 sm:bottom-6 md:bottom-24 right-16 sm:right-24 md:right-36 z-40 bg-accent text-accent-foreground rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
+      className="fixed bottom-6 left-6 z-40 bg-background text-foreground border border-border rounded-xl px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
       aria-label="На главную"
     >
-      <Home className="w-4 h-4 sm:w-5 sm:h-5" />
-      <span className="text-sm font-medium hidden sm:inline">Домой</span>
+      <Home className="w-5 h-5" />
+      <span className="text-sm font-medium">На главную</span>
     </Link>
   );
 };
