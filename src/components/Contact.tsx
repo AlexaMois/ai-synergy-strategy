@@ -89,7 +89,7 @@ const Contact = () => {
   return (
     <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <form 
             onSubmit={handleSubmit(onSubmit)} 
             className={`p-6 sm:p-8 rounded-2xl bg-[hsl(var(--gray-50))] shadow-card gradient-border ${getStaggeredClass(1, 'animate-fade-in-up')}`}
@@ -204,36 +204,37 @@ const Contact = () => {
               )}
             </div>
 
-            {/* Чекбокс согласия */}
-            <div className="mb-6 sm:mb-8">
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="consent"
-                  checked={consentValue}
-                  onCheckedChange={(checked) => setValue("consent", checked as boolean)}
-                  className={errors.consent ? "border-destructive" : ""}
-                />
-                <Label htmlFor="consent" className="text-sm text-text-body leading-relaxed cursor-pointer">
-                  Я согласен(а) с{" "}
-                  <Link to="/consent" className="text-primary hover:underline">
-                    условиями обработки персональных данных
-                  </Link>
-                  . Сайт не передаёт информацию третьим лицам.
-                </Label>
+            {/* Чекбокс и кнопка в одну строку на десктопе */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex-1">
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="consent"
+                    checked={consentValue}
+                    onCheckedChange={(checked) => setValue("consent", checked as boolean)}
+                    className={errors.consent ? "border-destructive" : ""}
+                  />
+                  <Label htmlFor="consent" className="text-sm text-text-body leading-relaxed cursor-pointer">
+                    Я согласен(а) с{" "}
+                    <Link to="/consent" className="text-primary hover:underline">
+                      условиями обработки персональных данных
+                    </Link>
+                    . Сайт не передаёт информацию третьим лицам.
+                  </Label>
+                </div>
+                {errors.consent && (
+                  <p className="text-sm text-destructive mt-2">{errors.consent.message}</p>
+                )}
               </div>
-              {errors.consent && (
-                <p className="text-sm text-destructive mt-2">{errors.consent.message}</p>
-              )}
-            </div>
 
-            {/* Кнопка отправки */}
-            <Button 
-              type="submit" 
-              className="w-full sm:w-auto h-12 px-8 text-base"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Отправка..." : "Отправить"}
-            </Button>
+              <Button 
+                type="submit" 
+                className="w-full md:w-auto h-12 px-8 text-base shrink-0"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Отправка..." : "Отправить"}
+              </Button>
+            </div>
           </form>
         </div>
       </div>
