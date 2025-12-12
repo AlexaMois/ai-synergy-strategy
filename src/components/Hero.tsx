@@ -63,7 +63,7 @@ const Hero = () => {
                 key={index} 
                 className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
               >
-                <Icon className="w-4 h-4 text-primary shrink-0" />
+                <Icon className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-[11px] font-medium text-foreground leading-tight">
                   {tile.title}
                 </span>
@@ -86,7 +86,7 @@ const Hero = () => {
                 key={index} 
                 className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
               >
-                <Icon className="w-4 h-4 text-primary shrink-0" />
+                <Icon className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-[11px] font-medium text-foreground leading-tight">
                   {tile.title}
                 </span>
