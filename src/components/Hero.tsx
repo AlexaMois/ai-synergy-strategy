@@ -61,7 +61,7 @@ const Hero = () => {
             return (
               <div 
                 key={index} 
-                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
+                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10 transition-all duration-200 cursor-pointer flex items-center gap-2"
               >
                 <Icon className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-[11px] font-medium text-foreground leading-tight">
@@ -84,7 +84,7 @@ const Hero = () => {
             return (
               <div 
                 key={index} 
-                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
+                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10 transition-all duration-200 cursor-pointer flex items-center gap-2"
               >
                 <Icon className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-[11px] font-medium text-foreground leading-tight">
