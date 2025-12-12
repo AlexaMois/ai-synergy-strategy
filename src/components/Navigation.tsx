@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
+import logoHorizontal from "@/assets/logo-horizontal.png";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -124,8 +125,8 @@ const Navigation = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="text-2xl font-bold text-text-heading">
-            Александра <span className="text-accent">Моисеева</span>
+          <Link to="/" className="flex items-center">
+            <img src={logoHorizontal} alt="Нейрорешения" className="h-10 sm:h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
