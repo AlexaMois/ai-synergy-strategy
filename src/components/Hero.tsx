@@ -1,50 +1,75 @@
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AvailabilityBadge from "@/components/AvailabilityBadge";
-import alexandraHeadshot from "@/assets/alexandra-headshot.png";
-import nPattern from "@/assets/n-pattern.png";
-import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
-import { toast } from "@/hooks/use-toast";
 const Hero = () => {
-  const tabsContent = {
-    owner: {
-      title: "Видишь маржу, простои, узкие места в реальном времени",
-      description: "Растёшь по выручке, но не по прибыли?\nПрибыль +23% за год, директор вышел из аврала (80+ человек).",
-      button1: "Разобрать один процесс",
-      button2: "Сколько я теряю сейчас"
-    },
-    production: {
-      title: "ИИ видит узкие места, прогнозирует закупки, ловит брак",
-      description: "Люди вводят данные вручную, простои невидимы?\nБрак −40%, штрафы −80%, окупилось за 4 месяца.",
-      button1: "Разобрать один процесс",
-      button2: "Сколько я теряю сейчас"
-    },
-    sales: {
-      title: "Автоответчик 24/7, квалификация 30 сек",
-      description: "Заявки теряются, ответ 2 часа?\nРеакция 2ч → 3мин, конверсия +35%, чек +18%.",
-      button1: "Разобрать один процесс",
-      button2: "Сколько я теряю сейчас"
-    }
-  };
-  return <section className="relative bg-background pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 overflow-hidden overflow-x-hidden hero-skeleton">
-      {/* N Pattern Background - static, no parallax to reduce reflows */}
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none" style={{
-      backgroundImage: `url(${nPattern})`,
-      backgroundRepeat: 'repeat',
-      backgroundSize: '120px'
-    }} />
-      <div className="container mx-auto">
-        <Tabs defaultValue="owner" className="w-full">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 items-center">
-            
-          
-            {/* Правая колонка с фото */}
-            <div className="lg:col-span-5 flex items-center justify-center animate-fade-in-right">
-              
+  const businessTiles = [
+    "Продажи и заявки",
+    "Контроль лидов",
+    "Документы и первичка",
+    "Производство и объекты",
+    "Поддержка клиентов",
+    "Аналитика и маржа",
+    "Интеграции и архитектура",
+    "Отчёты и контроль",
+    "Прогнозирование",
+    "Управление процессами",
+    "CRM без CRM",
+    "Данные и дашборды",
+  ];
+
+  const leaderTiles = [
+    "Автоматическая подготовка тендерной документации",
+    "Личный голосовой помощник руководителя",
+    "Дашборд директора",
+  ];
+
+  return (
+    <section className="bg-background pt-6 pb-10 sm:pt-8 sm:pb-12 md:pt-10 md:pb-16">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Заголовок и описание */}
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <h1 className="text-[28px] sm:text-[32px] md:text-[36px] lg:text-[42px] font-semibold text-foreground leading-tight mb-3 sm:mb-4">
+            ИИ-решения для бизнеса
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+            Встраиваю ИИ в существующие бизнес-процессы
+            <br className="hidden sm:block" />
+            без переделки системы и операционки
+          </p>
+        </div>
+
+        {/* Основная сетка — 12 плиток (2 ряда по 6) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 mb-10 sm:mb-12 md:mb-14">
+          {businessTiles.map((title, index) => (
+            <div
+              key={index}
+              className="border border-dashed border-border rounded-lg p-4 sm:p-5 md:p-6 text-center hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
+            >
+              <span className="text-sm sm:text-base font-medium text-foreground leading-tight block">
+                {title}
+              </span>
             </div>
+          ))}
+        </div>
+
+        {/* Блок для руководителей */}
+        <div>
+          <h2 className="text-xl sm:text-2xl md:text-[28px] font-semibold text-foreground mb-5 sm:mb-6 md:mb-8">
+            ИИ-решения для руководителей
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {leaderTiles.map((title, index) => (
+              <div
+                key={index}
+                className="border border-dashed border-border rounded-lg p-5 sm:p-6 md:p-8 text-center hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
+              >
+                <span className="text-sm sm:text-base md:text-lg font-medium text-foreground leading-tight block">
+                  {title}
+                </span>
+              </div>
+            ))}
           </div>
-        </Tabs>
+        </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
