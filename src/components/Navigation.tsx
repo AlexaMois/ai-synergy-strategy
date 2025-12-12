@@ -130,7 +130,7 @@ const Navigation = () => {
         <div className="hidden lg:flex items-center justify-between h-20">
           <div className="flex items-center gap-10">
             <Link to="/" className="flex items-center overflow-visible">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-40 xl:h-48 w-auto mt-4" />
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-40 xl:h-48 w-auto" />
             </Link>
 
             <nav className="flex items-center gap-7">
