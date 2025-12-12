@@ -36,7 +36,7 @@ const Hero = () => {
     <section className="bg-background pt-24 sm:pt-28 pb-10 sm:pb-14">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Центрированный контейнер 10/12 */}
-        <div className="col-span-10 col-start-2 mx-auto max-w-5xl">
+        <div className="col-span-10 col-start-2 mx-auto max-w-5xl border border-border/50 rounded-lg bg-primary/5 p-6 sm:p-8">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
             {/* Левая колонка — каталог (2/3) */}
             <div className="w-full lg:w-2/3">
