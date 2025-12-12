@@ -30,12 +30,6 @@ const Hero = () => {
     { title: "Производство и объекты", icon: Factory },
     { title: "Поддержка клиентов", icon: Headphones },
     { title: "Аналитика и маржа", icon: BarChart3 },
-    { title: "Интеграции и архитектура", icon: Puzzle },
-    { title: "Отчёты и контроль", icon: ClipboardCheck },
-    { title: "Прогнозирование", icon: TrendingUp },
-    { title: "Управление процессами", icon: Settings },
-    { title: "CRM без CRM", icon: Database },
-    { title: "Данные и дашборды", icon: LayoutDashboard },
   ];
 
   const leaderTiles: TileData[] = [
