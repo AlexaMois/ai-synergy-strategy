@@ -41,7 +41,8 @@ const Hero = () => {
               <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-card gradient-border gradient-border-hover">
                 <div className="space-y-4">
                   <div className="inline-block">
-                    <span className="text-handwriting text-2xl sm:text-3xl">Независимый инженер по ИИ и цифровой архитектуре</span>
+                    <span className="text-handwriting text-2xl sm:text-3xl">Александра Моисеева</span>
+                    <p className="text-lg text-text-body mt-1">Независимый инженер по ИИ и цифровой архитектуре</p>
                   </div>
 
                   <p className="text-lg text-text-body leading-relaxed font-semibold">Встраиваю ИИ в вашу текущую цепочку, не переделывая процессы</p>
