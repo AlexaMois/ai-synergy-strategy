@@ -38,19 +38,19 @@ const Hero = () => {
         {/* 12-колоночная сетка */}
         <div className="grid grid-cols-12 gap-4">
           {/* Контейнер 8/12 от левого края */}
-          <div className="col-span-12 lg:col-span-8 border border-border/50 rounded-lg bg-gray-50 p-4 sm:p-6 shadow-sm">
+          <div className="col-span-12 lg:col-span-8 border border-border rounded-lg bg-gray-100 p-3 sm:p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
             {/* ИИ-решения для бизнеса */}
-            <div className="mb-4">
-              <p className="text-sm font-medium text-muted-foreground leading-tight mb-3">
+            <div className="mb-3">
+              <p className="text-sm font-medium text-muted-foreground leading-tight mb-2.5">
                 ИИ-решения для бизнеса
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                 {businessTiles.map((tile, index) => {
                   const Icon = tile.icon;
                   return (
                     <div 
                       key={index} 
-                      className="border border-border/60 rounded bg-background py-3 px-3 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 cursor-pointer flex items-center gap-2.5 h-[56px]"
+                      className="border border-border/80 rounded bg-background py-2 px-2.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 cursor-pointer flex items-center gap-2 h-[48px]"
                     >
                       <Icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
                       <span className="text-xs font-medium text-foreground leading-tight">
@@ -64,16 +64,16 @@ const Hero = () => {
 
             {/* ИИ-решения для руководителей */}
             <div>
-              <p className="text-sm font-medium text-muted-foreground leading-tight mb-3">
+              <p className="text-sm font-medium text-muted-foreground leading-tight mb-2.5">
                 ИИ-решения для руководителей
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                 {leaderTiles.map((tile, index) => {
                   const Icon = tile.icon;
                   return (
                     <div 
                       key={index} 
-                      className="border border-border/60 rounded bg-background py-3 px-3 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 cursor-pointer flex items-center gap-2.5 h-[56px]"
+                      className="border border-border/80 rounded bg-background py-2 px-2.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 cursor-pointer flex items-center gap-2 h-[48px]"
                     >
                       <Icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
                       <span className="text-xs font-medium text-foreground leading-tight">
