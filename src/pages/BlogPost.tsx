@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 import BackToTop from "@/components/BackToTop";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
@@ -232,6 +233,7 @@ const BlogPost = () => {
         </section>
       )}
         <Contact />
+        <Partners />
       </main>
 
         <Footer />

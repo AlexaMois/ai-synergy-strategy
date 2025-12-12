@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 import BackToTop from "@/components/BackToTop";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
@@ -218,6 +219,7 @@ const CaseStudyKraypotrebsoyuz = () => {
           </div>
         </section>
         <Contact />
+        <Partners />
         </main>
         
         <Footer />
