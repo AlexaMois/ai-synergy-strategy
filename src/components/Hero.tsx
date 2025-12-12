@@ -189,29 +189,30 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Раскрывающийся блок */}
-            <Collapsible open={!!selectedTile}>
-              <CollapsibleContent className="animate-accordion-down">
-                {selectedTileData && (
-                  <div className="mt-4 p-4 sm:p-5 bg-background rounded-lg border border-border shadow-sm">
-                    <h3 className="text-base font-semibold text-foreground mb-2">
-                      {selectedTileData.expandedTitle}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                      {selectedTileData.expandedDescription}
-                    </p>
-                    <Button 
-                      size="sm"
-                      onClick={handleButtonClick}
-                      className="bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark text-white"
-                    >
-                      {selectedTileData.buttonText}
-                    </Button>
-                  </div>
-                )}
-              </CollapsibleContent>
-            </Collapsible>
           </div>
+
+          {/* Раскрывающийся блок - вынесен за пределы серого контейнера */}
+          <Collapsible open={!!selectedTile} className="col-span-12 lg:col-span-8">
+            <CollapsibleContent className="animate-accordion-down">
+              {selectedTileData && (
+                <div className="mt-4 pt-2">
+                  <h3 className="text-base font-semibold text-foreground mb-2">
+                    {selectedTileData.expandedTitle}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    {selectedTileData.expandedDescription}
+                  </p>
+                  <Button 
+                    size="sm"
+                    onClick={handleButtonClick}
+                    className="bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark text-white"
+                  >
+                    {selectedTileData.buttonText}
+                  </Button>
+                </div>
+              )}
+            </CollapsibleContent>
+          </Collapsible>
         </div>
       </div>
     </section>
