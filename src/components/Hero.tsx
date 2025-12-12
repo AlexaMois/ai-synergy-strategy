@@ -1,13 +1,51 @@
-import { Button } from "@/components/ui/button";
-import { Phone, Calendar, Send } from "lucide-react";
+import { 
+  ShoppingCart, 
+  Users, 
+  FileText, 
+  Factory, 
+  Headphones, 
+  BarChart3, 
+  Puzzle, 
+  ClipboardCheck, 
+  TrendingUp, 
+  Settings, 
+  Database, 
+  LayoutDashboard,
+  FileCheck,
+  Mic,
+  PieChart,
+  LucideIcon
+} from "lucide-react";
+
+interface TileData {
+  title: string;
+  icon: LucideIcon;
+}
+
 const Hero = () => {
-  const phoneNumber = "+7 993 721 73 67";
-  const phoneLink = "tel:+79937217367";
-  const telegramLink = "https://t.me/AlexandraMois";
-  const calendarLink = "https://calendar.app.google/Zb3NNbpFm3Yh1uA59";
-  const businessTiles = ["Продажи и заявки", "Контроль лидов", "Документы и первичка", "Производство и объекты", "Поддержка клиентов", "Аналитика и маржа", "Интеграции и архитектура", "Отчёты и контроль", "Прогнозирование", "Управление процессами", "CRM без CRM", "Данные и дашборды"];
-  const leaderTiles = ["Автоматическая подготовка тендерной документации", "Личный голосовой помощник руководителя", "Дашборд директора"];
-  return <section className="bg-background pt-20 sm:pt-24 pb-4 sm:pb-5">
+  const businessTiles: TileData[] = [
+    { title: "Продажи и заявки", icon: ShoppingCart },
+    { title: "Контроль лидов", icon: Users },
+    { title: "Документы и первичка", icon: FileText },
+    { title: "Производство и объекты", icon: Factory },
+    { title: "Поддержка клиентов", icon: Headphones },
+    { title: "Аналитика и маржа", icon: BarChart3 },
+    { title: "Интеграции и архитектура", icon: Puzzle },
+    { title: "Отчёты и контроль", icon: ClipboardCheck },
+    { title: "Прогнозирование", icon: TrendingUp },
+    { title: "Управление процессами", icon: Settings },
+    { title: "CRM без CRM", icon: Database },
+    { title: "Данные и дашборды", icon: LayoutDashboard },
+  ];
+
+  const leaderTiles: TileData[] = [
+    { title: "Автоматическая подготовка тендерной документации", icon: FileCheck },
+    { title: "Личный голосовой помощник руководителя", icon: Mic },
+    { title: "Дашборд директора", icon: PieChart },
+  ];
+
+  return (
+    <section className="bg-background pt-20 sm:pt-24 pb-4 sm:pb-5">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Заголовок */}
         <div className="mb-3">
@@ -18,11 +56,20 @@ const Hero = () => {
 
         {/* Основная сетка — 12 плиток (2 ряда по 6) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-5">
-          {businessTiles.map((title, index) => <div key={index} className="border border-dashed border-border rounded-md py-2.5 px-3 text-left hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer">
-              <span className="text-[13px] font-medium text-foreground leading-snug block">
-                {title}
-              </span>
-            </div>)}
+          {businessTiles.map((tile, index) => {
+            const Icon = tile.icon;
+            return (
+              <div 
+                key={index} 
+                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
+              >
+                <Icon className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-[11px] font-medium text-foreground leading-tight">
+                  {tile.title}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         {/* Блок для руководителей */}
@@ -32,13 +79,24 @@ const Hero = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {leaderTiles.map((title, index) => <div key={index} className="border border-dashed border-border rounded-md py-2.5 px-3 text-left hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer">
-              <span className="text-[13px] font-medium text-foreground leading-snug block">
-                {title}
-              </span>
-            </div>)}
+          {leaderTiles.map((tile, index) => {
+            const Icon = tile.icon;
+            return (
+              <div 
+                key={index} 
+                className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-200 cursor-pointer flex items-center gap-2"
+              >
+                <Icon className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-[11px] font-medium text-foreground leading-tight">
+                  {tile.title}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
