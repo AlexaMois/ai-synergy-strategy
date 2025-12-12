@@ -4,6 +4,9 @@ import BackToTop from "@/components/BackToTop";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import TrustAndPosition from "@/components/TrustAndPosition";
+import HowIChoose from "@/components/HowIChoose";
+import SixQuestions from "@/components/SixQuestions";
+import AIFramework from "@/components/AIFramework";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -74,6 +77,15 @@ const About = () => {
 
         {/* Trust and Position */}
         <TrustAndPosition />
+
+        {/* How I Choose */}
+        <HowIChoose />
+
+        {/* Six Questions */}
+        <SixQuestions />
+
+        {/* AI Framework */}
+        <AIFramework />
 
         {/* Brief About Me - Collapsible */}
         <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
