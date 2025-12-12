@@ -157,38 +157,6 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Row 2: Contact Bar (Desktop only) */}
-      <div className="hidden lg:block border-t border-border/30">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-end gap-4 h-10">
-            <a 
-              href={phoneLink} 
-              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors"
-            >
-              {phoneNumber}
-            </a>
-            <span className="text-border">|</span>
-            <a 
-              href={calendarLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors"
-            >
-              Заказать звонок
-            </a>
-            <span className="text-border">|</span>
-            <a 
-              href={telegramLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
-            >
-              <Send size={12} />
-              Telegram
-            </a>
-          </div>
-        </div>
-      </div>
 
       {/* Mobile Header Row */}
       <div className="lg:hidden">
@@ -198,25 +166,6 @@ const Navigation = () => {
               <img src={logoHorizontal} alt="Нейрорешения" className="h-8 w-auto" />
             </Link>
 
-            {/* Mobile: Phone + Telegram icons */}
-            <div className="flex items-center gap-2 mr-12">
-              <a 
-                href={phoneLink}
-                className="w-9 h-9 flex items-center justify-center rounded-full text-text-heading hover:text-accent transition-colors"
-                aria-label="Позвонить"
-              >
-                <Phone size={18} />
-              </a>
-              <a 
-                href={telegramLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full text-text-heading hover:text-accent transition-colors"
-                aria-label="Telegram"
-              >
-                <Send size={18} />
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -275,29 +224,6 @@ const Navigation = () => {
           ))}
         </nav>
         
-        {/* Mobile drawer: contacts */}
-        <div className={`pt-4 space-y-3 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
-          <a 
-            href={phoneLink}
-            className="flex items-center gap-3 py-2 text-text-heading hover:text-accent transition-colors text-sm font-medium"
-          >
-            <Phone size={16} />
-            {phoneNumber}
-          </a>
-          
-          <Button size="default" className="w-full" asChild>
-            <a href={calendarLink} target="_blank" rel="noopener noreferrer">
-              Заказать звонок
-            </a>
-          </Button>
-          
-          <Button size="default" variant="outline" className="w-full" asChild>
-            <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-              <Send size={16} />
-              Telegram
-            </a>
-          </Button>
-        </div>
       </div>
     </div>
   </>;
