@@ -45,12 +45,6 @@ const Hero = () => {
           
           {/* Правая колонка — контакты */}
           <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
-            <a 
-              href={phoneLink} 
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              {phoneNumber}
-            </a>
             <div className="flex gap-2">
               <Button variant="outline" size="sm" asChild>
                 <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">

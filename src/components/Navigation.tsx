@@ -127,19 +127,19 @@ const Navigation = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-background/80 backdrop-blur-sm"}`}>
       {/* Row 1: Navigation */}
       <div className="container mx-auto px-4">
-        <div className="hidden lg:flex items-center justify-between h-14">
-          <div className="flex items-center gap-8">
+        <div className="hidden lg:flex items-center justify-between h-20">
+          <div className="flex items-center gap-10">
             <Link to="/" className="flex items-center">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-10 w-auto" />
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-14 w-auto" />
             </Link>
 
-            <nav className="flex items-center gap-6">
+            <nav className="flex items-center gap-7">
               {navLinks.map(link => link.isScroll ? (
                 <a 
                   key={link.href} 
                   href={link.href} 
                   onClick={e => scrollToSection(e, link.href)} 
-                  className={`transition-all duration-300 text-sm font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  className={`transition-all duration-300 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
                 >
                   {link.label}
                 </a>
@@ -147,13 +147,21 @@ const Navigation = () => {
                 <DisabledLink 
                   key={link.href} 
                   to={link.href} 
-                  className={`transition-all duration-300 text-sm font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  className={`transition-all duration-300 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
                 >
                   {link.label}
                 </DisabledLink>
               ))}
             </nav>
           </div>
+          
+          {/* Phone number on the right */}
+          <a 
+            href={phoneLink} 
+            className="text-base font-medium text-text-heading hover:text-accent transition-colors"
+          >
+            {phoneNumber}
+          </a>
         </div>
       </div>
 
