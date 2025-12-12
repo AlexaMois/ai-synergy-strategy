@@ -133,28 +133,27 @@ const Hero = () => {
     const isSelected = selectedTile === tile.id;
     
     return (
-      <div className="group flex flex-col">
-        <div 
-          onClick={() => handleTileClick(tile.id)}
-          className={`
-            relative border rounded bg-background py-2 px-2.5 
-            transition-all duration-300 cursor-pointer flex items-center gap-2 
-            min-h-[48px]
-            ${isSelected 
-              ? 'border-primary bg-primary/10 shadow-md scale-[1.02]' 
-              : 'border-border/80 hover:border-primary/40 hover:bg-primary/5 hover:shadow-sm hover:scale-[1.02]'
-            }
-          `}
-        >
-          <Icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
+      <div 
+        onClick={() => handleTileClick(tile.id)}
+        className={`
+          group relative border rounded bg-background py-2 px-2.5 
+          transition-all duration-300 cursor-pointer flex items-center gap-2 
+          min-h-[48px]
+          ${isSelected 
+            ? 'border-primary bg-primary/10 shadow-md scale-[1.02]' 
+            : 'border-border/80 hover:border-primary/40 hover:bg-primary/5 hover:shadow-sm hover:scale-[1.02]'
+          }
+        `}
+      >
+        <Icon className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
+        <div className="flex flex-col min-w-0 flex-1">
           <span className="text-xs font-medium text-foreground leading-tight">
             {tile.title}
           </span>
+          <span className="text-[10px] text-muted-foreground leading-snug mt-0.5 max-h-0 group-hover:max-h-8 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out line-clamp-2 overflow-hidden">
+            {tile.hoverText}
+          </span>
         </div>
-        {/* Hover text outside the tile */}
-        <span className="text-[10px] text-muted-foreground leading-snug mt-1 px-1 max-h-0 group-hover:max-h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out line-clamp-2 overflow-hidden">
-          {tile.hoverText}
-        </span>
       </div>
     );
   };
