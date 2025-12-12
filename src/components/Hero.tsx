@@ -173,56 +173,95 @@ const Hero = () => {
     <TooltipProvider>
       <section className="bg-background pt-24 sm:pt-28 pb-8 sm:pb-10">
         <div className="container mx-auto px-4 sm:px-6">
-          {/* 12-колоночная сетка */}
-          <div className="grid grid-cols-12 gap-4">
-            {/* Голубой контейнер 8/12 от левого края */}
-            <div className="col-span-12 lg:col-span-8 rounded-xl bg-[hsl(var(--primary-light))] p-6 sm:p-8">
-              {/* ИИ-решения для бизнеса */}
-              <div className="mb-6">
-                <p className="text-base font-medium text-foreground/80 mb-4">
-                  ИИ-решения для бизнеса
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {businessTiles.map((tile) => (
-                    <TileComponent key={tile.id} tile={tile} />
-                  ))}
+          {/* 12-колоночная сетка с двумя колонками */}
+          <div className="grid grid-cols-12 gap-6 lg:gap-8">
+            
+            {/* Левая колонка — заголовок + плитки (8 колонок) */}
+            <div className="col-span-12 lg:col-span-8">
+              {/* Заголовок H1 */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
+                ИИ-решения для бизнеса<br />и руководителей
+              </h1>
+              
+              {/* Подзаголовок */}
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
+                без переделки системы и остановки операционки.
+              </p>
+
+              {/* Голубой контейнер с плитками */}
+              <div className="rounded-xl bg-[hsl(var(--primary-light))] p-6 sm:p-8">
+                {/* ИИ-решения для бизнеса */}
+                <div className="mb-6">
+                  <p className="text-base font-medium text-foreground/80 mb-4">
+                    ИИ-решения для бизнеса
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {businessTiles.map((tile) => (
+                      <TileComponent key={tile.id} tile={tile} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* ИИ-решения для руководителей */}
+                <div>
+                  <p className="text-base font-medium text-foreground/80 mb-4">
+                    ИИ-решения для руководителей
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {leaderTiles.map((tile) => (
+                      <TileComponent key={tile.id} tile={tile} />
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* ИИ-решения для руководителей */}
-              <div>
-                <p className="text-base font-medium text-foreground/80 mb-4">
-                  ИИ-решения для руководителей
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {leaderTiles.map((tile) => (
-                    <TileComponent key={tile.id} tile={tile} />
-                  ))}
+              {/* Белая карточка описания */}
+              <Collapsible open={!!selectedTile}>
+                <CollapsibleContent className="animate-accordion-down">
+                  {selectedTileData && (
+                    <div className="mt-4 bg-white rounded-xl shadow-md p-6 sm:p-8 border border-border/30">
+                      <h3 className="text-lg font-semibold text-foreground mb-3">
+                        {selectedTileData.expandedTitle}
+                      </h3>
+                      <p className="text-base text-muted-foreground mb-5 leading-relaxed">
+                        {selectedTileData.expandedDescription}
+                      </p>
+                      <Button 
+                        onClick={handleButtonClick}
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                      >
+                        {selectedTileData.buttonText}
+                      </Button>
+                    </div>
+                  )}
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
+
+            {/* Правая колонка — крупные слова на всю высоту (4 колонки) */}
+            <div className="hidden lg:flex col-span-4 flex-col justify-center items-end relative select-none">
+              <div className="flex flex-col items-end gap-6">
+                <span className="text-6xl xl:text-7xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                  КОНТРОЛЬ
+                </span>
+                
+                <div className="relative">
+                  <span className="text-6xl xl:text-7xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                    ДАННЫЕ
+                  </span>
+                  {/* Рукописный акцент */}
+                  <span className="absolute -bottom-1 right-0 font-handwriting text-xl text-primary">
+                    под контролем
+                  </span>
                 </div>
+                
+                <span className="text-6xl xl:text-7xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                  ДЕНЬГИ
+                </span>
               </div>
             </div>
 
-            {/* Белая карточка описания - вынесена за пределы голубого контейнера */}
-            <Collapsible open={!!selectedTile} className="col-span-12 lg:col-span-8">
-              <CollapsibleContent className="animate-accordion-down">
-                {selectedTileData && (
-                  <div className="mt-4 bg-white rounded-xl shadow-md p-6 sm:p-8 border border-border/30">
-                    <h3 className="text-lg font-semibold text-foreground mb-3">
-                      {selectedTileData.expandedTitle}
-                    </h3>
-                    <p className="text-base text-muted-foreground mb-5 leading-relaxed">
-                      {selectedTileData.expandedDescription}
-                    </p>
-                    <Button 
-                      onClick={handleButtonClick}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                    >
-                      {selectedTileData.buttonText}
-                    </Button>
-                  </div>
-                )}
-              </CollapsibleContent>
-            </Collapsible>
           </div>
         </div>
       </section>
