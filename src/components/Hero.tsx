@@ -11,11 +11,8 @@ import {
   Settings, 
   Database, 
   LayoutDashboard,
-  FileCheck,
-  Mic,
-  PieChart,
-  LucideIcon
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface TileData {
   title: string;
@@ -38,11 +35,6 @@ const Hero = () => {
     { title: "Данные и дашборды", icon: LayoutDashboard },
   ];
 
-  const leaderTiles: TileData[] = [
-    { title: "Автоматическая подготовка тендерной документации", icon: FileCheck },
-    { title: "Личный голосовой помощник руководителя", icon: Mic },
-    { title: "Дашборд директора", icon: PieChart },
-  ];
 
   return (
     <section className="bg-background pt-20 sm:pt-24 pb-8 sm:pb-12">
@@ -73,28 +65,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* ИИ-решения для руководителей */}
-            <div>
-              <p className="text-sm sm:text-base font-medium text-muted-foreground leading-tight mb-3">
-                ИИ-решения для руководителей
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {leaderTiles.map((tile, index) => {
-                  const Icon = tile.icon;
-                  return (
-                    <div 
-                      key={index} 
-                      className="border border-border/50 rounded-md py-2 px-3 bg-white shadow-sm hover:shadow-md hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-primary/10 transition-all duration-200 cursor-pointer flex items-center gap-2"
-                    >
-                      <Icon className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-[11px] font-medium text-foreground leading-tight">
-                        {tile.title}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
           </div>
 
           {/* Правая колонка — абстрактная инфографика (1/3) */}
