@@ -94,6 +94,9 @@ const Hero = () => {
             );
           })}
         </div>
+
+        {/* Пустой блок */}
+        <div className="h-20 sm:h-24"></div>
       </div>
     </section>
   );
