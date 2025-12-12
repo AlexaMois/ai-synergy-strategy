@@ -16,9 +16,7 @@ const Hero = () => {
             <h1 className="text-xl sm:text-2xl font-semibold text-foreground leading-tight mb-2">
               ИИ-решения для бизнеса
             </h1>
-            <p className="text-sm text-muted-foreground leading-snug max-w-xl">
-              Встраиваю ИИ в существующие бизнес-процессы без переделки системы и операционки
-            </p>
+            
           </div>
           
           {/* Правая колонка — контакты */}
