@@ -90,20 +90,19 @@ const Contact = () => {
     <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10">
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-medium text-text-heading mb-4 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-              Будем на связи
-            </h2>
-            <p className={`text-text-body text-lg ${getStaggeredClass(2, 'animate-fade-in-up')}`}>
-              Оставьте свои контакты, и я свяжусь с вами,<br className="hidden sm:block" />
-              чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
-            </p>
-          </div>
-
           <form 
             onSubmit={handleSubmit(onSubmit)} 
-            className={`p-6 sm:p-8 rounded-2xl bg-[hsl(var(--gray-50))] shadow-card gradient-border ${getStaggeredClass(3, 'animate-fade-in-up')}`}
+            className={`p-6 sm:p-8 rounded-2xl bg-[hsl(var(--gray-50))] shadow-card gradient-border ${getStaggeredClass(1, 'animate-fade-in-up')}`}
           >
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl font-medium text-text-heading mb-3">
+                Будем на связи
+              </h2>
+              <p className="text-text-body">
+                Оставьте свои контакты, и я свяжусь с вами,
+                чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Имя */}
               <div className="space-y-2">
