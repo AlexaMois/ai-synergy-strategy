@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import TrustMarquee from "@/components/TrustMarquee";
-import TrustAndPosition from "@/components/TrustAndPosition";
+
 import Foundation from "@/components/Foundation";
 import Fork from "@/components/Fork";
 import HowIChoose from "@/components/HowIChoose";
@@ -46,7 +46,7 @@ const Index = () => {
       <main>
         <Hero />
         <MarqueeText />
-        <TrustAndPosition />
+        
         <TrustMarquee />
         <Foundation />
         <Fork />
