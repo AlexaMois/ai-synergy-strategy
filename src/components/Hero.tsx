@@ -88,37 +88,14 @@ const Hero = () => {
 
           {/* Анимированный мазок кисти справа */}
           <div className="hidden lg:flex col-span-4 items-center justify-center">
-            <svg 
-              viewBox="0 0 200 300" 
-              className="w-full h-auto max-w-[180px] opacity-60"
-              style={{ filter: 'drop-shadow(0 4px 12px hsl(var(--primary) / 0.2))' }}
-            >
-              <defs>
-                <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="hsl(var(--primary-light))" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M30 280 Q60 250 50 200 Q40 150 80 120 Q120 90 100 50 Q90 20 120 10"
-                fill="none"
-                stroke="url(#brushGradient)"
-                strokeWidth="35"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="animate-brush-stroke"
+            <div className="relative w-full max-w-[200px] overflow-hidden">
+              <img 
+                src="/assets/brush-stroke-hero.png" 
+                alt=""
+                className="w-full h-auto animate-brush-reveal"
+                style={{ filter: 'drop-shadow(0 4px 12px hsl(var(--primary) / 0.15))' }}
               />
-              <path
-                d="M50 260 Q75 230 70 190 Q65 150 95 125 Q125 100 110 65 Q100 40 125 25"
-                fill="none"
-                stroke="hsl(var(--primary) / 0.3)"
-                strokeWidth="15"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="animate-brush-stroke-delayed"
-              />
-            </svg>
+            </div>
           </div>
         </div>
       </div>
