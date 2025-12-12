@@ -55,7 +55,7 @@ const Hero = () => {
               <p className="text-sm sm:text-base font-medium text-muted-foreground leading-tight mb-3">
                 ИИ-решения для бизнеса
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {businessTiles.map((tile, index) => {
                   const Icon = tile.icon;
                   return (
