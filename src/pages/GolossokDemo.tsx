@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import BackToTop from "@/components/BackToTop";
+
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Mic, Play, CheckCircle, TrendingUp } from "lucide-react";
@@ -196,7 +196,7 @@ const GolossokDemo = () => {
         </main>
         
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>
   );

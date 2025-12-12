@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import BackToTop from "@/components/BackToTop";
+
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
@@ -441,7 +441,7 @@ const PricingPage = () => {
         </main>
         
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>
   );

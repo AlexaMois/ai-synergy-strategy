@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import BackToTop from "@/components/BackToTop";
+
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";
@@ -38,7 +38,7 @@ const ServicesPage = () => {
         </main>
       
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>
   );

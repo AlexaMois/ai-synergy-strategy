@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-import BackToTop from "@/components/BackToTop";
+
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import TrustAndPosition from "@/components/TrustAndPosition";
@@ -841,7 +841,7 @@ const About = () => {
         </main>
 
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>;
 };
