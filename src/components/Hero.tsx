@@ -242,21 +242,21 @@ const Hero = () => {
             {/* Правая колонка — крупные слова на всю высоту (4 колонки) */}
             <div className="hidden lg:flex col-span-4 flex-col justify-center items-end relative select-none">
               <div className="flex flex-col items-end gap-6">
-                <span className="text-7xl xl:text-8xl 2xl:text-9xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                <span className="text-8xl xl:text-9xl 2xl:[font-size:10rem] font-black uppercase text-foreground/5 leading-none tracking-tight">
                   КОНТРОЛЬ
                 </span>
                 
                 <div className="relative">
-                  <span className="text-7xl xl:text-8xl 2xl:text-9xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                  <span className="text-8xl xl:text-9xl 2xl:[font-size:10rem] font-black uppercase text-foreground/5 leading-none tracking-tight">
                     ДАННЫЕ
                   </span>
                   {/* Рукописный акцент */}
-                  <span className="absolute -bottom-1 right-0 font-handwriting text-2xl xl:text-3xl text-primary">
+                  <span className="absolute -bottom-1 right-0 text-handwriting text-2xl xl:text-3xl text-primary">
                     под контролем
                   </span>
                 </div>
                 
-                <span className="text-7xl xl:text-8xl 2xl:text-9xl font-bold uppercase text-foreground/5 leading-none tracking-tight">
+                <span className="text-8xl xl:text-9xl 2xl:[font-size:10rem] font-black uppercase text-foreground/5 leading-none tracking-tight">
                   ДЕНЬГИ
                 </span>
               </div>
