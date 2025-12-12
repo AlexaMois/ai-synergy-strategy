@@ -89,58 +89,35 @@ const Hero = () => {
           {/* Анимированный мазок кисти справа */}
           <div className="hidden lg:flex col-span-4 items-center justify-center">
             <svg 
-              viewBox="0 0 280 220" 
-              className="w-full h-auto max-w-[260px]"
-              style={{ filter: 'drop-shadow(0 4px 16px hsl(var(--primary) / 0.25))' }}
+              viewBox="0 0 200 300" 
+              className="w-full h-auto max-w-[180px] opacity-60"
+              style={{ filter: 'drop-shadow(0 4px 12px hsl(var(--primary) / 0.2))' }}
             >
               <defs>
-                <linearGradient id="brushGradient1" x1="0%" y1="0%" x2="100%" y2="50%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.7" />
-                </linearGradient>
-                <linearGradient id="brushGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="hsl(var(--primary-light))" stopOpacity="0.3" />
                 </linearGradient>
               </defs>
-              
-              {/* Основной эллиптический мазок */}
               <path
-                d="M50 130 Q30 80 80 50 Q140 15 200 40 Q260 70 240 120 Q220 170 160 180 Q100 190 60 160 Q40 145 50 130"
+                d="M30 280 Q60 250 50 200 Q40 150 80 120 Q120 90 100 50 Q90 20 120 10"
                 fill="none"
-                stroke="url(#brushGradient1)"
-                strokeWidth="28"
+                stroke="url(#brushGradient)"
+                strokeWidth="35"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="animate-brush-stroke"
               />
-              
-              {/* Внутренний слой */}
               <path
-                d="M70 125 Q55 90 95 65 Q145 35 190 55 Q235 75 220 115 Q205 155 155 165 Q105 175 75 150 Q60 140 70 125"
+                d="M50 260 Q75 230 70 190 Q65 150 95 125 Q125 100 110 65 Q100 40 125 25"
                 fill="none"
-                stroke="url(#brushGradient2)"
-                strokeWidth="18"
+                stroke="hsl(var(--primary) / 0.3)"
+                strokeWidth="15"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="animate-brush-stroke-delayed"
               />
-              
-              {/* Динамичный хвост мазка */}
-              <path
-                d="M45 145 Q25 160 15 180 Q10 195 20 200"
-                fill="none"
-                stroke="hsl(var(--primary))"
-                strokeWidth="12"
-                strokeLinecap="round"
-                strokeOpacity="0.6"
-                className="animate-brush-stroke"
-              />
-              
-              {/* Брызги/текстура */}
-              <circle cx="35" cy="175" r="4" fill="hsl(var(--primary))" fillOpacity="0.5" className="animate-brush-stroke-delayed" />
-              <circle cx="25" cy="190" r="3" fill="hsl(var(--primary))" fillOpacity="0.4" className="animate-brush-stroke-delayed" />
-              <circle cx="245" cy="85" r="3" fill="hsl(var(--primary))" fillOpacity="0.4" className="animate-brush-stroke-delayed" />
             </svg>
           </div>
         </div>
