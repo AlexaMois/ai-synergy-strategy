@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
@@ -230,6 +231,7 @@ const BlogPost = () => {
           </div>
         </section>
       )}
+        <Contact />
       </main>
 
         <Footer />

@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
 import { Image } from "lucide-react";
 import { useState } from "react";
@@ -448,6 +449,7 @@ const CasesPage = () => {
           </div>
         </div>
       </main>
+        <Contact />
 
       <Footer />
       <BackToTop />
