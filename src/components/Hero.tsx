@@ -21,7 +21,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="bg-background pt-6 pb-6 sm:pb-8">
+    <section className="bg-background pt-8 sm:pt-10 pb-6 sm:pb-8">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Заголовок и описание */}
         <div className="mb-4 sm:mb-5">
