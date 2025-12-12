@@ -9,33 +9,11 @@ const Hero = () => {
   const leaderTiles = ["Автоматическая подготовка тендерной документации", "Личный голосовой помощник руководителя", "Дашборд директора"];
   return <section className="bg-background pt-16 sm:pt-18 pb-6 sm:pb-8">
       <div className="container mx-auto px-4 sm:px-6 my-[20px]">
-        {/* Заголовок и контакты — две колонки */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-          {/* Левая колонка — текст */}
-          <div>
-            <p className="text-base sm:text-lg font-medium text-foreground leading-tight mb-2">
-              ИИ-решения для бизнеса
-            </p>
-            
-          </div>
-          
-          {/* Правая колонка — контакты */}
-          <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
-            <div className="flex gap-2">
-              <Button size="sm" asChild>
-                <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                  <Calendar size={14} />
-                  Заказать звонок
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                  <Send size={14} />
-                  Telegram
-                </a>
-              </Button>
-            </div>
-          </div>
+        {/* Заголовок */}
+        <div className="mb-4">
+          <p className="text-base sm:text-lg font-medium text-foreground leading-tight">
+            ИИ-решения для бизнеса
+          </p>
         </div>
 
         {/* Основная сетка — 12 плиток (2 ряда по 6) */}

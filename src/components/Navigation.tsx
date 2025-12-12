@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Send } from "lucide-react";
+import { Menu, X, Phone, Send, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
@@ -155,14 +155,22 @@ const Navigation = () => {
             </nav>
           </div>
           
-          {/* Phone number on the right */}
-          <a 
-            href={phoneLink} 
-            className="flex items-center gap-2 text-base font-medium text-text-heading hover:text-accent transition-colors"
-          >
-            <Phone className="h-4 w-4" />
-            {phoneNumber}
-          </a>
+          {/* Phone number and CTA button on the right */}
+          <div className="flex items-center gap-4">
+            <a 
+              href={phoneLink} 
+              className="flex items-center gap-2 text-base font-medium text-text-heading hover:text-accent transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              {phoneNumber}
+            </a>
+            <Button size="sm" asChild>
+              <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                <Calendar size={14} />
+                Заказать звонок
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
 
