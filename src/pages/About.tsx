@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import TrustAndPosition from "@/components/TrustAndPosition";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -70,6 +71,9 @@ const About = () => {
             </div>
           </div>
         </section>
+
+        {/* Trust and Position */}
+        <TrustAndPosition />
 
         {/* Brief About Me - Collapsible */}
         <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
