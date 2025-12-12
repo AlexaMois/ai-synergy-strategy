@@ -13,7 +13,7 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           {/* Левая колонка — текст */}
           <div>
-            <p className="text-xl sm:text-2xl font-semibold text-foreground leading-tight mb-2">
+            <p className="text-base sm:text-lg font-medium text-foreground leading-tight mb-2">
               ИИ-решения для бизнеса
             </p>
             
@@ -49,9 +49,9 @@ const Hero = () => {
 
         {/* Блок для руководителей */}
         <div className="mb-3">
-          <h2 className="text-xl sm:text-2xl font-semibold text-foreground leading-tight">
+          <p className="text-base sm:text-lg font-medium text-foreground leading-tight">
             ИИ-решения для руководителей
-          </h2>
+          </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {leaderTiles.map((title, index) => <div key={index} className="border border-dashed border-border rounded-lg py-3 px-4 text-left hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer">
