@@ -13,16 +13,16 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           {/* Левая колонка — текст */}
           <div>
-            <h1 className="text-xl sm:text-2xl font-semibold text-foreground leading-tight mb-2">
+            <p className="text-xl sm:text-2xl font-semibold text-foreground leading-tight mb-2">
               ИИ-решения для бизнеса
-            </h1>
+            </p>
             
           </div>
           
           {/* Правая колонка — контакты */}
           <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" asChild>
+              <Button size="sm" asChild>
                 <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                   <Calendar size={14} />
                   Заказать звонок
