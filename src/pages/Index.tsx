@@ -40,12 +40,12 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <MarqueeText />
         
         <TrustMarquee />
         <Foundation />
         <Fork />
         <Cases />
+        <MarqueeText />
         <FAQ />
         <Contact />
         <Partners />
