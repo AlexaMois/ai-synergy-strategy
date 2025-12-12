@@ -10,6 +10,8 @@ import agentstvoPozharnoy from '@/assets/partners/agentstvo-pozharnoy.png';
 import sistemExpert from '@/assets/partners/sistem-expert.png';
 import delovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
 import focusGroup from '@/assets/partners/focus-group.png';
+import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
+import tsarskiyStol from '@/assets/partners/tsarskiy-stol.png';
 
 const Partners = () => {
   const partners = [
@@ -25,6 +27,8 @@ const Partners = () => {
     { id: 10, name: "СистемЭксперт", logo: sistemExpert },
     { id: 11, name: "Деловой Квартал", logo: delovoyKvartal },
     { id: 12, name: "Focus Group", logo: focusGroup },
+    { id: 13, name: "Грузовой Экспресс", logo: gruzovoyExpress },
+    { id: 14, name: "Царский Стол", logo: tsarskiyStol },
   ];
 
   return (
