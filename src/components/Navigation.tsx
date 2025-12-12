@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
+
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,6 +13,12 @@ const Navigation = () => {
   const [touchEnd, setTouchEnd] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const phoneNumber = "+7 993 721 73 67";
+  const phoneLink = "tel:+79937217367";
+  const telegramLink = "https://t.me/AlexandraMois";
+  const calendarLink = "https://calendar.app.google/Zb3NNbpFm3Yh1uA59";
+
   useEffect(() => {
     let ticking = false;
     
@@ -57,6 +64,7 @@ const Navigation = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
   const navLinks = [{
     href: "/services",
     label: "Услуги",
@@ -82,6 +90,7 @@ const Navigation = () => {
     label: "Контакты",
     isScroll: true
   }];
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
@@ -121,26 +130,79 @@ const Navigation = () => {
       setIsMobileMenuOpen(false);
     }
   };
+
   return <>
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center">
-            <img src={logoHorizontal} alt="Нейрорешения" className="h-36 sm:h-40 w-auto" />
-          </Link>
+          {/* Left: Logo + Menu Items */}
+          <div className="flex items-center gap-6">
+            <Link to="/" className="flex items-center">
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-10 sm:h-12 w-auto" />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map(link => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-6">
+              {navLinks.map(link => link.isScroll ? (
+                <a 
+                  key={link.href} 
+                  href={link.href} 
+                  onClick={e => scrollToSection(e, link.href)} 
+                  className={`transition-all duration-300 text-sm font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                >
                   {link.label}
-                </a> : <DisabledLink key={link.href} to={link.href} className={`transition-all duration-300 font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}>
+                </a>
+              ) : (
+                <DisabledLink 
+                  key={link.href} 
+                  to={link.href} 
+                  className={`transition-all duration-300 text-sm font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                >
                   {link.label}
-                </DisabledLink>)}
+                </DisabledLink>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Phone + Buttons (Desktop) */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a 
+              href={phoneLink} 
+              className="text-sm font-medium text-text-heading hover:text-accent transition-colors"
+            >
+              {phoneNumber}
+            </a>
             <Button size="sm" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Разобрать один процесс
+              <a href={calendarLink} target="_blank" rel="noopener noreferrer">
+                Заказать звонок
               </a>
             </Button>
+            <Button size="sm" variant="outline" asChild>
+              <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Send size={16} />
+                Telegram
+              </a>
+            </Button>
+          </div>
+
+          {/* Mobile: Phone + Telegram icons */}
+          <div className="flex lg:hidden items-center gap-2 mr-14">
+            <a 
+              href={phoneLink}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm shadow-sm text-text-heading hover:text-accent transition-colors"
+              aria-label="Позвонить"
+            >
+              <Phone size={18} />
+            </a>
+            <a 
+              href={telegramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm shadow-sm text-text-heading hover:text-accent transition-colors"
+              aria-label="Telegram"
+            >
+              <Send size={18} />
+            </a>
           </div>
         </div>
       </div>
@@ -176,23 +238,49 @@ const Navigation = () => {
     >
       <div className="flex flex-col h-full pt-24 p-6 overflow-y-auto">
         <nav className="space-y-2 flex-1">
-          {navLinks.map((link, index) => link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${activeSection === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
-            animationDelay: `${index * 50}ms`
-          }}>
+          {navLinks.map((link, index) => link.isScroll ? (
+            <a 
+              key={link.href} 
+              href={link.href} 
+              onClick={e => scrollToSection(e, link.href)} 
+              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${activeSection === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
               {link.label}
-            </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
-            animationDelay: `${index * 50}ms`
-          }}>
+            </a>
+          ) : (
+            <DisabledLink 
+              key={link.href} 
+              to={link.href} 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
               {link.label}
-            </DisabledLink>)}
+            </DisabledLink>
+          ))}
         </nav>
         
-        <div className={`pt-6 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
-          animationDelay: '350ms'
-        }}>
+        {/* Mobile drawer: contacts and buttons */}
+        <div className={`pt-6 space-y-4 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
+          <a 
+            href={phoneLink}
+            className="flex items-center gap-3 py-2 text-text-heading hover:text-accent transition-colors font-medium"
+          >
+            <Phone size={18} />
+            {phoneNumber}
+          </a>
+          
           <Button size="lg" className="w-full" asChild>
-            <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-              Разобрать один процесс
+            <a href={calendarLink} target="_blank" rel="noopener noreferrer">
+              Заказать звонок
+            </a>
+          </Button>
+          
+          <Button size="lg" variant="outline" className="w-full" asChild>
+            <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <Send size={18} />
+              Написать в Telegram
             </a>
           </Button>
         </div>
@@ -200,4 +288,5 @@ const Navigation = () => {
     </div>
   </>;
 };
+
 export default Navigation;
