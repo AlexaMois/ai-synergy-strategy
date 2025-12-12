@@ -17,26 +17,76 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
-
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
-  const { ref: heroRef, getAnimationClass: heroAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: journeyRef, getAnimationClass: journeyAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: engineeringRef, getAnimationClass: engineeringAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: positionRef, getAnimationClass: positionAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: quoteRef, getAnimationClass: quoteAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: credentialsRef, getAnimationClass: credentialsAnimation } = useMobileAnimations({ threshold: 0.1 });
-  const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver({ threshold: 0.2 });
-  
-  // Animated counters for key metrics
-  const projectsCount = useCountUp({ end: 36, duration: 1800, isVisible: statsVisible, suffix: '+' });
-  const auditsCount = useCountUp({ end: 350, duration: 1800, isVisible: statsVisible, suffix: '+' });
-  const roiMinCount = useCountUp({ end: 200, duration: 1800, isVisible: statsVisible });
-  const roiMaxCount = useCountUp({ end: 400, duration: 1800, isVisible: statsVisible });
+  const {
+    ref: heroRef,
+    getAnimationClass: heroAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: journeyRef,
+    getAnimationClass: journeyAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: engineeringRef,
+    getAnimationClass: engineeringAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: positionRef,
+    getAnimationClass: positionAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: quoteRef,
+    getAnimationClass: quoteAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: credentialsRef,
+    getAnimationClass: credentialsAnimation
+  } = useMobileAnimations({
+    threshold: 0.1
+  });
+  const {
+    ref: statsRef,
+    isVisible: statsVisible
+  } = useIntersectionObserver({
+    threshold: 0.2
+  });
 
-  return (
-    <PageTransition>
+  // Animated counters for key metrics
+  const projectsCount = useCountUp({
+    end: 36,
+    duration: 1800,
+    isVisible: statsVisible,
+    suffix: '+'
+  });
+  const auditsCount = useCountUp({
+    end: 350,
+    duration: 1800,
+    isVisible: statsVisible,
+    suffix: '+'
+  });
+  const roiMinCount = useCountUp({
+    end: 200,
+    duration: 1800,
+    isVisible: statsVisible
+  });
+  const roiMaxCount = useCountUp({
+    end: 400,
+    duration: 1800,
+    isVisible: statsVisible
+  });
+  return <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
       
@@ -55,21 +105,13 @@ const About = () => {
                 <p className="text-lg text-text-body leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
-                <Button 
-                  size="lg"
-                  onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')}
-                  className="w-full sm:w-auto"
-                >
+                <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')} className="w-full sm:w-auto">
                   Запросить аудит-анализ
                 </Button>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
                 <div className="relative w-full max-w-md">
-                  <img 
-                    src={alexandraHeadshot} 
-                    alt="Александра Моисеева" 
-                    className="w-full h-auto object-contain rounded-2xl"
-                  />
+                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-2xl" />
                 </div>
               </div>
             </div>
@@ -126,16 +168,11 @@ const About = () => {
               </div>
             </Collapsible>
             
-            {!briefOpen && (
-              <div className="text-center mt-6">
-                <button 
-                  onClick={() => setBriefOpen(true)}
-                  className="text-primary hover:text-primary/80 transition-colors font-medium"
-                >
+            {!briefOpen && <div className="text-center mt-6">
+                <button onClick={() => setBriefOpen(true)} className="text-primary hover:text-primary/80 transition-colors font-medium">
                   Подробнее обо мне →
                 </button>
-              </div>
-            )}
+              </div>}
           </div>
         </section>
 
@@ -223,7 +260,9 @@ const About = () => {
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
             </h2>
-            <p className={`text-lg text-text-body text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{ animationDelay: '0.1s' }}>
+            <p className={`text-lg text-text-body text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
+              animationDelay: '0.1s'
+            }}>
               Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
               За последние 3 года я вложила 2000+ часов в специализированное образование.
             </p>
@@ -609,20 +648,9 @@ const About = () => {
             <div ref={statsRef as any} className="space-y-6">
               {/* Credentials Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  "Резидент IT Park Казани",
-                  "Резидент центра поддержки и развития инноваций Красноярска",
-                  "Победитель конкурса «Бизнес-Успех» (2025)",
-                  "Член Национального фонда искусственного интеллекта",
-                  "Сертификат SDS KAEO, уровень 5 (самый высокий)"
-                ].map((item, index) => (
-                  <div 
-                    key={index}
-                    className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]"
-                  >
+                {["Резидент IT Park Казани", "Резидент центра поддержки и развития инноваций Красноярска", "Победитель конкурса «Бизнес-Успех» (2025)", "Член Национального фонда искусственного интеллекта", "Сертификат SDS KAEO, уровень 5 (самый высокий)"].map((item, index) => <div key={index} className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
                     {item}
-                  </div>
-                ))}
+                  </div>)}
                 
                 <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
                   <strong>Выступающая на конференциях:</strong>
@@ -740,7 +768,7 @@ const About = () => {
               Как я работаю сейчас
             </h2>
             <p className="text-lg text-text-body text-center mb-8">
-              Формат, который я выбираю на 2026 год:<br/>
+              Формат, который я выбираю на 2026 год:<br />
               <span className="font-semibold">индивидуальная работа + партнёрские команды → глубина вместо масштаба.</span>
             </p>
             
@@ -778,7 +806,7 @@ const About = () => {
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
               <p className="text-base md:text-lg text-text-body leading-relaxed">
                 Когда проект закрыт — я ухожу в природу, просто выключаю телефон и даю мозгу тишину — в этот момент приходит новая ясность.
-                <br/><br/>
+                <br /><br />
                 <span className="font-medium text-text-heading">
                   Это мой способ сохранять ясность и тот самый спокойный стиль работы.
                 </span>
@@ -796,12 +824,7 @@ const About = () => {
             <p className="text-base text-text-body mb-6">
               Моё официальное резюме доступно здесь
             </p>
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => window.open('https://hh.ru', '_blank')}
-              className="gap-2"
-            >
+            <Button variant="outline" size="lg" onClick={() => window.open('https://hh.ru', '_blank')} className="gap-2">
               Посмотреть полное резюме (PDF)
               <ExternalLink className="w-4 h-4" />
             </Button>
@@ -809,25 +832,10 @@ const About = () => {
         </section>
 
         {/* Partners Marquee */}
-        <Partners />
+        
 
         {/* Final CTA */}
-        <section className="py-10 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold text-text-heading mb-6">
-              Хотите понять, какие ИИ-решения действительно нужны вашей компании?
-            </h2>
-            <p className="text-lg text-text-body mb-8">
-              Начнём с аудита-анализа — это самый честный формат знакомства.
-            </p>
-            <Button 
-              size="lg"
-              onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')}
-            >
-              Запросить аудит-анализ
-            </Button>
-          </div>
-        </section>
+        
         <Contact />
         <Partners />
         </main>
@@ -835,8 +843,6 @@ const About = () => {
         <Footer />
         <BackToTop />
       </div>
-    </PageTransition>
-  );
+    </PageTransition>;
 };
-
 export default About;
