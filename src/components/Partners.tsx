@@ -18,9 +18,9 @@ const Partners = () => {
   return (
     <section className="py-10 md:py-14 lg:py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="section-title text-center mb-12">
-          Партнёры и экосистемы
-        </h2>
+        <p className="text-sm text-text-secondary text-center mb-8 uppercase tracking-widest">
+          Клиенты и партнёры
+        </p>
         
         <div className="marquee-container">
           <div className="marquee-content marquee-logos">

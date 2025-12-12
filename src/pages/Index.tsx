@@ -9,6 +9,7 @@ import Fork from "@/components/Fork";
 import Cases from "@/components/Cases";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -47,6 +48,7 @@ const Index = () => {
         <Cases />
         <FAQ />
         <Contact />
+        <Partners />
       </main>
       <Footer />
       <BackToTop />

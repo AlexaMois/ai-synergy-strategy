@@ -829,6 +829,7 @@ const About = () => {
           </div>
         </section>
         <Contact />
+        <Partners />
         </main>
 
         <Footer />
