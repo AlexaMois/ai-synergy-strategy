@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import BackToTop from "@/components/BackToTop";
+
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
@@ -279,7 +279,7 @@ const GolossokPricing = () => {
         </main>
         
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>
   );

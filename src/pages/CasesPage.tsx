@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import BackToTop from "@/components/BackToTop";
+
 import { Image } from "lucide-react";
 import { useState } from "react";
 import PageTransition from "@/components/PageTransition";
@@ -454,7 +454,7 @@ const CasesPage = () => {
         <Partners />
 
       <Footer />
-      <BackToTop />
+      
     </div>
     </PageTransition>
   );

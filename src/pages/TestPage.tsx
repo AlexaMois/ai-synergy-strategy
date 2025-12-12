@@ -11,7 +11,7 @@ import AIFramework from "@/components/AIFramework";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import BackToTop from "@/components/BackToTop";
+
 import FloatingCTA from "@/components/FloatingCTA";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import ServicesOverview from "@/components/ServicesOverview";
@@ -55,7 +55,7 @@ const TestPage = () => {
         <Contact />
       </main>
       <Footer />
-      <BackToTop />
+      
       <FloatingCTA />
       <ExitIntentPopup />
     </div>

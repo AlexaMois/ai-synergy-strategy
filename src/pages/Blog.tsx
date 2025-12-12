@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import BackToTop from "@/components/BackToTop";
+
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
@@ -209,7 +209,7 @@ const Blog = () => {
       </main>
 
         <Footer />
-        <BackToTop />
+        
       </div>
     </PageTransition>
   );
