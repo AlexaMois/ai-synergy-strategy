@@ -4,6 +4,12 @@ import combox from '@/assets/partners/combox.jpg';
 import software from '@/assets/partners/software.svg';
 import kritbi from '@/assets/partners/kritbi.jpg';
 import nfii from '@/assets/partners/nfii.jpg';
+import centrSvarki from '@/assets/partners/centr-svarki.png';
+import kraypotrebsoyuz from '@/assets/partners/kraypotrebsoyuz.png';
+import agentstvoPozharnoy from '@/assets/partners/agentstvo-pozharnoy.png';
+import sistemExpert from '@/assets/partners/sistem-expert.png';
+import delovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
+import focusGroup from '@/assets/partners/focus-group.png';
 
 const Partners = () => {
   const partners = [
@@ -13,6 +19,12 @@ const Partners = () => {
     { id: 4, name: "Software", logo: software },
     { id: 5, name: "КРИТБИ", logo: kritbi },
     { id: 6, name: "НФИИ", logo: nfii },
+    { id: 7, name: "Центр Сварки", logo: centrSvarki },
+    { id: 8, name: "Крайпотребсоюз", logo: kraypotrebsoyuz },
+    { id: 9, name: "Агентство Пожарной Безопасности", logo: agentstvoPozharnoy },
+    { id: 10, name: "СистемЭксперт", logo: sistemExpert },
+    { id: 11, name: "Деловой Квартал", logo: delovoyKvartal },
+    { id: 12, name: "Focus Group", logo: focusGroup },
   ];
 
   return (
