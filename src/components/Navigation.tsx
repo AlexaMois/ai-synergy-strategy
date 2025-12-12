@@ -27,7 +27,6 @@ const Navigation = () => {
         window.requestAnimationFrame(() => {
           setIsScrolled(window.scrollY > 50);
 
-          // Determine active section
           const sections = ["services", "how", "cases", "about", "methodology", "interviews", "contact"];
           const scrollPosition = window.scrollY + 100;
           for (const section of sections) {
@@ -48,12 +47,11 @@ const Navigation = () => {
       }
     };
     
-    handleScroll(); // Initial call
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -95,16 +93,14 @@ const Navigation = () => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     
-    // If we're not on the homepage, navigate there first with the hash
     if (location.pathname !== '/') {
       navigate(`/${href}`);
       return;
     }
     
-    // If we're on homepage, scroll to element
     const element = document.querySelector(href);
     if (element) {
-      const navHeight = 80; // Height of fixed navigation
+      const navHeight = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navHeight;
       window.scrollTo({
@@ -114,7 +110,6 @@ const Navigation = () => {
     }
   };
 
-  // Swipe gesture handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -122,27 +117,23 @@ const Navigation = () => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      // Swiped left - do nothing (already open)
-    }
     if (touchStart - touchEnd < -75) {
-      // Swiped right - close menu
       setIsMobileMenuOpen(false);
     }
   };
 
   return <>
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
+    {/* Desktop Header - Two Rows */}
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-background/80 backdrop-blur-sm"}`}>
+      {/* Row 1: Navigation */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Left: Logo + Menu Items */}
-          <div className="flex items-center gap-6">
+        <div className="hidden lg:flex items-center justify-between h-14">
+          <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-10 sm:h-12 w-auto" />
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-10 w-auto" />
             </Link>
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-6">
               {navLinks.map(link => link.isScroll ? (
                 <a 
                   key={link.href} 
@@ -161,64 +152,87 @@ const Navigation = () => {
                   {link.label}
                 </DisabledLink>
               ))}
-            </div>
+            </nav>
           </div>
+        </div>
+      </div>
 
-          {/* Right: Phone + Buttons (Desktop) */}
-          <div className="hidden lg:flex items-center gap-4">
+      {/* Row 2: Contact Bar (Desktop only) */}
+      <div className="hidden lg:block border-t border-border/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-end gap-4 h-10">
             <a 
               href={phoneLink} 
-              className="text-sm font-medium text-text-heading hover:text-accent transition-colors"
+              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors"
             >
               {phoneNumber}
             </a>
-            <Button size="sm" asChild>
-              <a href={calendarLink} target="_blank" rel="noopener noreferrer">
-                Заказать звонок
-              </a>
-            </Button>
-            <Button size="sm" variant="outline" asChild>
-              <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                <Send size={16} />
-                Telegram
-              </a>
-            </Button>
-          </div>
-
-          {/* Mobile: Phone + Telegram icons */}
-          <div className="flex lg:hidden items-center gap-2 mr-14">
+            <span className="text-border">|</span>
             <a 
-              href={phoneLink}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm shadow-sm text-text-heading hover:text-accent transition-colors"
-              aria-label="Позвонить"
-            >
-              <Phone size={18} />
-            </a>
-            <a 
-              href={telegramLink}
-              target="_blank"
+              href={calendarLink} 
+              target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm shadow-sm text-text-heading hover:text-accent transition-colors"
-              aria-label="Telegram"
+              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors"
             >
-              <Send size={18} />
+              Заказать звонок
+            </a>
+            <span className="text-border">|</span>
+            <a 
+              href={telegramLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+            >
+              <Send size={12} />
+              Telegram
             </a>
           </div>
         </div>
       </div>
-    </nav>
 
-    {/* Mobile Menu Button - Independent Fixed Element */}
+      {/* Mobile Header Row */}
+      <div className="lg:hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-14">
+            <Link to="/" className="flex items-center">
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-8 w-auto" />
+            </Link>
+
+            {/* Mobile: Phone + Telegram icons */}
+            <div className="flex items-center gap-2 mr-12">
+              <a 
+                href={phoneLink}
+                className="w-9 h-9 flex items-center justify-center rounded-full text-text-heading hover:text-accent transition-colors"
+                aria-label="Позвонить"
+              >
+                <Phone size={18} />
+              </a>
+              <a 
+                href={telegramLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 flex items-center justify-center rounded-full text-text-heading hover:text-accent transition-colors"
+                aria-label="Telegram"
+              >
+                <Send size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {/* Mobile Menu Button */}
     <button 
-      className="lg:hidden fixed top-5 right-4 z-[70] text-text-heading
+      className="lg:hidden fixed top-3 right-4 z-[70] text-text-heading
                  pointer-events-auto touch-manipulation
-                 w-11 h-11 flex items-center justify-center
-                 bg-background/90 backdrop-blur-sm rounded-full shadow-md
+                 w-10 h-10 flex items-center justify-center
+                 bg-background/90 backdrop-blur-sm rounded-full shadow-sm
                  transition-all duration-300 hover:scale-110 active:scale-95" 
       onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
       aria-label="Toggle menu"
     >
-      {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
     </button>
 
     {/* Mobile Menu Backdrop */}
@@ -236,14 +250,14 @@ const Navigation = () => {
       onTouchMove={handleTouchMove} 
       onTouchEnd={handleTouchEnd}
     >
-      <div className="flex flex-col h-full pt-24 p-6 overflow-y-auto">
-        <nav className="space-y-2 flex-1">
+      <div className="flex flex-col h-full pt-20 p-6 overflow-y-auto">
+        <nav className="space-y-1 flex-1">
           {navLinks.map((link, index) => link.isScroll ? (
             <a 
               key={link.href} 
               href={link.href} 
               onClick={e => scrollToSection(e, link.href)} 
-              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${activeSection === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium ${activeSection === link.href ? "text-white bg-accent" : "text-text-heading hover:text-accent hover:bg-gray-50"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {link.label}
@@ -253,7 +267,7 @@ const Navigation = () => {
               key={link.href} 
               to={link.href} 
               onClick={() => setIsMobileMenuOpen(false)} 
-              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium transform ${location.pathname === link.href ? "text-white bg-accent border-l-4 border-accent shadow-md scale-[1.02] font-semibold" : "text-text-heading hover:text-accent hover:bg-[#D4EDFC] hover:scale-[1.01]"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium ${location.pathname === link.href ? "text-white bg-accent" : "text-text-heading hover:text-accent hover:bg-gray-50"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {link.label}
@@ -261,26 +275,26 @@ const Navigation = () => {
           ))}
         </nav>
         
-        {/* Mobile drawer: contacts and buttons */}
-        <div className={`pt-6 space-y-4 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
+        {/* Mobile drawer: contacts */}
+        <div className={`pt-4 space-y-3 border-t border-border ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '350ms' }}>
           <a 
             href={phoneLink}
-            className="flex items-center gap-3 py-2 text-text-heading hover:text-accent transition-colors font-medium"
+            className="flex items-center gap-3 py-2 text-text-heading hover:text-accent transition-colors text-sm font-medium"
           >
-            <Phone size={18} />
+            <Phone size={16} />
             {phoneNumber}
           </a>
           
-          <Button size="lg" className="w-full" asChild>
+          <Button size="default" className="w-full" asChild>
             <a href={calendarLink} target="_blank" rel="noopener noreferrer">
               Заказать звонок
             </a>
           </Button>
           
-          <Button size="lg" variant="outline" className="w-full" asChild>
+          <Button size="default" variant="outline" className="w-full" asChild>
             <a href={telegramLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-              <Send size={18} />
-              Написать в Telegram
+              <Send size={16} />
+              Telegram
             </a>
           </Button>
         </div>
