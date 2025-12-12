@@ -150,9 +150,6 @@ const Hero = () => {
               <div className="rounded-xl bg-[hsl(var(--primary-light))] p-6 sm:p-8">
                 {/* ИИ-решения для бизнеса */}
                 <div className="mb-6">
-                  <p className="text-base font-medium text-foreground/80 mb-4">
-                    ИИ-решения для бизнеса
-                  </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {businessTiles.map(tile => <TileComponent key={tile.id} tile={tile} />)}
                   </div>
