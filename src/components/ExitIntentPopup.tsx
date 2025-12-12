@@ -7,12 +7,28 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Calendar, Check } from "lucide-react";
+import { X, Phone, Check } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const navigate = useNavigate();
+
+  const scrollToContact = () => {
+    setIsOpen(false);
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   useEffect(() => {
     // Check if popup was already shown in this session
@@ -85,14 +101,12 @@ const ExitIntentPopup = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="flex-1 flex flex-col items-center">
-              <Button asChild className="w-full py-3.5 text-base">
-                <a
-                  href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Записаться на аудит
-                </a>
+              <Button 
+                className="w-full py-3.5 text-base bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary animate-pulse shadow-lg"
+                onClick={scrollToContact}
+              >
+                <Phone size={16} className="mr-2" />
+                Заказать звонок
               </Button>
               <span className="text-xs text-[#6A6A6A] mt-2 font-raleway">
                 30 минут, без обязательств

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Send, Calendar } from "lucide-react";
+import { Menu, X, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
@@ -17,7 +17,6 @@ const Navigation = () => {
   const phoneNumber = "+7 993 721 73 67";
   const phoneLink = "tel:+79937217367";
   const telegramLink = "https://t.me/AlexandraMois";
-  const calendarLink = "https://calendar.app.google/Zb3NNbpFm3Yh1uA59";
 
   useEffect(() => {
     let ticking = false;
@@ -164,11 +163,13 @@ const Navigation = () => {
               <Phone className="h-4 w-4" />
               {phoneNumber}
             </a>
-            <Button size="sm" asChild>
-              <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                <Calendar size={14} />
-                Заказать звонок
-              </a>
+            <Button 
+              size="sm" 
+              className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary animate-pulse shadow-lg"
+              onClick={(e) => scrollToSection(e as any, '#contact')}
+            >
+              <Phone size={14} />
+              Заказать звонок
             </Button>
           </div>
         </div>
@@ -250,11 +251,13 @@ const Navigation = () => {
             <Phone className="h-5 w-5" />
             {phoneNumber}
           </a>
-          <Button size="sm" className="w-full" asChild>
-            <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5">
-              <Calendar size={14} />
-              Заказать звонок
-            </a>
+          <Button 
+            size="sm" 
+            className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary animate-pulse shadow-lg"
+            onClick={(e) => scrollToSection(e as any, '#contact')}
+          >
+            <Phone size={14} />
+            Заказать звонок
           </Button>
         </div>
       </div>

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { Phone } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,24 @@ const FloatingCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <div
       className={`fixed bottom-6 right-6 z-40 transition-all duration-300 ${
@@ -22,18 +43,11 @@ const FloatingCTA = () => {
       }`}
     >
       <Button
-        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl"
-        asChild
+        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary animate-pulse"
+        onClick={scrollToContact}
       >
-        <a
-          href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2"
-        >
-          <Calendar className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
-          <span className="hidden sm:inline">Записаться на аудит</span>
-        </a>
+        <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+        <span className="hidden sm:inline">Заказать звонок</span>
       </Button>
     </div>
   );
