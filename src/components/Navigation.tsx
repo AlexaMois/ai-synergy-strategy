@@ -241,14 +241,22 @@ const Navigation = () => {
           ))}
         </nav>
         
-        {/* Phone number in mobile menu */}
-        <a 
-          href={phoneLink} 
-          className="flex items-center gap-2 py-3 px-4 mt-4 rounded-lg text-text-heading hover:text-accent hover:bg-gray-50 transition-all duration-300 font-medium border-t border-gray-100 pt-6"
-        >
-          <Phone className="h-5 w-5" />
-          {phoneNumber}
-        </a>
+        {/* Phone number and CTA in mobile menu */}
+        <div className="border-t border-gray-100 mt-4 pt-4 space-y-3">
+          <a 
+            href={phoneLink} 
+            className="flex items-center gap-2 py-3 px-4 rounded-lg text-text-heading hover:text-accent hover:bg-gray-50 transition-all duration-300 font-medium"
+          >
+            <Phone className="h-5 w-5" />
+            {phoneNumber}
+          </a>
+          <Button size="sm" className="w-full" asChild>
+            <a href={calendarLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5">
+              <Calendar size={14} />
+              Заказать звонок
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   </>;
