@@ -144,16 +144,16 @@ const Hero = () => {
           <div 
             onClick={() => handleTileClick(tile.id)}
             className={`
-              bg-white border rounded-lg py-4 px-4 
-              transition-all duration-200 cursor-pointer flex items-center gap-3 
-              min-h-[90px] shadow-sm
+              bg-white border rounded-lg py-3 px-4 
+              transition-all duration-300 cursor-pointer flex items-center gap-3 
+              min-h-[64px] shadow-card hover:shadow-hover hover:scale-[1.02]
               ${isSelected 
-                ? 'border-primary ring-2 ring-primary/20 shadow-md' 
-                : 'border-border/40 hover:border-primary/50 hover:shadow-md'
+                ? 'border-primary ring-2 ring-primary/20 shadow-hover' 
+                : 'border-border/40 hover:border-primary/50'
               }
             `}
           >
-            <Icon className="w-7 h-7 text-primary shrink-0" strokeWidth={1.5} />
+            <Icon className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
             <span className="text-sm font-medium text-foreground leading-snug">
               {tile.title}
             </span>
