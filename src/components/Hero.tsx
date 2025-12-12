@@ -38,7 +38,7 @@ const Hero = () => {
         {/* 12-колоночная сетка */}
         <div className="grid grid-cols-12 gap-4">
           {/* Контейнер 8/12 от левого края */}
-          <div className="col-span-12 lg:col-span-8 border border-border/50 rounded-lg bg-primary/5 p-4 sm:p-6 shadow-sm">
+          <div className="col-span-12 lg:col-span-8 border border-border/50 rounded-lg bg-gray-50 p-4 sm:p-6 shadow-sm">
             {/* ИИ-решения для бизнеса */}
             <div className="mb-4">
               <p className="text-sm font-medium text-muted-foreground leading-tight mb-3">
