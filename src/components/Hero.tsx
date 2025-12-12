@@ -5,7 +5,6 @@ import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import nPattern from "@/assets/n-pattern.png";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
 import { toast } from "@/hooks/use-toast";
-
 const Hero = () => {
   const tabsContent = {
     owner: {
@@ -27,15 +26,13 @@ const Hero = () => {
       button2: "Сколько я теряю сейчас"
     }
   };
-
-  return (
-    <section className="relative bg-background pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 overflow-hidden overflow-x-hidden hero-skeleton">
+  return <section className="relative bg-background pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 overflow-hidden overflow-x-hidden hero-skeleton">
       {/* N Pattern Background - static, no parallax to reduce reflows */}
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.01] pointer-events-none" style={{
-        backgroundImage: `url(${nPattern})`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: '120px'
-      }} />
+      backgroundImage: `url(${nPattern})`,
+      backgroundRepeat: 'repeat',
+      backgroundSize: '120px'
+    }} />
       <div className="container mx-auto">
         <Tabs defaultValue="owner" className="w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-6 items-center">
@@ -49,32 +46,9 @@ const Hero = () => {
 
                   <p className="text-lg text-text-body leading-relaxed font-semibold">Встраиваю ИИ в вашу текущую цепочку, не переделывая процессы</p>
                   
-                  <p className="text-base text-text-subtle leading-relaxed italic">
-                    Менеджеры не успевают на лиды? Первичка вбивается вручную? Склад то забит, то пуст? Маржу видите 20-го?
-                  </p>
                   
-                  <div className="space-y-1">
-                    <p className="text-xs font-medium text-text-subtle uppercase tracking-wide">За 3–6 месяцев:</p>
-                    <ul className="text-sm text-text-body leading-snug grid grid-cols-2 gap-x-2 gap-y-0.5 list-none pl-0">
-                      <li className="flex items-start gap-1.5">
-                        <span className="text-primary text-xs mt-0.5">•</span>
-                        <span>Ответ на лида — в минуты</span>
-                      </li>
-                      <li className="flex items-start gap-1.5">
-                        <span className="text-primary text-xs mt-0.5">•</span>
-                        <span>Первичка — автоматом</span>
-                      </li>
-                      <li className="flex items-start gap-1.5">
-                        <span className="text-primary text-xs mt-0.5">•</span>
-                        <span>Склад — по прогнозу</span>
-                      </li>
-                      <li className="flex items-start gap-1.5">
-                        <span className="text-primary text-xs mt-0.5">•</span>
-                        <span>Маржа — каждый день</span>
-                      </li>
-                    </ul>
-                    <p className="text-xs font-semibold text-primary">ROI 200–400% или не беру проект.</p>
-                  </div>
+                  
+                  
                 </div>
               </div>
 
@@ -100,23 +74,23 @@ const Hero = () => {
               <TabsContent value="owner" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{
-                    animationDelay: '0.05s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.05s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.owner.title}
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
-                    animationDelay: '0.15s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.15s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.owner.description}
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{
-                    animationDelay: '0.25s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.25s',
+                  animationFillMode: 'both'
+                }}>
                     <div className="flex flex-col gap-2">
                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -126,20 +100,20 @@ const Hero = () => {
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
                     <a href="/checklist" onClick={e => {
-                      e.preventDefault();
-                      toast({
-                        title: "Эта страница находится в разработке",
-                        description: "Скоро здесь появится полезная информация"
-                      });
-                    }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    e.preventDefault();
+                    toast({
+                      title: "Эта страница находится в разработке",
+                      description: "Скоро здесь появится полезная информация"
+                    });
+                  }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.owner.button2}
                     </a>
                   </div>
 
                   <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{
-                    animationDelay: '0.35s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.35s',
+                  animationFillMode: 'both'
+                }}>
                     36 проектов · 350+ консультаций · окупаемость 3–6 месяцев · ROI 200–400% за год
                   </p>
                 </div>
@@ -148,23 +122,23 @@ const Hero = () => {
               <TabsContent value="production" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{
-                    animationDelay: '0.05s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.05s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.production.title}
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
-                    animationDelay: '0.15s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.15s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.production.description}
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{
-                    animationDelay: '0.25s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.25s',
+                  animationFillMode: 'both'
+                }}>
                     <div className="flex flex-col gap-2">
                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -174,20 +148,20 @@ const Hero = () => {
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
                     <a href="/checklist" onClick={e => {
-                      e.preventDefault();
-                      toast({
-                        title: "Эта страница находится в разработке",
-                        description: "Скоро здесь появится полезная информация"
-                      });
-                    }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    e.preventDefault();
+                    toast({
+                      title: "Эта страница находится в разработке",
+                      description: "Скоро здесь появится полезная информация"
+                    });
+                  }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.production.button2}
                     </a>
                   </div>
 
                   <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{
-                    animationDelay: '0.35s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.35s',
+                  animationFillMode: 'both'
+                }}>
                     36 проектов · 350+ консультаций · окупаемость 3–6 месяцев · ROI 200–400% за год
                   </p>
                 </div>
@@ -196,23 +170,23 @@ const Hero = () => {
               <TabsContent value="sales" className="mt-0 transition-all duration-300">
                 <div className="space-y-4">
                   <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium leading-tight text-text-heading animate-fade-in" style={{
-                    animationDelay: '0.05s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.05s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.sales.title}
                   </h1>
                   
                   <p className="text-lg text-text-body leading-relaxed max-w-xl animate-fade-in whitespace-pre-line" style={{
-                    animationDelay: '0.15s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.15s',
+                  animationFillMode: 'both'
+                }}>
                     {tabsContent.sales.description}
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-2 animate-fade-in" style={{
-                    animationDelay: '0.25s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.25s',
+                  animationFillMode: 'both'
+                }}>
                     <div className="flex flex-col gap-2">
                       <Button className="w-full sm:w-auto h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base" asChild>
                         <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
@@ -222,20 +196,20 @@ const Hero = () => {
                       <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} className="text-center" />
                     </div>
                     <a href="/checklist" onClick={e => {
-                      e.preventDefault();
-                      toast({
-                        title: "Эта страница находится в разработке",
-                        description: "Скоро здесь появится полезная информация"
-                      });
-                    }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
+                    e.preventDefault();
+                    toast({
+                      title: "Эта страница находится в разработке",
+                      description: "Скоро здесь появится полезная информация"
+                    });
+                  }} className="text-base text-primary hover:text-primary-dark underline underline-offset-4 transition-colors font-medium">
                       {tabsContent.sales.button2}
                     </a>
                   </div>
 
                   <p className="text-sm text-text-subtle leading-tight mt-8 animate-fade-in" style={{
-                    animationDelay: '0.35s',
-                    animationFillMode: 'both'
-                  }}>
+                  animationDelay: '0.35s',
+                  animationFillMode: 'both'
+                }}>
                     36 проектов · 350+ консультаций · окупаемость 3–6 месяцев · ROI 200–400% за год
                   </p>
                 </div>
@@ -249,8 +223,6 @@ const Hero = () => {
           </div>
         </Tabs>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
