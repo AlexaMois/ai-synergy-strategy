@@ -127,10 +127,10 @@ const Navigation = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-background/80 backdrop-blur-sm"}`}>
       {/* Row 1: Navigation */}
       <div className="container mx-auto px-4">
-        <div className="hidden lg:flex items-center justify-between h-20">
+        <div className="hidden lg:flex items-center justify-between h-14">
           <div className="flex items-center gap-10">
-            <Link to="/" className="flex items-center">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-14 w-auto" />
+            <Link to="/" className="flex items-center overflow-visible">
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-32 w-auto" />
             </Link>
 
             <nav className="flex items-center gap-7">
@@ -158,8 +158,9 @@ const Navigation = () => {
           {/* Phone number on the right */}
           <a 
             href={phoneLink} 
-            className="text-base font-medium text-text-heading hover:text-accent transition-colors"
+            className="flex items-center gap-2 text-base font-medium text-text-heading hover:text-accent transition-colors"
           >
+            <Phone className="h-4 w-4" />
             {phoneNumber}
           </a>
         </div>
