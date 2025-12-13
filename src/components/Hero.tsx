@@ -136,8 +136,8 @@ const Hero = () => {
             {/* Левая колонка — заголовок + плитки (8 колонок) */}
             <div className="col-span-12 lg:col-span-8">
               {/* Заголовок H1 */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-                Решения для бизнеса и руководителей <br />​
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">Решения для бизнеса и руководителей
+              <br />​
               </h1>
               
               {/* Подзаголовок */}
