@@ -157,9 +157,7 @@ const Hero = () => {
 
                 {/* ИИ-решения для руководителей */}
                 <div>
-                  <p className="text-base font-medium text-foreground/80 mb-4">
-                    ИИ-решения для руководителей
-                  </p>
+                  
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {leaderTiles.map(tile => <TileComponent key={tile.id} tile={tile} />)}
                   </div>
