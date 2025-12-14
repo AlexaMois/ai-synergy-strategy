@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -21,10 +28,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   QrCode,
   Search,
   MessageCircle,
-  Clock,
   TrendingUp,
   Users,
   BookOpen,
@@ -44,10 +57,67 @@ import {
   Eye,
   UserCheck,
   FileCheck,
+  Send,
 } from "lucide-react";
+
+const inquirySchema = z.object({
+  name: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
+  company: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
+  phone: z.string().trim().min(1, "Обязательное поле").max(30, "Максимум 30 символов"),
+  email: z.string().trim().email("Введите корректный email").max(255, "Максимум 255 символов"),
+  teamSize: z.string().min(1, "Выберите размер команды"),
+  docLanguages: z.string().trim().max(200, "Максимум 200 символов").optional(),
+  docStorage: z.string().trim().max(500, "Максимум 500 символов").optional(),
+  serverPreference: z.string().min(1, "Выберите вариант размещения"),
+  comment: z.string().trim().max(1000, "Максимум 1000 символов").optional(),
+  consent: z.boolean().refine(val => val === true, "Необходимо согласие на обработку данных")
+});
+
+type InquiryFormData = z.infer<typeof inquirySchema>;
 
 const CaseStudyDocSearch = () => {
   const [expandedUseCase, setExpandedUseCase] = useState<string | undefined>("item-1");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch
+  } = useForm<InquiryFormData>({
+    resolver: zodResolver(inquirySchema),
+    defaultValues: {
+      name: "",
+      company: "",
+      phone: "",
+      email: "",
+      teamSize: "",
+      docLanguages: "",
+      docStorage: "",
+      serverPreference: "",
+      comment: "",
+      consent: false
+    }
+  });
+
+  const consentValue = watch("consent");
+  const teamSizeValue = watch("teamSize");
+  const serverPreferenceValue = watch("serverPreference");
+
+  const onSubmit = async (data: InquiryFormData) => {
+    setIsSubmitting(true);
+    
+    // TODO: Implement actual form submission (CRM/email)
+    console.log("Inquiry form data:", data);
+    
+    // Simulate submission delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  };
 
   const useCases = [
     {
@@ -178,15 +248,6 @@ const CaseStudyDocSearch = () => {
     { icon: CheckCircle2, title: "Готовое решение", text: "Работает уже, не пилот" },
     { icon: Settings, title: "Гибкая архитектура", text: "Выбираете, где хранить — у себя или у нас" },
     { icon: Users, title: "Масштабируется", text: "От одного рабочего места до сотен, от 50 документов до тысяч" },
-  ];
-
-  const clientQuestions = [
-    "Сколько сотрудников в команде, которая будет пользоваться системой",
-    "Сколько рабочих мест со специальными требованиями",
-    "На каких языках сегодня ваша техническая документация",
-    "Где сейчас хранится документация (папки, облако, PDF, бумага?)",
-    "Нужна ли интеграция с вашими системами (Google Таблицы, CRM, ERP?)",
-    "Предпочитаете: систему на вашем сервере или на нашем?",
   ];
 
   return (
@@ -624,64 +685,217 @@ const CaseStudyDocSearch = () => {
           </div>
         </section>
 
-        {/* Next Steps Section */}
+        {/* Application Form Section */}
         <section className="py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
-              Следующие шаги
+            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+              Оставить заявку
             </h2>
+            <p className="text-muted-foreground mb-8">
+              Заполните форму, и мы подготовим для вас детальное предложение
+            </p>
 
-            <div className="bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 mb-8">
-              <p className="text-muted-foreground mb-4">Отправьте нам:</p>
-
-              <div className="space-y-3 mb-6">
-                {clientQuestions.map((question, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <span className="text-primary font-medium shrink-0">{index + 1}.</span>
-                    <span className="text-muted-foreground">{question}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-muted/50 rounded-xl p-5 mb-6">
-                <p className="font-medium text-foreground mb-3">По этим данным мы:</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="text-primary">•</span>
-                    Подготовим детальное техническое задание
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="text-primary">•</span>
-                    Уточним сроки и стоимость
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="text-primary">•</span>
-                    Запустим систему за 2–3 недели
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="text-primary">•</span>
-                    Покажем результаты на реальных вопросах вашей команды
-                  </li>
-                </ul>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Button
-                  size="lg"
-                  className="w-full sm:w-auto"
-                  onClick={() => window.open("https://calendar.app.google/Zb3NNbpFm3Yh1uA59", "_blank")}
-                >
-                  Обсудить внедрение
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <p className="text-sm text-muted-foreground">
-                  Готовы начать на этой неделе. Пилот за 10–14 дней.
+            {isSubmitted ? (
+              <div className="bg-primary/10 rounded-2xl p-8 sm:p-12 text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-4">
+                  <CheckCircle2 className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  Спасибо за заявку!
+                </h3>
+                <p className="text-muted-foreground">
+                  Мы свяжемся с вами в течение 24 часов для обсуждения деталей внедрения.
                 </p>
               </div>
-            </div>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+                  {/* Имя */}
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-foreground">
+                      Имя <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      placeholder="Ваше имя"
+                      {...register("name")}
+                      className={errors.name ? "border-destructive" : ""}
+                    />
+                    {errors.name && (
+                      <p className="text-sm text-destructive">{errors.name.message}</p>
+                    )}
+                  </div>
+
+                  {/* Компания */}
+                  <div className="space-y-2">
+                    <Label htmlFor="company" className="text-foreground">
+                      Компания <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="company"
+                      placeholder="Название компании"
+                      {...register("company")}
+                      className={errors.company ? "border-destructive" : ""}
+                    />
+                    {errors.company && (
+                      <p className="text-sm text-destructive">{errors.company.message}</p>
+                    )}
+                  </div>
+
+                  {/* Телефон */}
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-foreground">
+                      Телефон <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+7 (___) ___-__-__"
+                      {...register("phone")}
+                      className={errors.phone ? "border-destructive" : ""}
+                    />
+                    {errors.phone && (
+                      <p className="text-sm text-destructive">{errors.phone.message}</p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-foreground">
+                      Email <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      {...register("email")}
+                      className={errors.email ? "border-destructive" : ""}
+                    />
+                    {errors.email && (
+                      <p className="text-sm text-destructive">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  {/* Размер команды */}
+                  <div className="space-y-2">
+                    <Label className="text-foreground">
+                      Сколько сотрудников будут пользоваться системой <span className="text-primary">*</span>
+                    </Label>
+                    <Select value={teamSizeValue} onValueChange={(value) => setValue("teamSize", value)}>
+                      <SelectTrigger className={errors.teamSize ? "border-destructive" : ""}>
+                        <SelectValue placeholder="Выберите размер команды" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="5-10">5–10 человек</SelectItem>
+                        <SelectItem value="10-30">10–30 человек</SelectItem>
+                        <SelectItem value="30-100">30–100 человек</SelectItem>
+                        <SelectItem value="100+">Более 100 человек</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.teamSize && (
+                      <p className="text-sm text-destructive">{errors.teamSize.message}</p>
+                    )}
+                  </div>
+
+                  {/* Размещение */}
+                  <div className="space-y-2">
+                    <Label className="text-foreground">
+                      Где разместить систему <span className="text-primary">*</span>
+                    </Label>
+                    <Select value={serverPreferenceValue} onValueChange={(value) => setValue("serverPreference", value)}>
+                      <SelectTrigger className={errors.serverPreference ? "border-destructive" : ""}>
+                        <SelectValue placeholder="Выберите вариант" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="own-server">На нашем сервере (полный контроль)</SelectItem>
+                        <SelectItem value="your-server">На вашем сервере (вы поддерживаете)</SelectItem>
+                        <SelectItem value="undecided">Пока не решили — нужна консультация</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.serverPreference && (
+                      <p className="text-sm text-destructive">{errors.serverPreference.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Языки документации */}
+                <div className="space-y-2 mb-4">
+                  <Label htmlFor="docLanguages" className="text-foreground">
+                    На каких языках ваша документация
+                  </Label>
+                  <Input
+                    id="docLanguages"
+                    placeholder="Например: русский, английский"
+                    {...register("docLanguages")}
+                  />
+                </div>
+
+                {/* Где хранится документация */}
+                <div className="space-y-2 mb-4">
+                  <Label htmlFor="docStorage" className="text-foreground">
+                    Где сейчас хранится документация
+                  </Label>
+                  <Input
+                    id="docStorage"
+                    placeholder="Папки, облако, PDF, бумага..."
+                    {...register("docStorage")}
+                  />
+                </div>
+
+                {/* Комментарий */}
+                <div className="space-y-2 mb-6">
+                  <Label htmlFor="comment" className="text-foreground">
+                    Дополнительные вопросы или комментарии
+                  </Label>
+                  <Textarea
+                    id="comment"
+                    placeholder="Расскажите о вашей задаче подробнее"
+                    rows={3}
+                    {...register("comment")}
+                  />
+                </div>
+
+                {/* Согласие и кнопка */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-start gap-3">
+                      <Checkbox
+                        id="consent"
+                        checked={consentValue}
+                        onCheckedChange={(checked) => setValue("consent", checked as boolean)}
+                        className={errors.consent ? "border-destructive" : ""}
+                      />
+                      <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                        Я согласен(а) с{" "}
+                        <Link to="/consent" className="text-primary hover:underline">
+                          условиями обработки персональных данных
+                        </Link>
+                      </Label>
+                    </div>
+                    {errors.consent && (
+                      <p className="text-sm text-destructive mt-2">{errors.consent.message}</p>
+                    )}
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    size="lg"
+                    className="w-full md:w-auto shrink-0"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Отправка..." : "Отправить заявку"}
+                    <Send className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+
+                <p className="text-xs text-muted-foreground text-center mt-6">
+                  Готовы начать на этой неделе. Пилот за 10–14 дней.
+                </p>
+              </form>
+            )}
 
             {/* P.S. Block */}
-            <div className="bg-primary/5 border-l-4 border-primary rounded-r-xl p-5">
+            <div className="bg-primary/5 border-l-4 border-primary rounded-r-xl p-5 mt-8">
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">P.S.</strong> Это решение работает на производствах любого размера — от 5 человек до 500+. 
                 На заводах с ручной сборкой, в сервис-центрах, в технической поддержке, в дистрибьюции оборудования. 
@@ -696,7 +910,6 @@ const CaseStudyDocSearch = () => {
           </div>
         </section>
 
-        <Contact />
         <Partners />
         <Footer />
       </div>
