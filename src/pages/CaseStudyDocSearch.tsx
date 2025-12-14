@@ -12,28 +12,23 @@ import { useState, useRef, useEffect } from "react";
 const CaseStudyDocSearch = () => {
   const [expandedUseCase, setExpandedUseCase] = useState<string | undefined>("item-1");
   const videoRef = useRef<HTMLVideoElement>(null);
-
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Browser blocked autoplay
-            });
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Browser blocked autoplay
+          });
+        } else {
+          video.pause();
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
     observer.observe(video);
-
     return () => observer.disconnect();
   }, []);
   const useCases = [{
@@ -283,14 +278,7 @@ const CaseStudyDocSearch = () => {
             
             <div className="max-w-2xl mx-auto">
               <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50">
-                <video 
-                  ref={videoRef}
-                  className="w-full aspect-video"
-                  controls
-                  muted
-                  playsInline
-                  preload="metadata"
-                >
+                <video ref={videoRef} className="w-full aspect-video" controls muted playsInline preload="metadata">
                   <source src="/videos/doc-search-demo.mp4" type="video/mp4" />
                   Ваш браузер не поддерживает воспроизведение видео.
                 </video>
@@ -356,8 +344,9 @@ const CaseStudyDocSearch = () => {
               </div>
               <div className="bg-card rounded-xl p-6 text-center shadow-sm border border-border/50">
                 <div className="text-sm text-muted-foreground mb-1">Окупаемость</div>
-                <div className="text-3xl sm:text-4xl font-bold text-foreground">1 месяц</div>
-                <div className="text-sm text-muted-foreground mt-1">при инвестиции 150K ₽</div>
+                <div className="text-3xl sm:text-4xl font-bold text-foreground">3 месяца</div>
+                <div className="text-sm text-muted-foreground mt-1">
+              </div>
               </div>
             </div>
           </div>
