@@ -7,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
@@ -25,6 +27,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const location = useLocation();
   
   const {
     ref,
@@ -57,14 +60,36 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
-    // TODO: Implement actual form submission (CRM/email)
-    console.log("Form data:", data);
-    
-    // Simulate submission delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const { data: response, error } = await supabase.functions.invoke('send-to-telegram', {
+        body: {
+          formType: 'contact',
+          data: {
+            name: data.name,
+            company: data.company,
+            industry: data.industry,
+            phone: data.phone,
+            email: data.email,
+            comment: data.comment || '',
+          },
+          pageUrl: location.pathname,
+        },
+      });
+
+      if (error) {
+        console.error("Error sending to Telegram:", error);
+        toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
