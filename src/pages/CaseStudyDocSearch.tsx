@@ -439,7 +439,7 @@ const CaseStudyDocSearch = () => {
                     <p className="text-sm text-muted-foreground">Добавляет контекст заказов, статусов, данных из вашей системы</p>
                   </div>
                 </div>
-                <div className="text-xl font-bold text-primary">+50 000 ₽</div>
+                <div className="text-xl font-bold text-primary">600 000 ₽</div>
               </div>
             </div>
           </div>
