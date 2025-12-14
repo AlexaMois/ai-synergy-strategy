@@ -17,6 +17,7 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseStudyKraypotrebsoyuz = lazy(() => import("./pages/CaseStudyKraypotrebsoyuz"));
 const CaseStudyCargoExpress = lazy(() => import("./pages/CaseStudyCargoExpress"));
+const CaseStudyDocSearch = lazy(() => import("./pages/CaseStudyDocSearch"));
 const GolossokDemo = lazy(() => import("./pages/GolossokDemo"));
 const GolossokPricing = lazy(() => import("./pages/GolossokPricing"));
 const ChecklistPage = lazy(() => import("./pages/ChecklistPage"));
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/cases" element={<CasesPage />} />
             <Route path="/case-studies/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
             <Route path="/case-studies/cargo-express" element={<CaseStudyCargoExpress />} />
+            <Route path="/case-studies/doc-search" element={<CaseStudyDocSearch />} />
             <Route path="/golossok-demo" element={<GolossokDemo />} />
             <Route path="/golossok-pricing" element={<GolossokPricing />} />
             <Route path="/checklist" element={<ChecklistPage />} />
