@@ -8,9 +8,34 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { QrCode, Search, MessageCircle, TrendingUp, Users, BookOpen, Shield, Server, Zap, FileText, Settings, Headphones, BarChart3, Megaphone, CheckCircle2, ArrowRight, Calendar, Building2, Lock, Eye, UserCheck, FileCheck } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 const CaseStudyDocSearch = () => {
   const [expandedUseCase, setExpandedUseCase] = useState<string | undefined>("item-1");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Browser blocked autoplay
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
   const useCases = [{
     id: "item-1",
     icon: Settings,
@@ -258,8 +283,11 @@ const CaseStudyDocSearch = () => {
             
             <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50">
               <video 
+                ref={videoRef}
                 className="w-full aspect-video"
                 controls
+                muted
+                playsInline
                 preload="metadata"
               >
                 <source src="/videos/doc-search-demo.mp4" type="video/mp4" />
