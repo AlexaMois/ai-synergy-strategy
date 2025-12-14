@@ -57,65 +57,65 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden animate-in fade-in-0 slide-in-from-top-4 duration-300">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[600px] p-0 overflow-hidden animate-in fade-in-0 slide-in-from-top-4 duration-300 mx-auto">
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10"
+          className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10 p-1"
         >
           <X className="h-5 w-5" />
           <span className="sr-only">Закрыть</span>
         </button>
 
         {/* Content */}
-        <div className="p-8 sm:p-10">
-          <DialogHeader className="mb-6">
-            <DialogTitle className="text-2xl sm:text-3xl font-golos font-normal text-center text-[#222222] mb-4 leading-tight">
+        <div className="p-5 sm:p-8 md:p-10">
+          <DialogHeader className="mb-4 sm:mb-6">
+            <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-golos font-normal text-center text-[#222222] mb-3 sm:mb-4 leading-tight">
               Вы теряете миллионы, <span className="font-semibold">на неправильном выборе ИИ</span>
             </DialogTitle>
-            <DialogDescription className="text-base sm:text-lg font-raleway text-center text-[#444444]">
+            <DialogDescription className="text-sm sm:text-base md:text-lg font-raleway text-center text-[#444444]">
               За <span className="font-semibold text-primary">30 минут</span> я выясню, есть ли смысл вообще говорить об ИИ
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-3 mb-8">
-            <div className="flex items-start gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base font-raleway text-[#444444]">
+          <div className="space-y-2.5 sm:space-y-3 mb-5 sm:mb-8">
+            <div className="flex items-start gap-2.5 sm:gap-3">
+              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-[#444444]">
                 Найду главные боли в ваших процессах, которые может решить ИИ
               </p>
             </div>
-            <div className="flex items-start gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base font-raleway text-[#444444]">
+            <div className="flex items-start gap-2.5 sm:gap-3">
+              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-[#444444]">
                 Честно скажу, если ИИ вам сейчас не нужен и почему
               </p>
             </div>
-            <div className="flex items-start gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-1" strokeWidth={1} />
-              <p className="text-base font-raleway text-[#444444]">
+            <div className="flex items-start gap-2.5 sm:gap-3">
+              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-[#444444]">
                 Предложу следующий шаг (если он имеет смысл)
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 mb-4 sm:mb-6">
             <div className="flex-1 flex flex-col items-center">
               <Button 
-                className="w-full py-3.5 text-base bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg"
+                className="w-full py-3 sm:py-3.5 text-sm sm:text-base bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg min-h-[44px]"
                 onClick={scrollToContact}
               >
                 <Phone size={16} className="mr-2" />
                 Заказать звонок
               </Button>
-              <span className="text-xs text-[#6A6A6A] mt-2 font-raleway">
+              <span className="text-xs text-[#6A6A6A] mt-1.5 sm:mt-2 font-raleway">
                 30 минут, без обязательств
               </span>
             </div>
             <div className="flex-1 flex flex-col items-center">
               <Button
                 variant="outline"
-                className="w-full py-3.5 text-base"
+                className="w-full py-3 sm:py-3.5 text-sm sm:text-base min-h-[44px]"
                 onClick={() => {
                   toast({
                     title: "Эта страница находится в разработке",
@@ -125,13 +125,13 @@ const ExitIntentPopup = () => {
               >
                 Скачать чеклист диагностики
               </Button>
-              <span className="text-xs text-[#6A6A6A] mt-2 font-raleway">
+              <span className="text-xs text-[#6A6A6A] mt-1.5 sm:mt-2 font-raleway">
                 Сами оцените готовность
               </span>
             </div>
           </div>
 
-          <p className="text-center text-sm font-raleway text-[#6A6A6A]">
+          <p className="text-center text-xs sm:text-sm font-raleway text-[#6A6A6A]">
             Без впаривания, без волшебства. Только честная диагностика.
           </p>
         </div>

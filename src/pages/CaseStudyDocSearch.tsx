@@ -151,38 +151,38 @@ const CaseStudyDocSearch = () => {
         <Navigation />
 
         {/* Hero Section */}
-        <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
+        <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
             <PageBreadcrumbs currentPage="Интеллектуальный поиск по документации" />
 
-            <div className="mt-8 sm:mt-10 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-6">
-                <QrCode className="w-10 h-10 text-primary" />
+            <div className="mt-6 sm:mt-8 md:mt-10 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-primary/10 mb-4 sm:mb-6">
+                <QrCode className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary" />
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground leading-tight max-w-4xl mx-auto">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight max-w-4xl mx-auto px-2">
                 Система интеллектуального поиска по технологической документации и руководствам пользователя   
               </h1>
 
-              <p className="mt-4 text-lg sm:text-xl text-primary font-medium">
+              <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-primary font-medium">
                 QR-код на рабочем месте → ответ в чат-боте за 3 секунды
               </p>
 
               {/* Visual flow */}
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <div className="flex items-center gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
-                  <QrCode className="w-8 h-8 text-primary" />
-                  <span className="text-sm font-medium">Сканирование QR</span>
+              <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6">
+                <div className="flex items-center gap-2.5 sm:gap-3 bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-border/50 w-full sm:w-auto max-w-[200px]">
+                  <QrCode className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary flex-shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium">Сканирование QR</span>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground rotate-90 sm:rotate-0" />
-                <div className="flex items-center gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
-                  <Search className="w-8 h-8 text-primary" />
-                  <span className="text-sm font-medium">Вопрос системе</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground rotate-90 sm:rotate-0" />
+                <div className="flex items-center gap-2.5 sm:gap-3 bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-border/50 w-full sm:w-auto max-w-[200px]">
+                  <Search className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary flex-shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium">Вопрос системе</span>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground rotate-90 sm:rotate-0" />
-                <div className="flex items-center gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
-                  <MessageCircle className="w-8 h-8 text-primary" />
-                  <span className="text-sm font-medium">Ответ за 3 сек</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground rotate-90 sm:rotate-0" />
+                <div className="flex items-center gap-2.5 sm:gap-3 bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-border/50 w-full sm:w-auto max-w-[200px]">
+                  <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary flex-shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium">Ответ за 3 сек</span>
                 </div>
               </div>
             </div>
@@ -190,40 +190,40 @@ const CaseStudyDocSearch = () => {
         </section>
 
         {/* Problem Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-muted/30">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
               Задача
             </h2>
 
-            <div className="bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 mb-8">
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm border border-border/50 mb-6 sm:mb-8">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Инженер, сборщик или техник столкнулся с проблемой: как правильно собрать, проверить качество, найти нужный допуск? 
                 Ищет инструкцию — листает регламенты, спрашивает опытного коллегу, <span className="text-foreground font-medium">теряет 20–30 минут на один вопрос</span>.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-card rounded-xl p-5 text-center shadow-sm border border-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">20–30</div>
-                <div className="text-sm text-muted-foreground mt-1">минут на один вопрос</div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">20–30</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">минут на один вопрос</div>
               </div>
-              <div className="bg-card rounded-xl p-5 text-center shadow-sm border border-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">50–100</div>
-                <div className="text-sm text-muted-foreground mt-1">часов потерь в месяц</div>
+              <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">50–100</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">часов потерь в месяц</div>
               </div>
-              <div className="bg-card rounded-xl p-5 text-center shadow-sm border border-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">100–200K</div>
-                <div className="text-sm text-muted-foreground mt-1">₽ убытков ежемесячно</div>
+              <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">100–200K</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">₽ убытков ежемесячно</div>
               </div>
-              <div className="bg-card rounded-xl p-5 text-center shadow-sm border border-border/50">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">5–10%</div>
-                <div className="text-sm text-muted-foreground mt-1">брака из-за ошибок</div>
+              <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">5–10%</div>
+                <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">брака из-за ошибок</div>
               </div>
             </div>
 
-            <div className="bg-primary/5 border-l-4 border-primary rounded-r-xl p-5">
-              <p className="text-foreground font-medium">
+            <div className="bg-primary/5 border-l-4 border-primary rounded-r-lg sm:rounded-r-xl p-3 sm:p-5">
+              <p className="text-sm sm:text-base text-foreground font-medium">
                 Главное: вся информация есть в документации, но она разбросана и недоступна в нужный момент.
               </p>
             </div>
@@ -292,99 +292,100 @@ const CaseStudyDocSearch = () => {
         </section>
 
         {/* Economics Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-muted/30">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
               Экономика
             </h2>
 
-            <div className="bg-card rounded-2xl shadow-sm border border-border/50 overflow-hidden mb-8">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="font-semibold">Метрика</TableHead>
-                    <TableHead className="text-center">Было</TableHead>
-                    <TableHead className="text-center">Стало</TableHead>
-                    <TableHead className="text-center text-primary">Экономия</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">Время на один вопрос</TableCell>
-                    <TableCell className="text-center text-muted-foreground">20–30 мин</TableCell>
-                    <TableCell className="text-center text-muted-foreground">3–5 мин</TableCell>
-                    <TableCell className="text-center font-medium text-primary">15–25 минут</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">Часов в месяц (команда 10 чел)</TableCell>
-                    <TableCell className="text-center text-muted-foreground">50–100 ч</TableCell>
-                    <TableCell className="text-center text-muted-foreground">10–15 ч</TableCell>
-                    <TableCell className="text-center font-medium text-primary">40–85 часов</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">Денежный эквивалент</TableCell>
-                    <TableCell className="text-center text-muted-foreground">—</TableCell>
-                    <TableCell className="text-center text-muted-foreground">—</TableCell>
-                    <TableCell className="text-center font-medium text-primary">100–200K ₽/мес</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">Брак и переделки</TableCell>
-                    <TableCell className="text-center text-muted-foreground">5–10%</TableCell>
-                    <TableCell className="text-center text-muted-foreground">1–2%</TableCell>
-                    <TableCell className="text-center font-medium text-primary">50–150K ₽/мес</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+            {/* Mobile-friendly table with horizontal scroll */}
+            <div className="bg-card rounded-xl sm:rounded-2xl shadow-sm border border-border/50 overflow-hidden mb-6 sm:mb-8">
+              <div className="overflow-x-auto">
+                <Table className="min-w-[500px]">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="font-semibold text-xs sm:text-sm whitespace-nowrap">Метрика</TableHead>
+                      <TableHead className="text-center text-xs sm:text-sm whitespace-nowrap">Было</TableHead>
+                      <TableHead className="text-center text-xs sm:text-sm whitespace-nowrap">Стало</TableHead>
+                      <TableHead className="text-center text-primary text-xs sm:text-sm whitespace-nowrap">Экономия</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium text-xs sm:text-sm">Время на один вопрос</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">20–30 мин</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">3–5 мин</TableCell>
+                      <TableCell className="text-center font-medium text-primary text-xs sm:text-sm">15–25 минут</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium text-xs sm:text-sm">Часов в месяц (команда 10 чел)</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">50–100 ч</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">10–15 ч</TableCell>
+                      <TableCell className="text-center font-medium text-primary text-xs sm:text-sm">40–85 часов</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium text-xs sm:text-sm">Денежный эквивалент</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">—</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">—</TableCell>
+                      <TableCell className="text-center font-medium text-primary text-xs sm:text-sm">100–200K ₽/мес</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium text-xs sm:text-sm">Брак и переделки</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">5–10%</TableCell>
+                      <TableCell className="text-center text-muted-foreground text-xs sm:text-sm">1–2%</TableCell>
+                      <TableCell className="text-center font-medium text-primary text-xs sm:text-sm">50–150K ₽/мес</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-primary/10 rounded-xl p-6 text-center">
-                <div className="text-sm text-muted-foreground mb-1">Экономия в месяц</div>
-                <div className="text-3xl sm:text-4xl font-bold text-primary">150–350K ₽</div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="bg-primary/10 rounded-lg sm:rounded-xl p-4 sm:p-6 text-center">
+                <div className="text-xs sm:text-sm text-muted-foreground mb-0.5 sm:mb-1">Экономия в месяц</div>
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">150–350K ₽</div>
               </div>
-              <div className="bg-card rounded-xl p-6 text-center shadow-sm border border-border/50">
-                <div className="text-sm text-muted-foreground mb-1">Окупаемость</div>
-                <div className="text-3xl sm:text-4xl font-bold text-foreground">3 месяца</div>
-                <div className="text-sm text-muted-foreground mt-1">
-              </div>
+              <div className="bg-card rounded-lg sm:rounded-xl p-4 sm:p-6 text-center shadow-sm border border-border/50">
+                <div className="text-xs sm:text-sm text-muted-foreground mb-0.5 sm:mb-1">Окупаемость</div>
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">3 месяца</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Use Cases Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-1.5 sm:mb-2">
               Применение
             </h2>
-            <p className="text-muted-foreground mb-8">7 вариантов использования системы</p>
+            <p className="text-sm sm:text-base text-muted-foreground mb-5 sm:mb-8">7 вариантов использования системы</p>
 
-            <Accordion type="single" collapsible value={expandedUseCase} onValueChange={setExpandedUseCase} className="space-y-3">
-              {useCases.map((useCase, index) => <AccordionItem key={useCase.id} value={useCase.id} className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
-                  <AccordionTrigger className="px-5 py-4 hover:no-underline hover:bg-muted/30">
-                    <div className="flex items-center gap-4 text-left">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 shrink-0">
-                        <useCase.icon className="w-5 h-5 text-primary" />
+            <Accordion type="single" collapsible value={expandedUseCase} onValueChange={setExpandedUseCase} className="space-y-2 sm:space-y-3">
+              {useCases.map((useCase, index) => <AccordionItem key={useCase.id} value={useCase.id} className="bg-card rounded-lg sm:rounded-xl border border-border/50 shadow-sm overflow-hidden">
+                  <AccordionTrigger className="px-3 sm:px-5 py-3 sm:py-4 hover:no-underline hover:bg-muted/30">
+                    <div className="flex items-center gap-2.5 sm:gap-4 text-left">
+                      <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 shrink-0">
+                        <useCase.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs text-primary font-medium">{index + 1}.</span>
-                          <span className="font-medium text-foreground">{useCase.title}</span>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <span className="text-[10px] sm:text-xs text-primary font-medium">{index + 1}.</span>
+                          <span className="font-medium text-foreground text-sm sm:text-base line-clamp-2">{useCase.title}</span>
                         </div>
-                        <p className="text-sm text-muted-foreground">{useCase.subtitle}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-1">{useCase.subtitle}</p>
                       </div>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="px-5 pb-5">
-                    <ul className="space-y-2 mb-4">
-                      {useCase.features.map((feature, i) => <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="text-primary mt-1">•</span>
+                  <AccordionContent className="px-3 sm:px-5 pb-3 sm:pb-5">
+                    <ul className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                      {useCase.features.map((feature, i) => <li key={i} className="flex items-start gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
+                          <span className="text-primary mt-0.5 sm:mt-1">•</span>
                           {feature}
                         </li>)}
                     </ul>
-                    <div className="bg-primary/5 rounded-lg p-3">
-                      <p className="text-sm font-medium text-foreground">
+                    <div className="bg-primary/5 rounded-lg p-2.5 sm:p-3">
+                      <p className="text-xs sm:text-sm font-medium text-foreground">
                         Результат: {useCase.result}
                       </p>
                     </div>
@@ -475,39 +476,39 @@ const CaseStudyDocSearch = () => {
         </section>
 
         {/* Timeline Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-5 sm:mb-8">
               Сроки внедрения
             </h2>
 
             <div className="relative">
               <div className="hidden sm:block absolute left-[18px] top-6 bottom-6 w-0.5 bg-border" />
 
-              <div className="space-y-4">
-                {timeline.map((item, index) => <div key={index} className="flex items-start gap-4">
-                    <div className="relative z-10 w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <span className="text-sm font-semibold text-primary">{index + 1}</span>
+              <div className="space-y-3 sm:space-y-4">
+                {timeline.map((item, index) => <div key={index} className="flex items-start gap-3 sm:gap-4">
+                    <div className="relative z-10 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <span className="text-xs sm:text-sm font-semibold text-primary">{index + 1}</span>
                     </div>
-                    <div className="flex-1 bg-card rounded-xl p-4 shadow-sm border border-border/50">
-                      <div className="flex items-center justify-between flex-wrap gap-2">
-                        <span className="font-medium text-foreground">{item.stage}</span>
-                        <span className="text-sm text-primary font-medium">{item.days}</span>
+                    <div className="flex-1 bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-border/50">
+                      <div className="flex items-center justify-between flex-wrap gap-1.5 sm:gap-2">
+                        <span className="font-medium text-foreground text-sm sm:text-base">{item.stage}</span>
+                        <span className="text-xs sm:text-sm text-primary font-medium">{item.days}</span>
                       </div>
                     </div>
                   </div>)}
               </div>
 
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <div className="flex-1 bg-primary/10 rounded-xl p-5 text-center">
-                  <Calendar className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">3–4 недели</div>
-                  <div className="text-sm text-muted-foreground">полное внедрение</div>
+              <div className="mt-4 sm:mt-6 grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-primary/10 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center">
+                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-primary mx-auto mb-1.5 sm:mb-2" />
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">3–4 недели</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">полное внедрение</div>
                 </div>
-                <div className="flex-1 bg-card rounded-xl p-5 text-center shadow-sm border border-border/50">
-                  <Zap className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">10–14 дней</div>
-                  <div className="text-sm text-muted-foreground">пилот на 3–5 рабочих мест</div>
+                <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
+                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary mx-auto mb-1.5 sm:mb-2" />
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">10–14 дней</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">пилот на 3–5 мест</div>
                 </div>
               </div>
             </div>
@@ -515,53 +516,53 @@ const CaseStudyDocSearch = () => {
         </section>
 
         {/* What's Included Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-muted/30">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
               Что включено
             </h2>
 
-            <div className="grid sm:grid-cols-2 gap-3">
-              {included.map((item, index) => <div key={index} className="flex items-start gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
+            <div className="grid sm:grid-cols-2 gap-2 sm:gap-3">
+              {included.map((item, index) => <div key={index} className="flex items-start gap-2 sm:gap-3 bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-border/50">
                   <span className="text-primary font-medium shrink-0">•</span>
-                  <span className="text-sm text-muted-foreground">{item}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground">{item}</span>
                 </div>)}
             </div>
           </div>
         </section>
 
         {/* Security Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
               Безопасность
             </h2>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {security.map((item, index) => <div key={index} className="flex items-start gap-4 bg-card rounded-xl p-5 shadow-sm border border-border/50">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <item.icon className="w-5 h-5 text-primary" />
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+              {security.map((item, index) => <div key={index} className="flex items-start gap-3 sm:gap-4 bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-sm border border-border/50">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">{item.text}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.text}</p>
                 </div>)}
             </div>
           </div>
         </section>
 
         {/* Why Us Section */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-muted/30">
+        <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
               Почему именно мы
             </h2>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {advantages.map((item, index) => <div key={index} className="bg-card rounded-xl p-5 shadow-sm border border-border/50">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                    <item.icon className="w-5 h-5 text-primary" />
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {advantages.map((item, index) => <div key={index} className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-sm border border-border/50">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-2 sm:mb-3">
+                    <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <h3 className="font-medium text-foreground mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.text}</p>
+                  <h3 className="font-medium text-foreground mb-0.5 sm:mb-1 text-sm sm:text-base">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.text}</p>
                 </div>)}
             </div>
           </div>

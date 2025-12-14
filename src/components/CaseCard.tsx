@@ -27,23 +27,23 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
 
   return (
     <div
-      className={`p-4 sm:p-6 rounded-[20px] bg-white shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${staggerClass}`}
+      className={`p-4 sm:p-6 rounded-[16px] sm:rounded-[20px] bg-white shadow-card transition-all duration-200 sm:hover:shadow-hover sm:hover:-translate-y-1 sm:hover:scale-[1.02] sm:hover:bg-primary-light/15 flex flex-col gradient-border gradient-border-hover ${staggerClass}`}
     >
       {/* Icon and Company */}
-      <div className="flex items-start gap-3 mb-4">
-        <Icon className="w-8 h-8 flex-shrink-0" style={{ color: '#49BED8' }} strokeWidth={1.5} />
-        <h3 className="text-base sm:text-lg font-semibold text-text-heading leading-tight">
+      <div className="flex items-start gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+        <Icon className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" style={{ color: '#49BED8' }} strokeWidth={1.5} />
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-text-heading leading-tight">
           {caseItem.company}
         </h3>
       </div>
 
       {/* About / Client */}
       {caseItem.about && (
-        <div className="mb-4">
-          <p className="text-handwriting mb-1">
+        <div className="mb-3 sm:mb-4">
+          <p className="text-handwriting text-lg sm:text-xl mb-1">
             {caseItem.aboutLabel || 'Клиент:'}
           </p>
-          <p className="text-sm text-text-body leading-relaxed">
+          <p className="text-xs sm:text-sm text-text-body leading-relaxed">
             {caseItem.about}
           </p>
         </div>
@@ -51,28 +51,28 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
 
       {/* Situation */}
       {caseItem.situation && (
-        <div className="mb-4">
-          <p className="text-handwriting mb-1">
+        <div className="mb-3 sm:mb-4">
+          <p className="text-handwriting text-lg sm:text-xl mb-1">
             Ситуация:
           </p>
-          <p className="text-sm text-text-body leading-relaxed">
+          <p className="text-xs sm:text-sm text-text-body leading-relaxed">
             {caseItem.situation}
           </p>
         </div>
       )}
 
       {/* Divider */}
-      <div className="h-px bg-gray-200 my-3"></div>
+      <div className="h-px bg-gray-200 my-2 sm:my-3"></div>
 
       {/* Solution */}
       {caseItem.solution && (
-        <div className="mb-4">
-          <p className="text-handwriting mb-2">
+        <div className="mb-3 sm:mb-4">
+          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
             Как мы это сделали:
           </p>
           <ul className="space-y-1">
             {caseItem.solution.steps.map((step, idx) => (
-              <li key={idx} className="text-sm text-text-body leading-snug flex items-start gap-2">
+              <li key={idx} className="text-xs sm:text-sm text-text-body leading-snug flex items-start gap-1.5 sm:gap-2">
                 <span className="text-primary mt-0.5">•</span>
                 <span>{step}</span>
               </li>
@@ -83,15 +83,15 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
 
       {/* Quote */}
       {caseItem.quote && (
-        <div className="mb-4">
-          <p className="text-handwriting mb-2">
+        <div className="mb-3 sm:mb-4">
+          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
             Что говорит клиент:
           </p>
-          <p className="text-sm italic text-text-body leading-relaxed">
+          <p className="text-xs sm:text-sm italic text-text-body leading-relaxed">
             "{caseItem.quote}"
           </p>
           {caseItem.quoteAuthor && (
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
               — {caseItem.quoteAuthor}
             </p>
           )}
@@ -99,15 +99,15 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
       )}
 
       {/* Divider */}
-      <div className="h-px bg-gray-200 my-3"></div>
+      <div className="h-px bg-gray-200 my-2 sm:my-3"></div>
 
       {/* Results Summary */}
       {caseItem.resultsSummary && (
-        <div className="mb-6">
-          <p className="text-handwriting mb-2">
+        <div className="mb-4 sm:mb-6">
+          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
             Результат:
           </p>
-          <p className="text-sm font-medium text-primary leading-relaxed">
+          <p className="text-xs sm:text-sm font-medium text-primary leading-relaxed">
             {caseItem.resultsSummary}
           </p>
         </div>
@@ -117,7 +117,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
       <div className="mt-auto space-y-2">
         <a 
           href={caseItem.link || "#"} 
-          className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:gap-3 transition-all duration-300"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary font-medium sm:hover:gap-3 transition-all duration-300 min-h-[44px] py-2"
         >
           <span>{caseItem.buttonText || "Читать подробный разбор кейса →"}</span>
         </a>

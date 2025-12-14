@@ -108,21 +108,37 @@ const Hero = () => {
   }) => {
     const Icon = tile.icon;
     const isSelected = selectedTile === tile.id;
-    return <Tooltip delayDuration={100}>
+    const [showTooltip, setShowTooltip] = useState(false);
+    
+    const handleInteraction = () => {
+      handleTileClick(tile.id);
+      // On mobile, show tooltip briefly on tap
+      if ('ontouchstart' in window) {
+        setShowTooltip(true);
+        setTimeout(() => setShowTooltip(false), 2500);
+      }
+    };
+    
+    return <Tooltip open={showTooltip} onOpenChange={setShowTooltip}>
         <TooltipTrigger asChild>
-          <div onClick={() => handleTileClick(tile.id)} className={`
-              bg-white border rounded-lg py-3 px-4 
-              transition-all duration-300 cursor-pointer flex items-center gap-3 
-              min-h-[64px] shadow-card hover:shadow-hover hover:scale-[1.02]
-              ${isSelected ? 'border-primary ring-2 ring-primary/20 shadow-hover' : 'border-border/40 hover:border-primary/50'}
+          <div 
+            onClick={handleInteraction}
+            onMouseEnter={() => !('ontouchstart' in window) && setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+            className={`
+              bg-white border rounded-lg py-2.5 sm:py-3 px-3 sm:px-4 
+              transition-all duration-200 cursor-pointer flex items-center gap-2.5 sm:gap-3 
+              min-h-[56px] sm:min-h-[64px] shadow-card active:scale-[0.98] sm:hover:shadow-hover sm:hover:scale-[1.02]
+              touch-manipulation
+              ${isSelected ? 'border-primary ring-2 ring-primary/20 shadow-hover' : 'border-border/40 sm:hover:border-primary/50'}
             `}>
-            <Icon className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
-            <span className="text-sm font-medium text-foreground leading-snug">
+            <Icon className="w-7 h-7 sm:w-10 sm:h-10 text-primary shrink-0" strokeWidth={1.5} />
+            <span className="text-xs sm:text-sm font-medium text-foreground leading-snug">
               {tile.title}
             </span>
           </div>
         </TooltipTrigger>
-        <TooltipContent side="top" className="max-w-[280px] text-sm bg-foreground text-background px-4 py-3">
+        <TooltipContent side="top" className="max-w-[280px] text-sm bg-foreground text-background px-4 py-3 z-50">
           {tile.hoverText}
         </TooltipContent>
       </Tooltip>;

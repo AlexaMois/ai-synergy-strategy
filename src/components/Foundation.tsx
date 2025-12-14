@@ -70,56 +70,56 @@ const Foundation = () => {
           Фундамент, <span className="font-semibold">три этапа работы</span>
         </h2>
 
-        <div className="flex flex-col md:flex-row items-stretch justify-center gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div key={service.title} className="flex items-center gap-4 md:gap-6">
+              <div key={service.title} className="relative">
                 <DisabledLink 
                   to={service.link}
-                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover hover:scale-[1.02] gradient-border transition-all duration-500 w-full flex-1 md:min-w-[280px] md:max-w-[340px] flex flex-col cursor-pointer ${
+                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-4 sm:p-6 shadow-card sm:hover:shadow-hover sm:hover:scale-[1.02] gradient-border transition-all duration-500 w-full flex flex-col cursor-pointer h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3 sm:mb-4">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" strokeWidth={1.5} />
                   </div>
                   
-                  <h3 className="text-xl font-medium text-foreground mb-1">
+                  <h3 className="text-lg sm:text-xl font-medium text-foreground mb-1">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-primary mb-3">{service.subtitle}</p>
+                  <p className="text-xs sm:text-sm text-primary mb-2 sm:mb-3">{service.subtitle}</p>
                   
-                  <p className="text-base text-muted-foreground mb-4">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                     {service.description}
                   </p>
                   
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
                     <Coins className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                    <span className="text-sm font-medium text-foreground">{service.pricing}</span>
+                    <span className="text-xs sm:text-sm font-medium text-foreground">{service.pricing}</span>
                   </div>
                   
-                  <div className="mb-4 flex-grow">
-                    <p className="text-sm font-medium text-foreground mb-2">Включает:</p>
-                    <ul className="space-y-1.5">
+                  <div className="mb-3 sm:mb-4 flex-grow">
+                    <p className="text-xs sm:text-sm font-medium text-foreground mb-2">Включает:</p>
+                    <ul className="space-y-1 sm:space-y-1.5">
                       {service.details.map((detail, i) => (
-                        <li key={i} className="text-sm text-muted-foreground leading-snug flex items-start gap-2">
-                          <ArrowRight className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
+                        <li key={i} className="text-xs sm:text-sm text-muted-foreground leading-snug flex items-start gap-2">
+                          <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
                           <span>{detail}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <span className="inline-flex items-center gap-2 text-primary font-medium mt-auto">
+                  <span className="inline-flex items-center gap-2 text-primary font-medium mt-auto text-sm sm:text-base">
                     {service.linkText} →
                   </span>
                 </DisabledLink>
                 
                 {index < services.length - 1 && (
                   <ArrowRight 
-                    className="hidden md:block text-primary w-6 h-6 flex-shrink-0" 
+                    className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 text-primary w-5 h-5 flex-shrink-0" 
                   />
                 )}
               </div>
