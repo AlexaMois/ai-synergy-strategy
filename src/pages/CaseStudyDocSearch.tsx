@@ -5,182 +5,128 @@ import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  QrCode,
-  Search,
-  MessageCircle,
-  TrendingUp,
-  Users,
-  BookOpen,
-  Shield,
-  Server,
-  Zap,
-  FileText,
-  Settings,
-  Headphones,
-  BarChart3,
-  Megaphone,
-  CheckCircle2,
-  ArrowRight,
-  Calendar,
-  Building2,
-  Lock,
-  Eye,
-  UserCheck,
-  FileCheck,
-} from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { QrCode, Search, MessageCircle, TrendingUp, Users, BookOpen, Shield, Server, Zap, FileText, Settings, Headphones, BarChart3, Megaphone, CheckCircle2, ArrowRight, Calendar, Building2, Lock, Eye, UserCheck, FileCheck } from "lucide-react";
 import { useState } from "react";
-
 const CaseStudyDocSearch = () => {
   const [expandedUseCase, setExpandedUseCase] = useState<string | undefined>("item-1");
-
-  const useCases = [
-    {
-      id: "item-1",
-      icon: Settings,
-      title: "Поддержка производственного процесса",
-      subtitle: "Текущее производство, сборка, ремонт",
-      features: [
-        "QR-коды на рабочих местах — сотрудники ищут инструкции в реальном времени",
-        "Справка по допускам, технологии, процедурам",
-        "Чек-листы и процедуры контроля качества",
-        "Диагностика неисправностей при поломке оборудования",
-      ],
-      result: "50–100 часов в месяц сэкономлено, брак на 30–50% ниже",
-    },
-    {
-      id: "item-2",
-      icon: Headphones,
-      title: "Поддержка клиентов 24/7",
-      subtitle: "Для конечных пользователей вашего оборудования или услуг",
-      features: [
-        "Клиент сканирует QR на товаре/документе → получает справку в чат-боте",
-        "Вопросы о параметрах, использовании, установке, устранении неисправностей",
-        "Система отвечает мгновенно, даже в выходные и ночью",
-        "Снижение обращений в техподдержку на 60–70%",
-      ],
-      result: "Выше лояльность клиентов, снижение нагрузки на операторов на 60–70%",
-    },
-    {
-      id: "item-3",
-      icon: BookOpen,
-      title: "Внутренняя база знаний компании",
-      subtitle: "Единое хранилище всех регламентов и процессов",
-      features: [
-        "Все инструкции, SOPs, регламенты в одном месте",
-        "Поиск по смыслу — сотрудник спрашивает как угодно, система понимает",
-        "История изменений документов — кто и когда что менял",
-        "Версионирование — старые версии процессов всегда доступны",
-      ],
-      result: "Новые сотрудники обучаются в 4–6 раз быстрее",
-    },
-    {
-      id: "item-4",
-      icon: Users,
-      title: "Быстрое обучение новых сотрудников",
-      subtitle: "Вместо 2–3 недель — 3–5 дней до первого результата",
-      features: [
-        "Все инструкции доступны в чат-боте — новичок может ответить на большинство вопросов сам",
-        "Интерактивные чек-листы — пошаговые подсказки",
-        "Не требует постоянной помощи опытных коллег",
-      ],
-      result: "Снижение зависимости от «ключевых» людей, ускорение масштабирования",
-    },
-    {
-      id: "item-5",
-      icon: BarChart3,
-      title: "Аналитика и выявление проблем производства",
-      subtitle: "Данные для улучшения процессов",
-      features: [
-        "Система собирает все вопросы сотрудников — видно узкие места в производстве",
-        "«Как исправить брак в узле X?» — если это частый вопрос, значит есть проблема",
-        "Дашборд для руководства — какие темы спрашивают чаще всего",
-        "Метрики качества и времени — видно, где терять время и где брак",
-      ],
-      result: "Быстрое выявление проблем, приоритизация улучшений",
-    },
-    {
-      id: "item-6",
-      icon: Building2,
-      title: "Техподдержка для производителей и поставщиков",
-      subtitle: "Если вы производитель оборудования или компонентов",
-      features: [
-        "Ваши клиенты встраивают вашу документацию в свою систему",
-        "Их сотрудники получают справку по вашему оборудованию в реальном времени",
-        "Снижение звонков в вашу техподдержку на 60–70%",
-        "Вы собираете данные об ошибках клиентов — используете для улучшения продукта",
-      ],
-      result: "Масштабируемая техподдержка, выше репутация, развитие продукта",
-    },
-    {
-      id: "item-7",
-      icon: Megaphone,
-      title: "Маркетинг и позиционирование как эксперта",
-      subtitle: "Контент на основе вашей документации",
-      features: [
-        "Частые вопросы клиентов → идеи для статей, видео, вебинаров",
-        "Демонстрация экспертизы — «мы разбираемся в каждой детали»",
-        "Обучающие видео на YouTube с QR-кодами на расширенную документацию",
-        "Статьи в блог на основе частых вопросов — органический трафик",
-      ],
-      result: "Позиционирование как лидера индустрии, органический трафик",
-    },
-  ];
-
-  const timeline = [
-    { stage: "Согласование и подготовка", days: "3–5 дней" },
-    { stage: "Загрузка и обработка документов", days: "7–10 дней" },
-    { stage: "Развёртывание системы", days: "5–7 дней" },
-    { stage: "Тестирование с командой", days: "3–5 дней" },
-    { stage: "Обучение и запуск", days: "2–3 дня" },
-  ];
-
-  const included = [
-    "Анализ и подготовка всей вашей технической документации (любые форматы, языки)",
-    "Оцифровка и структурирование документов через ComBox LLM",
-    "QR-коды на рабочие места (изготовление, доставка, наклейка)",
-    "Чат-бот в Telegram, Max или веб (на ваш выбор)",
-    "Развёртывание системы (на вашем сервере или нашем)",
-    "Обучение команды (как пользоваться системой)",
-    "Техническая поддержка на период внедрения (3–4 недели)",
-    "Документация администратора и инструкции пользователей",
-  ];
-
-  const security = [
-    { icon: Lock, text: "Закрытый контур — ваша документация остаётся либо на вашем сервере, либо на нашем в России" },
-    { icon: Shield, text: "Без отправки на чужие серверы — ComBox работает локально, данные не идут в облако" },
-    { icon: Eye, text: "История и аудит — все вопросы и ответы логируются, видно кто и когда что спрашивал" },
-    { icon: UserCheck, text: "Разделение прав доступа — каждый сотрудник видит только релевантную информацию" },
-    { icon: Server, text: "Может быть развёрнута на вашем сервере — для максимальной независимости" },
-    { icon: FileCheck, text: "Соглашение о конфиденциальности — подписываем при необходимости" },
-  ];
-
-  const advantages = [
-    { icon: Zap, title: "ComBox LLM", text: "Российская модель, понимает русский идеально, на 90% дешевле GPT" },
-    { icon: QrCode, title: "QR на рабочем месте", text: "Сотрудник просто наводит телефон, не нужно помнить команды" },
-    { icon: Lock, title: "Закрытый контур", text: "Ваша ноу-хау остаётся под замком" },
-    { icon: TrendingUp, title: "Окупается за 1 месяц", text: "Результат виден в сэкономленном времени и снижении брака" },
-    { icon: CheckCircle2, title: "Готовое решение", text: "Работает уже, не пилот" },
-    { icon: Settings, title: "Гибкая архитектура", text: "Выбираете, где хранить — у себя или у нас" },
-    { icon: Users, title: "Масштабируется", text: "От одного рабочего места до сотен, от 50 документов до тысяч" },
-  ];
-
-  return (
-    <PageTransition>
+  const useCases = [{
+    id: "item-1",
+    icon: Settings,
+    title: "Поддержка производственного процесса",
+    subtitle: "Текущее производство, сборка, ремонт",
+    features: ["QR-коды на рабочих местах — сотрудники ищут инструкции в реальном времени", "Справка по допускам, технологии, процедурам", "Чек-листы и процедуры контроля качества", "Диагностика неисправностей при поломке оборудования"],
+    result: "50–100 часов в месяц сэкономлено, брак на 30–50% ниже"
+  }, {
+    id: "item-2",
+    icon: Headphones,
+    title: "Поддержка клиентов 24/7",
+    subtitle: "Для конечных пользователей вашего оборудования или услуг",
+    features: ["Клиент сканирует QR на товаре/документе → получает справку в чат-боте", "Вопросы о параметрах, использовании, установке, устранении неисправностей", "Система отвечает мгновенно, даже в выходные и ночью", "Снижение обращений в техподдержку на 60–70%"],
+    result: "Выше лояльность клиентов, снижение нагрузки на операторов на 60–70%"
+  }, {
+    id: "item-3",
+    icon: BookOpen,
+    title: "Внутренняя база знаний компании",
+    subtitle: "Единое хранилище всех регламентов и процессов",
+    features: ["Все инструкции, SOPs, регламенты в одном месте", "Поиск по смыслу — сотрудник спрашивает как угодно, система понимает", "История изменений документов — кто и когда что менял", "Версионирование — старые версии процессов всегда доступны"],
+    result: "Новые сотрудники обучаются в 4–6 раз быстрее"
+  }, {
+    id: "item-4",
+    icon: Users,
+    title: "Быстрое обучение новых сотрудников",
+    subtitle: "Вместо 2–3 недель — 3–5 дней до первого результата",
+    features: ["Все инструкции доступны в чат-боте — новичок может ответить на большинство вопросов сам", "Интерактивные чек-листы — пошаговые подсказки", "Не требует постоянной помощи опытных коллег"],
+    result: "Снижение зависимости от «ключевых» людей, ускорение масштабирования"
+  }, {
+    id: "item-5",
+    icon: BarChart3,
+    title: "Аналитика и выявление проблем производства",
+    subtitle: "Данные для улучшения процессов",
+    features: ["Система собирает все вопросы сотрудников — видно узкие места в производстве", "«Как исправить брак в узле X?» — если это частый вопрос, значит есть проблема", "Дашборд для руководства — какие темы спрашивают чаще всего", "Метрики качества и времени — видно, где терять время и где брак"],
+    result: "Быстрое выявление проблем, приоритизация улучшений"
+  }, {
+    id: "item-6",
+    icon: Building2,
+    title: "Техподдержка для производителей и поставщиков",
+    subtitle: "Если вы производитель оборудования или компонентов",
+    features: ["Ваши клиенты встраивают вашу документацию в свою систему", "Их сотрудники получают справку по вашему оборудованию в реальном времени", "Снижение звонков в вашу техподдержку на 60–70%", "Вы собираете данные об ошибках клиентов — используете для улучшения продукта"],
+    result: "Масштабируемая техподдержка, выше репутация, развитие продукта"
+  }, {
+    id: "item-7",
+    icon: Megaphone,
+    title: "Маркетинг и позиционирование как эксперта",
+    subtitle: "Контент на основе вашей документации",
+    features: ["Частые вопросы клиентов → идеи для статей, видео, вебинаров", "Демонстрация экспертизы — «мы разбираемся в каждой детали»", "Обучающие видео на YouTube с QR-кодами на расширенную документацию", "Статьи в блог на основе частых вопросов — органический трафик"],
+    result: "Позиционирование как лидера индустрии, органический трафик"
+  }];
+  const timeline = [{
+    stage: "Согласование и подготовка",
+    days: "3–5 дней"
+  }, {
+    stage: "Загрузка и обработка документов",
+    days: "7–10 дней"
+  }, {
+    stage: "Развёртывание системы",
+    days: "5–7 дней"
+  }, {
+    stage: "Тестирование с командой",
+    days: "3–5 дней"
+  }, {
+    stage: "Обучение и запуск",
+    days: "2–3 дня"
+  }];
+  const included = ["Анализ и подготовка всей вашей технической документации (любые форматы, языки)", "Оцифровка и структурирование документов через ComBox LLM", "QR-коды на рабочие места (изготовление, доставка, наклейка)", "Чат-бот в Telegram, Max или веб (на ваш выбор)", "Развёртывание системы (на вашем сервере или нашем)", "Обучение команды (как пользоваться системой)", "Техническая поддержка на период внедрения (3–4 недели)", "Документация администратора и инструкции пользователей"];
+  const security = [{
+    icon: Lock,
+    text: "Закрытый контур — ваша документация остаётся либо на вашем сервере, либо на нашем в России"
+  }, {
+    icon: Shield,
+    text: "Без отправки на чужие серверы — ComBox работает локально, данные не идут в облако"
+  }, {
+    icon: Eye,
+    text: "История и аудит — все вопросы и ответы логируются, видно кто и когда что спрашивал"
+  }, {
+    icon: UserCheck,
+    text: "Разделение прав доступа — каждый сотрудник видит только релевантную информацию"
+  }, {
+    icon: Server,
+    text: "Может быть развёрнута на вашем сервере — для максимальной независимости"
+  }, {
+    icon: FileCheck,
+    text: "Соглашение о конфиденциальности — подписываем при необходимости"
+  }];
+  const advantages = [{
+    icon: Zap,
+    title: "ComBox LLM",
+    text: "Российская модель, понимает русский идеально, на 90% дешевле GPT"
+  }, {
+    icon: QrCode,
+    title: "QR на рабочем месте",
+    text: "Сотрудник просто наводит телефон, не нужно помнить команды"
+  }, {
+    icon: Lock,
+    title: "Закрытый контур",
+    text: "Ваша ноу-хау остаётся под замком"
+  }, {
+    icon: TrendingUp,
+    title: "Окупается за 1 месяц",
+    text: "Результат виден в сэкономленном времени и снижении брака"
+  }, {
+    icon: CheckCircle2,
+    title: "Готовое решение",
+    text: "Работает уже, не пилот"
+  }, {
+    icon: Settings,
+    title: "Гибкая архитектура",
+    text: "Выбираете, где хранить — у себя или у нас"
+  }, {
+    icon: Users,
+    title: "Масштабируется",
+    text: "От одного рабочего места до сотен, от 50 документов до тысяч"
+  }];
+  return <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
 
@@ -195,7 +141,7 @@ const CaseStudyDocSearch = () => {
               </div>
 
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground leading-tight max-w-4xl mx-auto">
-                Система интеллектуального поиска по технологической документации
+                Система интеллектуального поиска по технологической документации и руководствам пользователя   
               </h1>
 
               <p className="mt-4 text-lg sm:text-xl text-primary font-medium">
@@ -371,19 +317,8 @@ const CaseStudyDocSearch = () => {
             </h2>
             <p className="text-muted-foreground mb-8">7 вариантов использования системы</p>
 
-            <Accordion
-              type="single"
-              collapsible
-              value={expandedUseCase}
-              onValueChange={setExpandedUseCase}
-              className="space-y-3"
-            >
-              {useCases.map((useCase, index) => (
-                <AccordionItem
-                  key={useCase.id}
-                  value={useCase.id}
-                  className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden"
-                >
+            <Accordion type="single" collapsible value={expandedUseCase} onValueChange={setExpandedUseCase} className="space-y-3">
+              {useCases.map((useCase, index) => <AccordionItem key={useCase.id} value={useCase.id} className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
                   <AccordionTrigger className="px-5 py-4 hover:no-underline hover:bg-muted/30">
                     <div className="flex items-center gap-4 text-left">
                       <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 shrink-0">
@@ -400,12 +335,10 @@ const CaseStudyDocSearch = () => {
                   </AccordionTrigger>
                   <AccordionContent className="px-5 pb-5">
                     <ul className="space-y-2 mb-4">
-                      {useCase.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      {useCase.features.map((feature, i) => <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <span className="text-primary mt-1">•</span>
                           {feature}
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                     <div className="bg-primary/5 rounded-lg p-3">
                       <p className="text-sm font-medium text-foreground">
@@ -413,8 +346,7 @@ const CaseStudyDocSearch = () => {
                       </p>
                     </div>
                   </AccordionContent>
-                </AccordionItem>
-              ))}
+                </AccordionItem>)}
             </Accordion>
           </div>
         </section>
@@ -524,8 +456,7 @@ const CaseStudyDocSearch = () => {
               <div className="hidden sm:block absolute left-[18px] top-6 bottom-6 w-0.5 bg-border" />
 
               <div className="space-y-4">
-                {timeline.map((item, index) => (
-                  <div key={index} className="flex items-start gap-4">
+                {timeline.map((item, index) => <div key={index} className="flex items-start gap-4">
                     <div className="relative z-10 w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <span className="text-sm font-semibold text-primary">{index + 1}</span>
                     </div>
@@ -535,8 +466,7 @@ const CaseStudyDocSearch = () => {
                         <span className="text-sm text-primary font-medium">{item.days}</span>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-4">
@@ -563,12 +493,10 @@ const CaseStudyDocSearch = () => {
             </h2>
 
             <div className="grid sm:grid-cols-2 gap-3">
-              {included.map((item, index) => (
-                <div key={index} className="flex items-start gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
+              {included.map((item, index) => <div key={index} className="flex items-start gap-3 bg-card rounded-xl p-4 shadow-sm border border-border/50">
                   <span className="text-primary font-medium shrink-0">•</span>
                   <span className="text-sm text-muted-foreground">{item}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -581,14 +509,12 @@ const CaseStudyDocSearch = () => {
             </h2>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {security.map((item, index) => (
-                <div key={index} className="flex items-start gap-4 bg-card rounded-xl p-5 shadow-sm border border-border/50">
+              {security.map((item, index) => <div key={index} className="flex items-start gap-4 bg-card rounded-xl p-5 shadow-sm border border-border/50">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <item.icon className="w-5 h-5 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground">{item.text}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -601,15 +527,13 @@ const CaseStudyDocSearch = () => {
             </h2>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {advantages.map((item, index) => (
-                <div key={index} className="bg-card rounded-xl p-5 shadow-sm border border-border/50">
+              {advantages.map((item, index) => <div key={index} className="bg-card rounded-xl p-5 shadow-sm border border-border/50">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                     <item.icon className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="font-medium text-foreground mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.text}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -619,8 +543,6 @@ const CaseStudyDocSearch = () => {
         <Partners />
         <Footer />
       </div>
-    </PageTransition>
-  );
+    </PageTransition>;
 };
-
 export default CaseStudyDocSearch;
