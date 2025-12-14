@@ -64,9 +64,9 @@ const Footer = () => {
                 <Mail className="w-4 h-4 text-primary" />
                 ai@aleksamois.ru
               </a>
-              <a href="https://t.me/AlexandraMois" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-accent transition-colors">
+              <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-accent transition-colors">
                 <Send className="w-4 h-4 text-primary" />
-                Telegram: @AlexandraMois
+                Telegram: @aleksamois
               </a>
               <a href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-accent transition-colors">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0" />

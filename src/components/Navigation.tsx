@@ -16,7 +16,7 @@ const Navigation = () => {
 
   const phoneNumber = "+7 993 721 73 67";
   const phoneLink = "tel:+79937217367";
-  const telegramLink = "https://t.me/AlexandraMois";
+  const telegramLink = "https://t.me/aleksamois";
 
   useEffect(() => {
     let ticking = false;
