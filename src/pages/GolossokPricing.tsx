@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-
+import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
@@ -278,6 +279,8 @@ const GolossokPricing = () => {
         </section>
         </main>
         
+        <Contact />
+        <Partners />
         <Footer />
         
       </div>

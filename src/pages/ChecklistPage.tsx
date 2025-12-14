@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Printer } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 
@@ -205,6 +207,8 @@ const ChecklistPage = () => {
       </div>
       </main>
 
+      <Contact />
+      <Partners />
       <Footer />
     </div>
   );
