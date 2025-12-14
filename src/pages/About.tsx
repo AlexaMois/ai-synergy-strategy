@@ -254,8 +254,8 @@ const About = () => {
           </div>
         </section>
 
-        {/* Engineering Path */}
-        <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        {/* Engineering Path - temporarily hidden */}
+        {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
@@ -432,7 +432,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>}
 
         {/* My Position */}
         <section ref={positionRef} className="py-10 md:py-16 lg:py-20">
