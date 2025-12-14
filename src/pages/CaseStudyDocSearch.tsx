@@ -372,7 +372,7 @@ const CaseStudyDocSearch = () => {
                 </div>
 
                 <div className="text-3xl font-bold text-foreground mb-4">
-                  700 000 ₽
+                  600 000 ₽
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-4">Полный контроль над данными</p>
