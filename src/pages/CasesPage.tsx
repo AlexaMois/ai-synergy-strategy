@@ -3,9 +3,11 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 
-import { Image } from "lucide-react";
+import { Image, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
+import { Button } from "@/components/ui/button";
 
 interface CaseItem {
   id: number;
@@ -19,6 +21,7 @@ interface CaseItem {
   actions: string[];
   results: string[];
   categories: string[];
+  link?: string;
 }
 
 const CATEGORIES = [
@@ -330,6 +333,32 @@ const CasesPage = () => {
         "Экономия 120 000 ₽/мес, окупаемость 1,5 месяца"
       ],
       categories: ["Автоматизация процессов и данных"]
+    },
+    {
+      id: 13,
+      title: "Система интеллектуального поиска по технологической документации",
+      image: null,
+      targetAudience: "производственные компании, сервис-центры, технические отделы",
+      industry: "производство, техническая поддержка",
+      price: "от 100 000 ₽",
+      status: "действующий",
+      task: "Сократить время поиска информации в технической документации с 20–30 минут до 3–5 минут, снизить брак на 30–50% и обеспечить мгновенный доступ к регламентам через QR-коды.",
+      actions: [
+        "QR-коды на рабочих местах для мгновенного доступа к документации",
+        "Чат-бот в Telegram/Max/веб с поиском по всей документации",
+        "Оцифровка и структурирование технической документации через ComBox LLM",
+        "Закрытый контур — данные остаются на вашем или нашем сервере в России",
+        "7 сценариев использования: от производства до обучения новых сотрудников"
+      ],
+      results: [
+        "Экономия 40–85 часов в месяц на команду",
+        "Снижение брака на 30–50% (экономия 50–150 тыс. ₽/мес)",
+        "Ответ за 3 секунды вместо 20–30 минут",
+        "Обучение новых сотрудников в 4–6 раз быстрее",
+        "Окупаемость за 1 месяц"
+      ],
+      categories: ["Автоматизация процессов и данных", "AI-ассистенты для бизнеса"],
+      link: "/case-studies/doc-search"
     }
   ];
 
@@ -445,6 +474,17 @@ const CasesPage = () => {
                     ))}
                   </ul>
                 </div>
+
+                {/* Link to detailed page */}
+                {caseItem.link && (
+                  <div className="border-t border-gray-100 pt-4 mt-4">
+                    <Button asChild variant="outline" className="w-full">
+                      <Link to={caseItem.link}>
+                        Подробнее <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
