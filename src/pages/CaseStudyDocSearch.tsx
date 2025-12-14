@@ -249,6 +249,30 @@ const CaseStudyDocSearch = () => {
           </div>
         </section>
 
+        {/* Demo Video Section */}
+        <section className="py-12 sm:py-16 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-6 text-center">
+              Как это работает
+            </h2>
+            
+            <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50">
+              <video 
+                className="w-full aspect-video"
+                controls
+                preload="metadata"
+              >
+                <source src="/videos/doc-search-demo.mp4" type="video/mp4" />
+                Ваш браузер не поддерживает воспроизведение видео.
+              </video>
+            </div>
+            
+            <p className="mt-4 text-center text-muted-foreground text-sm">
+              Демонстрация работы системы: от QR-кода до ответа за 3 секунды
+            </p>
+          </div>
+        </section>
+
         {/* Economics Section */}
         <section className="py-12 sm:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
