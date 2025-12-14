@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import TrustAndPosition from "@/components/TrustAndPosition";
@@ -435,45 +434,7 @@ const About = () => {
         </section>}
 
         {/* My Position */}
-        <section ref={positionRef} className="py-10 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className={`section-title text-center mb-12 ${positionAnimation('animate-fade-in-up')}`}>
-              Моя позиция
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-medium text-text-heading mb-3">Независимость</h3>
-                <p className="text-base text-text-body leading-relaxed">
-                  Выбираю решения под задачу, а не под платформу. Архитектура всегда независима — без привязки к вендорам. Для одной компании подходит Perplexity, для другой — Make, для третьей — закрытая LLM. Я работаю на результат, не на комиссионные.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Lightbulb className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-medium text-text-heading mb-3">Инженерность</h3>
-                <p className="text-base text-text-body leading-relaxed">
-                  ИИ — это архитектура, а не эффектность. Я собираю системы, которые живут после моего ухода.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Heart className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-medium text-text-heading mb-3">Человечность</h3>
-                <p className="text-base text-text-body leading-relaxed">
-                  Я объясняю технологии так, что их понимают управленцы и сотрудники. ИИ не должен пугать — он должен помогать.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Quote Block */}
         <section ref={quoteRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
