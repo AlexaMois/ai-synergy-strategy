@@ -377,16 +377,7 @@ const CaseStudyDocSearch = () => {
 
                 <p className="text-sm text-muted-foreground mb-4">Полный контроль над данными</p>
 
-                <div className="bg-muted/50 rounded-lg p-4 text-sm">
-                  <p className="font-medium text-foreground mb-2">Требования к серверу:</p>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• Intel Core i9/Ryzen 9 (12+ ядер)</li>
-                    <li>• 64 ГБ RAM</li>
-                    <li>• 2× RTX 5080/5090</li>
-                    <li>• NVMe SSD 1–2 ТБ</li>
-                    <li>• ОС: АТЛАНТ/D12 или Windows Server</li>
-                  </ul>
-                </div>
+                
 
                 <p className="text-xs text-muted-foreground mt-4">
                   Если сервера нет: готовый ~450–550 тыс. ₽
@@ -408,7 +399,7 @@ const CaseStudyDocSearch = () => {
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Разработка и настройка</span>
-                    <span className="font-semibold">100 000 ₽</span>
+                    <span className="font-semibold">450 000 ₽</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Комплектующие</span>
@@ -416,16 +407,11 @@ const CaseStudyDocSearch = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Ежемесячно</span>
-                    <span className="font-semibold">15 000 ₽/мес</span>
+                    <span className="font-semibold">30 000 ₽/мес</span>
                   </div>
                 </div>
 
-                <div className="bg-primary/5 rounded-lg p-4">
-                  <p className="text-sm font-medium text-foreground mb-1">При делении на 3 компании:</p>
-                  <p className="text-sm text-muted-foreground">
-                    ≈ 40K ₽ (первоначально) + 5K ₽/месяц
-                  </p>
-                </div>
+                
               </div>
             </div>
 
@@ -439,7 +425,7 @@ const CaseStudyDocSearch = () => {
                     <p className="text-sm text-muted-foreground">Добавляет контекст заказов, статусов, данных из вашей системы</p>
                   </div>
                 </div>
-                <div className="text-xl font-bold text-primary">600 000 ₽</div>
+                <div className="text-xl font-bold text-primary">200 000 ₽</div>
               </div>
             </div>
           </div>
