@@ -281,23 +281,25 @@ const CaseStudyDocSearch = () => {
               Как это работает
             </h2>
             
-            <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50">
-              <video 
-                ref={videoRef}
-                className="w-full aspect-video"
-                controls
-                muted
-                playsInline
-                preload="metadata"
-              >
-                <source src="/videos/doc-search-demo.mp4" type="video/mp4" />
-                Ваш браузер не поддерживает воспроизведение видео.
-              </video>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50">
+                <video 
+                  ref={videoRef}
+                  className="w-full aspect-video"
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src="/videos/doc-search-demo.mp4" type="video/mp4" />
+                  Ваш браузер не поддерживает воспроизведение видео.
+                </video>
+              </div>
+              
+              <p className="mt-4 text-center text-muted-foreground text-sm">
+                Демонстрация работы системы: от QR-кода до ответа за 3 секунды
+              </p>
             </div>
-            
-            <p className="mt-4 text-center text-muted-foreground text-sm">
-              Демонстрация работы системы: от QR-кода до ответа за 3 секунды
-            </p>
           </div>
         </section>
 
