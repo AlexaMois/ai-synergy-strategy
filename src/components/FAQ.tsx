@@ -81,7 +81,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4">
         <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           Частые вопросы, <span className="font-semibold">честные ответы</span>
