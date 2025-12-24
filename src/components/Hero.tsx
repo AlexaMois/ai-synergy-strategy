@@ -233,128 +233,142 @@ const Hero = () => {
 
         {/* Mobile Dropdown */}
         <div className="lg:hidden mb-6">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-full flex items-center justify-between px-5 py-3.5 bg-muted/10 border border-border/20 rounded-lg text-left transition-all duration-200 hover:border-primary/30"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-[11px] font-medium text-primary tabular-nums">{formatNumber(currentIndex + 1)}</span>
-              <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
-            </div>
-            <ChevronDown className={cn(
-              "w-4 h-4 text-muted-foreground transition-transform duration-300",
-              mobileMenuOpen && "rotate-180"
-            )} />
-          </button>
-          
-          {mobileMenuOpen && (
-            <div className="mt-2 bg-muted/5 border border-border/20 rounded-lg overflow-hidden animate-fade-in">
-              {solutions.map((solution, index) => (
-                <button
-                  key={solution.id}
-                  onClick={() => handleSolutionSelect(solution.id)}
-                  className={cn(
-                    "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center justify-between border-b border-border/10 last:border-b-0",
-                    activeSolution === solution.id
-                      ? "bg-primary/8 border-l-[3px] border-l-primary"
-                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent"
-                  )}
-                >
-                  <span className={cn(
-                    "text-sm",
-                    activeSolution === solution.id ? "text-foreground font-semibold" : "text-foreground/80"
-                  )}>
-                    {solution.menuTitle}
-                  </span>
-                  <span className={cn(
-                    "text-[11px] font-medium tabular-nums",
-                    activeSolution === solution.id ? "text-primary" : "text-muted-foreground/30"
-                  )}>
-                    {formatNumber(index + 1)}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
+          <div className="bg-card rounded-xl shadow-card gradient-border-hover">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="w-full flex items-center justify-between px-5 py-4 text-left"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-semibold text-primary tabular-nums">{formatNumber(currentIndex + 1)}</span>
+                <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
+              </div>
+              <ChevronDown className={cn(
+                "w-4 h-4 text-muted-foreground transition-transform duration-300",
+                mobileMenuOpen && "rotate-180"
+              )} />
+            </button>
+            
+            {mobileMenuOpen && (
+              <div className="border-t border-border/10 animate-fade-in">
+                {solutions.map((solution, index) => (
+                  <button
+                    key={solution.id}
+                    onClick={() => handleSolutionSelect(solution.id)}
+                    className={cn(
+                      "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/5 last:border-b-0",
+                      activeSolution === solution.id
+                        ? "bg-primary/8"
+                        : "hover:bg-muted/10"
+                    )}
+                  >
+                    <span className={cn(
+                      "text-xs font-semibold tabular-nums shrink-0 w-5",
+                      activeSolution === solution.id ? "text-primary" : "text-muted-foreground/40"
+                    )}>
+                      {formatNumber(index + 1)}
+                    </span>
+                    <span className={cn(
+                      "text-sm flex-1",
+                      activeSolution === solution.id ? "text-foreground font-semibold" : "text-foreground/80"
+                    )}>
+                      {solution.menuTitle}
+                    </span>
+                    {activeSolution === solution.id && (
+                      <span className="text-xs font-semibold text-primary tabular-nums">
+                        {formatNumber(index + 1)}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Two Column Layout - Fixed left, fluid right */}
-        <div className="flex flex-col lg:flex-row gap-0">
+        {/* Two Column Layout */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           
-          {/* Left Sidebar - Premium Navigation Pills */}
+          {/* Left Sidebar - Premium Navigation Card */}
           <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
-            <div className="w-full py-0 flex flex-col gap-2">
-              {solutions.map((solution, index) => (
-                <button
-                  key={solution.id}
-                  onClick={() => setActiveSolution(solution.id)}
-                  className={cn(
-                    "w-full text-left px-5 py-3.5 transition-all duration-200 group flex items-center justify-between cursor-pointer rounded-lg",
-                    activeSolution === solution.id
-                      ? "bg-primary/8 border-l-[3px] border-l-primary"
-                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent hover:border-l-primary/20"
-                  )}
-                >
-                  <span className={cn(
-                    "text-[13px] transition-colors leading-tight truncate pr-3",
-                    activeSolution === solution.id
-                      ? "text-foreground font-semibold"
-                      : "text-foreground/80 group-hover:text-foreground"
-                  )}>
-                    {solution.menuTitle}
-                  </span>
-                  <span className={cn(
-                    "text-[11px] font-medium tabular-nums transition-colors shrink-0",
-                    activeSolution === solution.id
-                      ? "text-primary"
-                      : "text-muted-foreground/30 group-hover:text-muted-foreground/50"
-                  )}>
-                    {formatNumber(index + 1)}
-                  </span>
-                </button>
-              ))}
+            <div className="bg-card rounded-xl shadow-card gradient-border-hover p-3">
+              <div className="flex flex-col gap-1">
+                {solutions.map((solution, index) => (
+                  <button
+                    key={solution.id}
+                    onClick={() => setActiveSolution(solution.id)}
+                    className={cn(
+                      "w-full text-left px-4 py-3 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-lg",
+                      activeSolution === solution.id
+                        ? "bg-primary/8"
+                        : "hover:bg-muted/10"
+                    )}
+                  >
+                    <span className={cn(
+                      "text-xs font-semibold tabular-nums transition-colors shrink-0 w-5",
+                      activeSolution === solution.id
+                        ? "text-primary"
+                        : "text-muted-foreground/40 group-hover:text-muted-foreground/60"
+                    )}>
+                      {formatNumber(index + 1)}
+                    </span>
+                    <span className={cn(
+                      "text-[13px] transition-colors leading-tight flex-1",
+                      activeSolution === solution.id
+                        ? "text-foreground font-semibold"
+                        : "text-foreground/80 group-hover:text-foreground"
+                    )}>
+                      {solution.menuTitle}
+                    </span>
+                    {activeSolution === solution.id && (
+                      <span className="text-xs font-semibold text-primary tabular-nums shrink-0">
+                        {formatNumber(index + 1)}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
           </nav>
 
-          {/* Right Content Panel - Takes All Remaining Space */}
+          {/* Right Content Panel */}
           <div className="flex-1 min-w-0">
-            <div className="bg-background/60 border border-border/15 rounded-2xl lg:rounded-l-none lg:border-l-0 pt-0 px-6 sm:px-8 lg:px-10 pb-6 h-full flex flex-col">
+            <div className="bg-card rounded-xl shadow-card gradient-border-hover p-6 sm:p-8 h-full flex flex-col">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-3 lg:pb-4">
+                <div className="pb-4 lg:pb-5">
                   <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm lg:text-base text-foreground leading-relaxed max-w-[70ch]">
+                  <p className="text-sm lg:text-base text-foreground/80 leading-relaxed max-w-[70ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
-                {/* Block 2 & 3: Problems + How It Works - Side by Side */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 py-3 lg:py-4 border-t border-border/10">
-                  {/* Block 2: Problems */}
+                {/* 4-Column Grid: Problems | How It Works | Example | Result */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 py-4 lg:py-5 border-t border-border/10">
+                  {/* Column 1: Problems */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-destructive/70 uppercase tracking-[0.15em] mb-3">
                       Что идёт не так
                     </h3>
                     <ul className="space-y-2.5">
                       {currentSolution.problems.map((problem, index) => (
                         <li key={index} className="flex items-start gap-2.5">
-                          <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
+                          <span className="w-4 h-4 rounded-full bg-destructive/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-destructive/60" />
                           </span>
-                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                          <span className="text-foreground/90 leading-relaxed text-[13px]">{problem}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Block 3: How It Works */}
+                  {/* Column 2: How It Works */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-primary/70 uppercase tracking-[0.15em] mb-3">
                       Как работает
                     </h3>
                     <ul className="space-y-2.5">
@@ -363,35 +377,35 @@ const Hero = () => {
                           <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                           </span>
-                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                          <span className="text-foreground/90 leading-relaxed text-[13px]">{step}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
 
-                {/* Block 4: Example + Result */}
-                <div className="py-3 lg:py-4 border-t border-border/10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+                  {/* Column 3: Example */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.15em] mb-3">
                       Пример
                     </h3>
-                    <p className="text-[13px] text-foreground/80 italic leading-relaxed">
+                    <p className="text-[13px] text-foreground/70 italic leading-relaxed">
                       "{currentSolution.example}"
                     </p>
                   </div>
+
+                  {/* Column 4: Result */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.15em] mb-3">
                       Результат
                     </h3>
-                    <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
+                    <p className="text-[13px] font-medium text-foreground leading-relaxed">
                       {currentSolution.result}
                     </p>
                   </div>
                 </div>
 
-                {/* Block 5: CTA Zone */}
-                <div className="pt-3 lg:pt-4 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                {/* CTA Zone */}
+                <div className="pt-4 lg:pt-5 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 mt-auto">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
