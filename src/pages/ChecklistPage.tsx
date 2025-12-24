@@ -84,7 +84,7 @@ const ChecklistPage = () => {
         {/* Header with Download Button */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
           <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-text-heading mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-2">
               ЧЕК-ЛИСТ
             </h1>
             <p className="text-xl md:text-2xl text-primary font-medium">
@@ -100,28 +100,28 @@ const ChecklistPage = () => {
         {/* Content for PDF export */}
         <div id="checklist-content" className="space-y-12">
           {/* Author Info */}
-          <div className="flex items-center gap-6 bg-gray-50 p-4 sm:p-6 rounded-lg">
+          <div className="flex items-center gap-6 bg-muted p-4 sm:p-6 rounded-lg">
             <OptimizedImage 
               src={alexandraPortrait} 
               alt="Александра Моисеева" 
               className="w-20 h-20 rounded-full object-cover"
             />
             <div>
-              <p className="text-lg font-medium text-text-heading">
+              <p className="text-lg font-medium text-foreground">
                 Автор: Александра Моисеева
               </p>
-              <p className="text-text-body">
+              <p className="text-muted-foreground">
                 независимый стратег по внедрению ИИ
               </p>
             </div>
           </div>
 
           {/* Introduction */}
-          <section className="bg-primary-light p-4 sm:p-6 md:p-8 rounded-lg">
-            <h2 className="text-2xl font-medium text-text-heading mb-4">
+          <section className="bg-primary/10 p-4 sm:p-6 md:p-8 rounded-lg">
+            <h2 className="text-2xl font-medium text-foreground mb-4">
               Вступление
             </h2>
-            <div className="space-y-4 text-text-body leading-relaxed">
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Во многих компаниях ИИ появляется точечно: отдельные пилоты, единичные боты, разрозненные эксперименты.
               </p>
@@ -136,12 +136,12 @@ const ChecklistPage = () => {
 
           {/* Questions */}
           <section>
-            <h2 className="text-2xl font-medium text-text-heading mb-8">
+            <h2 className="text-2xl font-medium text-foreground mb-8">
               10 ключевых вопросов, которые стоит задать себе перед внедрением ИИ
             </h2>
             <div className="space-y-6">
               {questions.map((item) => (
-                <div key={item.number} className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow">
+                <div key={item.number} className="bg-card border border-border rounded-lg p-4 sm:p-6 hover:shadow-card transition-shadow">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                       <span className="text-xl font-semibold text-white">
@@ -149,10 +149,10 @@ const ChecklistPage = () => {
                       </span>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-medium text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-foreground mb-3">
                         {item.question}
                       </h3>
-                      <p className="text-text-body leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed">
                         {item.answer}
                       </p>
                     </div>
@@ -163,38 +163,38 @@ const ChecklistPage = () => {
           </section>
 
           {/* What to Do Next */}
-          <section className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg">
-            <h2 className="text-2xl font-medium text-text-heading mb-4">
+          <section className="bg-muted p-4 sm:p-6 md:p-8 rounded-lg">
+            <h2 className="text-2xl font-medium text-foreground mb-4">
               Что делать дальше
             </h2>
-            <p className="text-text-body leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-6">
               Если больше чем на три вопроса у вас нет чётких ответов — это сигнал, что начинать стоит не с выбора технологий, а с диагностики процессов и экономики.
             </p>
           </section>
 
           {/* Author's Recommendation */}
-          <section className="bg-primary-light p-4 sm:p-6 md:p-8 rounded-lg">
-            <h2 className="text-2xl font-medium text-text-heading mb-4">
+          <section className="bg-primary/10 p-4 sm:p-6 md:p-8 rounded-lg">
+            <h2 className="text-2xl font-medium text-foreground mb-4">
               Рекомендация от автора
             </h2>
-            <p className="text-text-body leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-6">
               Перед внедрением ИИ я провожу экспресс-аудит процессов. Он помогает увидеть:
             </p>
             <ul className="space-y-3 mb-6">
-              <li className="flex items-start gap-3 text-text-body">
+              <li className="flex items-start gap-3 text-muted-foreground">
                 <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span>где ИИ может дать быстрый эффект;</span>
               </li>
-              <li className="flex items-start gap-3 text-text-body">
+              <li className="flex items-start gap-3 text-muted-foreground">
                 <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span>где скрыты риски и ограничения;</span>
               </li>
-              <li className="flex items-start gap-3 text-text-body">
+              <li className="flex items-start gap-3 text-muted-foreground">
                 <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span>какие решения принесут реальную экономию и управляемый результат.</span>
               </li>
             </ul>
-            <p className="text-text-body leading-relaxed mb-8">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               По итогам вы получаете прозрачную картину и понятный план, с которого имеет смысл начинать внедрение.
             </p>
             <Button size="lg" asChild>

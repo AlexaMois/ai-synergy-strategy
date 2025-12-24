@@ -35,10 +35,9 @@ const WhoIAm = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Левая колонка - большая карточка */}
         <div 
-          className={`rounded-2xl p-4 sm:p-6 flex items-center justify-center shadow-card transition-all duration-700 delay-75 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ backgroundColor: 'hsl(var(--gray-50))' }}
+          className={`rounded-2xl p-4 sm:p-6 flex items-center justify-center shadow-soft transition-all duration-700 delay-75 border border-border hover:shadow-card ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} bg-muted`}
         >
-          <p className="text-lg leading-relaxed text-text-heading font-normal">
+          <p className="text-lg leading-relaxed text-foreground font-normal">
             Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
             15 лет — в управлении, финансах, операционке.<br/><br/>
             Знаю, как устроены процессы изнутри — не по презентациям.
@@ -50,13 +49,12 @@ const WhoIAm = () => {
           {rightCards.map((card, index) => (
             <div
               key={index}
-              className={`rounded-2xl p-6 shadow-card transition-all duration-700 hover:shadow-hover hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`rounded-2xl p-6 shadow-soft transition-all duration-700 hover:shadow-card hover:bg-primary/10 border border-border ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} bg-muted`}
               style={{ 
-                backgroundColor: 'hsl(var(--gray-50))',
                 transitionDelay: `${150 + index * 75}ms`
               }}
             >
-              <p className="text-lg text-text-heading font-normal leading-relaxed">
+              <p className="text-lg text-foreground font-normal leading-relaxed">
                 {card.title}
               </p>
             </div>

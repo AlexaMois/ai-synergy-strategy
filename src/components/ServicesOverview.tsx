@@ -84,7 +84,7 @@ const ServicesOverview = () => {
               return (
                 <div
                   key={index}
-                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card transition-all duration-300 hover:shadow-hover hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`bg-muted rounded-2xl p-6 shadow-soft transition-all duration-300 hover:shadow-card hover:bg-primary/10 border border-border ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
                     animationDelay: `${index * 0.1}s`
                   }}
@@ -94,11 +94,11 @@ const ServicesOverview = () => {
                       <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
                     </div>
                     
-                    <h3 className="text-xl font-medium text-text-heading mb-3 leading-tight">
+                    <h3 className="text-xl font-medium text-foreground mb-3 leading-tight">
                       {service.title}
                     </h3>
                     
-                    <p className="text-base text-text-body leading-relaxed mb-4">
+                    <p className="text-base text-muted-foreground leading-relaxed mb-4">
                       {service.description}
                     </p>
                     
@@ -119,7 +119,7 @@ const ServicesOverview = () => {
                           return (
                             <div key={i} className="flex items-start gap-2">
                               <IconComponent className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                              <span className="text-sm text-text-body leading-snug">{price}</span>
+                              <span className="text-sm text-muted-foreground leading-snug">{price}</span>
                             </div>
                           );
                         })}
@@ -129,12 +129,12 @@ const ServicesOverview = () => {
                     {/* Details list */}
                     {service.details && (
                       <div className="mb-4">
-                        <p className="text-sm font-medium text-text-heading mb-2">
+                        <p className="text-sm font-medium text-foreground mb-2">
                           {service.detailsTitle}
                         </p>
                         <ul className="space-y-1.5">
                           {service.details.map((detail, i) => (
-                            <li key={i} className="text-sm text-text-body leading-snug flex items-start gap-2">
+                            <li key={i} className="text-sm text-muted-foreground leading-snug flex items-start gap-2">
                               <ArrowRight className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
                               <span>{detail}</span>
                             </li>

@@ -61,7 +61,7 @@ const HowIWorkProcess = () => {
             <h2 className="section-title text-center leading-tight">
               Как я работаю с компаниями, <span className="font-semibold">три этапа</span>
             </h2>
-            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+            <div className="w-24 h-px bg-border mx-auto"></div>
           </div>
 
           {/* Cards Grid */}
@@ -71,17 +71,14 @@ const HowIWorkProcess = () => {
               return (
                 <div
                   key={index}
-                  className={`p-4 sm:p-6 rounded-[20px] shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${getStaggeredClass(index + 1)}`}
-                  style={{
-                    backgroundColor: 'hsl(var(--gray-50))'
-                  }}
+                  className={`p-4 sm:p-6 rounded-[20px] shadow-soft transition-all duration-300 hover:shadow-card hover:bg-primary/10 border border-border bg-muted ${getStaggeredClass(index + 1)}`}
                 >
                   {/* Icon - minimal business style */}
                   <div className="flex justify-center mb-6">
                     <Icon className="w-9 h-9" style={{ color: '#49BED8' }} strokeWidth={1.5} />
                   </div>
                   
-                  <h3 className="text-2xl font-medium mb-3 text-text-heading text-center">
+                  <h3 className="text-2xl font-medium mb-3 text-foreground text-center">
                     {card.title}
                   </h3>
                   <p className="text-handwriting mb-3">
@@ -89,7 +86,7 @@ const HowIWorkProcess = () => {
                   </p>
                   <ul className="space-y-2 mb-4">
                     {card.points.map((point, idx) => (
-                      <li key={idx} className="text-lg text-text-body leading-relaxed flex">
+                      <li key={idx} className="text-lg text-muted-foreground leading-relaxed flex">
                         <span className="mr-2">•</span>
                         <span>{point}</span>
                       </li>
@@ -107,9 +104,9 @@ const HowIWorkProcess = () => {
 
           {/* CTA Block */}
           <div 
-            className={`text-center p-10 rounded-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)] bg-white gradient-border gradient-border-hover ${getStaggeredClass(4)}`}
+            className={`text-center p-10 rounded-[24px] shadow-soft bg-card border border-border hover:shadow-card ${getStaggeredClass(4)}`}
           >
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-text-heading">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-foreground">
               Узнать, что можно автоматизировать в вашей компании
             </h3>
             <div className="flex flex-col gap-2 items-center">

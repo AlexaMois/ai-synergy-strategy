@@ -130,7 +130,7 @@ const About = () => {
         <AIFramework />
 
         {/* Brief About Me - Collapsible */}
-        <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        <section className="py-10 md:py-16 lg:py-20 bg-muted">
           <div className="container mx-auto px-4 max-w-4xl">
             <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
@@ -254,19 +254,19 @@ const About = () => {
         </section>
 
         {/* Engineering Path - temporarily hidden */}
-        {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-muted">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
             </h2>
-            <p className={`text-lg text-text-body text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
+            <p className={`text-lg text-muted-foreground text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
               animationDelay: '0.1s'
             }}>
               Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
               За последние 3 года я вложила 2000+ часов в специализированное образование.
             </p>
             
-            <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
+            <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
               <div className="space-y-8">
                 {/* Education Section */}
                 <div>
@@ -281,8 +281,8 @@ const About = () => {
                     </div>
 
                     <div>
-                      <p className="font-medium text-text-heading mb-2">SDS KAEO — уровень 5 (максимальный)</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">SDS KAEO — уровень 5 (максимальный)</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• Это не просто сертификат, это квалификация специалиста высшей категории</li>
                         <li>• Включает: архитектуру, безопасность, управление проектами</li>
                         <li>• Переаттестация каждый год (нужно доказывать, что я в теме)</li>
@@ -290,8 +290,8 @@ const About = () => {
                     </div>
 
                     <div>
-                      <p className="font-medium text-text-heading mb-2">Диплом на тему «Управление ИИ в малом бизнесе»</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">Диплом на тему «Управление ИИ в малом бизнесе»</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• На основе реального проекта Крайпотребсоюза</li>
                         <li>• Исследование: как ИИ меняет управление малым предприятием</li>
                         <li>• Практический результат: ROI 278% (подтверждено)</li>
@@ -299,8 +299,8 @@ const About = () => {
                     </div>
 
                     <div>
-                      <p className="font-medium text-text-heading mb-2">Специализированные курсы (последние 12 месяцев):</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">Специализированные курсы (последние 12 месяцев):</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• Инженерия подсказок: продвинутый уровень (от OpenAI и Anthropic)</li>
                         <li>• Продвинутые архитектуры поиска и генерации (Coursera)</li>
                         <li>• Multi-Agent Systems (учебная сеть)</li>
@@ -310,7 +310,7 @@ const About = () => {
 
                     <div className="mt-4 p-4 bg-primary/10 rounded-lg">
                       <p className="font-medium mb-2">Почему это важно?</p>
-                      <p className="text-sm text-text-body">
+                      <p className="text-sm text-muted-foreground">
                         Образование — это не «я прошла курс». Это постоянное совершенствование.
                         Каждый новый инструмент, каждая функция от OpenAI — я изучаю.
                         Это значит, что мой совет всегда свежий, не из 2023 года.
