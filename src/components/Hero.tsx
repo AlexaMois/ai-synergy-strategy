@@ -279,11 +279,11 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16 items-stretch">
           
           {/* Left Sidebar - Navigation Panel */}
-          <nav className="hidden lg:block lg:col-span-4 xl:col-span-3 self-stretch">
-            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2 h-full">
+          <nav className="hidden lg:flex lg:col-span-4 xl:col-span-3">
+            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2 w-full h-full flex flex-col">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
