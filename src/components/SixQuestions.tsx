@@ -47,10 +47,10 @@ const SixQuestions = () => {
       <div className="container mx-auto px-4 max-w-[1200px]">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-text-heading leading-tight mb-4">
+          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-foreground leading-tight mb-4">
             6 вопросов, <span className="font-semibold">которые разделяют выгоду от пустой траты</span>
           </h2>
-          <p className="text-base sm:text-lg text-text-body max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             С этого начинается честный расчёт ROI
           </p>
         </div>
@@ -59,7 +59,7 @@ const SixQuestions = () => {
           {questions.map((question, index) => (
             <div
               key={question.number}
-              className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 shadow-card hover:shadow-hover gradient-border-gray transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 ${
+              className={`bg-muted rounded-2xl p-6 shadow-soft hover:shadow-card border border-border transition-all duration-300 hover:bg-primary/10 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{
@@ -70,11 +70,11 @@ const SixQuestions = () => {
                 <span className="text-4xl font-bold text-primary leading-none">
                   {question.number}
                 </span>
-                <h3 className="text-lg font-semibold text-text-heading leading-tight">
+                <h3 className="text-lg font-semibold text-foreground leading-tight">
                   {question.title}
                 </h3>
               </div>
-              <p className="text-base text-text-body leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {question.text}
               </p>
             </div>
