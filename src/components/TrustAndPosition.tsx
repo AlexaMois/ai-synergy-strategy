@@ -52,7 +52,7 @@ const TrustAndPosition = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
                 {/* Карточка 1 */}
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs border border-border hover-lift ${getStaggeredClass(0)}`}>
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(0)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Реальная польза
                   </p>
@@ -60,7 +60,7 @@ const TrustAndPosition = () => {
 а где превращается в лишние затраты</p>
                 </div>
                 
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs border border-border hover-lift ${getStaggeredClass(1)}`}>
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(1)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
                   </p>
@@ -70,7 +70,7 @@ const TrustAndPosition = () => {
                 </div>
                 
                 {/* Карточка 3 */}
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs border border-border hover-lift ${getStaggeredClass(2)}`}>
+                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(2)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Профессиональное признание
                   </p>
@@ -83,7 +83,7 @@ const TrustAndPosition = () => {
                 </div>
                 
                 {/* Карточка 4 */}
-                <div ref={counterRef as any} className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs border border-border hover-lift ${getStaggeredClass(3)}`}>
+                <div ref={counterRef as any} className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(3)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Проверенная эффективность
                   </p>
@@ -104,7 +104,7 @@ const TrustAndPosition = () => {
               </div>
 
               <div className="space-y-4">
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft border border-border hover-lift ${getStaggeredClass(4)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(4)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <Target className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -116,7 +116,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft border border-border hover-lift ${getStaggeredClass(5)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(5)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <TrendingUp className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -128,7 +128,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft border border-border hover-lift ${getStaggeredClass(6)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(6)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <MessageCircle className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -140,7 +140,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft border border-border hover-lift ${getStaggeredClass(7)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(7)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <Search className="w-6 h-6 text-primary-foreground" />
                   </div>
