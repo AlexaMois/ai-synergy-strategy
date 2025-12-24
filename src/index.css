@@ -30,7 +30,7 @@
     
     /* Muted - for subtle backgrounds */
     --muted: 216 14% 95%;             /* #F1F3F6 */
-    --muted-foreground: 215 16% 47%;  /* #64748B */
+    --muted-foreground: 0 0% 42%;     /* #6B6B6B - нейтральный серый */
     
     --accent: 192 63% 57%;
     --accent-foreground: 0 0% 100%;
