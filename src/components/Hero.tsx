@@ -215,14 +215,14 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-16 lg:pt-20 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
+    <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
       {/* Minimal background */}
       <div className="absolute inset-0 bg-white" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header - Compact */}
-        <div className="mb-4 lg:mb-6 pb-3 lg:pb-4 border-b border-border/20">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-2 tracking-tight">
+        {/* Header - With more top spacing */}
+        <div className="mb-6 lg:mb-10 pb-4 lg:pb-6 border-b border-border/10">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
@@ -235,11 +235,11 @@ const Hero = () => {
         <div className="lg:hidden mb-6">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-full flex items-center justify-between px-4 py-3 bg-muted/20 border border-border/20 rounded-xl text-left transition-all duration-200 hover:border-primary/30"
+            className="w-full flex items-center justify-between px-5 py-3.5 bg-muted/10 border border-border/20 rounded-lg text-left transition-all duration-200 hover:border-primary/30"
           >
             <div className="flex items-center gap-3">
-              <span className="text-xs font-medium text-primary/70">{formatNumber(currentIndex + 1)}</span>
-              <span className="font-medium text-foreground text-sm">{currentSolution.menuTitle}</span>
+              <span className="text-[11px] font-medium text-primary tabular-nums">{formatNumber(currentIndex + 1)}</span>
+              <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
             </div>
             <ChevronDown className={cn(
               "w-4 h-4 text-muted-foreground transition-transform duration-300",
@@ -248,29 +248,29 @@ const Hero = () => {
           </button>
           
           {mobileMenuOpen && (
-            <div className="mt-2 bg-muted/20 border border-border/20 rounded-xl overflow-hidden animate-fade-in">
+            <div className="mt-2 bg-muted/5 border border-border/20 rounded-lg overflow-hidden animate-fade-in">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => handleSolutionSelect(solution.id)}
                   className={cn(
-                    "w-full px-4 py-3 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/20 last:border-b-0",
+                    "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center justify-between border-b border-border/10 last:border-b-0",
                     activeSolution === solution.id
-                      ? "bg-primary/10"
-                      : "hover:bg-muted/40"
+                      ? "bg-primary/8 border-l-[3px] border-l-primary"
+                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent"
                   )}
                 >
                   <span className={cn(
-                    "text-xs font-medium tabular-nums",
-                    activeSolution === solution.id ? "text-primary" : "text-muted-foreground"
-                  )}>
-                    {formatNumber(index + 1)}
-                  </span>
-                  <span className={cn(
-                    "text-sm truncate",
-                    activeSolution === solution.id ? "text-primary font-medium" : "text-foreground"
+                    "text-sm",
+                    activeSolution === solution.id ? "text-foreground font-semibold" : "text-muted-foreground/80"
                   )}>
                     {solution.menuTitle}
+                  </span>
+                  <span className={cn(
+                    "text-[11px] font-medium tabular-nums",
+                    activeSolution === solution.id ? "text-primary" : "text-muted-foreground/30"
+                  )}>
+                    {formatNumber(index + 1)}
                   </span>
                 </button>
               ))}
@@ -279,35 +279,35 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout - Fixed left, fluid right */}
-        <div className="flex flex-col lg:flex-row gap-0 lg:gap-0">
+        <div className="flex flex-col lg:flex-row gap-0">
           
-          {/* Left Sidebar - Navigation Panel (Fixed Width) */}
-          <nav className="hidden lg:flex w-[280px] xl:w-[300px] flex-shrink-0">
-            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-3 flex flex-col justify-between h-full">
+          {/* Left Sidebar - Premium Navigation Pills */}
+          <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
+            <div className="w-full py-2 flex flex-col gap-2">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => setActiveSolution(solution.id)}
                   className={cn(
-                    "w-full text-left px-4 py-2 transition-all duration-200 group flex items-center justify-between cursor-pointer",
+                    "w-full text-left px-5 py-3.5 transition-all duration-200 group flex items-center justify-between cursor-pointer rounded-lg",
                     activeSolution === solution.id
-                      ? "bg-primary/10 border-l-2 border-l-primary"
-                      : "hover:bg-muted/30 border-l-2 border-l-transparent hover:border-l-primary/30"
+                      ? "bg-primary/8 border-l-[3px] border-l-primary"
+                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent hover:border-l-primary/20"
                   )}
                 >
                   <span className={cn(
-                    "text-[13px] font-medium transition-colors leading-tight truncate pr-2",
+                    "text-[13px] transition-colors leading-tight truncate pr-3",
                     activeSolution === solution.id
-                      ? "text-foreground"
-                      : "text-muted-foreground group-hover:text-foreground"
+                      ? "text-foreground font-semibold"
+                      : "text-muted-foreground/80 group-hover:text-foreground"
                   )}>
                     {solution.menuTitle}
                   </span>
                   <span className={cn(
-                    "text-[10px] font-medium tabular-nums transition-colors shrink-0",
+                    "text-[11px] font-medium tabular-nums transition-colors shrink-0",
                     activeSolution === solution.id
                       ? "text-primary"
-                      : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                      : "text-muted-foreground/30 group-hover:text-muted-foreground/50"
                   )}>
                     {formatNumber(index + 1)}
                   </span>
@@ -318,14 +318,14 @@ const Hero = () => {
 
           {/* Right Content Panel - Takes All Remaining Space */}
           <div className="flex-1 min-w-0">
-            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-6 sm:p-8 lg:p-10 xl:p-12 h-full flex flex-col">
+            <div className="bg-background/60 border border-border/15 rounded-2xl lg:rounded-l-none lg:border-l-0 p-8 sm:p-10 lg:p-12 xl:p-14 h-full flex flex-col">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-4">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-1.5 leading-[1.2] tracking-tight">
+                <div className="pb-6 lg:pb-8">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
@@ -333,20 +333,20 @@ const Hero = () => {
                   </p>
                 </div>
 
-                {/* Block 2 & 3: Problems + How It Works - Side by Side on XL */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 py-4 lg:py-5 border-t border-border/20">
+                {/* Block 2 & 3: Problems + How It Works - Side by Side */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 py-6 lg:py-8 border-t border-border/10">
                   {/* Block 2: Problems */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
                       Что идёт не так
                     </h3>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2.5">
                       {currentSolution.problems.map((problem, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="w-3.5 h-3.5 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                        <li key={index} className="flex items-start gap-2.5">
+                          <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
                           </span>
-                          <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                          <span className="text-muted-foreground/90 leading-relaxed text-[13px] lg:text-sm">{problem}</span>
                         </li>
                       ))}
                     </ul>
@@ -354,37 +354,34 @@ const Hero = () => {
 
                   {/* Block 3: How It Works */}
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
                       Как работает
                     </h3>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2.5">
                       {currentSolution.howItWorks.map((step, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="w-3.5 h-3.5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <li key={index} className="flex items-start gap-2.5">
+                          <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                           </span>
-                          <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                          <span className="text-muted-foreground/90 leading-relaxed text-[13px] lg:text-sm">{step}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
 
-                {/* Spacer to push content down */}
-                
-
                 {/* Block 4: Example + Result */}
-                <div className="py-4 lg:py-5 border-t border-border/20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+                <div className="py-6 lg:py-8 border-t border-border/10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
                       Пример
                     </h3>
-                    <p className="text-[13px] text-muted-foreground italic leading-relaxed">
+                    <p className="text-[13px] text-muted-foreground/80 italic leading-relaxed">
                       "{currentSolution.example}"
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
                       Результат
                     </h3>
                     <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
@@ -394,7 +391,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 5: CTA Zone */}
-                <div className="pt-4 lg:pt-6 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                <div className="pt-6 lg:pt-8 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
