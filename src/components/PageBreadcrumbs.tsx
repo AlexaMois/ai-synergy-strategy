@@ -9,9 +9,9 @@ const PageBreadcrumbs = ({ currentPage }: PageBreadcrumbsProps) => {
   const location = useLocation();
   
   return (
-    <nav className="py-4 bg-background border-b border-[#E6EAEC]" aria-label="breadcrumb">
+    <nav className="py-4 bg-background border-b border-border" aria-label="breadcrumb">
       <div className="container mx-auto px-4 max-w-6xl">
-        <ol className="flex items-center gap-2 text-sm text-[#6A6A6A]">
+        <ol className="flex items-center gap-2 text-sm text-foreground">
           <li>
             <Link 
               to="/" 

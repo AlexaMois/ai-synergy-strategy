@@ -242,14 +242,14 @@ const ServicesDetailed = () => {
                             {section.heading}
                           </h4>
                           {section.content && (
-                            <p className="text-base text-muted-foreground leading-relaxed whitespace-pre-line">
+                            <p className="text-base text-foreground leading-relaxed whitespace-pre-line">
                               {section.content}
                             </p>
                           )}
                           {section.list && (
                             <ul className="space-y-2 ml-4">
                               {section.list.map((item, itemIndex) => (
-                                <li key={itemIndex} className="text-base text-muted-foreground leading-relaxed flex">
+                                <li key={itemIndex} className="text-base text-foreground leading-relaxed flex">
                                   <span className="mr-2 text-primary flex-shrink-0">—</span>
                                   <span>{item}</span>
                                 </li>

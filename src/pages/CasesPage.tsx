@@ -380,7 +380,7 @@ const CasesPage = () => {
             <h1 className="section-title mb-4">
               Кейсы и результаты, <span className="font-semibold">измеримый эффект</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-foreground max-w-3xl mx-auto">
               Реальные примеры аудита процессов, автоматизации и ИИ-решений для бизнеса
             </p>
           </div>
@@ -398,7 +398,7 @@ const CasesPage = () => {
                     transition-all duration-300 ease-out
                     ${isActive
                       ? 'bg-primary text-primary-foreground border-primary shadow-md' 
-                      : 'bg-card text-muted-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary'
+                      : 'bg-card text-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary'
                     }
                   `}
                 >
@@ -427,24 +427,24 @@ const CasesPage = () => {
 
                 {/* Meta Information */}
                 <div className="space-y-2 mb-4">
-                  <p className="text-sm text-muted-foreground">
-                    <span className="text-muted-foreground/70">Для кого:</span> {caseItem.targetAudience}
+                  <p className="text-sm text-foreground">
+                    <span className="text-foreground/70">Для кого:</span> {caseItem.targetAudience}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    <span className="text-muted-foreground/70">Отрасль:</span> {caseItem.industry}
+                  <p className="text-sm text-foreground">
+                    <span className="text-foreground/70">Отрасль:</span> {caseItem.industry}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    <span className="text-muted-foreground/70">Стоимость:</span> {caseItem.price}
+                  <p className="text-sm text-foreground">
+                    <span className="text-foreground/70">Стоимость:</span> {caseItem.price}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    <span className="text-muted-foreground/70">Статус проекта:</span> {caseItem.status}
+                  <p className="text-sm text-foreground">
+                    <span className="text-foreground/70">Статус проекта:</span> {caseItem.status}
                   </p>
                 </div>
 
                 {/* Task */}
                 <div className="border-t border-border pt-4 mt-4">
                   <p className="text-handwriting mb-2">Задача</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-foreground leading-relaxed">
                     {caseItem.task}
                   </p>
                 </div>
@@ -454,7 +454,7 @@ const CasesPage = () => {
                   <p className="text-handwriting mb-2">Что сделали</p>
                   <ul className="space-y-1.5">
                     {caseItem.actions.map((action, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground leading-relaxed flex">
+                      <li key={idx} className="text-sm text-foreground leading-relaxed flex">
                         <span className="text-primary mr-2">•</span>
                         <span>{action}</span>
                       </li>
@@ -467,7 +467,7 @@ const CasesPage = () => {
                   <p className="text-handwriting mb-2">Результаты и эффекты</p>
                   <ul className="space-y-1.5">
                     {caseItem.results.map((result, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground leading-relaxed flex">
+                      <li key={idx} className="text-sm text-foreground leading-relaxed flex">
                         <span className="text-primary mr-2">•</span>
                         <span>{result}</span>
                       </li>

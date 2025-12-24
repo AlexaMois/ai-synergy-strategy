@@ -56,7 +56,7 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Реальная польза
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">Показываю, где ИИ дает измеримый эффект, 
+                  <p className="text-lg text-foreground leading-relaxed">Показываю, где ИИ дает измеримый эффект, 
 а где превращается в лишние затраты</p>
                 </div>
                 
@@ -64,7 +64,7 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-foreground leading-relaxed">
                     Понимаю процессы изнутри и оцениваю решения через экономику компании
                   </p>
                 </div>
@@ -74,7 +74,7 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Профессиональное признание
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">Дипломированный специалист по ИИ <br />
+                  <p className="text-lg text-foreground leading-relaxed">Дипломированный специалист по ИИ <br />
                     Член ОПОРА РОССИИ<br />
                     Член НФИИ<br />
                     Резидент IT Парк Казань<br />
@@ -87,7 +87,7 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Проверенная эффективность
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-foreground leading-relaxed">
                     ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы
                   </p>
                 </div>
@@ -109,7 +109,7 @@ const TrustAndPosition = () => {
                     <Target className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-foreground leading-relaxed">
                       <span className="font-semibold">ИИ инструмент управления</span><br />
                       Он должен усиливать процессы и давать предсказуемый результат
                     </p>
@@ -121,7 +121,7 @@ const TrustAndPosition = () => {
                     <TrendingUp className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-foreground leading-relaxed">
                       <span className="font-semibold">Инженерный подход</span><br />
                       Сначала аудит, анализ, архитектура и экономика, затем технологии и конкретные решения
                     </p>
@@ -133,7 +133,7 @@ const TrustAndPosition = () => {
                     <MessageCircle className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-foreground leading-relaxed">
                       <span className="font-semibold">Честность решения</span><br />
                       Если ИИ не нужен, я скажу об этом сразу. Я инженер по внедрению, а не продавец технологий
                     </p>
@@ -145,7 +145,7 @@ const TrustAndPosition = () => {
                     <Search className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-foreground leading-relaxed">
                       <span className="font-semibold">Индивидуальность решений</span><br />
                       Подбираю решения под контекст компании: только то, что команда действительно будет использовать
                     </p>

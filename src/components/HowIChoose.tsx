@@ -67,7 +67,7 @@ const HowIChoose = () => {
               <div className="space-y-3">
                 <div>
                   <span className="text-xs font-medium text-primary uppercase tracking-wide">Вопрос для вас</span>
-                  <p className="text-muted-foreground text-sm mt-1">{item.question}</p>
+                  <p className="text-foreground text-sm mt-1">{item.question}</p>
                 </div>
                 <div>
                   <span className="text-xs font-medium text-primary uppercase tracking-wide">Что я делаю</span>

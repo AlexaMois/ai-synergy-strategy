@@ -93,7 +93,7 @@ const Blog = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6">
             Разборы и статьи, <span className="font-semibold">практика внедрения ИИ</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-foreground max-w-3xl mx-auto">
             Практичные материалы о внедрении искусственного интеллекта: разборы проектов, методология, аналитика и подходы, которые дают измеримый эффект.
           </p>
         </div>
@@ -133,19 +133,19 @@ const Blog = () => {
                     <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                       {post.category}
                     </span>
-                    <span className="text-xs text-muted-foreground">{post.readTime}</span>
+                    <span className="text-xs text-foreground">{post.readTime}</span>
                   </div>
                   
                   <h3 className="text-xl font-medium text-foreground mb-3 leading-tight">
                     {post.title}
                   </h3>
                   
-                  <p className="text-base text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-base text-foreground mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2 text-sm text-foreground">
                       <Calendar className="h-4 w-4" />
                       <span>{post.date}</span>
                     </div>

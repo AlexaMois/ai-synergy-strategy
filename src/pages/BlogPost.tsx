@@ -119,7 +119,7 @@ const BlogPost = () => {
               <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 {post.category}
               </span>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-4 text-sm text-foreground">
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   {post.date}
@@ -135,13 +135,13 @@ const BlogPost = () => {
               {post.title}
             </h1>
 
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-foreground leading-relaxed">
               {post.excerpt}
             </p>
           </header>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-foreground leading-relaxed mb-8">
               {post.content.intro}
             </p>
 
@@ -150,7 +150,7 @@ const BlogPost = () => {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   {section.heading}
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                <p className="text-lg text-foreground leading-relaxed mb-4">
                   {section.content}
                 </p>
                 {section.list && section.list.length > 0 && (
@@ -158,7 +158,7 @@ const BlogPost = () => {
                     {section.list.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex gap-3">
                         <span className="text-primary mt-1.5">•</span>
-                        <span className="text-base text-muted-foreground">{item}</span>
+                        <span className="text-base text-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -167,7 +167,7 @@ const BlogPost = () => {
             ))}
 
             <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12">
-              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
+              <p className="text-lg text-foreground leading-relaxed font-medium">
                 {post.content.conclusion}
               </p>
             </div>
@@ -178,7 +178,7 @@ const BlogPost = () => {
               <h3 className="text-2xl font-semibold text-foreground mb-4">
                 Хотите внедрить ИИ без ошибок?
               </h3>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-foreground mb-6">
                 Запишитесь на бесплатный экспресс-аудит процессов
               </p>
               <Button size="lg" asChild>
@@ -212,14 +212,14 @@ const BlogPost = () => {
                     <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                       {relatedPost.category}
                     </span>
-                    <span className="text-xs text-muted-foreground">{relatedPost.readTime}</span>
+                    <span className="text-xs text-foreground">{relatedPost.readTime}</span>
                   </div>
                   
                   <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                     {relatedPost.title}
                   </h3>
                   
-                  <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-base text-foreground mb-4 leading-relaxed line-clamp-3">
                     {relatedPost.excerpt}
                   </p>
                   

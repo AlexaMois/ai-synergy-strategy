@@ -43,7 +43,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
           <p className="text-handwriting text-lg sm:text-xl mb-1">
             {caseItem.aboutLabel || 'Клиент:'}
           </p>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          <p className="text-xs sm:text-sm text-foreground leading-relaxed">
             {caseItem.about}
           </p>
         </div>
@@ -55,7 +55,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
           <p className="text-handwriting text-lg sm:text-xl mb-1">
             Ситуация:
           </p>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          <p className="text-xs sm:text-sm text-foreground leading-relaxed">
             {caseItem.situation}
           </p>
         </div>
@@ -72,7 +72,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
           </p>
           <ul className="space-y-1">
             {caseItem.solution.steps.map((step, idx) => (
-              <li key={idx} className="text-xs sm:text-sm text-muted-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
+              <li key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
                 <span className="text-primary mt-0.5">•</span>
                 <span>{step}</span>
               </li>
@@ -87,11 +87,11 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
           <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
             Что говорит клиент:
           </p>
-          <p className="text-xs sm:text-sm italic text-muted-foreground leading-relaxed">
+          <p className="text-xs sm:text-sm italic text-foreground leading-relaxed">
             "{caseItem.quote}"
           </p>
           {caseItem.quoteAuthor && (
-            <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+            <p className="text-[10px] sm:text-xs text-foreground mt-1">
               — {caseItem.quoteAuthor}
             </p>
           )}
