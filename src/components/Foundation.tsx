@@ -60,7 +60,7 @@ const Foundation = () => {
   ];
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-[#F7F8FA]">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2 
           className={`section-title text-center mb-10 md:mb-14 transition-all duration-700 ${
@@ -77,7 +77,7 @@ const Foundation = () => {
               <div key={service.title} className="relative">
                 <DisabledLink 
                   to={service.link}
-                  className={`bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow duration-200 w-full flex flex-col cursor-pointer h-full ${
+                  className={`bg-white rounded-3xl p-4 sm:p-6 shadow-card hover:shadow-lg transition-shadow duration-200 w-full flex flex-col cursor-pointer h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
