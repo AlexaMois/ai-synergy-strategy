@@ -20,26 +20,27 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 13%;
     
-    /* Primary accent - turquoise (preserved) */
-    --primary: 192 63% 57%;           /* #49BED8 */
+    /* Primary accent - turquoise */
+    --primary: 192 63% 57%;           /* #4CBAD6 */
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 192 70% 38%;      /* hover state */
+    --primary-dark: 192 70% 38%;      /* #1D89A4 - hover state */
+    --primary-light: 192 63% 92%;     /* #EAF8FC - light accent background */
     
-    --secondary: 216 14% 95%;         /* #F1F3F6 - surface-2 */
+    --secondary: 216 14% 96%;         /* #F5F6F8 - surface-2 */
     --secondary-foreground: 0 0% 13%;
     
     /* Muted - for subtle backgrounds */
-    --muted: 216 14% 95%;             /* #F1F3F6 */
-    --muted-foreground: 0 0% 42%;     /* #6B6B6B - нейтральный серый */
+    --muted: 216 14% 96%;             /* #F5F6F8 */
+    --muted-foreground: 215 17% 43%;  /* #5A6C82 - благородный серо-синий */
     
     --accent: 192 63% 57%;
     --accent-foreground: 0 0% 100%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 352 49% 57%;       /* #C7535E - приглушённый элегантный красный */
     --destructive-foreground: 0 0% 100%;
     
     /* Borders - neutral, low contrast */
-    --border: 216 14% 91%;            /* #E6EAF0 */
+    --border: 216 14% 91%;            /* #DDE3EA */
     --input: 216 14% 91%;
     --ring: 192 63% 57%;
     
@@ -53,14 +54,14 @@
     
     --radius: 1rem;
     
-    --dark-bg: 220 13% 13%;
+    --dark-bg: 220 15% 10%;           /* #0D1E2C - глубокий тёмный для футера */
     --light-bg: 0 0% 100%;
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* UI-kit shadows - 2 levels only */
-    --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+    /* UI-kit shadows - мягкие и элегантные */
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
