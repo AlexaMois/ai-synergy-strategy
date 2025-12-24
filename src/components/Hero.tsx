@@ -221,7 +221,7 @@ const Hero = () => {
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - With more top spacing */}
-        <div className="mb-6 lg:mb-10 pb-4 lg:pb-6 border-b border-border/10">
+        <div className="mb-4 lg:mb-6 pb-3 lg:pb-4 border-b border-border/10">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
@@ -283,7 +283,7 @@ const Hero = () => {
           
           {/* Left Sidebar - Premium Navigation Pills */}
           <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
-            <div className="w-full py-2 flex flex-col gap-2">
+            <div className="w-full py-0 flex flex-col gap-2">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
@@ -318,13 +318,13 @@ const Hero = () => {
 
           {/* Right Content Panel - Takes All Remaining Space */}
           <div className="flex-1 min-w-0">
-            <div className="bg-background/60 border border-border/15 rounded-2xl lg:rounded-l-none lg:border-l-0 p-8 sm:p-10 lg:p-12 xl:p-14 h-full flex flex-col">
+            <div className="bg-background/60 border border-border/15 rounded-2xl lg:rounded-l-none lg:border-l-0 pt-0 px-6 sm:px-8 lg:px-10 pb-6 h-full flex flex-col">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-6 lg:pb-8">
+                <div className="pb-3 lg:pb-4">
                   <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
@@ -334,7 +334,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 2 & 3: Problems + How It Works - Side by Side */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 py-6 lg:py-8 border-t border-border/10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 py-3 lg:py-4 border-t border-border/10">
                   {/* Block 2: Problems */}
                   <div>
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
@@ -371,7 +371,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 4: Example + Result */}
-                <div className="py-6 lg:py-8 border-t border-border/10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <div className="py-3 lg:py-4 border-t border-border/10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
                   <div>
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
                       Пример
@@ -391,7 +391,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 5: CTA Zone */}
-                <div className="pt-6 lg:pt-8 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                <div className="pt-3 lg:pt-4 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
