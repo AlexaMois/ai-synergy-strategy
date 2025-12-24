@@ -215,7 +215,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-16 lg:pt-20 pb-4 lg:pb-6 overflow-hidden min-h-[60vh] lg:min-h-[65vh] max-h-[70vh]">
+    <section className="relative pt-16 lg:pt-20 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
       {/* Minimal background */}
       <div className="absolute inset-0 bg-background" />
       
@@ -318,7 +318,7 @@ const Hero = () => {
 
           {/* Right Content Panel - Takes All Remaining Space */}
           <div className="flex-1 min-w-0">
-            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-4 sm:p-5 lg:p-6 xl:p-8 h-full flex flex-col">
+            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-6 sm:p-8 lg:p-10 xl:p-12 h-full flex flex-col">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
@@ -334,7 +334,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 2 & 3: Problems + How It Works - Side by Side on XL */}
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-8 py-3 border-t border-border/20">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 py-4 lg:py-5 border-t border-border/20">
                   {/* Block 2: Problems */}
                   <div>
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
@@ -371,10 +371,10 @@ const Hero = () => {
                 </div>
 
                 {/* Spacer to push content down */}
-                <div className="flex-1 min-h-2" />
+                
 
                 {/* Block 4: Example + Result */}
-                <div className="py-3 border-t border-border/20 grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-8">
+                <div className="py-4 lg:py-5 border-t border-border/20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
                   <div>
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
                       Пример
@@ -394,7 +394,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 5: CTA Zone */}
-                <div className="pt-3 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                <div className="pt-4 lg:pt-6 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
