@@ -332,24 +332,29 @@
   
   /* Hover-эффект "всплытия" с тенью */
   .hover-lift {
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
                 box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .hover-lift:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card);
+    transform: translateY(-6px);
+    box-shadow: 
+      0 6px 16px rgba(15, 23, 42, 0.10),
+      0 16px 32px rgba(15, 23, 42, 0.14);
   }
   
-  /* Hover-эффект для карточек - более выраженный */
+  /* Hover-эффект для карточек - ВЫРАЖЕННЫЙ подъём */
   .hover-lift-card {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
                 box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .hover-lift-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-elevated);
+    transform: translateY(-8px);
+    box-shadow: 
+      0 8px 20px rgba(15, 23, 42, 0.12),
+      0 24px 48px rgba(15, 23, 42, 0.18),
+      0 40px 80px rgba(15, 23, 42, 0.12);
   }
   
   /* Анимированные градиентные бордеры для акцентных карточек */

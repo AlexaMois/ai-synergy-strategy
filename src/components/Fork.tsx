@@ -11,7 +11,7 @@ const Fork = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Левая колонка - Продажи */}
           <div
-            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200 ${
+            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-soft hover-lift-card ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
@@ -31,7 +31,7 @@ const Fork = () => {
 
           {/* Правая колонка - Процессы */}
           <div
-            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200 ${
+            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-soft hover-lift-card ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "150ms" }}
