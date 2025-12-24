@@ -558,6 +558,63 @@
     }
   }
   
+  /* Section gradient transitions - плавные переходы между секциями */
+  .section-gradient-top-light {
+    position: relative;
+  }
+  .section-gradient-top-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, hsl(var(--secondary)), transparent);
+    pointer-events: none;
+  }
+  
+  .section-gradient-bottom-light {
+    position: relative;
+  }
+  .section-gradient-bottom-light::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, hsl(var(--secondary)), transparent);
+    pointer-events: none;
+  }
+  
+  .section-gradient-top-bg {
+    position: relative;
+  }
+  .section-gradient-top-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, hsl(var(--background)), transparent);
+    pointer-events: none;
+  }
+  
+  .section-gradient-bottom-bg {
+    position: relative;
+  }
+  .section-gradient-bottom-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, hsl(var(--background)), transparent);
+    pointer-events: none;
+  }
+  
   /* Marquee Animation */
   .marquee-container {
     display: flex;

@@ -60,7 +60,7 @@ const Foundation = () => {
   ];
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background section-gradient-bottom-light">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2 
           className={`section-title text-center mb-10 md:mb-14 transition-all duration-700 ${
