@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Check, ArrowRight } from "lucide-react";
+import { ChevronDown, Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -216,12 +216,12 @@ const Hero = () => {
 
   return (
     <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary" />
+      {/* Light gradient background - airy feel */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/70" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - With more top spacing */}
-        <div className="mb-4 lg:mb-6 pb-3 lg:pb-4 border-b border-border/10">
+        <div className="mb-6 lg:mb-8">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
@@ -231,171 +231,197 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown - Card style */}
         <div className="lg:hidden mb-6">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-full flex items-center justify-between px-5 py-3.5 bg-muted/10 border border-border/20 rounded-lg text-left transition-all duration-200 hover:border-primary/30"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-[11px] font-medium text-primary tabular-nums">{formatNumber(currentIndex + 1)}</span>
-              <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
-            </div>
-            <ChevronDown className={cn(
-              "w-4 h-4 text-muted-foreground transition-transform duration-300",
-              mobileMenuOpen && "rotate-180"
-            )} />
-          </button>
-          
-          {mobileMenuOpen && (
-            <div className="mt-2 bg-muted/5 border border-border/20 rounded-lg overflow-hidden animate-fade-in">
-              {solutions.map((solution, index) => (
-                <button
-                  key={solution.id}
-                  onClick={() => handleSolutionSelect(solution.id)}
-                  className={cn(
-                    "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center justify-between border-b border-border/10 last:border-b-0",
-                    activeSolution === solution.id
-                      ? "bg-primary/8 border-l-[3px] border-l-primary"
-                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent"
-                  )}
-                >
-                  <span className={cn(
-                    "text-sm",
-                    activeSolution === solution.id ? "text-foreground font-semibold" : "text-foreground/80"
-                  )}>
-                    {solution.menuTitle}
-                  </span>
-                  <span className={cn(
-                    "text-[11px] font-medium tabular-nums",
-                    activeSolution === solution.id ? "text-primary" : "text-muted-foreground/30"
-                  )}>
-                    {formatNumber(index + 1)}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
+          <div className="bg-card rounded-xl shadow-soft border border-border/20">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="w-full flex items-center justify-between px-5 py-4 text-left transition-all duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold text-primary tabular-nums bg-primary/10 px-2 py-1 rounded-md">
+                  {formatNumber(currentIndex + 1)}
+                </span>
+                <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
+              </div>
+              <ChevronDown className={cn(
+                "w-4 h-4 text-muted-foreground transition-transform duration-300",
+                mobileMenuOpen && "rotate-180"
+              )} />
+            </button>
+            
+            {mobileMenuOpen && (
+              <div className="border-t border-border/20 animate-fade-in">
+                {solutions.map((solution, index) => (
+                  <button
+                    key={solution.id}
+                    onClick={() => handleSolutionSelect(solution.id)}
+                    className={cn(
+                      "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/10 last:border-b-0",
+                      activeSolution === solution.id
+                        ? "bg-primary/10"
+                        : "hover:bg-muted/30"
+                    )}
+                  >
+                    <span className={cn(
+                      "text-xs font-bold tabular-nums px-2 py-1 rounded-md",
+                      activeSolution === solution.id 
+                        ? "text-primary bg-primary/10" 
+                        : "text-muted-foreground bg-muted/30"
+                    )}>
+                      {formatNumber(index + 1)}
+                    </span>
+                    <span className={cn(
+                      "text-sm",
+                      activeSolution === solution.id ? "text-primary font-semibold" : "text-foreground/80"
+                    )}>
+                      {solution.menuTitle}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Two Column Layout - Fixed left, fluid right */}
-        <div className="flex flex-col lg:flex-row gap-0">
+        {/* Two Column Layout - Separate Cards */}
+        <div className="flex flex-col lg:flex-row gap-6">
           
-          {/* Left Sidebar - Premium Navigation Pills */}
+          {/* Left Sidebar - Navigation Card with Vertical Tabs */}
           <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
-            <div className="w-full py-0 flex flex-col gap-2">
-              {solutions.map((solution, index) => (
-                <button
-                  key={solution.id}
-                  onClick={() => setActiveSolution(solution.id)}
-                  className={cn(
-                    "w-full text-left px-5 py-3.5 transition-all duration-200 group flex items-center justify-between cursor-pointer rounded-lg",
-                    activeSolution === solution.id
-                      ? "bg-primary/8 border-l-[3px] border-l-primary"
-                      : "hover:bg-muted/15 border-l-[3px] border-l-transparent hover:border-l-primary/20"
-                  )}
-                >
-                  <span className={cn(
-                    "text-[13px] transition-colors leading-tight truncate pr-3",
-                    activeSolution === solution.id
-                      ? "text-foreground font-semibold"
-                      : "text-foreground/80 group-hover:text-foreground"
-                  )}>
-                    {solution.menuTitle}
-                  </span>
-                  <span className={cn(
-                    "text-[11px] font-medium tabular-nums transition-colors shrink-0",
-                    activeSolution === solution.id
-                      ? "text-primary"
-                      : "text-muted-foreground/30 group-hover:text-muted-foreground/50"
-                  )}>
-                    {formatNumber(index + 1)}
-                  </span>
-                </button>
-              ))}
+            <div className="bg-card rounded-2xl shadow-soft border border-border/20 p-4">
+              <div className="flex flex-col gap-1">
+                {solutions.map((solution, index) => (
+                  <button
+                    key={solution.id}
+                    onClick={() => setActiveSolution(solution.id)}
+                    className={cn(
+                      "w-full text-left px-4 py-3 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-xl",
+                      activeSolution === solution.id
+                        ? "bg-primary/10"
+                        : "hover:bg-muted/30"
+                    )}
+                  >
+                    <span className={cn(
+                      "text-xs font-bold tabular-nums shrink-0 px-2 py-1 rounded-md transition-colors",
+                      activeSolution === solution.id
+                        ? "text-primary bg-primary/15"
+                        : "text-muted-foreground bg-muted/30 group-hover:bg-muted/50"
+                    )}>
+                      {formatNumber(index + 1)}
+                    </span>
+                    <span className={cn(
+                      "text-[13px] transition-colors leading-tight",
+                      activeSolution === solution.id
+                        ? "text-primary font-semibold"
+                        : "text-foreground/80 group-hover:text-foreground"
+                    )}>
+                      {solution.menuTitle}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           </nav>
 
-          {/* Right Content Panel - Takes All Remaining Space */}
+          {/* Right Content Panel - Description Card */}
           <div className="flex-1 min-w-0">
-            <div className="bg-background/60 border border-border/15 rounded-2xl lg:rounded-l-none lg:border-l-0 pt-0 px-6 sm:px-8 lg:px-10 pb-6 h-full flex flex-col">
+            <div className="bg-card rounded-2xl shadow-card border border-border/20 p-6 lg:p-8 h-full">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-3 lg:pb-4">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
+                <div className="pb-5 lg:pb-6">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-3 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm lg:text-base text-foreground leading-relaxed max-w-[70ch]">
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
-                {/* Block 2 & 3: Problems + How It Works - Side by Side */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 py-3 lg:py-4 border-t border-border/10">
-                  {/* Block 2: Problems */}
-                  <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
-                      Что идёт не так
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {currentSolution.problems.map((problem, index) => (
-                        <li key={index} className="flex items-start gap-2.5">
-                          <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
-                          </span>
-                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
-                        </li>
-                      ))}
-                    </ul>
+                {/* 2-Column Grid with Dividers */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0">
+                  {/* Left Column */}
+                  <div className="space-y-6 lg:pr-8 lg:border-r lg:border-border/15">
+                    {/* Block 2: Problems */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <AlertCircle className="w-4 h-4 text-primary" />
+                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                          Что идёт не так
+                        </h3>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {currentSolution.problems.map((problem, index) => (
+                          <li key={index} className="flex items-start gap-2.5">
+                            <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
+                            </span>
+                            <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Block 4: Example */}
+                    <div className="pt-5 border-t border-border/15">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Quote className="w-4 h-4 text-primary" />
+                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                          Пример
+                        </h3>
+                      </div>
+                      <p className="text-[13px] text-foreground/80 italic leading-relaxed">
+                        "{currentSolution.example}"
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Block 3: How It Works */}
-                  <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-3">
-                      Как работает
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {currentSolution.howItWorks.map((step, index) => (
-                        <li key={index} className="flex items-start gap-2.5">
-                          <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
-                          </span>
-                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Right Column */}
+                  <div className="space-y-6 lg:pl-8">
+                    {/* Block 3: How It Works */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Lightbulb className="w-4 h-4 text-primary" />
+                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                          Как работает
+                        </h3>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {currentSolution.howItWorks.map((step, index) => (
+                          <li key={index} className="flex items-start gap-2.5">
+                            <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
+                            </span>
+                            <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Block 5: Result */}
+                    <div className="pt-5 border-t border-border/15">
+                      <div className="flex items-center gap-2 mb-2">
+                        <TrendingUp className="w-4 h-4 text-primary" />
+                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                          Результат
+                        </h3>
+                      </div>
+                      <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
+                        {currentSolution.result}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Block 4: Example + Result */}
-                <div className="py-3 lg:py-4 border-t border-border/10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-                  <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
-                      Пример
-                    </h3>
-                    <p className="text-[13px] text-foreground/80 italic leading-relaxed">
-                      "{currentSolution.example}"
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
-                      Результат
-                    </h3>
-                    <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
-                      {currentSolution.result}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Block 5: CTA Zone */}
-                <div className="pt-3 lg:pt-4 border-t border-border/10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                {/* Block 6: CTA Zone */}
+                <div className="pt-6 lg:pt-8 mt-6 border-t border-border/15 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                   <Button 
                     onClick={handleCTAClick}
-                    size="default"
-                    className="text-sm px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 font-medium"
+                    size="lg"
+                    className="text-base px-8 py-3 rounded-xl shadow-card hover:shadow-elevated transition-all duration-300 font-semibold"
                   >
                     {currentSolution.ctaText}
                   </Button>
@@ -411,7 +437,7 @@ const Hero = () => {
                   ) : (
                     <button 
                       onClick={handleCTAClick}
-                      className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
                     >
                       Задать вопрос
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
