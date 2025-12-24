@@ -43,7 +43,7 @@ const FloatingCTA = () => {
       }`}
     >
       <Button
-        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark"
+        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl"
         onClick={scrollToContact}
       >
         <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
