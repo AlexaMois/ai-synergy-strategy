@@ -36,7 +36,7 @@ const TrustAndPosition = () => {
   });
 
   return (
-    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-background">
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-slate-50/50 to-white">
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-elevated ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
