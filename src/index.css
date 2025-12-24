@@ -10,8 +10,13 @@
 
 @layer base {
   :root {
-    /* Backgrounds */
-    --background: 220 14% 98%;        /* #F7F8FA - page background */
+    /* 3 Background System */
+    --bg-white: 0 0% 100%;            /* #FFFFFF - чистый белый */
+    --bg-light: 220 14% 98%;          /* #F7F8FA - светло-серый */
+    --bg-dark: 220 30% 9%;            /* #0B1220 - тёмный графит */
+    
+    /* Default background = white */
+    --background: 0 0% 100%;          /* #FFFFFF */
     --foreground: 0 0% 13%;           /* #212121 - main text */
     
     --card: 0 0% 100%;                /* #FFFFFF - surface/cards */
@@ -53,14 +58,14 @@
     
     --radius: 1rem;
     
-    --dark-bg: 220 13% 13%;
+    --dark-bg: 220 30% 9%;            /* Updated to match --bg-dark */
     --light-bg: 0 0% 100%;
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* UI-kit shadows - 2 levels only */
+    /* UI-kit shadows - cards on colored backgrounds */
     --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
