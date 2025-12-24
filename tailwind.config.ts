@@ -85,10 +85,6 @@ export default {
       boxShadow: {
         'soft': 'var(--shadow-soft)',
         'card': 'var(--shadow-card)',
-        'elevated': '0 12px 40px -12px rgba(0,0,0,0.15), 0 4px 20px -8px rgba(73,190,216,0.12)',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       borderRadius: {
         lg: "var(--radius)",
