@@ -199,7 +199,7 @@ const ServicesDetailed = () => {
   ];
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-white">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-card">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <Accordion type="single" collapsible className="space-y-6">
@@ -209,10 +209,10 @@ const ServicesDetailed = () => {
                 <AccordionItem
                   key={service.number}
                   value={service.number}
-                  className={`bg-white rounded-2xl shadow-card hover:shadow-hover transition-all duration-300 border border-border/30 overflow-hidden ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`bg-card border border-border rounded-2xl shadow-soft hover:shadow-card transition-shadow duration-200 overflow-hidden ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{ animationDelay: `${serviceIndex * 0.15}s` }}
                 >
-                  <AccordionTrigger className="px-6 py-6 sm:px-8 sm:py-8 hover:no-underline hover:bg-primary-light/10 transition-colors [&[data-state=open]]:bg-primary-light/20">
+                  <AccordionTrigger className="px-6 py-6 sm:px-8 sm:py-8 hover:no-underline hover:bg-primary/10 transition-colors [&[data-state=open]]:bg-primary/10">
                     <div className="flex items-start gap-4 sm:gap-6 w-full text-left">
                       {/* Number and Icon */}
                       <div className="flex-shrink-0 flex flex-col items-center gap-2">
@@ -224,7 +224,7 @@ const ServicesDetailed = () => {
                       
                       {/* Title and Subtitle */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl sm:text-2xl font-medium text-text-heading mb-2 leading-tight">
+                        <h3 className="text-xl sm:text-2xl font-medium text-foreground mb-2 leading-tight">
                           {service.title}
                         </h3>
                         <p className="text-base sm:text-lg text-primary font-medium italic leading-relaxed">
@@ -235,21 +235,21 @@ const ServicesDetailed = () => {
                   </AccordionTrigger>
 
                   <AccordionContent className="px-6 sm:px-8 pb-8">
-                    <div className="space-y-6 pt-6 border-t border-border/20">
+                    <div className="space-y-6 pt-6 border-t border-border">
                       {service.sections.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-2">
-                          <h4 className="text-lg font-medium text-text-heading">
+                          <h4 className="text-lg font-medium text-foreground">
                             {section.heading}
                           </h4>
                           {section.content && (
-                            <p className="text-base text-text-body leading-relaxed whitespace-pre-line">
+                            <p className="text-base text-muted-foreground leading-relaxed whitespace-pre-line">
                               {section.content}
                             </p>
                           )}
                           {section.list && (
                             <ul className="space-y-2 ml-4">
                               {section.list.map((item, itemIndex) => (
-                                <li key={itemIndex} className="text-base text-text-body leading-relaxed flex">
+                                <li key={itemIndex} className="text-base text-muted-foreground leading-relaxed flex">
                                   <span className="mr-2 text-primary flex-shrink-0">—</span>
                                   <span>{item}</span>
                                 </li>

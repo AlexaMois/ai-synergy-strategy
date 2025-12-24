@@ -64,14 +64,14 @@ const AIFramework = () => {
           {sectors.map((sector, index) => (
             <div 
               key={index}
-              className="p-6 md:p-8 rounded-2xl shadow-card gradient-border hover:shadow-hover transition-all duration-300"
+              className="p-6 md:p-8 rounded-2xl border border-border shadow-soft hover:shadow-card transition-shadow duration-200"
               style={{ backgroundColor: sector.color }}
             >
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-2xl font-bold text-primary leading-none">
                   {sector.number}
                 </span>
-                <h3 className="text-lg md:text-xl font-bold text-text-heading leading-tight">
+                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
                   {sector.title}
                 </h3>
               </div>
@@ -84,7 +84,7 @@ const AIFramework = () => {
                 </div>
                 <div>
                   <span className="text-xs font-medium text-primary uppercase tracking-wide">Что я делаю</span>
-                  <p className="text-sm md:text-base text-text-body leading-relaxed mt-1">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">
                     {sector.answer}
                   </p>
                 </div>
@@ -95,8 +95,8 @@ const AIFramework = () => {
 
         {/* Центральный статичный элемент */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex">
-          <div className="bg-white rounded-full w-32 h-32 lg:w-36 lg:h-36 flex items-center justify-center shadow-lg border-2 border-primary/20">
-            <p className="text-sm lg:text-base font-bold text-text-heading leading-tight text-center px-4">
+          <div className="bg-card rounded-full w-32 h-32 lg:w-36 lg:h-36 flex items-center justify-center shadow-card border-2 border-primary/20">
+            <p className="text-sm lg:text-base font-bold text-foreground leading-tight text-center px-4">
               AI Synergy<br />Framework
             </p>
           </div>
@@ -104,8 +104,8 @@ const AIFramework = () => {
       </div>
 
       {/* Итоговая плашка */}
-      <div className={`bg-white rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-[0_8px_20px_rgba(0,0,0,0.04)] transition-all duration-700 delay-500 gradient-border gradient-border-hover ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-lg sm:text-xl md:text-2xl font-medium text-text-heading leading-relaxed">
+      <div className={`bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-soft transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <p className="text-lg sm:text-xl md:text-2xl font-medium text-foreground leading-relaxed">
           Вы получаете систему, которая работает годами и приносит деньги. Это не эксперимент, а рабочий актив.
         </p>
       </div>

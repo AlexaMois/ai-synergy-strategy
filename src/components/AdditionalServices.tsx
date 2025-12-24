@@ -27,12 +27,12 @@ const AdditionalServices = () => {
             {additionalServices.map((service, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-[20px] bg-white shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${
+                className={`p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-card transition-shadow duration-200 ${
                   isVisible ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${0.2 + index * 0.05}s` }}
               >
-                <p className="text-base text-text-heading leading-relaxed">
+                <p className="text-base text-foreground leading-relaxed">
                   {service}
                 </p>
               </div>
