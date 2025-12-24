@@ -71,7 +71,7 @@ const Cases = () => {
   ];
 
   return (
-    <section id="cases" className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-slate-50/30 via-white to-white" ref={ref}>
+    <section id="cases" className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50/30 via-white to-white" ref={ref}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Title */}
         <h2 className="section-title text-center leading-tight">
