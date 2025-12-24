@@ -19,11 +19,11 @@ const GolossokDemo = () => {
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <Mic className="w-16 h-16 text-primary" strokeWidth={1.5} />
-                <h1 className="text-[32px] sm:text-[36px] md:text-[42px] font-semibold text-text-heading leading-tight">
+                <h1 className="text-[32px] sm:text-[36px] md:text-[42px] font-semibold text-foreground leading-tight">
                   GolossOK в действии
                 </h1>
               </div>
-              <p className="text-lg text-text-body max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Голосовой AI-ассистент для автоматизации операционных задач: создание заявок, управление статусами, отчёты голосом. Посмотрите, как это работает на практике.
               </p>
             </div>
@@ -38,62 +38,62 @@ const GolossokDemo = () => {
               </div>
             </div>
 
-            <p className="text-center text-sm text-text-body italic">
+            <p className="text-center text-sm text-muted-foreground italic">
               Видео демонстрация будет доступна в ближайшее время. Свяжитесь с нами для личной демонстрации.
             </p>
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="py-10 md:py-16 bg-gray-50">
+        <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="section-title text-center mb-12">Что умеет GolossOK</h2>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Создание заявок голосом</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Создание заявок голосом</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   "Александра, создай заявку на поездку в Москву 15 марта" — система автоматически создаёт заявку с нужными параметрами
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Голосовой запрос статуса</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Голосовой запрос статуса</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   "Где находится заказ #123?" — мгновенный ответ с актуальным статусом из вашей CRM
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Интеграция с CRM</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Интеграция с CRM</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Автоматический разнос информации в Bitrix, Яндекс.Маркетплейс, Telegram и Google Sheets
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Работа с русским языком</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Работа с русским языком</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   99% точность распознавания русской речи, поддержка английского языка
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Быстрая обработка</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Быстрая обработка</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   ×5 ускорение обработки заявок — вместо 3 минут всего 30 секунд
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
                 <CheckCircle className="w-10 h-10 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Гибкая настройка</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Гибкая настройка</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Адаптация под ваши процессы, словарь терминов и бизнес-логику
                 </p>
               </div>
@@ -107,30 +107,30 @@ const GolossokDemo = () => {
             <h2 className="section-title text-center mb-12">Для кого подходит GolossOK</h2>
             
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-primary-light/10 rounded-2xl p-6 border-l-4 border-primary">
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Call-центры</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+              <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Call-центры</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Операторы создают заявки голосом прямо во время разговора с клиентом — без отвлечения на ввод данных
                 </p>
               </div>
 
-              <div className="bg-primary-light/10 rounded-2xl p-6 border-l-4 border-primary">
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Логистика</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+              <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Логистика</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Водители и курьеры обновляют статусы доставок голосом — руки свободны, данные всегда актуальны
                 </p>
               </div>
 
-              <div className="bg-primary-light/10 rounded-2xl p-6 border-l-4 border-primary">
-                <h3 className="text-lg font-semibold text-text-heading mb-3">HR и рекрутмент</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+              <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+                <h3 className="text-lg font-semibold text-foreground mb-3">HR и рекрутмент</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Быстрая фиксация результатов интервью, создание задач на звонки, обновление статусов кандидатов
                 </p>
               </div>
 
-              <div className="bg-primary-light/10 rounded-2xl p-6 border-l-4 border-primary">
-                <h3 className="text-lg font-semibold text-text-heading mb-3">Управление проектами</h3>
-                <p className="text-sm text-text-body leading-relaxed">
+              <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Управление проектами</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Менеджеры создают задачи и фиксируют прогресс голосом — экономия времени на митингах и планёрках
                 </p>
               </div>
@@ -139,33 +139,33 @@ const GolossokDemo = () => {
         </section>
 
         {/* Results Section */}
-        <section className="py-10 md:py-16 bg-gray-50">
+        <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="section-title text-center mb-12">Результаты для клиентов</h2>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-2xl p-6 shadow-card text-center">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border text-center">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-4xl font-bold text-primary mb-2">×5</p>
-                <p className="text-sm text-text-body">Скорость обработки заявок</p>
+                <p className="text-sm text-muted-foreground">Скорость обработки заявок</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card text-center">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-4xl font-bold text-primary mb-2">99%</p>
-                <p className="text-sm text-text-body">Точность распознавания</p>
+                <p className="text-sm text-muted-foreground">Точность распознавания</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card text-center">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border text-center">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-4xl font-bold text-primary mb-2">30 сек</p>
-                <p className="text-sm text-text-body">Вместо 3 минут</p>
+                <p className="text-sm text-muted-foreground">Вместо 3 минут</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-card text-center">
+              <div className="bg-card rounded-2xl p-6 shadow-soft border border-border text-center">
                 <CheckCircle className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-4xl font-bold text-primary mb-2">4–6 нед</p>
-                <p className="text-sm text-text-body">Окупаемость</p>
+                <p className="text-sm text-muted-foreground">Окупаемость</p>
               </div>
             </div>
           </div>
@@ -174,10 +174,10 @@ const GolossokDemo = () => {
         {/* CTA Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className="text-2xl font-semibold text-text-heading mb-4">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">
               Хотите протестировать GolossOK в вашей компании?
             </h2>
-            <p className="text-base text-text-body mb-8 max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
               Получите доступ к демо-версии или узнайте о тарифах и условиях внедрения
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

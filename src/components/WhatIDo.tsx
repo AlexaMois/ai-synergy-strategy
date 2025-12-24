@@ -33,7 +33,7 @@ const WhatIDo = () => {
             <h2 className="section-title text-center leading-tight">
               Что я делаю: <span className="font-semibold">от диагностики до доведения решений до результата</span>
             </h2>
-            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+            <div className="w-24 h-px bg-border mx-auto"></div>
           </div>
 
           <div className="space-y-6">
@@ -42,9 +42,8 @@ const WhatIDo = () => {
               return (
                 <div
                   key={index}
-                  className={`p-4 sm:p-6 rounded-2xl shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1 hover:scale-[1.02] hover:bg-primary-light/30 gradient-border-gray gradient-border-gray-hover ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                  className={`p-4 sm:p-6 rounded-2xl shadow-soft transition-all duration-300 hover:shadow-card hover:bg-primary/10 border border-border bg-muted ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   style={{
-                    backgroundColor: 'hsl(var(--gray-50))',
                     animationDelay: `${index * 0.1}s`
                   }}
                 >
@@ -53,10 +52,10 @@ const WhatIDo = () => {
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-medium mb-4 text-text-heading">
+                      <h3 className="text-2xl font-medium mb-4 text-foreground">
                         {card.title}
                       </h3>
-                      <p className="text-lg text-text-body leading-relaxed">
+                      <p className="text-lg text-muted-foreground leading-relaxed">
                         {card.text}
                       </p>
                     </div>
