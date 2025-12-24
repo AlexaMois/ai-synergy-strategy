@@ -278,18 +278,18 @@ const Hero = () => {
           )}
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* Two Column Layout - Fixed left, fluid right */}
+        <div className="flex flex-col lg:flex-row gap-0 lg:gap-0">
           
-          {/* Left Sidebar - Navigation Panel */}
-          <nav className="hidden lg:flex lg:col-span-3 xl:col-span-3">
-            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-2 flex flex-col justify-between">
+          {/* Left Sidebar - Navigation Panel (Fixed Width) */}
+          <nav className="hidden lg:flex w-[280px] xl:w-[300px] flex-shrink-0">
+            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-3 flex flex-col justify-between h-full">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => setActiveSolution(solution.id)}
                   className={cn(
-                    "w-full text-left px-3 py-2 transition-all duration-200 group flex items-center justify-between cursor-pointer",
+                    "w-full text-left px-4 py-2 transition-all duration-200 group flex items-center justify-between cursor-pointer",
                     activeSolution === solution.id
                       ? "bg-primary/10 border-l-2 border-l-primary"
                       : "hover:bg-muted/30 border-l-2 border-l-transparent hover:border-l-primary/30"
@@ -316,64 +316,70 @@ const Hero = () => {
             </div>
           </nav>
 
-          {/* Right Content Panel - Compact Preview */}
-          <div className="lg:col-span-9 xl:col-span-9">
-            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-4 sm:p-5 lg:p-6">
+          {/* Right Content Panel - Takes All Remaining Space */}
+          <div className="flex-1 min-w-0">
+            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-4 sm:p-5 lg:p-6 xl:p-8 h-full flex flex-col">
               <div 
                 key={currentSolution.id}
-                className="animate-fade-in"
+                className="animate-fade-in flex flex-col h-full"
               >
-                {/* Section 1: Solution Title & Description */}
-                <div className="pb-3 lg:pb-4">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground mb-1.5 leading-[1.2] tracking-tight max-w-2xl">
+                {/* Block 1: Solution Title & Description */}
+                <div className="pb-4">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-1.5 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[60ch]">
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
-                {/* Section 2: Problems */}
-                <div className="py-2.5 lg:py-3 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
-                    Что идёт не так
-                  </h3>
-                  <ul className="space-y-1.5">
-                    {currentSolution.problems.map((problem, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="w-3.5 h-3.5 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
-                          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                        </span>
-                        <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm max-w-[55ch]">{problem}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Block 2 & 3: Problems + How It Works - Side by Side on XL */}
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-8 py-3 border-t border-border/20">
+                  {/* Block 2: Problems */}
+                  <div>
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
+                      Что идёт не так
+                    </h3>
+                    <ul className="space-y-1.5">
+                      {currentSolution.problems.map((problem, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="w-3.5 h-3.5 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
+                            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                          </span>
+                          <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Block 3: How It Works */}
+                  <div>
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
+                      Как работает
+                    </h3>
+                    <ul className="space-y-1.5">
+                      {currentSolution.howItWorks.map((step, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="w-3.5 h-3.5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
+                          </span>
+                          <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                {/* Section 3: How It Works */}
-                <div className="py-2.5 lg:py-3 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
-                    Как работает
-                  </h3>
-                  <ul className="space-y-1.5">
-                    {currentSolution.howItWorks.map((step, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="w-3.5 h-3.5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
-                        </span>
-                        <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm max-w-[55ch]">{step}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {/* Spacer to push content down */}
+                <div className="flex-1 min-h-2" />
 
-                {/* Section 4 & 5: Example + Result (Combined) */}
-                <div className="py-2.5 lg:py-3 border-t border-border/20 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                {/* Block 4: Example + Result */}
+                <div className="py-3 border-t border-border/20 grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-8">
                   <div>
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
                       Пример
                     </h3>
-                    <p className="text-[13px] text-muted-foreground italic max-w-[45ch] leading-relaxed">
+                    <p className="text-[13px] text-muted-foreground italic leading-relaxed">
                       "{currentSolution.example}"
                     </p>
                   </div>
@@ -381,14 +387,14 @@ const Hero = () => {
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
                       Результат
                     </h3>
-                    <p className="text-[13px] lg:text-sm font-medium text-foreground max-w-[45ch] leading-relaxed">
+                    <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
                       {currentSolution.result}
                     </p>
                   </div>
                 </div>
 
-                {/* Section 6: CTA Zone */}
-                <div className="pt-3 lg:pt-4 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                {/* Block 5: CTA Zone */}
+                <div className="pt-3 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
