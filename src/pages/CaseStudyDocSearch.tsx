@@ -4,6 +4,7 @@ import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -147,6 +148,15 @@ const CaseStudyDocSearch = () => {
     text: "От одного рабочего места до сотен, от 50 документов до тысяч"
   }];
   return <PageTransition>
+      <Helmet>
+        <title>Кейс: Интеллектуальный поиск по документации — QR + AI за 3 сек</title>
+        <meta name="description" content="Система поиска по технической документации: QR-код на рабочем месте → ответ за 3 секунды. Экономия 50-100 часов/месяц, снижение брака на 30-50%." />
+        <meta name="keywords" content="поиск по документации, QR код AI, база знаний предприятия, ComBox LLM, автоматизация производства" />
+        <link rel="canonical" href="https://aleksamois.ru/case-studies/doc-search" />
+        <meta property="og:title" content="Интеллектуальный поиск по документации — QR + AI" />
+        <meta property="og:description" content="QR-код на рабочем месте → ответ за 3 секунды. Экономия 50-100 часов/месяц." />
+        <meta property="og:url" content="https://aleksamois.ru/case-studies/doc-search" />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
 

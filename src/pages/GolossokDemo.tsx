@@ -3,12 +3,22 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Mic, Play, CheckCircle, TrendingUp } from "lucide-react";
 
 const GolossokDemo = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>GolossOK — Голосовой AI-ассистент для бизнеса | Демо</title>
+        <meta name="description" content="Голосовой AI-ассистент для автоматизации операционных задач: создание заявок, управление статусами, отчёты голосом. ×5 ускорение, 99% точность." />
+        <meta name="keywords" content="голосовой ассистент, AI бот, автоматизация голосом, GolossOK, голосовое управление CRM" />
+        <link rel="canonical" href="https://aleksamois.ru/golossok-demo" />
+        <meta property="og:title" content="GolossOK — Голосовой AI-ассистент для бизнеса" />
+        <meta property="og:description" content="Голосовой AI-ассистент для автоматизации операционных задач. ×5 ускорение, 99% точность." />
+        <meta property="og:url" content="https://aleksamois.ru/golossok-demo" />
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
         

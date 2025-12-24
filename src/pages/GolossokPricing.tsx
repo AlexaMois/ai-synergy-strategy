@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
 
@@ -82,6 +83,15 @@ const GolossokPricing = () => {
 
   return (
     <PageTransition>
+      <Helmet>
+        <title>Тарифы GolossOK — Цены на голосового AI-ассистента</title>
+        <meta name="description" content="Тарифы GolossOK: от бесплатного пробного периода до корпоративных решений. Стартовый от 30 000 ₽/мес, окупаемость 4-6 недель." />
+        <meta name="keywords" content="цены GolossOK, тарифы голосовой ассистент, стоимость AI бота, прайс автоматизация голосом" />
+        <link rel="canonical" href="https://aleksamois.ru/golossok-pricing" />
+        <meta property="og:title" content="Тарифы GolossOK — Цены на голосового AI-ассистента" />
+        <meta property="og:description" content="Тарифы GolossOK: от бесплатного пробного периода до корпоративных решений." />
+        <meta property="og:url" content="https://aleksamois.ru/golossok-pricing" />
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
         
