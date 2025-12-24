@@ -326,7 +326,10 @@ const Hero = () => {
 
           {/* Right Content Panel - Description Card */}
           <div className="flex-1 min-w-0">
-            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-5 lg:p-6 h-full">
+            <div className="relative bg-gradient-to-br from-white via-gray-50/40 to-primary/[0.06] rounded-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.12),0_4px_20px_-8px_rgba(73,190,216,0.1)] border border-border/20 p-5 lg:p-6 h-full overflow-hidden">
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-primary/[0.04] pointer-events-none" />
+              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-radial from-primary/[0.03] to-transparent pointer-events-none" />
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
