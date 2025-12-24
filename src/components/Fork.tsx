@@ -6,12 +6,12 @@ const Fork = () => {
   const { ref, isVisible } = useIntersectionObserver();
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-100 via-gray-100 to-gray-50 section-gradient-bottom-bg">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-200 via-gray-150 to-gray-50 section-gradient-bottom-bg">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <div className="grid md:grid-cols-2 gap-6">
           {/* Левая колонка - Продажи */}
           <div
-            className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200 ${
+            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
@@ -31,7 +31,7 @@ const Fork = () => {
 
           {/* Правая колонка - Процессы */}
           <div
-            className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200 ${
+            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "150ms" }}

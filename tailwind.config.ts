@@ -72,7 +72,9 @@ export default {
         gray: {
           50: "hsl(var(--gray-50))",
           100: "hsl(var(--gray-100))",
+          150: "hsl(var(--gray-150))",
           200: "hsl(var(--gray-200))",
+          250: "hsl(var(--gray-250))",
           300: "hsl(var(--gray-300))",
           400: "hsl(var(--gray-400))",
         },
