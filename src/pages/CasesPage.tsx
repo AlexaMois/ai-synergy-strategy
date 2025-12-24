@@ -380,7 +380,7 @@ const CasesPage = () => {
             <h1 className="section-title mb-4">
               Кейсы и результаты, <span className="font-semibold">измеримый эффект</span>
             </h1>
-            <p className="text-lg text-text-body max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Реальные примеры аудита процессов, автоматизации и ИИ-решений для бизнеса
             </p>
           </div>
@@ -397,8 +397,8 @@ const CasesPage = () => {
                     px-6 py-3 rounded-xl border text-sm font-medium
                     transition-all duration-300 ease-out
                     ${isActive
-                      ? 'bg-primary text-white border-primary shadow-md scale-105' 
-                      : 'bg-white text-text-body border-gray-200 hover:bg-primary hover:text-white hover:border-primary hover:scale-[1.02] hover:shadow-sm'
+                      ? 'bg-primary text-primary-foreground border-primary shadow-md' 
+                      : 'bg-card text-muted-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary'
                     }
                   `}
                 >
@@ -413,48 +413,48 @@ const CasesPage = () => {
             {filteredCases.map((caseItem) => (
               <div
                 key={caseItem.id}
-                className="bg-white rounded-[20px] shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] p-4 sm:p-6 md:p-8 gradient-border gradient-border-hover"
+                className="bg-card rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 p-4 sm:p-6 md:p-8 border border-border"
               >
                 {/* Image Placeholder */}
-                <div className="w-full h-[120px] bg-gray-100 rounded-xl mb-6 flex items-center justify-center">
-                  <Image className="w-12 h-12 text-gray-300" strokeWidth={1.5} />
+                <div className="w-full h-[120px] bg-muted rounded-xl mb-6 flex items-center justify-center">
+                  <Image className="w-12 h-12 text-muted-foreground/30" strokeWidth={1.5} />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-medium text-text-heading mb-4 leading-tight">
+                <h3 className="text-lg font-medium text-foreground mb-4 leading-tight">
                   {caseItem.title}
                 </h3>
 
                 {/* Meta Information */}
                 <div className="space-y-2 mb-4">
-                  <p className="text-sm text-text-body">
-                    <span className="text-text-subtle">Для кого:</span> {caseItem.targetAudience}
+                  <p className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground/70">Для кого:</span> {caseItem.targetAudience}
                   </p>
-                  <p className="text-sm text-text-body">
-                    <span className="text-text-subtle">Отрасль:</span> {caseItem.industry}
+                  <p className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground/70">Отрасль:</span> {caseItem.industry}
                   </p>
-                  <p className="text-sm text-text-body">
-                    <span className="text-text-subtle">Стоимость:</span> {caseItem.price}
+                  <p className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground/70">Стоимость:</span> {caseItem.price}
                   </p>
-                  <p className="text-sm text-text-body">
-                    <span className="text-text-subtle">Статус проекта:</span> {caseItem.status}
+                  <p className="text-sm text-muted-foreground">
+                    <span className="text-muted-foreground/70">Статус проекта:</span> {caseItem.status}
                   </p>
                 </div>
 
                 {/* Task */}
-                <div className="border-t border-gray-100 pt-4 mt-4">
+                <div className="border-t border-border pt-4 mt-4">
                   <p className="text-handwriting mb-2">Задача</p>
-                  <p className="text-sm text-text-body leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {caseItem.task}
                   </p>
                 </div>
 
                 {/* Actions */}
-                <div className="border-t border-gray-100 pt-4 mt-4">
+                <div className="border-t border-border pt-4 mt-4">
                   <p className="text-handwriting mb-2">Что сделали</p>
                   <ul className="space-y-1.5">
                     {caseItem.actions.map((action, idx) => (
-                      <li key={idx} className="text-sm text-text-body leading-relaxed flex">
+                      <li key={idx} className="text-sm text-muted-foreground leading-relaxed flex">
                         <span className="text-primary mr-2">•</span>
                         <span>{action}</span>
                       </li>
@@ -463,11 +463,11 @@ const CasesPage = () => {
                 </div>
 
                 {/* Results */}
-                <div className="border-t border-gray-100 pt-4 mt-4">
+                <div className="border-t border-border pt-4 mt-4">
                   <p className="text-handwriting mb-2">Результаты и эффекты</p>
                   <ul className="space-y-1.5">
                     {caseItem.results.map((result, idx) => (
-                      <li key={idx} className="text-sm text-text-body leading-relaxed flex">
+                      <li key={idx} className="text-sm text-muted-foreground leading-relaxed flex">
                         <span className="text-primary mr-2">•</span>
                         <span>{result}</span>
                       </li>
@@ -477,7 +477,7 @@ const CasesPage = () => {
 
                 {/* Link to detailed page */}
                 {caseItem.link && (
-                  <div className="border-t border-gray-100 pt-4 mt-4">
+                  <div className="border-t border-border pt-4 mt-4">
                     <Button asChild variant="outline" className="w-full">
                       <Link to={caseItem.link}>
                         Подробнее <ArrowRight className="w-4 h-4 ml-2" />

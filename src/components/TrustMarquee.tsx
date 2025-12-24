@@ -23,7 +23,7 @@ const TrustMarquee = () => {
               {facts.map((fact, index) => (
                 <span key={`${setIndex}-${index}`} className="marquee-item text-base">
                   {fact}
-                  <span className="text-accent mx-3">•</span>
+                  <span className="text-primary mx-3">•</span>
                 </span>
               ))}
             </div>
