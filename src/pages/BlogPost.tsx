@@ -108,7 +108,7 @@ const BlogPost = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           <Link 
             to="/blog" 
-            className="inline-flex items-center gap-2 text-accent hover:text-accent/80 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Вернуться к блогу</span>
@@ -116,10 +116,10 @@ const BlogPost = () => {
 
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-4 mb-6">
-              <span className="text-sm font-medium text-accent bg-[#D4EDFC] px-4 py-2 rounded-full">
+              <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 {post.category}
               </span>
-              <div className="flex items-center gap-4 text-sm text-text-subtle">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   {post.date}
@@ -131,34 +131,34 @@ const BlogPost = () => {
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
               {post.title}
             </h1>
 
-            <p className="text-xl text-text-body leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed">
               {post.excerpt}
             </p>
           </header>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-text-body leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               {post.content.intro}
             </p>
 
             {post.content.sections.map((section, index) => (
               <section key={index} className="mb-10">
-                <h2 className="text-2xl font-semibold text-text-heading mb-4">
+                <h2 className="text-2xl font-semibold text-foreground mb-4">
                   {section.heading}
                 </h2>
-                <p className="text-lg text-text-body leading-relaxed mb-4">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                   {section.content}
                 </p>
                 {section.list && section.list.length > 0 && (
                   <ul className="space-y-3 mb-6">
                     {section.list.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex gap-3">
-                        <span className="text-accent mt-1.5">•</span>
-                        <span className="text-base text-text-body">{item}</span>
+                        <span className="text-primary mt-1.5">•</span>
+                        <span className="text-base text-muted-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -166,19 +166,19 @@ const BlogPost = () => {
               </section>
             ))}
 
-            <div className="bg-[#D4EDFC] rounded-2xl p-4 sm:p-6 md:p-8 my-12">
-              <p className="text-lg text-text-body leading-relaxed font-medium">
+            <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12">
+              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
                 {post.content.conclusion}
               </p>
             </div>
           </div>
 
-          <div className="border-t border-[#E6EAEC] pt-12 mt-12">
-            <div className="bg-[#FAFBFC] rounded-2xl p-4 sm:p-6 md:p-8 text-center">
-              <h3 className="text-2xl font-semibold text-text-heading mb-4">
+          <div className="border-t border-border pt-12 mt-12">
+            <div className="bg-muted rounded-2xl p-4 sm:p-6 md:p-8 text-center">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">
                 Хотите внедрить ИИ без ошибок?
               </h3>
-              <p className="text-lg text-text-body mb-6">
+              <p className="text-lg text-muted-foreground mb-6">
                 Запишитесь на бесплатный экспресс-аудит процессов
               </p>
               <Button size="lg" asChild>
@@ -196,9 +196,9 @@ const BlogPost = () => {
       </article>
 
       {relatedPosts.length > 0 && (
-        <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
+        <section className="py-10 md:py-14 lg:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-text-heading mb-8 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground mb-8 text-center">
               Читайте также
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -206,24 +206,24 @@ const BlogPost = () => {
                 <Link 
                   key={relatedPost.slug} 
                   to={`/blog/${relatedPost.slug}`}
-                  className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1"
+                  className="bg-card rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-all duration-300 border border-border"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-medium text-accent bg-[#D4EDFC] px-3 py-1 rounded-full">
+                    <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                       {relatedPost.category}
                     </span>
-                    <span className="text-xs text-[#6A6A6A]">{relatedPost.readTime}</span>
+                    <span className="text-xs text-muted-foreground">{relatedPost.readTime}</span>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-text-heading mb-3 leading-tight">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                     {relatedPost.title}
                   </h3>
                   
-                  <p className="text-base text-text-body mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">
                     {relatedPost.excerpt}
                   </p>
                   
-                  <span className="text-accent hover:text-accent/80 font-medium text-sm flex items-center">
+                  <span className="text-primary hover:text-primary/80 font-medium text-sm flex items-center">
                     Читать <ArrowRight className="ml-1 h-4 w-4" />
                   </span>
                 </Link>

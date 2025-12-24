@@ -8,9 +8,12 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { useState } from "react";
+
 const CATEGORIES = ["Все статьи", "Внедрение ИИ", "Методология", "Аналитика", "Управление", "Технологии", "Обучение"];
+
 const Blog = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>(["Все статьи"]);
+
   const handleCategoryClick = (category: string) => {
     if (category === "Все статьи") {
       setActiveCategories(["Все статьи"]);
@@ -26,6 +29,7 @@ const Blog = () => {
       });
     }
   };
+
   const posts = [{
     title: "Почему 80% проектов по внедрению ИИ проваливаются",
     excerpt: "Разбираю ключевые ошибки компаний и объясняю, как избежать лишних затрат и получить реальную пользу от технологий.",
@@ -69,8 +73,11 @@ const Blog = () => {
     readTime: "8 мин",
     slug: "team-ai-training"
   }];
+
   const filteredPosts = activeCategories.includes("Все статьи") ? posts : posts.filter(post => activeCategories.includes(post.category));
-  return <PageTransition>
+
+  return (
+    <PageTransition>
       <div className="min-h-screen">
         <Helmet>
           <title>Блог об ИИ: разборы внедрения, методология, аналитика, реальные кейсы</title>
@@ -83,10 +90,10 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-text-heading mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6">
             Разборы и статьи, <span className="font-semibold">практика внедрения ИИ</span>
           </h1>
-          <p className="text-xl text-text-body max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Практичные материалы о внедрении искусственного интеллекта: разборы проектов, методология, аналитика и подходы, которые дают измеримый эффект.
           </p>
         </div>
@@ -96,50 +103,60 @@ const Blog = () => {
       <section className="py-8 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-wrap gap-3 justify-center">
-            {CATEGORIES.map(category => <button key={category} onClick={() => handleCategoryClick(category)} className={`
+            {CATEGORIES.map(category => (
+              <button
+                key={category}
+                onClick={() => handleCategoryClick(category)}
+                className={`
                   px-5 py-2.5 rounded-xl text-sm font-medium
                   transition-all duration-300
-                  ${activeCategories.includes(category) ? 'bg-primary text-white shadow-md scale-[1.02]' : 'bg-white text-[#666] border border-[#DDD] hover:bg-primary/10 hover:border-primary/30 hover:scale-[1.02]'}
-                `}>
+                  ${activeCategories.includes(category) 
+                    ? 'bg-primary text-primary-foreground shadow-md' 
+                    : 'bg-card text-muted-foreground border border-border hover:bg-primary/10 hover:border-primary/30'}
+                `}
+              >
                 {category}
-              </button>)}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-10 md:py-14 lg:py-16 bg-[#FAFBFC]">
+      <section className="py-10 md:py-14 lg:py-16 bg-muted">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post, index) => <Link to={`/blog/${post.slug}`} key={index}>
-                <article className="bg-white rounded-2xl p-4 sm:p-6 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-medium text-accent bg-[#D4EDFC] px-3 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-[#6A6A6A]">{post.readTime}</span>
-                </div>
-                
-                <h3 className="text-xl font-medium text-text-heading mb-3 leading-tight">
-                  {post.title}
-                </h3>
-                
-                <p className="text-base text-text-body mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex items-center justify-between pt-4 border-t border-[#E6EAEC]">
-                  <div className="flex items-center gap-2 text-sm text-[#6A6A6A]">
-                    <Calendar className="h-4 w-4" />
-                    <span>{post.date}</span>
+            {filteredPosts.map((post, index) => (
+              <Link to={`/blog/${post.slug}`} key={index}>
+                <article className="bg-card rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-all duration-300 cursor-pointer h-full border border-border">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{post.readTime}</span>
                   </div>
                   
-                  <span className="text-accent hover:text-accent/80 font-medium text-sm flex items-center">
-                    Читать <ArrowRight className="ml-1 h-4 w-4" />
-                  </span>
-                </div>
-              </article>
-              </Link>)}
+                  <h3 className="text-xl font-medium text-foreground mb-3 leading-tight">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-base text-muted-foreground mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      <span>{post.date}</span>
+                    </div>
+                    
+                    <span className="text-primary hover:text-primary/80 font-medium text-sm flex items-center">
+                      Читать <ArrowRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </div>
+                </article>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -153,6 +170,8 @@ const Blog = () => {
         <Footer />
         
       </div>
-    </PageTransition>;
+    </PageTransition>
+  );
 };
+
 export default Blog;
