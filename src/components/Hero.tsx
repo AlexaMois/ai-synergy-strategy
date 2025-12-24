@@ -215,34 +215,34 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-28 overflow-hidden">
+    <section className="relative pt-20 lg:pt-24 pb-8 lg:pb-12 overflow-hidden min-h-[70vh] lg:min-h-[75vh]">
       {/* Minimal background */}
       <div className="absolute inset-0 bg-background" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header - Separate Container */}
-        <div className="mb-10 sm:mb-12 lg:mb-14 pb-8 lg:pb-10 border-b border-border/20">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-foreground leading-[1.15] mb-5 tracking-tight">
+        {/* Header - Compact */}
+        <div className="mb-6 lg:mb-8 pb-4 lg:pb-5 border-b border-border/20">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
-          <p className="text-lg sm:text-xl lg:text-[1.35rem] text-muted-foreground leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
         </div>
 
         {/* Mobile Dropdown */}
-        <div className="lg:hidden mb-8">
+        <div className="lg:hidden mb-6">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-full flex items-center justify-between px-5 py-4 bg-muted/20 border border-border/20 rounded-xl text-left transition-all duration-200 hover:border-primary/30"
+            className="w-full flex items-center justify-between px-4 py-3 bg-muted/20 border border-border/20 rounded-xl text-left transition-all duration-200 hover:border-primary/30"
           >
             <div className="flex items-center gap-3">
               <span className="text-xs font-medium text-primary/70">{formatNumber(currentIndex + 1)}</span>
-              <span className="font-medium text-foreground">{currentSolution.menuTitle}</span>
+              <span className="font-medium text-foreground text-sm">{currentSolution.menuTitle}</span>
             </div>
             <ChevronDown className={cn(
-              "w-5 h-5 text-muted-foreground transition-transform duration-300",
+              "w-4 h-4 text-muted-foreground transition-transform duration-300",
               mobileMenuOpen && "rotate-180"
             )} />
           </button>
@@ -254,7 +254,7 @@ const Hero = () => {
                   key={solution.id}
                   onClick={() => handleSolutionSelect(solution.id)}
                   className={cn(
-                    "w-full px-5 py-4 min-h-[48px] text-left transition-all duration-200 flex items-center gap-3 border-b border-border/20 last:border-b-0",
+                    "w-full px-4 py-3 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/20 last:border-b-0",
                     activeSolution === solution.id
                       ? "bg-primary/10"
                       : "hover:bg-muted/40"
@@ -267,8 +267,8 @@ const Hero = () => {
                     {formatNumber(index + 1)}
                   </span>
                   <span className={cn(
-                    "font-medium",
-                    activeSolution === solution.id ? "text-primary" : "text-foreground"
+                    "text-sm truncate",
+                    activeSolution === solution.id ? "text-primary font-medium" : "text-foreground"
                   )}>
                     {solution.menuTitle}
                   </span>
@@ -279,24 +279,24 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Left Sidebar - Navigation Panel */}
-          <nav className="hidden lg:block lg:col-span-4 xl:col-span-3">
-            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2">
+          <nav className="hidden lg:flex lg:col-span-3 xl:col-span-3">
+            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-3 flex flex-col justify-between">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => setActiveSolution(solution.id)}
                   className={cn(
-                    "w-full text-left px-4 py-4 min-h-[48px] rounded-xl transition-all duration-300 group flex items-center justify-between",
+                    "w-full text-left px-4 py-2.5 transition-all duration-200 group flex items-center justify-between cursor-pointer",
                     activeSolution === solution.id
-                      ? "bg-primary/10 border-l-[3px] border-l-primary"
-                      : "hover:bg-muted/40 border-l-[3px] border-l-transparent"
+                      ? "bg-primary/10 border-l-2 border-l-primary"
+                      : "hover:bg-muted/30 border-l-2 border-l-transparent hover:border-l-primary/30"
                   )}
                 >
                   <span className={cn(
-                    "text-[0.9rem] font-medium transition-colors leading-tight",
+                    "text-sm font-medium transition-colors leading-tight truncate pr-2",
                     activeSolution === solution.id
                       ? "text-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
@@ -304,10 +304,10 @@ const Hero = () => {
                     {solution.menuTitle}
                   </span>
                   <span className={cn(
-                    "text-xs font-medium tabular-nums transition-colors",
+                    "text-[10px] font-medium tabular-nums transition-colors shrink-0",
                     activeSolution === solution.id
                       ? "text-primary"
-                      : "text-muted-foreground/50 group-hover:text-muted-foreground"
+                      : "text-muted-foreground/40 group-hover:text-muted-foreground"
                   )}>
                     {formatNumber(index + 1)}
                   </span>
@@ -316,87 +316,83 @@ const Hero = () => {
             </div>
           </nav>
 
-          {/* Right Content Panel - Main Surface */}
-          <div className="lg:col-span-8 xl:col-span-9">
-            <div className="bg-background/80 border border-border/20 rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12">
+          {/* Right Content Panel - Compact Preview */}
+          <div className="lg:col-span-9 xl:col-span-9">
+            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-5 sm:p-6 lg:p-8">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in"
               >
                 {/* Section 1: Solution Title & Description */}
-                <div className="pb-10 lg:pb-12">
-                  <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem] font-bold text-foreground mb-5 leading-[1.2] tracking-tight">
+                <div className="pb-4 lg:pb-5">
+                  <h2 className="text-xl sm:text-2xl lg:text-[1.75rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight max-w-2xl">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-lg sm:text-xl lg:text-[1.25rem] text-foreground/80 leading-relaxed max-w-3xl">
+                  <p className="text-sm sm:text-base lg:text-[1.05rem] text-muted-foreground leading-relaxed max-w-[60ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
                 {/* Section 2: Problems */}
-                <div className="py-10 lg:py-12 border-t border-border/30">
-                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-6">
+                <div className="py-4 lg:py-5 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-3">
                     Что идёт не так
                   </h3>
-                  <ul className="space-y-4">
+                  <ul className="space-y-2">
                     {currentSolution.problems.map((problem, index) => (
-                      <li key={index} className="flex items-start gap-4">
-                        <span className="w-5 h-5 rounded-full bg-muted/80 flex items-center justify-center shrink-0 mt-0.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
+                      <li key={index} className="flex items-start gap-3">
+                        <span className="w-4 h-4 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                         </span>
-                        <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{problem}</span>
+                        <span className="text-muted-foreground leading-relaxed text-sm max-w-[55ch]">{problem}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Section 3: How It Works */}
-                <div className="py-10 lg:py-12 border-t border-border/30">
-                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-6">
-                    Как работает решение
+                <div className="py-4 lg:py-5 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-3">
+                    Как работает
                   </h3>
-                  <ul className="space-y-4">
+                  <ul className="space-y-2">
                     {currentSolution.howItWorks.map((step, index) => (
-                      <li key={index} className="flex items-start gap-4">
-                        <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-primary" strokeWidth={2.5} />
+                      <li key={index} className="flex items-start gap-3">
+                        <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                         </span>
-                        <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{step}</span>
+                        <span className="text-muted-foreground leading-relaxed text-sm max-w-[55ch]">{step}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Section 4: Example (Highlighted Block) */}
-                <div className="py-10 lg:py-12 border-t border-border/30">
-                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
+                {/* Section 4: Example (Inline) */}
+                <div className="py-4 lg:py-5 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
                     Пример
                   </h3>
-                  <div className="bg-muted/30 border border-border/30 rounded-xl p-6 lg:p-8">
-                    <p className="text-foreground/90 leading-relaxed text-[0.95rem] lg:text-base italic">
-                      "{currentSolution.example}"
-                    </p>
-                  </div>
+                  <p className="text-sm text-muted-foreground italic max-w-[55ch] leading-relaxed">
+                    "{currentSolution.example}"
+                  </p>
                 </div>
 
-                {/* Section 5: Result (Highlighted Block) */}
-                <div className="py-10 lg:py-12 border-t border-border/30">
-                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
+                {/* Section 5: Result (Inline) */}
+                <div className="py-4 lg:py-5 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
                     Результат
                   </h3>
-                  <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 lg:p-8">
-                    <p className="text-lg lg:text-xl font-medium text-foreground leading-relaxed">
-                      {currentSolution.result}
-                    </p>
-                  </div>
+                  <p className="text-sm lg:text-base font-medium text-foreground max-w-[55ch] leading-relaxed">
+                    {currentSolution.result}
+                  </p>
                 </div>
 
                 {/* Section 6: CTA Zone */}
-                <div className="pt-10 lg:pt-12 border-t border-border/30 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <div className="pt-4 lg:pt-5 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
                   <Button 
                     onClick={handleCTAClick}
-                    size="lg"
-                    className="text-base px-8 py-6 h-auto rounded-xl shadow-sm hover:shadow-md transition-all duration-300 font-medium"
+                    size="default"
+                    className="text-sm px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 font-medium"
                   >
                     {currentSolution.ctaText}
                   </Button>
@@ -407,7 +403,7 @@ const Hero = () => {
                       className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
                     >
                       Посмотреть кейс
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </a>
                   ) : (
                     <button 
@@ -415,7 +411,7 @@ const Hero = () => {
                       className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
                     >
                       Задать вопрос
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </button>
                   )}
                 </div>
