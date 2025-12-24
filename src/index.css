@@ -59,9 +59,29 @@
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* UI-kit shadows - холодные, премиальные */
-    --shadow-soft: 0 2px 8px rgba(15, 23, 42, 0.06);
-    --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.08);
+    /* UI-kit shadows - многослойная система для премиального ощущения глубины */
+    /* Уровень 1: Лёгкая тень для мелких элементов */
+    --shadow-xs: 
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 2px 4px rgba(15, 23, 42, 0.03);
+    
+    /* Уровень 2: Мягкая тень для карточек */
+    --shadow-soft: 
+      0 1px 3px rgba(15, 23, 42, 0.04),
+      0 4px 8px rgba(15, 23, 42, 0.06),
+      0 8px 16px rgba(15, 23, 42, 0.04);
+    
+    /* Уровень 3: Выраженная тень для активных элементов */
+    --shadow-card: 
+      0 2px 4px rgba(15, 23, 42, 0.04),
+      0 8px 16px rgba(15, 23, 42, 0.08),
+      0 16px 32px rgba(15, 23, 42, 0.06);
+    
+    /* Уровень 4: Глубокая тень для модальных/floating элементов */
+    --shadow-elevated: 
+      0 4px 8px rgba(15, 23, 42, 0.06),
+      0 12px 24px rgba(15, 23, 42, 0.1),
+      0 24px 48px rgba(15, 23, 42, 0.08);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -103,9 +123,22 @@
     --input: 220 13% 25%;
     --ring: 192 63% 57%;
     
-    /* Soft shadows - dark mode */
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.5);
+    /* Soft shadows - dark mode (многослойные) */
+    --shadow-xs: 
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.15);
+    --shadow-soft: 
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.25),
+      0 8px 16px rgba(0, 0, 0, 0.2);
+    --shadow-card: 
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 8px 16px rgba(0, 0, 0, 0.3),
+      0 16px 32px rgba(0, 0, 0, 0.25);
+    --shadow-elevated: 
+      0 4px 8px rgba(0, 0, 0, 0.25),
+      0 12px 24px rgba(0, 0, 0, 0.35),
+      0 24px 48px rgba(0, 0, 0, 0.3);
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -278,6 +311,45 @@
 }
 
 @layer utilities {
+  /* Многослойная система теней - утилитарные классы */
+  .shadow-xs {
+    box-shadow: var(--shadow-xs);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  /* Hover-эффект "всплытия" с тенью */
+  .hover-lift {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Hover-эффект для карточек - более выраженный */
+  .hover-lift-card {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+  
   /* 12-column grid system */
   .grid-12 {
     display: grid;

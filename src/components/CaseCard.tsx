@@ -27,7 +27,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
 
   return (
     <div
-      className={`p-4 sm:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-card transition-shadow duration-200 flex flex-col ${staggerClass}`}
+      className={`p-4 sm:p-6 rounded-2xl bg-card border border-border shadow-soft hover-lift-card flex flex-col ${staggerClass}`}
     >
       {/* Icon and Company */}
       <div className="flex items-start gap-2.5 sm:gap-3 mb-3 sm:mb-4">
