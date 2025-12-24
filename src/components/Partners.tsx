@@ -32,7 +32,7 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-10 md:py-14 lg:py-16 bg-gradient-to-b from-gray-100 to-gray-200">
+    <section className="py-10 md:py-14 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4">
         <div className="border-t border-border mb-10"></div>
         <div className="marquee-container">
