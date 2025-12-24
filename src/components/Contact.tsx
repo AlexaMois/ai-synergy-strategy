@@ -94,7 +94,7 @@ const Contact = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#0B1220] overflow-hidden">
+      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#FFFFFF] overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className={`p-8 sm:p-12 rounded-3xl bg-white shadow-card ${getStaggeredClass(1, 'animate-scale-in')}`}>
@@ -112,17 +112,17 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#0B1220] overflow-hidden">
+    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#FFFFFF] overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}
           <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-8 lg:gap-12">
             {/* Левая колонка - текст */}
             <div className={`${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-4">
                 Будем на связи
               </h2>
-              <p className="text-white/80 text-lg">
+              <p className="text-muted-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,
                 чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
               </p>
