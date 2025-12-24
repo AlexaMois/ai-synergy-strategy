@@ -215,7 +215,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
+    <section className="relative pt-20 lg:pt-24 pb-8 lg:pb-10 overflow-hidden">
       {/* Light gradient background - контрастный */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-gray-100" />
       
@@ -233,7 +233,7 @@ const Hero = () => {
 
         {/* Mobile Dropdown - Card style */}
         <div className="lg:hidden mb-6">
-          <div className="bg-card rounded-xl shadow-soft border border-border/20">
+          <div className="bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-card border border-border/30">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="w-full flex items-center justify-between px-5 py-4 text-left transition-all duration-200"
@@ -285,21 +285,21 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout - Separate Cards */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-5">
           
           {/* Left Sidebar - Navigation Card with Vertical Tabs */}
           <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
-            <div className="bg-card rounded-2xl shadow-soft border border-border/20 p-4">
+            <div className="bg-gradient-to-b from-white to-gray-50/80 rounded-2xl shadow-card border border-border/30 p-3">
               <div className="flex flex-col gap-1">
                 {solutions.map((solution, index) => (
                   <button
                     key={solution.id}
                     onClick={() => setActiveSolution(solution.id)}
                     className={cn(
-                      "w-full text-left px-4 py-3 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-xl",
+                      "w-full text-left px-3 py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-lg",
                       activeSolution === solution.id
-                        ? "bg-primary/10"
-                        : "hover:bg-muted/30"
+                        ? "bg-primary/10 shadow-sm border border-primary/20"
+                        : "hover:bg-muted/40 hover:shadow-sm border border-transparent"
                     )}
                   >
                     <span className={cn(
@@ -326,13 +326,13 @@ const Hero = () => {
 
           {/* Right Content Panel - Description Card */}
           <div className="flex-1 min-w-0">
-            <div className="bg-card rounded-2xl shadow-card border border-border/20 p-6 lg:p-8 h-full">
+            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-5 lg:p-6 h-full">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-5 lg:pb-6">
+                <div className="pb-4 lg:pb-5">
                   <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-3 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
@@ -342,9 +342,9 @@ const Hero = () => {
                 </div>
 
                 {/* 2-Column Grid with Dividers */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
                   {/* Left Column */}
-                  <div className="space-y-6 lg:pr-8 lg:border-r lg:border-border/15">
+                  <div className="space-y-4 lg:pr-6 lg:border-r lg:border-border/15">
                     {/* Block 2: Problems */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
@@ -353,7 +353,7 @@ const Hero = () => {
                           Что идёт не так
                         </h3>
                       </div>
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-2">
                         {currentSolution.problems.map((problem, index) => (
                           <li key={index} className="flex items-start gap-2.5">
                             <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
@@ -366,7 +366,7 @@ const Hero = () => {
                     </div>
 
                     {/* Block 4: Example */}
-                    <div className="pt-5 border-t border-border/15">
+                    <div className="pt-4 border-t border-border/15">
                       <div className="flex items-center gap-2 mb-2">
                         <Quote className="w-4 h-4 text-primary" />
                         <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
@@ -380,7 +380,7 @@ const Hero = () => {
                   </div>
 
                   {/* Right Column */}
-                  <div className="space-y-6 lg:pl-8">
+                  <div className="space-y-4 lg:pl-6">
                     {/* Block 3: How It Works */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
@@ -389,7 +389,7 @@ const Hero = () => {
                           Как работает
                         </h3>
                       </div>
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-2">
                         {currentSolution.howItWorks.map((step, index) => (
                           <li key={index} className="flex items-start gap-2.5">
                             <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -402,7 +402,7 @@ const Hero = () => {
                     </div>
 
                     {/* Block 5: Result */}
-                    <div className="pt-5 border-t border-border/15">
+                    <div className="pt-4 border-t border-border/15">
                       <div className="flex items-center gap-2 mb-2">
                         <TrendingUp className="w-4 h-4 text-primary" />
                         <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
@@ -417,11 +417,11 @@ const Hero = () => {
                 </div>
 
                 {/* Block 6: CTA Zone */}
-                <div className="pt-6 lg:pt-8 mt-6 border-t border-border/15 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <div className="pt-4 lg:pt-5 mt-4 border-t border-border/15 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
                   <Button 
                     onClick={handleCTAClick}
                     size="lg"
-                    className="text-base px-8 py-3 rounded-xl shadow-card hover:shadow-elevated transition-all duration-300 font-semibold"
+                    className="text-base px-8 py-3 rounded-xl shadow-elevated hover:shadow-[0_8px_30px_rgba(73,190,216,0.35)] transition-all duration-300 font-semibold"
                   >
                     {currentSolution.ctaText}
                   </Button>
