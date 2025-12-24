@@ -6,8 +6,10 @@ import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet } from "lucide-react";
+
 const ResourcesPage = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  
   const categories = [{
     id: "all",
     label: "Все материалы"
@@ -27,6 +29,7 @@ const ResourcesPage = () => {
     id: "documentation",
     label: "Документация"
   }];
+  
   const resources = [{
     id: 1,
     category: "checklists",
@@ -128,8 +131,11 @@ const ResourcesPage = () => {
     actionLabel: "Скачать чек-лист",
     isExternal: false
   }];
+  
   const filteredResources = activeCategory === "all" ? resources : resources.filter(r => r.category === activeCategory);
-  return <PageTransition>
+  
+  return (
+    <PageTransition>
       <div className="min-h-screen bg-background">
         <Navigation />
         
@@ -137,10 +143,10 @@ const ResourcesPage = () => {
           {/* Hero Section */}
           <section className="py-10 md:py-16 lg:py-20">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium text-text-heading leading-tight mb-4">
+              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-medium text-foreground leading-tight mb-4">
                 Библиотека материалов, <span className="font-semibold">для самостоятельной работы</span>
               </h1>
-              <p className="text-base sm:text-lg text-[#6A6A6A] leading-relaxed">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Чек-листы, гайды, архитектуры кейсов и видео для самостоятельной оценки AI-готовности компании
               </p>
             </div>
@@ -149,9 +155,19 @@ const ResourcesPage = () => {
           {/* Category Filters */}
           <section className="pb-8">
             <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map(cat => <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id ? "bg-primary text-white shadow-md" : "bg-white text-[#666] border border-[#E6EAEC] hover:border-primary hover:text-primary"}`}>
+              {categories.map(cat => (
+                <button 
+                  key={cat.id} 
+                  onClick={() => setActiveCategory(cat.id)} 
+                  className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                    activeCategory === cat.id 
+                      ? "bg-primary text-white" 
+                      : "bg-card text-muted-foreground border border-border hover:border-primary hover:text-primary"
+                  }`}
+                >
                   {cat.label}
-                </button>)}
+                </button>
+              ))}
             </div>
           </section>
 
@@ -159,8 +175,12 @@ const ResourcesPage = () => {
           <section className="pb-10 md:pb-16 lg:pb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredResources.map(resource => {
-              const IconComponent = resource.icon;
-              return <div key={resource.id} className="bg-white rounded-[20px] p-6 shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] gradient-border">
+                const IconComponent = resource.icon;
+                return (
+                  <div 
+                    key={resource.id} 
+                    className="bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card transition-shadow duration-200"
+                  >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                         <IconComponent className="w-6 h-6 text-primary" strokeWidth={1.5} />
@@ -169,32 +189,37 @@ const ResourcesPage = () => {
                         <div className="text-xs font-medium text-primary mb-2">
                           {resource.type}
                         </div>
-                        <h3 className="text-lg font-medium text-text-heading mb-2 leading-tight">
+                        <h3 className="text-lg font-medium text-foreground mb-2 leading-tight">
                           {resource.title}
                         </h3>
-                        <p className="text-sm text-[#6A6A6A] leading-relaxed mb-4">
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                           {resource.description}
                         </p>
                         <Button asChild variant="outline" size="sm" className="w-full sm:w-auto">
-                          <a href={resource.link} target={resource.isExternal ? "_blank" : undefined} rel={resource.isExternal ? "noopener noreferrer" : undefined}>
-                            {resource.isExternal ? <ExternalLink className="w-4 h-4 mr-2" /> : <Download className="w-4 h-4 mr-2" />}
+                          <a 
+                            href={resource.link} 
+                            target={resource.isExternal ? "_blank" : undefined} 
+                            rel={resource.isExternal ? "noopener noreferrer" : undefined}
+                          >
+                            {resource.isExternal ? <ExternalLink className="w-4 h-4 mr-2" strokeWidth={1.5} /> : <Download className="w-4 h-4 mr-2" strokeWidth={1.5} />}
                             {resource.actionLabel}
                           </a>
                         </Button>
                       </div>
                     </div>
-                  </div>;
-            })}
+                  </div>
+                );
+              })}
             </div>
           </section>
 
           {/* CTA Section */}
           <section className="py-10 md:py-16 lg:py-20">
-            <div className="bg-[#F0F9FB] rounded-[24px] p-8 md:p-12 text-center">
-              <h2 className="text-[24px] md:text-[30px] font-medium text-text-heading mb-4">
+            <div className="bg-muted rounded-2xl p-8 md:p-12 text-center">
+              <h2 className="text-[24px] md:text-[30px] font-medium text-foreground mb-4">
                 Нужна помощь, <span className="font-semibold">с внедрением ИИ?</span>
               </h2>
-              <p className="text-base text-[#6A6A6A] mb-6 max-w-2xl mx-auto">
+              <p className="text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Оставьте Ваши контакты в форме ниже   
               </p>
               <Button asChild size="lg">
@@ -204,12 +229,15 @@ const ResourcesPage = () => {
               </Button>
             </div>
           </section>
+          
           <Contact />
           <Partners />
         </main>
 
         <Footer />
       </div>
-    </PageTransition>;
+    </PageTransition>
+  );
 };
+
 export default ResourcesPage;
