@@ -95,13 +95,13 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
-                <h1 className="text-[32px] md:text-[36px] font-bold text-text-heading mb-4 leading-tight">
+                <h1 className="text-[32px] md:text-[36px] font-bold text-foreground mb-4 leading-tight">
                   Александра Моисеева
                 </h1>
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
                   Независимый стратег и инженер ИИ
                 </p>
-                <p className="text-lg text-text-body leading-relaxed mb-8">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
                 <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')} className="w-full sm:w-auto">
@@ -133,17 +133,17 @@ const About = () => {
         <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-4xl">
             <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
-              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover">
+              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium text-text-heading text-left">
+                    <h2 className="text-2xl md:text-3xl font-medium text-foreground text-left">
                       Кто я, <span className="font-semibold">и почему мне доверяют</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="mt-6 space-y-6 text-text-body">
+                  <div className="mt-6 space-y-6 text-muted-foreground">
                   <div>
                       <p className="text-handwriting mb-2">Кто я</p>
                       <p className="text-base leading-relaxed">
@@ -183,67 +183,67 @@ const About = () => {
             </h2>
             
             <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-white rounded-2xl shadow-card border-none gradient-border gradient-border-hover overflow-hidden">
+              <AccordionItem value="item-1" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
-                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-foreground">
                       Когда честность важнее должности
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-text-body leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств. Мы вернули доверие и большую часть вложений. Это сформировало мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-2" className="bg-white rounded-2xl shadow-card border-none gradient-border gradient-border-hover overflow-hidden">
+              <AccordionItem value="item-2" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
-                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-foreground">
                       Почему я ушла из банков: выбор ответственности
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-text-body leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     После кризисного управления я поняла: я не хочу работать там, где решения зависят от кого-то «сверху». 
                     Мне важна честность процессов и возможность влиять на результат.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-3" className="bg-white rounded-2xl shadow-card border-none gradient-border gradient-border-hover overflow-hidden">
+              <AccordionItem value="item-3" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
-                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-foreground">
                       От маркетинга к инженерии ИИ: переход в глубину
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-text-body leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     Весна 2023 года: ChatGPT-3.5, первые фразы, первые эксперименты. 
                     Но вместо поверхностного «инструмента для контента» я увидела механику, внутреннюю архитектуру, структуру данных — и ушла в глубину.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-4" className="bg-white rounded-2xl shadow-card border-none gradient-border gradient-border-hover overflow-hidden">
+              <AccordionItem value="item-4" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
-                    <h3 className="text-lg md:text-xl font-medium text-text-heading">
+                    <h3 className="text-lg md:text-xl font-medium text-foreground">
                       Выгорание и вывод: зрелость важнее скорости
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-text-body leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     Четыре раза за два года я теряла разработчиков и пересобирала архитектуры с нуля. Это было тяжело. 
                     В 2026 году я выбрала честный путь: работать в компактном формате — я + помощница + партнёры. Качество выше масштаба.
                   </p>
@@ -270,11 +270,11 @@ const About = () => {
               <div className="space-y-8">
                 {/* Education Section */}
                 <div>
-                  <h3 className="text-xl font-medium text-text-heading mb-6">Образование (последние 3 года, 2000+ часов)</h3>
+                  <h3 className="text-xl font-medium text-foreground mb-6">Образование (последние 3 года, 2000+ часов)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
-                      <p className="font-medium text-text-heading mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• Управление компаниями, которые используют ИИ</li>
                         <li>• Руководство проектами внедрения</li>
                       </ul>
@@ -308,7 +308,7 @@ const About = () => {
                       </ul>
                     </div>
 
-                    <div className="mt-4 p-4 bg-primary-light/20 rounded-lg">
+                    <div className="mt-4 p-4 bg-primary/10 rounded-lg">
                       <p className="font-medium mb-2">Почему это важно?</p>
                       <p className="text-sm text-text-body">
                         Образование — это не «я прошла курс». Это постоянное совершенствование.
@@ -321,8 +321,8 @@ const About = () => {
 
                 {/* Practical Experience Section */}
                 <div>
-                  <h3 className="text-xl font-medium text-text-heading mb-6">Практический опыт</h3>
-                  <ul className="space-y-3 text-base text-text-body ml-8">
+                  <h3 className="text-xl font-medium text-foreground mb-6">Практический опыт</h3>
+                  <ul className="space-y-3 text-base text-muted-foreground ml-8">
                     <li className="flex items-start gap-3">
                       <span className="text-primary flex-shrink-0 mt-1">•</span>
                       <span>Собственный код (Python, Node.js, интерфейсы) → управляю разработчиками на уровне архитектуры</span>
@@ -343,11 +343,11 @@ const About = () => {
 
                 {/* Partnerships Section */}
                 <div>
-                  <h3 className="text-xl font-medium text-text-heading mb-6">Партнёрства (постоянные, не разовые)</h3>
+                  <h3 className="text-xl font-medium text-foreground mb-6">Партнёрства (постоянные, не разовые)</h3>
                   <div className="space-y-4 ml-8">
                     <div>
-                      <p className="font-medium text-text-heading mb-2">TT Consulting</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">TT Consulting</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• Полное партнёрское соглашение</li>
                         <li>• Используем для крупных проектов: разработка + объединение систем</li>
                         <li>• Я проверяю архитектуру и результат лично</li>
@@ -356,8 +356,8 @@ const About = () => {
                     </div>
                     
                     <div>
-                      <p className="font-medium text-text-heading mb-2">Combox Technology</p>
-                      <ul className="space-y-1 text-sm text-text-body ml-4">
+                      <p className="font-medium text-foreground mb-2">Combox Technology</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
                         <li>• Партнёр для интерфейсов и объединения систем</li>
                         <li>• Постоянная техническая поддержка</li>
                         <li>• Независимая проверка качества (не переносим ошибки клиенту)</li>
@@ -365,15 +365,15 @@ const About = () => {
                       </ul>
                     </div>
 
-                    <div className="mt-4 p-4 bg-primary-light/20 rounded-lg">
+                    <div className="mt-4 p-4 bg-primary/10 rounded-lg">
                       <p className="font-medium mb-2">Моя роль: я не просто «нашла подрядчиков». Я контролирую:</p>
-                      <ul className="space-y-1 text-sm text-text-body">
+                      <ul className="space-y-1 text-sm text-muted-foreground">
                         <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Архитектуру (правильный ли подход?)</li>
                         <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Сроки (вовремя ли?)</li>
                         <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Качество (работает ли как надо?)</li>
                         <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Результат (достигли ли целей?)</li>
                       </ul>
-                      <p className="text-sm text-text-body mt-2 italic">
+                      <p className="text-sm text-muted-foreground mt-2 italic">
                         Если подрядчик не справляется → я беру на себя или ищу другого. Финальный результат — на мне.
                       </p>
                     </div>
@@ -382,49 +382,49 @@ const About = () => {
 
                 {/* Focus Section */}
                 <div>
-                  <h3 className="text-xl font-medium text-text-heading mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
+                  <h3 className="text-xl font-medium text-foreground mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
                   <div className="space-y-4">
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Архитектура</h4>
-                      <p className="text-text-body text-sm mb-2">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Архитектура</h4>
+                      <p className="text-muted-foreground text-sm mb-2">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
                       <p className="text-sm text-primary font-medium">Результат: экономия 92% времени, 8 человек → половина полной занятости, ROI 278%</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Логика процессов</h4>
-                      <p className="text-text-body text-sm mb-2">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Логика процессов</h4>
+                      <p className="text-muted-foreground text-sm mb-2">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
                       <p className="text-sm text-primary font-medium">Результат: экономия 4 часов/неделю, точность 99%, окупаемость 3 недели</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Объединение систем (интеграции)</h4>
-                      <p className="text-text-body text-sm mb-2">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Объединение систем (интеграции)</h4>
+                      <p className="text-muted-foreground text-sm mb-2">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
                       <p className="text-sm text-primary font-medium">Результат: ×5 скорость обработки заявок, точность распознавания 99%</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Защищённые контуры (данные не в облаке)</h4>
-                      <p className="text-text-body text-sm mb-2">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
-                      <p className="text-sm font-medium text-text-body">Ваши данные остаются на вашем сервере</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Защищённые контуры (данные не в облаке)</h4>
+                      <p className="text-muted-foreground text-sm mb-2">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
+                      <p className="text-sm font-medium text-muted-foreground">Ваши данные остаются на вашем сервере</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Multi-Agent Systems (многоагентные системы)</h4>
-                      <p className="text-text-body text-sm mb-2">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
-                      <p className="text-sm font-medium text-text-body">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Multi-Agent Systems (многоагентные системы)</h4>
+                      <p className="text-muted-foreground text-sm mb-2">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
+                      <p className="text-sm font-medium text-muted-foreground">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">RAG (система поиска и генерации)</h4>
-                      <p className="text-text-body text-sm mb-2">ИИ ищет информацию в вашей базе, не фантазирует</p>
-                      <p className="text-sm font-medium text-text-body">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">RAG (система поиска и генерации)</h4>
+                      <p className="text-muted-foreground text-sm mb-2">ИИ ищет информацию в вашей базе, не фантазирует</p>
+                      <p className="text-sm font-medium text-muted-foreground">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
                     </div>
 
-                    <div className="bg-primary-light/10 rounded-xl p-5">
-                      <h4 className="font-medium text-text-heading mb-2">Локальные модели</h4>
-                      <p className="text-text-body text-sm mb-2">Для России: Яндекс.ГПТ, собственные модели</p>
-                      <p className="text-text-body text-sm mb-2">Для других стран: Mistral, LLaMA</p>
-                      <p className="text-text-body text-sm font-medium">Главное: ваши данные не на серверах OpenAI</p>
+                    <div className="bg-primary/10 rounded-xl p-5">
+                      <h4 className="font-medium text-foreground mb-2">Локальные модели</h4>
+                      <p className="text-muted-foreground text-sm mb-2">Для России: Яндекс.ГПТ, собственные модели</p>
+                      <p className="text-muted-foreground text-sm mb-2">Для других стран: Mistral, LLaMA</p>
+                      <p className="text-muted-foreground text-sm font-medium">Главное: ваши данные не на серверах OpenAI</p>
                     </div>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-3xl">
             <div className={`bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 md:p-12 border-l-4 border-primary ${quoteAnimation('animate-fade-in-up')}`}>
               <blockquote>
-                <p className="text-xl md:text-2xl font-medium text-text-heading leading-relaxed">
+                <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
                   ИИ усиливает то, что уже есть в компании: порядок — усиливает порядок, перегруз — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
                 </p>
               </blockquote>
@@ -453,25 +453,25 @@ const About = () => {
         <section className="py-10 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 max-w-4xl">
             <Collapsible open={weakSidesOpen} onOpenChange={setWeakSidesOpen}>
-              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover transition-all duration-300 hover:shadow-hover">
+              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium text-text-heading text-left">
+                    <h2 className="text-2xl md:text-3xl font-medium text-foreground text-left">
                       Мои слабые стороны, <span className="font-semibold">и почему я про них говорю</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${weakSidesOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="mt-6 space-y-8 text-base text-text-body leading-relaxed">
+                  <div className="mt-6 space-y-8 text-base text-muted-foreground leading-relaxed">
                     {/* Weak Side 1 */}
                     <div>
-                      <h3 className="text-lg font-medium text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-foreground mb-3">
                         Я не работаю с компаниями меньше 15 человек
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="font-medium text-text-heading">Почему?</span><br />
+                          <span className="font-medium text-foreground">Почему?</span><br />
                           Слишком мало данных, чтобы построить качественное решение. ИИ работает на данных — если их мало, результат будет случайным. Плюс, невыгодно экономически (мой минимум затрат не окупится).
                         </p>
                         <p>
@@ -483,12 +483,12 @@ const About = () => {
 
                     {/* Weak Side 2 */}
                     <div>
-                      <h3 className="text-lg font-medium text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-foreground mb-3">
                         Я не люблю спешку (и требую 4–8 недель на хорошее решение)
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="font-medium text-text-heading">Почему?</span><br />
+                          <span className="font-medium text-foreground">Почему?</span><br />
                           Спешка = 80% провалов внедрения. Я не рискну вашим бюджетом ради того, чтобы сказать «готово». Хорошее решение требует:
                         </p>
                         <ul className="ml-6 space-y-1">
@@ -496,7 +496,7 @@ const About = () => {
                           <li>• Проектирования архитектуры (2–4 недели)</li>
                           <li>• Тестирования на малой группе (1–2 недели)</li>
                         </ul>
-                        <p className="font-medium text-text-heading">
+                        <p className="font-medium text-foreground">
                           Если нужно быстро = я не ваш консультант.
                         </p>
                         <p>
@@ -508,12 +508,12 @@ const About = () => {
 
                     {/* Weak Side 3 */}
                     <div>
-                      <h3 className="text-lg font-medium text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-foreground mb-3">
                         Я не беру проекты, где руководство не готово к переменам
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="font-medium text-text-heading">Почему?</span><br />
+                          <span className="font-medium text-foreground">Почему?</span><br />
                           ИИ — это не кнопка, которая нажимается и работает. Это изменение процессов. Если руководитель говорит «внедрите ИИ, но ничего не меняйте» → проект провалится.
                         </p>
                         <p>Мне нужно:</p>
@@ -522,7 +522,7 @@ const About = () => {
                           <li>• Команда, которая согласна использовать новые инструменты</li>
                           <li>• Понимание, что первый месяц будет медленнее (люди учатся)</li>
                         </ul>
-                        <p className="font-medium text-text-heading">
+                        <p className="font-medium text-foreground">
                           Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
                         </p>
                         <p>
@@ -534,12 +534,12 @@ const About = () => {
 
                     {/* Weak Side 4 */}
                     <div>
-                      <h3 className="text-lg font-medium text-text-heading mb-3">
+                      <h3 className="text-lg font-medium text-foreground mb-3">
                         Я не буду внедрять ИИ, если в процессах хаос
                       </h3>
                       <div className="space-y-3">
                         <p>
-                          <span className="font-medium text-text-heading">Почему?</span><br />
+                          <span className="font-medium text-foreground">Почему?</span><br />
                           Помнишь мою фразу: «Если в компании порядок — ИИ усиливает порядок. Если хаос — ИИ усиливает хаос»?
                         </p>
                         <p>Вот это буквально. Если ваши процессы сейчас хаотичны:</p>
@@ -551,7 +551,7 @@ const About = () => {
                         <p>
                           То ИИ просто усилит этот хаос. Вместо решения получите «красивый инструмент, который производит мусор».
                         </p>
-                        <p className="font-medium text-text-heading">
+                        <p className="font-medium text-foreground">
                           Сначала нужно навести порядок, потом внедрять ИИ.
                         </p>
                         <p>
