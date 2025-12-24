@@ -215,17 +215,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-20 lg:pt-24 pb-8 lg:pb-12 overflow-hidden min-h-[70vh] lg:min-h-[75vh]">
+    <section className="relative pt-16 lg:pt-20 pb-4 lg:pb-6 overflow-hidden min-h-[60vh] lg:min-h-[65vh] max-h-[70vh]">
       {/* Minimal background */}
       <div className="absolute inset-0 bg-background" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - Compact */}
-        <div className="mb-6 lg:mb-8 pb-4 lg:pb-5 border-b border-border/20">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
+        <div className="mb-4 lg:mb-6 pb-3 lg:pb-4 border-b border-border/20">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-2 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
@@ -283,20 +283,20 @@ const Hero = () => {
           
           {/* Left Sidebar - Navigation Panel */}
           <nav className="hidden lg:flex lg:col-span-3 xl:col-span-3">
-            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-3 flex flex-col justify-between">
+            <div className="w-full bg-muted/10 border-r border-border/20 rounded-l-2xl py-2 flex flex-col justify-between">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => setActiveSolution(solution.id)}
                   className={cn(
-                    "w-full text-left px-4 py-2.5 transition-all duration-200 group flex items-center justify-between cursor-pointer",
+                    "w-full text-left px-3 py-2 transition-all duration-200 group flex items-center justify-between cursor-pointer",
                     activeSolution === solution.id
                       ? "bg-primary/10 border-l-2 border-l-primary"
                       : "hover:bg-muted/30 border-l-2 border-l-transparent hover:border-l-primary/30"
                   )}
                 >
                   <span className={cn(
-                    "text-sm font-medium transition-colors leading-tight truncate pr-2",
+                    "text-[13px] font-medium transition-colors leading-tight truncate pr-2",
                     activeSolution === solution.id
                       ? "text-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
@@ -318,77 +318,77 @@ const Hero = () => {
 
           {/* Right Content Panel - Compact Preview */}
           <div className="lg:col-span-9 xl:col-span-9">
-            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-5 sm:p-6 lg:p-8">
+            <div className="bg-background/80 border border-border/20 rounded-2xl lg:rounded-l-none p-4 sm:p-5 lg:p-6">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in"
               >
                 {/* Section 1: Solution Title & Description */}
-                <div className="pb-4 lg:pb-5">
-                  <h2 className="text-xl sm:text-2xl lg:text-[1.75rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight max-w-2xl">
+                <div className="pb-3 lg:pb-4">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground mb-1.5 leading-[1.2] tracking-tight max-w-2xl">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm sm:text-base lg:text-[1.05rem] text-muted-foreground leading-relaxed max-w-[60ch]">
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[60ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
                 {/* Section 2: Problems */}
-                <div className="py-4 lg:py-5 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-3">
+                <div className="py-2.5 lg:py-3 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
                     Что идёт не так
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {currentSolution.problems.map((problem, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <span className="w-4 h-4 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="w-3.5 h-3.5 rounded-full bg-muted/60 flex items-center justify-center shrink-0 mt-0.5">
                           <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                         </span>
-                        <span className="text-muted-foreground leading-relaxed text-sm max-w-[55ch]">{problem}</span>
+                        <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm max-w-[55ch]">{problem}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Section 3: How It Works */}
-                <div className="py-4 lg:py-5 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-3">
+                <div className="py-2.5 lg:py-3 border-t border-border/20">
+                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
                     Как работает
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {currentSolution.howItWorks.map((step, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="w-3.5 h-3.5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                         </span>
-                        <span className="text-muted-foreground leading-relaxed text-sm max-w-[55ch]">{step}</span>
+                        <span className="text-muted-foreground leading-relaxed text-[13px] lg:text-sm max-w-[55ch]">{step}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Section 4: Example (Inline) */}
-                <div className="py-4 lg:py-5 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
-                    Пример
-                  </h3>
-                  <p className="text-sm text-muted-foreground italic max-w-[55ch] leading-relaxed">
-                    "{currentSolution.example}"
-                  </p>
-                </div>
-
-                {/* Section 5: Result (Inline) */}
-                <div className="py-4 lg:py-5 border-t border-border/20">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-2">
-                    Результат
-                  </h3>
-                  <p className="text-sm lg:text-base font-medium text-foreground max-w-[55ch] leading-relaxed">
-                    {currentSolution.result}
-                  </p>
+                {/* Section 4 & 5: Example + Result (Combined) */}
+                <div className="py-2.5 lg:py-3 border-t border-border/20 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div>
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
+                      Пример
+                    </h3>
+                    <p className="text-[13px] text-muted-foreground italic max-w-[45ch] leading-relaxed">
+                      "{currentSolution.example}"
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-[0.2em] mb-1.5">
+                      Результат
+                    </h3>
+                    <p className="text-[13px] lg:text-sm font-medium text-foreground max-w-[45ch] leading-relaxed">
+                      {currentSolution.result}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Section 6: CTA Zone */}
-                <div className="pt-4 lg:pt-5 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                <div className="pt-3 lg:pt-4 border-t border-border/20 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
                   <Button 
                     onClick={handleCTAClick}
                     size="default"
