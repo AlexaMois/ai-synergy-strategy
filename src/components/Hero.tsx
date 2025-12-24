@@ -217,7 +217,7 @@ const Hero = () => {
   return (
     <section className="relative pt-16 lg:pt-20 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
       {/* Minimal background */}
-      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-white" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - Compact */}
