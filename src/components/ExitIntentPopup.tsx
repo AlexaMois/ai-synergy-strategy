@@ -70,30 +70,30 @@ const ExitIntentPopup = () => {
         {/* Content */}
         <div className="p-5 sm:p-8 md:p-10">
           <DialogHeader className="mb-4 sm:mb-6">
-            <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-golos font-normal text-center text-[#222222] mb-3 sm:mb-4 leading-tight">
+            <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-golos font-normal text-center text-foreground mb-3 sm:mb-4 leading-tight">
               Вы теряете миллионы, <span className="font-semibold">на неправильном выборе ИИ</span>
             </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base md:text-lg font-raleway text-center text-[#444444]">
+            <DialogDescription className="text-sm sm:text-base md:text-lg font-raleway text-center text-foreground">
               За <span className="font-semibold text-primary">30 минут</span> я выясню, есть ли смысл вообще говорить об ИИ
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-2.5 sm:space-y-3 mb-5 sm:mb-8">
             <div className="flex items-start gap-2.5 sm:gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
-              <p className="text-sm sm:text-base font-raleway text-[#444444]">
+              <Check className="h-4 w-4 text-foreground shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-foreground">
                 Найду главные боли в ваших процессах, которые может решить ИИ
               </p>
             </div>
             <div className="flex items-start gap-2.5 sm:gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
-              <p className="text-sm sm:text-base font-raleway text-[#444444]">
+              <Check className="h-4 w-4 text-foreground shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-foreground">
                 Честно скажу, если ИИ вам сейчас не нужен и почему
               </p>
             </div>
             <div className="flex items-start gap-2.5 sm:gap-3">
-              <Check className="h-4 w-4 text-[#6A6A6A] shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
-              <p className="text-sm sm:text-base font-raleway text-[#444444]">
+              <Check className="h-4 w-4 text-foreground shrink-0 mt-0.5 sm:mt-1" strokeWidth={1} />
+              <p className="text-sm sm:text-base font-raleway text-foreground">
                 Предложу следующий шаг (если он имеет смысл)
               </p>
             </div>
@@ -108,7 +108,7 @@ const ExitIntentPopup = () => {
                 <Phone size={16} className="mr-2" />
                 Заказать звонок
               </Button>
-              <span className="text-xs text-[#6A6A6A] mt-1.5 sm:mt-2 font-raleway">
+              <span className="text-xs text-foreground/70 mt-1.5 sm:mt-2 font-raleway">
                 30 минут, без обязательств
               </span>
             </div>
@@ -125,13 +125,13 @@ const ExitIntentPopup = () => {
               >
                 Скачать чеклист диагностики
               </Button>
-              <span className="text-xs text-[#6A6A6A] mt-1.5 sm:mt-2 font-raleway">
+              <span className="text-xs text-foreground/70 mt-1.5 sm:mt-2 font-raleway">
                 Сами оцените готовность
               </span>
             </div>
           </div>
 
-          <p className="text-center text-xs sm:text-sm font-raleway text-[#6A6A6A]">
+          <p className="text-center text-xs sm:text-sm font-raleway text-foreground/70">
             Без впаривания, без волшебства. Только честная диагностика.
           </p>
         </div>

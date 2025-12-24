@@ -98,7 +98,7 @@ const FAQ = () => {
                 <AccordionTrigger className="text-left text-base font-medium text-foreground hover:text-primary transition-colors duration-200 rounded-xl px-2 -mx-2">
                   <span>{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-3">
+                <AccordionContent className="text-base text-foreground leading-relaxed pt-3">
                   {faq.answer}
                   <div className="mt-4">
                     <Button variant="outline" size="sm" asChild>

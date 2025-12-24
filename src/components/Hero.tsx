@@ -225,7 +225,7 @@ const Hero = () => {
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
@@ -262,7 +262,7 @@ const Hero = () => {
                 >
                   <span className={cn(
                     "text-sm",
-                    activeSolution === solution.id ? "text-foreground font-semibold" : "text-muted-foreground/80"
+                    activeSolution === solution.id ? "text-foreground font-semibold" : "text-foreground/80"
                   )}>
                     {solution.menuTitle}
                   </span>
@@ -299,7 +299,7 @@ const Hero = () => {
                     "text-[13px] transition-colors leading-tight truncate pr-3",
                     activeSolution === solution.id
                       ? "text-foreground font-semibold"
-                      : "text-muted-foreground/80 group-hover:text-foreground"
+                      : "text-foreground/80 group-hover:text-foreground"
                   )}>
                     {solution.menuTitle}
                   </span>
@@ -328,7 +328,7 @@ const Hero = () => {
                   <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
+                  <p className="text-sm lg:text-base text-foreground leading-relaxed max-w-[70ch]">
                     {currentSolution.description}
                   </p>
                 </div>
@@ -346,7 +346,7 @@ const Hero = () => {
                           <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
                           </span>
-                          <span className="text-muted-foreground/90 leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
                         </li>
                       ))}
                     </ul>
@@ -363,7 +363,7 @@ const Hero = () => {
                           <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                           </span>
-                          <span className="text-muted-foreground/90 leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                          <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
                         </li>
                       ))}
                     </ul>
@@ -376,7 +376,7 @@ const Hero = () => {
                     <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mb-2">
                       Пример
                     </h3>
-                    <p className="text-[13px] text-muted-foreground/80 italic leading-relaxed">
+                    <p className="text-[13px] text-foreground/80 italic leading-relaxed">
                       "{currentSolution.example}"
                     </p>
                   </div>
@@ -403,7 +403,7 @@ const Hero = () => {
                   {currentSolution.caseLink ? (
                     <a 
                       href={currentSolution.caseLink}
-                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
+                      className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
                     >
                       Посмотреть кейс
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -411,7 +411,7 @@ const Hero = () => {
                   ) : (
                     <button 
                       onClick={handleCTAClick}
-                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
+                      className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
                     >
                       Задать вопрос
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />

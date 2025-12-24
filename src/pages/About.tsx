@@ -101,7 +101,7 @@ const About = () => {
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
                   Независимый стратег и инженер ИИ
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                <p className="text-lg text-foreground leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
                 <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')} className="w-full sm:w-auto">
@@ -143,7 +143,7 @@ const About = () => {
                   </div>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="mt-6 space-y-6 text-muted-foreground">
+                  <div className="mt-6 space-y-6 text-foreground">
                   <div>
                       <p className="text-handwriting mb-2">Кто я</p>
                       <p className="text-base leading-relaxed">
@@ -193,7 +193,7 @@ const About = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-foreground leading-relaxed">
                     В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств. Мы вернули доверие и большую часть вложений. Это сформировало мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
                   </p>
                 </AccordionContent>
@@ -209,7 +209,7 @@ const About = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-foreground leading-relaxed">
                     После кризисного управления я поняла: я не хочу работать там, где решения зависят от кого-то «сверху». 
                     Мне важна честность процессов и возможность влиять на результат.
                   </p>
@@ -226,7 +226,7 @@ const About = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-foreground leading-relaxed">
                     Весна 2023 года: ChatGPT-3.5, первые фразы, первые эксперименты. 
                     Но вместо поверхностного «инструмента для контента» я увидела механику, внутреннюю архитектуру, структуру данных — и ушла в глубину.
                   </p>
@@ -243,7 +243,7 @@ const About = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-foreground leading-relaxed">
                     Четыре раза за два года я теряла разработчиков и пересобирала архитектуры с нуля. Это было тяжело. 
                     В 2026 году я выбрала честный путь: работать в компактном формате — я + помощница + партнёры. Качество выше масштаба.
                   </p>
@@ -259,7 +259,7 @@ const About = () => {
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
             </h2>
-            <p className={`text-lg text-muted-foreground text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
+            <p className={`text-lg text-foreground text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
               animationDelay: '0.1s'
             }}>
               Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
@@ -274,7 +274,7 @@ const About = () => {
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-foreground mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• Управление компаниями, которые используют ИИ</li>
                         <li>• Руководство проектами внедрения</li>
                       </ul>
@@ -282,7 +282,7 @@ const About = () => {
 
                     <div>
                       <p className="font-medium text-foreground mb-2">SDS KAEO — уровень 5 (максимальный)</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• Это не просто сертификат, это квалификация специалиста высшей категории</li>
                         <li>• Включает: архитектуру, безопасность, управление проектами</li>
                         <li>• Переаттестация каждый год (нужно доказывать, что я в теме)</li>
@@ -291,7 +291,7 @@ const About = () => {
 
                     <div>
                       <p className="font-medium text-foreground mb-2">Диплом на тему «Управление ИИ в малом бизнесе»</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• На основе реального проекта Крайпотребсоюза</li>
                         <li>• Исследование: как ИИ меняет управление малым предприятием</li>
                         <li>• Практический результат: ROI 278% (подтверждено)</li>
@@ -300,7 +300,7 @@ const About = () => {
 
                     <div>
                       <p className="font-medium text-foreground mb-2">Специализированные курсы (последние 12 месяцев):</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• Инженерия подсказок: продвинутый уровень (от OpenAI и Anthropic)</li>
                         <li>• Продвинутые архитектуры поиска и генерации (Coursera)</li>
                         <li>• Multi-Agent Systems (учебная сеть)</li>
@@ -310,7 +310,7 @@ const About = () => {
 
                     <div className="mt-4 p-4 bg-primary/10 rounded-lg">
                       <p className="font-medium mb-2">Почему это важно?</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground">
                         Образование — это не «я прошла курс». Это постоянное совершенствование.
                         Каждый новый инструмент, каждая функция от OpenAI — я изучаю.
                         Это значит, что мой совет всегда свежий, не из 2023 года.
@@ -322,7 +322,7 @@ const About = () => {
                 {/* Practical Experience Section */}
                 <div>
                   <h3 className="text-xl font-medium text-foreground mb-6">Практический опыт</h3>
-                  <ul className="space-y-3 text-base text-muted-foreground ml-8">
+                  <ul className="space-y-3 text-base text-foreground ml-8">
                     <li className="flex items-start gap-3">
                       <span className="text-primary flex-shrink-0 mt-1">•</span>
                       <span>Собственный код (Python, Node.js, интерфейсы) → управляю разработчиками на уровне архитектуры</span>
@@ -347,7 +347,7 @@ const About = () => {
                   <div className="space-y-4 ml-8">
                     <div>
                       <p className="font-medium text-foreground mb-2">TT Consulting</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• Полное партнёрское соглашение</li>
                         <li>• Используем для крупных проектов: разработка + объединение систем</li>
                         <li>• Я проверяю архитектуру и результат лично</li>
@@ -357,7 +357,7 @@ const About = () => {
                     
                     <div>
                       <p className="font-medium text-foreground mb-2">Combox Technology</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground ml-4">
+                      <ul className="space-y-1 text-sm text-foreground ml-4">
                         <li>• Партнёр для интерфейсов и объединения систем</li>
                         <li>• Постоянная техническая поддержка</li>
                         <li>• Независимая проверка качества (не переносим ошибки клиенту)</li>

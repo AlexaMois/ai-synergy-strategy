@@ -210,7 +210,7 @@ const PricingPage = () => {
                   Прозрачные цены на AI-консалтинг
                 </h1>
               </div>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-foreground max-w-3xl mx-auto leading-relaxed">
                 Стоимость зависит от размера компании и глубины работы. Все цены включают обучение команды и техническую поддержку. Главное: я считаю ROI вашей компании, не мою комиссию.
               </p>
             </div>
@@ -220,17 +220,17 @@ const PricingPage = () => {
               <div className="bg-primary/10 rounded-2xl p-6 text-center">
                 <TrendingUp className="w-10 h-10 text-primary mx-auto mb-3" strokeWidth={1.5} />
                 <h3 className="text-lg font-semibold text-foreground mb-2">ROI 200–400%</h3>
-                <p className="text-sm text-muted-foreground">Средняя окупаемость для моих клиентов</p>
+                <p className="text-sm text-foreground">Средняя окупаемость для моих клиентов</p>
               </div>
               <div className="bg-primary/10 rounded-2xl p-6 text-center">
                 <Clock className="w-10 h-10 text-primary mx-auto mb-3" strokeWidth={1.5} />
                 <h3 className="text-lg font-semibold text-foreground mb-2">3–12 недель</h3>
-                <p className="text-sm text-muted-foreground">До первых видимых результатов</p>
+                <p className="text-sm text-foreground">До первых видимых результатов</p>
               </div>
               <div className="bg-primary/10 rounded-2xl p-6 text-center">
                 <Shield className="w-10 h-10 text-primary mx-auto mb-3" strokeWidth={1.5} />
                 <h3 className="text-lg font-semibold text-foreground mb-2">Гарантия возврата</h3>
-                <p className="text-sm text-muted-foreground">Если не достигнем метрик за месяц</p>
+                <p className="text-sm text-foreground">Если не достигнем метрик за месяц</p>
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ const PricingPage = () => {
                       <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
                       <div>
                         <h3 className="text-2xl font-semibold text-foreground">{company.size}</h3>
-                        <p className="text-sm text-muted-foreground">{company.description}</p>
+                        <p className="text-sm text-foreground">{company.description}</p>
                       </div>
                     </div>
 
@@ -262,14 +262,14 @@ const PricingPage = () => {
                         >
                           <h4 className="text-lg font-semibold text-foreground mb-2">{service.name}</h4>
                           <p className="text-2xl font-bold text-primary mb-1">{service.price}</p>
-                          <p className="text-sm text-muted-foreground mb-4 flex items-center gap-2">
+                          <p className="text-sm text-foreground mb-4 flex items-center gap-2">
                             <Clock className="w-3.5 h-3.5" strokeWidth={1.5} />
                             {service.duration}
                           </p>
                           
                           <ul className="space-y-2">
                             {service.details.map((detail, detailIndex) => (
-                              <li key={detailIndex} className="text-sm text-muted-foreground flex items-start gap-2">
+                              <li key={detailIndex} className="text-sm text-foreground flex items-start gap-2">
                                 <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                                 <span>{detail}</span>
                               </li>
@@ -304,11 +304,11 @@ const PricingPage = () => {
                         <h3 className="text-lg font-semibold text-foreground mb-1">{service.name}</h3>
                         <div className="flex items-center gap-3 mb-3">
                           <p className="text-xl font-bold text-primary">{service.price}</p>
-                          <p className="text-sm text-muted-foreground">{service.duration}</p>
+                          <p className="text-sm text-foreground">{service.duration}</p>
                         </div>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                    <p className="text-sm text-foreground leading-relaxed">{service.description}</p>
                   </div>
                 );
               })}
@@ -324,43 +324,43 @@ const PricingPage = () => {
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Почему такой большой разброс в ценах?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   Каждая компания уникальна. Цена зависит от количества процессов, сложности интеграций, количества систем, размера команды и уровня зрелости данных. На первой встрече я оцениваю объём работы и называю конкретную цифру.
                 </p>
               </div>
 
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Можно ли оплатить частями?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   Да. Стандартная схема: 50% предоплата при старте, 30% после аудита/архитектуры, 20% после сдачи. Для долгосрочного сопровождения возможна помесячная оплата.
                 </p>
               </div>
 
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Что если бюджет ограничен?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   Начните с бесплатной экспресс-консультации. Я покажу, где AI даст максимальный эффект, и мы найдём решение под ваш бюджет. Например, можно начать с аудита одного процесса, а не всей компании.
                 </p>
               </div>
 
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Входит ли техническая реализация в стоимость?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   Нет. Я делаю аудит, архитектуру и консалтинг. Техническую реализацию (разработку кода) делают подрядчики, которых я помогаю выбрать и контролирую их работу. Моя задача — защитить ваши интересы и гарантировать результат.
                 </p>
               </div>
 
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Как вы гарантируете результат?</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                <p className="text-sm text-foreground leading-relaxed mb-3">
                   Три уровня гарантий:
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground">
                     <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                     <span>Пилот перед масштабированием — тестируем на небольшой команде</span>
                   </li>
-                  <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2 text-sm text-foreground">
                     <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                     <span>Возврат ретейнера за месяц, если не достигнем метрик</span>
                   </li>

@@ -86,7 +86,7 @@ const HowIWorkProcess = () => {
                   </p>
                   <ul className="space-y-2 mb-4">
                     {card.points.map((point, idx) => (
-                      <li key={idx} className="text-lg text-muted-foreground leading-relaxed flex">
+                      <li key={idx} className="text-lg text-foreground leading-relaxed flex">
                         <span className="mr-2">•</span>
                         <span>{point}</span>
                       </li>

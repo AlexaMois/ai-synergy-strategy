@@ -55,7 +55,7 @@ const WhatIDo = () => {
                       <h3 className="text-2xl font-medium mb-4 text-foreground">
                         {card.title}
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-lg text-foreground leading-relaxed">
                         {card.text}
                       </p>
                     </div>

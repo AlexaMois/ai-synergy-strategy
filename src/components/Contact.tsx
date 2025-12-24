@@ -101,7 +101,7 @@ const Contact = () => {
               <h2 className="text-2xl sm:text-3xl font-medium text-foreground mb-4">
                 Спасибо, я свяжусь с вами
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-foreground">
                 Обычно отвечаю в течение 24 часов в рабочие дни.
               </p>
             </div>
@@ -122,7 +122,7 @@ const Contact = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-4">
                 Будем на связи
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,
                 чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
               </p>
@@ -244,7 +244,7 @@ const Contact = () => {
                     onCheckedChange={(checked) => setValue("consent", checked as boolean)}
                     className={errors.consent ? "border-destructive" : ""}
                   />
-                  <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                  <Label htmlFor="consent" className="text-sm text-foreground leading-relaxed cursor-pointer">
                     Я согласен(а) с{" "}
                     <Link to="/consent" className="text-primary hover:underline">
                       условиями обработки персональных данных
