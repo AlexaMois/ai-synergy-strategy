@@ -122,8 +122,8 @@ const Navigation = () => {
   };
 
   return <>
-    {/* Desktop Header - Two Rows */}
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-background/80 backdrop-blur-sm shadow-sm"}`}>
+    {/* Desktop Header */}
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-card border-b border-border ${isScrolled ? "shadow-soft" : ""}`}>
       {/* Row 1: Navigation */}
       <div className="container mx-auto px-4">
         <div className="hidden lg:flex items-center justify-between h-20">
@@ -138,7 +138,7 @@ const Navigation = () => {
                   key={link.href} 
                   href={link.href} 
                   onClick={e => scrollToSection(e, link.href)} 
-                  className={`transition-all duration-300 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
                 >
                   {link.label}
                 </a>
@@ -146,7 +146,7 @@ const Navigation = () => {
                 <DisabledLink 
                   key={link.href} 
                   to={link.href} 
-                  className={`transition-all duration-300 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-accent after:w-full after:opacity-100 font-semibold" : "text-text-heading hover:text-accent after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
                 >
                   {link.label}
                 </DisabledLink>
@@ -158,17 +158,16 @@ const Navigation = () => {
           <div className="flex items-center gap-4">
             <a 
               href={phoneLink} 
-              className="flex items-center gap-2 text-base font-medium text-text-heading hover:text-accent transition-colors"
+              className="flex items-center gap-2 text-base font-medium text-foreground hover:text-primary transition-colors"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-4 w-4" strokeWidth={1.5} />
               {phoneNumber}
             </a>
             <Button 
               size="sm" 
-              className="bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg"
               onClick={(e) => scrollToSection(e as any, '#contact')}
             >
-              <Phone size={14} />
+              <Phone size={14} strokeWidth={1.5} />
               Заказать звонок
             </Button>
           </div>
@@ -191,28 +190,28 @@ const Navigation = () => {
 
     {/* Mobile Menu Button */}
     <button 
-      className="lg:hidden fixed top-3 right-4 z-[70] text-text-heading
+      className="lg:hidden fixed top-3 right-4 z-[70] text-foreground
                  pointer-events-auto touch-manipulation
                  w-10 h-10 flex items-center justify-center
-                 bg-background/90 backdrop-blur-sm rounded-full shadow-sm
-                 transition-all duration-300 hover:scale-110 active:scale-95" 
+                 bg-card rounded-full shadow-soft border border-border
+                 transition-colors duration-200" 
       onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
       aria-label="Toggle menu"
     >
-      {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+      {isMobileMenuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
     </button>
 
     {/* Mobile Menu Backdrop */}
     {isMobileMenuOpen && (
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] lg:hidden animate-fade-in"
+        className="fixed inset-0 bg-foreground/20 z-[55] lg:hidden animate-fade-in"
         onClick={() => setIsMobileMenuOpen(false)} 
       />
     )}
 
     {/* Mobile Navigation Drawer */}
     <div 
-      className={`fixed top-0 right-0 h-full w-[280px] bg-background shadow-2xl z-[60] lg:hidden transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+      className={`fixed top-0 right-0 h-full w-[280px] bg-card shadow-card z-[60] lg:hidden transition-transform duration-300 ease-out border-l border-border ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       onTouchStart={handleTouchStart} 
       onTouchMove={handleTouchMove} 
       onTouchEnd={handleTouchEnd}
@@ -224,7 +223,7 @@ const Navigation = () => {
               key={link.href} 
               href={link.href} 
               onClick={e => scrollToSection(e, link.href)} 
-              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium ${activeSection === link.href ? "text-white bg-accent" : "text-text-heading hover:text-accent hover:bg-gray-50"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {link.label}
@@ -234,7 +233,7 @@ const Navigation = () => {
               key={link.href} 
               to={link.href} 
               onClick={() => setIsMobileMenuOpen(false)} 
-              className={`block py-3 px-4 rounded-lg transition-all duration-300 font-medium ${location.pathname === link.href ? "text-white bg-accent" : "text-text-heading hover:text-accent hover:bg-gray-50"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+              className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {link.label}
@@ -243,20 +242,20 @@ const Navigation = () => {
         </nav>
         
         {/* Phone number and CTA in mobile menu */}
-        <div className="border-t border-gray-100 mt-4 pt-4 space-y-3">
+        <div className="border-t border-border mt-4 pt-4 space-y-3">
           <a 
             href={phoneLink} 
-            className="flex items-center gap-2 py-3 px-4 rounded-lg text-text-heading hover:text-accent hover:bg-gray-50 transition-all duration-300 font-medium"
+            className="flex items-center gap-2 py-3 px-4 rounded-xl text-foreground hover:text-primary hover:bg-muted transition-colors duration-200 font-medium"
           >
-            <Phone className="h-5 w-5" />
+            <Phone className="h-5 w-5" strokeWidth={1.5} />
             {phoneNumber}
           </a>
           <Button 
             size="sm" 
-            className="w-full bg-gradient-to-r from-primary-light to-primary-dark hover:from-primary hover:to-primary-dark shadow-lg"
+            className="w-full"
             onClick={(e) => scrollToSection(e as any, '#contact')}
           >
-            <Phone size={14} />
+            <Phone size={14} strokeWidth={1.5} />
             Заказать звонок
           </Button>
         </div>

@@ -11,12 +11,12 @@ const Fork = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Левая колонка - Продажи */}
           <div
-            className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 md:p-8 shadow-card hover:shadow-hover gradient-border transition-all duration-500 ${
+            className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-8 h-8 text-primary" />
+              <TrendingUp className="w-8 h-8 text-primary" strokeWidth={1.5} />
               <h3 className="text-xl md:text-2xl font-medium text-foreground">
                 Увеличиваем продажи и не теряем клиентов
               </h3>
@@ -31,13 +31,13 @@ const Fork = () => {
 
           {/* Правая колонка - Процессы */}
           <div
-            className={`bg-[hsl(var(--gray-50))] rounded-2xl p-6 md:p-8 shadow-card hover:shadow-hover gradient-border transition-all duration-500 ${
+            className={`bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <Settings className="w-8 h-8 text-primary" />
+              <Settings className="w-8 h-8 text-primary" strokeWidth={1.5} />
               <h3 className="text-xl md:text-2xl font-medium text-foreground">
                 Наводим порядок в процессах
               </h3>

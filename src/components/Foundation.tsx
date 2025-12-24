@@ -77,7 +77,7 @@ const Foundation = () => {
               <div key={service.title} className="relative">
                 <DisabledLink 
                   to={service.link}
-                  className={`bg-[hsl(var(--gray-50))] rounded-2xl p-4 sm:p-6 shadow-card sm:hover:shadow-hover sm:hover:scale-[1.02] gradient-border transition-all duration-500 w-full flex flex-col cursor-pointer h-full ${
+                  className={`bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow duration-200 w-full flex flex-col cursor-pointer h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
@@ -120,6 +120,7 @@ const Foundation = () => {
                 {index < services.length - 1 && (
                   <ArrowRight 
                     className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 text-primary w-5 h-5 flex-shrink-0" 
+                    strokeWidth={1.5}
                   />
                 )}
               </div>

@@ -97,11 +97,11 @@ const Contact = () => {
       <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className={`p-8 sm:p-12 rounded-2xl bg-[hsl(var(--gray-50))] shadow-card gradient-border ${getStaggeredClass(1, 'animate-scale-in')}`}>
-              <h2 className="text-2xl sm:text-3xl font-medium text-text-heading mb-4">
+            <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
+              <h2 className="text-2xl sm:text-3xl font-medium text-foreground mb-4">
                 Спасибо, я свяжусь с вами
               </h2>
-              <p className="text-text-body">
+              <p className="text-muted-foreground">
                 Обычно отвечаю в течение 24 часов в рабочие дни.
               </p>
             </div>
@@ -119,10 +119,10 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-8 lg:gap-12">
             {/* Левая колонка - текст */}
             <div className={`${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-text-heading mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-4">
                 Будем на связи
               </h2>
-              <p className="text-text-body text-lg">
+              <p className="text-muted-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,
                 чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
               </p>
@@ -131,12 +131,12 @@ const Contact = () => {
             {/* Правая колонка - форма */}
             <form 
               onSubmit={handleSubmit(onSubmit)} 
-              className={`p-6 sm:p-8 rounded-2xl bg-[hsl(var(--gray-50))] shadow-card gradient-border ${getStaggeredClass(2, 'animate-fade-in-up')}`}
+              className={`p-6 sm:p-8 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Имя */}
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-text-heading">
+                <Label htmlFor="name" className="text-foreground">
                   Имя <span className="text-primary">*</span>
                 </Label>
                 <Input
@@ -152,7 +152,7 @@ const Contact = () => {
 
               {/* Компания */}
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-text-heading">
+                <Label htmlFor="company" className="text-foreground">
                   Компания <span className="text-primary">*</span>
                 </Label>
                 <Input
@@ -168,7 +168,7 @@ const Contact = () => {
 
               {/* Отрасль */}
               <div className="space-y-2">
-                <Label htmlFor="industry" className="text-text-heading">
+                <Label htmlFor="industry" className="text-foreground">
                   Отрасль <span className="text-primary">*</span>
                 </Label>
                 <Input
@@ -184,7 +184,7 @@ const Contact = () => {
 
               {/* Телефон */}
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-text-heading">
+                <Label htmlFor="phone" className="text-foreground">
                   Телефон <span className="text-primary">*</span>
                 </Label>
                 <Input
@@ -202,7 +202,7 @@ const Contact = () => {
 
             {/* Email - full width */}
             <div className="space-y-2 mb-4 sm:mb-6">
-              <Label htmlFor="email" className="text-text-heading">
+              <Label htmlFor="email" className="text-foreground">
                 Email <span className="text-primary">*</span>
               </Label>
               <Input
@@ -219,7 +219,7 @@ const Contact = () => {
 
             {/* Комментарий - full width */}
             <div className="space-y-2 mb-4 sm:mb-6">
-              <Label htmlFor="comment" className="text-text-heading">
+              <Label htmlFor="comment" className="text-foreground">
                 Комментарий
               </Label>
               <Textarea
@@ -244,7 +244,7 @@ const Contact = () => {
                     onCheckedChange={(checked) => setValue("consent", checked as boolean)}
                     className={errors.consent ? "border-destructive" : ""}
                   />
-                  <Label htmlFor="consent" className="text-sm text-text-body leading-relaxed cursor-pointer">
+                  <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
                     Я согласен(а) с{" "}
                     <Link to="/consent" className="text-primary hover:underline">
                       условиями обработки персональных данных
