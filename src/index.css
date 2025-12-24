@@ -59,9 +59,9 @@
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* UI-kit shadows - мягкие и элегантные */
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    /* UI-kit shadows - холодные, премиальные */
+    --shadow-soft: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.08);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
