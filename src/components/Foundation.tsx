@@ -77,7 +77,7 @@ const Foundation = () => {
               <div key={service.title} className="relative">
                 <DisabledLink 
                   to={service.link}
-                  className={`bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow duration-200 w-full flex flex-col cursor-pointer h-full ${
+                  className={`bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-soft hover-lift-card w-full flex flex-col cursor-pointer h-full ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
