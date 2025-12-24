@@ -279,42 +279,40 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16 items-stretch">
           
           {/* Left Sidebar - Navigation Panel */}
-          <nav className="hidden lg:block lg:col-span-4 xl:col-span-3">
-            <div className="sticky top-28">
-              <div className="bg-muted/20 border border-border/20 rounded-2xl p-2">
-                {solutions.map((solution, index) => (
-                  <button
-                    key={solution.id}
-                    onClick={() => setActiveSolution(solution.id)}
-                    className={cn(
-                      "w-full text-left px-4 py-4 min-h-[48px] rounded-xl transition-all duration-300 group flex items-center justify-between",
-                      activeSolution === solution.id
-                        ? "bg-primary/10 border-l-[3px] border-l-primary"
-                        : "hover:bg-muted/40 border-l-[3px] border-l-transparent"
-                    )}
-                  >
-                    <span className={cn(
-                      "text-[0.9rem] font-medium transition-colors leading-tight",
-                      activeSolution === solution.id
-                        ? "text-foreground"
-                        : "text-muted-foreground group-hover:text-foreground"
-                    )}>
-                      {solution.menuTitle}
-                    </span>
-                    <span className={cn(
-                      "text-xs font-medium tabular-nums transition-colors",
-                      activeSolution === solution.id
-                        ? "text-primary"
-                        : "text-muted-foreground/50 group-hover:text-muted-foreground"
-                    )}>
-                      {formatNumber(index + 1)}
-                    </span>
-                  </button>
-                ))}
-              </div>
+          <nav className="hidden lg:flex lg:col-span-4 xl:col-span-3">
+            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2 w-full h-full flex flex-col">
+              {solutions.map((solution, index) => (
+                <button
+                  key={solution.id}
+                  onClick={() => setActiveSolution(solution.id)}
+                  className={cn(
+                    "w-full text-left px-4 py-4 min-h-[48px] rounded-xl transition-all duration-300 group flex items-center justify-between",
+                    activeSolution === solution.id
+                      ? "bg-primary/10 border-l-[3px] border-l-primary"
+                      : "hover:bg-muted/40 border-l-[3px] border-l-transparent"
+                  )}
+                >
+                  <span className={cn(
+                    "text-[0.9rem] font-medium transition-colors leading-tight",
+                    activeSolution === solution.id
+                      ? "text-foreground"
+                      : "text-muted-foreground group-hover:text-foreground"
+                  )}>
+                    {solution.menuTitle}
+                  </span>
+                  <span className={cn(
+                    "text-xs font-medium tabular-nums transition-colors",
+                    activeSolution === solution.id
+                      ? "text-primary"
+                      : "text-muted-foreground/50 group-hover:text-muted-foreground"
+                  )}>
+                    {formatNumber(index + 1)}
+                  </span>
+                </button>
+              ))}
             </div>
           </nav>
 
