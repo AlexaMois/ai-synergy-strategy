@@ -94,10 +94,10 @@ const Contact = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#FFFFFF] overflow-hidden">
+      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className={`p-8 sm:p-12 rounded-3xl bg-white shadow-card ${getStaggeredClass(1, 'animate-scale-in')}`}>
+            <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
               <h2 className="text-2xl sm:text-3xl font-medium text-foreground mb-4">
                 Спасибо, я свяжусь с вами
               </h2>
@@ -112,7 +112,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#FFFFFF] overflow-hidden">
+    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}
@@ -122,7 +122,7 @@ const Contact = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-4">
                 Будем на связи
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,
                 чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
               </p>
@@ -131,7 +131,7 @@ const Contact = () => {
             {/* Правая колонка - форма */}
             <form 
               onSubmit={handleSubmit(onSubmit)} 
-              className={`p-6 sm:p-8 rounded-3xl bg-white shadow-card ${getStaggeredClass(2, 'animate-fade-in-up')}`}
+              className={`p-6 sm:p-8 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Имя */}

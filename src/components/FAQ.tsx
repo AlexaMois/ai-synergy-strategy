@@ -81,13 +81,13 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-[#0B1220] overflow-hidden">
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className={`section-title text-center leading-tight text-white ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
+        <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           Частые вопросы, <span className="font-semibold">честные ответы</span>
         </h2>
 
-        <div className={`max-w-4xl mx-auto bg-white rounded-3xl shadow-card p-6 sm:p-8 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
+        <div className={`max-w-4xl mx-auto ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
