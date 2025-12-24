@@ -38,8 +38,8 @@ const Services = () => {
               }`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 opacity-30">
-                {service.number}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary-light flex items-center justify-center mb-4">
+                <span className="text-xl sm:text-2xl font-bold text-primary">{service.number}</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 {service.title}
