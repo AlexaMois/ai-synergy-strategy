@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 
@@ -196,6 +197,15 @@ const PricingPage = () => {
 
   return (
     <PageTransition>
+      <Helmet>
+        <title>Цены на AI-консалтинг — Александра Моисеева</title>
+        <meta name="description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽, полный цикл от 150 тыс. ₽. ROI 200-400%, окупаемость 3-12 недель." />
+        <meta name="keywords" content="цены AI консалтинг, стоимость внедрения ИИ, прайс AI услуги, ROI искусственный интеллект" />
+        <link rel="canonical" href="https://aleksamois.ru/pricing" />
+        <meta property="og:title" content="Цены на AI-консалтинг — Александра Моисеева" />
+        <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI 200-400%." />
+        <meta property="og:url" content="https://aleksamois.ru/pricing" />
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
         

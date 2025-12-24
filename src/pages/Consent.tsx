@@ -2,10 +2,17 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Consent = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Согласие на обработку персональных данных | Александра Моисеева</title>
+        <meta name="description" content="Согласие на обработку персональных данных ИП Моисеева Александра Алексеевна. Цели обработки, перечень данных, права субъекта." />
+        <link rel="canonical" href="https://aleksamois.ru/consent" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <Navigation />
       
       <main className="container mx-auto px-4 py-10 md:py-16 lg:py-20 max-w-4xl">

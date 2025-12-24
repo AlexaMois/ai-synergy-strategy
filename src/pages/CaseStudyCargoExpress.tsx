@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-
+import { Helmet } from "react-helmet";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, DollarSign, Target } from "lucide-react";
@@ -10,6 +10,15 @@ import { Truck, TrendingUp, Users, Clock, DollarSign, Target } from "lucide-reac
 const CaseStudyCargoExpress = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>Кейс: Грузовой Экспресс — Автоматизация логистики за 12 тыс. ₽</title>
+        <meta name="description" content="Как автоматизировать логистическую компанию за 12 000 ₽: Telegram-бот + Google Sheets. Экономия 3-4 часа/неделю, окупаемость 3 недели, точность 99%." />
+        <meta name="keywords" content="автоматизация логистики, Telegram бот для бизнеса, кейс внедрения ИИ, Грузовой Экспресс" />
+        <link rel="canonical" href="https://aleksamois.ru/case-studies/cargo-express" />
+        <meta property="og:title" content="Кейс: Грузовой Экспресс — Автоматизация за 12 тыс. ₽" />
+        <meta property="og:description" content="Как автоматизировать логистику за 12 000 ₽. Окупаемость 3 недели." />
+        <meta property="og:url" content="https://aleksamois.ru/case-studies/cargo-express" />
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
         

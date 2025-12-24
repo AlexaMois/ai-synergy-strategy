@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
@@ -37,6 +38,16 @@ const Index = () => {
   }, [location.hash]);
   
   return <div className="min-h-screen">
+      <Helmet>
+        <title>Александра Моисеева — Независимый стратег и инженер по ИИ</title>
+        <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев. Без привязки к платформам." />
+        <meta name="keywords" content="ИИ консалтинг, внедрение искусственного интеллекта, AI стратегия, автоматизация бизнеса, нейросети для бизнеса, Александра Моисеева" />
+        <link rel="canonical" href="https://aleksamois.ru/" />
+        <meta property="og:title" content="Александра Моисеева — Независимый стратег и инженер по ИИ" />
+        <meta property="og:description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%." />
+        <meta property="og:url" content="https://aleksamois.ru/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navigation />
       <main>
         <Hero />

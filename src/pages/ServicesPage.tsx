@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-
+import { Helmet } from "react-helmet";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";
@@ -10,6 +10,15 @@ import PageTransition from "@/components/PageTransition";
 const ServicesPage = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>Услуги — Александра Моисеева, Инженер по ИИ</title>
+        <meta name="description" content="Полный спектр услуг по внедрению ИИ: диагностика, стратегия, архитектура, сопровождение. Работаю с компаниями от 3 до 300 сотрудников. ROI 200-400%." />
+        <meta name="keywords" content="услуги ИИ, внедрение AI, аудит процессов, AI архитектура, консалтинг искусственный интеллект" />
+        <link rel="canonical" href="https://aleksamois.ru/services" />
+        <meta property="og:title" content="Услуги — Александра Моисеева, Инженер по ИИ" />
+        <meta property="og:description" content="Полный спектр услуг по внедрению ИИ: диагностика, стратегия, архитектура, сопровождение." />
+        <meta property="og:url" content="https://aleksamois.ru/services" />
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
       

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Printer } from "lucide-react";
+import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -9,14 +9,6 @@ import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 
 const ChecklistPage = () => {
-  useEffect(() => {
-    document.title = "Чек-лист: 10 вопросов перед внедрением ИИ | Александра Моисеева";
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Бесплатный чек-лист для оценки готовности компании к внедрению ИИ. 10 ключевых вопросов, которые помогут избежать ошибок и получить реальный результат.");
-    }
-  }, []);
 
   const handlePrint = () => {
     window.print();
@@ -77,6 +69,15 @@ const ChecklistPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Чек-лист: 10 вопросов перед внедрением ИИ | Александра Моисеева</title>
+        <meta name="description" content="Бесплатный чек-лист для оценки готовности компании к внедрению ИИ. 10 ключевых вопросов, которые помогут избежать ошибок и получить реальный результат." />
+        <meta name="keywords" content="чек-лист ИИ, внедрение искусственного интеллекта, готовность к AI, вопросы перед внедрением ИИ" />
+        <link rel="canonical" href="https://aleksamois.ru/checklist" />
+        <meta property="og:title" content="Чек-лист: 10 вопросов перед внедрением ИИ" />
+        <meta property="og:description" content="Бесплатный чек-лист для оценки готовности компании к внедрению ИИ." />
+        <meta property="og:url" content="https://aleksamois.ru/checklist" />
+      </Helmet>
       <Navigation />
       
       <main>

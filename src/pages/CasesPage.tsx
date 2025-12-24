@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-
+import { Helmet } from "react-helmet";
 import { Image, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -370,6 +370,15 @@ const CasesPage = () => {
 
   return (
     <PageTransition>
+      <Helmet>
+        <title>Кейсы и результаты — Примеры внедрения ИИ | Александра Моисеева</title>
+        <meta name="description" content="36+ реальных кейсов внедрения ИИ: автоматизация процессов, AI-ассистенты, контент с помощью нейросетей. ROI до 278%, экономия до 92% времени." />
+        <meta name="keywords" content="кейсы внедрения ИИ, примеры AI автоматизации, результаты искусственный интеллект, ROI ИИ проектов" />
+        <link rel="canonical" href="https://aleksamois.ru/cases" />
+        <meta property="og:title" content="Кейсы и результаты — Примеры внедрения ИИ" />
+        <meta property="og:description" content="36+ реальных кейсов внедрения ИИ. ROI до 278%, экономия до 92% времени." />
+        <meta property="og:url" content="https://aleksamois.ru/cases" />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
       

@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import { Helmet } from "react-helmet";
 import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";
 import SixQuestions from "@/components/SixQuestions";
@@ -86,6 +87,15 @@ const About = () => {
     isVisible: statsVisible
   });
   return <PageTransition>
+      <Helmet>
+        <title>Обо мне — Александра Моисеева, Инженер по ИИ</title>
+        <meta name="description" content="Независимый стратег и инженер ИИ с 13+ годами опыта. 36+ проектов, 350+ аудитов, ROI 200-400%. Сколково, SDS KAEO уровень 5." />
+        <meta name="keywords" content="Александра Моисеева, инженер ИИ, AI консультант, эксперт по искусственному интеллекту, Сколково" />
+        <link rel="canonical" href="https://aleksamois.ru/about" />
+        <meta property="og:title" content="Обо мне — Александра Моисеева, Инженер по ИИ" />
+        <meta property="og:description" content="Независимый стратег и инженер ИИ с 13+ годами опыта. 36+ проектов, ROI 200-400%." />
+        <meta property="og:url" content="https://aleksamois.ru/about" />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
       

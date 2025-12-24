@@ -15,6 +15,7 @@ export const ALLOWED_ROUTES = [
   '/golossok-pricing',
   '/case-studies/kraypotrebsoyuz',
   '/case-studies/cargo-express',
+  '/case-studies/doc-search',
 ];
 
 export const isRouteAllowed = (path: string): boolean => {
