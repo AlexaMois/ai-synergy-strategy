@@ -5,15 +5,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 transition-all duration-300 ease-out",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-semibold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 transition-colors duration-200",
   {
     variants: {
       variant: {
-        default: "bg-primary text-white shadow-[0_2px_8px_rgba(73,190,216,0.25)] hover:bg-primary-dark hover:shadow-[0_4px_12px_rgba(73,190,216,0.3)] hover:scale-[1.02] active:scale-[0.98]",
-        destructive: "bg-destructive text-destructive-foreground shadow-soft hover:shadow-card hover:scale-[1.02]",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary-soft hover:border-primary-dark transition-all",
-        secondary: "bg-secondary text-secondary-foreground shadow-soft hover:bg-gray-100 hover:shadow-card hover:scale-[1.02]",
-        ghost: "hover:bg-muted/50 hover:text-foreground",
+        default: "bg-primary text-white hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-border bg-transparent text-foreground hover:bg-muted",
+        secondary: "bg-muted text-foreground hover:bg-muted/80",
+        ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

@@ -33,8 +33,6 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           dark: "hsl(var(--primary-dark))",
-          light: "hsl(var(--primary-light))",
-          soft: "hsl(var(--primary-soft))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -77,24 +75,13 @@ export default {
           300: "hsl(var(--gray-300))",
           400: "hsl(var(--gray-400))",
         },
-        text: {
-          heading: "hsl(var(--text-heading))",
-          body: "hsl(var(--text-body))",
-          subtle: "hsl(var(--text-subtle))",
-        },
         "soft-sand": "hsl(var(--soft-sand))",
         "dark-bg": "hsl(var(--dark-bg))",
         "light-bg": "hsl(var(--light-bg))",
       },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-soft': 'var(--gradient-soft)',
-        'gradient-card': 'var(--gradient-card)',
-      },
       boxShadow: {
         'soft': 'var(--shadow-soft)',
         'card': 'var(--shadow-card)',
-        'hover': 'var(--shadow-hover)',
       },
       borderRadius: {
         lg: "var(--radius)",

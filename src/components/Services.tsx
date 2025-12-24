@@ -7,6 +7,7 @@ const Services = () => {
   } = useIntersectionObserver({
     threshold: 0.2
   });
+  
   const services = [{
     number: "01",
     title: "Аудит и диагностика",
@@ -20,6 +21,7 @@ const Services = () => {
     title: "Консалтинг и сопровождение",
     description: "Обучаю команду работе с ИИ. Сопровождаю пилоты и запуски. Помогаю избежать ошибок и достичь целевых метрик."
   }];
+  
   return (
     <section id="services" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
@@ -31,7 +33,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.number}
-              className={`p-4 sm:p-8 rounded-[20px] bg-white shadow-card hover:shadow-hover transition-all duration-300 hover:scale-[1.02] hover:bg-primary-light/20 gradient-border gradient-border-hover ${
+              className={`p-4 sm:p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-card transition-shadow duration-200 ${
                 isVisible ? 'animate-fade-in-up' : 'opacity-0'
               }`}
               style={{ animationDelay: `${index * 0.15}s` }}
@@ -39,10 +41,10 @@ const Services = () => {
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 opacity-30">
                 {service.number}
               </div>
-              <h3 className="text-xl font-semibold text-text-heading mb-3">
+              <h3 className="text-xl font-semibold text-foreground mb-3">
                 {service.title}
               </h3>
-              <p className="text-text-body leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {service.description}
               </p>
             </div>
@@ -52,4 +54,5 @@ const Services = () => {
     </section>
   );
 };
+
 export default Services;

@@ -93,18 +93,18 @@ const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border-b-2 border-border pb-3"
+                className="border-b border-border pb-3"
               >
-                <AccordionTrigger className="text-left text-base font-medium text-text-heading hover:text-accent hover:bg-gray-100/50 transition-colors duration-200 rounded-lg px-2 -mx-2">
+                <AccordionTrigger className="text-left text-base font-medium text-foreground hover:text-primary transition-colors duration-200 rounded-xl px-2 -mx-2">
                   <span>{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-text-body leading-relaxed pt-3">
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-3">
                   {faq.answer}
                   <div className="mt-4">
                     <Button variant="outline" size="sm" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                         Разобрать мой процесс
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
                       </a>
                     </Button>
                   </div>
