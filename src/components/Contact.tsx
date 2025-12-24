@@ -94,7 +94,7 @@ const Contact = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background section-gradient-bottom-light overflow-hidden">
+      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-white via-white to-slate-50/50 section-gradient-bottom-light overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
@@ -112,7 +112,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background section-gradient-bottom-light overflow-hidden">
+    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-white via-white to-slate-50/50 section-gradient-bottom-light overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}
