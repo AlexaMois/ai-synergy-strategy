@@ -221,7 +221,7 @@ const Hero = () => {
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - Separate Container */}
-        <div className="mb-24 sm:mb-28 lg:mb-32 pb-12 lg:pb-16 border-b border-border/20">
+        <div className="mb-10 sm:mb-12 lg:mb-14 pb-8 lg:pb-10 border-b border-border/20">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-foreground leading-[1.15] mb-5 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
@@ -279,11 +279,11 @@ const Hero = () => {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16 items-start">
           
           {/* Left Sidebar - Navigation Panel */}
-          <nav className="hidden lg:flex lg:col-span-4 xl:col-span-3">
-            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2 w-full h-full flex flex-col">
+          <nav className="hidden lg:block lg:col-span-4 xl:col-span-3">
+            <div className="bg-muted/20 border border-border/20 rounded-2xl p-2">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
