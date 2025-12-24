@@ -81,7 +81,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-200 to-gray-100 section-gradient-bottom-bg overflow-hidden">
+    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-100 to-gray-50 section-gradient-bottom-bg overflow-hidden">
       <div className="container mx-auto px-4">
         <h2 className={`section-title text-center leading-tight ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           Частые вопросы, <span className="font-semibold">честные ответы</span>

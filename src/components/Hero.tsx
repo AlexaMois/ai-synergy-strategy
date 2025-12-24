@@ -217,7 +217,7 @@ const Hero = () => {
   return (
     <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden min-h-[65vh] lg:min-h-[70vh]">
       {/* Light gradient background - контрастный */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-100 to-gray-300" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-gray-100" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header - With more top spacing */}
