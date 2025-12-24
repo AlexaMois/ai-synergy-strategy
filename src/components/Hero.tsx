@@ -216,14 +216,12 @@ const Hero = () => {
 
   return (
     <section className="relative pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-28 overflow-hidden">
-      {/* Premium background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/[0.03] via-transparent to-transparent" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+      {/* Minimal background */}
+      <div className="absolute inset-0 bg-background" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 lg:mb-20">
+        {/* Header - Separate Container */}
+        <div className="mb-24 sm:mb-28 lg:mb-32 pb-12 lg:pb-16 border-b border-border/20">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-foreground leading-[1.15] mb-5 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
@@ -237,7 +235,7 @@ const Hero = () => {
         <div className="lg:hidden mb-8">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-full flex items-center justify-between px-5 py-4 bg-card border border-border/60 rounded-xl shadow-sm text-left transition-all duration-200 hover:border-primary/30"
+            className="w-full flex items-center justify-between px-5 py-4 bg-muted/20 border border-border/20 rounded-xl text-left transition-all duration-200 hover:border-primary/30"
           >
             <div className="flex items-center gap-3">
               <span className="text-xs font-medium text-primary/70">{formatNumber(currentIndex + 1)}</span>
@@ -250,16 +248,16 @@ const Hero = () => {
           </button>
           
           {mobileMenuOpen && (
-            <div className="mt-2 bg-card border border-border/60 rounded-xl shadow-lg overflow-hidden animate-fade-in">
+            <div className="mt-2 bg-muted/20 border border-border/20 rounded-xl overflow-hidden animate-fade-in">
               {solutions.map((solution, index) => (
                 <button
                   key={solution.id}
                   onClick={() => handleSolutionSelect(solution.id)}
                   className={cn(
-                    "w-full px-5 py-4 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/30 last:border-b-0",
+                    "w-full px-5 py-4 min-h-[48px] text-left transition-all duration-200 flex items-center gap-3 border-b border-border/20 last:border-b-0",
                     activeSolution === solution.id
-                      ? "bg-primary/5"
-                      : "hover:bg-muted/30"
+                      ? "bg-primary/10"
+                      : "hover:bg-muted/40"
                   )}
                 >
                   <span className={cn(
@@ -283,19 +281,19 @@ const Hero = () => {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-16">
           
-          {/* Left Sidebar - Premium Navigation Panel */}
+          {/* Left Sidebar - Navigation Panel */}
           <nav className="hidden lg:block lg:col-span-4 xl:col-span-3">
             <div className="sticky top-28">
-              <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl p-2 shadow-sm">
+              <div className="bg-muted/20 border border-border/20 rounded-2xl p-2">
                 {solutions.map((solution, index) => (
                   <button
                     key={solution.id}
                     onClick={() => setActiveSolution(solution.id)}
                     className={cn(
-                      "w-full text-left px-4 py-3.5 rounded-xl transition-all duration-300 group flex items-center justify-between",
+                      "w-full text-left px-4 py-4 min-h-[48px] rounded-xl transition-all duration-300 group flex items-center justify-between",
                       activeSolution === solution.id
-                        ? "bg-primary/10 border-l-[3px] border-l-primary ml-0"
-                        : "hover:bg-muted/40 border-l-[3px] border-l-transparent ml-0"
+                        ? "bg-primary/10 border-l-[3px] border-l-primary"
+                        : "hover:bg-muted/40 border-l-[3px] border-l-transparent"
                     )}
                   >
                     <span className={cn(
@@ -320,116 +318,108 @@ const Hero = () => {
             </div>
           </nav>
 
-          {/* Right Content Panel - Premium Card */}
+          {/* Right Content Panel - Main Surface */}
           <div className="lg:col-span-8 xl:col-span-9">
-            <div className="bg-card/60 backdrop-blur-sm border border-border/40 rounded-2xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-sm">
+            <div className="bg-background/80 border border-border/20 rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12">
               <div 
                 key={currentSolution.id}
                 className="animate-fade-in"
               >
-                {/* H2 Title - Anchor */}
-                <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem] font-bold text-foreground mb-5 leading-[1.2] tracking-tight">
-                  {currentSolution.h2Title}
-                </h2>
+                {/* Section 1: Solution Title & Description */}
+                <div className="pb-10 lg:pb-12">
+                  <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem] font-bold text-foreground mb-5 leading-[1.2] tracking-tight">
+                    {currentSolution.h2Title}
+                  </h2>
+                  <p className="text-lg sm:text-xl lg:text-[1.25rem] text-foreground/80 leading-relaxed max-w-3xl">
+                    {currentSolution.description}
+                  </p>
+                </div>
 
-                {/* Description - Value Statement */}
-                <p className="text-lg sm:text-xl lg:text-[1.25rem] text-foreground/80 mb-10 lg:mb-12 leading-relaxed max-w-3xl">
-                  {currentSolution.description}
-                </p>
+                {/* Section 2: Problems */}
+                <div className="py-10 lg:py-12 border-t border-border/30">
+                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-6">
+                    Что идёт не так
+                  </h3>
+                  <ul className="space-y-4">
+                    {currentSolution.problems.map((problem, index) => (
+                      <li key={index} className="flex items-start gap-4">
+                        <span className="w-5 h-5 rounded-full bg-muted/80 flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
+                        </span>
+                        <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{problem}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Content Grid */}
-                <div className="space-y-8 lg:space-y-10">
-                  
-                  {/* Problems Section */}
-                  <div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
-                      Что идёт не так
-                    </h3>
-                    <ul className="space-y-4">
-                      {currentSolution.problems.map((problem, index) => (
-                        <li key={index} className="flex items-start gap-4">
-                          <span className="w-5 h-5 rounded-full bg-muted/80 flex items-center justify-center shrink-0 mt-0.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
-                          </span>
-                          <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{problem}</span>
-                        </li>
-                      ))}
-                    </ul>
+                {/* Section 3: How It Works */}
+                <div className="py-10 lg:py-12 border-t border-border/30">
+                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-6">
+                    Как работает решение
+                  </h3>
+                  <ul className="space-y-4">
+                    {currentSolution.howItWorks.map((step, index) => (
+                      <li key={index} className="flex items-start gap-4">
+                        <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-primary" strokeWidth={2.5} />
+                        </span>
+                        <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{step}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Section 4: Example (Highlighted Block) */}
+                <div className="py-10 lg:py-12 border-t border-border/30">
+                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
+                    Пример
+                  </h3>
+                  <div className="bg-muted/30 border border-border/30 rounded-xl p-6 lg:p-8">
+                    <p className="text-foreground/90 leading-relaxed text-[0.95rem] lg:text-base italic">
+                      "{currentSolution.example}"
+                    </p>
                   </div>
+                </div>
 
-                  {/* Thin Divider */}
-                  <div className="w-full h-px bg-gradient-to-r from-border/60 via-border/30 to-transparent" />
-
-                  {/* How It Works Section */}
-                  <div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
-                      Как работает решение
-                    </h3>
-                    <ul className="space-y-4">
-                      {currentSolution.howItWorks.map((step, index) => (
-                        <li key={index} className="flex items-start gap-4">
-                          <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3 h-3 text-primary" strokeWidth={2.5} />
-                          </span>
-                          <span className="text-foreground/85 leading-relaxed text-[0.95rem] lg:text-base">{step}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Thin Divider */}
-                  <div className="w-full h-px bg-gradient-to-r from-border/60 via-border/30 to-transparent" />
-
-                  {/* Example Block - Callout */}
-                  <div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-4">
-                      Пример
-                    </h3>
-                    <div className="bg-muted/30 border border-border/30 rounded-xl p-5 lg:p-6">
-                      <p className="text-foreground/90 leading-relaxed text-[0.95rem] lg:text-base italic">
-                        "{currentSolution.example}"
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Result Block - Strong Visual */}
-                  <div className="pt-2">
-                    <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-4">
-                      Результат
-                    </h3>
+                {/* Section 5: Result (Highlighted Block) */}
+                <div className="py-10 lg:py-12 border-t border-border/30">
+                  <h3 className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-[0.15em] mb-5">
+                    Результат
+                  </h3>
+                  <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 lg:p-8">
                     <p className="text-lg lg:text-xl font-medium text-foreground leading-relaxed">
                       {currentSolution.result}
                     </p>
                   </div>
+                </div>
 
-                  {/* CTA Section - Premium Buttons */}
-                  <div className="pt-4 lg:pt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                    <Button 
-                      onClick={handleCTAClick}
-                      size="lg"
-                      className="text-base px-8 py-6 h-auto rounded-xl shadow-sm hover:shadow-md transition-all duration-300 font-medium"
+                {/* Section 6: CTA Zone */}
+                <div className="pt-10 lg:pt-12 border-t border-border/30 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                  <Button 
+                    onClick={handleCTAClick}
+                    size="lg"
+                    className="text-base px-8 py-6 h-auto rounded-xl shadow-sm hover:shadow-md transition-all duration-300 font-medium"
+                  >
+                    {currentSolution.ctaText}
+                  </Button>
+                  
+                  {currentSolution.caseLink ? (
+                    <a 
+                      href={currentSolution.caseLink}
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
                     >
-                      {currentSolution.ctaText}
-                    </Button>
-                    
-                    {currentSolution.caseLink ? (
-                      <a 
-                        href={currentSolution.caseLink}
-                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
-                      >
-                        Посмотреть кейс
-                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                      </a>
-                    ) : (
-                      <button 
-                        onClick={handleCTAClick}
-                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
-                      >
-                        Задать вопрос
-                        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                      </button>
-                    )}
-                  </div>
+                      Посмотреть кейс
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                    </a>
+                  ) : (
+                    <button 
+                      onClick={handleCTAClick}
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group"
+                    >
+                      Задать вопрос
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
