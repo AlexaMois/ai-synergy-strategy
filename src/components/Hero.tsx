@@ -342,7 +342,8 @@ const Hero = () => {
                 </div>
 
                 {/* 2-Column Grid with Dividers */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
+                <div className="bg-card shadow-soft border border-border rounded-xl p-4 lg:p-5">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
                   {/* Left Column */}
                   <div className="space-y-4 lg:pr-6 lg:border-r lg:border-border/15">
                     {/* Block 2: Problems */}
@@ -412,6 +413,7 @@ const Hero = () => {
                       <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
                         {currentSolution.result}
                       </p>
+                    </div>
                     </div>
                   </div>
                 </div>
