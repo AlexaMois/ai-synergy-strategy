@@ -114,6 +114,48 @@ const ServicesPage = () => {
               </div>
             </div>
 
+            {/* Three stages process */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10">
+              {/* Stage 1: Diagnostics */}
+              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-primary">01</span>
+                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                    <Search className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
+                <span className="text-sm font-medium text-foreground">Диагностика</span>
+              </div>
+
+              {/* Arrow 1 */}
+              <div className="text-primary text-2xl rotate-90 sm:rotate-0">→</div>
+
+              {/* Stage 2: Architecture */}
+              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-primary">02</span>
+                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
+                <span className="text-sm font-medium text-foreground">Архитектура</span>
+              </div>
+
+              {/* Arrow 2 */}
+              <div className="text-primary text-2xl rotate-90 sm:rotate-0">→</div>
+
+              {/* Stage 3: Support */}
+              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-primary">03</span>
+                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                    <Handshake className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
+                <span className="text-sm font-medium text-foreground">Сопровождение</span>
+              </div>
+            </div>
+
             {/* Full width description block */}
             <div className="p-6 sm:p-8 rounded-2xl bg-card border border-border shadow-soft">
               <p className="text-base sm:text-lg text-foreground leading-relaxed text-center">
