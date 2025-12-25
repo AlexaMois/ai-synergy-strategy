@@ -32,10 +32,10 @@ const ServicesPage = () => {
       
         <main>
         {/* Hero Section */}
-        <section className="pt-20 pb-10 md:pb-16 bg-background">
+        <section className="pt-20 pb-4 md:pb-6 bg-background">
           <div className="container mx-auto px-4">
             {/* Two column layout: Text left, Infographic right */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-4">
               {/* Left column - Text */}
               <div className="mb-0 mt-[20px] ml-[30px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
@@ -66,7 +66,7 @@ const ServicesPage = () => {
               </div>
 
               {/* Right column - Infographic */}
-              <div className="flex justify-center lg:flex lg:items-center lg:justify-center">
+              <div className="flex justify-center lg:flex lg:items-center lg:justify-center pt-10">
                 <div className="relative w-[380px] h-[380px] sm:w-[420px] sm:h-[420px]">
                   {/* Connecting lines from center to elements */}
                   <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 420">
