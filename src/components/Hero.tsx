@@ -291,7 +291,7 @@ const Hero = () => {
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
-        <div className="mb-3 lg:mb-5">
+        <div className="mb-4 lg:mb-8">
           <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-2 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
