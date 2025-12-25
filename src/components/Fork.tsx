@@ -17,8 +17,8 @@ const Fork = () => {
           >
             <div className="flex items-start gap-2.5 md:gap-3 mb-3 md:mb-4">
               <TrendingUp className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-              <h3 className="text-base md:text-lg lg:text-xl font-semibold text-foreground leading-tight">
-                ИИ для увеличения продаж и удержания клиентов
+              <h3 className="text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight">
+                ИИ для увеличения <span className="font-semibold">продаж</span> и удержания клиентов
               </h3>
             </div>
             <p className="text-sm md:text-base text-foreground mb-4 md:mb-6">
@@ -38,8 +38,8 @@ const Fork = () => {
           >
             <div className="flex items-start gap-2.5 md:gap-3 mb-3 md:mb-4">
               <Settings className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-              <h3 className="text-base md:text-lg lg:text-xl font-semibold text-foreground leading-tight">
-                ИИ для производства и оптимизации процессов
+              <h3 className="text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight">
+                ИИ для <span className="font-semibold">производства</span> и оптимизации процессов
               </h3>
             </div>
             <p className="text-sm md:text-base text-foreground mb-4 md:mb-6">
