@@ -13,6 +13,17 @@ import reviewNatalya from "@/assets/reviews/review-natalya.jpg";
 import reviewFamilyUnion from "@/assets/reviews/review-family-union.jpg";
 import reviewAnastasia from "@/assets/reviews/review-anastasia.jpg";
 import reviewSalesGroup from "@/assets/reviews/review-sales-group.jpg";
+// Новые отзывы
+import reviewPraktika1 from "@/assets/reviews/review-praktika-1.jpg";
+import reviewPraktika2 from "@/assets/reviews/review-praktika-2.jpg";
+import reviewPraktika3 from "@/assets/reviews/review-praktika-3.jpg";
+import reviewPraktika4 from "@/assets/reviews/review-praktika-4.jpg";
+import reviewGeneralOlga from "@/assets/reviews/review-general-olga.jpg";
+import reviewGeneralTati from "@/assets/reviews/review-general-tati.jpg";
+import reviewChatSmm from "@/assets/reviews/review-chat-smm.jpg";
+import reviewChatDosug from "@/assets/reviews/review-chat-dosug.jpg";
+import reviewChatProgress from "@/assets/reviews/review-chat-progress.jpg";
+import reviewYuliyaBot from "@/assets/reviews/review-yuliya-bot.jpg";
 
 // Типы источников отзывов
 type ReviewSource = "telegram" | "yandex";
@@ -26,66 +37,27 @@ interface Review {
 
 // Массив отзывов из Telegram
 const reviews: Review[] = [
-  {
-    id: "1",
-    image: reviewNeurotech,
-    source: "telegram",
-    alt: "Благодарность от NeuroTech Russia 2025"
-  },
-  {
-    id: "2",
-    image: reviewKirill,
-    source: "telegram",
-    alt: "Отзыв Кирилла о практическом применении ИИ"
-  },
-  {
-    id: "3",
-    image: reviewGeneralGroup,
-    source: "telegram",
-    alt: "Отзывы из группы General"
-  },
-  {
-    id: "4",
-    image: reviewElena,
-    source: "telegram",
-    alt: "Отзыв Елены о семинаре"
-  },
-  {
-    id: "5",
-    image: reviewOlgaElena,
-    source: "telegram",
-    alt: "Отзывы от Ольги Плотниковой и Elena Kopytova"
-  },
-  {
-    id: "6",
-    image: reviewElenaMarina,
-    source: "telegram",
-    alt: "Отзывы с мероприятия"
-  },
-  {
-    id: "7",
-    image: reviewNatalya,
-    source: "telegram",
-    alt: "Отзыв Натальи Черкашиной"
-  },
-  {
-    id: "8",
-    image: reviewFamilyUnion,
-    source: "telegram",
-    alt: "Благодарность от Союза семей России"
-  },
-  {
-    id: "9",
-    image: reviewAnastasia,
-    source: "telegram",
-    alt: "Отзыв Анастасии об автоматизации"
-  },
-  {
-    id: "10",
-    image: reviewSalesGroup,
-    source: "telegram",
-    alt: "Отзывы из группы Продажи"
-  }
+  { id: "1", image: reviewNeurotech, source: "telegram", alt: "Благодарность от NeuroTech Russia 2025" },
+  { id: "2", image: reviewKirill, source: "telegram", alt: "Отзыв Кирилла о практическом применении ИИ" },
+  { id: "3", image: reviewGeneralGroup, source: "telegram", alt: "Отзывы из группы General" },
+  { id: "4", image: reviewElena, source: "telegram", alt: "Отзыв Елены о семинаре" },
+  { id: "5", image: reviewOlgaElena, source: "telegram", alt: "Отзывы от Ольги Плотниковой и Elena Kopytova" },
+  { id: "6", image: reviewElenaMarina, source: "telegram", alt: "Отзывы с мероприятия" },
+  { id: "7", image: reviewNatalya, source: "telegram", alt: "Отзыв Натальи Черкашиной" },
+  { id: "8", image: reviewFamilyUnion, source: "telegram", alt: "Благодарность от Союза семей России" },
+  { id: "9", image: reviewAnastasia, source: "telegram", alt: "Отзыв Анастасии об автоматизации" },
+  { id: "10", image: reviewSalesGroup, source: "telegram", alt: "Отзывы из группы Продажи" },
+  // Новые отзывы
+  { id: "11", image: reviewPraktika1, source: "telegram", alt: "Чат практики — благодарности от участников" },
+  { id: "12", image: reviewPraktika2, source: "telegram", alt: "Чат практики — отзыв Алёны Рябцевой" },
+  { id: "13", image: reviewPraktika3, source: "telegram", alt: "Чат практики — отзывы Максима и Сергея" },
+  { id: "14", image: reviewPraktika4, source: "telegram", alt: "Чат практики — Dragon Born благодарность" },
+  { id: "15", image: reviewGeneralOlga, source: "telegram", alt: "General — отзывы Ольги, Артёма, Лидии, Михаила" },
+  { id: "16", image: reviewGeneralTati, source: "telegram", alt: "General — отзыв TaTi об ОГРОМНОЙ пользе" },
+  { id: "17", image: reviewChatSmm, source: "telegram", alt: "Чат для общения — SMM помощник" },
+  { id: "18", image: reviewChatDosug, source: "telegram", alt: "Чат для общения — генерация картинок" },
+  { id: "19", image: reviewChatProgress, source: "telegram", alt: "Чат для общения — вот он прогресс" },
+  { id: "20", image: reviewYuliyaBot, source: "telegram", alt: "Отзыв Юлии о боте для постов" },
 ];
 
 const SourceBadge = ({ source }: { source: ReviewSource }) => {
@@ -143,17 +115,15 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Horizontal scrolling gallery */}
-        <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
-          <div className="flex gap-4 w-max">
-            {reviews.map((review, index) => (
+        {/* Auto-scrolling gallery */}
+        <div className="overflow-hidden -mx-4 px-4">
+          <div className="flex gap-4 w-max animate-testimonials-scroll hover:[animation-play-state:paused]">
+            {/* Дублируем массив для бесшовного цикла */}
+            {[...reviews, ...reviews].map((review, index) => (
               <div
-                key={review.id}
+                key={`${review.id}-${index}`}
                 className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-transform duration-300 hover:scale-110 hover:z-10"
                 onClick={() => setSelectedImage(review.image)}
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                }}
               >
                 <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-shadow duration-300 group-hover:shadow-elevated">
                   <SourceBadge source={review.source} />

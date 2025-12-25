@@ -921,6 +921,21 @@
     will-change: transform;
   }
   
+  /* Testimonials auto-scroll */
+  @keyframes testimonials-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-testimonials-scroll {
+    animation: testimonials-scroll 60s linear infinite;
+    will-change: transform;
+  }
+  
   .partner-logo-placeholder {
     height: 55px;
     min-width: 140px;
