@@ -82,12 +82,14 @@ const AdditionalServices = () => {
                   }`}
                   style={{ animationDelay: `${0.2 + index * 0.08}s` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all duration-300 shadow-xs group-hover:shadow-soft">
-                    <Icon className="w-6 h-6 text-primary" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 shadow-xs group-hover:shadow-soft flex-shrink-0">
+                      <Icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">
+                      {service.title}
+                    </h3>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">
-                    {service.title}
-                  </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
