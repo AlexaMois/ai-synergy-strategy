@@ -292,7 +292,7 @@ const Hero = () => {
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="mb-3 lg:mb-5">
-          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-2 tracking-tight">
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-2 tracking-tight mt-5">
             Решения для бизнеса и руководителей
           </h1>
           <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
