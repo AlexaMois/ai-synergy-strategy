@@ -12,6 +12,21 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://aleksamois.ru/" />
     
+    <!-- hreflang for Russia & CIS -->
+    <link rel="alternate" hreflang="ru" href="https://aleksamois.ru/" />
+    <link rel="alternate" hreflang="ru-RU" href="https://aleksamois.ru/" />
+    <link rel="alternate" hreflang="ru-KZ" href="https://aleksamois.ru/" />
+    <link rel="alternate" hreflang="ru-BY" href="https://aleksamois.ru/" />
+    <link rel="alternate" hreflang="ru-UZ" href="https://aleksamois.ru/" />
+    <link rel="alternate" hreflang="x-default" href="https://aleksamois.ru/" />
+    
+    <!-- Geo Meta Tags for Russia -->
+    <meta name="geo.region" content="RU" />
+    <meta name="geo.placename" content="Красноярск, Россия" />
+    <meta name="geo.position" content="56.0153;92.8932" />
+    <meta name="ICBM" content="56.0153, 92.8932" />
+    <meta name="content-language" content="ru" />
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aleksamois.ru/" />
@@ -122,10 +137,15 @@
           "priceRange": "₽₽₽",
           "currenciesAccepted": "RUB",
           "paymentAccepted": "Безналичный расчёт, Карта",
-          "areaServed": {
-            "@type": "Country",
-            "name": "Россия"
-          }
+          "areaServed": [
+            { "@type": "Country", "name": "Россия" },
+            { "@type": "Country", "name": "Казахстан" },
+            { "@type": "Country", "name": "Беларусь" },
+            { "@type": "Country", "name": "Узбекистан" },
+            { "@type": "Country", "name": "Кыргызстан" },
+            { "@type": "Country", "name": "Армения" },
+            { "@type": "Country", "name": "Азербайджан" }
+          ]
         },
         {
           "@type": "ProfessionalService",
