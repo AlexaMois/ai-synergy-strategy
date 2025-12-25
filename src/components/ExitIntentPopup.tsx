@@ -102,10 +102,10 @@ const ExitIntentPopup = () => {
           <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 mb-4 sm:mb-6">
             <div className="flex-1 flex flex-col items-center">
               <Button 
-                className="w-full py-3 sm:py-3.5 text-sm sm:text-base shadow-lg min-h-[44px]"
+                className="w-full"
                 onClick={scrollToContact}
               >
-                <Phone size={16} className="mr-2" />
+                <Phone className="h-4 w-4" />
                 Заказать звонок
               </Button>
               <span className="text-xs text-foreground/70 mt-1.5 sm:mt-2 font-raleway">
@@ -115,7 +115,7 @@ const ExitIntentPopup = () => {
             <div className="flex-1 flex flex-col items-center">
               <Button
                 variant="secondary"
-                className="w-full py-3 sm:py-3.5 text-sm sm:text-base min-h-[44px]"
+                className="w-full"
                 onClick={() => {
                   toast({
                     title: "Эта страница находится в разработке",
