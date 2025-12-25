@@ -106,47 +106,47 @@ const ServicesPage = () => {
 
               {/* Right column - Infographic */}
               <div className="flex justify-center lg:flex lg:items-center lg:justify-center">
-                <div className="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px]">
+                <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px]">
                   {/* Outer circle */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-2 border-primary/20 border-dashed" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] rounded-full border-2 border-primary/20 border-dashed" />
                   
                   {/* Center circle */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
-                    <span className="text-xs sm:text-sm font-semibold text-primary text-center leading-tight">Система<br />как целое</span>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center z-10">
+                    <span className="text-[10px] sm:text-xs font-semibold text-primary text-center leading-tight">Система<br />как целое</span>
                   </div>
                   
-                  {/* Elements around the circle */}
+                  {/* Elements around the circle - positioned on the outer circle */}
                   {systemElements.map((element, index) => {
                     const angle = (index * 72 - 90) * (Math.PI / 180);
-                    const radius = 130;
+                    const radius = 115; // sm:130
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
                     const Icon = element.icon;
-                    return <div key={index} className="absolute flex flex-col items-center gap-1 animate-fade-in-up" style={{
+                    return <div key={index} className="absolute flex flex-col items-center gap-0.5 animate-fade-in-up z-20" style={{
                       left: `calc(50% + ${x}px)`,
                       top: `calc(50% + ${y}px)`,
                       transform: 'translate(-50%, -50%)',
                       animationDelay: `${index * 0.1}s`
                     }}>
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-card border border-border shadow-soft flex items-center justify-center">
-                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card border border-border shadow-soft flex items-center justify-center">
+                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                         </div>
-                        <span className="text-[10px] sm:text-xs font-medium text-muted-foreground text-center whitespace-nowrap">
+                        <span className="text-[9px] sm:text-[10px] font-medium text-muted-foreground text-center whitespace-nowrap">
                           {element.label}
                         </span>
                       </div>;
                   })}
                   
-                  {/* Connecting lines */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 380 380">
+                  {/* Connecting lines from center to elements */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 300">
                     {systemElements.map((_, index) => {
                       const angle = (index * 72 - 90) * (Math.PI / 180);
-                      const innerRadius = 56;
-                      const outerRadius = 105;
-                      const x1 = 190 + Math.cos(angle) * innerRadius;
-                      const y1 = 190 + Math.sin(angle) * innerRadius;
-                      const x2 = 190 + Math.cos(angle) * outerRadius;
-                      const y2 = 190 + Math.sin(angle) * outerRadius;
+                      const innerRadius = 40;
+                      const outerRadius = 95;
+                      const x1 = 150 + Math.cos(angle) * innerRadius;
+                      const y1 = 150 + Math.sin(angle) * innerRadius;
+                      const x2 = 150 + Math.cos(angle) * outerRadius;
+                      const y2 = 150 + Math.sin(angle) * outerRadius;
                       return <line key={index} x1={x1} y1={y1} x2={x2} y2={y2} stroke="hsl(var(--primary))" strokeWidth="1.5" strokeOpacity="0.3" strokeDasharray="4 4" />;
                     })}
                   </svg>
