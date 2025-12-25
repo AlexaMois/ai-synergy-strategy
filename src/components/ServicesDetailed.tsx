@@ -280,7 +280,7 @@ const ServicesDetailed = () => {
                   <AccordionItem
                     key={service.number}
                     value={service.number}
-                    className={`bg-card rounded-2xl border border-border shadow-soft hover:shadow-card transition-all duration-300 overflow-hidden ${
+                    className={`bg-card rounded-2xl border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 overflow-hidden ${
                       isVisible ? 'animate-fade-in-up' : 'opacity-0'
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -331,7 +331,7 @@ const ServicesDetailed = () => {
                     <AccordionContent className="px-6 pb-6">
                       <div className="pt-4 space-y-6">
                         {/* Metrics grid */}
-                        <div className="grid grid-cols-3 gap-4 p-5 bg-primary/5 rounded-xl">
+                        <div className="grid grid-cols-3 gap-4 p-5 bg-primary/5 rounded-xl shadow-soft ring-1 ring-primary/10">
                           {service.metrics.map((metric, mIndex) => (
                             <div 
                               key={mIndex} 
@@ -429,7 +429,7 @@ const ServicesDetailed = () => {
                         </div>
 
                         {/* Pricing block */}
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-primary/5 rounded-xl animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-primary/5 rounded-xl shadow-soft ring-1 ring-primary/10 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
                           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                             <div>
                               <div className="text-sm text-muted-foreground mb-1">Стоимость</div>

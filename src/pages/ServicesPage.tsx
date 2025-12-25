@@ -83,7 +83,7 @@ const ServicesPage = () => {
                   </svg>
                   
                   {/* Center circle - turquoise filled */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center z-10 shadow-soft">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center z-10 shadow-card ring-1 ring-primary/20">
                     <span className="text-xs sm:text-sm font-semibold text-white text-center leading-tight px-2">Система<br />как целое</span>
                   </div>
                   
@@ -97,7 +97,7 @@ const ServicesPage = () => {
                     return (
                       <div 
                         key={index} 
-                        className="absolute flex flex-col items-center justify-center gap-1 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-card shadow-soft"
+                        className="absolute flex flex-col items-center justify-center gap-1 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-card shadow-card ring-1 ring-border/50 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
                         style={{
                           left: `calc(50% + ${x}px)`,
                           top: `calc(50% + ${y}px)`,
