@@ -329,7 +329,7 @@ const Hero = () => {
             <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-5 lg:p-6 h-full">
               <div 
                 key={currentSolution.id}
-                className="animate-fade-in flex flex-col h-full"
+                className="animate-enter flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
                 <div className="pb-4 lg:pb-5">
