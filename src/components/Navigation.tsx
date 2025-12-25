@@ -180,7 +180,7 @@ const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14">
             <Link to="/" className="flex items-center">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-8 w-auto" />
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-32 w-auto" />
             </Link>
 
           </div>
