@@ -50,14 +50,22 @@
           "url": "https://aleksamois.ru/",
           "logo": "https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/uploads/1765042392968-Логотип Вертикальный_Монтажная область 1.jpg",
           "description": "Проектирую ИИ, который не ломает процессы, а приносит деньги и результат. Пилот — от 200 тыс. ₽, ROI — 3-6 месяцев, гарантия результата.",
-          "email": "neiroreshenia@yandex.com",
+          "email": "ai@aleksamois.ru",
           "telephone": "+7 993 721 73 67",
+          "foundingDate": "2020",
+          "slogan": "Независимая архитектура ИИ под задачи бизнеса",
           "sameAs": [
             "https://t.me/neiroreshenia",
             "https://t.me/AlexandraMois"
           ],
           "founder": {
             "@id": "https://aleksamois.ru/#person"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Красноярск",
+            "addressRegion": "Красноярский край",
+            "addressCountry": "RU"
           }
         },
         {
@@ -68,7 +76,7 @@
           "description": "13+ лет в управлении и операционке. Проектирую архитектуру ИИ-решений для бизнеса с фокусом на ROI и практическую пользу.",
           "url": "https://aleksamois.ru/",
           "image": "https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png",
-          "email": "neiroreshenia@yandex.com",
+          "email": "ai@aleksamois.ru",
           "telephone": "+7 993 721 73 67",
           "sameAs": [
             "https://t.me/AlexandraMois"
@@ -87,6 +95,77 @@
           }
         },
         {
+          "@type": "LocalBusiness",
+          "@id": "https://aleksamois.ru/#localbusiness",
+          "name": "Александра Моисеева — Консалтинг по ИИ",
+          "image": "https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png",
+          "url": "https://aleksamois.ru/",
+          "telephone": "+7 993 721 73 67",
+          "email": "ai@aleksamois.ru",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Красноярск",
+            "addressRegion": "Красноярский край",
+            "addressCountry": "RU"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 56.0153,
+            "longitude": 92.8932
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "20:00"
+          },
+          "priceRange": "₽₽₽",
+          "currenciesAccepted": "RUB",
+          "paymentAccepted": "Безналичный расчёт, Карта",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Россия"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://aleksamois.ru/#service",
+          "name": "Внедрение искусственного интеллекта для бизнеса",
+          "provider": { "@id": "https://aleksamois.ru/#organization" },
+          "serviceType": "AI Consulting",
+          "areaServed": "Россия",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Услуги по внедрению ИИ",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Диагностика AI-готовности",
+                  "description": "Аудит процессов и определение точек внедрения ИИ с ROI-расчётом"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Архитектура ИИ-решений",
+                  "description": "Проектирование и внедрение AI-систем без привязки к вендорам"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Пилотный проект ИИ",
+                  "description": "Запуск пилота от 200 тыс. ₽ с окупаемостью 3-6 месяцев"
+                }
+              }
+            ]
+          }
+        },
+        {
           "@type": "WebSite",
           "@id": "https://aleksamois.ru/#website",
           "url": "https://aleksamois.ru/",
@@ -95,6 +174,18 @@
             "@id": "https://aleksamois.ru/#organization"
           },
           "inLanguage": "ru-RU"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://aleksamois.ru/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://aleksamois.ru/"
+            }
+          ]
         }
       ]
     }
