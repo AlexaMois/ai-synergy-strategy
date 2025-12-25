@@ -1,6 +1,7 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Fork = () => {
   const { ref, isVisible } = useIntersectionObserver();
@@ -24,8 +25,8 @@ const Fork = () => {
             <p className="text-sm md:text-base text-foreground mb-4 md:mb-6">
               Для компаний с отделом продаж и сервиса. Автоматизация обработки заявок 24/7, дашборд менеджеров в реальном времени, AI-аналитика поведения клиентов. Не теряем ни одного лида, +30-40% сделок.
             </p>
-            <Button className="w-full text-sm md:text-base">
-              Смотреть AI-решения для продаж
+            <Button asChild className="w-full text-sm md:text-base">
+              <Link to="/cases">Смотреть AI-решения для продаж</Link>
             </Button>
           </div>
 
@@ -45,8 +46,8 @@ const Fork = () => {
             <p className="text-sm md:text-base text-foreground mb-4 md:mb-6">
               Для производственных компаний и складов. AI для прогнозирования спроса, оптимизации закупок, контроля качества, аналитики маржи по продуктам. Экономия на хранении +300K в месяц.
             </p>
-            <Button className="w-full text-sm md:text-base">
-              Смотреть AI-решения для производства
+            <Button asChild className="w-full text-sm md:text-base">
+              <Link to="/cases">Смотреть AI-решения для производства</Link>
             </Button>
           </div>
         </div>
