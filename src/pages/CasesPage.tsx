@@ -487,7 +487,7 @@ const CasesPage = () => {
                 {/* Link to detailed page */}
                 {caseItem.link && (
                   <div className="border-t border-border pt-4 mt-4">
-                    <Button asChild variant="outline" className="w-full">
+                    <Button asChild className="w-full">
                       <Link to={caseItem.link}>
                         Подробнее <ArrowRight className="w-4 h-4 ml-2" />
                       </Link>

@@ -795,7 +795,7 @@ const About = () => {
             <p className="text-base text-text-body mb-6">
               Моё официальное резюме доступно здесь
             </p>
-            <Button variant="outline" size="lg" onClick={() => window.open('https://hh.ru', '_blank')} className="gap-2">
+            <Button size="lg" onClick={() => window.open('https://hh.ru', '_blank')} className="gap-2">
               Посмотреть полное резюме (PDF)
               <ExternalLink className="w-4 h-4" />
             </Button>
