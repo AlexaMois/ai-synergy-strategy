@@ -40,7 +40,7 @@ const ServicesPage = () => {
               {/* Left column - Text */}
               <div>
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
-                  Услуги
+                  Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
                 </h1>
                 <p className="text-base sm:text-lg text-foreground leading-relaxed">
                   Три этапа: диагностика → архитектура → сопровождение. Помогаю внедрить ИИ так, чтобы он работал и приносил результаты. Смотрю на систему как целое: смысл задачи, люди, процессы, данные, архитектура.
