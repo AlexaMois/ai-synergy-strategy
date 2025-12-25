@@ -285,7 +285,7 @@ const ServicesDetailed = () => {
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <AccordionTrigger className="px-6 py-5 hover:no-underline group">
+                    <AccordionTrigger className="px-6 py-5 hover:no-underline group" showTextIndicator>
                       <div className="flex items-center gap-4 w-full">
                         {/* Timeline dot */}
                         <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
