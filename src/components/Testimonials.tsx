@@ -1,13 +1,5 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { X, MessageCircle, MapPin } from "lucide-react";
 
 // Импорт скриншотов отзывов
@@ -99,15 +91,15 @@ const reviews: Review[] = [
 const SourceBadge = ({ source }: { source: ReviewSource }) => {
   if (source === "telegram") {
     return (
-      <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#2AABEE] text-primary-foreground text-xs font-medium px-2.5 py-1 rounded-full shadow-soft">
-        <MessageCircle className="w-3.5 h-3.5" />
-        <span>Telegram</span>
+      <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#2AABEE] text-primary-foreground text-[10px] font-medium px-2 py-0.5 rounded-full shadow-soft">
+        <MessageCircle className="w-3 h-3" />
+        <span>TG</span>
       </div>
     );
   }
   return (
-    <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#FC3F1D] text-primary-foreground text-xs font-medium px-2.5 py-1 rounded-full shadow-soft">
-      <MapPin className="w-3.5 h-3.5" />
+    <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#FC3F1D] text-primary-foreground text-[10px] font-medium px-2 py-0.5 rounded-full shadow-soft">
+      <MapPin className="w-3 h-3" />
       <span>Яндекс</span>
     </div>
   );
@@ -115,7 +107,6 @@ const SourceBadge = ({ source }: { source: ReviewSource }) => {
 
 const Testimonials = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const { ref, isMobile } = useMobileAnimations();
 
   // Если отзывов нет, показываем заглушку
   if (reviews.length === 0) {
@@ -152,67 +143,31 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Mobile: Carousel */}
-        <div className="block lg:hidden">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {reviews.map((review, index) => (
-                <CarouselItem
-                  key={review.id}
-                  className="pl-2 md:pl-4 basis-[85%] sm:basis-1/2"
-                >
-                  <div
-                    className="relative group cursor-pointer"
-                    onClick={() => setSelectedImage(review.image)}
-                  >
-                    <div className="relative overflow-hidden rounded-2xl bg-card shadow-soft hover-lift-card transition-all duration-300">
-                      <SourceBadge source={review.source} />
-                      <img
-                        src={review.image}
-                        alt={review.alt}
-                        className="w-full h-auto object-cover"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
-          </Carousel>
-        </div>
-
-        {/* Desktop: Grid */}
-        <div className="hidden lg:grid lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {reviews.map((review, index) => (
-            <div
-              key={review.id}
-              className="relative group cursor-pointer animate-fade-in"
-              onClick={() => setSelectedImage(review.image)}
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
-            >
-              <div className="relative overflow-hidden rounded-2xl bg-card shadow-soft hover-lift-card transition-all duration-300">
-                <SourceBadge source={review.source} />
-                <img
-                  src={review.image}
-                  alt={review.alt}
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
+        {/* Horizontal scrolling gallery */}
+        <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div className="flex gap-4 w-max">
+            {reviews.map((review, index) => (
+              <div
+                key={review.id}
+                className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-transform duration-300 hover:scale-110 hover:z-10"
+                onClick={() => setSelectedImage(review.image)}
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                }}
+              >
+                <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-shadow duration-300 group-hover:shadow-elevated">
+                  <SourceBadge source={review.source} />
+                  <img
+                    src={review.image}
+                    alt={review.alt}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
