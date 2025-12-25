@@ -44,7 +44,7 @@ const ServicesPage = () => {
             {/* Two column layout: Text left, Infographic right */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-10">
               {/* Left column - Text */}
-              <div className="mt-0 mb-0">
+              <div className="mb-0 mt-[20px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
                   Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
                 </h1>
