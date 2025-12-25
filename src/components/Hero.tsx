@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronDown, Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -194,9 +194,31 @@ const solutions: SolutionData[] = [
 const Hero = () => {
   const [activeSolution, setActiveSolution] = useState<string>(solutions[0].id);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
   const currentIndex = solutions.findIndex(s => s.id === activeSolution);
+
+  // Auto-switching every 5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setActiveSolution(prev => {
+        const currentIdx = solutions.findIndex(s => s.id === prev);
+        const nextIdx = (currentIdx + 1) % solutions.length;
+        return solutions[nextIdx].id;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const handleManualSelect = useCallback((id: string) => {
+    setActiveSolution(id);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 10000);
+  }, []);
 
   const handleCTAClick = () => {
     const contactSection = document.getElementById('contact');
@@ -206,7 +228,7 @@ const Hero = () => {
   };
 
   const handleSolutionSelect = (id: string) => {
-    setActiveSolution(id);
+    handleManualSelect(id);
     setMobileMenuOpen(false);
   };
 
@@ -251,29 +273,31 @@ const Hero = () => {
             </button>
             
             {mobileMenuOpen && (
-              <div className="p-2 border-t border-border/20 animate-fade-in flex flex-col gap-2">
+              <div className="p-3 border-t border-border/20 animate-fade-in flex flex-col gap-1">
                 {solutions.map((solution, index) => (
                   <button
                     key={solution.id}
                     onClick={() => handleSolutionSelect(solution.id)}
                     className={cn(
-                      "w-full px-4 py-3 text-left transition-all duration-200 flex items-center gap-3 rounded-xl",
+                      "w-full py-3 text-left transition-all duration-200 flex items-center gap-3",
                       activeSolution === solution.id
-                        ? "bg-primary text-primary-foreground shadow-md border border-primary"
-                        : "bg-card shadow-soft border border-border hover:shadow-md hover:border-primary/30"
+                        ? "bg-primary text-primary-foreground shadow-md border border-primary rounded-xl px-4"
+                        : "bg-transparent border-l-2 border-primary/30 hover:border-primary/60 rounded-none pl-4 pr-4"
                     )}
                   >
                     <span className={cn(
-                      "text-xs font-bold tabular-nums px-2 py-1 rounded-md",
+                      "text-xs font-bold tabular-nums",
                       activeSolution === solution.id 
-                        ? "text-primary-foreground bg-white/20" 
-                        : "text-primary bg-primary/10"
+                        ? "text-primary-foreground bg-white/20 px-2 py-1 rounded-md" 
+                        : "text-primary/60"
                     )}>
                       {formatNumber(index + 1)}
                     </span>
                     <span className={cn(
-                      "text-sm font-medium",
-                      activeSolution === solution.id ? "text-primary-foreground" : "text-foreground/80"
+                      "text-sm transition-colors",
+                      activeSolution === solution.id 
+                        ? "text-primary-foreground font-medium" 
+                        : "text-muted-foreground"
                     )}>
                       {solution.menuTitle}
                     </span>
@@ -294,7 +318,7 @@ const Hero = () => {
                 {solutions.map((solution, index) => (
                   <button
                     key={solution.id}
-                    onClick={() => setActiveSolution(solution.id)}
+                    onClick={() => handleManualSelect(solution.id)}
                     className={cn(
                       "w-full text-left py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer",
                       activeSolution === solution.id
