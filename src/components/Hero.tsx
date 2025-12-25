@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -194,8 +194,32 @@ const solutions: SolutionData[] = [
 const Hero = () => {
   const [activeSolution, setActiveSolution] = useState<string>(solutions[0].id);
   const [isPaused, setIsPaused] = useState(false);
+  const [isCardExpanded, setIsCardExpanded] = useState(false);
+  
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
+  const currentIndex = solutions.findIndex(s => s.id === activeSolution);
+
+  // Auto-scroll buttons to center active one
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    const activeButton = buttonRefs.current[activeSolution];
+    
+    if (container && activeButton) {
+      const scrollLeft = activeButton.offsetLeft - container.offsetWidth / 2 + activeButton.offsetWidth / 2;
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeSolution]);
+
+  // Collapse card when solution changes
+  useEffect(() => {
+    setIsCardExpanded(false);
+  }, [activeSolution]);
 
   // Auto-switching every 5 seconds
   useEffect(() => {
@@ -248,18 +272,22 @@ const Hero = () => {
 
         {/* Mobile Horizontal Scroll Navigation */}
         <div className="lg:hidden mb-4">
-          <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"
-               style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             {solutions.map((solution, index) => (
               <button
                 key={solution.id}
+                ref={(el) => buttonRefs.current[solution.id] = el}
                 onClick={() => handleManualSelect(solution.id)}
                 className={cn(
-                  "flex-shrink-0 min-w-[110px] py-2 px-3 rounded-xl transition-all duration-200",
+                  "flex-shrink-0 min-w-[110px] py-2 px-3 rounded-xl transition-all duration-300",
                   "flex items-center gap-2 text-xs font-medium whitespace-nowrap",
                   activeSolution === solution.id
-                    ? "bg-primary text-primary-foreground shadow-md border border-primary"
-                    : "bg-card border border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
+                    ? "bg-primary text-primary-foreground shadow-md border border-primary scale-105"
+                    : "bg-card/50 border border-border/30 text-muted-foreground opacity-60"
                 )}
               >
                 <span className={cn(
@@ -274,26 +302,29 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Mobile: Show ALL solutions in compact cards */}
-        <div className="lg:hidden space-y-3">
-          {solutions.map((solution, index) => (
-            <div 
-              key={solution.id}
-              id={`mobile-solution-${solution.id}`}
-              className="bg-card rounded-xl border border-t-[3px] border-border/20 border-t-primary p-4"
-            >
+        {/* Mobile: Show ONLY active solution with collapse/expand */}
+        <div className="lg:hidden relative">
+          <div 
+            key={currentSolution.id}
+            className="bg-card rounded-xl border border-t-[3px] border-border/20 border-t-primary p-4 animate-fade-in relative overflow-hidden"
+          >
+            {/* Content wrapper with max-height transition */}
+            <div className={cn(
+              "transition-all duration-300 overflow-hidden",
+              isCardExpanded ? "max-h-[1000px]" : "max-h-[140px]"
+            )}>
               {/* Compact header */}
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-bold text-primary/60 tabular-nums">
-                  {formatNumber(index + 1)}
+                  {formatNumber(currentIndex + 1)}
                 </span>
                 <h3 className="text-sm font-semibold text-foreground leading-tight">
-                  {solution.h2Title}
+                  {currentSolution.h2Title}
                 </h3>
               </div>
               
               <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
-                {solution.description}
+                {currentSolution.description}
               </p>
               
               {/* Problems */}
@@ -302,7 +333,7 @@ const Hero = () => {
                   Что идёт не так
                 </h4>
                 <ul className="space-y-1">
-                  {solution.problems.map((problem, i) => (
+                  {currentSolution.problems.map((problem, i) => (
                     <li key={i} className="text-xs text-foreground flex gap-2 leading-relaxed">
                       <span className="text-primary shrink-0">•</span>
                       <span>{problem}</span>
@@ -317,7 +348,7 @@ const Hero = () => {
                   Пример
                 </h4>
                 <p className="text-xs italic text-foreground/80 leading-relaxed">
-                  "{solution.example}"
+                  "{currentSolution.example}"
                 </p>
               </div>
               
@@ -327,7 +358,7 @@ const Hero = () => {
                   Как работает
                 </h4>
                 <ul className="space-y-1">
-                  {solution.howItWorks.map((step, i) => (
+                  {currentSolution.howItWorks.map((step, i) => (
                     <li key={i} className="text-xs text-foreground flex gap-2 leading-relaxed">
                       <Check className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                       <span>{step}</span>
@@ -342,16 +373,34 @@ const Hero = () => {
                   Результат
                 </h4>
                 <p className="text-xs font-medium text-foreground leading-relaxed">
-                  {solution.result}
+                  {currentSolution.result}
                 </p>
               </div>
               
               {/* CTA */}
               <Button size="sm" className="w-full text-xs" onClick={handleCTAClick}>
-                {solution.ctaText}
+                {currentSolution.ctaText}
               </Button>
             </div>
-          ))}
+            
+            {/* Gradient fade overlay when collapsed */}
+            {!isCardExpanded && (
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card via-card/90 to-transparent pointer-events-none" />
+            )}
+          </div>
+          
+          {/* Expand/Collapse button */}
+          <button 
+            onClick={() => setIsCardExpanded(!isCardExpanded)}
+            className="w-full mt-2 py-2.5 text-xs text-primary font-medium flex items-center justify-center gap-1.5 bg-card/50 rounded-lg border border-border/30 hover:bg-card transition-colors"
+          >
+            <span>{isCardExpanded ? "Свернуть" : "Показать подробнее"}</span>
+            {isCardExpanded ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
+          </button>
         </div>
 
         {/* Desktop Two Column Layout */}
