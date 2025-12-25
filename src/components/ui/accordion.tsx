@@ -18,8 +18,9 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
     showTextIndicator?: boolean;
+    hideIndicator?: boolean;
   }
->(({ className, children, showTextIndicator, ...props }, ref) => (
+>(({ className, children, showTextIndicator, hideIndicator, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
@@ -30,13 +31,15 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      {showTextIndicator ? (
-        <>
-          <span className="text-sm text-primary shrink-0 group-data-[state=open]:hidden">развернуть</span>
-          <span className="text-sm text-primary shrink-0 hidden group-data-[state=open]:inline">свернуть</span>
-        </>
-      ) : (
-        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      {!hideIndicator && (
+        showTextIndicator ? (
+          <>
+            <span className="text-sm text-primary shrink-0 group-data-[state=open]:hidden">развернуть</span>
+            <span className="text-sm text-primary shrink-0 hidden group-data-[state=open]:inline">свернуть</span>
+          </>
+        ) : (
+          <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+        )
       )}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
