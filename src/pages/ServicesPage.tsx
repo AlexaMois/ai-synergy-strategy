@@ -33,7 +33,7 @@ const ServicesPage = () => {
       
         <main>
         {/* Hero Section */}
-        <section className="pt-24 pb-10 md:pb-16 bg-background">
+        <section className="pt-20 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4">
             {/* Two column layout: Text left, Infographic right */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-10">
