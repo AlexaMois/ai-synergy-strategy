@@ -105,7 +105,7 @@ const ServicesPage = () => {
               </div>
 
               {/* Right column - Infographic */}
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center lg:flex lg:items-center lg:justify-center">
                 <div className="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px]">
                   {/* Center circle */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
