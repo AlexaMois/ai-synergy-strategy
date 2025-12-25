@@ -67,7 +67,7 @@ const ServicesPage = () => {
 
               {/* Right column - Infographic */}
               <div className="flex justify-center lg:flex lg:items-center lg:justify-center pt-10">
-                <div className="relative w-[380px] h-[380px] sm:w-[420px] sm:h-[420px]">
+                <div className="relative w-[380px] h-[380px] sm:w-[420px] sm:h-[420px] group">
                   {/* Connecting lines from center to elements */}
                   <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 420">
                     {systemElements.map((_, index) => {
@@ -78,12 +78,25 @@ const ServicesPage = () => {
                       const y1 = 210 + Math.sin(angle) * innerRadius;
                       const x2 = 210 + Math.cos(angle) * outerRadius;
                       const y2 = 210 + Math.sin(angle) * outerRadius;
-                      return <line key={index} x1={x1} y1={y1} x2={x2} y2={y2} stroke="hsl(var(--border))" strokeWidth="1.5" strokeDasharray="6 4" />;
+                      return (
+                        <line 
+                          key={index} 
+                          x1={x1} y1={y1} x2={x2} y2={y2} 
+                          stroke="hsl(var(--border))" 
+                          strokeWidth="1.5" 
+                          strokeDasharray="6 4"
+                          className="opacity-0 animate-fade-in"
+                          style={{ animationDelay: `${0.3 + index * 0.1}s`, animationFillMode: 'forwards' }}
+                        />
+                      );
                     })}
                   </svg>
                   
                   {/* Center circle - turquoise filled */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center z-10 shadow-soft">
+                  <div 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center z-10 shadow-soft opacity-0 animate-scale-in"
+                    style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+                  >
                     <span className="text-xs sm:text-sm font-semibold text-white text-center leading-tight px-2">Система<br />как целое</span>
                   </div>
                   
@@ -97,11 +110,13 @@ const ServicesPage = () => {
                     return (
                       <div 
                         key={index} 
-                        className="absolute flex flex-col items-center justify-center gap-1 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-card shadow-soft"
+                        className="absolute flex flex-col items-center justify-center gap-1 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-card shadow-soft opacity-0 animate-scale-in transition-transform duration-200 hover:scale-110"
                         style={{
                           left: `calc(50% + ${x}px)`,
                           top: `calc(50% + ${y}px)`,
                           transform: 'translate(-50%, -50%)',
+                          animationDelay: `${0.4 + index * 0.12}s`,
+                          animationFillMode: 'forwards',
                         }}
                       >
                         <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
