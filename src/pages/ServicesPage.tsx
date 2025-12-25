@@ -32,10 +32,10 @@ const ServicesPage = () => {
       
         <main>
         {/* Hero Section */}
-        <section className="pt-20 pb-4 md:pb-6 bg-background">
+        <section className="pt-20 pb-0 bg-background">
           <div className="container mx-auto px-4">
             {/* Two column layout: Text left, Infographic right */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-0">
               {/* Left column - Text */}
               <div className="mb-0 mt-[20px] ml-[30px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
