@@ -1,6 +1,7 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { ArrowRight, Search, Layers, Users, Coins } from "lucide-react";
 import DisabledLink from "@/components/DisabledLink";
+import { Link } from "react-router-dom";
 
 const Foundation = () => {
   const { ref, isVisible } = useIntersectionObserver();
@@ -109,9 +110,9 @@ const Foundation = () => {
                       <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
                       <span>{service.details[0]}</span>
                     </p>
-                    <span className="text-xs sm:text-sm text-primary hover:underline">
+                    <Link to="/services" className="text-xs sm:text-sm text-primary hover:underline">
                       Подробнее что включает →
-                    </span>
+                    </Link>
                   </div>
                   
                   <div className="mb-3 sm:mb-4 flex-grow">
