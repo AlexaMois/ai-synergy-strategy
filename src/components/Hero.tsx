@@ -263,7 +263,7 @@ const Hero = () => {
         const nextIdx = (currentIdx + 1) % solutions.length;
         return solutions[nextIdx].id;
       });
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -428,7 +428,16 @@ const Hero = () => {
           
           {/* Expand/Collapse button */}
           <button 
-            onClick={() => setIsCardExpanded(!isCardExpanded)}
+            onClick={() => {
+              const newExpanded = !isCardExpanded;
+              setIsCardExpanded(newExpanded);
+              
+              if (newExpanded) {
+                setIsPaused(true);
+              } else {
+                setTimeout(() => setIsPaused(false), 3000);
+              }
+            }}
             className="w-full mt-2 py-2.5 text-xs text-primary font-medium flex items-center justify-center gap-1.5 bg-card/50 rounded-lg border border-border/30 hover:bg-card transition-colors"
           >
             <span>{isCardExpanded ? "Свернуть" : "Показать подробнее"}</span>
