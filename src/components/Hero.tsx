@@ -296,25 +296,25 @@ const Hero = () => {
                     key={solution.id}
                     onClick={() => setActiveSolution(solution.id)}
                     className={cn(
-                      "w-full text-left px-3 py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-xl",
+                      "w-full text-left py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer",
                       activeSolution === solution.id
-                        ? "bg-primary text-primary-foreground shadow-md border border-primary"
-                        : "bg-card shadow-soft border border-border hover:shadow-md hover:border-primary/30"
+                        ? "bg-primary text-primary-foreground shadow-md border border-primary rounded-xl px-3"
+                        : "bg-transparent border-l-2 border-primary/30 hover:border-primary/60 rounded-none pl-4 pr-3"
                     )}
                   >
                     <span className={cn(
-                      "text-xs font-bold tabular-nums shrink-0 px-2 py-1 rounded-md transition-colors",
+                      "text-xs font-bold tabular-nums shrink-0 transition-colors",
                       activeSolution === solution.id
-                        ? "text-primary-foreground bg-white/20"
-                        : "text-primary bg-primary/10"
+                        ? "text-primary-foreground bg-white/20 px-2 py-1 rounded-md"
+                        : "text-primary/60"
                     )}>
                       {formatNumber(index + 1)}
                     </span>
                     <span className={cn(
-                      "text-[13px] transition-colors leading-tight font-medium",
+                      "text-[13px] transition-colors leading-tight",
                       activeSolution === solution.id
-                        ? "text-primary-foreground"
-                        : "text-foreground/80 group-hover:text-foreground"
+                        ? "text-primary-foreground font-medium"
+                        : "text-muted-foreground group-hover:text-foreground"
                     )}>
                       {solution.menuTitle}
                     </span>
