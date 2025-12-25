@@ -128,9 +128,7 @@ const ServicesPage = () => {
                       transform: 'translate(-50%, -50%)',
                       animationDelay: `${index * 0.1}s`
                     }}>
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card border border-border shadow-soft flex items-center justify-center">
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                        </div>
+                        
                         <span className="text-[9px] sm:text-[10px] font-medium text-muted-foreground text-center whitespace-nowrap">
                           {element.label}
                         </span>
