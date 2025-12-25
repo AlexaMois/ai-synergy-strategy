@@ -1,19 +1,40 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
+import { Bot, Workflow, GraduationCap, Beaker, Shield } from "lucide-react";
+
+const additionalServices = [
+  {
+    icon: Bot,
+    title: "ИИ-ассистенты",
+    description: "Для менеджеров, операционистов, аналитиков, бухгалтеров — под конкретные роли и задачи"
+  },
+  {
+    icon: Workflow,
+    title: "Low-code автоматизация",
+    description: "Готовые решения за 2–3 недели на Бипиум, полностью под требования РФ"
+  },
+  {
+    icon: GraduationCap,
+    title: "Обучение команды",
+    description: "Регулярные сессии, документация, чек-листы, встроенные в ваши процессы"
+  },
+  {
+    icon: Beaker,
+    title: "MVP-решения",
+    description: "Проверить гипотезу перед полноценным внедрением, риск-менеджмент"
+  },
+  {
+    icon: Shield,
+    title: "Защищённые контуры",
+    description: "Под требования ЦБ и РФ — для критичных данных, импортозамещение"
+  }
+];
 
 const AdditionalServices = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
-  const additionalServices = [
-    "ИИ-ассистенты под конкретные роли — для менеджеров, операционистов, аналитиков, бухгалтеров",
-    "Low-code автоматизация на Бипиум — готовые решения за 2–3 недели, полностью под требования РФ, без облачных сервисов",
-    "Обучение команды работе с ИИ — регулярные сессии, документация, чек-листы, встроенные в ваши процессы",
-    "MVP-решения для пилотов — проверить гипотезу перед полноценным внедрением, риск-менеджмент",
-    "Защищённые контуры под требования ЦБ и РФ — для критичных данных, все хранится в РФ, соответствие импортозамещению"
-  ];
-
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h2 
@@ -22,31 +43,40 @@ const AdditionalServices = () => {
             Дополнительные решения
           </h2>
           <p 
-            className={`text-base sm:text-lg text-foreground text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+            className={`text-base sm:text-lg text-muted-foreground text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
             style={{ animationDelay: '0.1s' }}
           >
             Если основные три услуги не полностью закрывают вашу задачу:
           </p>
 
-          <div className="space-y-4 mb-12">
-            {additionalServices.map((service, index) => (
-              <div
-                key={index}
-                className={`p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-card transition-shadow duration-200 ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
-              >
-                <p className="text-base text-foreground leading-relaxed">
-                  {service}
-                </p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {additionalServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={index}
+                  className={`group p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 ${
+                    isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${0.2 + index * 0.08}s` }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <div 
             className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.5s' }}
+            style={{ animationDelay: '0.6s' }}
           >
             <Button size="lg" asChild>
               <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
