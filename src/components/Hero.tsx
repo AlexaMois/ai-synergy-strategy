@@ -292,32 +292,20 @@ const Hero = () => {
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="mb-3 lg:mb-5">
-          {/* Geography Badge */}
-          <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full mb-3 mt-5">
-            <span>🇷🇺</span>
-            <span className="font-medium">Работаем по всей России и СНГ</span>
+          {/* Badge + Title on one line */}
+          <div className="flex flex-wrap items-center gap-3 mt-5 mb-2">
+            <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
+              <span>🇷🇺</span>
+              <span className="font-medium">Работаем по всей России и СНГ</span>
+            </div>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] tracking-tight">
+              ИИ решения для бизнеса и руководителей
+            </h1>
           </div>
-          
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-2 tracking-tight">
-            ИИ решения для бизнеса и руководителей
-          </h1>
-          <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl mb-3">
+          <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
-          
-          {/* Social Proof */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <span className="text-primary">✓</span> 13+ лет опыта
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="text-primary">✓</span> 50+ проектов
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="text-primary">✓</span> Гарантия ROI
-            </span>
-          </div>
         </div>
 
         {/* Mobile Horizontal Scroll Navigation */}
