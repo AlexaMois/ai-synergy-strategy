@@ -348,35 +348,35 @@ const ServicesDetailed = () => {
                           ))}
                         </div>
 
-                        {/* Sections as white cards in 3-column grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {/* Sections as plain text */}
+                        <div className="space-y-6">
                           {service.sections.map((section, sIndex) => {
                             const SectionIcon = sectionIcons[section.heading] || Info;
                             return (
                               <div 
                                 key={sIndex} 
-                                className="bg-card rounded-xl p-5 border border-border shadow-soft animate-fade-in-up"
+                                className="animate-fade-in-up"
                                 style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
                               >
-                                <div className="flex items-center gap-2 mb-3">
+                                <div className="flex items-center gap-2 mb-2">
                                   <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
                                   <h4 className="font-semibold text-foreground">
                                     {section.heading}
                                   </h4>
                                 </div>
                                 {section.content && (
-                                  <p className="text-sm text-foreground leading-relaxed">
+                                  <p className="text-foreground leading-relaxed pl-7">
                                     {section.content}
                                   </p>
                                 )}
                                 {section.list && (
-                                  <ul className="space-y-1.5">
+                                  <ul className="space-y-2 pl-7">
                                     {section.list.map((item, iIndex) => (
                                       <li 
                                         key={iIndex} 
-                                        className="flex items-start gap-2 text-sm text-foreground"
+                                        className="flex items-start gap-2 text-foreground"
                                       >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                                         <span>{item}</span>
                                       </li>
                                     ))}
