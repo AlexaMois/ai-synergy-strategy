@@ -285,7 +285,7 @@ const ServicesDetailed = () => {
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <AccordionTrigger className="px-6 py-5 hover:no-underline group" showTextIndicator>
+                    <AccordionTrigger className="px-6 py-5 hover:no-underline group flex-col items-stretch" showTextIndicator={false}>
                       <div className="flex items-center gap-4 w-full">
                         {/* Timeline dot */}
                         <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
@@ -315,6 +315,15 @@ const ServicesDetailed = () => {
                           <p className="text-sm text-muted-foreground line-clamp-2">
                             {service.subtitle}
                           </p>
+                          {/* Handwritten expand text below subtitle */}
+                          <div className="mt-3 flex items-center gap-1.5">
+                            <span className={`text-handwriting text-primary transition-all duration-300 ${isOpen ? 'hidden' : 'inline-flex items-center gap-1'}`}>
+                              развернуть <span className="text-lg">↓</span>
+                            </span>
+                            <span className={`text-handwriting text-primary transition-all duration-300 ${isOpen ? 'inline-flex items-center gap-1' : 'hidden'}`}>
+                              свернуть <span className="text-lg">↑</span>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </AccordionTrigger>
