@@ -418,7 +418,7 @@ const PricingPage = () => {
                   <p className="text-sm text-muted-foreground italic mb-4">
                     "Мой самый маленький бюджет, но крутейший результат. Показывает, что не нужно тратить миллионы на ИИ — важна правильная архитектура."
                   </p>
-                  <Button variant="outline" asChild className="w-full">
+                  <Button asChild className="w-full">
                     <a href="/case-studies/cargo-express">
                       Смотреть детальный разбор →
                     </a>

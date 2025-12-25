@@ -114,7 +114,7 @@ const ExitIntentPopup = () => {
             </div>
             <div className="flex-1 flex flex-col items-center">
               <Button
-                variant="outline"
+                variant="secondary"
                 className="w-full py-3 sm:py-3.5 text-sm sm:text-base min-h-[44px]"
                 onClick={() => {
                   toast({

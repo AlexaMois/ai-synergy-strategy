@@ -101,7 +101,7 @@ const FAQ = () => {
                 <AccordionContent className="text-base text-foreground leading-relaxed pt-3">
                   {faq.answer}
                   <div className="mt-4">
-                    <Button variant="outline" size="sm" asChild>
+                    <Button size="sm" asChild>
                       <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                         Разобрать мой процесс
                         <ArrowRight className="h-4 w-4" strokeWidth={1.5} />

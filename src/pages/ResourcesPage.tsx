@@ -205,7 +205,7 @@ const ResourcesPage = () => {
                         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                           {resource.description}
                         </p>
-                        <Button asChild variant="outline" size="sm" className="w-full sm:w-auto">
+                        <Button asChild size="sm" className="w-full sm:w-auto">
                           <a 
                             href={resource.link} 
                             target={resource.isExternal ? "_blank" : undefined} 

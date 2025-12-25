@@ -24,7 +24,7 @@ const Fork = () => {
             <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
               Автоматизация воронки продаж, обработки заявок и работы с клиентами
             </p>
-            <Button variant="outline" className="w-full text-sm md:text-base">
+            <Button className="w-full text-sm md:text-base">
               Смотреть решения для продаж
             </Button>
           </div>
@@ -45,7 +45,7 @@ const Fork = () => {
             <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
               Оптимизация внутренних процессов, документооборота и коммуникаций
             </p>
-            <Button variant="outline" className="w-full text-sm md:text-base">
+            <Button className="w-full text-sm md:text-base">
               Смотреть решения для процессов
             </Button>
           </div>
