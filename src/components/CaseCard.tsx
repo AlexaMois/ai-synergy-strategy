@@ -1,4 +1,5 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 interface CaseCardProps {
   caseItem: {
@@ -24,6 +25,7 @@ interface CaseCardProps {
 
 const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
   const Icon = caseItem.icon;
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div
@@ -63,66 +65,80 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
         </div>
       )}
 
-      {/* Divider */}
-      <div className="h-px bg-border my-2 sm:my-3"></div>
+      {/* Expand Button */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="flex items-center gap-2 text-xs sm:text-sm text-primary font-medium py-2 hover:underline transition-all duration-200"
+      >
+        <span>{isExpanded ? "Свернуть" : "Как мы это сделали:"}</span>
+        <ChevronDown 
+          className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} 
+        />
+      </button>
 
-      {/* Solution */}
-      {caseItem.solution && (
-        <div className="mb-3 sm:mb-4">
-          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
-            Как мы это сделали:
-          </p>
-          <ul className="space-y-1">
-            {caseItem.solution.steps.map((step, idx) => (
-              <li key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
-                <span className="text-primary mt-0.5">•</span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Quote */}
-      {caseItem.quote && (
-        <div className="mb-3 sm:mb-4">
-          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
-            Что говорит клиент:
-          </p>
-          <p className="text-xs sm:text-sm italic text-foreground leading-relaxed">
-            "{caseItem.quote}"
-          </p>
-          {caseItem.quoteAuthor && (
-            <p className="text-[10px] sm:text-xs text-foreground mt-1">
-              — {caseItem.quoteAuthor}
-            </p>
+      {/* Collapsible Content */}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${
+          isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          {/* Solution */}
+          {caseItem.solution && (
+            <div className="mb-3 sm:mb-4 pt-2">
+              <ul className="space-y-1">
+                {caseItem.solution.steps.map((step, idx) => (
+                  <li key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
+                    <span className="text-primary mt-0.5">•</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
+
+          {/* Quote */}
+          {caseItem.quote && (
+            <div className="mb-3 sm:mb-4">
+              <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
+                Что говорит клиент:
+              </p>
+              <p className="text-xs sm:text-sm italic text-foreground leading-relaxed">
+                "{caseItem.quote}"
+              </p>
+              {caseItem.quoteAuthor && (
+                <p className="text-[10px] sm:text-xs text-foreground mt-1">
+                  — {caseItem.quoteAuthor}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Divider */}
+          <div className="h-px bg-border my-2 sm:my-3"></div>
+
+          {/* Results Summary */}
+          {caseItem.resultsSummary && (
+            <div className="mb-4 sm:mb-6">
+              <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
+                Результат:
+              </p>
+              <p className="text-xs sm:text-sm font-medium text-primary leading-relaxed">
+                {caseItem.resultsSummary}
+              </p>
+            </div>
+          )}
+
+          {/* Link */}
+          <div className="space-y-2">
+            <a 
+              href={caseItem.link || "#"} 
+              className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary font-medium hover:underline transition-all duration-200 min-h-[44px] py-2"
+            >
+              <span>{caseItem.buttonText || "Читать подробный разбор кейса →"}</span>
+            </a>
+          </div>
         </div>
-      )}
-
-      {/* Divider */}
-      <div className="h-px bg-border my-2 sm:my-3"></div>
-
-      {/* Results Summary */}
-      {caseItem.resultsSummary && (
-        <div className="mb-4 sm:mb-6">
-          <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
-            Результат:
-          </p>
-          <p className="text-xs sm:text-sm font-medium text-primary leading-relaxed">
-            {caseItem.resultsSummary}
-          </p>
-        </div>
-      )}
-
-      {/* Link */}
-      <div className="mt-auto space-y-2">
-        <a 
-          href={caseItem.link || "#"} 
-          className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary font-medium hover:underline transition-all duration-200 min-h-[44px] py-2"
-        >
-          <span>{caseItem.buttonText || "Читать подробный разбор кейса →"}</span>
-        </a>
       </div>
     </div>
   );
