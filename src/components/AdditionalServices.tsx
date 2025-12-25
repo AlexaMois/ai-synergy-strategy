@@ -1,26 +1,26 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
-import { Bot, Workflow, GraduationCap, Beaker, Shield } from "lucide-react";
+import { Sparkles, Users, Cpu, Blocks, GraduationCap, Shield } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const additionalServices = [
   {
-    icon: Bot,
+    icon: Sparkles,
     title: "Personal ИИ-агент",
     description: "Умный помощник для CEO или собственника. Анализирует данные, готовит сводки, предлагает решения, напоминает о важном, принимает решения в пределах вашего регламента."
   },
   {
-    icon: Workflow,
+    icon: Users,
     title: "Цифровые двойники сотрудников",
     description: "Виртуальная копия эксперта, которая работает вместо него или дублирует его знания. Может заменять в отпусках, обучать новичков, принимать стандартные решения."
   },
   {
-    icon: Beaker,
+    icon: Cpu,
     title: "Настройка нейросетей и fine-tuning",
     description: "Обучение моделей на ваших данных для точности. Оптимизация промптов, настройка параметров, кастомизация под вашу специфику."
   },
   {
-    icon: Workflow,
+    icon: Blocks,
     title: "Low-code автоматизация",
     description: "Готовые решения за 2–3 недели на Бипиум. Полностью под требования РФ, работает в ваших процессах сразу."
   },
