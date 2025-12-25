@@ -285,17 +285,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-20 lg:pt-24 pb-8 lg:pb-10 overflow-hidden">
+    <section className="relative pt-16 lg:pt-20 pb-6 lg:pb-8 overflow-hidden">
       {/* Light gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-gray-100" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
-        <div className="mb-4 lg:mb-8">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-3 tracking-tight">
+        <div className="mb-3 lg:mb-5">
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-2 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed max-w-2xl">
+          <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
@@ -488,26 +488,26 @@ const Hero = () => {
 
           {/* Right Content Panel - Description Card */}
           <div className="flex-1 min-w-0">
-            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-6 h-full">
+            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-4 lg:p-5 h-full">
               <div 
                 key={currentSolution.id}
                 className="animate-enter flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-5">
-                  <h2 className="text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-3 leading-[1.2] tracking-tight">
+                <div className="pb-3">
+                  <h2 className="text-lg lg:text-xl xl:text-[1.4rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
-                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
+                  <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed max-w-[70ch]">
                     {currentSolution.description}
                   </p>
                 </div>
 
                 {/* 2-Column Grid with Dividers */}
-                <div className="bg-card shadow-soft border border-border rounded-xl p-5">
+                <div className="bg-card shadow-soft border border-border rounded-xl p-4">
                   <div className="grid grid-cols-2 gap-0">
                   {/* Left Column */}
-                  <div className="space-y-4 pr-6 border-r border-border/15">
+                  <div className="space-y-3 pr-5 border-r border-border/15">
                     {/* Block 2: Problems */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
@@ -543,7 +543,7 @@ const Hero = () => {
                   </div>
 
                   {/* Right Column */}
-                  <div className="space-y-4 pl-6">
+                  <div className="space-y-3 pl-5">
                     {/* Block 3: How It Works */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
@@ -581,11 +581,11 @@ const Hero = () => {
                 </div>
 
                 {/* Block 6: CTA Zone */}
-                <div className="pt-5 mt-4 border-t border-border/15 flex items-center gap-5">
+                <div className="pt-3 mt-3 border-t border-border/15 flex items-center gap-4">
                   <Button 
                     onClick={handleCTAClick}
-                    size="lg"
-                    className="text-base px-8 py-3 rounded-xl shadow-elevated hover:shadow-[0_8px_30px_rgba(73,190,216,0.35)] transition-all duration-300 font-semibold"
+                    size="default"
+                    className="text-sm px-6 py-2.5 rounded-xl shadow-elevated hover:shadow-[0_8px_30px_rgba(73,190,216,0.35)] transition-all duration-300 font-semibold"
                   >
                     {currentSolution.ctaText}
                   </Button>
