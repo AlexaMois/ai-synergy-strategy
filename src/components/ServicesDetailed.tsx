@@ -349,13 +349,14 @@ const ServicesDetailed = () => {
                         </div>
 
                         {/* Sections as plain text */}
-                        <div className="space-y-6">
+                        <div className="space-y-5">
                           {service.sections.map((section, sIndex) => {
                             const SectionIcon = sectionIcons[section.heading] || Info;
+                            const isLast = sIndex === service.sections.length - 1;
                             return (
                               <div 
                                 key={sIndex} 
-                                className="animate-fade-in-up"
+                                className={`animate-fade-in-up ${!isLast ? 'pb-5 border-b border-border' : ''}`}
                                 style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
                               >
                                 <div className="flex items-center gap-2 mb-2">
