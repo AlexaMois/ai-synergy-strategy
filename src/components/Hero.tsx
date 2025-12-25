@@ -251,29 +251,29 @@ const Hero = () => {
             </button>
             
             {mobileMenuOpen && (
-              <div className="border-t border-border/20 animate-fade-in">
+              <div className="p-2 border-t border-border/20 animate-fade-in flex flex-col gap-2">
                 {solutions.map((solution, index) => (
                   <button
                     key={solution.id}
                     onClick={() => handleSolutionSelect(solution.id)}
                     className={cn(
-                      "w-full px-5 py-3.5 text-left transition-all duration-200 flex items-center gap-3 border-b border-border/10 last:border-b-0",
+                      "w-full px-4 py-3 text-left transition-all duration-200 flex items-center gap-3 rounded-xl",
                       activeSolution === solution.id
-                        ? "bg-primary/10"
-                        : "hover:bg-muted/30"
+                        ? "bg-primary text-primary-foreground shadow-md border border-primary"
+                        : "bg-card shadow-soft border border-border hover:shadow-md hover:border-primary/30"
                     )}
                   >
                     <span className={cn(
                       "text-xs font-bold tabular-nums px-2 py-1 rounded-md",
                       activeSolution === solution.id 
-                        ? "text-primary bg-primary/10" 
-                        : "text-muted-foreground bg-muted/30"
+                        ? "text-primary-foreground bg-white/20" 
+                        : "text-primary bg-primary/10"
                     )}>
                       {formatNumber(index + 1)}
                     </span>
                     <span className={cn(
-                      "text-sm",
-                      activeSolution === solution.id ? "text-primary font-semibold" : "text-foreground/80"
+                      "text-sm font-medium",
+                      activeSolution === solution.id ? "text-primary-foreground" : "text-foreground/80"
                     )}>
                       {solution.menuTitle}
                     </span>
