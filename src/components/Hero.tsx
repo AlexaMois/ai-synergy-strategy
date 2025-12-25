@@ -296,24 +296,24 @@ const Hero = () => {
                     key={solution.id}
                     onClick={() => setActiveSolution(solution.id)}
                     className={cn(
-                      "w-full text-left px-3 py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-lg",
+                      "w-full text-left px-3 py-2.5 transition-all duration-200 group flex items-center gap-3 cursor-pointer rounded-xl",
                       activeSolution === solution.id
-                        ? "bg-primary/10 shadow-sm border border-primary/20"
-                        : "hover:bg-muted/40 hover:shadow-sm border border-transparent"
+                        ? "bg-primary text-primary-foreground shadow-md border border-primary"
+                        : "bg-card shadow-soft border border-border hover:shadow-md hover:border-primary/30"
                     )}
                   >
                     <span className={cn(
                       "text-xs font-bold tabular-nums shrink-0 px-2 py-1 rounded-md transition-colors",
                       activeSolution === solution.id
-                        ? "text-primary bg-primary/15"
-                        : "text-muted-foreground bg-muted/30 group-hover:bg-muted/50"
+                        ? "text-primary-foreground bg-white/20"
+                        : "text-primary bg-primary/10"
                     )}>
                       {formatNumber(index + 1)}
                     </span>
                     <span className={cn(
-                      "text-[13px] transition-colors leading-tight",
+                      "text-[13px] transition-colors leading-tight font-medium",
                       activeSolution === solution.id
-                        ? "text-primary font-semibold"
+                        ? "text-primary-foreground"
                         : "text-foreground/80 group-hover:text-foreground"
                     )}>
                       {solution.menuTitle}
