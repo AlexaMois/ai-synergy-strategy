@@ -339,42 +339,44 @@ const ServicesDetailed = () => {
                           ))}
                         </div>
 
-                        {/* Sections with icons */}
-                        {service.sections.map((section, sIndex) => {
-                          const SectionIcon = sectionIcons[section.heading] || Info;
-                          return (
-                            <div 
-                              key={sIndex} 
-                              className="animate-fade-in-up"
-                              style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
-                            >
-                              <div className="flex items-center gap-2 mb-3">
-                                <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                                <h4 className="font-semibold text-foreground">
-                                  {section.heading}
-                                </h4>
+                        {/* Sections as white cards in 3-column grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {service.sections.map((section, sIndex) => {
+                            const SectionIcon = sectionIcons[section.heading] || Info;
+                            return (
+                              <div 
+                                key={sIndex} 
+                                className="bg-card rounded-xl p-5 border border-border shadow-soft animate-fade-in-up"
+                                style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
+                              >
+                                <div className="flex items-center gap-2 mb-3">
+                                  <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                                  <h4 className="font-semibold text-foreground">
+                                    {section.heading}
+                                  </h4>
+                                </div>
+                                {section.content && (
+                                  <p className="text-sm text-foreground leading-relaxed">
+                                    {section.content}
+                                  </p>
+                                )}
+                                {section.list && (
+                                  <ul className="space-y-1.5">
+                                    {section.list.map((item, iIndex) => (
+                                      <li 
+                                        key={iIndex} 
+                                        className="flex items-start gap-2 text-sm text-foreground"
+                                      >
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                                        <span>{item}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
                               </div>
-                              {section.content && (
-                                <p className="text-foreground leading-relaxed pl-7">
-                                  {section.content}
-                                </p>
-                              )}
-                              {section.list && (
-                                <ul className="space-y-2 pl-7">
-                                  {section.list.map((item, iIndex) => (
-                                    <li 
-                                      key={iIndex} 
-                                      className="flex items-start gap-2 text-foreground"
-                                    >
-                                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                      <span>{item}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
+                        </div>
 
                         {/* Pricing block */}
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-primary/5 rounded-xl animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
