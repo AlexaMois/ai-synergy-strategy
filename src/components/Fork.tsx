@@ -8,45 +8,45 @@ const Fork = () => {
   return (
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-100 to-gray-50 section-gradient-bottom-bg">
       <div className="container mx-auto px-4 max-w-[1200px]">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Левая колонка - Продажи */}
           <div
-            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-soft hover-lift-card ${
+            className={`bg-card border border-gray-200/60 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-soft hover-lift-card transition-all duration-500 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              <h3 className="text-xl md:text-2xl font-medium text-foreground">
+            <div className="flex items-start gap-2.5 md:gap-3 mb-3 md:mb-4">
+              <TrendingUp className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+              <h3 className="text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight">
                 Увеличиваем продажи и не теряем клиентов
               </h3>
             </div>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
               Автоматизация воронки продаж, обработки заявок и работы с клиентами
             </p>
-            <Button variant="outline" className="w-full md:w-auto">
-              Смотреть все решения для продаж
+            <Button variant="outline" className="w-full text-sm md:text-base">
+              Смотреть решения для продаж
             </Button>
           </div>
 
           {/* Правая колонка - Процессы */}
           <div
-            className={`bg-card border border-gray-200/60 rounded-2xl p-6 md:p-8 shadow-soft hover-lift-card ${
+            className={`bg-card border border-gray-200/60 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 shadow-soft hover-lift-card transition-all duration-500 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "150ms" }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Settings className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              <h3 className="text-xl md:text-2xl font-medium text-foreground">
+            <div className="flex items-start gap-2.5 md:gap-3 mb-3 md:mb-4">
+              <Settings className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+              <h3 className="text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight">
                 Наводим порядок в процессах
               </h3>
             </div>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
               Оптимизация внутренних процессов, документооборота и коммуникаций
             </p>
-            <Button variant="outline" className="w-full md:w-auto">
-              Смотреть все решения для процессов
+            <Button variant="outline" className="w-full text-sm md:text-base">
+              Смотреть решения для процессов
             </Button>
           </div>
         </div>
