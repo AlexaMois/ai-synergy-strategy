@@ -829,6 +829,7 @@
       transparent
     );
     pointer-events: none;
+    z-index: -1;
   }
   
   .section-gradient-bottom-light {
@@ -847,6 +848,7 @@
       transparent
     );
     pointer-events: none;
+    z-index: -1;
   }
   
   .section-gradient-top-bg {
@@ -865,6 +867,7 @@
       transparent
     );
     pointer-events: none;
+    z-index: -1;
   }
   
   .section-gradient-bottom-bg {
@@ -883,6 +886,7 @@
       transparent
     );
     pointer-events: none;
+    z-index: -1;
   }
   
   /* Marquee Animation */
