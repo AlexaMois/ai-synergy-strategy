@@ -6,7 +6,7 @@ const Fork = () => {
   const { ref, isVisible } = useIntersectionObserver();
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-gradient-to-b from-gray-100 to-gray-50 section-gradient-bottom-bg">
+    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Левая колонка - Продажи */}
