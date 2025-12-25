@@ -12,8 +12,9 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
-
+import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
+
 const Index = () => {
   const location = useLocation();
   
@@ -37,7 +38,8 @@ const Index = () => {
     }
   }, [location.hash]);
   
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Helmet>
         <title>Александра Моисеева — Независимый стратег и инженер по ИИ</title>
         <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев. Без привязки к платформам." />
@@ -51,19 +53,20 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        
         <TrustMarquee />
         <Foundation />
         <Fork />
         <Cases />
         <MarqueeText />
         <FAQ />
+        <Testimonials />
         <Contact />
         <Partners />
       </main>
       <Footer />
-      
       <FloatingCTA />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
