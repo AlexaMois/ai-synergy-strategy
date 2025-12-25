@@ -293,14 +293,14 @@ const Hero = () => {
         {/* Header */}
         <div className="mb-3 lg:mb-5">
           {/* Badge + Title on one line */}
-          <div className="flex flex-wrap items-center gap-3 mt-5 mb-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 mt-5 mb-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] tracking-tight">
+              ИИ решения для бизнеса и руководителей
+            </h1>
             <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
               <span>🇷🇺</span>
               <span className="font-medium">Работаем по всей России и СНГ</span>
             </div>
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] tracking-tight">
-              ИИ решения для бизнеса и руководителей
-            </h1>
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
