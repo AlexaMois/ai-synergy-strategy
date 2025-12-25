@@ -48,9 +48,60 @@ const ServicesPage = () => {
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
                   Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
                 </h1>
-                <p className="text-base sm:text-lg text-foreground leading-relaxed">
+                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-8">
                   Помогаю внедрить ИИ так, чтобы он работал и приносил результаты. Смотрю на систему как целое: смысл задачи, люди, процессы, данные, архитектура.
                 </p>
+                
+                {/* Three stages process */}
+                <h2 className="text-lg sm:text-xl font-medium text-foreground mb-4">
+                  Три этапа работы:
+                </h2>
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                  {/* Stage 1: Diagnostics */}
+                  <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
+                    animationDelay: '0.5s'
+                  }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-primary">01</span>
+                      <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                        <Search className="w-6 h-6 text-primary" />
+                      </div>
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Диагностика</span>
+                  </div>
+
+                  {/* Arrow 1 */}
+                  <div className="text-primary text-2xl rotate-90 sm:rotate-0 self-center">→</div>
+
+                  {/* Stage 2: Architecture */}
+                  <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
+                    animationDelay: '0.6s'
+                  }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-primary">02</span>
+                      <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                        <Building2 className="w-6 h-6 text-primary" />
+                      </div>
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Архитектура</span>
+                  </div>
+
+                  {/* Arrow 2 */}
+                  <div className="text-primary text-2xl rotate-90 sm:rotate-0 self-center">→</div>
+
+                  {/* Stage 3: Support */}
+                  <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
+                    animationDelay: '0.7s'
+                  }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-primary">03</span>
+                      <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                        <Handshake className="w-6 h-6 text-primary" />
+                      </div>
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Сопровождение</span>
+                  </div>
+                </div>
               </div>
 
               {/* Right column - Infographic */}
@@ -97,57 +148,6 @@ const ServicesPage = () => {
                     })}
                   </svg>
                 </div>
-              </div>
-            </div>
-
-            {/* Three stages process */}
-            <h2 className="text-lg sm:text-xl font-medium text-foreground text-center mt-10 mb-6">
-              Три этапа работы:
-            </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              {/* Stage 1: Diagnostics */}
-              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
-                animationDelay: '0.5s'
-              }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-primary">01</span>
-                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
-                    <Search className="w-6 h-6 text-primary" />
-                  </div>
-                </div>
-                <span className="text-sm font-medium text-foreground">Диагностика</span>
-              </div>
-
-              {/* Arrow 1 */}
-              <div className="text-primary text-2xl rotate-90 sm:rotate-0">→</div>
-
-              {/* Stage 2: Architecture */}
-              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
-                animationDelay: '0.6s'
-              }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-primary">02</span>
-                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
-                    <Building2 className="w-6 h-6 text-primary" />
-                  </div>
-                </div>
-                <span className="text-sm font-medium text-foreground">Архитектура</span>
-              </div>
-
-              {/* Arrow 2 */}
-              <div className="text-primary text-2xl rotate-90 sm:rotate-0">→</div>
-
-              {/* Stage 3: Support */}
-              <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{
-                animationDelay: '0.7s'
-              }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-primary">03</span>
-                  <div className="w-12 h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
-                    <Handshake className="w-6 h-6 text-primary" />
-                  </div>
-                </div>
-                <span className="text-sm font-medium text-foreground">Сопровождение</span>
               </div>
             </div>
 
