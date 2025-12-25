@@ -932,7 +932,7 @@
   }
   
   .animate-testimonials-scroll {
-    animation: testimonials-scroll 60s linear infinite;
+    animation: testimonials-scroll 120s linear infinite;
     will-change: transform;
   }
   

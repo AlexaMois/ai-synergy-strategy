@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, MessageCircle, MapPin } from "lucide-react";
+import { X } from "lucide-react";
 
 // Импорт скриншотов отзывов
 import reviewNeurotech from "@/assets/reviews/review-neurotech.jpg";
@@ -60,22 +60,6 @@ const reviews: Review[] = [
   { id: "20", image: reviewYuliyaBot, source: "telegram", alt: "Отзыв Юлии о боте для постов" },
 ];
 
-const SourceBadge = ({ source }: { source: ReviewSource }) => {
-  if (source === "telegram") {
-    return (
-      <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#2AABEE] text-primary-foreground text-[10px] font-medium px-2 py-0.5 rounded-full shadow-soft">
-        <MessageCircle className="w-3 h-3" />
-        <span>TG</span>
-      </div>
-    );
-  }
-  return (
-    <div className="absolute top-2 left-2 flex items-center gap-1 bg-[#FC3F1D] text-primary-foreground text-[10px] font-medium px-2 py-0.5 rounded-full shadow-soft">
-      <MapPin className="w-3 h-3" />
-      <span>Яндекс</span>
-    </div>
-  );
-};
 
 const Testimonials = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -94,7 +78,7 @@ const Testimonials = () => {
           
           <div className="flex items-center justify-center min-h-[200px]">
             <div className="text-center p-8 bg-card rounded-lg border border-border shadow-soft">
-              <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+              <X className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground">
                 Загрузите скриншоты отзывов через чат
               </p>
@@ -126,7 +110,6 @@ const Testimonials = () => {
                 onClick={() => setSelectedImage(review.image)}
               >
                 <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
-                  <SourceBadge source={review.source} />
                   <img
                     src={review.image}
                     alt={review.alt}
@@ -142,10 +125,10 @@ const Testimonials = () => {
 
       {/* Modal for full-size view */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl w-[95vw] p-0 bg-transparent border-none shadow-none [&>button]:hidden data-[state=open]:animate-fade-in data-[state=open]:duration-200">
+        <DialogContent className="max-w-lg w-auto p-0 bg-transparent border-none shadow-none [&>button]:hidden data-[state=open]:animate-fade-in data-[state=open]:duration-200">
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute -top-12 right-0 md:top-2 md:right-2 z-50 p-2 rounded-full bg-card/90 backdrop-blur-sm shadow-soft hover:bg-card transition-colors"
+            className="absolute -top-10 right-0 z-50 p-2 rounded-full bg-card/90 backdrop-blur-sm shadow-soft hover:bg-card transition-colors"
             aria-label="Закрыть"
           >
             <X className="w-5 h-5 text-foreground" />
@@ -154,7 +137,7 @@ const Testimonials = () => {
             <img
               src={selectedImage}
               alt="Отзыв в полном размере"
-              className="w-full h-auto rounded-2xl shadow-elevated animate-scale-in"
+              className="max-h-[75vh] w-auto rounded-2xl shadow-elevated animate-scale-in"
             />
           )}
         </DialogContent>
