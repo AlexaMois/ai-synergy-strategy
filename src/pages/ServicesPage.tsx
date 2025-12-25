@@ -107,6 +107,9 @@ const ServicesPage = () => {
               {/* Right column - Infographic */}
               <div className="flex justify-center lg:flex lg:items-center lg:justify-center">
                 <div className="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px]">
+                  {/* Outer circle */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-2 border-primary/20 border-dashed" />
+                  
                   {/* Center circle */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
                     <span className="text-xs sm:text-sm font-semibold text-primary text-center leading-tight">Система<br />как целое</span>
@@ -115,18 +118,18 @@ const ServicesPage = () => {
                   {/* Elements around the circle */}
                   {systemElements.map((element, index) => {
                     const angle = (index * 72 - 90) * (Math.PI / 180);
-                    const radius = 140;
+                    const radius = 130;
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
                     const Icon = element.icon;
-                    return <div key={index} className="absolute flex flex-col items-center gap-1 sm:gap-2 animate-fade-in-up" style={{
+                    return <div key={index} className="absolute flex flex-col items-center gap-1 animate-fade-in-up" style={{
                       left: `calc(50% + ${x}px)`,
                       top: `calc(50% + ${y}px)`,
                       transform: 'translate(-50%, -50%)',
                       animationDelay: `${index * 0.1}s`
                     }}>
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
-                          <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-card border border-border shadow-soft flex items-center justify-center">
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
                         <span className="text-[10px] sm:text-xs font-medium text-muted-foreground text-center whitespace-nowrap">
                           {element.label}
@@ -139,7 +142,7 @@ const ServicesPage = () => {
                     {systemElements.map((_, index) => {
                       const angle = (index * 72 - 90) * (Math.PI / 180);
                       const innerRadius = 56;
-                      const outerRadius = 120;
+                      const outerRadius = 105;
                       const x1 = 190 + Math.cos(angle) * innerRadius;
                       const y1 = 190 + Math.sin(angle) * innerRadius;
                       const x2 = 190 + Math.cos(angle) * outerRadius;
