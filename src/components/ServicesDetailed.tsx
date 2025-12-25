@@ -259,7 +259,7 @@ const ServicesDetailed = () => {
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Timeline container */}
           <div className="relative">
             {/* Vertical timeline line */}
@@ -348,15 +348,14 @@ const ServicesDetailed = () => {
                           ))}
                         </div>
 
-                        {/* Sections as plain text */}
-                        <div className="space-y-5">
+                        {/* Sections in two columns on desktop */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
                           {service.sections.map((section, sIndex) => {
                             const SectionIcon = sectionIcons[section.heading] || Info;
-                            const isLast = sIndex === service.sections.length - 1;
                             return (
                               <div 
                                 key={sIndex} 
-                                className={`animate-fade-in-up ${!isLast ? 'pb-5 border-b border-border' : ''}`}
+                                className="animate-fade-in-up pb-4 border-b border-border/50 md:border-0 md:pb-0"
                                 style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
                               >
                                 <div className="flex items-center gap-2 mb-2">
