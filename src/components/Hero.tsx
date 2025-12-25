@@ -195,12 +195,44 @@ const Hero = () => {
   const [activeSolution, setActiveSolution] = useState<string>(solutions[0].id);
   const [isPaused, setIsPaused] = useState(false);
   const [isCardExpanded, setIsCardExpanded] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
   const currentIndex = solutions.findIndex(s => s.id === activeSolution);
+
+  const minSwipeDistance = 50;
+
+  // Swipe handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      const nextIndex = (currentIndex + 1) % solutions.length;
+      handleManualSelect(solutions[nextIndex].id);
+    }
+    
+    if (isRightSwipe) {
+      const prevIndex = (currentIndex - 1 + solutions.length) % solutions.length;
+      handleManualSelect(solutions[prevIndex].id);
+    }
+  };
 
   // Auto-scroll buttons to center active one
   useEffect(() => {
@@ -302,8 +334,13 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Mobile: Show ONLY active solution with collapse/expand */}
-        <div className="lg:hidden relative">
+        {/* Mobile: Show ONLY active solution with collapse/expand + swipe */}
+        <div 
+          className="lg:hidden relative"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div 
             key={currentSolution.id}
             className="bg-card rounded-xl border border-t-[3px] border-border/20 border-t-primary p-4 animate-fade-in relative overflow-hidden"
