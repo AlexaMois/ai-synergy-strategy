@@ -8,9 +8,27 @@ import { Button } from "@/components/ui/button";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { ArrowRight } from "lucide-react";
 import { JSX } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const FAQ = () => {
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const faqs: { question: string; answer: JSX.Element }[] = [
     {
       question: "Сколько стоит?",
@@ -101,11 +119,11 @@ const FAQ = () => {
                 <AccordionContent className="text-base text-foreground leading-relaxed pt-3">
                   {faq.answer}
                   <div className="mt-4">
-                    <Button size="sm" asChild>
-                      <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <Button size="sm" onClick={scrollToContact}>
+                      <span className="inline-flex items-center gap-2">
                         Разобрать мой процесс
                         <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-                      </a>
+                      </span>
                     </Button>
                   </div>
                 </AccordionContent>

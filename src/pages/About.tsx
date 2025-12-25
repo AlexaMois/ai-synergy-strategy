@@ -14,12 +14,30 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState } from "react";
 import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const {
     ref: heroRef,
     getAnimationClass: heroAnimation
@@ -114,7 +132,7 @@ const About = () => {
                 <p className="text-lg text-foreground leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
-                <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')} className="w-full sm:w-auto">
+                <Button size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
                   Запросить аудит-анализ
                 </Button>
               </div>

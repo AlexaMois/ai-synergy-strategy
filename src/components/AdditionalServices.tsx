@@ -1,6 +1,7 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { Bot, Workflow, GraduationCap, Beaker, Shield } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const additionalServices = [
   {
@@ -32,6 +33,22 @@ const additionalServices = [
 
 const AdditionalServices = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
 
   return (
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-muted/30">
@@ -78,10 +95,8 @@ const AdditionalServices = () => {
             className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
             style={{ animationDelay: '0.6s' }}
           >
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Обсудить вашу задачу →
-              </a>
+            <Button size="lg" onClick={scrollToContact}>
+              Обсудить вашу задачу →
             </Button>
           </div>
         </div>

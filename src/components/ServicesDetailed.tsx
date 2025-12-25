@@ -16,6 +16,7 @@ import {
   Clock
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "Для кого это": Users,
@@ -238,6 +239,22 @@ const services = [
 const ServicesDetailed = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
   const [openItem, setOpenItem] = useState<string | undefined>(undefined);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
 
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background">
@@ -379,10 +396,8 @@ const ServicesDetailed = () => {
                             </div>
                           </div>
                           
-                          <Button size="lg" className="w-full sm:w-auto" asChild>
-                            <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                              {service.cta}
-                            </a>
+                          <Button size="lg" className="w-full sm:w-auto" onClick={scrollToContact}>
+                            {service.cta}
                           </Button>
                         </div>
                       </div>
