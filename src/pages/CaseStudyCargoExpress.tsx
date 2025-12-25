@@ -223,7 +223,9 @@ const CaseStudyCargoExpress = () => {
               <p className="text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Получите подробную схему архитектуры решения: как устроена интеграция Telegram + Google Sheets, какие API используются, и как это можно адаптировать под вашу компанию.
               </p>
-              <Button size="lg">Скачать архитектуру (PDF)</Button>
+              <Button size="lg">
+                Скачать архитектуру (PDF) →
+              </Button>
             </div>
           </div>
         </section>

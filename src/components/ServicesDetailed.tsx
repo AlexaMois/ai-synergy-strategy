@@ -261,7 +261,7 @@ const ServicesDetailed = () => {
 
                       {/* CTA Button */}
                       <div className="pt-4">
-                        <Button size="lg" asChild>
+                        <Button size="lg" className="w-full sm:w-auto" asChild>
                           <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
                             {service.cta}
                           </a>

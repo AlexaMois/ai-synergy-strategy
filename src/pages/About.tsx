@@ -114,7 +114,7 @@ const About = () => {
                 <p className="text-lg text-foreground leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
-                <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')}>
+                <Button size="lg" onClick={() => window.open('https://calendar.app.google/Zb3NNbpFm3Yh1uA59', '_blank')} className="w-full sm:w-auto">
                   Запросить аудит-анализ
                 </Button>
               </div>

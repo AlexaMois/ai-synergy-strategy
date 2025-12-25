@@ -94,7 +94,8 @@ const Cases = () => {
         {/* CTA Button */}
         <div className="flex justify-center">
             <Button 
-              size="lg"
+              size="lg" 
+              className="text-lg px-8"
               onClick={() => {
                 toast({
                   title: "Эта страница находится в разработке",

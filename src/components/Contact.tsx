@@ -259,8 +259,7 @@ const Contact = () => {
 
               <Button 
                 type="submit" 
-                size="lg"
-                className="w-full md:w-auto shrink-0"
+                className="w-full md:w-auto h-12 px-8 text-base shrink-0"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Отправка..." : "Отправить"}

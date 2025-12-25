@@ -42,8 +42,11 @@ const FloatingCTA = () => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16 pointer-events-none"
       }`}
     >
-      <Button onClick={scrollToContact}>
-        <Phone className="h-4 w-4" />
+      <Button
+        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl"
+        onClick={scrollToContact}
+      >
+        <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
         <span className="hidden sm:inline">Заказать звонок</span>
       </Button>
     </div>
