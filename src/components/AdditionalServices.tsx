@@ -77,15 +77,15 @@ const AdditionalServices = () => {
               return (
                 <div
                   key={index}
-                  className={`group p-6 rounded-xl bg-card border border-border/50 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 ${
+                  className={`group p-6 rounded-2xl bg-card border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 ${
                     isVisible ? 'animate-fade-in-up' : 'opacity-0'
                   }`}
                   style={{ animationDelay: `${0.2 + index * 0.08}s` }}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center mb-4 group-hover:bg-primary/12 transition-colors duration-300">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all duration-300 shadow-xs group-hover:shadow-soft">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-medium text-foreground mb-2">
+                  <h3 className="font-semibold text-foreground mb-2">
                     {service.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
