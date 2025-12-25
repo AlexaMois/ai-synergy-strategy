@@ -263,7 +263,7 @@ const Hero = () => {
         const nextIdx = (currentIdx + 1) % solutions.length;
         return solutions[nextIdx].id;
       });
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
