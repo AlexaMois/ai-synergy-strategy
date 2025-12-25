@@ -33,7 +33,7 @@ const ServicesPage = () => {
       
         <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-10 md:pb-16 bg-background">
+        <section className="pt-28 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4">
             {/* Two column layout: Text left, Infographic right */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-10">
@@ -49,16 +49,16 @@ const ServicesPage = () => {
 
               {/* Right column - Infographic */}
               <div className="flex justify-center lg:justify-end">
-                <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px]">
+                <div className="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px]">
                   {/* Center circle */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center">
                     <span className="text-xs sm:text-sm font-semibold text-primary text-center leading-tight">Система<br/>как целое</span>
                   </div>
                   
                   {/* Elements around the circle */}
                   {systemElements.map((element, index) => {
-                    const angle = (index * 72 - 90) * (Math.PI / 180); // 72 degrees apart, starting from top
-                    const radius = 110; // Distance from center
+                    const angle = (index * 72 - 90) * (Math.PI / 180);
+                    const radius = 140;
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
                     const Icon = element.icon;
@@ -74,8 +74,8 @@ const ServicesPage = () => {
                           animationDelay: `${index * 0.1}s`
                         }}
                       >
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
-                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-card border border-border shadow-soft flex items-center justify-center">
+                          <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                         </div>
                         <span className="text-[10px] sm:text-xs font-medium text-muted-foreground text-center whitespace-nowrap">
                           {element.label}
@@ -85,15 +85,15 @@ const ServicesPage = () => {
                   })}
                   
                   {/* Connecting lines */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 380 380">
                     {systemElements.map((_, index) => {
                       const angle = (index * 72 - 90) * (Math.PI / 180);
-                      const innerRadius = 48;
-                      const outerRadius = 95;
-                      const x1 = 160 + Math.cos(angle) * innerRadius;
-                      const y1 = 160 + Math.sin(angle) * innerRadius;
-                      const x2 = 160 + Math.cos(angle) * outerRadius;
-                      const y2 = 160 + Math.sin(angle) * outerRadius;
+                      const innerRadius = 56;
+                      const outerRadius = 120;
+                      const x1 = 190 + Math.cos(angle) * innerRadius;
+                      const y1 = 190 + Math.sin(angle) * innerRadius;
+                      const x2 = 190 + Math.cos(angle) * outerRadius;
+                      const y2 = 190 + Math.sin(angle) * outerRadius;
                       
                       return (
                         <line
@@ -115,7 +115,10 @@ const ServicesPage = () => {
             </div>
 
             {/* Three stages process */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10">
+            <h2 className="text-lg sm:text-xl font-medium text-foreground text-center mt-10 mb-6">
+              Три этапа работы:
+            </h2>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {/* Stage 1: Diagnostics */}
               <div className="flex flex-col items-center gap-2 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
                 <div className="flex items-center gap-2">
