@@ -348,43 +348,84 @@ const ServicesDetailed = () => {
                           ))}
                         </div>
 
-                        {/* Sections in two columns on desktop */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-                          {service.sections.map((section, sIndex) => {
-                            const SectionIcon = sectionIcons[section.heading] || Info;
-                            return (
-                              <div 
-                                key={sIndex} 
-                                className="animate-fade-in-up pb-4 border-b border-border/50 md:border-0 md:pb-0"
-                                style={{ animationDelay: `${0.2 + sIndex * 0.05}s` }}
-                              >
-                                <div className="flex items-center gap-2 mb-2">
-                                  <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                                  <h4 className="font-semibold text-foreground">
-                                    {section.heading}
-                                  </h4>
+                        {/* Sections in two columns on desktop with vertical divider */}
+                        <div className="flex flex-col md:flex-row md:gap-0">
+                          {/* Left column */}
+                          <div className="flex-1 space-y-4 md:pr-6 md:border-r md:border-border">
+                            {service.sections.filter((_, i) => i % 2 === 0).map((section, sIndex) => {
+                              const SectionIcon = sectionIcons[section.heading] || Info;
+                              return (
+                                <div 
+                                  key={sIndex} 
+                                  className="animate-fade-in-up"
+                                  style={{ animationDelay: `${0.2 + sIndex * 0.1}s` }}
+                                >
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                                    <h4 className="font-semibold text-foreground">
+                                      {section.heading}
+                                    </h4>
+                                  </div>
+                                  {section.content && (
+                                    <p className="text-foreground leading-relaxed pl-7">
+                                      {section.content}
+                                    </p>
+                                  )}
+                                  {section.list && (
+                                    <ul className="space-y-2 pl-7">
+                                      {section.list.map((item, iIndex) => (
+                                        <li 
+                                          key={iIndex} 
+                                          className="flex items-start gap-2 text-foreground"
+                                        >
+                                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
                                 </div>
-                                {section.content && (
-                                  <p className="text-foreground leading-relaxed pl-7">
-                                    {section.content}
-                                  </p>
-                                )}
-                                {section.list && (
-                                  <ul className="space-y-2 pl-7">
-                                    {section.list.map((item, iIndex) => (
-                                      <li 
-                                        key={iIndex} 
-                                        className="flex items-start gap-2 text-foreground"
-                                      >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                                        <span>{item}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </div>
-                            );
-                          })}
+                              );
+                            })}
+                          </div>
+                          {/* Right column */}
+                          <div className="flex-1 space-y-4 md:pl-6 mt-4 md:mt-0">
+                            {service.sections.filter((_, i) => i % 2 === 1).map((section, sIndex) => {
+                              const SectionIcon = sectionIcons[section.heading] || Info;
+                              return (
+                                <div 
+                                  key={sIndex} 
+                                  className="animate-fade-in-up"
+                                  style={{ animationDelay: `${0.25 + sIndex * 0.1}s` }}
+                                >
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                                    <h4 className="font-semibold text-foreground">
+                                      {section.heading}
+                                    </h4>
+                                  </div>
+                                  {section.content && (
+                                    <p className="text-foreground leading-relaxed pl-7">
+                                      {section.content}
+                                    </p>
+                                  )}
+                                  {section.list && (
+                                    <ul className="space-y-2 pl-7">
+                                      {section.list.map((item, iIndex) => (
+                                        <li 
+                                          key={iIndex} 
+                                          className="flex items-start gap-2 text-foreground"
+                                        >
+                                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
 
                         {/* Pricing block */}
