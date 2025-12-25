@@ -10,6 +10,18 @@ import {
 } from "@/components/ui/carousel";
 import { X, MessageCircle, MapPin } from "lucide-react";
 
+// Импорт скриншотов отзывов
+import reviewNeurotech from "@/assets/reviews/review-neurotech.jpg";
+import reviewKirill from "@/assets/reviews/review-kirill.jpg";
+import reviewGeneralGroup from "@/assets/reviews/review-general-group.jpg";
+import reviewElena from "@/assets/reviews/review-elena.jpg";
+import reviewOlgaElena from "@/assets/reviews/review-olga-elena.jpg";
+import reviewElenaMarina from "@/assets/reviews/review-elena-marina.jpg";
+import reviewNatalya from "@/assets/reviews/review-natalya.jpg";
+import reviewFamilyUnion from "@/assets/reviews/review-family-union.jpg";
+import reviewAnastasia from "@/assets/reviews/review-anastasia.jpg";
+import reviewSalesGroup from "@/assets/reviews/review-sales-group.jpg";
+
 // Типы источников отзывов
 type ReviewSource = "telegram" | "yandex";
 
@@ -20,8 +32,69 @@ interface Review {
   alt: string;
 }
 
-// Пустой массив - скриншоты будут добавлены после загрузки пользователем
-const reviews: Review[] = [];
+// Массив отзывов из Telegram
+const reviews: Review[] = [
+  {
+    id: "1",
+    image: reviewNeurotech,
+    source: "telegram",
+    alt: "Благодарность от NeuroTech Russia 2025"
+  },
+  {
+    id: "2",
+    image: reviewKirill,
+    source: "telegram",
+    alt: "Отзыв Кирилла о практическом применении ИИ"
+  },
+  {
+    id: "3",
+    image: reviewGeneralGroup,
+    source: "telegram",
+    alt: "Отзывы из группы General"
+  },
+  {
+    id: "4",
+    image: reviewElena,
+    source: "telegram",
+    alt: "Отзыв Елены о семинаре"
+  },
+  {
+    id: "5",
+    image: reviewOlgaElena,
+    source: "telegram",
+    alt: "Отзывы от Ольги Плотниковой и Elena Kopytova"
+  },
+  {
+    id: "6",
+    image: reviewElenaMarina,
+    source: "telegram",
+    alt: "Отзывы с мероприятия"
+  },
+  {
+    id: "7",
+    image: reviewNatalya,
+    source: "telegram",
+    alt: "Отзыв Натальи Черкашиной"
+  },
+  {
+    id: "8",
+    image: reviewFamilyUnion,
+    source: "telegram",
+    alt: "Благодарность от Союза семей России"
+  },
+  {
+    id: "9",
+    image: reviewAnastasia,
+    source: "telegram",
+    alt: "Отзыв Анастасии об автоматизации"
+  },
+  {
+    id: "10",
+    image: reviewSalesGroup,
+    source: "telegram",
+    alt: "Отзывы из группы Продажи"
+  }
+];
 
 const SourceBadge = ({ source }: { source: ReviewSource }) => {
   if (source === "telegram") {
