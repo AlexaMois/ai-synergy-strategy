@@ -270,8 +270,7 @@ const Hero = () => {
 
   const handleManualSelect = useCallback((id: string) => {
     setActiveSolution(id);
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 10000);
+    setIsPaused(true); // Полная остановка навсегда
   }, []);
 
   const handleCTAClick = () => {
@@ -304,6 +303,10 @@ const Hero = () => {
 
         {/* Mobile Horizontal Scroll Navigation */}
         <div className="lg:hidden mb-4">
+          <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1.5">
+            <span>👆</span>
+            <span>Выберите решение:</span>
+          </p>
           <div 
             ref={scrollContainerRef}
             className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"
@@ -429,14 +432,8 @@ const Hero = () => {
           {/* Expand/Collapse button */}
           <button 
             onClick={() => {
-              const newExpanded = !isCardExpanded;
-              setIsCardExpanded(newExpanded);
-              
-              if (newExpanded) {
-                setIsPaused(true);
-              } else {
-                setTimeout(() => setIsPaused(false), 3000);
-              }
+              setIsCardExpanded(!isCardExpanded);
+              setIsPaused(true); // Полная остановка при любом клике
             }}
             className="w-full mt-2 py-2.5 text-xs text-primary font-medium flex items-center justify-center gap-1.5 bg-card/50 rounded-lg border border-border/30 hover:bg-card transition-colors"
           >
