@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ChevronDown, Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp } from "lucide-react";
+import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -193,11 +193,9 @@ const solutions: SolutionData[] = [
 
 const Hero = () => {
   const [activeSolution, setActiveSolution] = useState<string>(solutions[0].id);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
   const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
-  const currentIndex = solutions.findIndex(s => s.id === activeSolution);
 
   // Auto-switching every 5 seconds
   useEffect(() => {
@@ -227,24 +225,19 @@ const Hero = () => {
     }
   };
 
-  const handleSolutionSelect = (id: string) => {
-    handleManualSelect(id);
-    setMobileMenuOpen(false);
-  };
-
   const formatNumber = (num: number) => {
     return num.toString().padStart(2, '0');
   };
 
   return (
     <section className="relative pt-20 lg:pt-24 pb-8 lg:pb-10 overflow-hidden">
-      {/* Light gradient background - контрастный */}
+      {/* Light gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-gray-100" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header - With more top spacing */}
-        <div className="mb-6 lg:mb-8">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-3 tracking-tight">
+        {/* Header */}
+        <div className="mb-4 lg:mb-8">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] mb-2 lg:mb-3 tracking-tight">
             Решения для бизнеса и руководителей
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-foreground leading-relaxed max-w-2xl">
@@ -253,66 +246,119 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Mobile Dropdown - Card style */}
-        <div className="lg:hidden mb-6">
-          <div className="bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-card border border-border/30">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-full flex items-center justify-between px-5 py-4 text-left transition-all duration-200"
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-primary tabular-nums bg-primary/10 px-2 py-1 rounded-md">
-                  {formatNumber(currentIndex + 1)}
+        {/* Mobile Horizontal Scroll Navigation */}
+        <div className="lg:hidden mb-4">
+          <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"
+               style={{ WebkitOverflowScrolling: 'touch' }}>
+            {solutions.map((solution, index) => (
+              <button
+                key={solution.id}
+                onClick={() => handleManualSelect(solution.id)}
+                className={cn(
+                  "flex-shrink-0 min-w-[110px] py-2 px-3 rounded-xl transition-all duration-200",
+                  "flex items-center gap-2 text-xs font-medium whitespace-nowrap",
+                  activeSolution === solution.id
+                    ? "bg-primary text-primary-foreground shadow-md border border-primary"
+                    : "bg-card border border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
+                )}
+              >
+                <span className={cn(
+                  "font-bold tabular-nums",
+                  activeSolution === solution.id ? "text-primary-foreground" : "text-primary/60"
+                )}>
+                  {formatNumber(index + 1)}
                 </span>
-                <span className="font-semibold text-foreground text-sm">{currentSolution.menuTitle}</span>
-              </div>
-              <ChevronDown className={cn(
-                "w-4 h-4 text-muted-foreground transition-transform duration-300",
-                mobileMenuOpen && "rotate-180"
-              )} />
-            </button>
-            
-            {mobileMenuOpen && (
-              <div className="p-3 border-t border-border/20 animate-fade-in flex flex-col gap-1">
-                {solutions.map((solution, index) => (
-                  <button
-                    key={solution.id}
-                    onClick={() => handleSolutionSelect(solution.id)}
-                    className={cn(
-                      "w-full py-3 text-left transition-all duration-200 flex items-center gap-3",
-                      activeSolution === solution.id
-                        ? "bg-primary text-primary-foreground shadow-md border border-primary rounded-xl px-4"
-                        : "bg-transparent border-l-2 border-primary/30 hover:border-primary/60 rounded-none pl-4 pr-4"
-                    )}
-                  >
-                    <span className={cn(
-                      "text-xs font-bold tabular-nums",
-                      activeSolution === solution.id 
-                        ? "text-primary-foreground bg-white/20 px-2 py-1 rounded-md" 
-                        : "text-primary/60"
-                    )}>
-                      {formatNumber(index + 1)}
-                    </span>
-                    <span className={cn(
-                      "text-sm transition-colors",
-                      activeSolution === solution.id 
-                        ? "text-primary-foreground font-medium" 
-                        : "text-muted-foreground"
-                    )}>
-                      {solution.menuTitle}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
+                <span className="truncate">{solution.menuTitle}</span>
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Two Column Layout - Separate Cards */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-5">
+        {/* Mobile: Show ALL solutions in compact cards */}
+        <div className="lg:hidden space-y-3">
+          {solutions.map((solution, index) => (
+            <div 
+              key={solution.id}
+              id={`mobile-solution-${solution.id}`}
+              className="bg-card rounded-xl border border-t-[3px] border-border/20 border-t-primary p-4"
+            >
+              {/* Compact header */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold text-primary/60 tabular-nums">
+                  {formatNumber(index + 1)}
+                </span>
+                <h3 className="text-sm font-semibold text-foreground leading-tight">
+                  {solution.h2Title}
+                </h3>
+              </div>
+              
+              <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                {solution.description}
+              </p>
+              
+              {/* Problems */}
+              <div className="mb-3">
+                <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 font-semibold">
+                  Что идёт не так
+                </h4>
+                <ul className="space-y-1">
+                  {solution.problems.map((problem, i) => (
+                    <li key={i} className="text-xs text-foreground flex gap-2 leading-relaxed">
+                      <span className="text-primary shrink-0">•</span>
+                      <span>{problem}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Example */}
+              <div className="mb-3 pt-2 border-t border-border/20">
+                <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-semibold">
+                  Пример
+                </h4>
+                <p className="text-xs italic text-foreground/80 leading-relaxed">
+                  "{solution.example}"
+                </p>
+              </div>
+              
+              {/* How it works */}
+              <div className="mb-3">
+                <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5 font-semibold">
+                  Как работает
+                </h4>
+                <ul className="space-y-1">
+                  {solution.howItWorks.map((step, i) => (
+                    <li key={i} className="text-xs text-foreground flex gap-2 leading-relaxed">
+                      <Check className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Result */}
+              <div className="pt-2 border-t border-border/20 mb-3">
+                <h4 className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-semibold">
+                  Результат
+                </h4>
+                <p className="text-xs font-medium text-foreground leading-relaxed">
+                  {solution.result}
+                </p>
+              </div>
+              
+              {/* CTA */}
+              <Button size="sm" className="w-full text-xs" onClick={handleCTAClick}>
+                {solution.ctaText}
+              </Button>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Two Column Layout */}
+        <div className="hidden lg:flex flex-row gap-5">
           
           {/* Left Sidebar - Navigation Card with Vertical Tabs */}
-          <nav className="hidden lg:block w-[280px] xl:w-[320px] flex-shrink-0">
+          <nav className="w-[280px] xl:w-[320px] flex-shrink-0">
             <div className="bg-gradient-to-b from-white to-gray-50/80 rounded-2xl shadow-card border border-border/30 p-3">
               <div className="flex flex-col gap-1">
                 {solutions.map((solution, index) => (
@@ -350,14 +396,14 @@ const Hero = () => {
 
           {/* Right Content Panel - Description Card */}
           <div className="flex-1 min-w-0">
-            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-5 lg:p-6 h-full">
+            <div className="bg-gradient-to-br from-white via-white to-primary/[0.03] rounded-2xl shadow-elevated border border-border/30 p-6 h-full">
               <div 
                 key={currentSolution.id}
                 className="animate-enter flex flex-col h-full"
               >
                 {/* Block 1: Solution Title & Description */}
-                <div className="pb-4 lg:pb-5">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-3 leading-[1.2] tracking-tight">
+                <div className="pb-5">
+                  <h2 className="text-xl lg:text-2xl xl:text-[1.65rem] font-semibold text-foreground mb-3 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed max-w-[70ch]">
@@ -366,15 +412,15 @@ const Hero = () => {
                 </div>
 
                 {/* 2-Column Grid with Dividers */}
-                <div className="bg-card shadow-soft border border-border rounded-xl p-4 lg:p-5">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-0">
+                <div className="bg-card shadow-soft border border-border rounded-xl p-5">
+                  <div className="grid grid-cols-2 gap-0">
                   {/* Left Column */}
-                  <div className="space-y-4 lg:pr-6 lg:border-r lg:border-border/15">
+                  <div className="space-y-4 pr-6 border-r border-border/15">
                     {/* Block 2: Problems */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
                         <AlertCircle className="w-4 h-4 text-primary" />
-                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
                           Что идёт не так
                         </h3>
                       </div>
@@ -384,7 +430,7 @@ const Hero = () => {
                             <span className="w-4 h-4 rounded-full bg-muted/50 flex items-center justify-center shrink-0 mt-0.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
                             </span>
-                            <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{problem}</span>
+                            <span className="text-foreground leading-relaxed text-sm">{problem}</span>
                           </li>
                         ))}
                       </ul>
@@ -394,7 +440,7 @@ const Hero = () => {
                     <div className="pt-4 border-t border-border/15">
                       <div className="flex items-center gap-2 mb-2">
                         <Quote className="w-4 h-4 text-primary" />
-                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
                           Пример
                         </h3>
                       </div>
@@ -405,12 +451,12 @@ const Hero = () => {
                   </div>
 
                   {/* Right Column */}
-                  <div className="space-y-4 lg:pl-6">
+                  <div className="space-y-4 pl-6">
                     {/* Block 3: How It Works */}
                     <div>
                       <div className="flex items-center gap-2 mb-3">
                         <Lightbulb className="w-4 h-4 text-primary" />
-                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
                           Как работает
                         </h3>
                       </div>
@@ -420,7 +466,7 @@ const Hero = () => {
                             <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-2.5 h-2.5 text-primary" strokeWidth={2.5} />
                             </span>
-                            <span className="text-foreground leading-relaxed text-[13px] lg:text-sm">{step}</span>
+                            <span className="text-foreground leading-relaxed text-sm">{step}</span>
                           </li>
                         ))}
                       </ul>
@@ -430,11 +476,11 @@ const Hero = () => {
                     <div className="pt-4 border-t border-border/15">
                       <div className="flex items-center gap-2 mb-2">
                         <TrendingUp className="w-4 h-4 text-primary" />
-                        <h3 className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">
                           Результат
                         </h3>
                       </div>
-                      <p className="text-[13px] lg:text-sm font-medium text-foreground leading-relaxed">
+                      <p className="text-sm font-medium text-foreground leading-relaxed">
                         {currentSolution.result}
                       </p>
                     </div>
@@ -443,7 +489,7 @@ const Hero = () => {
                 </div>
 
                 {/* Block 6: CTA Zone */}
-                <div className="pt-4 lg:pt-5 mt-4 border-t border-border/15 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                <div className="pt-5 mt-4 border-t border-border/15 flex items-center gap-5">
                   <Button 
                     onClick={handleCTAClick}
                     size="lg"
