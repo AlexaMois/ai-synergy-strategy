@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -8,8 +9,85 @@ import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign } from "lucide-react";
 
 const CaseStudyKraypotrebsoyuz = () => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Article", "CaseStudy"],
+        "@id": "https://aleksamois.ru/case-studies/kraypotrebsoyuz#article",
+        "headline": "Крайпотребсоюз: автоматизация договоров с ROI 278%",
+        "description": "Как региональное объединение кооперативов сократило время на обработку договоров на 92% при бюджете 25 000 ₽",
+        "author": {
+          "@type": "Person",
+          "name": "Александра Моисеева",
+          "url": "https://aleksamois.ru/"
+        },
+        "publisher": { "@id": "https://aleksamois.ru/#organization" },
+        "datePublished": "2024-06-15",
+        "dateModified": "2025-01-15",
+        "mainEntityOfPage": "https://aleksamois.ru/case-studies/kraypotrebsoyuz",
+        "about": {
+          "@type": "Thing",
+          "name": "Автоматизация договорного документооборота"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Organization",
+          "name": "Крайпотребсоюз"
+        },
+        "reviewBody": "Александра показала, что автоматизация — это не про дорогие системы, а про правильную архитектуру. Мы получили решение, которое работает и которым команда может управлять самостоятельно. Окупились за 3 недели, а главное — освободили людей от рутины.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "Как автоматизировать договорной документооборот",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Аудит процессов",
+            "text": "Выявили 6 узких мест в процессе обработки договоров, определили точки максимальных потерь времени"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Архитектура решения",
+            "text": "Выбрали платформу Bpium, спроектировали workflow: загрузка → проверка → согласование → архив"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Обучение команды",
+            "text": "Провели практический тренинг, создали документацию, назначили администратора"
+          }
+        ],
+        "totalTime": "P14D",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "RUB",
+          "value": "25000"
+        }
+      }
+    ]
+  };
+
   return (
     <PageTransition>
+      <Helmet>
+        <title>Крайпотребсоюз: автоматизация договоров с ROI 278% | Александра Моисеева</title>
+        <meta name="description" content="Кейс автоматизации договорного документооборота для Краснодарского краевого союза потребительских кооперативов. Экономия 92% времени при бюджете 25 000 ₽." />
+        <link rel="canonical" href="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
+        <meta property="og:title" content="Крайпотребсоюз: автоматизация договоров с ROI 278%" />
+        <meta property="og:description" content="Как региональное объединение кооперативов сократило время на обработку договоров на 92% при бюджете 25 000 ₽" />
+        <meta property="og:url" content="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
       <div className="min-h-screen">
         <Navigation />
         
@@ -199,7 +277,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 Окупились за 3 недели, а главное — освободили людей от рутины."
               </p>
               <p className="text-sm text-muted-foreground">
-                <strong className="text-foreground">Сергей Иванов</strong>, Исполнительный директор Крайпотребсоюза
+                <strong className="text-foreground">Представитель руководства Крайпотребсоюза</strong>
               </p>
             </div>
           </div>
