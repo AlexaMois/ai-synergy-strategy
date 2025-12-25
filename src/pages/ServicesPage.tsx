@@ -48,12 +48,24 @@ const ServicesPage = () => {
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
                   Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
                 </h1>
-                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-8">
-                  Помогаю внедрить ИИ так, чтобы он работал и приносил результаты.
-Работаю с компаниями от 3 до 300 человек. 
-Помогаю внедрить ИИ без переделки процессов и остановки операционки. Защищаю бизнес от неправильных решений и лишних затрат.
- 
-                </p>
+                <ul className="text-base sm:text-lg text-foreground leading-relaxed mb-8 space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>Помогаю внедрить ИИ так, чтобы он работал и приносил результаты</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>Работаю с компаниями от 3 до 300 человек</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>Помогаю внедрить ИИ без переделки процессов и остановки операционки</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>Защищаю бизнес от неправильных решений и лишних затрат</span>
+                  </li>
+                </ul>
                 
                 {/* Three stages process */}
                 <h2 className="text-lg sm:text-xl font-medium text-foreground mb-4">
