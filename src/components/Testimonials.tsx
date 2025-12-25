@@ -122,18 +122,17 @@ const Testimonials = () => {
             {[...reviews, ...reviews].map((review, index) => (
               <div
                 key={`${review.id}-${index}`}
-                className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-transform duration-300 hover:scale-110 hover:z-10"
+                className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-all duration-300 hover:scale-110 hover:z-10"
                 onClick={() => setSelectedImage(review.image)}
               >
-                <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-shadow duration-300 group-hover:shadow-elevated">
+                <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
                   <SourceBadge source={review.source} />
                   <img
                     src={review.image}
                     alt={review.alt}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
                 </div>
               </div>
             ))}
@@ -143,7 +142,7 @@ const Testimonials = () => {
 
       {/* Modal for full-size view */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl w-[95vw] p-0 bg-transparent border-none shadow-none">
+        <DialogContent className="max-w-4xl w-[95vw] p-0 bg-transparent border-none shadow-none [&>button]:hidden data-[state=open]:animate-fade-in data-[state=open]:duration-200">
           <button
             onClick={() => setSelectedImage(null)}
             className="absolute -top-12 right-0 md:top-2 md:right-2 z-50 p-2 rounded-full bg-card/90 backdrop-blur-sm shadow-soft hover:bg-card transition-colors"
@@ -155,7 +154,7 @@ const Testimonials = () => {
             <img
               src={selectedImage}
               alt="Отзыв в полном размере"
-              className="w-full h-auto rounded-2xl shadow-elevated"
+              className="w-full h-auto rounded-2xl shadow-elevated animate-scale-in"
             />
           )}
         </DialogContent>
