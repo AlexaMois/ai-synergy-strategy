@@ -90,7 +90,11 @@ const Navigation = () => {
     {
       href: "/golossok-pricing",
       label: "Продукты",
-      isScroll: false
+      isScroll: false,
+      submenu: [
+        { href: "/golossok-pricing", label: "Голосовой бот" },
+        { href: "/products/doc-search", label: "Поиск по документации" }
+      ]
     },
     {
       href: "/resources",
