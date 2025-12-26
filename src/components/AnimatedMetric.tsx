@@ -7,16 +7,20 @@ interface AnimatedMetricProps {
 
 // Extract number and its surrounding text
 const parseMetric = (text: string) => {
-  // Match number patterns with potential decimal, thousands separators
-  const match = text.match(/^(.*?)(\d+(?:[,.\s]\d+)*)(.*)$/);
+  // Match number patterns with potential decimal (comma or dot), thousands separators
+  const match = text.match(/^(.*?)(\d+(?:[,\.]\d+)?)(.*)$/);
   if (match) {
     const prefix = match[1];
-    const numberStr = match[2].replace(/[\s,]/g, '').replace(',', '.');
+    const rawNumberStr = match[2];
+    // Replace comma with dot for parsing, but track if original had decimal
+    const numberStr = rawNumberStr.replace(',', '.');
     const suffix = match[3];
     const num = parseFloat(numberStr);
     
     if (!isNaN(num)) {
-      return { prefix, number: num, suffix, hasDecimal: numberStr.includes('.') };
+      // Check if original number had a decimal separator (comma or dot)
+      const hasDecimal = rawNumberStr.includes(',') || rawNumberStr.includes('.');
+      return { prefix, number: num, suffix, hasDecimal };
     }
   }
   return null;
