@@ -36,7 +36,6 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-toast',
             '@radix-ui/react-tabs',
           ],
-          'animation': ['framer-motion'],
         },
         // Optimize asset file names for caching
         assetFileNames: (assetInfo) => {
