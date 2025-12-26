@@ -1,6 +1,24 @@
 import { LucideIcon, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 
+// Function to highlight metrics (numbers, percentages, currency) in text
+const highlightMetrics = (text: string): ReactNode[] => {
+  // Regex to match numbers with units, percentages, currency, time ranges
+  const metricPattern = /(\d+[\d\s,–-]*(?:\s*(?:млн|тыс|%|₽|часов?|часа|минут|месяц(?:ев|а)?|недел[ьи]|дн(?:ей|я)|×))?(?:\s*₽)?)/gi;
+  
+  const parts = text.split(metricPattern);
+  
+  return parts.map((part, index) => {
+    if (part.match(metricPattern)) {
+      return (
+        <span key={index} className="text-primary font-semibold">
+          {part}
+        </span>
+      );
+    }
+    return part;
+  });
+};
 interface CaseCardProps {
   caseItem: {
     icon: LucideIcon;
@@ -118,8 +136,8 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
               <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
                 Результат:
               </p>
-              <p className="text-xs sm:text-sm font-medium text-foreground leading-relaxed">
-                {caseItem.resultsSummary}
+              <p className="text-xs sm:text-sm text-foreground leading-relaxed">
+                {highlightMetrics(caseItem.resultsSummary)}
               </p>
             </div>
           )}
