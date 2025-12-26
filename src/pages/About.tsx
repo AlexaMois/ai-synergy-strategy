@@ -139,7 +139,16 @@ const About = () => {
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
                 <div className="relative w-full max-w-md">
-                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-2xl" />
+                  <img 
+                    src={alexandraHeadshot} 
+                    alt="Александра Моисеева" 
+                    className="w-full h-auto object-contain rounded-2xl"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    width="400"
+                    height="400"
+                  />
                 </div>
               </div>
             </div>

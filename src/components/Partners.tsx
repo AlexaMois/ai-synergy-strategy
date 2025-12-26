@@ -49,6 +49,10 @@ const Partners = () => {
                       src={partner.logo} 
                       alt={partner.name}
                       className="h-full w-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
+                      width="220"
+                      height="55"
                     />
                   </div>
                 ))}
