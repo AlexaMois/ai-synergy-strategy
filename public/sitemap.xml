@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main pages -->
   <url>
     <loc>https://aleksamois.ru/</loc>
     <changefreq>weekly</changefreq>
@@ -16,15 +17,22 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/products</loc>
+    <loc>https://aleksamois.ru/faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/products/doc-search</loc>
+    <loc>https://aleksamois.ru/checklist</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Services -->
   <url>
     <loc>https://aleksamois.ru/services</loc>
     <changefreq>monthly</changefreq>
@@ -48,47 +56,31 @@
   <url>
     <loc>https://aleksamois.ru/services/add-ons</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/pricing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/cases</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/faq</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Products -->
   <url>
-    <loc>https://aleksamois.ru/materials/blog</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://aleksamois.ru/products</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/materials/resources</loc>
+    <loc>https://aleksamois.ru/products/doc-search</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/checklist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/demo/voice-bot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://aleksamois.ru/products/voice-bot</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Cases -->
+  <url>
+    <loc>https://aleksamois.ru/cases</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://aleksamois.ru/cases/kraypotrebsoyuz</loc>
@@ -105,6 +97,37 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Materials -->
+  <url>
+    <loc>https://aleksamois.ru/materials</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/resources</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Demo -->
+  <url>
+    <loc>https://aleksamois.ru/demo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/demo/voice-bot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal -->
   <url>
     <loc>https://aleksamois.ru/legal/consent</loc>
     <changefreq>yearly</changefreq>
