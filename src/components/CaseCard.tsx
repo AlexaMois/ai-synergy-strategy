@@ -1,8 +1,10 @@
 import { LucideIcon, ChevronDown } from "lucide-react";
 import { useState, ReactNode } from "react";
+import AnimatedMetric from "./AnimatedMetric";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 // Function to highlight metrics (numbers, percentages, currency) in text
-const highlightMetrics = (text: string): ReactNode[] => {
+const highlightMetrics = (text: string, isVisible: boolean): ReactNode[] => {
   // Regex to match numbers with units, percentages, currency, time ranges
   const metricPattern = /(\d+[\d\s,–-]*(?:\s*(?:млн|тыс|%|₽|часов?|часа|минут|месяц(?:ев|а)?|недел[ьи]|дн(?:ей|я)|×))?(?:\s*₽)?)/gi;
   
@@ -11,13 +13,11 @@ const highlightMetrics = (text: string): ReactNode[] => {
   return parts.map((part, index) => {
     if (part.match(metricPattern)) {
       return (
-        <span 
+        <AnimatedMetric 
           key={index} 
-          className="text-primary font-semibold inline-block animate-fade-in"
-          style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
-        >
-          {part}
-        </span>
+          text={part}
+          isVisible={isVisible}
+        />
       );
     }
     return part;
@@ -48,9 +48,11 @@ interface CaseCardProps {
 const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
   const Icon = caseItem.icon;
   const [isExpanded, setIsExpanded] = useState(false);
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   return (
     <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={`p-4 sm:p-6 rounded-2xl bg-card border border-border shadow-soft hover-lift-card flex flex-col ${staggerClass}`}
     >
       {/* Icon and Company */}
@@ -70,7 +72,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
             {caseItem.aboutLabel || 'Клиент:'}
           </p>
           <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-            {highlightMetrics(caseItem.about)}
+            {highlightMetrics(caseItem.about, isVisible)}
           </p>
         </div>
       )}
@@ -82,7 +84,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
             Ситуация:
           </p>
           <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-            {highlightMetrics(caseItem.situation)}
+            {highlightMetrics(caseItem.situation, isVisible)}
           </p>
         </div>
       )}
@@ -112,7 +114,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
                 {caseItem.solution.steps.map((step, idx) => (
                   <li key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
                     <span className="text-primary mt-0.5">•</span>
-                    <span>{highlightMetrics(step)}</span>
+                    <span>{highlightMetrics(step, isVisible)}</span>
                   </li>
                 ))}
               </ul>
@@ -141,7 +143,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
                 Результат:
               </p>
               <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-                {highlightMetrics(caseItem.resultsSummary)}
+                {highlightMetrics(caseItem.resultsSummary, isVisible)}
               </p>
             </div>
           )}
