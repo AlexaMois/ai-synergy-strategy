@@ -1,7 +1,25 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HowIWork = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
   const steps = [
     {
@@ -46,10 +64,8 @@ const HowIWork = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Начать сейчас
-              </a>
+            <Button size="lg" onClick={scrollToContact}>
+              Начать сейчас
             </Button>
           </div>
         </div>

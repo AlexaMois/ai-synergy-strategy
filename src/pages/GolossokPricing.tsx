@@ -6,8 +6,26 @@ import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const GolossokPricing = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const plans = [
     {
       name: "Пробный период",
@@ -170,11 +188,9 @@ const GolossokPricing = () => {
                   <Button 
                     className="w-full" 
                     variant={plan.highlight ? "default" : "outline"}
-                    asChild
+                    onClick={scrollToContact}
                   >
-                    <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                      {plan.cta}
-                    </a>
+                    {plan.cta}
                   </Button>
                 </div>
               ))}
@@ -274,10 +290,8 @@ const GolossokPricing = () => {
               Запросите пробный период на 14 дней или свяжитесь с нами для обсуждения корпоративных условий
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                  Запросить пробный период
-                </a>
+              <Button size="lg" onClick={scrollToContact}>
+                Запросить пробный период
               </Button>
               <Button size="lg" variant="secondary" asChild>
                 <a href="/golossok-demo">
