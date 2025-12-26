@@ -41,18 +41,20 @@ const Index = () => {
   // Organization schema for SEO
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Александра Моисеева — Независимый инженер по ИИ",
+    "@type": "LocalBusiness",
+    "name": "NeyroResheniya (Александра Моисеева)",
     "alternateName": "НейроРешения",
-    "description": "Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев.",
+    "description": "ИИ решения для бизнеса и руководителей. Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение.",
     "url": "https://aleksamois.ru",
     "logo": "https://aleksamois.ru/og-image.png",
     "image": "https://aleksamois.ru/og-image.png",
-    "telephone": "+79937217367",
+    "telephone": "+7 993 721 73 67",
     "email": "neiroreshenia@yandex.com",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "ул. Красной Гвардии, 24, офис 224",
       "addressLocality": "Красноярск",
+      "postalCode": "660000",
       "addressRegion": "Красноярский край",
       "addressCountry": "RU"
     },
@@ -61,10 +63,7 @@ const Index = () => {
       "latitude": "56.0153",
       "longitude": "92.8932"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Россия"
-    },
+    "areaServed": ["RU", "CIS"],
     "priceRange": "$$",
     "founder": {
       "@type": "Person",
@@ -83,7 +82,7 @@ const Index = () => {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+79937217367",
+      "telephone": "+7 993 721 73 67",
       "email": "neiroreshenia@yandex.com",
       "contactType": "customer service",
       "availableLanguage": ["Russian"]
