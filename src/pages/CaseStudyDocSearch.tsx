@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { QrCode, Search, MessageCircle, TrendingUp, Users, BookOpen, Shield, Server, Zap, FileText, Settings, Headphones, BarChart3, Megaphone, CheckCircle2, ArrowRight, Calendar, Building2, Lock, Eye, UserCheck, FileCheck } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import AnimatedNumber from "@/components/AnimatedNumber";
 const CaseStudyDocSearch = () => {
   const [expandedUseCase, setExpandedUseCase] = useState<string | undefined>("item-1");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -215,19 +216,27 @@ const CaseStudyDocSearch = () => {
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
               <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">20–30</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+                  <AnimatedNumber value={20} suffix="–30" className="text-primary" />
+                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">минут на один вопрос</div>
               </div>
               <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">50–100</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+                  <AnimatedNumber value={50} suffix="–100" className="text-primary" />
+                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">часов потерь в месяц</div>
               </div>
               <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">100–200K</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+                  <AnimatedNumber value={100} suffix="–200K" className="text-primary" />
+                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">₽ убытков ежемесячно</div>
               </div>
               <div className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-5 text-center shadow-sm border border-border/50">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">5–10%</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+                  <AnimatedNumber value={5} suffix="–10%" className="text-primary" />
+                </div>
                 <div className="text-xs sm:text-sm text-muted-foreground mt-0.5 sm:mt-1">брака из-за ошибок</div>
               </div>
             </div>

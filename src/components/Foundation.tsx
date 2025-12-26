@@ -2,6 +2,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { ArrowRight, Search, Layers, Users, Coins } from "lucide-react";
 import DisabledLink from "@/components/DisabledLink";
 import { Link } from "react-router-dom";
+import AnimatedMetric from "./AnimatedMetric";
 
 const Foundation = () => {
   const { ref, isVisible } = useIntersectionObserver();
@@ -92,7 +93,9 @@ const Foundation = () => {
                   
                   <div className="flex items-center gap-2 mb-3 sm:mb-4">
                     <Coins className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                    <span className="text-xs sm:text-sm font-medium text-foreground">{service.pricing}</span>
+                    <span className="text-xs sm:text-sm font-medium text-foreground">
+                      <AnimatedMetric text={service.pricing} isVisible={isVisible} />
+                    </span>
                   </div>
                   
                   <div className="mb-3 sm:mb-4">

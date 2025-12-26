@@ -7,6 +7,7 @@ import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign } from "lucide-react";
+import AnimatedNumber from "@/components/AnimatedNumber";
 
 const CaseStudyKraypotrebsoyuz = () => {
   const jsonLd = {
@@ -136,13 +137,17 @@ const CaseStudyKraypotrebsoyuz = () => {
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-card rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Временные потери</h3>
-                <p className="text-3xl font-bold text-red-600 mb-2">600+ часов/мес</p>
+                <p className="text-3xl font-bold text-red-600 mb-2">
+                  <AnimatedNumber value={600} suffix="+ часов/мес" className="text-red-600" />
+                </p>
                 <p className="text-sm text-muted-foreground">на оформление и обработку договоров вручную</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Ресурсы</h3>
-                <p className="text-3xl font-bold text-red-600 mb-2">8 сотрудников</p>
+                <p className="text-3xl font-bold text-red-600 mb-2">
+                  <AnimatedNumber value={8} suffix=" сотрудников" className="text-red-600" />
+                </p>
                 <p className="text-sm text-muted-foreground">только на эту операцию</p>
               </div>
             </div>
@@ -246,25 +251,33 @@ const CaseStudyKraypotrebsoyuz = () => {
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">92%</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={92} suffix="%" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Экономия времени на обработку<br />(~550 часов/месяц)</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">80%</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={80} suffix="%" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Сокращение ФОТ<br />на эту операцию</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">278%</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={278} suffix="%" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">ROI<br />(окупилось за 3 недели)</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <Clock className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">0</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={0} className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Ошибок в обработке<br />после внедрения</p>
               </div>
             </div>
