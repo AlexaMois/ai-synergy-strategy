@@ -11,7 +11,11 @@ const highlightMetrics = (text: string): ReactNode[] => {
   return parts.map((part, index) => {
     if (part.match(metricPattern)) {
       return (
-        <span key={index} className="text-primary font-semibold">
+        <span 
+          key={index} 
+          className="text-primary font-semibold inline-block animate-fade-in"
+          style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
+        >
           {part}
         </span>
       );
