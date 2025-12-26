@@ -10,6 +10,7 @@ import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign
 import AnimatedMetric from "@/components/AnimatedMetric";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const PricingPage = () => {
   const navigate = useNavigate();
@@ -230,6 +231,9 @@ const PricingPage = () => {
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.pricing())}
+        </script>
       </Helmet>
       <div className="min-h-screen">
         <Navigation />

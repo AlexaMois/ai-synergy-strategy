@@ -11,6 +11,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 // Case images
 import caseKraypotrebsoyuz from "@/assets/cases/case-kraypotrebsoyuz.jpg";
@@ -288,6 +289,9 @@ const CasesPage = () => {
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.cases())}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

@@ -6,6 +6,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Users, Cpu, Blocks, GraduationCap, Shield } from "lucide-react";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const AddOnsPage = () => {
   const scrollToContact = () => {
@@ -61,6 +62,9 @@ const AddOnsPage = () => {
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.servicesAddOns())}
+        </script>
       </Helmet>
 
       <Navigation />

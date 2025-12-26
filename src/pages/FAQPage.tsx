@@ -15,6 +15,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 interface FAQItem {
   question: string;
@@ -317,6 +318,9 @@ const FAQPage = () => {
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.faq())}
         </script>
       </Helmet>
 

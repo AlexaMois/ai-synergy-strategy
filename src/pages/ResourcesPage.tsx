@@ -8,6 +8,7 @@ import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet } from "lucide-react";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const ResourcesPage = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -146,6 +147,9 @@ const ResourcesPage = () => {
         <meta property="og:title" content="Ресурсы — Чек-листы, гайды и архитектуры" />
         <meta property="og:description" content="Бесплатные материалы для самостоятельной оценки AI-готовности компании." />
         <meta property="og:url" content="https://aleksamois.ru/resources" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.resources())}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
