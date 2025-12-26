@@ -103,18 +103,13 @@ const Navigation = () => {
       ]
     },
     {
-      href: "/materials",
-      label: "Материалы",
-      isScroll: false,
-      submenu: [
-        { href: "/materials/resources", label: "Ресурсы" },
-        { href: "/materials/blog", label: "Блог" }
-      ]
-    },
-    {
       href: "/approach",
       label: "Экспертный подход",
-      isScroll: false
+      isScroll: false,
+      submenu: [
+        { href: "/materials/resources", label: "Материалы" },
+        { href: "/materials/blog", label: "Блог" }
+      ]
     }
   ];
 
