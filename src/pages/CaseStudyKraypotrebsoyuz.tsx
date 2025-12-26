@@ -6,7 +6,7 @@ import Partners from "@/components/Partners";
 
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
-import { Building2, TrendingUp, Users, Clock, DollarSign } from "lucide-react";
+import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 const CaseStudyKraypotrebsoyuz = () => {
@@ -16,8 +16,8 @@ const CaseStudyKraypotrebsoyuz = () => {
       {
         "@type": ["Article", "CaseStudy"],
         "@id": "https://aleksamois.ru/case-studies/kraypotrebsoyuz#article",
-        "headline": "Крайпотребсоюз: автоматизация договоров с ROI 278%",
-        "description": "Как региональное объединение кооперативов сократило время на обработку договоров на 92% при бюджете 25 000 ₽",
+        "headline": "Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽",
+        "description": "Как региональное объединение кооперативов сэкономило 1,3 млн ₽ благодаря правильной архитектуре вместо покупки серверов",
         "author": {
           "@type": "Person",
           "name": "Александра Моисеева",
@@ -25,51 +25,11 @@ const CaseStudyKraypotrebsoyuz = () => {
         },
         "publisher": { "@id": "https://aleksamois.ru/#organization" },
         "datePublished": "2024-06-15",
-        "dateModified": "2025-01-15",
+        "dateModified": "2025-12-26",
         "mainEntityOfPage": "https://aleksamois.ru/case-studies/kraypotrebsoyuz",
         "about": {
           "@type": "Thing",
-          "name": "Автоматизация договорного документооборота"
-        }
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Organization",
-          "name": "Крайпотребсоюз"
-        },
-        "reviewBody": "Александра показала, что автоматизация — это не про дорогие системы, а про правильную архитектуру. Мы получили решение, которое работает и которым команда может управлять самостоятельно. Окупились за 3 недели, а главное — освободили людей от рутины.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        }
-      },
-      {
-        "@type": "HowTo",
-        "name": "Как автоматизировать договорной документооборот",
-        "step": [
-          {
-            "@type": "HowToStep",
-            "name": "Аудит процессов",
-            "text": "Выявили 6 узких мест в процессе обработки договоров, определили точки максимальных потерь времени"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Архитектура решения",
-            "text": "Выбрали платформу Bpium, спроектировали workflow: загрузка → проверка → согласование → архив"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Обучение команды",
-            "text": "Провели практический тренинг, создали документацию, назначили администратора"
-          }
-        ],
-        "totalTime": "P14D",
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "RUB",
-          "value": "25000"
+          "name": "ИИ-архитектура и автоматизация договорного документооборота"
         }
       }
     ]
@@ -78,11 +38,11 @@ const CaseStudyKraypotrebsoyuz = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Крайпотребсоюз: автоматизация договоров с ROI 278% | Александра Моисеева</title>
-        <meta name="description" content="Кейс автоматизации договорного документооборота для Краснодарского краевого союза потребительских кооперативов. Экономия 92% времени при бюджете 25 000 ₽." />
+        <title>Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽ | Александра Моисеева</title>
+        <meta name="description" content="Кейс: как совместно выстроили ИИ-архитектуру и сэкономили 1,3 млн ₽ на серверном оборудовании. Внедрение Bpium, автоматизация договоров." />
         <link rel="canonical" href="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
-        <meta property="og:title" content="Крайпотребсоюз: автоматизация договоров с ROI 278%" />
-        <meta property="og:description" content="Как региональное объединение кооперативов сократило время на обработку договоров на 92% при бюджете 25 000 ₽" />
+        <meta property="og:title" content="Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽" />
+        <meta property="og:description" content="Как региональное объединение кооперативов сэкономило 1,3 млн ₽ благодаря правильной архитектуре" />
         <meta property="og:url" content="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
         <meta property="og:type" content="article" />
         <script type="application/ld+json">
@@ -96,148 +56,264 @@ const CaseStudyKraypotrebsoyuz = () => {
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
-            <div className="flex items-center gap-4 mb-6">
-              <Building2 className="w-12 h-12 text-primary" strokeWidth={1.5} />
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
-                Крайпотребсоюз: автоматизация договоров с ROI 278%
-              </h1>
+            <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
+            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-8">
+              Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽
+            </h1>
+          </div>
+        </section>
+
+        {/* Situation Section */}
+        <section className="py-10 md:py-16 bg-muted">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="section-title mb-6">Ситуация: запрос на внедрение ИИ</h2>
+            
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              Летом руководство Крайпотребсоюза поставило задачу —<br />
+              начать внедрение ИИ в управленческие и операционные процессы.
+            </p>
+            
+            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
+              <p className="text-base text-foreground mb-4">На старте рассматривался классический сценарий:</p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">собственный сервер</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">локальная языковая модель</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">кастомная разработка</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">отдельная IT-инфраструктура</span>
+                </li>
+              </ul>
             </div>
             
-            <div className="bg-primary/10 rounded-2xl p-6 mb-8">
-              <h2 className="text-xl font-semibold text-foreground mb-4">О клиенте</h2>
-              <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                Краснодарский краевой союз потребительских кооперативов — региональное объединение, управляющее сетью товарных кооперативов на территории Краснодарского края.
+            <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+              <p className="text-lg font-medium text-foreground">
+                Оценка инвестиций — около <span className="text-primary font-bold">1,5 млн ₽</span> только на оборудование,<br />
+                без учёта сопровождения и масштабирования.
               </p>
-              <div className="grid sm:grid-cols-3 gap-4">
-                <div className="bg-card rounded-xl p-4">
-                  <Users className="w-6 h-6 text-primary mb-2" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground">Штат</p>
-                  <p className="text-lg font-semibold text-foreground">~50 человек</p>
-                </div>
-                <div className="bg-card rounded-xl p-4">
-                  <Building2 className="w-6 h-6 text-primary mb-2" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground">Организаций</p>
-                  <p className="text-lg font-semibold text-foreground">120+ членов</p>
-                </div>
-                <div className="bg-card rounded-xl p-4">
-                  <Clock className="w-6 h-6 text-primary mb-2" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground">Договоров</p>
-                  <p className="text-lg font-semibold text-foreground">Тысячи/год</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Problem Section */}
-        <section className="py-10 md:py-16 bg-muted">
+        {/* Decision Point Section */}
+        <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="section-title mb-8">Проблема: процессы не масштабируются</h2>
+            <h2 className="section-title mb-6">Совместная точка принятия решения</h2>
             
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Временные потери</h3>
-                <p className="text-3xl font-bold text-red-600 mb-2">
-                  <AnimatedNumber value={600} suffix="+ часов/мес" className="text-red-600" />
-                </p>
-                <p className="text-sm text-muted-foreground">на оформление и обработку договоров вручную</p>
-              </div>
-              
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Ресурсы</h3>
-                <p className="text-3xl font-bold text-red-600 mb-2">
-                  <AnimatedNumber value={8} suffix=" сотрудников" className="text-red-600" />
-                </p>
-                <p className="text-sm text-muted-foreground">только на эту операцию</p>
-              </div>
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              На первых встречах мы с командой Крайпотребсоюза осознанно не стали выбирать технологию сразу.
+            </p>
+            
+            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
+              <p className="text-base text-foreground mb-4">Вместо этого совместно разобрали ключевой вопрос:</p>
+              <p className="text-xl font-medium text-primary italic leading-relaxed">
+                «Какую управленческую задачу должна решить эта инфраструктура<br />
+                и есть ли более простой путь к тому же результату?»
+              </p>
             </div>
-
-            <div className="bg-card rounded-2xl p-6 shadow-soft">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Ключевые боли:</h3>
-              <ul className="space-y-3">
+            
+            <div className="bg-muted rounded-2xl p-6">
+              <p className="text-base font-medium text-foreground mb-3">Было принято решение:</p>
+              <ul className="space-y-2">
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">•</span>
-                  <span className="text-muted-foreground">Бесконечные ошибки в документах и задержки согласования</span>
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">начать с аудита процессов</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">•</span>
-                  <span className="text-muted-foreground">Невозможность масштабирования без увеличения штата</span>
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">оценить реальные точки эффекта</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold">•</span>
-                  <span className="text-muted-foreground">Отсутствие прозрачности процесса обработки</span>
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">и только потом выбирать архитектуру</span>
                 </li>
               </ul>
             </div>
           </div>
         </section>
 
-        {/* Solution Section */}
+        {/* Stage 1 Section */}
+        <section className="py-10 md:py-16 bg-muted">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">1</div>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и диагностика</h2>
+            </div>
+            
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              В течение первого месяца мы вместе с командой:
+            </p>
+            
+            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">разобрали ключевые договорные и управленческие процессы</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">выявили <strong>6 точек максимального эффекта</strong></span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">отделили реальные боли от гипотез</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary font-bold">•</span>
+                  <span className="text-foreground">оценили готовность данных и сотрудников</span>
+                </li>
+              </ul>
+            </div>
+            
+            <p className="text-base text-foreground leading-relaxed mb-6">
+              Параллельно было запущено обучение сотрудников работе с ИИ,<br />
+              чтобы снять опасения и подготовить команду к изменениям.
+            </p>
+            
+            <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+              <p className="text-base font-medium text-foreground">
+                <span className="text-primary">Результат этапа:</span><br />
+                стало понятно, что значительная часть задач может быть решена без тяжёлой серверной инфраструктуры.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Stage 2 Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="section-title mb-8">Решение: системный подход к автоматизации</h2>
-            
-            <div className="bg-primary/10 rounded-2xl p-6 mb-8 border-l-4 border-primary">
-              <div className="flex items-center gap-3 mb-4">
-                <DollarSign className="w-6 h-6 text-primary" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-foreground">Бюджет проекта: ~25 000 ₽</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">Показывает, что результат зависит не от размера бюджета, а от правильной архитектуры решения</p>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">2</div>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Выбор архитектуры решения</h2>
             </div>
+            
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              По итогам аудита совместно было принято решение:
+            </p>
+            
+            <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="bg-muted rounded-2xl p-6 text-center">
+                <div className="text-red-500 text-3xl mb-2">✕</div>
+                <p className="text-foreground">отказаться от покупки серверов и локальной LLM на старте</p>
+              </div>
+              <div className="bg-primary/10 rounded-2xl p-6 text-center">
+                <div className="text-primary text-3xl mb-2">✓</div>
+                <p className="text-foreground">пойти по пути более гибкой архитектуры</p>
+              </div>
+            </div>
+            
+            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
+              <p className="text-base font-medium text-foreground mb-4">В качестве основы выбрали:</p>
+              <div className="bg-muted rounded-xl p-4 mb-4">
+                <p className="text-lg font-semibold text-primary">Bpium — российская low-code платформа</p>
+                <p className="text-sm text-muted-foreground">на 100% соответствующая требованиям законодательства РФ.</p>
+              </div>
+              
+              <p className="text-base font-medium text-foreground mb-3">Решение включало:</p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">автоматизацию контроля сроков договоров</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">уведомления и прозрачность согласований</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">встраивание в существующие процессы</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">подготовку команды к самостоятельной работе с системой</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-            <div className="space-y-6">
+        {/* Stage 3 Section */}
+        <section className="py-10 md:py-16 bg-muted">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">3</div>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Внедрение и развитие</h2>
+            </div>
+            
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              Проект развивался поэтапно:
+            </p>
+            
+            <div className="space-y-4 mb-6">
               <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Этап 1: Аудит процессов (1 неделя)</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Выявили 6 узких мест в процессе обработки договоров</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Определили точки максимальных потерь времени</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Оценили зрелость данных и готовность команды</span>
-                  </li>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 1</span>
+                </div>
+                <ul className="space-y-1 text-foreground">
+                  <li>— аудит и обучение</li>
+                  <li>— согласование архитектуры</li>
                 </ul>
               </div>
-
+              
               <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Этап 2: Архитектура решения (1 неделя)</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Выбрали платформу Bpium (российская low-code система для бизнес-процессов)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Спроектировали workflow: загрузка → автоматическая проверка → согласование → архив</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Настроили интеграции с существующими системами</span>
-                  </li>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 2–3</span>
+                </div>
+                <ul className="space-y-1 text-foreground">
+                  <li>— внедрение Bpium</li>
+                  <li>— автоматический контроль сроков договоров</li>
+                  <li className="text-muted-foreground text-sm">(юридический и кадровый блок)</li>
                 </ul>
               </div>
-
+              
               <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Этап 3: Обучение команды (2 дня)</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Провели практический тренинг для всех сотрудников</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Создали инструкции и документацию</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary font-bold">•</span>
-                    <span className="text-muted-foreground">Назначили внутреннего администратора системы</span>
-                  </li>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 3–4</span>
+                </div>
+                <ul className="space-y-1 text-foreground">
+                  <li>— запуск OCR-распознавания входящей отчётности</li>
+                  <li className="text-muted-foreground text-sm">(финансово-экономический отдел)</li>
                 </ul>
+              </div>
+            </div>
+            
+            <p className="text-base text-muted-foreground italic">
+              OCR на текущий момент внедрён в формате пилота,<br />
+              проходит тестирование и масштабируется.
+            </p>
+          </div>
+        </section>
+
+        {/* Economics Section */}
+        <section className="py-10 md:py-16 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="section-title mb-8">Экономика и эффект</h2>
+            
+            <div className="grid sm:grid-cols-2 gap-6 mb-8">
+              <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
+                <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
+                <p className="text-4xl font-bold text-primary mb-2">
+                  ~<AnimatedNumber value={250} className="text-primary" /> тыс ₽
+                </p>
+                <p className="text-sm text-muted-foreground">инвестиции во внедрение и сопровождение</p>
+              </div>
+              
+              <div className="bg-primary/10 rounded-2xl p-6 text-center border-2 border-primary/30">
+                <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
+                <p className="text-4xl font-bold text-primary mb-2">
+                  ~<AnimatedNumber value={1.3} decimals={1} className="text-primary" /> млн ₽
+                </p>
+                <p className="text-sm text-foreground font-medium">экономия капитальных затрат</p>
+                <p className="text-xs text-muted-foreground mt-1">(отказ от серверного оборудования)</p>
               </div>
             </div>
           </div>
@@ -246,51 +322,110 @@ const CaseStudyKraypotrebsoyuz = () => {
         {/* Results Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="section-title mb-8">Результаты: измеримый эффект за 3 месяца</h2>
+            <h2 className="section-title mb-8">Результаты</h2>
             
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
-                <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">
-                  <AnimatedNumber value={92} suffix="%" className="text-primary" />
-                </p>
-                <p className="text-sm text-muted-foreground">Экономия времени на обработку<br />(~550 часов/месяц)</p>
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-card rounded-2xl p-6 shadow-soft">
+                <div className="flex items-center gap-3 mb-4">
+                  <Target className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  <h3 className="text-xl font-semibold text-foreground">Управленческий эффект</h3>
+                </div>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">совместно выстроена устойчивая архитектура</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">снижена зависимость от тяжёлой инфраструктуры</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">создан задел для масштабирования</span>
+                  </li>
+                </ul>
               </div>
               
-              <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
-                <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">
-                  <AnimatedNumber value={80} suffix="%" className="text-primary" />
-                </p>
-                <p className="text-sm text-muted-foreground">Сокращение ФОТ<br />на эту операцию</p>
-              </div>
-              
-              <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
-                <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">
-                  <AnimatedNumber value={278} suffix="%" className="text-primary" />
-                </p>
-                <p className="text-sm text-muted-foreground">ROI<br />(окупилось за 3 недели)</p>
-              </div>
-              
-              <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
-                <Clock className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">
-                  <AnimatedNumber value={0} className="text-primary" />
-                </p>
-                <p className="text-sm text-muted-foreground">Ошибок в обработке<br />после внедрения</p>
+              <div className="bg-card rounded-2xl p-6 shadow-soft">
+                <div className="flex items-center gap-3 mb-4">
+                  <Users className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  <h3 className="text-xl font-semibold text-foreground">Операционный эффект</h3>
+                </div>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground"><strong>2 сотрудника</strong> освобождены от рутинных операций</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">сроки договоров больше не теряются</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">финансовый отдел экономит <strong>4–6 часов в неделю</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">команда уверенно работает с ИИ-инструментами</span>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
-              <h3 className="text-lg font-semibold text-foreground mb-3">Отзыв руководителя:</h3>
-              <p className="text-base italic text-muted-foreground leading-relaxed mb-4">
-                "Александра показала, что автоматизация — это не про дорогие системы, а про правильную архитектуру. 
-                Мы получили решение, которое работает и которым команда может управлять самостоятельно. 
-                Окупились за 3 недели, а главное — освободили людей от рутины."
+        {/* Continuation Section */}
+        <section className="py-10 md:py-16 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="section-title mb-6">Продолжение сотрудничества</h2>
+            
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              По итогам внедрения я была приглашена<br />
+              на ежегодное общее собрание Крайпотребсоюза,<br />
+              где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
+            </p>
+            
+            <div className="bg-primary/10 rounded-2xl p-6 mb-6">
+              <p className="text-base font-medium text-foreground mb-4">На собрании было принято решение:</p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">продолжить сотрудничество на весь <strong>2026 год</strong></span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">подключить собственные хозяйства Крайпотребсоюза</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground">далее масштабировать решения на региональные подразделения</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Conclusion Section */}
+        <section className="py-10 md:py-16 bg-muted">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="section-title mb-6">Главный вывод кейса</h2>
+            
+            <div className="bg-card rounded-2xl p-8 shadow-soft mb-6">
+              <p className="text-xl text-foreground leading-relaxed mb-6">
+                Проект показал, что устойчивые решения по ИИ<br />
+                возникают не из технологий, а из <strong>совместной работы</strong>:
               </p>
-              <p className="text-sm text-muted-foreground">
-                <strong className="text-foreground">Представитель руководства Крайпотребсоюза</strong>
+              
+              <div className="flex flex-wrap gap-4 justify-center mb-6">
+                <span className="px-4 py-2 bg-primary/10 rounded-full text-primary font-medium">бизнеса</span>
+                <span className="px-4 py-2 bg-primary/10 rounded-full text-primary font-medium">команды</span>
+                <span className="px-4 py-2 bg-primary/10 rounded-full text-primary font-medium">архитектурного подхода</span>
+              </div>
+              
+              <p className="text-lg text-foreground leading-relaxed text-center italic">
+                Одну и ту же задачу можно решать по-разному.<br />
+                В этом проекте мы совместно выбрали путь,<br />
+                который оказался <span className="text-primary font-semibold">проще, дешевле и устойчивее</span>.
               </p>
             </div>
           </div>
