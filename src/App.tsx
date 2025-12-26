@@ -98,6 +98,7 @@ const App = () => (
             
             {/* About */}
             <Route path="/about" element={<About />} />
+            <Route path="/approach/contacts" element={<Navigate to="/about" replace />} />
             
             {/* Pricing */}
             <Route path="/pricing" element={<PricingPage />} />
