@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
@@ -85,6 +86,10 @@ const Blog = () => {
           <meta name="keywords" content="блог об ИИ, внедрение искусственного интеллекта, методология AI, ROI от ИИ, автоматизация процессов, обучение команды ИИ, российские LLM, аналитика ИИ проектов" />
         </Helmet>
         <Navigation />
+        <PageBreadcrumbs 
+          currentPage="Блог" 
+          parentPages={[{ label: "Экспертный подход", href: "/approach" }]} 
+        />
       
       <main>
       {/* Hero Section */}
