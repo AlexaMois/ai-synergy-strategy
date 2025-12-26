@@ -38,6 +38,7 @@ const Consent = lazy(() => import("./pages/Consent"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const TestPage = lazy(() => import("./pages/TestPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -65,6 +66,7 @@ const App = () => (
           <Routes>
             {/* Main */}
             <Route path="/" element={<Index />} />
+            <Route path="/faq" element={<FAQPage />} />
             
             {/* Start */}
             <Route path="/start" element={<StartPage />} />
