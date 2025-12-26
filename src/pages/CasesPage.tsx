@@ -3,548 +3,497 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet";
-import { Image, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap } from "lucide-react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+
+// Case images
+import caseKraypotrebsoyuz from "@/assets/cases/case-kraypotrebsoyuz.jpg";
+import caseDocSearch from "@/assets/cases/case-doc-search.jpg";
+import caseCargoExpress from "@/assets/cases/case-cargo-express.jpg";
 
 interface CaseItem {
-  id: number;
+  id: string;
   title: string;
-  image: string | null;
-  targetAudience: string;
+  description: string;
+  metrics: { label: string; value: string }[];
   industry: string;
-  price: string;
-  status: string;
-  task: string;
-  actions: string[];
-  results: string[];
-  categories: string[];
-  link?: string;
+  solutionType: string;
+  link: string;
+  status: "ready" | "placeholder";
+  image?: string;
 }
 
-const CATEGORIES = [
-  "Все кейсы",
-  "Автоматизация процессов и данных",
-  "AI-ассистенты для бизнеса",
-  "Контент и коммуникации с помощью ИИ",
-  "Корпоративное обучение и внедрение ИИ-компетенций",
-  "R&D и внутренние инструменты",
+const INDUSTRIES = [
+  { id: "all", label: "Все отрасли", icon: Building2 },
+  { id: "production", label: "Производство", icon: Factory },
+  { id: "logistics", label: "Логистика", icon: Truck },
+  { id: "education", label: "Образование", icon: GraduationCap },
+  { id: "it", label: "IT", icon: FileText },
+  { id: "services", label: "Услуги", icon: Briefcase },
+  { id: "retail", label: "Торговля", icon: Building2 },
+];
+
+const SOLUTION_TYPES = [
+  { id: "all", label: "Все решения" },
+  { id: "automation", label: "Автоматизация" },
+  { id: "assistant", label: "AI-ассистенты" },
+  { id: "content", label: "Контент" },
+  { id: "docs", label: "Документооборот" },
+];
+
+const cases: CaseItem[] = [
+  {
+    id: "kraypotrebsoyuz",
+    title: "Вместо сервера за 1,5 млн ₽ — архитектура, которая окупилась",
+    description: "Спроектировали ИИ-архитектуру для Крайпотребсоюза без дорогой инфраструктуры. Автоматизация договоров и отчётности.",
+    metrics: [
+      { label: "Экономия", value: "1,3 млн ₽" },
+      { label: "Время", value: "−6 ч/нед" },
+    ],
+    industry: "services",
+    solutionType: "automation",
+    link: "/cases/kraypotrebsoyuz",
+    status: "ready",
+    image: caseKraypotrebsoyuz,
+  },
+  {
+    id: "doc-search",
+    title: "QR-код на рабочем месте → ответ из документации за 3 секунды",
+    description: "Интеллектуальный поиск по технической документации для производственной компании. Понимает текст, изображения и смешанные языки.",
+    metrics: [
+      { label: "Экономия", value: "150–350 тыс ₽/мес" },
+      { label: "Время ответа", value: "3 сек" },
+    ],
+    industry: "production",
+    solutionType: "docs",
+    link: "/cases/doc-search",
+    status: "ready",
+    image: caseDocSearch,
+  },
+  {
+    id: "cargo-express",
+    title: "Заявки голосом → сразу в Google Sheets",
+    description: "ИИ-система приёма заявок для транспортной компании. Голос и текст автоматически раскладываются в таблицы с аналитикой.",
+    metrics: [
+      { label: "Экономия", value: "3–4 ч/нед" },
+      { label: "Потери", value: "0%" },
+    ],
+    industry: "logistics",
+    solutionType: "automation",
+    link: "/cases/cargo-express",
+    status: "ready",
+    image: caseCargoExpress,
+  },
+  {
+    id: "ai-smm",
+    title: "AI-SMM Агентство — автоматизация генерации контента",
+    description: "AI-бот для SMM-команд: генерация постов, сторис, прогревов и контент-планов под разные платформы.",
+    metrics: [
+      { label: "Время", value: "8 ч → 15 мин" },
+      { label: "Экономия", value: "80 тыс ₽/мес" },
+    ],
+    industry: "services",
+    solutionType: "content",
+    link: "/cases/ai-smm",
+    status: "placeholder",
+  },
+  {
+    id: "school-assistant",
+    title: "Умный AI-ассистент для родителей",
+    description: "Telegram-бот для лицея: расписание, посещаемость, уведомления. Ответы за 5–10 секунд вместо 10–15 минут.",
+    metrics: [
+      { label: "Экономия", value: "50 ч/мес" },
+      { label: "Ответ", value: "5–10 сек" },
+    ],
+    industry: "education",
+    solutionType: "assistant",
+    link: "/cases/school-assistant",
+    status: "placeholder",
+  },
+  {
+    id: "neuro-tender",
+    title: "НейроТендеролог — отбор релевантных тендеров",
+    description: "Python-скрипт для автоматического анализа тендеров с Контура. LLM-оценка релевантности в 3 этапа.",
+    metrics: [
+      { label: "Время", value: "3 ч → 15 мин" },
+      { label: "Точность", value: "85–90%" },
+    ],
+    industry: "services",
+    solutionType: "automation",
+    link: "/cases/neuro-tender",
+    status: "placeholder",
+  },
+  {
+    id: "neuro-notes",
+    title: "НейроКонспектолог — расшифровка встреч",
+    description: "Автоматическая транскрибация с разметкой по спикерам. Интеграция с Telegram, Notion, Google Docs.",
+    metrics: [
+      { label: "Экономия", value: "10 ч/нед" },
+      { label: "Ошибки", value: "минимум" },
+    ],
+    industry: "it",
+    solutionType: "automation",
+    link: "/cases/neuro-notes",
+    status: "placeholder",
+  },
+  {
+    id: "vasya-secretary",
+    title: "ИИ-Вася Секретарь",
+    description: "Персональный ассистент в Telegram: календарь, заметки, визитки, заявки. Голосовое управление.",
+    metrics: [
+      { label: "Экономия", value: "20+ ч/мес" },
+      { label: "ROI", value: "~15×" },
+    ],
+    industry: "services",
+    solutionType: "assistant",
+    link: "/cases/vasya-secretary",
+    status: "placeholder",
+  },
+  {
+    id: "neuro-fireman",
+    title: "НейроПожарник — AI-ассистент по нормам ПБ",
+    description: "AI-ассистент в Telegram с базой знаний по нормативам промышленной безопасности.",
+    metrics: [
+      { label: "Ответ", value: "10 сек" },
+      { label: "Время", value: "−80%" },
+    ],
+    industry: "production",
+    solutionType: "assistant",
+    link: "/cases/neuro-fireman",
+    status: "placeholder",
+  },
+  {
+    id: "neuro-farmer",
+    title: "НейроФермер — автоматизация учёта",
+    description: "Telegram-бот с голосовым управлением для фермерского хозяйства: учёт надоев, рождений, процедур.",
+    metrics: [
+      { label: "Экономия", value: "60 ч/мес" },
+      { label: "Выгода", value: "2 млн ₽/год" },
+    ],
+    industry: "production",
+    solutionType: "automation",
+    link: "/cases/neuro-farmer",
+    status: "placeholder",
+  },
+  {
+    id: "samprodam-bot",
+    title: "СамПродам Бот — автоматизация договоров",
+    description: "Telegram-бот с OCR для агентства недвижимости: чтение паспортов и ЕГРН, генерация PDF.",
+    metrics: [
+      { label: "Формат", value: "PDF/Word" },
+      { label: "OCR", value: "паспорта" },
+    ],
+    industry: "services",
+    solutionType: "docs",
+    link: "/cases/samprodam-bot",
+    status: "placeholder",
+  },
+  {
+    id: "digital-twin",
+    title: "Цифровой двойник производства",
+    description: "Автоматический сбор данных из CRM, ERP, СКУД. Чат-интерфейс для голосовых и текстовых запросов.",
+    metrics: [
+      { label: "Ответ", value: "<1 сек" },
+      { label: "Решения", value: "×5 быстрее" },
+    ],
+    industry: "production",
+    solutionType: "automation",
+    link: "/cases/digital-twin",
+    status: "placeholder",
+  },
+  {
+    id: "corporate-docs",
+    title: "Ассистент по корпоративным документам",
+    description: "Поиск ответов по базе >10 000 файлов. Гибридный поиск с генерацией через LLM.",
+    metrics: [
+      { label: "Точность", value: "95%" },
+      { label: "Нагрузка", value: "−40%" },
+    ],
+    industry: "it",
+    solutionType: "docs",
+    link: "/cases/corporate-docs",
+    status: "placeholder",
+  },
+  {
+    id: "doc-classification",
+    title: "Распознавание и классификация документов",
+    description: "OCR-модуль с классификатором документов. Интеграция с 1С и Google Sheets.",
+    metrics: [
+      { label: "Скорость", value: "0,2 сек" },
+      { label: "Точность", value: "98%" },
+    ],
+    industry: "services",
+    solutionType: "docs",
+    link: "/cases/doc-classification",
+    status: "placeholder",
+  },
 ];
 
 const CasesPage = () => {
-  const [activeCategories, setActiveCategories] = useState<string[]>(["Все кейсы"]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeIndustry, setActiveIndustry] = useState("all");
+  const [activeSolutionType, setActiveSolutionType] = useState("all");
 
-  const handleCategoryClick = (category: string) => {
-    if (category === "Все кейсы") {
-      // Если выбран "Все кейсы", сбросить все остальные
-      setActiveCategories(["Все кейсы"]);
-    } else {
-      // Если выбрана конкретная категория
-      setActiveCategories(prev => {
-        // Убираем "Все кейсы" если он был активен
-        const withoutAll = prev.filter(cat => cat !== "Все кейсы");
-        
-        // Переключаем выбранную категорию
-        if (withoutAll.includes(category)) {
-          const newCategories = withoutAll.filter(cat => cat !== category);
-          // Если не осталось выбранных категорий, возвращаем "Все кейсы"
-          return newCategories.length === 0 ? ["Все кейсы"] : newCategories;
-        } else {
-          return [...withoutAll, category];
-        }
-      });
-    }
-  };
+  const filteredCases = useMemo(() => {
+    return cases.filter((caseItem) => {
+      // Search filter
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+          caseItem.title.toLowerCase().includes(query) ||
+          caseItem.description.toLowerCase().includes(query);
+        if (!matchesSearch) return false;
+      }
 
-  const cases: CaseItem[] = [
-    {
-      id: 1,
-      title: "AI-SMM Агентство — автоматизация генерации контента",
-      image: null,
-      targetAudience: "внутренний продукт для digital-команд и SMM-специалистов",
-      industry: "маркетинг, digital",
-      price: "от 250 000 ₽",
-      status: "действующий",
-      task: "Сократить время на создание контента, устранить хаос в публикациях, автоматизировать работу SMM-команды и снизить расходы на копирайтеров и стратегов.",
-      actions: [
-        "Создали AI-бота, который генерирует посты, сторис, прогревы, контент-планы",
-        "Поддержка текстовых и голосовых брифов",
-        "Генерация под разные форматы (Stories, Reels, Telegram и др.)",
-        "Интеграция с Telegram, Google Sheets, AmoCRM",
-        "Настройка адаптации под платформу и стиль"
-      ],
-      results: [
-        "Сокращение времени на контент с 8 часов до 15 минут в неделю",
-        "Экономия до 80 000 ₽ в месяц",
-        "Рост охватов и вовлечённости",
-        "Стабильные продажи за счёт регулярности контента"
-      ],
-      categories: ["Контент и коммуникации с помощью ИИ"],
-      link: "/cases/ai-smm"
-    },
-    {
-      id: 2,
-      title: "Умный AI-ассистент для родителей («Школьный ассистент»)",
-      image: null,
-      targetAudience: "Лицей №101, Санкт-Петербург",
-      industry: "образование",
-      price: "от 70 000 ₽",
-      status: "действующий",
-      task: "Освободить администрацию от бесконечных запросов родителей, автоматизировать доступ к расписанию, посещаемости и уведомлениям.",
-      actions: [
-        "Телеграм-бот, собирающий профиль ученика при регистрации",
-        "Хранение информации в Google Sheets",
-        "Парсинг PDF-расписаний",
-        "Ответы на запросы родителей за 5–10 секунд",
-        "Автоматическая рассылка изменений и событий"
-      ],
-      results: [
-        "Ответы за 5–10 сек вместо 10–15 минут",
-        "Экономия до 50 часов в месяц у администрации",
-        "0 пропущенных уведомлений",
-        "Повышение дисциплины и вовлечённости"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/school-assistant"
-    },
-    {
-      id: 3,
-      title: "НейроТендеролог — отбор релевантных тендеров",
-      image: null,
-      targetAudience: "внутренний R&D-проект",
-      industry: "тендеры, госзакупки",
-      price: "от 150 000 ₽",
-      status: "действующий",
-      task: "Ускорить анализ тендеров, исключить ручную проверку и снизить вероятность упущенных выгодных торгов.",
-      actions: [
-        "Python-скрипт, собирающий тендеры с Контура по расписанию",
-        "Фильтрация по стоп-словам",
-        "Оценка релевантности через LLM в 3 этапа",
-        "Уведомления в Telegram"
-      ],
-      results: [
-        "Сокращение времени с 3 часов до 15 минут в день",
-        "Исключение человеческого фактора",
-        "Точность релевантности 85–90%"
-      ],
-      categories: ["AI-ассистенты для бизнеса", "R&D и внутренние инструменты"],
-      link: "/cases/neuro-tender"
-    },
-    {
-      id: 4,
-      title: "НейроКонспектолог — автоматическая расшифровка встреч",
-      image: null,
-      targetAudience: "digital-команды",
-      industry: "бизнес-процессы, внутренняя коммуникация",
-      price: "от 50 000 ₽",
-      status: "завершён",
-      task: "Автоматизировать протоколирование встреч, снизить потери информации и уменьшить ручную работу.",
-      actions: [
-        "Автоматическая транскрибация аудио и видео",
-        "Разметка по спикерам и темам",
-        "Создание структурированных протоколов",
-        "Интеграции с Telegram, Notion, Google Docs"
-      ],
-      results: [
-        "Экономия 10 часов в неделю",
-        "Прозрачность договорённостей",
-        "Минимизация ошибок"
-      ],
-      categories: ["R&D и внутренние инструменты"],
-      link: "/cases/neuro-notes"
-    },
-    {
-      id: 5,
-      title: "ИИ-Вася Секретарь",
-      image: null,
-      targetAudience: "стартап-основатель (команда 3–5 человек)",
-      industry: "продуктивность, бизнес-ассистенты",
-      price: "от 80 000 ₽",
-      status: "действующий",
-      task: "Сократить рутинные задачи, улучшить организацию данных и отказаться от дорогостоящего человеческого ассистента.",
-      actions: [
-        "Ассистент в Telegram и приложении",
-        "Голосовое управление календарём",
-        "Заметки, папки, визитки, заявки",
-        "AI-юрист",
-        "Интеграции с Google Sheets"
-      ],
-      results: [
-        "Экономия 20+ часов в месяц",
-        "3 секунды вместо 5 часов на поиск информации",
-        "ROI ~15×",
-        "Полный порядок в данных, 0 потерь"
-      ],
-      categories: ["AI-ассистенты для бизнеса"],
-      link: "/cases/vasya-secretary"
-    },
-    {
-      id: 6,
-      title: "НейроПожарник — AI-ассистент по нормам ПБ",
-      image: null,
-      targetAudience: "группа компаний «АЛЬТ»",
-      industry: "промышленная безопасность",
-      price: "от 120 000 ₽",
-      status: "действующий",
-      task: "Облегчить работу специалистов ПБ и сократить риски ошибок и штрафов.",
-      actions: [
-        "AI-ассистент в Telegram",
-        "Парсинг законодательства",
-        "База знаний по нормативам",
-        "Интеграции с Telegram и Google Sheets"
-      ],
-      results: [
-        "Ответы за 10 секунд вместо 30 минут",
-        "Освобождение 80% времени",
-        "Снижение риска штрафов до нуля"
-      ],
-      categories: ["AI-ассистенты для бизнеса"],
-      link: "/cases/neuro-fireman"
-    },
-    {
-      id: 7,
-      title: "Грузовой Экспресс — автоматизация заявок",
-      image: null,
-      targetAudience: "транспортная компания",
-      industry: "логистика",
-      price: "от 200 000 ₽",
-      status: "завершён",
-      task: "Ускорить приём заявок, исключить ошибки и обеспечить аналитическую прозрачность без внедрения CRM.",
-      actions: [
-        "Telegram-бот с ИИ",
-        "Автоматическое сохранение заявок",
-        "Распределение по менеджерам",
-        "Ежедневные отчёты"
-      ],
-      results: [
-        "Экономия 3–4 часа в неделю на менеджера",
-        "0 дублей, 0 потерь",
-        "Полная аналитика в реальном времени"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/cargo-express"
-    },
-    {
-      id: 8,
-      title: "НейроФермер — автоматизация учёта",
-      image: null,
-      targetAudience: "фермерское хозяйство + сеть магазинов",
-      industry: "сельское хозяйство",
-      price: "от 300 000 ₽",
-      status: "действующий",
-      task: "Упорядочить управленческий учёт, разгрузить руководителя и устранить частые ошибки.",
-      actions: [
-        "Telegram-бот с голосовым управлением",
-        "Учёт надоев, рождений, процедур",
-        "Ролевой доступ",
-        "Integrations + PDF-отчёты"
-      ],
-      results: [
-        "Экономия 60 часов в месяц",
-        "Прозрачность и управляемость",
-        "Выгода до 2 млн ₽ в год"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/neuro-farmer"
-    },
-    {
-      id: 9,
-      title: "СамПродам Бот — автоматизация договоров",
-      image: null,
-      targetAudience: "Агентство недвижимости «ЭКСПЕРТ»",
-      industry: "недвижимость",
-      price: "от 200 000 ₽",
-      status: "действующий",
-      task: "Автоматизировать подготовку договоров, снизить ошибки и ускорить работу юристов и риелторов.",
-      actions: [
-        "Telegram-бот с OCR",
-        "Чтение паспортов и ЕГРН",
-        "Подстановка в шаблоны",
-        "Генерация PDF и Word"
-      ],
-      results: [
-        "Результаты будут добавлены"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/samprodam-bot"
-    },
-    {
-      id: 10,
-      title: "Цифровой двойник производства",
-      image: null,
-      targetAudience: "Промышленный холдинг средней величины (разработчик: Combox Technology)",
-      industry: "промышленность, производство",
-      price: "от 500 000 ₽",
-      status: "действующий",
-      task: "Сократить время на сбор и анализ данных, обеспечить мгновенный доступ к ключевым показателям и снизить простои из-за задержек в принятии решений.",
-      actions: [
-        "Автоматический сбор данных из CRM, ERP, СКУД, видеонаблюдения и кадровой системы",
-        "Гибридный поиск по ключевым словам и векторным связям",
-        "Чат-интерфейс для голосовых и текстовых запросов",
-        "Работа в изолированном контуре предприятия"
-      ],
-      results: [
-        "Ответы < 1 секунды вместо 1–2 часов",
-        "Ускорение управленческих решений ×5",
-        "Снижение простоев на 20%",
-        "100% устранение ошибок ручного ввода",
-        "ROI за 3 месяца"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/digital-twin"
-    },
-    {
-      id: 11,
-      title: "Ассистент по корпоративным документам",
-      image: null,
-      targetAudience: "Крупная IT-компания",
-      industry: "IT, документооборот",
-      price: "от 200 000 ₽",
-      status: "завершён",
-      task: "Автоматизировать поиск ответов по базе >10 000 файлов и сократить время отклика с 10–15 минут до 10–15 секунд.",
-      actions: [
-        "Поддержка форматов DOCX, XLSX, PDF, TXT",
-        "Генерация эмбеддингов для семантического поиска",
-        "Гибридный поиск по документам",
-        "Интеграция с LLM для генерации ответов",
-        "REST API для интеграции с внутренними системами"
-      ],
-      results: [
-        "Ответы за 100 мс",
-        "Точность поиска 95%",
-        "−40% нагрузки на поддержку",
-        "Повышение эффективности ×3"
-      ],
-      categories: ["AI-ассистенты для бизнеса"],
-      link: "/cases/corporate-docs"
-    },
-    {
-      id: 12,
-      title: "Распознавание и классификация входящих документов",
-      image: null,
-      targetAudience: "Компания, Москва (разработчик: Combox Technology)",
-      industry: "документооборот, бизнес-процессы",
-      price: "от 210 000 ₽",
-      status: "завершён",
-      task: "Снизить время обработки документов с 5 минут до 0,2 секунды и исключить ошибки маршрутизации.",
-      actions: [
-        "OCR-модуль: извлечение текста за 0,2 секунды",
-        "Классификатор документов с точностью 98%",
-        "RAG-поиск по CRM/1С",
-        "Telegram-бот для загрузки документов",
-        "Интеграции: 1С, Google Sheets, внутренние системы"
-      ],
-      results: [
-        "Скорость обработки: 0,2 секунды",
-        "98% точности классификации",
-        "Автоматизация — от 3 операторов до 0",
-        "Ошибки <1%",
-        "Экономия 120 000 ₽/мес, окупаемость 1,5 месяца"
-      ],
-      categories: ["Автоматизация процессов и данных"],
-      link: "/cases/doc-classification"
-    },
-    {
-      id: 13,
-      title: "Система интеллектуального поиска по технологической документации",
-      image: null,
-      targetAudience: "производственные компании, сервис-центры, технические отделы",
-      industry: "производство, техническая поддержка",
-      price: "от 100 000 ₽",
-      status: "действующий",
-      task: "Сократить время поиска информации в технической документации с 20–30 минут до 3–5 минут, снизить брак на 30–50% и обеспечить мгновенный доступ к регламентам через QR-коды.",
-      actions: [
-        "QR-коды на рабочих местах для мгновенного доступа к документации",
-        "Чат-бот в Telegram/Max/веб с поиском по всей документации",
-        "Оцифровка и структурирование технической документации через ComBox LLM",
-        "Закрытый контур — данные остаются на вашем или нашем сервере в России",
-        "7 сценариев использования: от производства до обучения новых сотрудников"
-      ],
-      results: [
-        "Экономия 40–85 часов в месяц на команду",
-        "Снижение брака на 30–50% (экономия 50–150 тыс. ₽/мес)",
-        "Ответ за 3 секунды вместо 20–30 минут",
-        "Обучение новых сотрудников в 4–6 раз быстрее",
-        "Окупаемость за 1 месяц"
-      ],
-      categories: ["Автоматизация процессов и данных", "AI-ассистенты для бизнеса"],
-      link: "/products/doc-search"
-    },
-    {
-      id: 14,
-      title: "Крайпотребсоюз — ИИ-архитектура вместо серверов за 1,5 млн ₽",
-      image: null,
-      targetAudience: "региональное объединение кооперативов",
-      industry: "кооперативы, управление",
-      price: "~250 000 ₽",
-      status: "действующий",
-      task: "Внедрить ИИ в управленческие процессы без затрат на серверную инфраструктуру. На старте рассматривался классический сценарий: собственный сервер, локальная LLM, кастомная разработка — оценка около 1,5 млн ₽.",
-      actions: [
-        "Совместный аудит и диагностика: выявили 6 точек максимального эффекта",
-        "Выбор гибкой архитектуры вместо тяжёлой инфраструктуры",
-        "Внедрение Bpium — российской low-code платформы",
-        "Автоматизация контроля сроков договоров",
-        "Запуск OCR-распознавания входящей отчётности",
-        "Обучение сотрудников работе с ИИ"
-      ],
-      results: [
-        "~1,3 млн ₽ экономия капитальных затрат",
-        "2 сотрудника освобождены от рутины",
-        "Финансовый отдел экономит 4–6 часов в неделю",
-        "Сроки договоров больше не теряются",
-        "Сотрудничество продлено на 2026 год"
-      ],
-      categories: ["Автоматизация процессов и данных", "Корпоративное обучение и внедрение ИИ-компетенций"],
-      link: "/cases/kraypotrebsoyuz"
-    }
-  ];
+      // Industry filter
+      if (activeIndustry !== "all" && caseItem.industry !== activeIndustry) {
+        return false;
+      }
 
-  const filteredCases = activeCategories.includes("Все кейсы")
-    ? cases 
-    : cases.filter(caseItem => 
-        caseItem.categories.some(cat => activeCategories.includes(cat))
-      );
+      // Solution type filter
+      if (activeSolutionType !== "all" && caseItem.solutionType !== activeSolutionType) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [searchQuery, activeIndustry, activeSolutionType]);
+
+  const readyCases = filteredCases.filter((c) => c.status === "ready");
+  const placeholderCases = filteredCases.filter((c) => c.status === "placeholder");
 
   return (
     <PageTransition>
       <Helmet>
-        <title>Кейсы и результаты — Примеры внедрения ИИ | Александра Моисеева</title>
-        <meta name="description" content="36+ реальных кейсов внедрения ИИ: автоматизация процессов, AI-ассистенты, контент с помощью нейросетей. ROI до 278%, экономия до 92% времени." />
-        <meta name="keywords" content="кейсы внедрения ИИ, примеры AI автоматизации, результаты искусственный интеллект, ROI ИИ проектов" />
-        <link rel="canonical" href="https://aleksamois.ru/cases" />
-        <meta property="og:title" content="Кейсы и результаты — Примеры внедрения ИИ" />
-        <meta property="og:description" content="36+ реальных кейсов внедрения ИИ. ROI до 278%, экономия до 92% времени." />
-        <meta property="og:url" content="https://aleksamois.ru/cases" />
+        <title>Кейсы внедрения ИИ — Реальные результаты | Александра Моисеева</title>
+        <meta
+          name="description"
+          content="14+ кейсов внедрения ИИ для бизнеса: автоматизация процессов, AI-ассистенты, работа с документами. Экономия до 1,3 млн ₽, окупаемость от 1 месяца."
+        />
+        <meta
+          name="keywords"
+          content="кейсы внедрения ИИ, примеры AI автоматизации, результаты искусственный интеллект, ROI ИИ проектов"
+        />
+        <link rel="canonical" href="https://neuro-moiseeva.ru/cases" />
       </Helmet>
+
       <div className="min-h-screen bg-background">
         <Navigation />
-      
-      <main className="py-10 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 max-w-7xl">
-          {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h1 className="section-title mb-4">
-              Кейсы и результаты, <span className="font-semibold">измеримый эффект</span>
-            </h1>
-            <p className="text-lg text-foreground max-w-3xl mx-auto">
-              Реальные примеры аудита процессов, автоматизации и ИИ-решений для бизнеса
-            </p>
-          </div>
 
-          {/* Category Tabs */}
-          <div className="mb-12 flex flex-wrap justify-center gap-3">
-            {CATEGORIES.map((category) => {
-              const isActive = activeCategories.includes(category);
-              return (
-                <button
-                  key={category}
-                  onClick={() => handleCategoryClick(category)}
-                  className={`
-                    px-6 py-3 rounded-xl border text-sm font-medium
-                    transition-all duration-300 ease-out
-                    ${isActive
-                      ? 'bg-primary text-primary-foreground border-primary shadow-md' 
-                      : 'bg-card text-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary'
-                    }
-                  `}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
+        <main className="pt-24 pb-16">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <PageBreadcrumbs currentPage="Кейсы" />
 
-          {/* Cases Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredCases.map((caseItem) => (
-              <div
-                key={caseItem.id}
-                className="bg-card rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 p-4 sm:p-6 md:p-8 border border-border"
-              >
-                {/* Image Placeholder */}
-                <div className="w-full h-[120px] bg-muted rounded-xl mb-6 flex items-center justify-center">
-                  <Image className="w-12 h-12 text-muted-foreground/30" strokeWidth={1.5} />
-                </div>
+            {/* Hero Section */}
+            <section className="text-center mb-12 mt-8">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                Кейсы внедрения ИИ
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Реальные проекты с измеримыми результатами. 
+                Экономия времени, денег и ресурсов.
+              </p>
+            </section>
 
-                {/* Title */}
-                <h3 className="text-lg font-medium text-foreground mb-4 leading-tight">
-                  {caseItem.title}
-                </h3>
-
-                {/* Meta Information */}
-                <div className="space-y-2 mb-4">
-                  <p className="text-sm text-foreground">
-                    <span className="text-foreground/70">Для кого:</span> {caseItem.targetAudience}
-                  </p>
-                  <p className="text-sm text-foreground">
-                    <span className="text-foreground/70">Отрасль:</span> {caseItem.industry}
-                  </p>
-                  <p className="text-sm text-foreground">
-                    <span className="text-foreground/70">Стоимость:</span> {caseItem.price}
-                  </p>
-                  <p className="text-sm text-foreground">
-                    <span className="text-foreground/70">Статус проекта:</span> {caseItem.status}
-                  </p>
-                </div>
-
-                {/* Task */}
-                <div className="border-t border-border pt-4 mt-4">
-                  <p className="text-handwriting mb-2">Задача</p>
-                  <p className="text-sm text-foreground leading-relaxed">
-                    {caseItem.task}
-                  </p>
-                </div>
-
-                {/* Actions */}
-                <div className="border-t border-border pt-4 mt-4">
-                  <p className="text-handwriting mb-2">Что сделали</p>
-                  <ul className="space-y-1.5">
-                    {caseItem.actions.map((action, idx) => (
-                      <li key={idx} className="text-sm text-foreground leading-relaxed flex">
-                        <span className="text-primary mr-2">•</span>
-                        <span>{action}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Results */}
-                <div className="border-t border-border pt-4 mt-4">
-                  <p className="text-handwriting mb-2">Результаты и эффекты</p>
-                  <ul className="space-y-1.5">
-                    {caseItem.results.map((result, idx) => (
-                      <li key={idx} className="text-sm text-foreground leading-relaxed flex">
-                        <span className="text-primary mr-2">•</span>
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Link to detailed page */}
-                {caseItem.link && (
-                  <div className="border-t border-border pt-4 mt-4">
-                    <Button asChild className="w-full">
-                      <Link to={caseItem.link}>
-                        Подробнее <ArrowRight className="w-4 h-4 ml-2" />
-                      </Link>
-                    </Button>
-                  </div>
+            {/* Search */}
+            <section className="max-w-xl mx-auto mb-8">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Поиск по кейсам..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-10 py-6 text-base bg-card border-border"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
                 )}
               </div>
-            ))}
+            </section>
+
+            {/* Filters */}
+            <section className="mb-10">
+              {/* Industry Filter */}
+              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide justify-center mb-4">
+                {INDUSTRIES.map((industry) => {
+                  const Icon = industry.icon;
+                  return (
+                    <button
+                      key={industry.id}
+                      onClick={() => setActiveIndustry(industry.id)}
+                      className={cn(
+                        "flex items-center gap-2 px-4 py-2.5 rounded-lg whitespace-nowrap transition-all duration-200 font-medium text-sm",
+                        activeIndustry === industry.id
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                      )}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span>{industry.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Solution Type Filter */}
+              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide justify-center">
+                {SOLUTION_TYPES.map((type) => (
+                  <button
+                    key={type.id}
+                    onClick={() => setActiveSolutionType(type.id)}
+                    className={cn(
+                      "px-4 py-2 rounded-lg whitespace-nowrap transition-all duration-200 font-medium text-sm border",
+                      activeSolutionType === type.id
+                        ? "bg-primary/10 text-primary border-primary"
+                        : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+                    )}
+                  >
+                    {type.label}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* Results count */}
+            {(searchQuery || activeIndustry !== "all" || activeSolutionType !== "all") && (
+              <p className="text-sm text-muted-foreground text-center mb-6">
+                Найдено: {filteredCases.length} {filteredCases.length === 1 ? "кейс" : filteredCases.length < 5 ? "кейса" : "кейсов"}
+              </p>
+            )}
+
+            {/* Ready Cases */}
+            {readyCases.length > 0 && (
+              <section className="mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {readyCases.map((caseItem) => (
+                    <CaseCard key={caseItem.id} caseItem={caseItem} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Placeholder Cases */}
+            {placeholderCases.length > 0 && (
+              <section className="mb-16">
+                {readyCases.length > 0 && (
+                  <h2 className="text-xl font-semibold text-foreground mb-6 text-center">
+                    Ещё кейсы
+                  </h2>
+                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {placeholderCases.map((caseItem) => (
+                    <CaseCard key={caseItem.id} caseItem={caseItem} isPlaceholder />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Empty state */}
+            {filteredCases.length === 0 && (
+              <div className="text-center py-16">
+                <p className="text-muted-foreground mb-4">Кейсы не найдены</p>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setActiveIndustry("all");
+                    setActiveSolutionType("all");
+                  }}
+                >
+                  Сбросить фильтры
+                </Button>
+              </div>
+            )}
           </div>
-        </div>
-      </main>
+        </main>
+
         <Contact />
         <Partners />
-
-      <Footer />
-      
-    </div>
+        <Footer />
+      </div>
     </PageTransition>
+  );
+};
+
+// Compact Case Card Component
+interface CaseCardProps {
+  caseItem: CaseItem;
+  isPlaceholder?: boolean;
+}
+
+const CaseCard = ({ caseItem, isPlaceholder }: CaseCardProps) => {
+  return (
+    <div
+      className={cn(
+        "bg-card rounded-2xl border border-border overflow-hidden flex flex-col h-full transition-all duration-300",
+        isPlaceholder 
+          ? "opacity-70 hover:opacity-100" 
+          : "shadow-soft hover:shadow-card hover:-translate-y-1"
+      )}
+    >
+      {/* Image */}
+      {caseItem.image ? (
+        <div className="w-full h-32 overflow-hidden">
+          <img 
+            src={caseItem.image} 
+            alt={caseItem.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div className="w-full h-32 bg-muted flex items-center justify-center">
+          <Building2 className="w-8 h-8 text-muted-foreground/30" />
+        </div>
+      )}
+
+      <div className="p-5 flex flex-col flex-1">
+        {/* Title */}
+        <h3 className="text-base font-semibold text-foreground mb-3 leading-tight line-clamp-2">
+          {caseItem.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3 flex-1">
+          {caseItem.description}
+        </p>
+
+        {/* Metrics */}
+        <div className="flex gap-4 mb-4">
+          {caseItem.metrics.slice(0, 2).map((metric, idx) => (
+            <div key={idx} className="flex-1">
+              <p className="text-xs text-muted-foreground mb-0.5">{metric.label}</p>
+              <p className="text-sm font-semibold text-primary">{metric.value}</p>
+            </div>
+          ))}
+      </div>
+
+        {/* Button */}
+        {isPlaceholder ? (
+          <div className="pt-3 border-t border-border">
+            <span className="text-sm text-muted-foreground">Скоро будет доступен</span>
+          </div>
+        ) : (
+          <Button asChild variant="outline" size="sm" className="w-full mt-auto">
+            <Link to={caseItem.link}>
+              Смотреть кейс
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+          </Button>
+        )}
+      </div>
+    </div>
   );
 };
 
