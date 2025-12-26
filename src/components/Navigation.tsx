@@ -80,7 +80,13 @@ const Navigation = () => {
     {
       href: "/services",
       label: "Услуги",
-      isScroll: false
+      isScroll: false,
+      submenu: [
+        { href: "/services/diagnostics", label: "Диагностика" },
+        { href: "/services/architecture", label: "Архитектура" },
+        { href: "/services/support", label: "Сопровождение" },
+        { href: "/services/add-ons", label: "Доп. решения" }
+      ]
     },
     {
       href: "/cases",
