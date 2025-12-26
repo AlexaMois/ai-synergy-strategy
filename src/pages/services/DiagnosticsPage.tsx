@@ -148,7 +148,7 @@ const DiagnosticsPage = () => {
                 Начнём с бесплатной 30-минутной консультации, чтобы понять ваши задачи
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Записаться на консультацию
+                Обсудить задачу
               </Button>
             </div>
           </section>

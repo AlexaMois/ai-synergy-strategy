@@ -181,14 +181,16 @@ const BlogPost = () => {
               <p className="text-lg text-foreground mb-6">
                 Запишитесь на бесплатный экспресс-аудит процессов
               </p>
-              <Button size="lg" asChild>
-                <a 
-                  href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Записаться на аудит
-                </a>
+              <Button size="lg" onClick={() => {
+                const element = document.querySelector('#contact');
+                if (element) {
+                  const navHeight = 100;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+              }}>
+                Обсудить задачу
               </Button>
             </div>
           </div>

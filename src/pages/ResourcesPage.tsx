@@ -232,10 +232,16 @@ const ResourcesPage = () => {
               <p className="text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Оставьте Ваши контакты в форме ниже   
               </p>
-              <Button asChild size="lg">
-                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                  Записаться на аудит
-                </a>
+              <Button size="lg" onClick={() => {
+                const element = document.querySelector('#contact');
+                if (element) {
+                  const navHeight = 100;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+              }}>
+                Обсудить задачу
               </Button>
             </div>
           </section>

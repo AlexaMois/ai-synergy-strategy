@@ -106,7 +106,7 @@ const ExitIntentPopup = () => {
                 onClick={scrollToContact}
               >
                 <Phone size={16} className="mr-2" />
-                Заказать звонок
+                Обсудить задачу
               </Button>
               <span className="text-xs text-foreground/70 mt-1.5 sm:mt-2 font-raleway">
                 30 минут, без обязательств
