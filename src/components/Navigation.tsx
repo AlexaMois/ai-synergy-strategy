@@ -193,7 +193,16 @@ const Navigation = () => {
         <div className="hidden lg:flex items-center justify-between h-20">
           <div className="flex items-center gap-10">
             <Link to="/" className="flex items-center overflow-visible">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-40 xl:h-48 w-auto" />
+              <img 
+                src={logoHorizontal} 
+                alt="Нейрорешения" 
+                className="h-40 xl:h-48 w-auto"
+                width={270}
+                height={192}
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+              />
             </Link>
 
             <nav className="flex items-center gap-6">
@@ -294,7 +303,16 @@ const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-14">
             <Link to="/" className="flex items-center">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-32 w-auto" />
+              <img 
+                src={logoHorizontal} 
+                alt="Нейрорешения" 
+                className="h-32 w-auto"
+                width={180}
+                height={128}
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+              />
             </Link>
 
           </div>
