@@ -76,17 +76,17 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/case-studies/kraypotrebsoyuz</loc>
+    <loc>https://aleksamois.ru/cases/kraypotrebsoyuz</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/case-studies/cargo-express</loc>
+    <loc>https://aleksamois.ru/cases/cargo-express</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/case-studies/doc-search</loc>
+    <loc>https://aleksamois.ru/cases/doc-search</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
