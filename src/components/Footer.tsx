@@ -48,6 +48,7 @@ const Footer = () => {
               <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
               <DisabledLink to="/services" className="hover:text-primary transition-colors">Услуги</DisabledLink>
               <DisabledLink to="/cases" className="hover:text-primary transition-colors">Кейсы</DisabledLink>
+              <DisabledLink to="/faq" className="hover:text-primary transition-colors">FAQ</DisabledLink>
               <DisabledLink to="/resources" className="hover:text-primary transition-colors">Материалы</DisabledLink>
               <DisabledLink to="/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
               <a href="/#contact" onClick={e => scrollToSection(e, '#contact')} className="hover:text-primary transition-colors">Контакты</a>
