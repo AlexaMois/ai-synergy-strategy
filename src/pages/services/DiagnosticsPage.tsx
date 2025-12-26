@@ -100,6 +100,13 @@ const DiagnosticsPage = () => {
         <title>Диагностика бизнес-процессов | Александра Моисеева</title>
         <meta name="description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат за месяц, где нужна подготовка процессов, где он вообще не нужен." />
         <link rel="canonical" href="https://aleksamois.ru/services/diagnostics" />
+        <meta property="og:title" content="Диагностика бизнес-процессов | Александра Моисеева" />
+        <meta property="og:description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат." />
+        <meta property="og:url" content="https://aleksamois.ru/services/diagnostics" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
 
       <Navigation />

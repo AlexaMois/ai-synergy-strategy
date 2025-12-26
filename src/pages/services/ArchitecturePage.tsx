@@ -102,6 +102,13 @@ const ArchitecturePage = () => {
         <title>Архитектура ИИ-решений | Александра Моисеева</title>
         <meta name="description" content="Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, интеграция с CRM, 1С, готовое техническое задание." />
         <link rel="canonical" href="https://aleksamois.ru/services/architecture" />
+        <meta property="og:title" content="Архитектура ИИ-решений | Александра Моисеева" />
+        <meta property="og:description" content="Проектирование AI-решения для вашего бизнеса. Выбор технологий, интеграция с CRM и 1С." />
+        <meta property="og:url" content="https://aleksamois.ru/services/architecture" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
 
       <Navigation />

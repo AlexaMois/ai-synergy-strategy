@@ -17,6 +17,13 @@ const MaterialsPage = () => {
         <meta name="description" content="Полезные материалы для самостоятельного изучения: чек-листы, гайды, статьи блога по внедрению ИИ в бизнес." />
         <meta name="keywords" content="материалы ИИ, чек-листы AI, блог искусственный интеллект, ресурсы внедрение" />
         <link rel="canonical" href="https://aleksamois.ru/materials" />
+        <meta property="og:title" content="Материалы — Ресурсы и блог | Александра Моисеева" />
+        <meta property="og:description" content="Полезные материалы: чек-листы, гайды, статьи блога по внедрению ИИ в бизнес." />
+        <meta property="og:url" content="https://aleksamois.ru/materials" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

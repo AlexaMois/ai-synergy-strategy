@@ -102,6 +102,13 @@ const SupportPage = () => {
         <title>Сопровождение внедрения ИИ | Александра Моисеева</title>
         <meta name="description" content="Контроль разработки и реализации, обучение команды, гарантия результата. Проверяю что подрядчик делает правильно и что обещанные метрики достигаются." />
         <link rel="canonical" href="https://aleksamois.ru/services/support" />
+        <meta property="og:title" content="Сопровождение внедрения ИИ | Александра Моисеева" />
+        <meta property="og:description" content="Контроль разработки, обучение команды, гарантия результата. Проверяю что метрики достигаются." />
+        <meta property="og:url" content="https://aleksamois.ru/services/support" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
 
       <Navigation />

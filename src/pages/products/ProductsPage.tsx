@@ -50,6 +50,13 @@ const ProductsPage = () => {
         <meta name="description" content="Готовые ИИ-продукты для бизнеса: голосовой бот GolossOK и система поиска по документации. Быстрое внедрение, проверенные результаты." />
         <meta name="keywords" content="ИИ продукты, голосовой бот, поиск по документации, AI решения для бизнеса" />
         <link rel="canonical" href="https://aleksamois.ru/products" />
+        <meta property="og:title" content="Продукты — Готовые ИИ-решения | Александра Моисеева" />
+        <meta property="og:description" content="Готовые ИИ-продукты для бизнеса: голосовой бот и система поиска по документации." />
+        <meta property="og:url" content="https://aleksamois.ru/products" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

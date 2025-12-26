@@ -280,7 +280,14 @@ const CasesPage = () => {
           name="keywords"
           content="кейсы внедрения ИИ, примеры AI автоматизации, результаты искусственный интеллект, ROI ИИ проектов"
         />
-        <link rel="canonical" href="https://neuro-moiseeva.ru/cases" />
+        <link rel="canonical" href="https://aleksamois.ru/cases" />
+        <meta property="og:title" content="Кейсы внедрения ИИ — Реальные результаты | Александра Моисеева" />
+        <meta property="og:description" content="14+ кейсов внедрения ИИ для бизнеса. Экономия до 1,3 млн ₽, окупаемость от 1 месяца." />
+        <meta property="og:url" content="https://aleksamois.ru/cases" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

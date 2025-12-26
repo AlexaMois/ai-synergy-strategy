@@ -305,7 +305,14 @@ const FAQPage = () => {
           content="45 ответов на главные вопросы о внедрении ИИ: стоимость, окупаемость, риски, безопасность данных, внедрение. Честные ответы без маркетинга." 
         />
         <meta name="keywords" content="внедрение ИИ, стоимость ИИ, ROI ИИ, риски ИИ, безопасность ИИ, FAQ" />
-        <link rel="canonical" href="https://neuro-moiseeva.ru/faq" />
+        <link rel="canonical" href="https://aleksamois.ru/faq" />
+        <meta property="og:title" content="FAQ — Вопросы об ИИ для бизнеса | Александра Моисеева" />
+        <meta property="og:description" content="45 ответов на главные вопросы о внедрении ИИ: стоимость, окупаемость, риски, безопасность." />
+        <meta property="og:url" content="https://aleksamois.ru/faq" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
