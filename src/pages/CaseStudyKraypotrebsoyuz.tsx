@@ -8,8 +8,26 @@ import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake, ImageIcon } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CaseStudyKraypotrebsoyuz = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -473,10 +491,8 @@ const CaseStudyKraypotrebsoyuz = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Хотите получить похожий результат для вашей компании?
             </h2>
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Пройти экспресс-аудит процессов
-              </a>
+            <Button size="lg" onClick={scrollToContact}>
+              Пройти экспресс-аудит процессов
             </Button>
           </div>
         </section>

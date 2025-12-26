@@ -6,8 +6,26 @@ import { Helmet } from "react-helmet";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Image, Phone, MessageSquare, Mic } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CaseStudyCargoExpress = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   return (
     <PageTransition>
       <Helmet>
@@ -524,10 +542,8 @@ const CaseStudyCargoExpress = () => {
                 начать стоит не с выбора системы,<br />
                 а с разбора процесса приёма заявок.
               </p>
-              <Button size="lg" asChild>
-                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                  Разобрать мой процесс →
-                </a>
+              <Button size="lg" onClick={scrollToContact}>
+                Разобрать мой процесс →
               </Button>
             </div>
           </div>

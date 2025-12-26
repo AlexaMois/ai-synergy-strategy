@@ -7,8 +7,25 @@ import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import OptimizedImage from "@/components/OptimizedImage";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ChecklistPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
 
   const handlePrint = () => {
     window.print();
@@ -198,10 +215,8 @@ const ChecklistPage = () => {
             <p className="text-muted-foreground leading-relaxed mb-8">
               По итогам вы получаете прозрачную картину и понятный план, с которого имеет смысл начинать внедрение.
             </p>
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Записаться на экспресс-аудит
-              </a>
+            <Button size="lg" onClick={scrollToContact}>
+              Записаться на экспресс-аудит
             </Button>
         </section>
       </div>

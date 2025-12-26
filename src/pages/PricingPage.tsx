@@ -8,8 +8,26 @@ import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 import AnimatedMetric from "@/components/AnimatedMetric";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const PricingPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToContact = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const companyServices = [
     {
       size: "10–50 человек",
@@ -440,10 +458,8 @@ const PricingPage = () => {
             <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto">
               Запишитесь на бесплатную 30-минутную консультацию. Я оценю ваши процессы и назову конкретную цифру с объяснением, за что вы платите.
             </p>
-            <Button size="lg" asChild>
-              <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                Записаться на консультацию (бесплатно)
-              </a>
+            <Button size="lg" onClick={scrollToContact}>
+              Записаться на консультацию (бесплатно)
             </Button>
           </div>
         </section>
