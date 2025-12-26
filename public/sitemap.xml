@@ -61,17 +61,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/checklist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/golossok-demo</loc>
+    <loc>https://aleksamois.ru/demo/voice-bot</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/golossok-pricing</loc>
+    <loc>https://aleksamois.ru/products/voice-bot</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
