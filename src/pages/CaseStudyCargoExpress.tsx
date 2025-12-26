@@ -4,6 +4,7 @@ import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Image, Phone, MessageSquare, Mic } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -39,6 +40,10 @@ const CaseStudyCargoExpress = () => {
       </Helmet>
       <div className="min-h-screen">
         <Navigation />
+        <PageBreadcrumbs 
+          currentPage="Грузовой Экспресс" 
+          parentPages={[{ label: "Кейсы", href: "/cases" }]} 
+        />
         
         <main>
         {/* Hero Section */}

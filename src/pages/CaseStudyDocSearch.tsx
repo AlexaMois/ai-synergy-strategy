@@ -164,7 +164,10 @@ const CaseStudyDocSearch = () => {
         {/* Hero Section */}
         <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <PageBreadcrumbs currentPage="Интеллектуальный поиск по документации" />
+            <PageBreadcrumbs 
+              currentPage="Интеллектуальный поиск по документации" 
+              parentPages={[{ label: "Продукты", href: "/products" }]} 
+            />
 
             <div className="mt-6 sm:mt-8 md:mt-10 text-center">
               <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-primary/10 mb-4 sm:mb-6">

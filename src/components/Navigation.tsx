@@ -259,7 +259,7 @@ const Navigation = () => {
                   <DisabledLink 
                     key={link.href} 
                     to={link.href} 
-                    className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                    className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
                   >
                     {link.label}
                   </DisabledLink>
@@ -388,7 +388,7 @@ const Navigation = () => {
                 key={link.href} 
                 to={link.href} 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+                className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.label}

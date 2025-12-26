@@ -3,8 +3,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake, ImageIcon } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
@@ -69,6 +69,10 @@ const CaseStudyKraypotrebsoyuz = () => {
       </Helmet>
       <div className="min-h-screen">
         <Navigation />
+        <PageBreadcrumbs 
+          currentPage="Крайпотребсоюз" 
+          parentPages={[{ label: "Кейсы", href: "/cases" }]} 
+        />
         
         <main>
         {/* Hero Section */}
