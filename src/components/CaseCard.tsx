@@ -66,7 +66,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
             {caseItem.aboutLabel || 'Клиент:'}
           </p>
           <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-            {caseItem.about}
+            {highlightMetrics(caseItem.about)}
           </p>
         </div>
       )}
@@ -78,7 +78,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
             Ситуация:
           </p>
           <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-            {caseItem.situation}
+            {highlightMetrics(caseItem.situation)}
           </p>
         </div>
       )}
@@ -108,7 +108,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
                 {caseItem.solution.steps.map((step, idx) => (
                   <li key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-1.5 sm:gap-2">
                     <span className="text-primary mt-0.5">•</span>
-                    <span>{step}</span>
+                    <span>{highlightMetrics(step)}</span>
                   </li>
                 ))}
               </ul>
@@ -122,7 +122,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
                 Главный вывод:
               </p>
               <p className="text-xs sm:text-sm italic text-foreground leading-relaxed">
-                "{caseItem.quote}"
+                {caseItem.quote}
               </p>
             </div>
           )}
