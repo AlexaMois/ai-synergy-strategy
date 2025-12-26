@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import { Wallet, TrendingUp, AlertTriangle, Users, Shield } from "lucide-react";
+import { Wallet, TrendingUp, AlertTriangle, Users, Shield, Search, X } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Accordion,
   AccordionContent,
@@ -250,6 +251,7 @@ const allQuestions = faqCategories.flatMap(cat => cat.questions);
 
 const FAQPage = () => {
   const [activeCategory, setActiveCategory] = useState("cost");
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const scrollToContact = () => {
@@ -258,6 +260,26 @@ const FAQPage = () => {
       contactSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Filter questions based on search query
+  const filteredQuestions = useMemo(() => {
+    if (!searchQuery.trim()) return null;
+    
+    const query = searchQuery.toLowerCase();
+    const results: { category: FAQCategory; question: FAQItem }[] = [];
+    
+    faqCategories.forEach(category => {
+      category.questions.forEach(q => {
+        if (q.question.toLowerCase().includes(query) || q.answer.toLowerCase().includes(query)) {
+          results.push({ category, question: q });
+        }
+      });
+    });
+    
+    return results;
+  }, [searchQuery]);
+
+  const isSearching = searchQuery.trim().length > 0;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -306,52 +328,117 @@ const FAQPage = () => {
             </p>
           </section>
 
-          {/* Category Tabs */}
-          <section className="mb-8">
-            <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
-              {faqCategories.map((category) => {
-                const Icon = category.icon;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={cn(
-                      "flex items-center gap-2 px-4 py-3 rounded-lg whitespace-nowrap transition-all duration-200 font-medium text-sm",
-                      activeCategory === category.id
-                        ? "bg-primary text-primary-foreground shadow-md"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
-                    )}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span>{category.title}</span>
-                    <span className="text-xs opacity-70">({category.questions.length})</span>
-                  </button>
-                );
-              })}
+          {/* Search */}
+          <section className="max-w-xl mx-auto mb-8">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Поиск по вопросам..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-10 py-6 text-base bg-card border-border"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
             </div>
+            {isSearching && (
+              <p className="text-sm text-muted-foreground mt-2 text-center">
+                {filteredQuestions?.length === 0 
+                  ? "Ничего не найдено" 
+                  : `Найдено: ${filteredQuestions?.length}`}
+              </p>
+            )}
           </section>
+
+          {/* Category Tabs - hidden when searching */}
+          {!isSearching && (
+            <section className="mb-8">
+              <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide justify-center">
+                {faqCategories.map((category) => {
+                  const Icon = category.icon;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={cn(
+                        "flex items-center gap-2 px-4 py-3 rounded-lg whitespace-nowrap transition-all duration-200 font-medium text-sm",
+                        activeCategory === category.id
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                      )}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span>{category.title}</span>
+                      <span className="text-xs opacity-70">({category.questions.length})</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           {/* FAQ Accordion */}
           <section className="max-w-3xl mx-auto mb-16">
-            {activeData && (
-              <Accordion type="single" collapsible className="space-y-3">
-                {activeData.questions.map((item, index) => (
-                  <AccordionItem
-                    key={`${activeCategory}-${index}`}
-                    value={`item-${index}`}
-                    className="bg-card border border-border rounded-lg px-6 overflow-hidden"
-                  >
-                    <AccordionTrigger className="text-left hover:no-underline py-5">
-                      <span className="font-medium text-foreground pr-4">
-                        {item.question}
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-5">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+            {isSearching ? (
+              // Search results
+              filteredQuestions && filteredQuestions.length > 0 && (
+                <Accordion type="single" collapsible className="space-y-3">
+                  {filteredQuestions.map((item, index) => {
+                    const Icon = item.category.icon;
+                    return (
+                      <AccordionItem
+                        key={`search-${index}`}
+                        value={`item-${index}`}
+                        className="bg-card border border-border rounded-lg px-6 overflow-hidden"
+                      >
+                        <AccordionTrigger className="text-left hover:no-underline py-5">
+                          <div className="flex flex-col gap-1 pr-4">
+                            <span className="font-medium text-foreground">
+                              {item.question.question}
+                            </span>
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Icon className="h-3 w-3" />
+                              {item.category.title}
+                            </span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground pb-5">
+                          {item.question.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                </Accordion>
+              )
+            ) : (
+              // Category view
+              activeData && (
+                <Accordion type="single" collapsible className="space-y-3">
+                  {activeData.questions.map((item, index) => (
+                    <AccordionItem
+                      key={`${activeCategory}-${index}`}
+                      value={`item-${index}`}
+                      className="bg-card border border-border rounded-lg px-6 overflow-hidden"
+                    >
+                      <AccordionTrigger className="text-left hover:no-underline py-5">
+                        <span className="font-medium text-foreground pr-4">
+                          {item.question}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-5">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              )
             )}
           </section>
 
