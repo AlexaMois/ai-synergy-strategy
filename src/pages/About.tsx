@@ -17,6 +17,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
+import AnimatedNumber from "@/components/AnimatedNumber";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
@@ -627,8 +628,8 @@ const About = () => {
           </div>
         </section>
 
-        {/* Credentials - temporarily hidden */}
-        {false && <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        {/* Credentials */}
+        <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-muted">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
               Где мой профессионализм проверен фактами
@@ -637,11 +638,11 @@ const About = () => {
             <div ref={statsRef as any} className="space-y-6">
               {/* Credentials Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {["Резидент IT Park Казани", "Резидент центра поддержки и развития инноваций Красноярска", "Победитель конкурса «Бизнес-Успех» (2025)", "Член Национального фонда искусственного интеллекта", "Сертификат SDS KAEO, уровень 5 (самый высокий)"].map((item, index) => <div key={index} className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                {["Резидент IT Park Казани", "Резидент центра поддержки и развития инноваций Красноярска", "Победитель конкурса «Бизнес-Успех» (2025)", "Член Национального фонда искусственного интеллекта", "Сертификат SDS KAEO, уровень 5 (самый высокий)"].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
                     {item}
                   </div>)}
                 
-                <div className="bg-white rounded-xl shadow-card p-4 text-center text-sm md:text-base text-text-body font-medium transition-all duration-300 hover:shadow-hover hover:scale-[1.02]">
+                <div className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
                   <strong>Выступающая на конференциях:</strong>
                   <ul className="mt-2 text-xs space-y-1">
                     <li>• ИИ-Саммит (2024)</li>
@@ -652,65 +653,75 @@ const About = () => {
               </div>
 
               {/* Projects Stats */}
-              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
-                <h3 className="text-xl font-semibold text-text-heading mb-6 text-center">
-                  36+ проектов на основе ИИ за 7 лет:
+              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
+                <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
+                  <AnimatedNumber value={36} suffix="+" className="text-primary" /> проектов на основе ИИ за 7 лет:
                 </h3>
                 <div className="grid sm:grid-cols-3 gap-4 mb-6">
-                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
-                    <div className="text-3xl font-bold text-primary mb-2">14</div>
-                    <div className="text-sm text-text-body">в торговле (Крайпотребсоюз и сети магазинов)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI 250–400%</div>
+                  <div className="text-center p-4 bg-muted rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      <AnimatedNumber value={14} className="text-primary" />
+                    </div>
+                    <div className="text-sm text-foreground">в торговле (Крайпотребсоюз и сети магазинов)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={250} suffix="–400%" className="text-primary" /></div>
                   </div>
-                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
-                    <div className="text-3xl font-bold text-primary mb-2">12</div>
-                    <div className="text-sm text-text-body">в логистике (Грузовой Экспресс и др.)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI 180–320%</div>
+                  <div className="text-center p-4 bg-muted rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      <AnimatedNumber value={12} className="text-primary" />
+                    </div>
+                    <div className="text-sm text-foreground">в логистике (Грузовой Экспресс и др.)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={180} suffix="–320%" className="text-primary" /></div>
                   </div>
-                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
-                    <div className="text-3xl font-bold text-primary mb-2">10</div>
-                    <div className="text-sm text-text-body">в программных продуктах (SaaS)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI 200–400%</div>
+                  <div className="text-center p-4 bg-muted rounded-xl">
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      <AnimatedNumber value={10} className="text-primary" />
+                    </div>
+                    <div className="text-sm text-foreground">в программных продуктах (SaaS)</div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={200} suffix="–400%" className="text-primary" /></div>
                   </div>
                 </div>
               </div>
 
               {/* Consultations Stats */}
-              <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
+              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
                 <div className="text-center mb-4">
                   <span className="text-4xl md:text-5xl font-bold text-primary block mb-2">
-                    {auditsCount}
+                    <AnimatedNumber value={350} suffix="+" className="text-primary" />
                   </span>
-                  <span className="text-lg text-text-body">консультаций и диагностик</span>
-                  <p className="text-sm text-text-body mt-2">(среднее: 2–3 часа на диагностику)</p>
+                  <span className="text-lg text-foreground">консультаций и диагностик</span>
+                  <p className="text-sm text-muted-foreground mt-2">(среднее: 2–3 часа на диагностику)</p>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 mt-6">
-                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
-                    <div className="text-2xl font-bold text-green-600 mb-2">60%</div>
-                    <div className="text-sm text-text-body">компаний после диагностики начинают внедрение</div>
+                  <div className="text-center p-4 bg-muted rounded-xl">
+                    <div className="text-2xl font-bold text-green-600 mb-2">
+                      <AnimatedNumber value={60} suffix="%" className="text-green-600" />
+                    </div>
+                    <div className="text-sm text-foreground">компаний после диагностики начинают внедрение</div>
                   </div>
-                  <div className="text-center p-4 bg-[#FAFBFC] rounded-xl">
-                    <div className="text-2xl font-bold text-primary mb-2">40%</div>
-                    <div className="text-sm text-text-body">понимают, что им ИИ вообще не нужен<br />(и это тоже результат!)</div>
+                  <div className="text-center p-4 bg-muted rounded-xl">
+                    <div className="text-2xl font-bold text-primary mb-2">
+                      <AnimatedNumber value={40} suffix="%" className="text-primary" />
+                    </div>
+                    <div className="text-sm text-foreground">понимают, что им ИИ вообще не нужен<br />(и это тоже результат!)</div>
                   </div>
                 </div>
               </div>
 
               {/* ROI Highlight */}
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 text-center border-2 border-primary/20">
+              <div className="bg-primary/10 rounded-2xl p-8 text-center border border-primary/20">
                 <div className="text-5xl md:text-6xl font-bold text-primary mb-3">
-                  {roiMinCount}–{roiMaxCount}%
+                  <AnimatedNumber value={200} className="text-primary" />–<AnimatedNumber value={400} suffix="%" className="text-primary" />
                 </div>
-                <div className="text-lg md:text-xl font-semibold text-text-heading mb-2">
+                <div className="text-lg md:text-xl font-semibold text-foreground mb-2">
                   ROI В ПЕРВЫЕ 3 МЕСЯЦА после запуска
                 </div>
-                <div className="text-sm text-text-body">
+                <div className="text-sm text-muted-foreground">
                   (не за год — за квартал!)
                 </div>
               </div>
             </div>
           </div>
-        </section>}
+        </section>
 
         {/* Testimonials */}
         <section className="py-10 md:py-16 lg:py-20">
