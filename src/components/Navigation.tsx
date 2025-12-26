@@ -108,7 +108,8 @@ const Navigation = () => {
       isScroll: false,
       submenu: [
         { href: "/materials/resources", label: "Материалы" },
-        { href: "/materials/blog", label: "Блог" }
+        { href: "/materials/blog", label: "Блог" },
+        { href: "/about", label: "Обо мне" }
       ]
     }
   ];
