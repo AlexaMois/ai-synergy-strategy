@@ -6,7 +6,7 @@ import Partners from "@/components/Partners";
 
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
-import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
+import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake, ImageIcon } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
 
 const CaseStudyKraypotrebsoyuz = () => {
@@ -60,6 +60,14 @@ const CaseStudyKraypotrebsoyuz = () => {
             <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-8">
               Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽
             </h1>
+            
+            {/* Hero Image Placeholder */}
+            <div className="bg-muted rounded-2xl h-64 md:h-80 flex items-center justify-center border-2 border-dashed border-border">
+              <div className="text-center text-muted-foreground">
+                <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <p className="text-sm">Фото с собрания или офиса</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -185,6 +193,14 @@ const CaseStudyKraypotrebsoyuz = () => {
                 стало понятно, что значительная часть задач может быть решена без тяжёлой серверной инфраструктуры.
               </p>
             </div>
+            
+            {/* Audit Photo Placeholder */}
+            <div className="mt-8 bg-muted rounded-2xl h-48 md:h-64 flex items-center justify-center border-2 border-dashed border-border">
+              <div className="text-center text-muted-foreground">
+                <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
+                <p className="text-sm">Фото рабочего процесса / встречи</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -237,6 +253,14 @@ const CaseStudyKraypotrebsoyuz = () => {
                   <span className="text-foreground">подготовку команды к самостоятельной работе с системой</span>
                 </li>
               </ul>
+            </div>
+            
+            {/* Bpium Screenshot Placeholder */}
+            <div className="bg-muted rounded-2xl h-48 md:h-64 flex items-center justify-center border-2 border-dashed border-border">
+              <div className="text-center text-muted-foreground">
+                <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
+                <p className="text-sm">Скриншот системы Bpium</p>
+              </div>
             </div>
           </div>
         </section>
@@ -379,28 +403,40 @@ const CaseStudyKraypotrebsoyuz = () => {
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="section-title mb-6">Продолжение сотрудничества</h2>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
-              По итогам внедрения я была приглашена<br />
-              на ежегодное общее собрание Крайпотребсоюза,<br />
-              где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
-            </p>
-            
-            <div className="bg-primary/10 rounded-2xl p-6 mb-6">
-              <p className="text-base font-medium text-foreground mb-4">На собрании было принято решение:</p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">продолжить сотрудничество на весь <strong>2026 год</strong></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">подключить собственные хозяйства Крайпотребсоюза</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">далее масштабировать решения на региональные подразделения</span>
-                </li>
-              </ul>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <p className="text-lg text-foreground leading-relaxed mb-6">
+                  По итогам внедрения я была приглашена<br />
+                  на ежегодное общее собрание Крайпотребсоюза,<br />
+                  где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
+                </p>
+                
+                <div className="bg-primary/10 rounded-2xl p-6">
+                  <p className="text-base font-medium text-foreground mb-4">На собрании было принято решение:</p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground">продолжить сотрудничество на весь <strong>2026 год</strong></span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground">подключить собственные хозяйства Крайпотребсоюза</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground">далее масштабировать решения на региональные подразделения</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              {/* Meeting Photo Placeholder */}
+              <div className="bg-muted rounded-2xl h-64 md:h-auto flex items-center justify-center border-2 border-dashed border-border">
+                <div className="text-center text-muted-foreground">
+                  <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">Фото с собрания</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
