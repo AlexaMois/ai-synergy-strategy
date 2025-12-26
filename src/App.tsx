@@ -114,7 +114,7 @@ const App = () => (
             <Route path="/legal/terms" element={<Terms />} />
             
             {/* Redirects for old URLs */}
-            <Route path="/about" element={<Navigate to="/approach/contacts" replace />} />
+            <Route path="/approach" element={<Navigate to="/" replace />} />
             <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
             <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
             <Route path="/blog/:slug" element={<Navigate to="/materials/blog/:slug" replace />} />
