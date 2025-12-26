@@ -112,11 +112,17 @@ const HowIWorkProcess = () => {
             <div className="flex flex-col gap-2 items-center">
               <Button
                 size="lg"
-                asChild
+                onClick={() => {
+                  const element = document.querySelector('#contact');
+                  if (element) {
+                    const navHeight = 100;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                  }
+                }}
               >
-                <a href="https://calendar.app.google/Zb3NNbpFm3Yh1uA59" target="_blank" rel="noopener noreferrer">
-                  Записаться на бесплатный экспресс-аудит
-                </a>
+                Обсудить задачу
               </Button>
               <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
             </div>
