@@ -5,12 +5,20 @@ import Contact from "@/components/Contact";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
-import { Check, Blocks, GitBranch, Shield, Workflow } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { 
+  Users, 
+  AlertTriangle, 
+  Info, 
+  Cog, 
+  Package, 
+  Lightbulb, 
+  FileText, 
+  TrendingUp,
+  Clock,
+  Building2
+} from "lucide-react";
 
 const ArchitecturePage = () => {
-  const navigate = useNavigate();
-
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -18,40 +26,81 @@ const ArchitecturePage = () => {
     }
   };
 
-  const benefits = [
-    { icon: Blocks, title: "Модульная архитектура", description: "Решения, которые легко масштабировать и дорабатывать" },
-    { icon: GitBranch, title: "Интеграции", description: "Бесшовное подключение к CRM, 1С, Telegram и другим системам" },
-    { icon: Shield, title: "Безопасность", description: "Защита данных и соответствие требованиям регуляторов" },
-    { icon: Workflow, title: "Автоматизация", description: "Процессы работают без постоянного участия людей" },
+  const sections = [
+    {
+      icon: Users,
+      heading: "Для кого это",
+      content: "Для тех, кто хочет внедрять ИИ не «точечно», а как часть управленческой логики. Для компаний, которые знают что внедрять, но не знают как."
+    },
+    {
+      icon: AlertTriangle,
+      heading: "Какая боль закрывает",
+      list: [
+        "Решения работают отдельно, не усиливают друг друга",
+        "Бизнес сталкивается с перегруженными «коробками» инструментов",
+        "Нет ясности что выбрать: какую платформу, какой язык модели, свой сервер или облако",
+        "Смета подрядчиков неочевидна и кажется завышена",
+        "Каждый инструмент живёт своей жизнью, нет интеграции"
+      ]
+    },
+    {
+      icon: Info,
+      heading: "Почему это важно",
+      content: "ИИ работает только тогда, когда идёт в связке с процессами. Если логики нет — эффект не появится, даже при дорогих технологиях."
+    },
+    {
+      icon: Cog,
+      heading: "Как это работает",
+      list: [
+        "Формулируем что должно измениться в бизнесе",
+        "Строю архитектуру: интеграции, маршруты данных, взаимодействие ролей",
+        "Выбираю инструменты без привязки к вендорам (только нужные)",
+        "Учитываю требования РФ: где данные, какие контуры, импортозамещение",
+        "Проектирую три сценария внедрения: быстрый / оптимальный / фундаментальный",
+        "Формирую карту внедрения с шагами, рисками, сроками"
+      ]
+    },
+    {
+      icon: Package,
+      heading: "Что вы получаете",
+      list: [
+        "Ясную обоснованную архитектуру, которую понимают управленцы и ИТ",
+        "Три сценария внедрения с разными затратами и сроками",
+        "Прозрачные критерии выбора подрядчиков",
+        "Конкретные требования к инструментам (а не размытые)",
+        "Техническое задание для разработки",
+        "Понимание где простота важнее мощности, а где наоборот",
+        "Реальный бюджет и сроки разработки"
+      ]
+    },
+    {
+      icon: Lightbulb,
+      heading: "В чём отличие",
+      content: "Я соединяю управленческое мышление и инженерную точность. Смотрю на систему так же, как собственник или CTO."
+    },
+    {
+      icon: FileText,
+      heading: "Реальный пример",
+      content: "Компания хотела внедрить 14 инструментов. После архитектуры осталось 3 — самые простые и недорогие. Эффект от трёх инструментов оказался в разы выше, чем от первоначального плана."
+    },
+    {
+      icon: TrendingUp,
+      heading: "Результат",
+      content: "Компании часто сокращают бюджет внедрения ×3–5, сохраняя качество. Понимание что внедрять и в каком порядке."
+    }
   ];
 
-  const includes = [
-    "Детальный анализ требований и ограничений",
-    "Выбор оптимального стека технологий",
-    "Проектирование архитектуры решения",
-    "Схемы интеграций с существующими системами",
-    "Расчёт нагрузки и масштабирования",
-    "Три сценария реализации (быстрый/оптимальный/комплексный)",
-    "Техническое задание для разработки",
-    "Рекомендации по выбору подрядчиков",
-  ];
-
-  const technologies = [
-    "Make / n8n / Zapier",
-    "OpenAI API / GigaChat / YandexGPT",
-    "amoCRM / Bitrix24 / 1С",
-    "Telegram Bot API",
-    "Python / Node.js",
-    "PostgreSQL / MongoDB",
-    "Docker / Kubernetes",
-    "Собственные LLM-модели",
+  const metrics = [
+    { value: "×3-5", label: "экономия на внедрении" },
+    { value: "3", label: "сценария реализации" },
+    { value: "100%", label: "готовое ТЗ" }
   ];
 
   return (
     <PageTransition>
       <Helmet>
         <title>Архитектура ИИ-решений | Александра Моисеева</title>
-        <meta name="description" content="Проектирование и разработка AI-решений под ключ. Интеграция ChatGPT, GigaChat в CRM, 1С, Telegram с гарантией результата." />
+        <meta name="description" content="Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, интеграция с CRM, 1С, готовое техническое задание." />
         <link rel="canonical" href="https://aleksamois.ru/services/architecture" />
       </Helmet>
 
@@ -64,105 +113,109 @@ const ArchitecturePage = () => {
           {/* Hero */}
           <section className="py-12 md:py-20">
             <div className="max-w-4xl">
-              <span className="text-primary font-medium mb-4 block">Услуга</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Архитектура ИИ-решений
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-                Проектирую системы, которые встраиваются в ваш бизнес без переделок. От выбора технологий до готового ТЗ для разработки.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" onClick={scrollToContact}>
-                  Обсудить проект
-                </Button>
-                <Button size="lg" variant="outline" onClick={() => navigate('/pricing')}>
-                  Узнать стоимость
-                </Button>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Building2 className="w-6 h-6 text-primary" />
+                </div>
+                <span className="text-primary font-medium">Услуга 02</span>
               </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                Архитектура
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
+                Проектирование AI-решения, которое встраивается в ваш процесс. Выбираем технологии без лишних затрат, определяем интеграцию с CRM, 1С, производственными системами, готовим техническое задание для разработчиков.
+              </p>
+              <Button size="lg" onClick={scrollToContact}>
+                Обсудить задачу
+              </Button>
+            </div>
+          </section>
+
+          {/* Metrics */}
+          <section className="py-8 border-t border-border">
+            <div className="grid grid-cols-3 gap-4 p-6 bg-primary/5 rounded-xl">
+              {metrics.map((metric, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-primary">
+                    {metric.value}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground mt-1">
+                    {metric.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* All Sections */}
+          <section className="py-12 border-t border-border">
+            <div className="grid md:grid-cols-2 gap-8">
+              {sections.map((section, index) => {
+                const Icon = section.icon;
+                return (
+                  <div key={index} className="bg-card rounded-xl p-6 border border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {section.heading}
+                      </h3>
+                    </div>
+                    {section.content && (
+                      <p className="text-muted-foreground leading-relaxed">
+                        {section.content}
+                      </p>
+                    )}
+                    {section.list && (
+                      <ul className="space-y-2">
+                        {section.list.map((item, iIndex) => (
+                          <li key={iIndex} className="flex items-start gap-2 text-muted-foreground">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </section>
 
           {/* Pricing */}
           <section className="py-12 border-t border-border">
-            <div className="bg-card rounded-2xl p-8 border border-border max-w-xl">
-              <div className="text-muted-foreground mb-2">Стоимость</div>
-              <div className="text-3xl font-bold text-foreground mb-2">от 60 000 ₽</div>
-              <div className="text-muted-foreground mb-4">Срок: 4-8 недель</div>
-              <p className="text-muted-foreground">
-                Финальная стоимость зависит от сложности проекта и количества интеграций
-              </p>
-            </div>
-          </section>
-
-          {/* Benefits */}
-          <section className="py-12 border-t border-border">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Что вы получите</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="bg-card rounded-xl p-6 border border-border">
-                  <benefit.icon className="w-10 h-10 text-primary mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 bg-primary/5 rounded-2xl">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12">
+                <div>
+                  <div className="text-sm text-muted-foreground mb-1">Стоимость</div>
+                  <div className="text-3xl font-bold text-primary">от 60 000 ₽</div>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* What's included */}
-          <section className="py-12 border-t border-border">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Что входит в услугу</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {includes.map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
-                  <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">{item}</span>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-muted-foreground" />
+                  <div>
+                    <div className="text-sm text-muted-foreground">Срок</div>
+                    <div className="font-medium text-foreground">7–10 дней</div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Technologies */}
-          <section className="py-12 border-t border-border">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Технологии</h2>
-            <div className="flex flex-wrap gap-3">
-              {technologies.map((tech, index) => (
-                <span key={index} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </section>
-
-          {/* Process */}
-          <section className="py-12 border-t border-border">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Этапы работы</h2>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { step: "01", title: "Анализ требований", description: "Глубокое погружение в бизнес-процессы и задачи" },
-                { step: "02", title: "Проектирование", description: "Выбор технологий и создание архитектуры" },
-                { step: "03", title: "Документация", description: "ТЗ, схемы интеграций, план реализации" },
-                { step: "04", title: "Сопровождение", description: "Помощь в выборе подрядчиков и старте разработки" },
-              ].map((phase, index) => (
-                <div key={index} className="relative">
-                  <div className="text-5xl font-bold text-primary/20 mb-4">{phase.step}</div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{phase.title}</h3>
-                  <p className="text-muted-foreground">{phase.description}</p>
-                </div>
-              ))}
+              </div>
+              <Button size="lg" onClick={scrollToContact}>
+                Заказать архитектуру →
+              </Button>
             </div>
           </section>
 
           {/* CTA */}
           <section className="py-12 border-t border-border">
-            <div className="bg-primary/5 rounded-2xl p-8 md:p-12 text-center">
+            <div className="bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Нужна архитектура ИИ-решения?
               </h2>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Обсудим ваш проект и подберём оптимальное решение
+                Обсудим ваш проект и спроектируем систему, которая работает
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Обсудить проект
+                Обсудить задачу
               </Button>
             </div>
           </section>
