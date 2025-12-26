@@ -101,17 +101,17 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/consent</loc>
+    <loc>https://aleksamois.ru/legal/consent</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/privacy-policy</loc>
+    <loc>https://aleksamois.ru/legal/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/terms</loc>
+    <loc>https://aleksamois.ru/legal/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
