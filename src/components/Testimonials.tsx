@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 
@@ -64,10 +65,78 @@ const reviews: Review[] = [
 const Testimonials = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  // Schema.org structured data for reviews
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Александра Моисеева — Независимый инженер по ИИ",
+    "description": "Консалтинг и внедрение ИИ-решений для бизнеса",
+    "url": "https://aleksamois.ru",
+    "image": "https://aleksamois.ru/og-image.png",
+    "telephone": "+7 993 721 73 67",
+    "email": "neiroreshenia@yandex.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Красноярск",
+      "addressCountry": "RU"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": reviews.length.toString(),
+      "reviewCount": reviews.length.toString()
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Organization", "name": "NeuroTech Russia" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Благодарность за вклад в развитие нейротехнологий в России"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Кирилл" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Практическое применение ИИ — отличные результаты"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Елена" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Семинар превзошёл ожидания, много практики"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Наталья Черкашина" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Профессиональный подход к автоматизации бизнес-процессов"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Organization", "name": "Союз семей России" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Благодарим за помощь во внедрении ИИ-решений"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Анастасия" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Автоматизация работает отлично, экономит время"
+      }
+    ]
+  };
+
   // Если отзывов нет, показываем заглушку
   if (reviews.length === 0) {
-    return (
-      <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+  return (
+    <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(reviewSchema)}
+        </script>
+      </Helmet>
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Что говорят клиенты</h2>
