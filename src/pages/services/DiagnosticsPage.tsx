@@ -106,7 +106,10 @@ const DiagnosticsPage = () => {
 
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 md:px-6">
-          <PageBreadcrumbs currentPage="Диагностика" />
+          <PageBreadcrumbs 
+            currentPage="Диагностика" 
+            parentPages={[{ label: "Услуги", href: "/services" }]}
+          />
 
           {/* Hero */}
           <section className="py-12 md:py-20">
