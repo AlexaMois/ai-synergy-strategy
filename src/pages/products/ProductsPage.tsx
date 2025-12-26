@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Mic, Search, ArrowRight, Zap, Shield, Clock } from "lucide-react";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const ProductsPage = () => {
   const products = [
@@ -57,6 +58,9 @@ const ProductsPage = () => {
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.products())}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { useState } from "react";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const CATEGORIES = ["Все статьи", "Внедрение ИИ", "Методология", "Аналитика", "Управление", "Технологии", "Обучение"];
 
@@ -84,6 +85,9 @@ const Blog = () => {
           <title>Блог об ИИ: разборы внедрения, методология, аналитика, реальные кейсы</title>
           <meta name="description" content="Статьи о внедрении искусственного интеллекта: диагностика, ROI, архитектура, ошибки проектов, обучение команды и практические подходы, которые дают измеримый эффект." />
           <meta name="keywords" content="блог об ИИ, внедрение искусственного интеллекта, методология AI, ROI от ИИ, автоматизация процессов, обучение команды ИИ, российские LLM, аналитика ИИ проектов" />
+          <script type="application/ld+json">
+            {JSON.stringify(getBreadcrumbs.blog())}
+          </script>
         </Helmet>
         <Navigation />
         <PageBreadcrumbs 

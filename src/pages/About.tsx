@@ -5,6 +5,7 @@ import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";
 import SixQuestions from "@/components/SixQuestions";
@@ -121,6 +122,9 @@ const About = () => {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.about())}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

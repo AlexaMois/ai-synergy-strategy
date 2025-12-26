@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, TrendingUp, Clock, AlertTriangle, CheckCircle, Lightbulb, Target, Zap } from "lucide-react";
 import { useState } from "react";
+import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const StartPage = () => {
   const [quizStep, setQuizStep] = useState(0);
@@ -93,6 +94,9 @@ const StartPage = () => {
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(getBreadcrumbs.start())}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
