@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import OptimizedImage from "@/components/OptimizedImage";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -96,6 +97,7 @@ const ChecklistPage = () => {
         <meta property="og:url" content="https://aleksamois.ru/checklist" />
       </Helmet>
       <Navigation />
+      <PageBreadcrumbs currentPage="Чек-лист" />
       
       <main>
       <div className="container mx-auto py-12 md:py-20">

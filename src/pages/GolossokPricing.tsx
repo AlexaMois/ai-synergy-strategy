@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
@@ -112,6 +113,10 @@ const GolossokPricing = () => {
       </Helmet>
       <div className="min-h-screen">
         <Navigation />
+        <PageBreadcrumbs 
+          currentPage="Голосовой бот" 
+          parentPages={[{ label: "Продукты", href: "/products" }]}
+        />
         
         <main>
         {/* Hero Section */}

@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Target, Users, Cog, Database, Layers } from "lucide-react";
 
 const systemElements = [
@@ -29,6 +30,7 @@ const ServicesPage = () => {
       </Helmet>
       <div className="min-h-screen">
         <Navigation />
+        <PageBreadcrumbs currentPage="Услуги" />
       
         <main>
         {/* Hero Section */}
