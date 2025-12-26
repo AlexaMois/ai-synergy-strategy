@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet";
 import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";
@@ -117,6 +118,7 @@ const About = () => {
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
+        <PageBreadcrumbs currentPage="Обо мне" />
       
         <main>
         {/* Hero Section */}
