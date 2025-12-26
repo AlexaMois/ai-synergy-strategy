@@ -205,7 +205,8 @@ const Navigation = () => {
                       onMouseEnter={() => handleMouseEnter(link.label)}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <button 
+                      <DisabledLink 
+                        to={link.href}
                         className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${
                           location.pathname === link.href || link.submenu.some(s => location.pathname === s.href)
                             ? "text-primary font-semibold" 
@@ -217,7 +218,7 @@ const Navigation = () => {
                           size={16} 
                           className={`transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`}
                         />
-                      </button>
+                      </DisabledLink>
                       
                       {/* Dropdown */}
                       <div 
