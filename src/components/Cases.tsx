@@ -3,7 +3,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "./ui/button";
 import { Building2, Mic, Truck } from "lucide-react";
 import CaseCard from "./CaseCard";
-import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Cases = () => {
   const { ref, isVisible, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -26,7 +26,7 @@ const Cases = () => {
       quoteAuthor: "Главный вывод",
       resultsSummary: "Экономия 1,3 млн ₽ на оборудовании / 2 сотрудника освобождены от рутины / Сроки договоров под автоматическим контролем / Финансовый отдел экономит 4–6 часов в неделю",
       buttonText: "Читать кейс →",
-      link: "/case-studies/kraypotrebsoyuz",
+      link: "/cases/kraypotrebsoyuz",
       bgColor: "#F0F9FB"
     },
     {
@@ -65,7 +65,7 @@ const Cases = () => {
       quoteAuthor: "Главный вывод",
       resultsSummary: "Потери и дубли заявок устранены (раньше — 10–15%) / Экономия 3–4 часа в неделю на одного менеджера / Ежедневные отчёты и аналитика в реальном времени / Система работает автономно",
       buttonText: "Читать кейс →",
-      link: "/case-studies/cargo-express",
+      link: "/cases/cargo-express",
       bgColor: "#F0F9FB"
     }
   ];
@@ -93,18 +93,9 @@ const Cases = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center">
-            <Button 
-              size="lg" 
-              className="text-lg px-8"
-              onClick={() => {
-                toast({
-                  title: "Эта страница находится в разработке",
-                  description: "Скоро здесь появится полезная информация",
-                });
-              }}
-            >
-              Посмотреть все кейсы
-            </Button>
+          <Button asChild size="lg" className="text-lg px-8">
+            <Link to="/cases">Посмотреть все кейсы</Link>
+          </Button>
         </div>
       </div>
     </section>
