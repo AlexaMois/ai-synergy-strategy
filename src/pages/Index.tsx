@@ -45,7 +45,7 @@ const Index = () => {
         <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев. Без привязки к платформам." />
         <meta name="keywords" content="ИИ консалтинг, внедрение искусственного интеллекта, AI стратегия, автоматизация бизнеса, нейросети для бизнеса, Александра Моисеева" />
         <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Александра Моисеева — Независимый стратег и инженер по ИИ" />
+        <meta property="og:title" content="Александра Моисеева — Стратег и инженер ИИ | ROI 200-400%" />
         <meta property="og:description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
