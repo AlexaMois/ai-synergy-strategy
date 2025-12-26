@@ -160,7 +160,7 @@ const About = () => {
 
         {/* Brief About Me - Collapsible */}
         <section className="py-10 md:py-16 lg:py-20 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
                 <CollapsibleTrigger className="w-full">
@@ -206,7 +206,7 @@ const About = () => {
 
         {/* My Journey - Accordion */}
         <section ref={journeyRef} className="py-10 md:py-16 lg:py-20">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-12 ${journeyAnimation('animate-fade-in-up')}`}>
               Мой путь: <span className="font-semibold">взрослая история без романтизации</span>
             </h2>
@@ -284,7 +284,7 @@ const About = () => {
 
         {/* Engineering Path - temporarily hidden */}
         {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
             </h2>

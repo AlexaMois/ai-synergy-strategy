@@ -9,7 +9,7 @@ const MyStory = () => {
       background: 'linear-gradient(180deg, #F6F8FA 0%, #FAFBFC 100%)'
     }}>
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto py-16">
+        <div className="max-w-6xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
           <h2 className={`section-title text-center ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
             Моя позиция

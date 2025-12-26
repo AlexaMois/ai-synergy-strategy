@@ -105,7 +105,7 @@ const BlogPost = () => {
       
       <main>
       <article className="pt-32 pb-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           <Link 
             to="/blog" 
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"

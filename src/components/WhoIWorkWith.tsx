@@ -6,7 +6,7 @@ const WhoIWorkWith = () => {
   return (
     <section ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className={`section-title text-center leading-tight ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             С кем я работаю, <span className="font-semibold">и с кем — нет</span>
           </h2>

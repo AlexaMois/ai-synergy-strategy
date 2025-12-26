@@ -26,7 +26,7 @@ const CaseStudyCargoExpress = () => {
         <main>
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <Truck className="w-12 h-12 text-primary" strokeWidth={1.5} />
               <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
@@ -62,7 +62,7 @@ const CaseStudyCargoExpress = () => {
 
         {/* Problem Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-8">Проблема: ручной контроль убивает время</h2>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
@@ -91,7 +91,7 @@ const CaseStudyCargoExpress = () => {
 
         {/* Solution Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-8">Решение: Telegram + Google Sheets + автоматизация</h2>
             
             <div className="bg-yellow-50 rounded-2xl p-6 mb-8 border-l-4 border-yellow-600">
@@ -166,7 +166,7 @@ const CaseStudyCargoExpress = () => {
 
         {/* Results Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-8">Результаты: окупаемость за 3 недели</h2>
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -224,7 +224,7 @@ const CaseStudyCargoExpress = () => {
 
         {/* Architecture Download */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
                 Скачать архитектуру системы
@@ -241,7 +241,7 @@ const CaseStudyCargoExpress = () => {
 
         {/* CTA Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="container mx-auto px-4 max-w-6xl text-center">
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Хотите получить похожее решение для вашей логистики?
             </h2>
