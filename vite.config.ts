@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-    base: '/',
+  base: '/',
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
@@ -17,25 +17,50 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    // Enable minification
+    minify: 'esbuild',
+    // Target modern browsers for smaller bundles
+    target: 'es2020',
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Optimize source maps for production
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-components': [
             '@radix-ui/react-accordion',
             '@radix-ui/react-dialog',
             '@radix-ui/react-dropdown-menu',
             '@radix-ui/react-toast',
+            '@radix-ui/react-tabs',
           ],
+          'animation': ['framer-motion'],
         },
+        // Optimize asset file names for caching
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name?.split('.') || [];
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|webp|avif/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
-    // Optimize asset handling
-    assetsInlineLimit: 4096, // 4kb - inline smaller assets as base64
+    // Inline smaller assets as base64
+    assetsInlineLimit: 4096,
     chunkSizeWarningLimit: 1000,
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom'],
+    include: ['react', 'react-dom', 'react-router-dom'],
+  },
+  // Enable CSS optimization
+  css: {
+    devSourcemap: false,
   },
 }));
