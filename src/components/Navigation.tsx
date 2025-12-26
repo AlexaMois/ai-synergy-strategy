@@ -1,9 +1,16 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Phone, Send } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
+
+interface NavLink {
+  href: string;
+  label: string;
+  isScroll: boolean;
+  submenu?: { href: string; label: string }[];
+}
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,12 +18,14 @@ const Navigation = () => {
   const [activeSection, setActiveSection] = useState("");
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
+  const submenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
   const phoneNumber = "+7 993 721 73 67";
   const phoneLink = "tel:+79937217367";
-  const telegramLink = "https://t.me/aleksamois";
 
   useEffect(() => {
     let ticking = false;
@@ -62,31 +71,63 @@ const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
 
-  const navLinks = [{
-    href: "/services",
-    label: "Услуги",
-    isScroll: false
-  }, {
-    href: "/cases",
-    label: "Кейсы",
-    isScroll: false
-  }, {
-    href: "/resources",
-    label: "Материалы",
-    isScroll: false
-  }, {
-    href: "/about",
-    label: "О подходе",
-    isScroll: false
-  }, {
-    href: "/blog",
-    label: "Блог",
-    isScroll: false
-  }, {
-    href: "#contact",
-    label: "Контакты",
-    isScroll: true
-  }];
+  const navLinks: NavLink[] = [
+    {
+      href: "/checklist",
+      label: "С чего начать",
+      isScroll: false
+    },
+    {
+      href: "/services",
+      label: "Услуги",
+      isScroll: false
+    },
+    {
+      href: "/cases",
+      label: "Кейсы",
+      isScroll: false
+    },
+    {
+      href: "/golossok-pricing",
+      label: "Продукты",
+      isScroll: false
+    },
+    {
+      href: "/resources",
+      label: "Материалы",
+      isScroll: false,
+      submenu: [
+        { href: "/resources", label: "Ресурсы" },
+        { href: "/blog", label: "Блог" }
+      ]
+    },
+    {
+      href: "/about",
+      label: "Экспертный подход",
+      isScroll: false
+    }
+  ];
+
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+      return;
+    }
+    
+    const element = document.querySelector('#contact');
+    if (element) {
+      const navHeight = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -121,6 +162,23 @@ const Navigation = () => {
     }
   };
 
+  const handleMouseEnter = (label: string) => {
+    if (submenuTimeoutRef.current) {
+      clearTimeout(submenuTimeoutRef.current);
+    }
+    setOpenSubmenu(label);
+  };
+
+  const handleMouseLeave = () => {
+    submenuTimeoutRef.current = setTimeout(() => {
+      setOpenSubmenu(null);
+    }, 150);
+  };
+
+  const toggleMobileSubmenu = (label: string) => {
+    setMobileOpenSubmenu(mobileOpenSubmenu === label ? null : label);
+  };
+
   return <>
     {/* Desktop Header */}
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-card border-b border-border ${isScrolled ? "shadow-soft" : ""}`}>
@@ -132,25 +190,76 @@ const Navigation = () => {
               <img src={logoHorizontal} alt="Нейрорешения" className="h-40 xl:h-48 w-auto" />
             </Link>
 
-            <nav className="flex items-center gap-7">
-              {navLinks.map(link => link.isScroll ? (
-                <a 
-                  key={link.href} 
-                  href={link.href} 
-                  onClick={e => scrollToSection(e, link.href)} 
-                  className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <DisabledLink 
-                  key={link.href} 
-                  to={link.href} 
-                  className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
-                >
-                  {link.label}
-                </DisabledLink>
-              ))}
+            <nav className="flex items-center gap-6">
+              {navLinks.map(link => {
+                if (link.submenu) {
+                  return (
+                    <div 
+                      key={link.href}
+                      className="relative"
+                      onMouseEnter={() => handleMouseEnter(link.label)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <button 
+                        className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${
+                          location.pathname === link.href || link.submenu.some(s => location.pathname === s.href)
+                            ? "text-primary font-semibold" 
+                            : "text-foreground hover:text-primary"
+                        }`}
+                      >
+                        {link.label}
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      
+                      {/* Dropdown */}
+                      <div 
+                        className={`absolute top-full left-0 mt-1 bg-card border border-border rounded-xl shadow-card py-2 min-w-[160px] transition-all duration-200 ${
+                          openSubmenu === link.label 
+                            ? 'opacity-100 visible translate-y-0' 
+                            : 'opacity-0 invisible -translate-y-2'
+                        }`}
+                      >
+                        {link.submenu.map(subItem => (
+                          <DisabledLink
+                            key={subItem.href}
+                            to={subItem.href}
+                            className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                              location.pathname === subItem.href
+                                ? "text-primary bg-muted"
+                                : "text-foreground hover:text-primary hover:bg-muted"
+                            }`}
+                            onClick={() => setOpenSubmenu(null)}
+                          >
+                            {subItem.label}
+                          </DisabledLink>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+                
+                return link.isScroll ? (
+                  <a 
+                    key={link.href} 
+                    href={link.href} 
+                    onClick={e => scrollToSection(e, link.href)} 
+                    className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${activeSection === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <DisabledLink 
+                    key={link.href} 
+                    to={link.href} 
+                    className={`transition-colors duration-200 text-base font-medium relative py-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 after:ease-out after:rounded-full ${location.pathname === link.href ? "text-primary after:w-full after:opacity-100 font-semibold" : "text-foreground hover:text-primary after:w-0 after:opacity-0 hover:after:w-full hover:after:opacity-50"}`}
+                  >
+                    {link.label}
+                  </DisabledLink>
+                );
+              })}
             </nav>
           </div>
           
@@ -165,10 +274,9 @@ const Navigation = () => {
             </a>
             <Button 
               size="sm" 
-              onClick={(e) => scrollToSection(e as any, '#contact')}
+              onClick={scrollToContact}
             >
-              <Phone size={14} strokeWidth={1.5} />
-              Заказать звонок
+              Обсудить задачу
             </Button>
           </div>
         </div>
@@ -218,27 +326,70 @@ const Navigation = () => {
     >
       <div className="flex flex-col h-full pt-20 p-6 overflow-y-auto">
         <nav className="space-y-1 flex-1">
-          {navLinks.map((link, index) => link.isScroll ? (
-            <a 
-              key={link.href} 
-              href={link.href} 
-              onClick={e => scrollToSection(e, link.href)} 
-              className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              {link.label}
-            </a>
-          ) : (
-            <DisabledLink 
-              key={link.href} 
-              to={link.href} 
-              onClick={() => setIsMobileMenuOpen(false)} 
-              className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              {link.label}
-            </DisabledLink>
-          ))}
+          {navLinks.map((link, index) => {
+            if (link.submenu) {
+              return (
+                <div key={link.href} className={`${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: `${index * 50}ms` }}>
+                  <button
+                    onClick={() => toggleMobileSubmenu(link.label)}
+                    className={`flex items-center justify-between w-full py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${
+                      link.submenu.some(s => location.pathname === s.href)
+                        ? "text-primary bg-muted"
+                        : "text-foreground hover:text-primary hover:bg-muted"
+                    }`}
+                  >
+                    {link.label}
+                    <ChevronDown 
+                      size={18} 
+                      className={`transition-transform duration-200 ${mobileOpenSubmenu === link.label ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  
+                  {/* Mobile submenu */}
+                  <div className={`overflow-hidden transition-all duration-200 ${mobileOpenSubmenu === link.label ? 'max-h-40' : 'max-h-0'}`}>
+                    <div className="pl-4 pt-1 space-y-1">
+                      {link.submenu.map(subItem => (
+                        <DisabledLink
+                          key={subItem.href}
+                          to={subItem.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`block py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                            location.pathname === subItem.href
+                              ? "text-primary bg-muted"
+                              : "text-foreground hover:text-primary hover:bg-muted"
+                          }`}
+                        >
+                          {subItem.label}
+                        </DisabledLink>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            
+            return link.isScroll ? (
+              <a 
+                key={link.href} 
+                href={link.href} 
+                onClick={e => scrollToSection(e, link.href)} 
+                className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <DisabledLink 
+                key={link.href} 
+                to={link.href} 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} 
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                {link.label}
+              </DisabledLink>
+            );
+          })}
         </nav>
         
         {/* Phone number and CTA in mobile menu */}
@@ -253,10 +404,9 @@ const Navigation = () => {
           <Button 
             size="sm" 
             className="w-full"
-            onClick={(e) => scrollToSection(e as any, '#contact')}
+            onClick={scrollToContact}
           >
-            <Phone size={14} strokeWidth={1.5} />
-            Заказать звонок
+            Обсудить задачу
           </Button>
         </div>
       </div>
