@@ -214,7 +214,7 @@ const ArchitecturePage = () => {
                 </div>
               </div>
               <Button size="lg" onClick={scrollToContact}>
-                Заказать архитектуру →
+                Обсудить задачу
               </Button>
             </div>
           </section>
