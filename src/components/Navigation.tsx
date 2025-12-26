@@ -103,7 +103,7 @@ const Navigation = () => {
       ]
     },
     {
-      href: "/approach",
+      href: "#",
       label: "Экспертный подход",
       isScroll: false,
       submenu: [
@@ -206,10 +206,9 @@ const Navigation = () => {
                       onMouseEnter={() => handleMouseEnter(link.label)}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <DisabledLink 
-                        to={link.href}
+                      <button 
                         className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${
-                          location.pathname === link.href || link.submenu.some(s => location.pathname === s.href)
+                          link.submenu.some(s => location.pathname === s.href)
                             ? "text-primary font-semibold" 
                             : "text-foreground hover:text-primary"
                         }`}
@@ -219,7 +218,7 @@ const Navigation = () => {
                           size={16} 
                           className={`transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`}
                         />
-                      </DisabledLink>
+                      </button>
                       
                       {/* Dropdown */}
                       <div 
