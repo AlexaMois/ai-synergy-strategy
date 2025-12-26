@@ -17,6 +17,7 @@ const SupportPage = lazy(() => import("./pages/services/SupportPage"));
 const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
+const DocSearchCasePage = lazy(() => import("./pages/cases/DocSearchCasePage"));
 const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
 const ApproachPage = lazy(() => import("./pages/approach/ApproachPage"));
 const DemoPage = lazy(() => import("./pages/demo/DemoPage"));
@@ -82,6 +83,8 @@ const App = () => (
             {/* Cases */}
             <Route path="/cases" element={<CasesPage />} />
             <Route path="/cases/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
+            <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
+            <Route path="/cases/doc-search" element={<DocSearchCasePage />} />
             <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
             
             {/* Materials */}
