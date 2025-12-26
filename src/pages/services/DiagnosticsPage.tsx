@@ -212,7 +212,7 @@ const DiagnosticsPage = () => {
                 </div>
               </div>
               <Button size="lg" onClick={scrollToContact}>
-                Заказать диагностику →
+                Обсудить задачу
               </Button>
             </div>
           </section>

@@ -229,7 +229,7 @@ const SupportPage = () => {
                 </div>
               </div>
               <Button size="lg" onClick={scrollToContact}>
-                Заказать сопровождение →
+                Обсудить задачу
               </Button>
             </div>
           </section>
