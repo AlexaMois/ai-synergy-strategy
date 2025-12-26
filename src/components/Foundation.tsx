@@ -71,7 +71,7 @@ const Foundation = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Фундамент, <span className="font-semibold">три этапа работы</span>
+          Как внедрить ИИ <span className="font-semibold">и не потерять бюджет</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
