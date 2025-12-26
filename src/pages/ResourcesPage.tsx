@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
@@ -148,6 +149,10 @@ const ResourcesPage = () => {
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
+        <PageBreadcrumbs 
+          currentPage="Материалы" 
+          parentPages={[{ label: "Экспертный подход", href: "/approach" }]} 
+        />
         
         <main className="container mx-auto px-4 max-w-6xl">
           {/* Hero Section */}

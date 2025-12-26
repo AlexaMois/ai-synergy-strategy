@@ -16,6 +16,9 @@ export const ALLOWED_ROUTES = [
   '/case-studies/kraypotrebsoyuz',
   '/case-studies/cargo-express',
   '/case-studies/doc-search',
+  '/approach',
+  '/materials/resources',
+  '/materials/blog',
 ];
 
 export const isRouteAllowed = (path: string): boolean => {
@@ -27,6 +30,8 @@ export const isRouteAllowed = (path: string): boolean => {
   if (path.startsWith('/blog/')) return true;
   // Разрешаем динамические маршруты кейсов (/case-studies/:slug)
   if (path.startsWith('/case-studies/')) return true;
+  // Разрешаем динамические маршруты блога в материалах (/materials/blog/:slug)
+  if (path.startsWith('/materials/blog/')) return true;
   // Проверяем по списку статических маршрутов
   return ALLOWED_ROUTES.includes(path);
 };
