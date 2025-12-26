@@ -115,6 +115,9 @@ const Testimonials = () => {
                     alt={review.alt}
                     className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                     loading="lazy"
+                    decoding="async"
+                    width="192"
+                    height="256"
                   />
                 </div>
               </div>
