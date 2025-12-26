@@ -6,6 +6,8 @@ import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
+import AnimatedMetric from "@/components/AnimatedMetric";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const PricingPage = () => {
   const companyServices = [

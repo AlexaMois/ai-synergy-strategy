@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, DollarSign, Target } from "lucide-react";
+import AnimatedNumber from "@/components/AnimatedNumber";
 
 const CaseStudyCargoExpress = () => {
   return (
@@ -171,25 +172,33 @@ const CaseStudyCargoExpress = () => {
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <Clock className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">3–4 часа</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={3} suffix="–4 часа" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Экономия времени<br />в неделю (диспетчеры)</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">99%</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={99} suffix="%" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Точность маршрутов<br />(вместо 70%)</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <Target className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">100%</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={100} suffix="%" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Контроль менеджера<br />над водителями</p>
               </div>
               
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-4xl font-bold text-primary mb-2">3 недели</p>
+                <p className="text-4xl font-bold text-primary mb-2">
+                  <AnimatedNumber value={3} suffix=" недели" className="text-primary" />
+                </p>
                 <p className="text-sm text-muted-foreground">Окупаемость<br />(работает уже 8 месяцев)</p>
               </div>
             </div>
