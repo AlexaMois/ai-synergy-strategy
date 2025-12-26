@@ -37,6 +37,88 @@ const Index = () => {
       }, 100);
     }
   }, [location.hash]);
+
+  // Organization schema for SEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Александра Моисеева — Независимый инженер по ИИ",
+    "alternateName": "НейроРешения",
+    "description": "Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев.",
+    "url": "https://aleksamois.ru",
+    "logo": "https://aleksamois.ru/og-image.png",
+    "image": "https://aleksamois.ru/og-image.png",
+    "telephone": "+79937217367",
+    "email": "neiroreshenia@yandex.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Красноярск",
+      "addressRegion": "Красноярский край",
+      "addressCountry": "RU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "56.0153",
+      "longitude": "92.8932"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Россия"
+    },
+    "priceRange": "$$",
+    "founder": {
+      "@type": "Person",
+      "name": "Александра Моисеева",
+      "jobTitle": "Независимый стратег и инженер по ИИ",
+      "knowsAbout": ["Искусственный интеллект", "Автоматизация бизнеса", "Machine Learning", "Нейросети"],
+      "memberOf": [
+        { "@type": "Organization", "name": "НФИИ (Национальная Федерация Искусственного Интеллекта)" },
+        { "@type": "Organization", "name": "IT-Park" }
+      ],
+      "award": "Премия «Успешный бизнес»"
+    },
+    "sameAs": [
+      "https://t.me/neiroreshenia",
+      "https://t.me/aleksamois"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+79937217367",
+      "email": "neiroreshenia@yandex.com",
+      "contactType": "customer service",
+      "availableLanguage": ["Russian"]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Услуги по внедрению ИИ",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Диагностика ИИ",
+            "description": "Экспресс-аудит готовности бизнеса к ИИ"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Архитектура ИИ",
+            "description": "Проектирование ИИ-решений под задачи бизнеса"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Сопровождение",
+            "description": "Внедрение и поддержка ИИ-решений"
+          }
+        }
+      ]
+    }
+  };
   
   return (
     <div className="min-h-screen">
@@ -54,6 +136,9 @@ const Index = () => {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
       </Helmet>
       <Navigation />
       <main>
