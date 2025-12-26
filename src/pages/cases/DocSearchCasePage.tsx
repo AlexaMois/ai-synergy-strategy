@@ -97,7 +97,10 @@ const DocSearchCasePage = () => {
 
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 md:px-6">
-          <PageBreadcrumbs currentPage="Интеллектуальный поиск" />
+          <PageBreadcrumbs 
+            currentPage="Интеллектуальный поиск" 
+            parentPages={[{ label: "Кейсы", href: "/cases" }]}
+          />
 
           {/* Hero */}
           <section className="py-12 md:py-20">
