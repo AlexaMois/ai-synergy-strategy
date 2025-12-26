@@ -16,6 +16,26 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://aleksamois.ru/services/diagnostics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/services/architecture</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/services/support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/services/add-ons</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://aleksamois.ru/pricing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
