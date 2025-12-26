@@ -183,7 +183,7 @@ const GolossokDemo = () => {
 
         {/* CTA Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="container mx-auto px-4 max-w-6xl text-center">
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Хотите протестировать GolossOK в вашей компании?
             </h2>

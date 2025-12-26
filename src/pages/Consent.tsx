@@ -15,7 +15,7 @@ const Consent = () => {
       </Helmet>
       <Navigation />
       
-      <main className="container mx-auto px-4 py-10 md:py-16 lg:py-20 max-w-4xl">
+      <main className="container mx-auto px-4 py-10 md:py-16 lg:py-20 max-w-6xl">
         <Link 
           to="/" 
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"

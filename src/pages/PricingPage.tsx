@@ -330,7 +330,7 @@ const PricingPage = () => {
 
         {/* Pricing FAQ */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title text-center mb-12">Вопросы о ценах</h2>
             
             <div className="space-y-6">

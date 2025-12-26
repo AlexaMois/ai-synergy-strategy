@@ -229,7 +229,7 @@ const GolossokPricing = () => {
 
         {/* FAQ Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title text-center mb-12">Частые вопросы о GolossOK</h2>
             
             <div className="space-y-6">
@@ -266,7 +266,7 @@ const GolossokPricing = () => {
 
         {/* CTA Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="container mx-auto px-4 max-w-6xl text-center">
             <h2 className="text-2xl font-semibold text-foreground mb-4">
               Готовы начать работу с GolossOK?
             </h2>
