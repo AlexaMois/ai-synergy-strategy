@@ -358,7 +358,7 @@ const CasesPage = () => {
         "Окупаемость за 1 месяц"
       ],
       categories: ["Автоматизация процессов и данных", "AI-ассистенты для бизнеса"],
-      link: "/case-studies/doc-search"
+      link: "/products/doc-search"
     },
     {
       id: 14,
