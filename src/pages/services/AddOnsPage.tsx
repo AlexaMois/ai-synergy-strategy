@@ -18,47 +18,41 @@ const AddOnsPage = () => {
   const services = [
     {
       icon: Sparkles,
-      title: "Персональный ИИ-агент",
-      description: "Создание умного ассистента, который знает ваш бизнес, отвечает на вопросы клиентов и сотрудников, автоматизирует рутину.",
-      features: ["Обучение на ваших данных", "Интеграция с CRM и мессенджерами", "Постоянное обновление знаний"],
+      title: "Personal ИИ-агент",
+      description: "Умный помощник для CEO или собственника. Анализирует данные, готовит сводки, предлагает решения, напоминает о важном, принимает решения в пределах вашего регламента."
     },
     {
       icon: Users,
       title: "Цифровые двойники сотрудников",
-      description: "ИИ-копии ключевых специалистов для масштабирования экспертизы. Консультируют, обучают, отвечают на типовые вопросы.",
-      features: ["Захват знаний экспертов", "Доступ 24/7", "Разгрузка специалистов"],
+      description: "Виртуальная копия эксперта, которая работает вместо него или дублирует его знания. Может заменять в отпусках, обучать новичков, принимать стандартные решения."
     },
     {
       icon: Cpu,
       title: "Настройка нейросетей и fine-tuning",
-      description: "Дообучение языковых моделей на ваших данных для повышения точности и релевантности ответов в вашей предметной области.",
-      features: ["Подготовка датасетов", "Fine-tuning моделей", "Оценка качества"],
+      description: "Обучение моделей на ваших данных для точности. Оптимизация промптов, настройка параметров, кастомизация под вашу специфику."
     },
     {
       icon: Blocks,
       title: "Low-code автоматизация",
-      description: "Настройка автоматизаций на платформах Bpium, Make, n8n без программирования. Быстрый запуск и простое сопровождение.",
-      features: ["Интеграция сервисов", "Автоматические сценарии", "Визуальные редакторы"],
+      description: "Готовые решения за 2–3 недели на Бипиум. Полностью под требования РФ, работает в ваших процессах сразу."
     },
     {
       icon: GraduationCap,
       title: "Корпоративное обучение",
-      description: "Программы обучения для команд: как использовать ИИ в ежедневной работе, prompt-engineering, работа с нейросетями.",
-      features: ["Практические воркшопы", "Методические материалы", "Сертификация"],
+      description: "Программа для всей команды: от базовых до продвинутых техник. Как использовать ИИ в работе, безопасность данных, лучшие практики, кейсы."
     },
     {
       icon: Shield,
       title: "Защищённые контуры",
-      description: "Развёртывание ИИ-решений в изолированной инфраструктуре для работы с конфиденциальными данными и соответствия требованиям регуляторов.",
-      features: ["On-premise решения", "Соответствие 152-ФЗ", "Аудит безопасности"],
-    },
+      description: "Для критичных данных под требования ЦБ и РФ. Все хранится в РФ, импортозамещение, соответствие регуляторам, изолированные от интернета системы."
+    }
   ];
 
   return (
     <PageTransition>
       <Helmet>
         <title>Дополнительные решения | Александра Моисеева</title>
-        <meta name="description" content="Дополнительные AI-услуги: персональные агенты, цифровые двойники, fine-tuning, low-code автоматизация, обучение, защищённые контуры." />
+        <meta name="description" content="Дополнительные AI-решения: персональные агенты, цифровые двойники, fine-tuning нейросетей, low-code автоматизация, корпоративное обучение, защищённые контуры." />
         <link rel="canonical" href="https://aleksamois.ru/services/add-ons" />
       </Helmet>
 
@@ -76,7 +70,7 @@ const AddOnsPage = () => {
                 Дополнительные решения
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
-                Специализированные услуги для расширения возможностей вашего бизнеса с помощью ИИ
+                Если основные три услуги не полностью закрывают вашу задачу:
               </p>
             </div>
           </section>
@@ -85,18 +79,17 @@ const AddOnsPage = () => {
           <section className="py-12 border-t border-border">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, index) => (
-                <div key={index} className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-colors">
-                  <service.icon className="w-12 h-12 text-primary mb-4" />
-                  <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                <div 
+                  key={index} 
+                  className="group bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 flex-shrink-0">
+                      <service.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
               ))}
             </div>
@@ -104,7 +97,7 @@ const AddOnsPage = () => {
 
           {/* CTA */}
           <section className="py-12 border-t border-border">
-            <div className="bg-primary/5 rounded-2xl p-8 md:p-12 text-center">
+            <div className="bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Нужно специализированное решение?
               </h2>
