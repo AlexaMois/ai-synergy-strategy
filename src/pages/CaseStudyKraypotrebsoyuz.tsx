@@ -55,7 +55,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         <main>
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
             <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-8">
               Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽
@@ -73,7 +73,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Situation Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Ситуация: запрос на внедрение ИИ</h2>
             
             <p className="text-lg text-foreground leading-relaxed mb-6">
@@ -114,7 +114,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Decision Point Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Совместная точка принятия решения</h2>
             
             <p className="text-lg text-foreground leading-relaxed mb-6">
@@ -151,7 +151,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Stage 1 Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">1</div>
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и диагностика</h2>
@@ -206,7 +206,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Stage 2 Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">2</div>
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Выбор архитектуры решения</h2>
@@ -267,7 +267,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Stage 3 Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">3</div>
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Внедрение и развитие</h2>
@@ -319,7 +319,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Economics Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-8">Экономика и эффект</h2>
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -345,7 +345,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Results Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-8">Результаты</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -400,7 +400,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Continuation Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Продолжение сотрудничества</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -443,7 +443,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* Conclusion Section */}
         <section className="py-10 md:py-16 bg-muted">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Главный вывод кейса</h2>
             
             <div className="bg-card rounded-2xl p-8 shadow-soft mb-6">
@@ -469,7 +469,7 @@ const CaseStudyKraypotrebsoyuz = () => {
 
         {/* CTA Section */}
         <section className="py-10 md:py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="container mx-auto px-4 max-w-6xl text-center">
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Хотите получить похожий результат для вашей компании?
             </h2>
