@@ -11,6 +11,10 @@ import Index from "./pages/Index";
 // Lazy load pages
 const StartPage = lazy(() => import("./pages/start/StartPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const DiagnosticsPage = lazy(() => import("./pages/services/DiagnosticsPage"));
+const ArchitecturePage = lazy(() => import("./pages/services/ArchitecturePage"));
+const SupportPage = lazy(() => import("./pages/services/SupportPage"));
+const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
@@ -65,6 +69,10 @@ const App = () => (
             
             {/* Services */}
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/diagnostics" element={<DiagnosticsPage />} />
+            <Route path="/services/architecture" element={<ArchitecturePage />} />
+            <Route path="/services/support" element={<SupportPage />} />
+            <Route path="/services/add-ons" element={<AddOnsPage />} />
             
             {/* Products */}
             <Route path="/products" element={<ProductsPage />} />
