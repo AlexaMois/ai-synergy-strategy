@@ -101,16 +101,11 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
           {caseItem.quote && (
             <div className="mb-3 sm:mb-4">
               <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
-                Что говорит клиент:
+                Главный вывод:
               </p>
               <p className="text-xs sm:text-sm italic text-foreground leading-relaxed">
                 "{caseItem.quote}"
               </p>
-              {caseItem.quoteAuthor && (
-                <p className="text-[10px] sm:text-xs text-foreground mt-1">
-                  — {caseItem.quoteAuthor}
-                </p>
-              )}
             </div>
           )}
 
@@ -123,7 +118,7 @@ const CaseCard = ({ caseItem, index, staggerClass }: CaseCardProps) => {
               <p className="text-handwriting text-lg sm:text-xl mb-1.5 sm:mb-2">
                 Результат:
               </p>
-              <p className="text-xs sm:text-sm font-medium text-primary leading-relaxed">
+              <p className="text-xs sm:text-sm font-medium text-foreground leading-relaxed">
                 {caseItem.resultsSummary}
               </p>
             </div>
