@@ -73,7 +73,7 @@ const Navigation = () => {
 
   const navLinks: NavLink[] = [
     {
-      href: "/checklist",
+      href: "/start",
       label: "С чего начать",
       isScroll: false
     },
@@ -88,25 +88,25 @@ const Navigation = () => {
       isScroll: false
     },
     {
-      href: "/golossok-pricing",
+      href: "/products",
       label: "Продукты",
       isScroll: false,
       submenu: [
-        { href: "/golossok-pricing", label: "Голосовой бот" },
+        { href: "/products/voice-bot", label: "Голосовой бот" },
         { href: "/products/doc-search", label: "Поиск по документации" }
       ]
     },
     {
-      href: "/resources",
+      href: "/materials",
       label: "Материалы",
       isScroll: false,
       submenu: [
-        { href: "/resources", label: "Ресурсы" },
-        { href: "/blog", label: "Блог" }
+        { href: "/materials/resources", label: "Ресурсы" },
+        { href: "/materials/blog", label: "Блог" }
       ]
     },
     {
-      href: "/about",
+      href: "/approach",
       label: "Экспертный подход",
       isScroll: false
     }
