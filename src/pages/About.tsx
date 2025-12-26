@@ -115,6 +115,10 @@ const About = () => {
         <meta property="og:title" content="Обо мне — Александра Моисеева, Инженер по ИИ" />
         <meta property="og:description" content="Независимый стратег и инженер ИИ с 13+ годами опыта. 36+ проектов, ROI 200-400%." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />

@@ -226,6 +226,10 @@ const PricingPage = () => {
         <meta property="og:title" content="Цены на AI-консалтинг — Александра Моисеева" />
         <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI 200-400%." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
       <div className="min-h-screen">
         <Navigation />

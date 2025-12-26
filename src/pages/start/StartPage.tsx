@@ -86,6 +86,13 @@ const StartPage = () => {
         <meta name="description" content="Пройдите короткий опрос и узнайте, как ИИ может помочь вашему бизнесу. Оценка ROI, примеры кейсов, следующие шаги." />
         <meta name="keywords" content="с чего начать ИИ, внедрение искусственного интеллекта, AI для бизнеса, ROI ИИ" />
         <link rel="canonical" href="https://aleksamois.ru/start" />
+        <meta property="og:title" content="С чего начать внедрение ИИ — Александра Моисеева" />
+        <meta property="og:description" content="Пройдите короткий опрос и узнайте, как ИИ может помочь вашему бизнесу." />
+        <meta property="og:url" content="https://aleksamois.ru/start" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
