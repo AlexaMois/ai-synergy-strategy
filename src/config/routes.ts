@@ -16,7 +16,7 @@ export const ALLOWED_ROUTES = [
   '/case-studies/kraypotrebsoyuz',
   '/case-studies/cargo-express',
   '/case-studies/doc-search',
-  '/approach',
+  
   '/materials/resources',
   '/materials/blog',
 ];
