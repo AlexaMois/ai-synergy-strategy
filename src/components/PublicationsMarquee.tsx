@@ -32,6 +32,7 @@ interface Publication {
 
 const publications: Publication[] = [
   // Максимально разнообразный порядок - чередуем все источники
+  { id: 26, source: 'KAЭО', title: 'Дипломированный специалист по ИИ • Квалификация по ИИ KАЭО, уровень 5', url: '#', type: 'read', logo: null, alt: 'Квалификация KAЭО', ariaLabel: 'Квалификация по ИИ KАЭО уровень 5' },
   { id: 1, source: 'НФИИ', title: 'НейроТендеролог: ИИ для автоматизации тендерного поиска', url: 'https://nfai.ru/tpost/6zm7z4mem1-neirotenderolog-iskusstvennii-intellekt', type: 'read', logo: logoNfii, alt: 'Публикация НФИИ о НейроТендерологе', ariaLabel: 'Открыть статью НФИИ об автоматизации тендерного поиска' },
   { id: 14, source: 'АБН', title: 'Новая реальность: как ИИ повлияет на образование в РФ', url: 'https://abnews.ru/news/2024/8/17/novaya-realnost-kak-ii-povliyaet-na-obrazovanie-v-rf', type: 'read', logo: logoAbn, alt: 'Статья АБН об ИИ в образовании', ariaLabel: 'Открыть статью об ИИ в образовании' },
   { id: 3, source: 'Деловой Квартал', title: 'ИИ — драйвер для бизнеса', url: 'https://read.flypdf.ru/v/b0f78794-edc0-4b7f-8058-82b8055de534#page/62', type: 'read', logo: logoDelovoyKvartal, alt: 'Статья об ИИ как драйвере бизнеса', ariaLabel: 'Открыть статью об ИИ как драйвере бизнеса' },
@@ -266,7 +267,7 @@ const PublicationsMarquee = () => {
       
       {/* Две ленты */}
       <div className="space-y-6">
-        <MarqueeRow items={publications} direction="left" speed={120} />
+        <MarqueeRow items={publications} direction="left" speed={140} />
         <MarqueeRow items={publications2} direction="right" speed={110} />
       </div>
     </section>
