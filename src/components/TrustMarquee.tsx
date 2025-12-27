@@ -15,7 +15,7 @@ const TrustMarquee = () => {
   ];
 
   return (
-    <div className="bg-footer-bg text-background py-1 md:py-2 lg:py-3 overflow-hidden">
+    <div style={{ backgroundColor: '#505050' }} className="text-background py-1 md:py-2 lg:py-3 overflow-hidden">
       <div className="marquee-container">
         <div className="marquee-content">
           {[...Array(3)].map((_, setIndex) => (
