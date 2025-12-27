@@ -21,7 +21,7 @@ export default {
       fontFamily: {
         raleway: ['Raleway', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         golos: ['Golos Text', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif'],
-        iriska: ['Caveat', 'cursive'],
+        iriska: ['Iriska', 'cursive'],
         sans: ['Golos Text', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       colors: {
