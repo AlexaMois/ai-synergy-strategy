@@ -294,7 +294,7 @@ const Hero = () => {
         <div className="mb-3 lg:mb-5">
           {/* Badge + Title on one line */}
           <div className="flex flex-wrap items-center justify-between gap-3 mt-5 mb-2">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-normal text-foreground leading-[1.15] tracking-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl text-foreground leading-[1.15] tracking-tight">
               ИИ решения <span className="font-bold">для бизнеса</span> и руководителей
             </h1>
             <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
@@ -302,7 +302,13 @@ const Hero = () => {
               <span className="font-medium">Работаем по всей России и СНГ</span>
             </div>
           </div>
-          <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
+          
+          {/* Handwritten accent */}
+          <p className="text-handwriting text-primary mb-2">
+            быстрее, умнее, экономичнее
+          </p>
+          
+          <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed max-w-2xl">
             Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
             без переделки системы и остановки операционки.
           </p>
