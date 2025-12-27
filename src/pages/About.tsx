@@ -136,7 +136,7 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
-                <h1 className="text-[32px] md:text-[36px] font-bold text-foreground mb-4 leading-tight">
+                <h1 className="mb-4 leading-tight">
                   Александра Моисеева
                 </h1>
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
@@ -186,7 +186,7 @@ const About = () => {
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium text-foreground text-left">
+                    <h2 className="section-title text-left">
                       Кто я, <span className="font-semibold">и почему мне доверяют</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
@@ -237,7 +237,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
-                    <h3 className="text-lg md:text-xl font-medium text-foreground">
+                    <h3 className="text-foreground">
                       Когда честность важнее должности
                     </h3>
                   </div>
@@ -253,7 +253,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
-                    <h3 className="text-lg md:text-xl font-medium text-foreground">
+                    <h3 className="text-foreground">
                       Почему я ушла из банков: выбор ответственности
                     </h3>
                   </div>
@@ -270,7 +270,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
-                    <h3 className="text-lg md:text-xl font-medium text-foreground">
+                    <h3 className="text-foreground">
                       От маркетинга к инженерии ИИ: переход в глубину
                     </h3>
                   </div>
@@ -287,7 +287,7 @@ const About = () => {
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
-                    <h3 className="text-lg md:text-xl font-medium text-foreground">
+                    <h3 className="text-foreground">
                       Выгорание и вывод: зрелость важнее скорости
                     </h3>
                   </div>
