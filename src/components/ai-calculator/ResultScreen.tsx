@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { DiagnosticData, CalculationResult } from './types';
-import { formatFullCurrency } from './calculationLogic';
 import AnimatedNumber from '@/components/AnimatedNumber';
 import TypewriterText from '@/components/TypewriterText';
 import { cn } from '@/lib/utils';
@@ -12,7 +11,7 @@ interface ResultScreenProps {
   onSubmit: () => void;
 }
 
-type BlockName = 'executive' | 'figures' | 'inaction' | 'zones' | 'risks' | 'conclusion' | 'cta';
+type BlockName = 'executive' | 'figures' | 'inaction' | 'errorRisk' | 'managerLoad' | 'zones' | 'readiness' | 'risks' | 'conclusion' | 'cta';
 
 const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
   const [visibleBlocks, setVisibleBlocks] = useState<BlockName[]>([]);
@@ -22,10 +21,13 @@ const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
       { block: 'executive', delay: 0 },
       { block: 'figures', delay: 400 },
       { block: 'inaction', delay: 800 },
-      { block: 'zones', delay: 1200 },
-      { block: 'risks', delay: 1600 },
+      { block: 'errorRisk', delay: 1000 },
+      { block: 'managerLoad', delay: 1200 },
+      { block: 'zones', delay: 1400 },
+      { block: 'readiness', delay: 1600 },
+      { block: 'risks', delay: 1800 },
       { block: 'conclusion', delay: 2000 },
-      { block: 'cta', delay: 2400 },
+      { block: 'cta', delay: 2200 },
     ];
 
     delays.forEach(({ block, delay }) => {
@@ -42,6 +44,13 @@ const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
 
   // Для блока зон показываем только 1-2 пункта
   const topZones = data.painPoints.slice(0, 2);
+
+  // Интерпретация AI Readiness Score
+  const getReadinessDescription = () => {
+    if (result.aiReadinessScore < 40) return 'Сначала порядок — нужна подготовка процессов';
+    if (result.aiReadinessScore < 70) return 'Можно начинать с пилота — готовы к первым шагам';
+    return 'Можно масштабировать — высокая готовность';
+  };
 
   return (
     <div className="space-y-8">
@@ -159,6 +168,73 @@ const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
         </div>
       </div>
 
+      <div className={cn("border-t border-border", isVisible('errorRisk') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 3.5. Риск-оценка (потери от ошибок) — НОВЫЙ */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('errorRisk') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          Риск-оценка
+        </h3>
+        
+        <div className="text-muted-foreground mb-2">
+          <span className="text-foreground">Потенциальные потери из-за ошибок:</span>{' '}
+          ≈{' '}
+          {isVisible('errorRisk') && (
+            <>
+              <AnimatedNumber
+                value={Math.round(result.minErrorLosses)}
+                suffix=""
+                duration={1400}
+              />{' '}
+              –{' '}
+              <AnimatedNumber
+                value={Math.round(result.maxErrorLosses)}
+                suffix=" ₽"
+                duration={1600}
+              />
+            </>
+          )}
+          <span className="ml-1">в год</span>
+        </div>
+
+        <p className="text-sm text-muted-foreground/70">
+          Не учитывает репутационные и вторичные потери.
+        </p>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('managerLoad') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 3.6. Невидимая нагрузка — НОВЫЙ */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('managerLoad') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          Невидимая нагрузка
+        </h3>
+        
+        <div className="text-muted-foreground mb-2">
+          <span className="text-foreground">До{' '}
+            {isVisible('managerLoad') && (
+              <AnimatedNumber value={result.managerControlHours} suffix="" duration={1200} />
+            )}
+            {' '}часов управленческого времени в месяц</span>
+          <br />
+          уходит на ручной контроль и уточнения.
+        </div>
+
+        <p className="text-sm text-muted-foreground/70 italic">
+          ИИ снижает не только ФОТ, но и управленческую перегрузку.
+        </p>
+      </div>
+
       <div className={cn("border-t border-border", isVisible('zones') ? "opacity-100" : "opacity-0")} />
 
       {/* Блок 4. Зоны максимального эффекта */}
@@ -193,6 +269,64 @@ const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
         <p className="text-sm text-muted-foreground/70 italic">
           Это типично для компаний с распределённой документацией и высокой долей экспертизы «в головах».
         </p>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('readiness') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 4.5. Индекс готовности к внедрению ИИ — НОВЫЙ */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('readiness') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          Индекс готовности к внедрению ИИ
+        </h3>
+        
+        <div className="mb-4">
+          <div className="text-3xl md:text-4xl font-semibold text-foreground mb-2">
+            {isVisible('readiness') && (
+              <AnimatedNumber value={result.aiReadinessScore} suffix="" duration={1500} />
+            )}
+            <span className="text-lg font-normal text-muted-foreground ml-1">/ 100</span>
+          </div>
+          
+          {/* Progress bar */}
+          <div className="h-3 bg-muted rounded-full overflow-hidden mb-3">
+            <div
+              className={cn(
+                "h-full rounded-full transition-all duration-1000",
+                result.aiReadinessLevel === 'low' && "bg-muted-foreground",
+                result.aiReadinessLevel === 'medium' && "bg-primary",
+                result.aiReadinessLevel === 'high' && "bg-primary"
+              )}
+              style={{ 
+                width: isVisible('readiness') ? `${result.aiReadinessScore}%` : '0%',
+                transitionDelay: '500ms'
+              }}
+            />
+          </div>
+
+          <p className="text-muted-foreground">
+            {getReadinessDescription()}
+          </p>
+        </div>
+
+        <div className="text-sm text-muted-foreground/70 space-y-1">
+          <div className={cn("flex items-center gap-2", result.aiReadinessScore < 40 && "text-foreground font-medium")}>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            0–40 — сначала порядок
+          </div>
+          <div className={cn("flex items-center gap-2", result.aiReadinessScore >= 40 && result.aiReadinessScore < 70 && "text-foreground font-medium")}>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            40–70 — можно начинать с пилота
+          </div>
+          <div className={cn("flex items-center gap-2", result.aiReadinessScore >= 70 && "text-foreground font-medium")}>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            70+ — можно масштабировать
+          </div>
+        </div>
       </div>
 
       <div className={cn("border-t border-border", isVisible('risks') ? "opacity-100" : "opacity-0")} />
@@ -265,7 +399,7 @@ const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
           isVisible('cta') && "animate-fade-in-up"
         )}
       >
-        <CTAScreen onSubmit={onSubmit} />
+        <CTAScreen onSubmit={onSubmit} data={data} result={result} />
       </div>
     </div>
   );

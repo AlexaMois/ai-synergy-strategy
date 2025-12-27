@@ -4,6 +4,7 @@ export interface DiagnosticData {
   avgSalary: number;
   routineTimeShare: number;
   errorCriticality: string;
+  errorTypes: string[];
 }
 
 export interface CalculationResult {
@@ -14,10 +15,15 @@ export interface CalculationResult {
   roi: number;
   minSavings: number;
   maxSavings: number;
-  // Новые поля для блока "Стоимость бездействия"
   minMonthlyLosses: number;
   maxMonthlyLosses: number;
   inefficientHours: number;
+  // Новые поля
+  minErrorLosses: number;
+  maxErrorLosses: number;
+  managerControlHours: number;
+  aiReadinessScore: number;
+  aiReadinessLevel: 'low' | 'medium' | 'high';
 }
 
 export const PAIN_POINT_OPTIONS = [
@@ -39,4 +45,11 @@ export const ERROR_CRITICALITY_OPTIONS = [
   'Ошибки почти не влияют',
   'Иногда приводят к потерям',
   'Часто стоят денег или клиентов',
+];
+
+export const ERROR_TYPE_OPTIONS = [
+  'Ошибки в документах (опечатки, неверные реквизиты)',
+  'Ошибки в заказах (не то количество, не тот артикул)',
+  'Ошибки в расчётах и отчётах',
+  'Пропущенные сроки и дедлайны',
 ];

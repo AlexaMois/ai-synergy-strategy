@@ -2,9 +2,8 @@ import { useState, useCallback } from 'react';
 import DiagnosticStep from './DiagnosticStep';
 import AnalyzingScreen from './AnalyzingScreen';
 import ResultScreen from './ResultScreen';
-import CTAScreen from './CTAScreen';
 import { DiagnosticData, CalculationResult } from './types';
-import { calculateResults, formatFullCurrency } from './calculationLogic';
+import { calculateResults } from './calculationLogic';
 
 interface AIDiagnosticProps {
   onComplete: (data: DiagnosticData, result: CalculationResult) => void;
@@ -18,6 +17,8 @@ const AIDiagnostic = ({ onComplete, onCTA }: AIDiagnosticProps) => {
   const [step, setStep] = useState(1);
   const [diagnosticData, setDiagnosticData] = useState<Partial<DiagnosticData>>({});
   const [result, setResult] = useState<CalculationResult | null>(null);
+
+  const totalSteps = 6;
 
   const handleStepComplete = useCallback((value: string | string[] | number) => {
     const updatedData = { ...diagnosticData };
@@ -38,11 +39,14 @@ const AIDiagnostic = ({ onComplete, onCTA }: AIDiagnosticProps) => {
       case 5:
         updatedData.errorCriticality = value as string;
         break;
+      case 6:
+        updatedData.errorTypes = value as string[];
+        break;
     }
 
     setDiagnosticData(updatedData);
 
-    if (step < 5) {
+    if (step < totalSteps) {
       setStep(step + 1);
     } else {
       // All questions answered, start analysis
@@ -54,7 +58,7 @@ const AIDiagnostic = ({ onComplete, onCTA }: AIDiagnosticProps) => {
       setResult(calculationResult);
       onComplete(finalData, calculationResult);
     }
-  }, [step, diagnosticData, onComplete]);
+  }, [step, diagnosticData, onComplete, totalSteps]);
 
   const handleBack = useCallback(() => {
     if (step > 1) {
@@ -71,7 +75,7 @@ const AIDiagnostic = ({ onComplete, onCTA }: AIDiagnosticProps) => {
       {phase === 'questions' && (
         <DiagnosticStep
           step={step}
-          totalSteps={5}
+          totalSteps={totalSteps}
           onNext={handleStepComplete}
           onBack={step > 1 ? handleBack : undefined}
         />
