@@ -98,5 +98,15 @@ export default defineConfig(({ mode }) => ({
   // Enable CSS optimization
   css: {
     devSourcemap: false,
+    // Optimize CSS in production
+    postcss: {
+      plugins: [],
+    },
+  },
+  esbuild: {
+    // Remove console.log in production
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
+    // Minify CSS class names in production
+    legalComments: 'none',
   },
 }));
