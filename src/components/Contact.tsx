@@ -24,7 +24,11 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-const Contact = () => {
+interface ContactProps {
+  defaultComment?: string;
+}
+
+const Contact = ({ defaultComment = "" }: ContactProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
@@ -50,7 +54,7 @@ const Contact = () => {
       industry: "",
       phone: "",
       email: "",
-      comment: "",
+      comment: defaultComment,
       consent: false
     }
   });
