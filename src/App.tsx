@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
-import Index from "./pages/Index";
+
+// Lazy load all pages including Index for better code splitting
+const Index = lazy(() => import("./pages/Index"));
 
 // Lazy load pages
 const StartPage = lazy(() => import("./pages/start/StartPage"));
