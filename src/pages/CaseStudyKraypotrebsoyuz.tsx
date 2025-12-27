@@ -79,8 +79,8 @@ const CaseStudyKraypotrebsoyuz = () => {
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
-            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-8">
-              Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽
+            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-normal text-foreground leading-tight mb-8">
+              Крайпотребсоюз: как совместно выстроили <span className="font-bold">ИИ-архитектуру</span> и отказались от серверов за 1,5 млн ₽
             </h1>
             
             {/* Hero Image Placeholder */}

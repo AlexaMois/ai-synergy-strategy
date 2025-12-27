@@ -133,8 +133,8 @@ const ArchitecturePage = () => {
                 </div>
                 <span className="text-primary font-medium">Услуга 02</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Архитектура
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-6">
+                <span className="font-bold">Архитектура</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
                 Проектирование AI-решения, которое встраивается в ваш процесс. Выбираем технологии без лишних затрат, определяем интеграцию с CRM, 1С, производственными системами, готовим техническое задание для разработчиков.

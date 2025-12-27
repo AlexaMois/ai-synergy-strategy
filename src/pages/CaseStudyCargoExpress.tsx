@@ -51,8 +51,8 @@ const CaseStudyCargoExpress = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <Truck className="w-12 h-12 text-primary" strokeWidth={1.5} />
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
-                Грузовой Экспресс
+              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-normal text-foreground leading-tight">
+                Грузовой <span className="font-bold">Экспресс</span>
               </h1>
             </div>
             <p className="text-xl text-muted-foreground mb-8">

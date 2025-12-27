@@ -44,8 +44,8 @@ const TrustAndPosition = () => {
             {/* Левая колонка: Почему мне доверяют */}
             <div>
               <div className="mb-8">
-                <h2 className="text-[24px] sm:text-[28px] md:text-[30px] font-medium text-foreground mb-3 leading-tight">
-                  Почему мне доверяют, <span className="font-semibold">реальный опыт</span>
+                <h2 className="text-[24px] sm:text-[28px] md:text-[30px] font-normal text-foreground mb-3 leading-tight">
+                  Почему мне доверяют, <span className="font-bold">реальный опыт</span>
                 </h2>
                 <div className="w-full h-px bg-border"></div>
               </div>
@@ -97,8 +97,8 @@ const TrustAndPosition = () => {
             {/* Правая колонка: Моя позиция */}
             <div>
               <div className="mb-8">
-                <h2 className="text-[24px] sm:text-[28px] md:text-[30px] font-medium text-foreground mb-3 leading-tight">
-                  Моя позиция, <span className="font-semibold">честный подход</span>
+                <h2 className="text-[24px] sm:text-[28px] md:text-[30px] font-normal text-foreground mb-3 leading-tight">
+                  Моя позиция, <span className="font-bold">честный подход</span>
                 </h2>
                 <div className="w-full h-px bg-border"></div>
               </div>
