@@ -1,22 +1,17 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Phone, Mail, Send, MapPin } from "lucide-react";
 import DisabledLink from "@/components/DisabledLink";
-
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-
     const hash = href.includes('#') ? href.split('#')[1] : '';
     if (!hash) return;
-
     if (location.pathname !== '/') {
       navigate(`/#${hash}`);
       return;
     }
-
     const element = document.querySelector(`#${hash}`);
     if (element) {
       element.scrollIntoView({
@@ -25,9 +20,7 @@ const Footer = () => {
       });
     }
   };
-  
-  return (
-    <footer className="bg-dark-bg text-background py-12">
+  return <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
@@ -35,7 +28,9 @@ const Footer = () => {
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
             <p className="text-background/80 text-base leading-relaxed">
-              Инженер по ИИ и цифровой архитектуре <br />
+              Инженер по ИИ и цифровой архитектуре
+Дипломированный специалист по ИИ • Квалификационный сертификат по нейросетям уровень 5   
+ <br />
               ​Гарантирую честную оценку, экономику и предсказуемый результат<br />
               ​
             </p>
@@ -120,8 +115,6 @@ const Footer = () => {
           <p>© ИП Моисеева Александра Алексеевна, 2023–2025. Все права защищены.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
