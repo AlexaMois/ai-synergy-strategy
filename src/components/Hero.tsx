@@ -294,7 +294,7 @@ const Hero = () => {
         <div className="mb-3 lg:mb-5">
           {/* Badge + Title on one line */}
           <div className="flex flex-wrap items-center justify-between gap-3 mt-5 mb-2">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-[1.15] tracking-tight">
+            <h1 className="leading-[1.15] tracking-tight">
               ИИ решения для бизнеса и руководителей
             </h1>
             <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
@@ -502,7 +502,7 @@ const Hero = () => {
               >
                 {/* Block 1: Solution Title & Description */}
                 <div className="pb-3">
-                  <h2 className="text-lg lg:text-xl xl:text-[1.4rem] font-semibold text-foreground mb-2 leading-[1.2] tracking-tight">
+                  <h2 className="mb-2 leading-[1.2] tracking-tight">
                     {currentSolution.h2Title}
                   </h2>
                   <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed max-w-[70ch]">

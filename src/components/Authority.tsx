@@ -13,7 +13,7 @@ const Authority = () => {
     <section id="interviews" ref={ref} className="relative py-16 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h3 className="text-2xl font-bold mb-8 text-text-heading">
+          <h3 className="section-title mb-8 text-center">
             Выступления и публикации
           </h3>
           <div className="flex flex-wrap justify-center gap-6 md:gap-12">

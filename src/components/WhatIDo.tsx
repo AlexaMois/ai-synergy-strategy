@@ -52,7 +52,7 @@ const WhatIDo = () => {
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-medium mb-4 text-foreground">
+                      <h3 className="mb-4">
                         {card.title}
                       </h3>
                       <p className="text-lg text-foreground leading-relaxed">

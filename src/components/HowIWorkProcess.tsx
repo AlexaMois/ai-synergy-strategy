@@ -78,7 +78,7 @@ const HowIWorkProcess = () => {
                     <Icon className="w-9 h-9" style={{ color: '#49BED8' }} strokeWidth={1.5} />
                   </div>
                   
-                  <h3 className="text-2xl font-medium mb-3 text-foreground text-center">
+                  <h3 className="mb-3 text-center">
                     {card.title}
                   </h3>
                   <p className="text-handwriting mb-3">
@@ -106,7 +106,7 @@ const HowIWorkProcess = () => {
           <div 
             className={`text-center p-10 rounded-[24px] shadow-soft bg-card border border-border hover:shadow-card ${getStaggeredClass(4)}`}
           >
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-foreground">
+            <h3 className="section-title mb-6 text-center">
               Узнать, что можно автоматизировать в вашей компании
             </h3>
             <div className="flex flex-col gap-2 items-center">

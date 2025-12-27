@@ -202,57 +202,57 @@
   }
   
   h1 {
-    @apply font-golos;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: hsl(var(--foreground));
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    color: hsl(var(--foreground)) !important;
   }
   
   @media (min-width: 640px) {
     h1 {
-      font-size: 30px;
+      font-size: 30px !important;
     }
   }
   
   @media (min-width: 768px) {
     h1 {
-      font-size: 36px;
+      font-size: 36px !important;
     }
   }
   
   h2 {
-    @apply font-golos;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: hsl(var(--foreground));
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    color: hsl(var(--foreground)) !important;
   }
   
   @media (min-width: 640px) {
     h2 {
-      font-size: 24px;
+      font-size: 24px !important;
     }
   }
   
   @media (min-width: 768px) {
     h2 {
-      font-size: 30px;
+      font-size: 30px !important;
     }
   }
   
   h3 {
-    @apply font-golos;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: hsl(var(--foreground));
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    color: hsl(var(--foreground)) !important;
   }
   
   h4, h5, h6 {
-    @apply font-golos;
-    line-height: 1.3;
-    color: hsl(var(--foreground));
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.3 !important;
+    color: hsl(var(--foreground)) !important;
   }
   
   p {
@@ -276,24 +276,24 @@
   }
   
   .section-title {
-    @apply font-golos;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: hsl(var(--foreground));
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    color: hsl(var(--foreground)) !important;
     margin-top: 0;
     margin-bottom: 2.5rem;
   }
   
   @media (min-width: 640px) {
     .section-title {
-      font-size: 24px;
+      font-size: 24px !important;
     }
   }
   
   @media (min-width: 768px) {
     .section-title {
-      font-size: 30px;
+      font-size: 30px !important;
     }
   }
   
