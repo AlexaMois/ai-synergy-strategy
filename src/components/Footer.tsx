@@ -27,7 +27,7 @@ const Footer = () => {
   };
   
   return (
-    <footer style={{ backgroundColor: '#505050' }} className="text-background py-12">
+    <footer style={{ backgroundColor: '#1a1a1a' }} className="text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
