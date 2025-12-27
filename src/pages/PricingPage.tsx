@@ -246,8 +246,8 @@ const PricingPage = () => {
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <DollarSign className="w-12 h-12 text-primary" strokeWidth={1.5} />
-                <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
-                  Прозрачные цены на AI-консалтинг
+                <h1 className="text-[28px] sm:text-[32px] md:text-[36px] text-foreground leading-tight">
+                  Прозрачные цены <span className="font-semibold">на AI-консалтинг</span>
                 </h1>
               </div>
               <p className="text-lg text-foreground max-w-3xl mx-auto leading-relaxed">
@@ -279,7 +279,7 @@ const PricingPage = () => {
         {/* Pricing by Company Size */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-7xl">
-            <h2 className="section-title text-center mb-12">Цены по размеру компании</h2>
+            <h2 className="section-title text-center mb-12">Цены <span className="font-semibold">по размеру компании</span></h2>
             
             <div className="space-y-12">
               {companyServices.map((company, companyIndex) => {
@@ -328,7 +328,7 @@ const PricingPage = () => {
         {/* Additional Services */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title text-center mb-12">Дополнительные услуги</h2>
+            <h2 className="section-title text-center mb-12">Дополнительные <span className="font-semibold">услуги</span></h2>
             
             <div className="grid sm:grid-cols-2 gap-6">
               {additionalServices.map((service, index) => {
@@ -359,7 +359,7 @@ const PricingPage = () => {
         {/* Pricing FAQ */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title text-center mb-12">Вопросы о ценах</h2>
+            <h2 className="section-title text-center mb-12">Вопросы <span className="font-semibold">о ценах</span></h2>
             
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
