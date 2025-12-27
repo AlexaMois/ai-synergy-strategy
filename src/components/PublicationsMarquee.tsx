@@ -202,6 +202,96 @@ const publications: Publication[] = [
     logo: null,
     alt: 'Воркшоп по нейросетям с участием Александры Моисеевой',
     ariaLabel: 'Узнать о воркшопе по нейросетям'
+  },
+  {
+    id: 18,
+    source: 'Зарплата.ру',
+    title: 'Как нейросети выручают в работе психолога',
+    url: 'https://www.journal.zarplata.ru/how-neural-networks-help-out-in-the-work-of-a-psychologist/',
+    type: 'read',
+    logo: null,
+    alt: 'Статья Зарплата.ру о применении нейросетей в работе психолога — Александра Моисеева',
+    ariaLabel: 'Открыть статью о применении нейросетей в работе психолога'
+  },
+  {
+    id: 19,
+    source: 'АБН',
+    title: 'Новая реальность: как ИИ повлияет на образование в РФ',
+    url: 'https://abnews.ru/news/2024/8/17/novaya-realnost-kak-ii-povliyaet-na-obrazovanie-v-rf',
+    type: 'read',
+    logo: null,
+    alt: 'Статья АБН о влиянии ИИ на образование в России — Александра Моисеева',
+    ariaLabel: 'Открыть статью о влиянии ИИ на образование в России'
+  },
+  {
+    id: 20,
+    source: 'БИТ',
+    title: 'Мнения: с ИИ на «ты»',
+    url: 'https://bit.samag.ru/archive/more/243',
+    type: 'read',
+    logo: null,
+    alt: 'Статья БИТ о взаимодействии с искусственным интеллектом — Александра Моисеева',
+    ariaLabel: 'Открыть статью БИТ о взаимодействии с ИИ'
+  },
+  {
+    id: 21,
+    source: 'New Retail Forum',
+    title: 'Участие в New Retail Forum',
+    url: 'https://nrf.upgrade.st/',
+    type: 'read',
+    logo: null,
+    alt: 'Участие Александры Моисеевой в New Retail Forum',
+    ariaLabel: 'Открыть информацию об участии в New Retail Forum'
+  },
+  {
+    id: 22,
+    source: 'AI Summit',
+    title: 'Участие в AI SUMMIT 2024',
+    url: 'https://aisummit.ru/',
+    type: 'read',
+    logo: null,
+    alt: 'Участие Александры Моисеевой в AI Summit 2024',
+    ariaLabel: 'Открыть информацию об участии в AI Summit 2024'
+  },
+  {
+    id: 23,
+    source: 'Ангелы Бизнеса',
+    title: 'Спикерство для фестиваля «Ангелы Бизнеса»',
+    url: 'https://t.me/gorodangel/415',
+    type: 'read',
+    logo: null,
+    alt: 'Выступление Александры Моисеевой на фестивале Ангелы Бизнеса',
+    ariaLabel: 'Открыть публикацию о выступлении на фестивале Ангелы Бизнеса'
+  },
+  {
+    id: 24,
+    source: '7 НЕБО',
+    title: 'Партнёры фестиваля «7 НЕБО»',
+    url: 'https://t.me/festival7nebo/11800',
+    type: 'read',
+    logo: null,
+    alt: 'НейроРешения — партнёр фестиваля 7 НЕБО',
+    ariaLabel: 'Открыть публикацию о партнёрстве с фестивалем 7 НЕБО'
+  },
+  {
+    id: 25,
+    source: '7 НЕБО',
+    title: 'Александра Колибри — спикер на фестивале «7 НЕБО»',
+    url: 'https://t.me/festival7nebo/11706',
+    type: 'read',
+    logo: null,
+    alt: 'Выступление Александры Моисеевой на фестивале 7 НЕБО',
+    ariaLabel: 'Открыть публикацию о выступлении на фестивале 7 НЕБО'
+  },
+  {
+    id: 26,
+    source: 'Data Fusion',
+    title: 'Участие в конференции по машинному обучению Data Fusion',
+    url: 'https://t.me/AI_Kolibri/305',
+    type: 'read',
+    logo: null,
+    alt: 'Участие Александры Моисеевой в конференции Data Fusion по машинному обучению',
+    ariaLabel: 'Открыть публикацию об участии в конференции Data Fusion'
   }
 ];
 
