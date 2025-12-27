@@ -107,7 +107,7 @@ const HowIWorkProcess = () => {
             className={`text-center p-10 rounded-[24px] shadow-soft bg-card border border-border hover:shadow-card ${getStaggeredClass(4)}`}
           >
             <h3 className="section-title mb-6 text-center">
-              Узнать, что можно автоматизировать в вашей компании
+              Узнать, что можно автоматизировать <span className="font-semibold">в вашей компании</span>
             </h3>
             <div className="flex flex-col gap-2 items-center">
               <Button

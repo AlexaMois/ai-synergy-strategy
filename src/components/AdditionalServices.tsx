@@ -62,7 +62,7 @@ const AdditionalServices = () => {
           <h2 
             className={`section-title text-center leading-tight mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
           >
-            Дополнительные решения
+            Дополнительные <span className="font-semibold">решения</span>
           </h2>
           <p 
             className={`text-base sm:text-lg text-muted-foreground text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}

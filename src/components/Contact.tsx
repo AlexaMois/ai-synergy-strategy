@@ -99,7 +99,7 @@ const Contact = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
               <h2 className="section-title mb-4">
-                Спасибо, я свяжусь с вами
+                Спасибо, <span className="font-semibold">я свяжусь с вами</span>
               </h2>
               <p className="text-foreground">
                 Обычно отвечаю в течение 24 часов в рабочие дни.
@@ -120,7 +120,7 @@ const Contact = () => {
             {/* Левая колонка - текст */}
             <div className={`${getStaggeredClass(1, 'animate-fade-in-up')}`}>
               <h2 className="section-title mb-4">
-                Будем на связи
+                Будем <span className="font-semibold">на связи</span>
               </h2>
               <p className="text-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,

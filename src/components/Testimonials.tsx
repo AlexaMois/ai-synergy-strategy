@@ -139,7 +139,7 @@ const Testimonials = () => {
       </Helmet>
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="section-title mb-4">Что говорят клиенты</h2>
+            <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Скриншоты реальных отзывов из Telegram и Яндекс.Карт
             </p>
@@ -162,7 +162,7 @@ const Testimonials = () => {
     <section className="py-16 md:py-24 bg-secondary" id="testimonials">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="section-title mb-4">Что говорят клиенты</h2>
+          <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Скриншоты реальных отзывов из Telegram и Яндекс.Карт
           </p>
