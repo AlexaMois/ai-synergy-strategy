@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 // Импорт логотипов
 import logoNfii from '@/assets/partners/nfii.jpg';
@@ -348,6 +349,13 @@ const firstRow = publications.filter((_, i) => i % 2 === 0);
 const secondRow = publications.filter((_, i) => i % 2 === 1);
 
 const PublicationsMarquee = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+
+  const handleInteractionStart = () => setIsPaused(true);
+  const handleInteractionEnd = () => setIsPaused(false);
+
   return (
     <section 
       className="py-10 md:py-16 lg:py-20 bg-muted overflow-hidden"
@@ -360,20 +368,38 @@ const PublicationsMarquee = () => {
       </div>
       
       {/* Marquee container */}
-      <div className="relative group space-y-4">
+      <div className="relative space-y-4">
         {/* Градиенты по краям */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
         
-        {/* Первый ряд — движется влево */}
-        <div className="flex gap-4 marquee-publications">
+        {/* Первый ряд — движется влево, можно листать */}
+        <div 
+          ref={row1Ref}
+          className={`flex gap-4 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-x ${
+            isPaused ? '' : 'marquee-publications'
+          }`}
+          onMouseEnter={handleInteractionStart}
+          onMouseLeave={handleInteractionEnd}
+          onTouchStart={handleInteractionStart}
+          onTouchEnd={handleInteractionEnd}
+        >
           {[...firstRow, ...firstRow, ...firstRow].map((pub, index) => (
             <PublicationCard key={`row1-${pub.id}-${index}`} {...pub} />
           ))}
         </div>
         
-        {/* Второй ряд — движется вправо */}
-        <div className="flex gap-4 marquee-publications-reverse">
+        {/* Второй ряд — движется вправо, можно листать */}
+        <div 
+          ref={row2Ref}
+          className={`flex gap-4 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-x ${
+            isPaused ? '' : 'marquee-publications-reverse'
+          }`}
+          onMouseEnter={handleInteractionStart}
+          onMouseLeave={handleInteractionEnd}
+          onTouchStart={handleInteractionStart}
+          onTouchEnd={handleInteractionEnd}
+        >
           {[...secondRow, ...secondRow, ...secondRow].map((pub, index) => (
             <PublicationCard key={`row2-${pub.id}-${index}`} {...pub} />
           ))}
