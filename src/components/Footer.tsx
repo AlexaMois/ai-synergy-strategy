@@ -38,12 +38,13 @@ const Footer = () => {
           <div>
             <p className="text-lg font-semibold mb-4">Навигация</p>
             <div className="flex flex-col gap-2 text-background/80 text-sm">
-              <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
+              <DisabledLink to="/start" className="hover:text-primary transition-colors">С чего начать</DisabledLink>
               <DisabledLink to="/services" className="hover:text-primary transition-colors">Услуги</DisabledLink>
               <DisabledLink to="/cases" className="hover:text-primary transition-colors">Кейсы</DisabledLink>
-              <DisabledLink to="/faq" className="hover:text-primary transition-colors">FAQ</DisabledLink>
-              <DisabledLink to="/resources" className="hover:text-primary transition-colors">Материалы</DisabledLink>
-              <DisabledLink to="/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
+              <DisabledLink to="/products" className="hover:text-primary transition-colors">Продукты</DisabledLink>
+              <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
+              <DisabledLink to="/materials/resources" className="hover:text-primary transition-colors">Материалы</DisabledLink>
+              <DisabledLink to="/materials/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
               <a href="/#contact" onClick={e => scrollToSection(e, '#contact')} className="hover:text-primary transition-colors">Контакты</a>
             </div>
           </div>
