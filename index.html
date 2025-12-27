@@ -225,21 +225,57 @@
     }
     </script>
     
-    <!-- Critical CSS with font fallback -->
+    <!-- Critical CSS - Above the fold styles inlined for FCP -->
     <style>
+      /* Reset & Base */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
       body { 
-        margin: 0; 
-        font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; 
-        background: #fff;
+        font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        background: #FAFAFA;
+        color: #191919;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       #root { min-height: 100vh; }
-      .hero-skeleton { min-height: 80vh; }
-      /* Prevent layout shift from fonts */
-      @supports (font-display: swap) {
-        body { font-display: swap; }
+      
+      /* Typography - Critical */
+      h1, h2, h3 { font-family: 'Raleway', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; line-height: 1.2; }
+      
+      /* Navigation - Critical (always visible) */
+      nav, header { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        z-index: 50; 
+        background: rgba(250,250,250,0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
+      
+      /* Container */
+      .container { width: 100%; max-width: 1360px; margin: 0 auto; padding: 0 1.5rem; }
+      @media (min-width: 640px) { .container { padding: 0 2rem; } }
+      @media (min-width: 1024px) { .container { padding: 0 5rem; } }
+      
+      /* Hero section skeleton */
+      .hero-skeleton { min-height: 100vh; display: flex; align-items: center; }
+      
+      /* Button base - Critical */
+      button { font-family: inherit; cursor: pointer; border: none; background: transparent; }
+      
+      /* Image optimization */
+      img { max-width: 100%; height: auto; display: block; }
+      
+      /* Prevent layout shift from fonts */
+      @font-face { font-family: 'Golos Text'; font-display: swap; }
+      @font-face { font-family: 'Raleway'; font-display: swap; }
+      
+      /* Loading skeleton animation */
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+      .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     </style>
     <meta property="og:title" content="Александра Моисеева — Независимый инженер по ИИ">
   <meta name="twitter:title" content="Александра Моисеева — Независимый инженер по ИИ">
