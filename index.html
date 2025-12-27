@@ -10,14 +10,6 @@
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="p_GhvGyV9W2AB1GZwexFoEH2y-RWIPrnYmv8hAU0I2U" />
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WHRVN5J4');</script>
-    <!-- End Google Tag Manager -->
-    
     <!-- Primary Meta Tags -->
     <title>Александра Моисеева — Независимый инженер по ИИ</title>
     <meta name="description" content="Проектирую ИИ, который не ломает процессы, а приносит деньги и результат. Пилот — от 200 тыс. ₽, ROI — 3-6 месяцев, гарантия результата.">
@@ -57,15 +49,8 @@
     
     <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
     
-    <!-- Favicon - Optimized for all devices -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="shortcut icon" href="/favicon-32x32.png">
-    
-    <!-- Preload LCP Image (Logo) -->
-    <link rel="preload" as="image" href="/src/assets/logo-horizontal.png" fetchpriority="high">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/uploads/1765090016532-Скриншот 07-12-2025 134633.jpg">
     
     <!-- Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,59 +222,21 @@
     }
     </script>
     
-    <!-- Critical CSS - Above the fold styles inlined for FCP -->
+    <!-- Critical CSS with font fallback -->
     <style>
-      /* Reset & Base */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
       body { 
-        font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-        background: #FAFAFA;
-        color: #737373;
-        line-height: 1.6;
+        margin: 0; 
+        font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; 
+        background: #fff;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       #root { min-height: 100vh; }
-      
-      /* Typography - Critical */
-      h1, h2, h3 { font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif; color: #232719; line-height: 1.2; }
-      h1 { font-weight: 600; }
-      h2, h3 { font-weight: 500; }
-      
-      /* Navigation - Critical (always visible) */
-      nav, header { 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        right: 0; 
-        z-index: 50; 
-        background: rgba(250,250,250,0.95);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-      }
-      
-      /* Container */
-      .container { width: 100%; max-width: 1360px; margin: 0 auto; padding: 0 1.5rem; }
-      @media (min-width: 640px) { .container { padding: 0 2rem; } }
-      @media (min-width: 1024px) { .container { padding: 0 5rem; } }
-      
-      /* Hero section skeleton */
-      .hero-skeleton { min-height: 100vh; display: flex; align-items: center; }
-      
-      /* Button base - Critical */
-      button { font-family: inherit; cursor: pointer; border: none; background: transparent; }
-      
-      /* Image optimization */
-      img { max-width: 100%; height: auto; display: block; }
-      
+      .hero-skeleton { min-height: 80vh; }
       /* Prevent layout shift from fonts */
-      @font-face { font-family: 'Golos Text'; font-display: swap; }
-      @font-face { font-family: 'Raleway'; font-display: swap; }
-      
-      /* Loading skeleton animation */
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-      .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+      @supports (font-display: swap) {
+        body { font-display: swap; }
+      }
     </style>
     <meta property="og:title" content="Александра Моисеева — Независимый инженер по ИИ">
   <meta name="twitter:title" content="Александра Моисеева — Независимый инженер по ИИ">
@@ -297,32 +244,7 @@
   <meta name="twitter:description" content="Проектирую ИИ, который не ломает процессы, а приносит деньги и результат. Пилот — от 200 тыс. ₽, ROI — 3-6 месяцев, гарантия результата.">
 </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHRVN5J4"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Yandex.Metrica counter -->
-    <script type="text/javascript">
-       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-       m[i].l=1*new Date();
-       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-       })(window, document,"script","https://mc.yandex.ru/metrika/tag.js?id=106050098", "ym");
-       
-       ym(106050098, "init", {
-          ssr:true, 
-          webvisor:true, 
-          clickmap:true, 
-          ecommerce:"dataLayer", 
-          accurateTrackBounce:true, 
-          trackLinks:true
-       });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106050098" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrica counter -->
   </body>
 </html>

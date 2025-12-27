@@ -174,8 +174,8 @@ const CaseStudyDocSearch = () => {
                 <QrCode className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary" />
               </div>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-foreground leading-tight max-w-4xl mx-auto px-2">
-                Система интеллектуального поиска по <span className="font-bold">технологической документации</span> и руководствам пользователя   
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight max-w-4xl mx-auto px-2">
+                Система интеллектуального поиска по технологической документации и руководствам пользователя   
               </h1>
 
               <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-primary font-medium">

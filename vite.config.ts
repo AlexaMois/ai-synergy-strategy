@@ -27,52 +27,15 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          // React core bundle
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-core';
-          }
-          // Router bundle
-          if (id.includes('node_modules/react-router') || id.includes('node_modules/@remix-run')) {
-            return 'router';
-          }
-          // Radix UI - split into smaller chunks
-          if (id.includes('@radix-ui/react-accordion')) {
-            return 'radix-accordion';
-          }
-          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-alert-dialog')) {
-            return 'radix-dialog';
-          }
-          if (id.includes('@radix-ui/react-dropdown-menu') || id.includes('@radix-ui/react-menubar')) {
-            return 'radix-menu';
-          }
-          if (id.includes('@radix-ui/react-toast')) {
-            return 'radix-toast';
-          }
-          if (id.includes('@radix-ui/react-tabs')) {
-            return 'radix-tabs';
-          }
-          if (id.includes('@radix-ui/react-tooltip') || id.includes('@radix-ui/react-popover') || id.includes('@radix-ui/react-hover-card')) {
-            return 'radix-overlay';
-          }
-          if (id.includes('@radix-ui')) {
-            return 'radix-other';
-          }
-          // TanStack Query
-          if (id.includes('@tanstack/react-query')) {
-            return 'tanstack-query';
-          }
-          // Recharts (if used)
-          if (id.includes('recharts') || id.includes('d3-')) {
-            return 'charts';
-          }
-          // Other large dependencies
-          if (id.includes('node_modules/framer-motion')) {
-            return 'framer-motion';
-          }
-          if (id.includes('node_modules/date-fns')) {
-            return 'date-fns';
-          }
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-components': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tabs',
+          ],
         },
         // Optimize asset file names for caching
         assetFileNames: (assetInfo) => {
@@ -98,15 +61,5 @@ export default defineConfig(({ mode }) => ({
   // Enable CSS optimization
   css: {
     devSourcemap: false,
-    // Optimize CSS in production
-    postcss: {
-      plugins: [],
-    },
-  },
-  esbuild: {
-    // Remove console.log in production
-    drop: mode === 'production' ? ['console', 'debugger'] : [],
-    // Minify CSS class names in production
-    legalComments: 'none',
   },
 }));

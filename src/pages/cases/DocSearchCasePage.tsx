@@ -113,8 +113,8 @@ const DocSearchCasePage = () => {
                   Производственная компания
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-6">
-                Интеллектуальный поиск по <span className="font-bold">технической документации</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                Интеллектуальный поиск по технической документации
               </h1>
               <p className="text-2xl md:text-3xl text-primary font-medium mb-8">
                 От хаоса в регламентах — к точным ответам за 3 секунды

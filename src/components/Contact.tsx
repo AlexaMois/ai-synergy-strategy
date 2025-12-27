@@ -98,8 +98,8 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
             <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
-              <h2 className="text-2xl sm:text-3xl font-normal text-foreground mb-4">
-                Спасибо, <span className="font-bold">я свяжусь с вами</span>
+              <h2 className="text-2xl sm:text-3xl font-medium text-foreground mb-4">
+                Спасибо, я свяжусь с вами
               </h2>
               <p className="text-foreground">
                 Обычно отвечаю в течение 24 часов в рабочие дни.
@@ -119,13 +119,10 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-8 lg:gap-12">
             {/* Левая колонка - текст */}
             <div className={`${getStaggeredClass(1, 'animate-fade-in-up')}`}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl text-foreground mb-2">
-                Будем <span className="font-bold">на связи</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-4">
+                Будем на связи
               </h2>
-              <p className="text-handwriting text-primary mb-4">
-                с удовольствием помогу
-              </p>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-foreground text-lg">
                 Оставьте свои контакты, и я свяжусь с вами,
                 чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
               </p>

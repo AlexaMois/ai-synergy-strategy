@@ -131,8 +131,8 @@ const DiagnosticsPage = () => {
                 </div>
                 <span className="text-primary font-medium">Услуга 01</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-6">
-                <span className="font-bold">Диагностика</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                Диагностика
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
                 Анализ ваших процессов и ИТ-ландшафта. Честный разбор где ИИ даст результат за месяц, где нужна подготовка процессов, где он вообще не нужен.

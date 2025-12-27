@@ -246,8 +246,8 @@ const PricingPage = () => {
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <DollarSign className="w-12 h-12 text-primary" strokeWidth={1.5} />
-                <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-normal text-foreground leading-tight">
-                  Прозрачные цены на <span className="font-bold">AI-консалтинг</span>
+                <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
+                  Прозрачные цены на AI-консалтинг
                 </h1>
               </div>
               <p className="text-lg text-foreground max-w-3xl mx-auto leading-relaxed">

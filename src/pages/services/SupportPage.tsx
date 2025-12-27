@@ -133,8 +133,8 @@ const SupportPage = () => {
                 </div>
                 <span className="text-primary font-medium">Услуга 03</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-6">
-                <span className="font-bold">Сопровождение</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                Сопровождение
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
                 Контроль разработки и реализации, обучение команды, гарантия результата. Я проверяю что подрядчик делает правильно и что обещанные метрики действительно достигаются.

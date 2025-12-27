@@ -332,8 +332,8 @@ const FAQPage = () => {
 
           {/* Hero Section */}
           <section className="text-center mb-12 mt-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-foreground mb-4">
-              Вопросы об ИИ <span className="font-bold">для бизнеса</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Вопросы об ИИ для бизнеса
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               45 честных ответов о стоимости, окупаемости, рисках и внедрении. 
