@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { type CarouselApi } from "@/components/ui/carousel";
 
 // Импорт скриншотов отзывов
 import reviewNeurotech from "@/assets/reviews/review-neurotech.jpg";
@@ -14,7 +21,6 @@ import reviewNatalya from "@/assets/reviews/review-natalya.jpg";
 import reviewFamilyUnion from "@/assets/reviews/review-family-union.jpg";
 import reviewAnastasia from "@/assets/reviews/review-anastasia.jpg";
 import reviewSalesGroup from "@/assets/reviews/review-sales-group.jpg";
-// Новые отзывы
 import reviewPraktika1 from "@/assets/reviews/review-praktika-1.jpg";
 import reviewPraktika2 from "@/assets/reviews/review-praktika-2.jpg";
 import reviewPraktika3 from "@/assets/reviews/review-praktika-3.jpg";
@@ -25,7 +31,7 @@ import reviewChatSmm from "@/assets/reviews/review-chat-smm.jpg";
 import reviewChatDosug from "@/assets/reviews/review-chat-dosug.jpg";
 import reviewChatProgress from "@/assets/reviews/review-chat-progress.jpg";
 import reviewYuliyaBot from "@/assets/reviews/review-yuliya-bot.jpg";
-// Новые отзывы — письма и дипломы
+// Письма и дипломы
 import reviewSistemExpert from "@/assets/reviews/review-sistem-expert.png";
 import review7NeboFestival from "@/assets/reviews/review-7nebo-festival.png";
 import reviewAltPozhara from "@/assets/reviews/review-alt-pozhara.png";
@@ -33,51 +39,107 @@ import reviewTehrang from "@/assets/reviews/review-tehrang.png";
 import reviewAntiterrorDiploma from "@/assets/reviews/review-antiterror-diploma.png";
 import reviewKritbi from "@/assets/reviews/review-kritbi.png";
 
-// Типы источников отзывов
-type ReviewSource = "telegram" | "yandex";
+// Типы отзывов по визуальному виду
+type ReviewType = "telegram-dark" | "telegram-light" | "letter" | "diploma";
 
 interface Review {
   id: string;
   image: string;
-  source: ReviewSource;
+  type: ReviewType;
   alt: string;
 }
 
-// Массив отзывов из Telegram
+// Массив отзывов с типами
 const reviews: Review[] = [
-  { id: "1", image: reviewNeurotech, source: "telegram", alt: "Благодарность от NeuroTech Russia 2025" },
-  { id: "2", image: reviewKirill, source: "telegram", alt: "Отзыв Кирилла о практическом применении ИИ" },
-  { id: "3", image: reviewGeneralGroup, source: "telegram", alt: "Отзывы из группы General" },
-  { id: "4", image: reviewElena, source: "telegram", alt: "Отзыв Елены о семинаре" },
-  { id: "5", image: reviewOlgaElena, source: "telegram", alt: "Отзывы от Ольги Плотниковой и Elena Kopytova" },
-  { id: "6", image: reviewElenaMarina, source: "telegram", alt: "Отзывы с мероприятия" },
-  { id: "7", image: reviewNatalya, source: "telegram", alt: "Отзыв Натальи Черкашиной" },
-  { id: "8", image: reviewFamilyUnion, source: "telegram", alt: "Благодарность от Союза семей России" },
-  { id: "9", image: reviewAnastasia, source: "telegram", alt: "Отзыв Анастасии об автоматизации" },
-  { id: "10", image: reviewSalesGroup, source: "telegram", alt: "Отзывы из группы Продажи" },
-  // Новые отзывы
-  { id: "11", image: reviewPraktika1, source: "telegram", alt: "Чат практики — благодарности от участников" },
-  { id: "12", image: reviewPraktika2, source: "telegram", alt: "Чат практики — отзыв Алёны Рябцевой" },
-  { id: "13", image: reviewPraktika3, source: "telegram", alt: "Чат практики — отзывы Максима и Сергея" },
-  { id: "14", image: reviewPraktika4, source: "telegram", alt: "Чат практики — Dragon Born благодарность" },
-  { id: "15", image: reviewGeneralOlga, source: "telegram", alt: "General — отзывы Ольги, Артёма, Лидии, Михаила" },
-  { id: "16", image: reviewGeneralTati, source: "telegram", alt: "General — отзыв TaTi об ОГРОМНОЙ пользе" },
-  { id: "17", image: reviewChatSmm, source: "telegram", alt: "Чат для общения — SMM помощник" },
-  { id: "18", image: reviewChatDosug, source: "telegram", alt: "Чат для общения — генерация картинок" },
-  { id: "19", image: reviewChatProgress, source: "telegram", alt: "Чат для общения — вот он прогресс" },
-  { id: "20", image: reviewYuliyaBot, source: "telegram", alt: "Отзыв Юлии о боте для постов" },
-  // Письма поддержки и дипломы
-  { id: "21", image: reviewSistemExpert, source: "telegram", alt: "Письмо поддержки от ООО Систем Эксперт" },
-  { id: "22", image: review7NeboFestival, source: "telegram", alt: "Благодарность от фестиваля 7НЕБО" },
-  { id: "23", image: reviewAltPozhara, source: "telegram", alt: "Письмо поддержки от ООО Альт" },
-  { id: "24", image: reviewTehrang, source: "telegram", alt: "Письмо поддержки от ООО Техранг" },
-  { id: "25", image: reviewAntiterrorDiploma, source: "telegram", alt: "Диплом форума Антитеррор 2024" },
-  { id: "26", image: reviewKritbi, source: "telegram", alt: "Резидент бизнес-инкубатора КРИТБИ" },
+  // Telegram тёмная тема
+  { id: "1", image: reviewNeurotech, type: "telegram-dark", alt: "Благодарность от NeuroTech Russia 2025" },
+  { id: "2", image: reviewKirill, type: "telegram-dark", alt: "Отзыв Кирилла о практическом применении ИИ" },
+  { id: "3", image: reviewGeneralGroup, type: "telegram-dark", alt: "Отзывы из группы General" },
+  { id: "9", image: reviewAnastasia, type: "telegram-dark", alt: "Отзыв Анастасии об автоматизации" },
+  { id: "10", image: reviewSalesGroup, type: "telegram-dark", alt: "Отзывы из группы Продажи" },
+  { id: "11", image: reviewPraktika1, type: "telegram-dark", alt: "Чат практики — благодарности от участников" },
+  { id: "12", image: reviewPraktika2, type: "telegram-dark", alt: "Чат практики — отзыв Алёны Рябцевой" },
+  { id: "13", image: reviewPraktika3, type: "telegram-dark", alt: "Чат практики — отзывы Максима и Сергея" },
+  { id: "14", image: reviewPraktika4, type: "telegram-dark", alt: "Чат практики — Dragon Born благодарность" },
+  { id: "15", image: reviewGeneralOlga, type: "telegram-dark", alt: "General — отзывы Ольги, Артёма, Лидии, Михаила" },
+  { id: "16", image: reviewGeneralTati, type: "telegram-dark", alt: "General — отзыв TaTi об ОГРОМНОЙ пользе" },
+  { id: "20", image: reviewYuliyaBot, type: "telegram-dark", alt: "Отзыв Юлии о боте для постов" },
+  
+  // Telegram светлая тема
+  { id: "4", image: reviewElena, type: "telegram-light", alt: "Отзыв Елены о семинаре" },
+  { id: "5", image: reviewOlgaElena, type: "telegram-light", alt: "Отзывы от Ольги Плотниковой и Elena Kopytova" },
+  { id: "6", image: reviewElenaMarina, type: "telegram-light", alt: "Отзывы с мероприятия" },
+  { id: "7", image: reviewNatalya, type: "telegram-light", alt: "Отзыв Натальи Черкашиной" },
+  { id: "8", image: reviewFamilyUnion, type: "telegram-light", alt: "Благодарность от Союза семей России" },
+  { id: "17", image: reviewChatSmm, type: "telegram-light", alt: "Чат для общения — SMM помощник" },
+  { id: "18", image: reviewChatDosug, type: "telegram-light", alt: "Чат для общения — генерация картинок" },
+  { id: "19", image: reviewChatProgress, type: "telegram-light", alt: "Чат для общения — вот он прогресс" },
+  
+  // Благодарственные письма
+  { id: "21", image: reviewSistemExpert, type: "letter", alt: "Письмо поддержки от ООО Систем Эксперт" },
+  { id: "22", image: review7NeboFestival, type: "letter", alt: "Благодарность от фестиваля 7НЕБО" },
+  { id: "23", image: reviewAltPozhara, type: "letter", alt: "Письмо поддержки от ООО Альт" },
+  { id: "24", image: reviewTehrang, type: "letter", alt: "Письмо поддержки от ООО Техранг" },
+  
+  // Дипломы и сертификаты
+  { id: "25", image: reviewAntiterrorDiploma, type: "diploma", alt: "Диплом форума Антитеррор 2024" },
+  { id: "26", image: reviewKritbi, type: "diploma", alt: "Резидент бизнес-инкубатора КРИТБИ" },
 ];
 
+// Функция умного перемешивания: чередует типы, чтобы соседние карточки были разными
+function shuffleReviewsByType(reviews: Review[]): Review[] {
+  const byType: Record<ReviewType, Review[]> = {
+    "telegram-dark": [],
+    "telegram-light": [],
+    "letter": [],
+    "diploma": [],
+  };
+  
+  // Группируем по типам
+  reviews.forEach(review => {
+    byType[review.type].push(review);
+  });
+  
+  // Перемешиваем внутри каждой группы
+  Object.keys(byType).forEach(key => {
+    byType[key as ReviewType].sort(() => Math.random() - 0.5);
+  });
+  
+  const result: Review[] = [];
+  const types: ReviewType[] = ["telegram-dark", "letter", "telegram-light", "diploma"];
+  let typeIndex = 0;
+  let attempts = 0;
+  const maxAttempts = reviews.length * 4;
+  
+  while (result.length < reviews.length && attempts < maxAttempts) {
+    const type = types[typeIndex % types.length];
+    if (byType[type].length > 0) {
+      result.push(byType[type].shift()!);
+    }
+    typeIndex++;
+    attempts++;
+  }
+  
+  // Добавляем оставшиеся, если есть
+  Object.values(byType).forEach(arr => {
+    result.push(...arr);
+  });
+  
+  return result;
+}
 
 const Testimonials = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [shuffledReviews] = useState(() => shuffleReviewsByType(reviews));
+  
+  const autoplayPlugin = useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    })
+  );
 
   // Schema.org structured data for reviews
   const reviewSchema = {
@@ -144,13 +206,13 @@ const Testimonials = () => {
 
   // Если отзывов нет, показываем заглушку
   if (reviews.length === 0) {
-  return (
-    <section className="py-16 md:py-24 bg-secondary" id="testimonials">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(reviewSchema)}
-        </script>
-      </Helmet>
+    return (
+      <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(reviewSchema)}
+          </script>
+        </Helmet>
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
@@ -174,6 +236,11 @@ const Testimonials = () => {
 
   return (
     <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(reviewSchema)}
+        </script>
+      </Helmet>
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
@@ -182,30 +249,59 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Auto-scrolling gallery */}
-        <div className="overflow-hidden -mx-4 px-4">
-          <div className="flex gap-4 w-max animate-testimonials-scroll hover:[animation-play-state:paused]">
-            {/* Дублируем массив для бесшовного цикла */}
-            {[...reviews, ...reviews].map((review, index) => (
-              <div
-                key={`${review.id}-${index}`}
-                className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-all duration-300 hover:scale-110 hover:z-10"
-                onClick={() => setSelectedImage(review.image)}
-              >
-                <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
-                  <img
-                    src={review.image}
-                    alt={review.alt}
-                    className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                    loading="lazy"
-                    decoding="async"
-                    width="192"
-                    height="256"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Carousel with navigation */}
+        <div className="relative px-12 md:px-16">
+          {/* Left arrow */}
+          <button
+            onClick={() => api?.scrollPrev()}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border shadow-soft flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+            aria-label="Предыдущий отзыв"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          {/* Right arrow */}
+          <button
+            onClick={() => api?.scrollNext()}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border shadow-soft flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+            aria-label="Следующий отзыв"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          <Carousel
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+            plugins={[autoplayPlugin.current]}
+            setApi={setApi}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {shuffledReviews.map((review) => (
+                <CarouselItem
+                  key={review.id}
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 pl-4"
+                >
+                  <div
+                    className="relative group cursor-pointer w-full h-64 md:h-72 transition-all duration-300 hover:scale-105 hover:z-10"
+                    onClick={() => setSelectedImage(review.image)}
+                  >
+                    <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
+                      <img
+                        src={review.image}
+                        alt={review.alt}
+                        className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
 
