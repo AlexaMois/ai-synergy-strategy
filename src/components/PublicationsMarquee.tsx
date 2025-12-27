@@ -16,6 +16,7 @@ import logoAiSummit from '@/assets/partners/ai-summit.png';
 import logo7nebo from '@/assets/partners/7nebo.png';
 import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.png';
 import logoDataFusion from '@/assets/partners/data-fusion.png';
+import logoPanorama from '@/assets/partners/panorama.png';
 
 interface Publication {
   id: number;
@@ -54,7 +55,7 @@ const publications2: Publication[] = [
   { id: 17, source: 'SET.KI', title: 'Как ИИ трансформирует HR-подбор: от цифр к практике', url: 'https://set.ki/post/3XjKrd2', type: 'read', logo: null, alt: 'Статья об ИИ в HR', ariaLabel: 'Открыть статью об ИИ в HR' },
   { id: 19, source: 'ОПОРА РОССИИ', title: 'Красноярские предприниматели приняли участие в Альфа-Конфе', url: 'https://opora.ru/news/regions/krasnoyarskie-predprinimateli-prinyali-uchastie-v-alfa-konfe/', type: 'read', logo: logoOpora, alt: 'Публикация об Альфа-Конфе', ariaLabel: 'Открыть публикацию об Альфа-Конфе' },
   { id: 22, source: 'НФИИ', title: 'НейроРешения запускает Telegram-канал', url: 'https://nfai.ru/tpost/dvo82v7601-neiroresheniya-chlen-nfii-zapuskaet-tele', type: 'read', logo: logoNfii, alt: 'Публикация НФИИ о Telegram-канале', ariaLabel: 'Открыть публикацию НФИИ' },
-  { id: 20, source: 'Панорама', title: 'От кисти к коду: трансформация роли художника в эпоху нейросетей', url: 'https://panor.ru/articles/ot-kisti-k-kodu-transformatsiya-roli-khudozhnika-v-epokhu-neyrosetey/118181.html#', type: 'read', logo: null, alt: 'Статья о трансформации творческих профессий', ariaLabel: 'Открыть статью о трансформации творческих профессий' },
+  { id: 20, source: 'Панорама', title: 'От кисти к коду: трансформация роли художника в эпоху нейросетей', url: 'https://panor.ru/articles/ot-kisti-k-kodu-transformatsiya-roli-khudozhnika-v-epokhu-neyrosetey/118181.html#', type: 'read', logo: logoPanorama, alt: 'Статья о трансформации творческих профессий', ariaLabel: 'Открыть статью о трансформации творческих профессий' },
   { id: 23, source: 'Деловой Квартал', title: 'AI-агентство НейроРешения — Wiki', url: 'https://krasnoyarsk.dk.ru/wiki/ai-agentstvo-neyroresheniya', type: 'read', logo: logoDelovoyKvartal, alt: 'Профиль НейроРешения в ДК', ariaLabel: 'Открыть профиль НейроРешения' },
   { id: 24, source: 'Зарплата.ру', title: 'Новые возможности AI для рекрутинга', url: 'https://krasnoyarsk.dk.ru/news/237229366', type: 'read', logo: logoZarplata, alt: 'Новости бизнеса', ariaLabel: 'Открыть новости бизнеса' },
   { id: 25, source: 'Битех24', title: 'Практика внедрения ИИ в компаниях', url: 'https://krasnoyarsk.dk.ru/news/237222687', type: 'read', logo: logoBiteh, alt: 'Публикация о развитии ИИ', ariaLabel: 'Открыть публикацию о развитии ИИ' },
@@ -223,8 +224,8 @@ const PublicationsMarquee = () => {
       
       {/* Две ленты */}
       <div className="space-y-6">
-        <MarqueeRow items={publications} direction="left" speed={60} />
-        <MarqueeRow items={publications2} direction="right" speed={55} />
+        <MarqueeRow items={publications} direction="left" speed={90} />
+        <MarqueeRow items={publications2} direction="right" speed={85} />
       </div>
     </section>
   );
