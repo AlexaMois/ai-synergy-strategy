@@ -25,6 +25,13 @@ import reviewChatSmm from "@/assets/reviews/review-chat-smm.jpg";
 import reviewChatDosug from "@/assets/reviews/review-chat-dosug.jpg";
 import reviewChatProgress from "@/assets/reviews/review-chat-progress.jpg";
 import reviewYuliyaBot from "@/assets/reviews/review-yuliya-bot.jpg";
+// Новые отзывы — письма и дипломы
+import reviewSistemExpert from "@/assets/reviews/review-sistem-expert.png";
+import review7NeboFestival from "@/assets/reviews/review-7nebo-festival.png";
+import reviewAltPozhara from "@/assets/reviews/review-alt-pozhara.png";
+import reviewTehrang from "@/assets/reviews/review-tehrang.png";
+import reviewAntiterrorDiploma from "@/assets/reviews/review-antiterror-diploma.png";
+import reviewKritbi from "@/assets/reviews/review-kritbi.png";
 
 // Типы источников отзывов
 type ReviewSource = "telegram" | "yandex";
@@ -59,6 +66,13 @@ const reviews: Review[] = [
   { id: "18", image: reviewChatDosug, source: "telegram", alt: "Чат для общения — генерация картинок" },
   { id: "19", image: reviewChatProgress, source: "telegram", alt: "Чат для общения — вот он прогресс" },
   { id: "20", image: reviewYuliyaBot, source: "telegram", alt: "Отзыв Юлии о боте для постов" },
+  // Письма поддержки и дипломы
+  { id: "21", image: reviewSistemExpert, source: "telegram", alt: "Письмо поддержки от ООО Систем Эксперт" },
+  { id: "22", image: review7NeboFestival, source: "telegram", alt: "Благодарность от фестиваля 7НЕБО" },
+  { id: "23", image: reviewAltPozhara, source: "telegram", alt: "Письмо поддержки от ООО Альт" },
+  { id: "24", image: reviewTehrang, source: "telegram", alt: "Письмо поддержки от ООО Техранг" },
+  { id: "25", image: reviewAntiterrorDiploma, source: "telegram", alt: "Диплом форума Антитеррор 2024" },
+  { id: "26", image: reviewKritbi, source: "telegram", alt: "Резидент бизнес-инкубатора КРИТБИ" },
 ];
 
 
