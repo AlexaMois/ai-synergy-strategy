@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { useState } from "react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { blogPosts } from "@/data/blogPosts";
 
 const CATEGORIES = ["Все статьи", "Внедрение ИИ", "Методология", "Аналитика", "Управление", "Технологии", "Обучение"];
 
@@ -32,49 +33,15 @@ const Blog = () => {
     }
   };
 
-  const posts = [{
-    title: "Почему 80% проектов по внедрению ИИ проваливаются",
-    excerpt: "Разбираю ключевые ошибки компаний и объясняю, как избежать лишних затрат и получить реальную пользу от технологий.",
-    date: "15 марта 2025",
-    category: "Внедрение ИИ",
-    readTime: "7 мин",
-    slug: "why-ai-projects-fail"
-  }, {
-    title: "AI Synergy Framework: методология успешных проектов",
-    excerpt: "Как синхронизировать бизнес, процессы, людей и технологии, чтобы решения были жизнеспособны и давали предсказуемый результат.",
-    date: "8 марта 2025",
-    category: "Методология",
-    readTime: "10 мин",
-    slug: "ai-synergy-framework"
-  }, {
-    title: "ROI от ИИ: как считать эффективность до внедрения",
-    excerpt: "Пошаговый подход к расчёту окупаемости ИИ-проектов с примерами и рабочими формулами.",
-    date: "1 марта 2025",
-    category: "Аналитика",
-    readTime: "12 мин",
-    slug: "ai-roi-calculation"
-  }, {
-    title: "Автоматизация без потерь: чек-лист для руководителя",
-    excerpt: "10 вопросов, которые нужно закрыть до старта любого проекта, чтобы сохранить устойчивость процессов и команды.",
-    date: "22 февраля 2025",
-    category: "Управление",
-    readTime: "5 мин",
-    slug: "automation-checklist"
-  }, {
-    title: "Российские LLM vs зарубежные: практический сравнительный анализ",
-    excerpt: "Сравнение GigaChat, YandexGPT и других моделей с точки зрения качества, стоимости, интеграций и применимости для бизнеса.",
-    date: "15 февраля 2025",
-    category: "Технологии",
-    readTime: "15 мин",
-    slug: "russian-llm-comparison"
-  }, {
-    title: "Как обучить команду работать с ИИ за 2 недели",
-    excerpt: "Практичный формат обучения, который снижает тревожность сотрудников и формирует устойчивое принятие технологий в компании.",
-    date: "8 февраля 2025",
-    category: "Обучение",
-    readTime: "8 мин",
-    slug: "team-ai-training"
-  }];
+  // Use blog posts from data file - all are published since they exist in blogPosts
+  const posts = blogPosts.map(post => ({
+    title: post.title,
+    excerpt: post.excerpt,
+    date: post.date,
+    category: post.category,
+    readTime: post.readTime,
+    slug: post.slug
+  }));
 
   const filteredPosts = activeCategories.includes("Все статьи") ? posts : posts.filter(post => activeCategories.includes(post.category));
 
@@ -92,7 +59,7 @@ const Blog = () => {
         <Navigation />
         <PageBreadcrumbs 
           currentPage="Блог" 
-          parentPages={[{ label: "Экспертный подход", href: "/approach" }]} 
+          parentPages={[{ label: "Материалы", href: "/materials" }]} 
         />
       
       <main>

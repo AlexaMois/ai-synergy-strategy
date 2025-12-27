@@ -7,8 +7,9 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
-import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet } from "lucide-react";
+import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet, Clock } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { Link } from "react-router-dom";
 
 const ResourcesPage = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -33,7 +34,18 @@ const ResourcesPage = () => {
     label: "Документация"
   }];
   
-  const resources = [{
+  const resources: {
+    id: number;
+    category: string;
+    title: string;
+    description: string;
+    type: string;
+    icon: typeof CheckSquare;
+    link: string;
+    actionLabel: string;
+    isExternal: boolean;
+    status: "ready" | "coming-soon";
+  }[] = [{
     id: 1,
     category: "checklists",
     title: "Чек-лист «10 вопросов перед внедрением ИИ»",
@@ -42,7 +54,8 @@ const ResourcesPage = () => {
     icon: CheckSquare,
     link: "/checklist",
     actionLabel: "Открыть чек-лист",
-    isExternal: false
+    isExternal: false,
+    status: "ready"
   }, {
     id: 2,
     category: "guides",
@@ -52,7 +65,8 @@ const ResourcesPage = () => {
     icon: BookOpen,
     link: "/resources/ai-investment-guide.pdf",
     actionLabel: "Скачать PDF",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 3,
     category: "architectures",
@@ -62,7 +76,8 @@ const ResourcesPage = () => {
     icon: Layout,
     link: "/resources/cargo-express-architecture.pdf",
     actionLabel: "Скачать схему",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 4,
     category: "architectures",
@@ -72,7 +87,8 @@ const ResourcesPage = () => {
     icon: Layout,
     link: "/resources/kraipotrebosoyz-architecture.pdf",
     actionLabel: "Скачать схему",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 5,
     category: "videos",
@@ -82,7 +98,8 @@ const ResourcesPage = () => {
     icon: Video,
     link: "https://youtube.com/watch?v=example",
     actionLabel: "Смотреть видео",
-    isExternal: true
+    isExternal: true,
+    status: "coming-soon"
   }, {
     id: 6,
     category: "videos",
@@ -90,9 +107,10 @@ const ResourcesPage = () => {
     description: "Живая демонстрация работы AI-помощника для автоматизации бизнес-коммуникаций",
     type: "Видео",
     icon: Play,
-    link: "/golossok-demo",
+    link: "/demo/voice-bot",
     actionLabel: "Смотреть демо",
-    isExternal: false
+    isExternal: false,
+    status: "ready"
   }, {
     id: 7,
     category: "documentation",
@@ -102,7 +120,8 @@ const ResourcesPage = () => {
     icon: FileCode,
     link: "/resources/ai-tz-template.docx",
     actionLabel: "Скачать шаблон",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 8,
     category: "documentation",
@@ -112,7 +131,8 @@ const ResourcesPage = () => {
     icon: FileSpreadsheet,
     link: "/resources/ai-roi-calculator.xlsx",
     actionLabel: "Скачать калькулятор",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 9,
     category: "guides",
@@ -122,7 +142,8 @@ const ResourcesPage = () => {
     icon: BookOpen,
     link: "/resources/ai-platform-comparison.pdf",
     actionLabel: "Скачать PDF",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }, {
     id: 10,
     category: "checklists",
@@ -132,7 +153,8 @@ const ResourcesPage = () => {
     icon: CheckSquare,
     link: "/resources/data-readiness-checklist.pdf",
     actionLabel: "Скачать чек-лист",
-    isExternal: false
+    isExternal: false,
+    status: "coming-soon"
   }];
   
   const filteredResources = activeCategory === "all" ? resources : resources.filter(r => r.category === activeCategory);
@@ -155,7 +177,7 @@ const ResourcesPage = () => {
         <Navigation />
         <PageBreadcrumbs 
           currentPage="Материалы" 
-          parentPages={[{ label: "Экспертный подход", href: "/approach" }]} 
+          parentPages={[{ label: "Материалы", href: "/materials" }]} 
         />
         
         <main className="container mx-auto px-4 max-w-6xl">
@@ -195,17 +217,29 @@ const ResourcesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredResources.map(resource => {
                 const IconComponent = resource.icon;
+                const isComingSoon = resource.status === "coming-soon";
+                
                 return (
                   <div 
                     key={resource.id} 
-                    className="bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card transition-shadow duration-200"
+                    className={`bg-card border border-border rounded-2xl p-6 shadow-soft transition-shadow duration-200 relative ${
+                      isComingSoon ? "opacity-70" : "hover:shadow-card"
+                    }`}
                   >
+                    {isComingSoon && (
+                      <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-muted px-2.5 py-1 rounded-full">
+                        <Clock className="w-3 h-3" />
+                        Скоро
+                      </div>
+                    )}
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <IconComponent className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                        isComingSoon ? "bg-muted" : "bg-primary/10"
+                      }`}>
+                        <IconComponent className={`w-6 h-6 ${isComingSoon ? "text-muted-foreground" : "text-primary"}`} strokeWidth={1.5} />
                       </div>
                       <div className="flex-1">
-                        <div className="text-xs font-medium text-primary mb-2">
+                        <div className={`text-xs font-medium mb-2 ${isComingSoon ? "text-muted-foreground" : "text-primary"}`}>
                           {resource.type}
                         </div>
                         <h3 className="text-lg font-medium text-foreground mb-2 leading-tight">
@@ -214,16 +248,35 @@ const ResourcesPage = () => {
                         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                           {resource.description}
                         </p>
-                        <Button asChild size="sm" className="w-full sm:w-auto">
-                          <a 
-                            href={resource.link} 
-                            target={resource.isExternal ? "_blank" : undefined} 
-                            rel={resource.isExternal ? "noopener noreferrer" : undefined}
+                        {isComingSoon ? (
+                          <Button 
+                            size="sm" 
+                            className="w-full sm:w-auto" 
+                            disabled
+                            variant="outline"
                           >
-                            {resource.isExternal ? <ExternalLink className="w-4 h-4 mr-2" strokeWidth={1.5} /> : <Download className="w-4 h-4 mr-2" strokeWidth={1.5} />}
-                            {resource.actionLabel}
-                          </a>
-                        </Button>
+                            <Clock className="w-4 h-4 mr-2" strokeWidth={1.5} />
+                            Скоро будет доступно
+                          </Button>
+                        ) : resource.link.startsWith("/") && !resource.link.includes(".") ? (
+                          <Button asChild size="sm" className="w-full sm:w-auto">
+                            <Link to={resource.link}>
+                              <Download className="w-4 h-4 mr-2" strokeWidth={1.5} />
+                              {resource.actionLabel}
+                            </Link>
+                          </Button>
+                        ) : (
+                          <Button asChild size="sm" className="w-full sm:w-auto">
+                            <a 
+                              href={resource.link} 
+                              target={resource.isExternal ? "_blank" : undefined} 
+                              rel={resource.isExternal ? "noopener noreferrer" : undefined}
+                            >
+                              {resource.isExternal ? <ExternalLink className="w-4 h-4 mr-2" strokeWidth={1.5} /> : <Download className="w-4 h-4 mr-2" strokeWidth={1.5} />}
+                              {resource.actionLabel}
+                            </a>
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>

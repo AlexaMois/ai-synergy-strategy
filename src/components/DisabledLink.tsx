@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { toast } from "@/hooks/use-toast";
 import { isRouteAllowed } from "@/config/routes";
 
 interface DisabledLinkProps {
@@ -8,19 +7,40 @@ interface DisabledLinkProps {
   className?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
+  disabled?: boolean;
+  disabledLabel?: string;
 }
 
-const DisabledLink = ({ to, children, className, onClick, style }: DisabledLinkProps) => {
+const DisabledLink = ({ 
+  to, 
+  children, 
+  className, 
+  onClick, 
+  style,
+  disabled = false,
+  disabledLabel
+}: DisabledLinkProps) => {
+  const isDisabled = disabled || !isRouteAllowed(to);
+
   const handleClick = (e: React.MouseEvent) => {
-    if (!isRouteAllowed(to)) {
+    if (isDisabled) {
       e.preventDefault();
-      toast({
-        title: "Эта страница находится в разработке",
-        description: "Скоро здесь появится полезная информация",
-      });
+      return;
     }
     onClick?.();
   };
+
+  if (isDisabled) {
+    return (
+      <span 
+        className={`${className} opacity-50 cursor-not-allowed`} 
+        style={style}
+        title={disabledLabel || "Скоро будет доступно"}
+      >
+        {children}
+      </span>
+    );
+  }
 
   return (
     <Link to={to} className={className} onClick={handleClick} style={style}>
