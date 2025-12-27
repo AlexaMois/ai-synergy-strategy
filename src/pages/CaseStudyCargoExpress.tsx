@@ -548,7 +548,7 @@ const CaseStudyCargoExpress = () => {
                 а с разбора процесса приёма заявок.
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Разобрать мой процесс →
+                Обсудить задачу
               </Button>
             </div>
           </div>
