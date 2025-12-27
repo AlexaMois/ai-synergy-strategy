@@ -945,6 +945,22 @@
     will-change: transform;
   }
   
+  /* Publications marquee - slow infinite scroll */
+  .marquee-publications {
+    display: flex;
+    animation: marquee 60s linear infinite;
+    will-change: transform;
+  }
+  
+  .marquee-publications:hover,
+  .group:hover .marquee-publications {
+    animation-play-state: paused;
+  }
+  
+  .pause-animation {
+    animation-play-state: paused !important;
+  }
+  
   /* Testimonials auto-scroll */
   @keyframes testimonials-scroll {
     0% {

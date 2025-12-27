@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
+import PublicationsMarquee from "@/components/PublicationsMarquee";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet";
@@ -743,6 +744,9 @@ const About = () => {
             </div>
           </div>
         </section>
+
+        {/* Publications, Media & Speeches */}
+        <PublicationsMarquee />
 
         {/* Testimonials */}
         <section className="py-10 md:py-16 lg:py-20">
