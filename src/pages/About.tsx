@@ -164,7 +164,7 @@ const About = () => {
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
                 <Button size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
-                  Запросить аудит-анализ
+                  Обсудить задачу
                 </Button>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
