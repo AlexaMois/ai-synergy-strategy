@@ -275,6 +275,8 @@ const Testimonials = () => {
               align: "start",
               dragFree: true,
               containScroll: "trimSnaps",
+              duration: 30,
+              skipSnaps: false,
             }}
             plugins={[autoplayPlugin.current]}
             setApi={setApi}
