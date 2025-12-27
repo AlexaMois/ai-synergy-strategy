@@ -343,6 +343,10 @@ const PublicationCard = ({ source, title, url, type, logo, alt, ariaLabel }: Omi
   </a>
 );
 
+// Разделяем публикации на 2 ряда
+const firstRow = publications.filter((_, i) => i % 2 === 0);
+const secondRow = publications.filter((_, i) => i % 2 === 1);
+
 const PublicationsMarquee = () => {
   return (
     <section 
@@ -356,16 +360,22 @@ const PublicationsMarquee = () => {
       </div>
       
       {/* Marquee container */}
-      <div className="relative group">
+      <div className="relative group space-y-4">
         {/* Градиенты по краям */}
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
         
-        {/* Лента */}
-        <div className="flex gap-4 marquee-publications group-hover:pause-animation">
-          {/* Дублируем для бесконечной ленты */}
-          {[...publications, ...publications, ...publications].map((pub, index) => (
-            <PublicationCard key={`${pub.id}-${index}`} {...pub} />
+        {/* Первый ряд — движется влево */}
+        <div className="flex gap-4 marquee-publications">
+          {[...firstRow, ...firstRow, ...firstRow].map((pub, index) => (
+            <PublicationCard key={`row1-${pub.id}-${index}`} {...pub} />
+          ))}
+        </div>
+        
+        {/* Второй ряд — движется вправо */}
+        <div className="flex gap-4 marquee-publications-reverse">
+          {[...secondRow, ...secondRow, ...secondRow].map((pub, index) => (
+            <PublicationCard key={`row2-${pub.id}-${index}`} {...pub} />
           ))}
         </div>
       </div>

@@ -945,11 +945,31 @@
     will-change: transform;
   }
   
-  /* Publications marquee - slow infinite scroll */
+  /* Publications marquee - faster infinite scroll */
   .marquee-publications {
     display: flex;
-    animation: marquee 60s linear infinite;
+    animation: marquee 30s linear infinite;
     will-change: transform;
+  }
+  
+  .marquee-publications-reverse {
+    display: flex;
+    animation: marquee-reverse 30s linear infinite;
+    will-change: transform;
+  }
+  
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .marquee-publications-reverse:hover,
+  .group:hover .marquee-publications-reverse {
+    animation-play-state: paused;
   }
   
   .marquee-publications:hover,
