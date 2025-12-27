@@ -15,6 +15,7 @@ import logoNewRetail from '@/assets/partners/new-retail-forum.png';
 import logoAiSummit from '@/assets/partners/ai-summit.png';
 import logo7nebo from '@/assets/partners/7nebo.png';
 import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.png';
+import logoDataFusion from '@/assets/partners/data-fusion.png';
 
 interface Publication {
   id: number;
@@ -47,7 +48,7 @@ const defaultLogos: Record<string, string | null> = {
   'AI Summit': logoAiSummit,
   '7 НЕБО': logo7nebo,
   'Ангелы Бизнеса': logoAngelyBiznesa,
-  'Data Fusion': null,
+  'Data Fusion': logoDataFusion,
 };
 
 const publications: Publication[] = [
@@ -307,7 +308,7 @@ const publications: Publication[] = [
     title: 'Участие в конференции по машинному обучению Data Fusion',
     url: 'https://t.me/AI_Kolibri/305',
     type: 'read',
-    logo: null,
+    logo: logoDataFusion,
     alt: 'Участие Александры Моисеевой в конференции Data Fusion по машинному обучению',
     ariaLabel: 'Открыть публикацию об участии в конференции Data Fusion'
   }
