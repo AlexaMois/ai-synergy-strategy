@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { PAIN_POINT_OPTIONS, TIME_SHARE_OPTIONS, ERROR_CRITICALITY_OPTIONS } from './types';
+import { PAIN_POINT_OPTIONS, TIME_SHARE_OPTIONS, ERROR_CRITICALITY_OPTIONS, ERROR_TYPE_OPTIONS } from './types';
 
 interface DiagnosticStepProps {
   step: number;
@@ -19,12 +18,21 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
   const [avgSalary, setAvgSalary] = useState('');
   const [selectedTimeShare, setSelectedTimeShare] = useState<number | null>(null);
   const [selectedCriticality, setSelectedCriticality] = useState<string | null>(null);
+  const [selectedErrorTypes, setSelectedErrorTypes] = useState<string[]>([]);
 
   const handlePainPointToggle = (point: string) => {
     setSelectedPainPoints(prev =>
       prev.includes(point)
         ? prev.filter(p => p !== point)
         : [...prev, point]
+    );
+  };
+
+  const handleErrorTypeToggle = (type: string) => {
+    setSelectedErrorTypes(prev =>
+      prev.includes(type)
+        ? prev.filter(t => t !== type)
+        : [...prev, type]
     );
   };
 
@@ -214,7 +222,52 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
                 disabled={selectedCriticality === null}
                 onClick={() => onNext(selectedCriticality!)}
               >
-                Завершить анализ
+                Продолжить
+              </Button>
+            </div>
+          </div>
+        );
+
+      case 6:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+              Какие типы ошибок случаются чаще всего?
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Необязательно, можно пропустить
+            </p>
+            <div className="space-y-3 mt-6">
+              {ERROR_TYPE_OPTIONS.map((option) => (
+                <label
+                  key={option}
+                  className={cn(
+                    'flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all',
+                    selectedErrorTypes.includes(option)
+                      ? 'border-primary bg-primary/5'
+                      : 'border-border bg-background hover:border-primary/50'
+                  )}
+                >
+                  <Checkbox
+                    checked={selectedErrorTypes.includes(option)}
+                    onCheckedChange={() => handleErrorTypeToggle(option)}
+                  />
+                  <span className="text-foreground text-sm">{option}</span>
+                </label>
+              ))}
+            </div>
+            <div className="flex gap-3 mt-6">
+              {onBack && (
+                <Button variant="outline" size="lg" onClick={onBack} className="flex-1">
+                  Назад
+                </Button>
+              )}
+              <Button
+                size="lg"
+                className="flex-1"
+                onClick={() => onNext(selectedErrorTypes)}
+              >
+                {selectedErrorTypes.length > 0 ? 'Завершить анализ' : 'Пропустить'}
               </Button>
             </div>
           </div>
