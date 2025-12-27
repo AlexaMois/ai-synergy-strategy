@@ -6,6 +6,15 @@ import logoNfii from '@/assets/partners/nfii.jpg';
 import logoOpora from '@/assets/partners/opora-rossii.png';
 import logoDelovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
 import logoKps from '@/assets/partners/kraypotrebsoyuz.png';
+import logoHrBazaar from '@/assets/partners/hr-bazaar.png';
+import logoBiteh from '@/assets/partners/biteh.png';
+import logoZarplata from '@/assets/partners/zarplata.png';
+import logoAbn from '@/assets/partners/abn.png';
+import logoBit from '@/assets/partners/bit-magazine.png';
+import logoNewRetail from '@/assets/partners/new-retail-forum.png';
+import logoAiSummit from '@/assets/partners/ai-summit.png';
+import logo7nebo from '@/assets/partners/7nebo.png';
+import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.png';
 
 interface Publication {
   id: number;
@@ -26,11 +35,19 @@ const defaultLogos: Record<string, string | null> = {
   'Деловой Квартал': logoDelovoyKvartal,
   'КПС': logoKps,
   'YouTube': null,
-  'HR Bazaar': null,
+  'HR Bazaar': logoHrBazaar,
   'SET.KI': null,
-  'Битех24': null,
+  'Битех24': logoBiteh,
   'Панорама': null,
   'Воркшоп': null,
+  'Зарплата.ру': logoZarplata,
+  'АБН': logoAbn,
+  'БИТ': logoBit,
+  'New Retail Forum': logoNewRetail,
+  'AI Summit': logoAiSummit,
+  '7 НЕБО': logo7nebo,
+  'Ангелы Бизнеса': logoAngelyBiznesa,
+  'Data Fusion': null,
 };
 
 const publications: Publication[] = [
@@ -110,7 +127,7 @@ const publications: Publication[] = [
     title: 'Как ИИ трансформирует HR-подбор в России',
     url: 'https://hrbazaar.ru/articles/kak-ii-transformiruet-hr-podbor/',
     type: 'read',
-    logo: null,
+    logo: logoHrBazaar,
     alt: 'Экспертная статья об использовании ИИ в HR и подборе персонала — Александра Моисеева',
     ariaLabel: 'Открыть экспертную статью об использовании ИИ в HR'
   },
@@ -150,7 +167,7 @@ const publications: Publication[] = [
     title: 'ИИ в праве: разбор основных юридических рисков',
     url: 'https://biteh24.ru/ii-v-prave-razbor-osnovnykh-yuridicheskikh-riskov/',
     type: 'read',
-    logo: null,
+    logo: logoBiteh,
     alt: 'Экспертная статья о юридических аспектах применения ИИ — Александра Моисеева',
     ariaLabel: 'Открыть статью о юридических рисках применения ИИ'
   },
@@ -210,7 +227,7 @@ const publications: Publication[] = [
     title: 'Как нейросети выручают в работе психолога',
     url: 'https://www.journal.zarplata.ru/how-neural-networks-help-out-in-the-work-of-a-psychologist/',
     type: 'read',
-    logo: null,
+    logo: logoZarplata,
     alt: 'Статья Зарплата.ру о применении нейросетей в работе психолога — Александра Моисеева',
     ariaLabel: 'Открыть статью о применении нейросетей в работе психолога'
   },
@@ -220,7 +237,7 @@ const publications: Publication[] = [
     title: 'Новая реальность: как ИИ повлияет на образование в РФ',
     url: 'https://abnews.ru/news/2024/8/17/novaya-realnost-kak-ii-povliyaet-na-obrazovanie-v-rf',
     type: 'read',
-    logo: null,
+    logo: logoAbn,
     alt: 'Статья АБН о влиянии ИИ на образование в России — Александра Моисеева',
     ariaLabel: 'Открыть статью о влиянии ИИ на образование в России'
   },
@@ -230,7 +247,7 @@ const publications: Publication[] = [
     title: 'Мнения: с ИИ на «ты»',
     url: 'https://bit.samag.ru/archive/more/243',
     type: 'read',
-    logo: null,
+    logo: logoBit,
     alt: 'Статья БИТ о взаимодействии с искусственным интеллектом — Александра Моисеева',
     ariaLabel: 'Открыть статью БИТ о взаимодействии с ИИ'
   },
@@ -240,7 +257,7 @@ const publications: Publication[] = [
     title: 'Участие в New Retail Forum',
     url: 'https://nrf.upgrade.st/',
     type: 'read',
-    logo: null,
+    logo: logoNewRetail,
     alt: 'Участие Александры Моисеевой в New Retail Forum',
     ariaLabel: 'Открыть информацию об участии в New Retail Forum'
   },
@@ -250,7 +267,7 @@ const publications: Publication[] = [
     title: 'Участие в AI SUMMIT 2024',
     url: 'https://aisummit.ru/',
     type: 'read',
-    logo: null,
+    logo: logoAiSummit,
     alt: 'Участие Александры Моисеевой в AI Summit 2024',
     ariaLabel: 'Открыть информацию об участии в AI Summit 2024'
   },
@@ -260,7 +277,7 @@ const publications: Publication[] = [
     title: 'Спикерство для фестиваля «Ангелы Бизнеса»',
     url: 'https://t.me/gorodangel/415',
     type: 'read',
-    logo: null,
+    logo: logoAngelyBiznesa,
     alt: 'Выступление Александры Моисеевой на фестивале Ангелы Бизнеса',
     ariaLabel: 'Открыть публикацию о выступлении на фестивале Ангелы Бизнеса'
   },
@@ -270,7 +287,7 @@ const publications: Publication[] = [
     title: 'Партнёры фестиваля «7 НЕБО»',
     url: 'https://t.me/festival7nebo/11800',
     type: 'read',
-    logo: null,
+    logo: logo7nebo,
     alt: 'НейроРешения — партнёр фестиваля 7 НЕБО',
     ariaLabel: 'Открыть публикацию о партнёрстве с фестивалем 7 НЕБО'
   },
@@ -280,7 +297,7 @@ const publications: Publication[] = [
     title: 'Александра Колибри — спикер на фестивале «7 НЕБО»',
     url: 'https://t.me/festival7nebo/11706',
     type: 'read',
-    logo: null,
+    logo: logo7nebo,
     alt: 'Выступление Александры Моисеевой на фестивале 7 НЕБО',
     ariaLabel: 'Открыть публикацию о выступлении на фестивале 7 НЕБО'
   },
