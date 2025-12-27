@@ -47,7 +47,7 @@ const SixQuestions = () => {
       <div className="container mx-auto px-4 max-w-[1200px]">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <h2 className="text-[28px] sm:text-[30px] md:text-[32px] font-medium text-foreground leading-tight mb-4">
+          <h2 className="section-title mb-4">
             6 вопросов, <span className="font-semibold">которые разделяют выгоду от пустой траты</span>
           </h2>
           <p className="text-base sm:text-lg text-foreground max-w-3xl mx-auto">
@@ -67,10 +67,10 @@ const SixQuestions = () => {
               }}
             >
               <div className="flex items-start gap-4 mb-3">
-                <span className="text-4xl font-bold text-primary leading-none">
+                <span className="text-2xl font-medium text-primary leading-none">
                   {question.number}
                 </span>
-                <h3 className="text-lg font-semibold text-foreground leading-tight">
+                <h3 className="leading-tight">
                   {question.title}
                 </h3>
               </div>

@@ -68,10 +68,10 @@ const AIFramework = () => {
               style={{ backgroundColor: sector.color }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <span className="text-2xl font-bold text-primary leading-none">
+                <span className="text-xl font-medium text-primary leading-none">
                   {sector.number}
                 </span>
-                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                <h3 className="leading-tight">
                   {sector.title}
                 </h3>
               </div>
@@ -96,7 +96,7 @@ const AIFramework = () => {
         {/* Центральный статичный элемент */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex">
           <div className="bg-card rounded-full w-32 h-32 lg:w-36 lg:h-36 flex items-center justify-center shadow-card border-2 border-primary/20">
-            <p className="text-sm lg:text-base font-bold text-foreground leading-tight text-center px-4">
+            <p className="text-sm lg:text-base font-semibold text-foreground leading-tight text-center px-4">
               AI Synergy<br />Framework
             </p>
           </div>

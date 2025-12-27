@@ -46,7 +46,7 @@ const HowIChoose = () => {
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2
-          className={`text-2xl md:text-3xl font-medium text-foreground mb-10 md:mb-14 text-center transition-all duration-700 ${
+          className={`section-title text-center mb-10 md:mb-14 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >

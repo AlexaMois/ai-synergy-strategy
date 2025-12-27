@@ -23,7 +23,7 @@ const WhyItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto py-16">
           <div className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-4xl font-bold mb-6 text-text-heading">
+            <h2 className="section-title mb-6">
               Почему мне доверяют
             </h2>
             <div className="w-24 h-px bg-gray-300 mx-auto"></div>
