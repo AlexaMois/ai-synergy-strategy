@@ -303,8 +303,8 @@ const CasesPage = () => {
 
             {/* Hero Section */}
             <section className="text-center mb-12 mt-8">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                Кейсы внедрения ИИ
+              <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+                Кейсы <span className="font-bold">внедрения ИИ</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Реальные проекты с измеримыми результатами. 
@@ -399,8 +399,8 @@ const CasesPage = () => {
             {placeholderCases.length > 0 && (
               <section className="mb-16">
                 {readyCases.length > 0 && (
-                  <h2 className="text-xl font-semibold text-foreground mb-6 text-center">
-                    Ещё кейсы
+                  <h2 className="text-xl font-medium text-foreground mb-6 text-center">
+                    Ещё кейсы <span className="font-semibold">(скоро с деталями)</span>
                   </h2>
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
