@@ -15,7 +15,7 @@ import Credentials from "@/components/Credentials";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -28,6 +28,22 @@ const About = () => {
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Handle hash scroll on page load
+  useEffect(() => {
+    if (location.hash) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          const navHeight = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   const scrollToContact = () => {
     if (location.pathname !== '/') {
