@@ -174,8 +174,8 @@ const CaseStudyDocSearch = () => {
                 <QrCode className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary" />
               </div>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground leading-tight max-w-4xl mx-auto px-2">
-                Система интеллектуального поиска по технологической документации и руководствам пользователя   
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground leading-tight max-w-4xl mx-auto px-2">
+                Система интеллектуального поиска по <span className="font-semibold">технологической документации и руководствам пользователя</span>
               </h1>
 
               <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-primary font-medium">
@@ -206,8 +206,8 @@ const CaseStudyDocSearch = () => {
         {/* Problem Section */}
         <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-muted/30">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-4 sm:mb-6">
-              Задача
+            <h2 className="text-lg sm:text-xl md:text-2xl text-foreground mb-4 sm:mb-6">
+              <span className="font-semibold">Задача</span>
             </h2>
 
             <div className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm border border-border/50 mb-6 sm:mb-8">

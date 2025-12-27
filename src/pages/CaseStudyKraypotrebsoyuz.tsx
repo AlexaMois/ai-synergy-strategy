@@ -79,8 +79,8 @@ const CaseStudyKraypotrebsoyuz = () => {
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
-            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-8">
-              Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽
+            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] text-foreground leading-tight mb-8">
+              Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-semibold">и отказались от серверов за 1,5 млн ₽</span>
             </h1>
             
             {/* Hero Image Placeholder */}
@@ -96,9 +96,9 @@ const CaseStudyKraypotrebsoyuz = () => {
         {/* Situation Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-6">Ситуация: запрос на внедрение ИИ</h2>
+            <h2 className="section-title mb-6">Ситуация: запрос <span className="font-semibold">на внедрение ИИ</span></h2>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Летом руководство Крайпотребсоюза поставило задачу —<br />
               начать внедрение ИИ в управленческие и операционные процессы.
             </p>
@@ -137,9 +137,9 @@ const CaseStudyKraypotrebsoyuz = () => {
         {/* Decision Point Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-6">Совместная точка принятия решения</h2>
+            <h2 className="section-title mb-6">Совместная точка <span className="font-semibold">принятия решения</span></h2>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               На первых встречах мы с командой Крайпотребсоюза осознанно не стали выбирать технологию сразу.
             </p>
             
@@ -179,7 +179,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и диагностика</h2>
             </div>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               В течение первого месяца мы вместе с командой:
             </p>
             
@@ -204,7 +204,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               </ul>
             </div>
             
-            <p className="text-base text-foreground leading-relaxed mb-6">
+            <p className="text-base text-muted-foreground leading-relaxed mb-6">
               Параллельно было запущено обучение сотрудников работе с ИИ,<br />
               чтобы снять опасения и подготовить команду к изменениям.
             </p>
@@ -234,7 +234,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Выбор архитектуры решения</h2>
             </div>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               По итогам аудита совместно было принято решение:
             </p>
             
@@ -295,7 +295,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Внедрение и развитие</h2>
             </div>
             
-            <p className="text-lg text-foreground leading-relaxed mb-6">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Проект развивался поэтапно:
             </p>
             

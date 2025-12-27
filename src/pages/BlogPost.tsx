@@ -119,7 +119,7 @@ const BlogPost = () => {
               <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 {post.category}
               </span>
-              <div className="flex items-center gap-4 text-sm text-foreground">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   {post.date}
@@ -131,26 +131,26 @@ const BlogPost = () => {
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight mb-6">
               {post.title}
             </h1>
 
-            <p className="text-xl text-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed">
               {post.excerpt}
             </p>
           </header>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-foreground leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               {post.content.intro}
             </p>
 
             {post.content.sections.map((section, index) => (
               <section key={index} className="mb-10">
-                <h2 className="text-2xl font-semibold text-foreground mb-4">
-                  {section.heading}
+                <h2 className="text-2xl text-foreground mb-4">
+                  <span className="font-semibold">{section.heading}</span>
                 </h2>
-                <p className="text-lg text-foreground leading-relaxed mb-4">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                   {section.content}
                 </p>
                 {section.list && section.list.length > 0 && (
@@ -158,7 +158,7 @@ const BlogPost = () => {
                     {section.list.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex gap-3">
                         <span className="text-primary mt-1.5">•</span>
-                        <span className="text-base text-foreground">{item}</span>
+                        <span className="text-base text-muted-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -167,7 +167,7 @@ const BlogPost = () => {
             ))}
 
             <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12">
-              <p className="text-lg text-foreground leading-relaxed font-medium">
+              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
                 {post.content.conclusion}
               </p>
             </div>
@@ -175,10 +175,10 @@ const BlogPost = () => {
 
           <div className="border-t border-border pt-12 mt-12">
             <div className="bg-muted rounded-2xl p-4 sm:p-6 md:p-8 text-center">
-              <h3 className="text-2xl font-semibold text-foreground mb-4">
-                Хотите внедрить ИИ без ошибок?
+              <h3 className="text-2xl text-foreground mb-4">
+                Хотите внедрить ИИ <span className="font-semibold">без ошибок?</span>
               </h3>
-              <p className="text-lg text-foreground mb-6">
+              <p className="text-lg text-muted-foreground mb-6">
                 Запишитесь на бесплатный экспресс-аудит процессов
               </p>
               <Button size="lg" onClick={() => {
@@ -200,8 +200,8 @@ const BlogPost = () => {
       {relatedPosts.length > 0 && (
         <section className="py-10 md:py-14 lg:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground mb-8 text-center">
-              Читайте также
+            <h2 className="text-xl sm:text-2xl md:text-3xl text-foreground mb-8 text-center">
+              Читайте <span className="font-semibold">также</span>
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               {relatedPosts.map((relatedPost) => (
@@ -214,14 +214,14 @@ const BlogPost = () => {
                     <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                       {relatedPost.category}
                     </span>
-                    <span className="text-xs text-foreground">{relatedPost.readTime}</span>
+                    <span className="text-xs text-muted-foreground">{relatedPost.readTime}</span>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+                  <h3 className="text-xl font-medium text-foreground mb-3 leading-tight">
                     {relatedPost.title}
                   </h3>
                   
-                  <p className="text-base text-foreground mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">
                     {relatedPost.excerpt}
                   </p>
                   

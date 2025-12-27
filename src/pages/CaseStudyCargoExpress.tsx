@@ -51,8 +51,8 @@ const CaseStudyCargoExpress = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <Truck className="w-12 h-12 text-primary" strokeWidth={1.5} />
-              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold text-foreground leading-tight">
-                Грузовой Экспресс
+              <h1 className="text-[28px] sm:text-[32px] md:text-[36px] text-foreground leading-tight">
+                Грузовой <span className="font-semibold">Экспресс</span>
               </h1>
             </div>
             <p className="text-xl text-muted-foreground mb-8">
@@ -72,7 +72,7 @@ const CaseStudyCargoExpress = () => {
         {/* About Client Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-8">О клиенте</h2>
+            <h2 className="section-title mb-8">О <span className="font-semibold">клиенте</span></h2>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
               <p className="text-base text-muted-foreground leading-relaxed mb-6">
@@ -119,7 +119,7 @@ const CaseStudyCargoExpress = () => {
         {/* Context Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-8">Контекст задачи</h2>
+            <h2 className="section-title mb-8">Контекст <span className="font-semibold">задачи</span></h2>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
               <p className="text-base text-muted-foreground leading-relaxed mb-4">
@@ -150,7 +150,7 @@ const CaseStudyCargoExpress = () => {
         {/* Problem Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-2">Проблема: заявки есть — управляемости нет</h2>
+            <h2 className="section-title mb-2">Проблема: заявки есть — <span className="font-semibold">управляемости нет</span></h2>
             <p className="text-muted-foreground mb-8">Ключевые боли</p>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-8">
@@ -195,7 +195,7 @@ const CaseStudyCargoExpress = () => {
         {/* Why No CRM Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-8">Почему отказались от CRM</h2>
+            <h2 className="section-title mb-8">Почему отказались <span className="font-semibold">от CRM</span></h2>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
               <p className="text-muted-foreground mb-4">Совместно с командой Грузового Экспресса были оценены риски:</p>
@@ -232,7 +232,7 @@ const CaseStudyCargoExpress = () => {
         {/* Architecture Solution Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-8">Архитектурное решение</h2>
+            <h2 className="section-title mb-8">Архитектурное <span className="font-semibold">решение</span></h2>
             
             <div className="bg-card rounded-2xl p-6 shadow-soft mb-8">
               <p className="text-lg text-foreground font-medium mb-6">
@@ -282,7 +282,7 @@ const CaseStudyCargoExpress = () => {
         {/* What Changed for Managers Section */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title mb-8">Что изменилось для менеджеров</h2>
+            <h2 className="section-title mb-8">Что изменилось <span className="font-semibold">для менеджеров</span></h2>
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-card rounded-2xl p-6 shadow-soft">

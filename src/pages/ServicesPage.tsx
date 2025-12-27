@@ -51,7 +51,7 @@ const ServicesPage = () => {
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
                   Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
                 </h1>
-                <ul className="text-base sm:text-lg text-foreground leading-relaxed mb-8 space-y-2">
+                <ul className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">✓</span>
                     <span>Помогаю внедрить ИИ так, чтобы он работал и приносил результаты</span>

@@ -70,8 +70,8 @@ const ProductsPage = () => {
           {/* Hero Section */}
           <section className="py-10 md:py-16 lg:py-20">
             <div className="container mx-auto px-4 max-w-5xl text-center">
-              <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-6">
-                Готовые ИИ-решения
+              <h1 className="text-[28px] sm:text-[32px] md:text-[40px] text-foreground leading-tight mb-6">
+                Готовые <span className="font-semibold">ИИ-решения</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
                 Проверенные продукты с прогнозируемым результатом. Быстрое внедрение, понятная экономика, гарантия качества.
@@ -150,8 +150,8 @@ const ProductsPage = () => {
           {/* Why Products Section */}
           <section className="py-10 md:py-16">
             <div className="container mx-auto px-4 max-w-5xl">
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground text-center mb-10">
-                Почему готовые продукты?
+              <h2 className="text-2xl md:text-3xl text-foreground text-center mb-10">
+                Почему <span className="font-semibold">готовые продукты?</span>
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
