@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Phone, Mail, Send, MapPin } from "lucide-react";
+import { Phone, Mail, Send, MapPin, GraduationCap } from "lucide-react";
 import DisabledLink from "@/components/DisabledLink";
 const Footer = () => {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ const Footer = () => {
             {/* Сертификаты */}
             <div>
               <p className="text-background/90 font-medium mb-2">Сертификаты</p>
-              <p><Link to="/about#qualifications" className="text-primary hover:text-primary/80 transition-colors">Дипломированный специалист по ИИ →</Link> / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
+              <p><Link to="/about#qualifications" className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"><GraduationCap className="w-4 h-4" />Дипломированный специалист по ИИ →</Link> / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
             </div>
 
             {/* Юридические документы */}
