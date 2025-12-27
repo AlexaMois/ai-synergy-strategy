@@ -87,7 +87,7 @@ const Foundation = () => {
                   </h3>
                   <p className="text-xs sm:text-sm text-primary mb-2 sm:mb-3">{service.subtitle}</p>
                   
-                  <p className="text-sm sm:text-base text-foreground mb-3 sm:mb-4">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                     {service.description}
                   </p>
                   
@@ -101,7 +101,7 @@ const Foundation = () => {
                   <div className="mb-3 sm:mb-4">
                     <p className="text-xs sm:text-sm font-medium text-foreground mb-2">Включает:</p>
                     {service.details.map((detail, idx) => (
-                      <p key={idx} className="text-xs sm:text-sm text-foreground leading-snug flex items-start gap-2 mb-1.5">
+                      <p key={idx} className="text-xs sm:text-sm text-muted-foreground leading-snug flex items-start gap-2 mb-1.5">
                         <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
                         <span>{detail}</span>
                       </p>
@@ -110,7 +110,7 @@ const Foundation = () => {
                   
                   <div className="mb-3 sm:mb-4">
                     <p className="text-xs sm:text-sm font-medium text-foreground mb-1">Результат:</p>
-                    <p className="text-xs sm:text-sm text-foreground leading-snug">{service.result}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-snug">{service.result}</p>
                   </div>
                   
                   <div className="mb-3 sm:mb-4 flex-grow">

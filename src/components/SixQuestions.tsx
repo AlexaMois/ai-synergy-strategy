@@ -50,7 +50,7 @@ const SixQuestions = () => {
           <h2 className="section-title mb-4">
             6 вопросов, <span className="font-semibold">которые разделяют выгоду от пустой траты</span>
           </h2>
-          <p className="text-base sm:text-lg text-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             С этого начинается честный расчёт ROI
           </p>
         </div>
@@ -74,7 +74,7 @@ const SixQuestions = () => {
                   {question.title}
                 </h3>
               </div>
-              <p className="text-base text-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {question.text}
               </p>
             </div>
