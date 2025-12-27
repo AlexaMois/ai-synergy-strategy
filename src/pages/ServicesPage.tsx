@@ -7,8 +7,9 @@ import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Target, Users, Cog, Database, Layers } from "lucide-react";
+import { Target, Users, Cog, Database, Layers, Award, ShieldCheck } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { Link } from "react-router-dom";
 
 const systemElements = [
   { icon: Target, label: "Смысл задачи" },
@@ -127,6 +128,32 @@ const ServicesPage = () => {
 
             {/* Full width description block */}
             
+          </div>
+        </section>
+
+        {/* Trust Badge Section */}
+        <section className="py-6 bg-muted/50 border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base font-medium text-foreground">
+                  Дипломированный специалист по ИИ
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base font-medium text-foreground">
+                  Квалификация KAEO уровень 5
+                </span>
+              </div>
+              <Link 
+                to="/about#qualifications" 
+                className="text-primary hover:text-primary/80 hover:underline text-sm font-medium transition-colors"
+              >
+                Смотреть сертификаты →
+              </Link>
+            </div>
           </div>
         </section>
 
