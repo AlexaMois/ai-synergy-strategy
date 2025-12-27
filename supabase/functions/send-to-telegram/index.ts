@@ -17,10 +17,21 @@ interface ContactFormData {
   comment?: string;
 }
 
+interface DiagnosticResults {
+  painPoints: string[];
+  employeeCount: number;
+  avgSalary: number;
+  routineTimeShare: number;
+  potentialSavingsMin: number;
+  potentialSavingsMax: number;
+  roi: number;
+}
+
 interface RequestBody {
   formType: string;
   data: ContactFormData;
   pageUrl: string;
+  diagnosticResults?: DiagnosticResults;
 }
 
 const getPageName = (path: string): string => {
@@ -35,6 +46,7 @@ const getPageName = (path: string): string => {
     "/checklist": "Чек-лист",
     "/golossok-demo": "GolossOK Демо",
     "/golossok-pricing": "GolossOK Цены",
+    "/start": "AI-диагностика",
     "/case-studies/kraypotrebsoyuz": "Кейс: Крайпотребсоюз",
     "/case-studies/cargo-express": "Кейс: Грузовой Экспресс",
     "/case-studies/doc-search": "Кейс: DocSearch",
@@ -56,19 +68,55 @@ const formatDateTime = (): string => {
   return now.toLocaleString("ru-RU", options);
 };
 
-const formatMessage = (formType: string, data: ContactFormData, pageUrl: string): string => {
+const formatCurrency = (value: number): string => {
+  return value.toLocaleString("ru-RU");
+};
+
+const formatMessage = (
+  formType: string, 
+  data: ContactFormData, 
+  pageUrl: string,
+  diagnosticResults?: DiagnosticResults
+): string => {
   const pageName = getPageName(pageUrl);
   const dateTime = formatDateTime();
 
-  let message = `📊 <b>Новая заявка с сайта:</b>\n\n`;
+  let message = "";
+  
+  // Different header for AI diagnostic
+  if (formType === "ai-diagnostic" || diagnosticResults) {
+    message = `🤖 <b>AI-ДИАГНОСТИКА с сайта</b>\n\n`;
+  } else {
+    message = `📊 <b>Новая заявка с сайта:</b>\n\n`;
+  }
+  
   message += `👤 <b>Имя:</b> ${escapeHtml(data.name)}\n`;
   message += `🏢 <b>Компания:</b> ${escapeHtml(data.company)}\n`;
   message += `🏭 <b>Отрасль:</b> ${escapeHtml(data.industry)}\n`;
   message += `📞 <b>Телефон:</b> ${escapeHtml(data.phone)}\n`;
   message += `📧 <b>Email:</b> ${escapeHtml(data.email)}\n`;
   
+  // Add diagnostic results if present
+  if (diagnosticResults) {
+    message += `\n━━━ <b>РЕЗУЛЬТАТЫ ДИАГНОСТИКИ</b> ━━━\n\n`;
+    
+    message += `🔹 <b>Выбранные боли:</b>\n`;
+    diagnosticResults.painPoints.forEach(point => {
+      message += `  • ${escapeHtml(point)}\n`;
+    });
+    
+    message += `\n🔹 <b>Параметры:</b>\n`;
+    message += `  • Сотрудников: ${diagnosticResults.employeeCount}\n`;
+    message += `  • Ср. зарплата: ${formatCurrency(diagnosticResults.avgSalary)} ₽\n`;
+    message += `  • Доля времени: ${Math.round(diagnosticResults.routineTimeShare * 100)}%\n`;
+    
+    message += `\n🔹 <b>Расчёт:</b>\n`;
+    message += `  • Потенциал экономии: ${formatCurrency(diagnosticResults.potentialSavingsMin)} – ${formatCurrency(diagnosticResults.potentialSavingsMax)} ₽/год\n`;
+    message += `  • ROI: ${diagnosticResults.roi}%\n`;
+  }
+  
   if (data.comment && data.comment.trim()) {
-    message += `💬 <b>Комментарий:</b> ${escapeHtml(data.comment)}\n`;
+    message += `\n💬 <b>Комментарий:</b>\n${escapeHtml(data.comment)}\n`;
   }
   
   message += `\n📍 <b>Страница:</b> ${escapeHtml(pageName)}\n`;
@@ -96,11 +144,16 @@ serve(async (req) => {
       throw new Error("Telegram configuration is missing");
     }
 
-    const { formType, data, pageUrl }: RequestBody = await req.json();
+    const { formType, data, pageUrl, diagnosticResults }: RequestBody = await req.json();
 
-    console.log("Received form submission:", { formType, pageUrl, data: { ...data, phone: "***", email: "***" } });
+    console.log("Received form submission:", { 
+      formType, 
+      pageUrl, 
+      hasDiagnosticResults: !!diagnosticResults,
+      data: { ...data, phone: "***", email: "***" } 
+    });
 
-    const message = formatMessage(formType, data, pageUrl);
+    const message = formatMessage(formType, data, pageUrl, diagnosticResults);
 
     const telegramResponse = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
