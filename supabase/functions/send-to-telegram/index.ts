@@ -3,28 +3,9 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
 const TELEGRAM_CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
 
-// Allowed origins for CORS - restrict to production domain
-const ALLOWED_ORIGINS = [
-  "https://aleksamois.ru",
-  "https://www.aleksamois.ru",
-  // Allow preview domains during development
-  "http://localhost:8080",
-  "http://localhost:5173",
-];
-
-const getCorsHeaders = (origin: string | null): Record<string, string> => {
-  // Check if origin is in allowed list, or allow preview domains
-  const isAllowed = origin && (
-    ALLOWED_ORIGINS.includes(origin) ||
-    origin.includes(".lovableproject.com") ||
-    origin.includes(".lovable.app")
-  );
-  
-  return {
-    "Access-Control-Allow-Origin": isAllowed ? origin : ALLOWED_ORIGINS[0],
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-  };
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
 interface ContactFormData {
@@ -42,69 +23,10 @@ interface RequestBody {
   pageUrl: string;
 }
 
-// Input validation
-const validateInput = (data: ContactFormData): { valid: boolean; error?: string } => {
-  // Name validation
-  if (!data.name || typeof data.name !== 'string' || data.name.trim().length === 0) {
-    return { valid: false, error: "Name is required" };
-  }
-  if (data.name.length > 100) {
-    return { valid: false, error: "Name is too long (max 100 characters)" };
-  }
-
-  // Company validation
-  if (!data.company || typeof data.company !== 'string' || data.company.trim().length === 0) {
-    return { valid: false, error: "Company is required" };
-  }
-  if (data.company.length > 200) {
-    return { valid: false, error: "Company name is too long (max 200 characters)" };
-  }
-
-  // Industry validation
-  if (!data.industry || typeof data.industry !== 'string' || data.industry.trim().length === 0) {
-    return { valid: false, error: "Industry is required" };
-  }
-  if (data.industry.length > 100) {
-    return { valid: false, error: "Industry is too long (max 100 characters)" };
-  }
-
-  // Phone validation - basic format check
-  if (!data.phone || typeof data.phone !== 'string' || data.phone.trim().length === 0) {
-    return { valid: false, error: "Phone is required" };
-  }
-  const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
-  if (!phoneRegex.test(data.phone.trim())) {
-    return { valid: false, error: "Invalid phone format" };
-  }
-
-  // Email validation
-  if (!data.email || typeof data.email !== 'string' || data.email.trim().length === 0) {
-    return { valid: false, error: "Email is required" };
-  }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(data.email.trim())) {
-    return { valid: false, error: "Invalid email format" };
-  }
-  if (data.email.length > 255) {
-    return { valid: false, error: "Email is too long (max 255 characters)" };
-  }
-
-  // Comment validation (optional)
-  if (data.comment && data.comment.length > 2000) {
-    return { valid: false, error: "Comment is too long (max 2000 characters)" };
-  }
-
-  return { valid: true };
-};
-
 const getPageName = (path: string): string => {
   const pageNames: Record<string, string> = {
     "/": "Главная",
     "/services": "Услуги",
-    "/services/diagnostics": "Диагностика",
-    "/services/architecture": "Архитектура",
-    "/services/support": "Сопровождение",
-    "/services/add-ons": "Доп. решения",
     "/cases": "Кейсы",
     "/about": "Обо мне",
     "/blog": "Блог",
@@ -163,23 +85,9 @@ const escapeHtml = (text: string): string => {
 };
 
 serve(async (req) => {
-  const origin = req.headers.get("origin");
-  const corsHeaders = getCorsHeaders(origin);
-
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
-  }
-
-  // Only allow POST method
-  if (req.method !== "POST") {
-    return new Response(
-      JSON.stringify({ success: false, error: "Method not allowed" }),
-      {
-        status: 405,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
-    );
   }
 
   try {
@@ -190,20 +98,7 @@ serve(async (req) => {
 
     const { formType, data, pageUrl }: RequestBody = await req.json();
 
-    // Validate input data
-    const validation = validateInput(data);
-    if (!validation.valid) {
-      console.warn("Validation failed:", validation.error);
-      return new Response(
-        JSON.stringify({ success: false, error: validation.error }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
-      );
-    }
-
-    console.log("Received form submission:", { formType, pageUrl, origin });
+    console.log("Received form submission:", { formType, pageUrl, data: { ...data, phone: "***", email: "***" } });
 
     const message = formatMessage(formType, data, pageUrl);
 
