@@ -1,5 +1,5 @@
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 // Импорт логотипов
 import logoNfii from '@/assets/partners/nfii.jpg';
@@ -17,6 +17,7 @@ import logo7nebo from '@/assets/partners/7nebo.png';
 import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.png';
 import logoDataFusion from '@/assets/partners/data-fusion.png';
 import logoPanorama from '@/assets/partners/panorama.png';
+import logoSetKi from '@/assets/partners/set-ki.png';
 
 interface Publication {
   id: number;
@@ -52,7 +53,7 @@ const publications2: Publication[] = [
   { id: 4, source: 'YouTube', title: 'ИИ как сотрудник 24/7: реальные кейсы внедрения', url: 'https://www.youtube.com/watch?v=GhdmiJiXYKQ', type: 'watch', logo: logoOpora, alt: 'Видео о кейсах внедрения ИИ', ariaLabel: 'Смотреть выступление об ИИ' },
   { id: 21, source: '7 НЕБО', title: 'Партнёры фестиваля «7 НЕБО»', url: 'https://t.me/festival7nebo/11800', type: 'read', logo: logo7nebo, alt: 'НейроРешения — партнёр фестиваля', ariaLabel: 'Открыть публикацию о партнёрстве' },
   { id: 12, source: 'НФИИ (Telegram)', title: 'ИИ в бизнесе: как внедрить цифрового сотрудника 24/7', url: 'https://t.me/nfai_main/127', type: 'read', logo: logoNfii, alt: 'Публикация НФИИ о цифровом сотруднике', ariaLabel: 'Открыть публикацию НФИИ' },
-  { id: 17, source: 'SET.KI', title: 'Как ИИ трансформирует HR-подбор: от цифр к практике', url: 'https://set.ki/post/3XjKrd2', type: 'read', logo: null, alt: 'Статья об ИИ в HR', ariaLabel: 'Открыть статью об ИИ в HR' },
+  { id: 17, source: 'SET.KI', title: 'Как ИИ трансформирует HR-подбор: от цифр к практике', url: 'https://set.ki/post/3XjKrd2', type: 'read', logo: logoSetKi, alt: 'Статья об ИИ в HR', ariaLabel: 'Открыть статью об ИИ в HR' },
   { id: 19, source: 'ОПОРА РОССИИ', title: 'Красноярские предприниматели приняли участие в Альфа-Конфе', url: 'https://opora.ru/news/regions/krasnoyarskie-predprinimateli-prinyali-uchastie-v-alfa-konfe/', type: 'read', logo: logoOpora, alt: 'Публикация об Альфа-Конфе', ariaLabel: 'Открыть публикацию об Альфа-Конфе' },
   { id: 22, source: 'НФИИ', title: 'НейроРешения запускает Telegram-канал', url: 'https://nfai.ru/tpost/dvo82v7601-neiroresheniya-chlen-nfii-zapuskaet-tele', type: 'read', logo: logoNfii, alt: 'Публикация НФИИ о Telegram-канале', ariaLabel: 'Открыть публикацию НФИИ' },
   { id: 20, source: 'Панорама', title: 'От кисти к коду: трансформация роли художника в эпоху нейросетей', url: 'https://panor.ru/articles/ot-kisti-k-kodu-transformatsiya-roli-khudozhnika-v-epokhu-neyrosetey/118181.html#', type: 'read', logo: logoPanorama, alt: 'Статья о трансформации творческих профессий', ariaLabel: 'Открыть статью о трансформации творческих профессий' },
@@ -114,56 +115,99 @@ interface MarqueeRowProps {
   speed?: number;
 }
 
-const MarqueeRow = ({ items, direction, speed = 40 }: MarqueeRowProps) => {
+const MarqueeRow = ({ items, direction, speed = 120 }: MarqueeRowProps) => {
   const [isPaused, setIsPaused] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleArrowClick = (dir: 'left' | 'right') => {
+  // Ширина одной карточки + gap (примерно 260px + 16px gap)
+  const cardWidthWithGap = 276;
+
+  const handleArrowClick = useCallback((dir: 'left' | 'right') => {
     if (!contentRef.current) return;
     
-    // Получаем текущий translateX из computed style
-    const computedStyle = window.getComputedStyle(contentRef.current);
-    const matrix = new DOMMatrix(computedStyle.transform);
-    const currentX = matrix.m41;
+    // Получаем CSS-анимацию через Web Animations API
+    const animations = contentRef.current.getAnimations();
+    const anim = animations[0];
     
-    // Ширина одной карточки + gap
-    const cardWidth = 280;
-    const newX = dir === 'left' ? currentX + cardWidth : currentX - cardWidth;
-    
-    // Устанавливаем паузу и новую позицию
+    if (!anim) return;
+
+    // Отменяем предыдущий таймаут возобновления
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+
+    // Ставим на паузу
+    anim.pause();
     setIsPaused(true);
-    contentRef.current.style.transform = `translateX(${newX}px)`;
-    
-    // Возобновляем анимацию через короткую задержку
-    setTimeout(() => {
+
+    // Вычисляем общую ширину одного набора карточек
+    const totalWidth = contentRef.current.scrollWidth;
+    const oneSetWidth = totalWidth / 3; // У нас 3 копии
+
+    // Вычисляем deltaMs - сколько миллисекунд анимации = 1 карточка
+    const animDurationMs = speed * 1000;
+    const deltaMs = (cardWidthWithGap / oneSetWidth) * animDurationMs;
+
+    // Получаем текущее время анимации
+    const currentTime = anim.currentTime as number || 0;
+
+    // Вычисляем новое время (учитываем направление анимации и стрелки)
+    let newTime: number;
+    if (direction === 'left') {
+      // Анимация движется влево (отрицательный translateX)
+      // Стрелка влево = назад по времени, стрелка вправо = вперёд
+      newTime = dir === 'left' ? currentTime - deltaMs : currentTime + deltaMs;
+    } else {
+      // Анимация движется вправо (reverse)
+      // Стрелка влево = вперёд, стрелка вправо = назад
+      newTime = dir === 'left' ? currentTime + deltaMs : currentTime - deltaMs;
+    }
+
+    // Зацикливаем время в пределах длительности анимации
+    if (newTime < 0) {
+      newTime = animDurationMs + newTime;
+    } else if (newTime > animDurationMs) {
+      newTime = newTime - animDurationMs;
+    }
+
+    anim.currentTime = newTime;
+
+    // Возобновляем анимацию через 500мс
+    resumeTimeoutRef.current = setTimeout(() => {
+      anim.play();
       setIsPaused(false);
-    }, 300);
+    }, 500);
+  }, [direction, speed, cardWidthWithGap]);
+
+  const handleMouseEnter = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    setIsPaused(true);
   };
 
-  // Сбрасываем inline стиль когда анимация возобновляется
-  useEffect(() => {
-    if (!isPaused && contentRef.current) {
-      contentRef.current.style.transform = '';
-    }
-  }, [isPaused]);
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
 
   const animationClass = direction === 'left' ? 'animate-marquee-pub' : 'animate-marquee-pub-reverse';
 
   return (
     <div 
       className="relative group"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Стрелка влево */}
+      {/* Стрелка влево - видна на hover (desktop) и всегда на touch (mobile) */}
       <button
         onClick={() => handleArrowClick('left')}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 
                    w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/95 shadow-lg border border-border/50
                    flex items-center justify-center
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                   hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                   opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300
+                   hover:bg-primary hover:text-primary-foreground hover:border-primary
+                   active:scale-95"
         aria-label="Листать влево"
       >
         <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -175,8 +219,9 @@ const MarqueeRow = ({ items, direction, speed = 40 }: MarqueeRowProps) => {
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 
                    w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/95 shadow-lg border border-border/50
                    flex items-center justify-center
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                   hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                   opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300
+                   hover:bg-primary hover:text-primary-foreground hover:border-primary
+                   active:scale-95"
         aria-label="Листать вправо"
       >
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -187,10 +232,7 @@ const MarqueeRow = ({ items, direction, speed = 40 }: MarqueeRowProps) => {
       <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
       {/* Контейнер с overflow hidden */}
-      <div 
-        ref={containerRef}
-        className="overflow-hidden py-2"
-      >
+      <div className="overflow-hidden py-2">
         {/* Анимируемый контент */}
         <div 
           ref={contentRef}
@@ -224,8 +266,8 @@ const PublicationsMarquee = () => {
       
       {/* Две ленты */}
       <div className="space-y-6">
-        <MarqueeRow items={publications} direction="left" speed={90} />
-        <MarqueeRow items={publications2} direction="right" speed={85} />
+        <MarqueeRow items={publications} direction="left" speed={120} />
+        <MarqueeRow items={publications2} direction="right" speed={110} />
       </div>
     </section>
   );
