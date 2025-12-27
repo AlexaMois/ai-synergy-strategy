@@ -107,9 +107,9 @@ const Navigation = () => {
       label: "Экспертный подход",
       isScroll: false,
       submenu: [
+        { href: "/about", label: "Обо мне" },
         { href: "/materials/resources", label: "Материалы" },
-        { href: "/materials/blog", label: "Блог" },
-        { href: "/about", label: "Обо мне" }
+        { href: "/materials/blog", label: "Блог" }
       ]
     }
   ];
