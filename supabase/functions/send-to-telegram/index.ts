@@ -9,9 +9,23 @@ const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 5; // Max 5 requests per minute per IP
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+// Allowed origins for CORS - restrict to production domain
+const ALLOWED_ORIGINS = [
+  'https://aleksamois.ru',
+  'https://www.aleksamois.ru',
+  'https://aleksamois.lovable.app'
+];
+
+const getCorsHeaders = (origin: string | null) => {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) 
+    ? origin 
+    : ALLOWED_ORIGINS[0];
+  
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
 };
 
 // Server-side schema validation
@@ -119,6 +133,9 @@ const checkRateLimit = (clientIp: string): { allowed: boolean; retryAfter?: numb
 };
 
 serve(async (req) => {
+  const origin = req.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
