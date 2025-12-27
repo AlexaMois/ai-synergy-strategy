@@ -653,7 +653,7 @@ const About = () => {
         <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-muted">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
-              Где мой профессионализм проверен фактами
+              Где мой профессионализм <span className="font-semibold">проверен фактами</span>
             </h2>
             
             <div ref={statsRef as any} className="space-y-6">
@@ -748,7 +748,7 @@ const About = () => {
         <section className="py-10 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="section-title text-center mb-12">
-              Отзывы клиентов
+              Отзывы <span className="font-semibold">клиентов</span>
             </h2>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -786,7 +786,7 @@ const About = () => {
         <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="section-title text-center mb-8">
-              Как я работаю сейчас
+              Как я работаю <span className="font-semibold">сейчас</span>
             </h2>
             <p className="text-lg text-text-body text-center mb-8">
               Формат, который я выбираю на 2026 год:<br />
@@ -820,7 +820,7 @@ const About = () => {
         <section className="py-10 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 max-w-3xl">
             <h2 className="section-title text-center mb-8">
-              Моя энергия и восстановление
+              Моя энергия <span className="font-semibold">и восстановление</span>
             </h2>
             
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 text-center">
