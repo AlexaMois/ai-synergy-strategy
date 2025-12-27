@@ -81,7 +81,7 @@ const Footer = () => {
             {/* Сертификаты */}
             <div>
               <p className="text-background/90 font-medium mb-2">Сертификаты</p>
-              <p>Дипломированный специалист по ИИ / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
+              <p><Link to="/about#qualifications" className="hover:text-primary transition-colors">Дипломированный специалист по ИИ</Link> / Член ОПОРА РОССИИ / Член НФИИ / Резидент КРИТБИ</p>
               <a href="/documents/requisites.pdf" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-primary hover:text-primary/80 transition-colors">
                 Скачать PDF с реквизитами и документами →
               </a>
