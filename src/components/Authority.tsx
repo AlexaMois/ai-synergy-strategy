@@ -14,7 +14,7 @@ const Authority = () => {
       <div className="container mx-auto px-4">
         <div className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h3 className="section-title mb-8 text-center">
-            Выступления и публикации
+            Выступления <span className="font-semibold">и публикации</span>
           </h3>
           <div className="flex flex-wrap justify-center gap-6 md:gap-12">
             {achievements.map((achievement, index) => (

@@ -12,7 +12,7 @@ const MyStory = () => {
         <div className="max-w-6xl mx-auto py-16">
           <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
           <h2 className={`section-title text-center ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
-            Моя позиция
+            Моя <span className="font-semibold">позиция</span>
           </h2>
 
           <div className="space-y-4">
