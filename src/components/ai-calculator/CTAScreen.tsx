@@ -1,27 +1,43 @@
 import { Button } from '@/components/ui/button';
-import { Flame } from 'lucide-react';
+import { Flame, MessageCircle } from 'lucide-react';
 
 interface CTAScreenProps {
   onSubmit: () => void;
 }
 
 const CTAScreen = ({ onSubmit }: CTAScreenProps) => {
+  const handleAskQuestion = () => {
+    // Открываем Telegram или контактную форму
+    window.open('https://t.me/sashaneurobot', '_blank');
+  };
+
   return (
-    <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 border border-primary/20 text-center">
-      <p className="text-lg text-foreground mb-2">
-        Это предварительный расчёт.
-      </p>
-      <p className="text-muted-foreground mb-8">
-        Чтобы получить точную архитектуру и реальный план внедрения, нужно разобрать процессы глубже.
-      </p>
-      
+    <div className="text-center py-4">
+      {/* Основная кнопка */}
       <Button
         size="lg"
-        className="text-lg px-8 py-6 h-auto"
+        className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto mb-4"
         onClick={onSubmit}
       >
         <Flame className="w-5 h-5 mr-2" />
-        Обсудить задачу
+        Получить архитектурный план внедрения
+      </Button>
+      
+      {/* Подпись под основной кнопкой */}
+      <p className="text-sm text-muted-foreground/70 mb-6">
+        30 минут. Без обязательств.<br />
+        Результат — решение, стоит ли вообще внедрять ИИ.
+      </p>
+
+      {/* Вторичная кнопка */}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="text-muted-foreground hover:text-foreground"
+        onClick={handleAskQuestion}
+      >
+        <MessageCircle className="w-4 h-4 mr-2" />
+        Задать вопрос
       </Button>
     </div>
   );

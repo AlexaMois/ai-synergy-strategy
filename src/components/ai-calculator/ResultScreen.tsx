@@ -3,28 +3,29 @@ import { DiagnosticData, CalculationResult } from './types';
 import { formatFullCurrency } from './calculationLogic';
 import AnimatedNumber from '@/components/AnimatedNumber';
 import TypewriterText from '@/components/TypewriterText';
-import { TrendingUp, Target, AlertTriangle, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import CTAScreen from './CTAScreen';
 
 interface ResultScreenProps {
   data: DiagnosticData;
   result: CalculationResult;
+  onSubmit: () => void;
 }
 
-type BlockName = 'header' | 'savings' | 'roi' | 'zones' | 'warning' | 'details';
+type BlockName = 'executive' | 'figures' | 'inaction' | 'zones' | 'risks' | 'conclusion' | 'cta';
 
-const ResultScreen = ({ data, result }: ResultScreenProps) => {
+const ResultScreen = ({ data, result, onSubmit }: ResultScreenProps) => {
   const [visibleBlocks, setVisibleBlocks] = useState<BlockName[]>([]);
-  const [zonesTypingComplete, setZonesTypingComplete] = useState(false);
 
   useEffect(() => {
     const delays: { block: BlockName; delay: number }[] = [
-      { block: 'header', delay: 0 },
-      { block: 'savings', delay: 300 },
-      { block: 'roi', delay: 600 },
-      { block: 'zones', delay: 900 },
-      { block: 'warning', delay: 1400 },
-      { block: 'details', delay: 1800 },
+      { block: 'executive', delay: 0 },
+      { block: 'figures', delay: 400 },
+      { block: 'inaction', delay: 800 },
+      { block: 'zones', delay: 1200 },
+      { block: 'risks', delay: 1600 },
+      { block: 'conclusion', delay: 2000 },
+      { block: 'cta', delay: 2400 },
     ];
 
     delays.forEach(({ block, delay }) => {
@@ -36,153 +37,235 @@ const ResultScreen = ({ data, result }: ResultScreenProps) => {
 
   const isVisible = (block: BlockName) => visibleBlocks.includes(block);
 
+  // Получаем первый pain point для блока "Стоимость бездействия"
+  const primaryPainPoint = data.painPoints[0] || 'ручная работа и поиск информации';
+
+  // Для блока зон показываем только 1-2 пункта
+  const topZones = data.painPoints.slice(0, 2);
+
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="space-y-8">
+      {/* Блок 1. Executive Summary */}
       <div 
         className={cn(
-          "text-center mb-8 opacity-0",
-          isVisible('header') && "animate-fade-in-up"
+          "opacity-0",
+          isVisible('executive') && "animate-fade-in-up"
         )}
       >
-        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
-          <Sparkles className="w-4 h-4" />
-          <span className="text-sm font-medium">Анализ завершён</span>
-        </div>
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-          Результат AI-анализа вашего бизнеса
+        <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
+          AI-диагностика бизнес-процессов — предварительный вывод
         </h2>
+        <p className="text-muted-foreground leading-relaxed">
+          На основе введённых параметров система оценила потенциал управленческого эффекта 
+          от внедрения ИИ и выявила зоны максимальной отдачи.
+        </p>
       </div>
 
-      {/* Main metrics */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Potential savings */}
-        <div 
-          className={cn(
-            "bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20 opacity-0",
-            isVisible('savings') && "animate-fade-in-up"
+      <div className={cn("border-t border-border", isVisible('figures') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 2. Ключевые цифры */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('figures') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          Потенциал экономического эффекта
+        </h3>
+        
+        <div className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+          ≈{' '}
+          {isVisible('figures') && (
+            <>
+              <AnimatedNumber
+                value={Math.round(result.minSavings)}
+                suffix=""
+                duration={1500}
+              />{' '}
+              –{' '}
+              <AnimatedNumber
+                value={Math.round(result.maxSavings)}
+                suffix=" ₽"
+                duration={1800}
+              />
+            </>
           )}
-        >
-          <div className="flex items-center gap-2 text-primary mb-3">
-            <TrendingUp className="w-5 h-5" />
-            <span className="text-sm font-medium">Потенциал экономии</span>
-          </div>
-          <div className="text-2xl md:text-3xl font-bold text-foreground">
+          <span className="text-lg font-normal text-muted-foreground ml-2">/ год</span>
+        </div>
+
+        <div className="flex flex-wrap gap-6 text-muted-foreground mb-4">
+          <span>
+            Типичный ROI: ~
+            {isVisible('figures') && (
+              <AnimatedNumber value={Math.max(0, result.roi)} suffix="%" duration={1600} />
+            )}
+          </span>
+          <span>Окупаемость: ~2–4 месяца</span>
+        </div>
+
+        <p className="text-sm text-muted-foreground/70">
+          Расчёт основан на данных о численности сотрудников, ФОТ и доле рутинных операций. 
+          Не учитывает вторичные эффекты (ошибки, простои, управленческие задержки).
+        </p>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('inaction') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 3. Стоимость бездействия */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('inaction') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          Стоимость сохранения текущей модели
+        </h3>
+        
+        <div className="space-y-2 mb-4">
+          <div className="text-muted-foreground">
+            <span className="text-foreground">Потери:</span>{' '}
             ≈{' '}
-            {isVisible('savings') && (
+            {isVisible('inaction') && (
               <>
                 <AnimatedNumber
-                  value={Math.round(result.minSavings)}
+                  value={Math.round(result.minMonthlyLosses)}
                   suffix=""
-                  duration={1500}
+                  duration={1400}
                 />{' '}
                 –{' '}
                 <AnimatedNumber
-                  value={Math.round(result.maxSavings)}
+                  value={Math.round(result.maxMonthlyLosses)}
                   suffix=" ₽"
-                  duration={1800}
+                  duration={1600}
                 />
               </>
             )}
+            <span className="ml-1">в месяц</span>
           </div>
-          <p className="text-sm text-muted-foreground mt-2">в год</p>
-        </div>
-
-        {/* ROI */}
-        <div 
-          className={cn(
-            "bg-gradient-to-br from-green-500/10 to-green-500/5 rounded-2xl p-6 border border-green-500/20 opacity-0",
-            isVisible('roi') && "animate-fade-in-up"
-          )}
-        >
-          <div className="flex items-center gap-2 text-green-600 mb-3">
-            <TrendingUp className="w-5 h-5" />
-            <span className="text-sm font-medium">Типичный ROI</span>
+          
+          <div className="text-muted-foreground">
+            <span className="text-foreground">Неэффективное время:</span>{' '}
+            ~{isVisible('inaction') && (
+              <AnimatedNumber value={result.inefficientHours} suffix="" duration={1400} />
+            )} часов / месяц
           </div>
-          <div className="text-2xl md:text-3xl font-bold text-foreground">
-            {isVisible('roi') && (
-              <AnimatedNumber
-                value={Math.max(0, result.roi)}
-                suffix="%"
-                duration={1600}
-              />
-            )}
+          
+          <div className="text-muted-foreground">
+            <span className="text-foreground">Основной источник:</span>{' '}
+            {primaryPainPoint.toLowerCase()}
           </div>
-          <p className="text-sm text-muted-foreground mt-2">за 2–4 месяца</p>
         </div>
       </div>
 
-      {/* Automation zones */}
+      <div className={cn("border-t border-border", isVisible('zones') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 4. Зоны максимального эффекта */}
       <div 
         className={cn(
-          "bg-card rounded-2xl p-6 border border-border opacity-0",
+          "opacity-0",
           isVisible('zones') && "animate-fade-in-up"
         )}
       >
-        <div className="flex items-center gap-2 text-primary mb-4">
-          <Target className="w-5 h-5" />
-          <span className="font-medium">
-            {isVisible('zones') && (
-              <TypewriterText 
-                text="Наибольший эффект ИИ даст в зонах:"
-                speed={25}
-                onComplete={() => setZonesTypingComplete(true)}
-              />
-            )}
-          </span>
-        </div>
-        {zonesTypingComplete && (
-          <ul className="space-y-2">
-            {data.painPoints.map((point, index) => (
-              <li
-                key={index}
-                className="flex items-center gap-3 text-foreground opacity-0 animate-fade-in-up"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <span className="w-2 h-2 rounded-full bg-primary" />
-                {point}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        <h3 className="text-lg font-medium text-foreground mb-4">
+          {isVisible('zones') && (
+            <TypewriterText 
+              text="Наибольший эффект ИИ в вашей конфигурации:"
+              speed={20}
+            />
+          )}
+        </h3>
+        
+        <ul className="space-y-2 mb-4">
+          {topZones.map((zone, index) => (
+            <li
+              key={index}
+              className="flex items-start gap-3 text-foreground opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${800 + index * 200}ms` }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-foreground/40 mt-2 flex-shrink-0" />
+              {zone}
+            </li>
+          ))}
+        </ul>
 
-      {/* Warning */}
-      <div 
-        className={cn(
-          "bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-6 border border-amber-200 dark:border-amber-800 opacity-0",
-          isVisible('warning') && "animate-fade-in-up"
-        )}
-      >
-        <div className="flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="text-foreground font-medium mb-1">Важно учитывать</p>
-            <p className="text-sm text-muted-foreground">
-              {isVisible('warning') && (
-                <TypewriterText 
-                  text="Дешёвые решения в такой конфигурации часто приводят к росту ошибок и сопротивлению команды"
-                  speed={20}
-                  delay={300}
-                />
-              )}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Details summary */}
-      <div 
-        className={cn(
-          "bg-muted/50 rounded-xl p-4 text-sm opacity-0",
-          isVisible('details') && "animate-fade-in-up"
-        )}
-      >
-        <p className="text-muted-foreground">
-          <strong className="text-foreground">Параметры расчёта:</strong>{' '}
-          {data.employeeCount} сотрудников, ср. зарплата {formatFullCurrency(data.avgSalary)} ₽, 
-          {' '}доля времени на рутину {Math.round(data.routineTimeShare * 100)}%
+        <p className="text-sm text-muted-foreground/70 italic">
+          Это типично для компаний с распределённой документацией и высокой долей экспертизы «в головах».
         </p>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('risks') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 5. Риск-блок */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('risks') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-3">
+          Важно учитывать
+        </h3>
+        
+        <p className="text-muted-foreground mb-4">
+          {isVisible('risks') && (
+            <TypewriterText 
+              text="Решения без архитектуры и подготовки команды часто приводят не к экономии, а к росту ошибок и сопротивлению."
+              speed={15}
+              delay={200}
+            />
+          )}
+        </p>
+
+        <ul className="space-y-1 text-sm text-muted-foreground/70">
+          <li className="flex items-center gap-2">
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            отсутствие метрик
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            «дешёвые боты»
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            нет ответственности за результат
+          </li>
+        </ul>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('conclusion') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 6. Управленческий вывод */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('conclusion') && "animate-fade-in-up"
+        )}
+      >
+        <h3 className="text-lg font-medium text-foreground mb-3">
+          Вывод
+        </h3>
+        
+        <div className="text-muted-foreground space-y-2">
+          <p>Потенциал есть.</p>
+          <p>Но точный эффект возможен только после разборки процессов и данных.</p>
+          <p className="text-foreground font-medium">
+            Следующий рациональный шаг — управленческая диагностика.
+          </p>
+        </div>
+      </div>
+
+      <div className={cn("border-t border-border", isVisible('cta') ? "opacity-100" : "opacity-0")} />
+
+      {/* Блок 7. CTA */}
+      <div 
+        className={cn(
+          "opacity-0",
+          isVisible('cta') && "animate-fade-in-up"
+        )}
+      >
+        <CTAScreen onSubmit={onSubmit} />
       </div>
     </div>
   );
