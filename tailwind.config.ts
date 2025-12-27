@@ -81,6 +81,7 @@ export default {
         },
         "soft-sand": "hsl(var(--soft-sand))",
         "dark-bg": "hsl(var(--dark-bg))",
+        "footer-bg": "hsl(var(--footer-bg))",
         "light-bg": "hsl(var(--light-bg))",
       },
       boxShadow: {
