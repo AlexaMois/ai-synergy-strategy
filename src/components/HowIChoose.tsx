@@ -46,11 +46,11 @@ const HowIChoose = () => {
     <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2
-          className={`text-2xl md:text-3xl font-medium text-foreground mb-10 md:mb-14 text-center transition-all duration-700 ${
+          className={`text-2xl md:text-3xl font-normal text-foreground mb-10 md:mb-14 text-center transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Как я выбираю: <span className="font-semibold">автоматизировать или просто решить?</span>
+          Как я выбираю: <span className="font-bold">автоматизировать или просто решить?</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

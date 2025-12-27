@@ -136,8 +136,8 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
-                <h1 className="text-[32px] md:text-[36px] font-bold text-foreground mb-4 leading-tight">
-                  Александра Моисеева
+                <h1 className="text-[32px] md:text-[36px] font-normal text-foreground mb-4 leading-tight">
+                  Александра <span className="font-bold">Моисеева</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
                   Независимый стратег и инженер ИИ
@@ -186,8 +186,8 @@ const About = () => {
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
                 <CollapsibleTrigger className="w-full">
                   <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium text-foreground text-left">
-                      Кто я, <span className="font-semibold">и почему мне доверяют</span>
+                    <h2 className="text-2xl md:text-3xl font-normal text-foreground text-left">
+                      Кто я, <span className="font-bold">и почему мне доверяют</span>
                     </h2>
                     <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
                   </div>
