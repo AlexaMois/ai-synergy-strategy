@@ -309,7 +309,7 @@ const ServicesDetailed = () => {
                         </div>
                         
                         <div className="flex-1 text-left min-w-0">
-                          <h3 className="text-xl font-semibold text-foreground mb-1">
+                          <h3 className="text-foreground mb-1">
                             {service.title}
                           </h3>
                           <p className="text-sm text-muted-foreground line-clamp-2">
