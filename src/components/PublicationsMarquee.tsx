@@ -1,4 +1,10 @@
-import { ExternalLink, MessageCircle, Youtube, Newspaper, FileText, Award, BookOpen } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+
+// Импорт логотипов
+import logoNfii from '@/assets/partners/nfii.jpg';
+import logoOpora from '@/assets/partners/opora-rossii.png';
+import logoDelovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
+import logoKps from '@/assets/partners/kraypotrebsoyuz.png';
 
 interface Publication {
   id: number;
@@ -6,10 +12,25 @@ interface Publication {
   title: string;
   url: string;
   type: 'read' | 'watch';
-  icon: 'telegram' | 'youtube' | 'news' | 'article' | 'award' | 'book';
+  logo: string | null;
   alt: string;
   ariaLabel: string;
 }
+
+// Логотипы для источников без изображения
+const defaultLogos: Record<string, string | null> = {
+  'НФИИ': logoNfii,
+  'НФИИ (Telegram)': logoNfii,
+  'ОПОРА РОССИИ': logoOpora,
+  'Деловой Квартал': logoDelovoyKvartal,
+  'КПС': logoKps,
+  'YouTube': null,
+  'HR Bazaar': null,
+  'SET.KI': null,
+  'Битех24': null,
+  'Панорама': null,
+  'Воркшоп': null,
+};
 
 const publications: Publication[] = [
   {
@@ -18,7 +39,7 @@ const publications: Publication[] = [
     title: 'ИИ в бизнесе: как внедрить цифрового сотрудника 24/7',
     url: 'https://t.me/nfai_main/127',
     type: 'read',
-    icon: 'telegram',
+    logo: logoNfii,
     alt: 'Публикация НФИИ о цифровом сотруднике 24/7 и внедрении ИИ в бизнес — Александра Моисеева',
     ariaLabel: 'Открыть публикацию НФИИ о внедрении цифрового сотрудника 24/7 в бизнесе'
   },
@@ -28,7 +49,7 @@ const publications: Publication[] = [
     title: 'НейроРешения запускает Telegram-канал, который заменит штатного тендерщика',
     url: 'https://nfai.ru/tpost/dvo82v7601-neiroresheniya-chlen-nfii-zapuskaet-tele',
     type: 'read',
-    icon: 'news',
+    logo: logoNfii,
     alt: 'Публикация НФИИ о запуске Telegram-канала НейроТендеролог — Александра Моисеева',
     ariaLabel: 'Открыть публикацию НФИИ о запуске Telegram-канала для тендерного поиска'
   },
@@ -38,7 +59,7 @@ const publications: Publication[] = [
     title: 'НейроТендеролог: ИИ для автоматизации тендерного поиска',
     url: 'https://nfai.ru/tpost/6zm7z4mem1-neirotenderolog-iskusstvennii-intellekt',
     type: 'read',
-    icon: 'article',
+    logo: logoNfii,
     alt: 'Публикация НФИИ о НейроТендерологе — автоматизация тендерного поиска с помощью ИИ',
     ariaLabel: 'Открыть статью НФИИ об автоматизации тендерного поиска с помощью ИИ'
   },
@@ -48,7 +69,7 @@ const publications: Publication[] = [
     title: 'ИИ как сотрудник 24/7: реальные кейсы внедрения | ОПОРА РОССИИ',
     url: 'https://www.youtube.com/watch?v=GhdmiJiXYKQ',
     type: 'watch',
-    icon: 'youtube',
+    logo: logoOpora,
     alt: 'Видео выступления Александры Моисеевой об ИИ как цифровом сотруднике 24/7',
     ariaLabel: 'Смотреть выступление об ИИ как цифровом сотруднике 24/7'
   },
@@ -58,7 +79,7 @@ const publications: Publication[] = [
     title: 'Победитель регионального этапа премии «Бизнес-Успех»',
     url: 'https://opora.ru/news/regions/predstavitel-krasnoyarskoy-opory-rossii-stala-odnim-iz-pobediteley-regionalnogo-etapa-natsionalnoy-premii-biznes-uspekh/',
     type: 'read',
-    icon: 'award',
+    logo: logoOpora,
     alt: 'Публикация ОПОРЫ РОССИИ о победе Александры Моисеевой в премии Бизнес-Успех',
     ariaLabel: 'Открыть публикацию ОПОРЫ РОССИИ о премии Бизнес-Успех'
   },
@@ -68,7 +89,7 @@ const publications: Publication[] = [
     title: 'Красноярские предприниматели приняли участие в Альфа-Конфе',
     url: 'https://opora.ru/news/regions/krasnoyarskie-predprinimateli-prinyali-uchastie-v-alfa-konfe/',
     type: 'read',
-    icon: 'news',
+    logo: logoOpora,
     alt: 'Публикация ОПОРЫ РОССИИ об участии предпринимателей в Альфа-Конфе — Александра Моисеева',
     ariaLabel: 'Открыть публикацию ОПОРЫ РОССИИ об Альфа-Конфе'
   },
@@ -78,7 +99,7 @@ const publications: Publication[] = [
     title: 'ИИ — драйвер для бизнеса',
     url: 'https://read.flypdf.ru/v/b0f78794-edc0-4b7f-8058-82b8055de534#page/62',
     type: 'read',
-    icon: 'book',
+    logo: logoDelovoyKvartal,
     alt: 'Статья Делового Квартала об ИИ как драйвере роста бизнеса — Александра Моисеева',
     ariaLabel: 'Открыть статью Делового Квартала об ИИ как драйвере бизнеса'
   },
@@ -88,7 +109,7 @@ const publications: Publication[] = [
     title: 'Как ИИ трансформирует HR-подбор в России',
     url: 'https://hrbazaar.ru/articles/kak-ii-transformiruet-hr-podbor/',
     type: 'read',
-    icon: 'article',
+    logo: null,
     alt: 'Экспертная статья об использовании ИИ в HR и подборе персонала — Александра Моисеева',
     ariaLabel: 'Открыть экспертную статью об использовании ИИ в HR'
   },
@@ -98,7 +119,7 @@ const publications: Publication[] = [
     title: 'Как ИИ трансформирует HR-подбор: от цифр к практике',
     url: 'https://set.ki/post/3XjKrd2',
     type: 'read',
-    icon: 'article',
+    logo: null,
     alt: 'Экспертная статья об использовании ИИ в HR-подборе — Александра Моисеева',
     ariaLabel: 'Открыть экспертную статью об использовании ИИ в HR'
   },
@@ -108,7 +129,7 @@ const publications: Publication[] = [
     title: 'Колибри Александра — Wiki',
     url: 'https://krasnoyarsk.dk.ru/wiki/kolibri-aleksandra',
     type: 'read',
-    icon: 'news',
+    logo: logoDelovoyKvartal,
     alt: 'Профиль Александры Моисеевой в Деловом Квартале — эксперт по ИИ и цифровой архитектуре',
     ariaLabel: 'Открыть профиль Александры Моисеевой в Деловом Квартале'
   },
@@ -118,7 +139,7 @@ const publications: Publication[] = [
     title: 'AI-агентство НейроРешения — Wiki',
     url: 'https://krasnoyarsk.dk.ru/wiki/ai-agentstvo-neyroresheniya',
     type: 'read',
-    icon: 'news',
+    logo: logoDelovoyKvartal,
     alt: 'Профиль AI-агентства НейроРешения в Деловом Квартале — ИИ-решения для бизнеса',
     ariaLabel: 'Открыть профиль AI-агентства НейроРешения в Деловом Квартале'
   },
@@ -128,7 +149,7 @@ const publications: Publication[] = [
     title: 'ИИ в праве: разбор основных юридических рисков',
     url: 'https://biteh24.ru/ii-v-prave-razbor-osnovnykh-yuridicheskikh-riskov/',
     type: 'read',
-    icon: 'article',
+    logo: null,
     alt: 'Экспертная статья о юридических аспектах применения ИИ — Александра Моисеева',
     ariaLabel: 'Открыть статью о юридических рисках применения ИИ'
   },
@@ -138,7 +159,7 @@ const publications: Publication[] = [
     title: 'От кисти к коду: трансформация роли художника в эпоху нейросетей',
     url: 'https://panor.ru/articles/ot-kisti-k-kodu-transformatsiya-roli-khudozhnika-v-epokhu-neyrosetey/118181.html#',
     type: 'read',
-    icon: 'book',
+    logo: null,
     alt: 'Статья о трансформации творческих профессий в эпоху нейросетей — Александра Моисеева',
     ariaLabel: 'Открыть статью о трансформации творческих профессий в эпоху нейросетей'
   },
@@ -148,7 +169,7 @@ const publications: Publication[] = [
     title: 'Ежегодное заседание Крайпотребсоюза',
     url: 'https://www.krayps.ru/news/main_news/?ELEMENT_ID=19160',
     type: 'read',
-    icon: 'news',
+    logo: logoKps,
     alt: 'Участие Александры Моисеевой в ежегодном заседании Крайпотребсоюза',
     ariaLabel: 'Открыть новость о заседании Крайпотребсоюза с участием Александры Моисеевой'
   },
@@ -158,7 +179,7 @@ const publications: Publication[] = [
     title: 'Новости бизнеса Красноярска',
     url: 'https://krasnoyarsk.dk.ru/news/237229366',
     type: 'read',
-    icon: 'news',
+    logo: logoDelovoyKvartal,
     alt: 'Публикация Делового Квартала о бизнесе Красноярска — Александра Моисеева',
     ariaLabel: 'Открыть новость Делового Квартала о бизнесе Красноярска'
   },
@@ -168,7 +189,7 @@ const publications: Publication[] = [
     title: 'Публикация о развитии ИИ в регионе',
     url: 'https://krasnoyarsk.dk.ru/news/237222687',
     type: 'read',
-    icon: 'news',
+    logo: logoDelovoyKvartal,
     alt: 'Публикация Делового Квартала о развитии ИИ в регионе — Александра Моисеева',
     ariaLabel: 'Открыть новость о развитии ИИ в регионе'
   },
@@ -178,31 +199,37 @@ const publications: Publication[] = [
     title: 'Воркшоп по нейросетям',
     url: '#',
     type: 'read',
-    icon: 'article',
+    logo: null,
     alt: 'Воркшоп по нейросетям с участием Александры Моисеевой',
     ariaLabel: 'Узнать о воркшопе по нейросетям'
   }
 ];
 
-const getIcon = (iconType: Publication['icon']) => {
-  const iconClass = "w-5 h-5 text-primary";
-  switch (iconType) {
-    case 'telegram':
-      return <MessageCircle className={iconClass} aria-hidden="true" />;
-    case 'youtube':
-      return <Youtube className={iconClass} aria-hidden="true" />;
-    case 'news':
-      return <Newspaper className={iconClass} aria-hidden="true" />;
-    case 'award':
-      return <Award className={iconClass} aria-hidden="true" />;
-    case 'book':
-      return <BookOpen className={iconClass} aria-hidden="true" />;
-    default:
-      return <FileText className={iconClass} aria-hidden="true" />;
+const SourceLogo = ({ logo, source, alt }: { logo: string | null; source: string; alt: string }) => {
+  if (logo) {
+    return (
+      <div className="w-8 h-8 rounded-lg overflow-hidden bg-background flex-shrink-0 border border-border/30">
+        <img 
+          src={logo} 
+          alt={alt}
+          className="w-full h-full object-contain"
+        />
+      </div>
+    );
   }
+  
+  // Fallback: первая буква источника
+  return (
+    <div 
+      className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary font-semibold text-sm"
+      aria-hidden="true"
+    >
+      {source.charAt(0)}
+    </div>
+  );
 };
 
-const PublicationCard = ({ source, title, url, type, icon, ariaLabel }: Omit<Publication, 'id' | 'alt'>) => (
+const PublicationCard = ({ source, title, url, type, logo, alt, ariaLabel }: Omit<Publication, 'id'>) => (
   <a
     href={url}
     target="_blank"
@@ -212,9 +239,9 @@ const PublicationCard = ({ source, title, url, type, icon, ariaLabel }: Omit<Pub
                hover:shadow-card hover:-translate-y-1 transition-all duration-300
                border border-border/50 group"
   >
-    <div className="flex items-center gap-2" aria-hidden="true">
-      {getIcon(icon)}
-      <span className="text-xs font-medium text-muted-foreground truncate">{source}</span>
+    <div className="flex items-center gap-2">
+      <SourceLogo logo={logo} source={source} alt={alt} />
+      <span className="text-xs font-medium text-muted-foreground truncate" aria-hidden="true">{source}</span>
     </div>
     <p className="text-sm text-foreground font-medium leading-tight line-clamp-2 flex-grow" aria-hidden="true">
       {title}
