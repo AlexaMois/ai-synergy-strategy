@@ -11,6 +11,7 @@ import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";
 import SixQuestions from "@/components/SixQuestions";
 import AIFramework from "@/components/AIFramework";
+import Credentials from "@/components/Credentials";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -744,6 +745,9 @@ const About = () => {
             </div>
           </div>
         </section>
+
+        {/* Qualifications - Diploma & Certificate */}
+        <Credentials />
 
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
