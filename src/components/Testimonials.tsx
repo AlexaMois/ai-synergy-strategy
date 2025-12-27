@@ -186,37 +186,25 @@ const Testimonials = () => {
         <div className="overflow-hidden -mx-4 px-4">
           <div className="flex gap-4 w-max animate-testimonials-scroll hover:[animation-play-state:paused]">
             {/* Дублируем массив для бесшовного цикла */}
-            {[...reviews, ...reviews].map((review, index) => {
-              const originalIndex = index % reviews.length;
-              const isEven = originalIndex % 2 === 0;
-              return (
-                <div
-                  key={`${review.id}-${index}`}
-                  className={`relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-all duration-300 hover:scale-110 hover:z-10 rounded-xl ${
-                    isEven 
-                      ? 'bg-background border-2 border-border shadow-soft' 
-                      : 'bg-foreground/90 border-2 border-foreground/20 shadow-elevated'
-                  }`}
-                  onClick={() => setSelectedImage(review.image)}
-                >
-                  <div className="relative w-full h-full overflow-hidden rounded-lg">
-                    <img
-                      src={review.image}
-                      alt={review.alt}
-                      className={`w-full h-full object-cover object-top transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 ${
-                        isEven 
-                          ? 'grayscale-0 opacity-90' 
-                          : 'grayscale opacity-70'
-                      }`}
-                      loading="lazy"
-                      decoding="async"
-                      width="192"
-                      height="256"
-                    />
-                  </div>
+            {[...reviews, ...reviews].map((review, index) => (
+              <div
+                key={`${review.id}-${index}`}
+                className="relative group cursor-pointer flex-shrink-0 w-48 h-64 transition-all duration-300 hover:scale-110 hover:z-10"
+                onClick={() => setSelectedImage(review.image)}
+              >
+                <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
+                  <img
+                    src={review.image}
+                    alt={review.alt}
+                    className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                    loading="lazy"
+                    decoding="async"
+                    width="192"
+                    height="256"
+                  />
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
