@@ -14,6 +14,10 @@ export interface CalculationResult {
   roi: number;
   minSavings: number;
   maxSavings: number;
+  // Новые поля для блока "Стоимость бездействия"
+  minMonthlyLosses: number;
+  maxMonthlyLosses: number;
+  inefficientHours: number;
 }
 
 export const PAIN_POINT_OPTIONS = [

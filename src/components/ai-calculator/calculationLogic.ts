@@ -25,6 +25,13 @@ export const calculateResults = (data: DiagnosticData): CalculationResult => {
   const minSavings = potentialSavings * 0.8;
   const maxSavings = potentialSavings * 1.2;
 
+  // Месячные потери (для блока "Стоимость бездействия")
+  const minMonthlyLosses = minSavings / 12;
+  const maxMonthlyLosses = maxSavings / 12;
+
+  // Неэффективные часы в месяц = N × 168 × T × A (168 = рабочих часов в месяце)
+  const inefficientHours = Math.round(N * 168 * T * A);
+
   return {
     yearlyCosts,
     potentialSavings,
@@ -33,6 +40,9 @@ export const calculateResults = (data: DiagnosticData): CalculationResult => {
     roi: Math.round(roi),
     minSavings,
     maxSavings,
+    minMonthlyLosses,
+    maxMonthlyLosses,
+    inefficientHours,
   };
 };
 

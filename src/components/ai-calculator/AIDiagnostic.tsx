@@ -82,10 +82,11 @@ const AIDiagnostic = ({ onComplete, onCTA }: AIDiagnosticProps) => {
       )}
 
       {phase === 'result' && result && diagnosticData.painPoints && (
-        <div className="space-y-6">
-          <ResultScreen data={diagnosticData as DiagnosticData} result={result} />
-          <CTAScreen onSubmit={onCTA} />
-        </div>
+        <ResultScreen 
+          data={diagnosticData as DiagnosticData} 
+          result={result} 
+          onSubmit={onCTA}
+        />
       )}
     </div>
   );
