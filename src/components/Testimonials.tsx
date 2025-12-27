@@ -273,28 +273,34 @@ const Testimonials = () => {
             opts={{
               loop: true,
               align: "start",
+              dragFree: true,
+              containScroll: "trimSnaps",
             }}
             plugins={[autoplayPlugin.current]}
             setApi={setApi}
-            className="w-full"
+            className="w-full touch-pan-y"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-4 cursor-grab active:cursor-grabbing">
               {shuffledReviews.map((review) => (
                 <CarouselItem
                   key={review.id}
                   className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 pl-4"
                 >
                   <div
-                    className="relative group cursor-pointer w-full h-64 md:h-72 transition-all duration-300 hover:scale-105 hover:z-10"
+                    className="relative group cursor-pointer w-full h-64 md:h-72 transition-all duration-300 hover:scale-105 active:scale-95 hover:z-10 select-none"
                     onClick={() => setSelectedImage(review.image)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && setSelectedImage(review.image)}
                   >
-                    <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated">
+                    <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated group-active:shadow-soft">
                       <img
                         src={review.image}
                         alt={review.alt}
-                        className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                        className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-active:grayscale-0 group-active:opacity-100 pointer-events-none"
                         loading="lazy"
                         decoding="async"
+                        draggable={false}
                       />
                     </div>
                   </div>
