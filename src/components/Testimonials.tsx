@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from "embla-carousel-auto-scroll";
 import { type CarouselApi } from "@/components/ui/carousel";
 
 // Импорт скриншотов отзывов
@@ -133,11 +133,12 @@ const Testimonials = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [shuffledReviews] = useState(() => shuffleReviewsByType(reviews));
   
-  const autoplayPlugin = useRef(
-    Autoplay({
-      delay: 3000,
+  const autoScrollPlugin = useRef(
+    AutoScroll({
+      speed: 1,
       stopOnInteraction: false,
       stopOnMouseEnter: true,
+      playOnInit: true,
     })
   );
 
@@ -278,7 +279,7 @@ const Testimonials = () => {
               duration: 30,
               skipSnaps: false,
             }}
-            plugins={[autoplayPlugin.current]}
+            plugins={[autoScrollPlugin.current]}
             setApi={setApi}
             className="w-full touch-pan-y"
           >
