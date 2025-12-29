@@ -181,94 +181,36 @@ const About = () => {
         <PageBreadcrumbs currentPage="Обо мне" />
       
         <main>
-        {/* Hero Section - Premium Redesign */}
-        <section ref={heroRef} className="pt-32 pb-16 md:pb-20 lg:pb-24 relative overflow-hidden">
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Gradient blob behind photo */}
-            <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-full blur-3xl opacity-60 translate-x-1/4" />
-            {/* Subtle pattern overlay */}
-            <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
-          </div>
-
-          <div className="container mx-auto px-4 max-w-6xl relative z-10">
-            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-              {/* Left column - Text content */}
+        {/* Hero Section */}
+        <section ref={heroRef} className="pt-32 pb-10 md:pb-16 lg:pb-20">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
-                {/* Name with gradient accent */}
-                <h1 className="mb-3 leading-tight">
-                  <span className="bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text">
-                    Александра Моисеева
-                  </span>
+                <h1 className="mb-4 leading-tight">
+                  Александра Моисеева
                 </h1>
-                
-                {/* Subtitle with handwriting font */}
-                <p className="font-iriska text-2xl md:text-3xl text-primary mb-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
+                <p className="text-xl md:text-2xl text-primary font-medium mb-6">
                   Независимый стратег и инженер ИИ
                 </p>
-                
-                {/* Description */}
-                <p className="text-lg text-foreground leading-relaxed mb-8 animate-fade-in" style={{ animationDelay: '400ms' }}>
+                <p className="text-lg text-foreground leading-relaxed mb-8">
                   Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
                 </p>
-                
-                {/* CTA Button with glow effect */}
-                <div className="animate-fade-in" style={{ animationDelay: '600ms' }}>
-                  <Button 
-                    size="lg" 
-                    onClick={scrollToContact} 
-                    className="w-full sm:w-auto relative group overflow-hidden"
-                  >
-                    <span className="relative z-10">Обсудить задачу</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </Button>
-                </div>
+                <Button size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
+                  Обсудить задачу
+                </Button>
               </div>
-              
-              {/* Right column - Photo with decorative elements */}
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
                 <div className="relative w-full max-w-md">
-                  {/* Decorative offset frame */}
-                  <div className="absolute -inset-3 md:-inset-4 border-2 border-primary/30 rounded-3xl translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6" />
-                  
-                  {/* Main photo container */}
-                  <div className="relative group">
-                    {/* Glow effect behind photo */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {/* Photo */}
-                    <img 
-                      src={alexandraHeadshot} 
-                      alt="Александра Моисеева — независимый стратег и инженер ИИ" 
-                      className="relative w-full h-auto object-contain rounded-2xl shadow-card transition-all duration-500 group-hover:shadow-elevated group-hover:scale-[1.02]"
-                      loading="eager"
-                      decoding="async"
-                      fetchPriority="high"
-                      width="400"
-                      height="400"
-                    />
-                    
-                    {/* Floating badges */}
-                    <div className="absolute -left-4 md:-left-8 top-1/4 animate-fade-in" style={{ animationDelay: '800ms' }}>
-                      <div className="bg-card shadow-card rounded-xl px-4 py-3 border border-border hover:shadow-elevated transition-shadow duration-300">
-                        <p className="text-2xl font-bold text-primary">36+</p>
-                        <p className="text-sm text-muted-foreground">проектов</p>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute -right-4 md:-right-8 top-1/2 animate-fade-in" style={{ animationDelay: '1000ms' }}>
-                      <div className="bg-card shadow-card rounded-xl px-4 py-3 border border-border hover:shadow-elevated transition-shadow duration-300">
-                        <p className="text-2xl font-bold text-primary">13+</p>
-                        <p className="text-sm text-muted-foreground">лет опыта</p>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 animate-fade-in" style={{ animationDelay: '1200ms' }}>
-                      <div className="bg-primary text-primary-foreground shadow-card rounded-xl px-5 py-3 whitespace-nowrap">
-                        <p className="text-sm font-medium">ROI 200–400%</p>
-                      </div>
-                    </div>
-                  </div>
+                  <img 
+                    src={alexandraHeadshot} 
+                    alt="Александра Моисеева" 
+                    className="w-full h-auto object-contain rounded-2xl"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    width="400"
+                    height="400"
+                  />
                 </div>
               </div>
             </div>
