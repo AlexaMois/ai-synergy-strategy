@@ -64,25 +64,34 @@ const NewYearGreeting: React.FC = () => {
                 </p>
               </div>
 
-              {/* Letter body */}
-              <div className="space-y-4 text-foreground/90 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-raleway">
-                <p>
-                  Этот год был разным. Но в нём точно было много смыслов, решений и разговоров.
-                </p>
+              {/* Letter body card */}
+              <div className="bg-secondary/50 rounded-xl shadow-soft p-6 sm:p-8 max-w-[720px] mx-auto lg:mx-0">
+                <div className="space-y-4 text-foreground/90 text-base lg:text-lg leading-relaxed font-raleway">
+                  {/* Block 1 - Year reflection and gratitude */}
+                  <div className="space-y-3">
+                    <p>
+                      Этот год был разным. Но в нём точно было много смыслов, решений и разговоров.
+                    </p>
+                    <p>
+                      Спасибо вам за диалоги, совместную работу, интерес и доверие.
+                      Я искренне ценю каждого — и тех, с кем мы уже сотрудничаем, и тех, с кем только начинаем путь в 2026 году.
+                    </p>
+                  </div>
 
-                <p>
-                  Спасибо вам за диалоги, совместную работу, интерес и доверие.
-                  Я искренне ценю каждого — и тех, с кем мы уже сотрудничаем, и тех, с кем только начинаем путь в 2026 году.
-                </p>
+                  {/* Separator */}
+                  <div className="h-px bg-border my-4" />
 
-                <p>
-                  От всего сердца поздравляю вас с наступающим <strong>2026 годом</strong>.
-                  Пусть новый год принесёт гармонию и ясность, уверенность в решениях и радость от того, что вы делаете.
-                </p>
-
-                <p>
-                  В знак моей благодарности я подготовила небольшой новогодний жест — <strong>AI-ассистенты</strong>, которых я использую и создаю сама. Вы можете забрать любой из них или сразу все три.
-                </p>
+                  {/* Block 2 - Greeting and gift */}
+                  <div className="space-y-3">
+                    <p>
+                      От всего сердца поздравляю вас с наступающим <strong className="text-foreground">2026 годом</strong>.
+                      Пусть новый год принесёт гармонию и ясность, уверенность в решениях и радость от того, что вы делаете.
+                    </p>
+                    <p>
+                      В знак моей благодарности я подготовила небольшой новогодний жест — <strong className="text-foreground">AI-ассистенты</strong>, которых я использую и создаю сама. Вы можете забрать любой из них или сразу все три.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Signature */}
