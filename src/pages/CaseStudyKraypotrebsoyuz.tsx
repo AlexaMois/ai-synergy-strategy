@@ -6,9 +6,16 @@ import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake, ImageIcon } from "lucide-react";
+import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import { useNavigate, useLocation } from "react-router-dom";
+
+// Photos
+import heroImage from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-hero.jpg";
+import auditImage from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-audit.jpg";
+import meetingImage1 from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-meeting-1.jpg";
+import meetingImage2 from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-meeting-2.jpg";
+import meetingImage3 from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-meeting-3.jpg";
 
 const CaseStudyKraypotrebsoyuz = () => {
   const navigate = useNavigate();
@@ -83,13 +90,12 @@ const CaseStudyKraypotrebsoyuz = () => {
               Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-semibold">и отказались от серверов за 1,5 млн ₽</span>
             </h1>
             
-            {/* Hero Image Placeholder */}
-            <div className="bg-muted rounded-2xl h-64 md:h-80 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center text-muted-foreground">
-                <ImageIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">Фото с собрания или офиса</p>
-              </div>
-            </div>
+            {/* Hero Image */}
+            <img 
+              src={heroImage} 
+              alt="Александра Моисеева у карты Крайпотребсоюза" 
+              className="w-full h-64 md:h-80 object-cover rounded-2xl"
+            />
           </div>
         </section>
 
@@ -216,13 +222,12 @@ const CaseStudyKraypotrebsoyuz = () => {
               </p>
             </div>
             
-            {/* Audit Photo Placeholder */}
-            <div className="mt-8 bg-muted rounded-2xl h-48 md:h-64 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center text-muted-foreground">
-                <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">Фото рабочего процесса / встречи</p>
-              </div>
-            </div>
+            {/* Audit Photo */}
+            <img 
+              src={auditImage} 
+              alt="Рабочая встреча с командой Крайпотребсоюза" 
+              className="mt-8 w-full h-48 md:h-64 object-cover rounded-2xl"
+            />
           </div>
         </section>
 
@@ -277,13 +282,6 @@ const CaseStudyKraypotrebsoyuz = () => {
               </ul>
             </div>
             
-            {/* Bpium Screenshot Placeholder */}
-            <div className="bg-muted rounded-2xl h-48 md:h-64 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center text-muted-foreground">
-                <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">Скриншот системы Bpium</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -452,11 +450,24 @@ const CaseStudyKraypotrebsoyuz = () => {
                 </div>
               </div>
               
-              {/* Meeting Photo Placeholder */}
-              <div className="bg-muted rounded-2xl h-64 md:h-auto flex items-center justify-center border-2 border-dashed border-border">
-                <div className="text-center text-muted-foreground">
-                  <ImageIcon className="w-10 h-10 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">Фото с собрания</p>
+              {/* Meeting Photos Gallery */}
+              <div className="grid grid-cols-1 gap-4">
+                <img 
+                  src={meetingImage2} 
+                  alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
+                  className="w-full h-48 md:h-56 object-cover rounded-2xl"
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  <img 
+                    src={meetingImage1} 
+                    alt="Участники собрания Крайпотребсоюза" 
+                    className="w-full h-32 md:h-40 object-cover rounded-2xl"
+                  />
+                  <img 
+                    src={meetingImage3} 
+                    alt="Конференц-зал собрания Крайпотребсоюза" 
+                    className="w-full h-32 md:h-40 object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
