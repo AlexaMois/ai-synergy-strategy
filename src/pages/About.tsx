@@ -31,15 +31,35 @@ import presentingAudience from "@/assets/about/presenting-audience.jpg";
 import consultingMeeting from "@/assets/about/consulting-meeting.jpg";
 import exhibitionBooth from "@/assets/about/exhibition-booth.jpg";
 import speakingCasual from "@/assets/about/speaking-casual.jpg";
-import portraitFormal from "@/assets/about/portrait-formal.jpg";
+import portraitFormal from "@/assets/about/portrait-formal-new.jpg";
 import coPresenting1 from "@/assets/about/co-presenting-1.jpg";
 import coPresenting2 from "@/assets/about/co-presenting-2.jpg";
 import lectureTools from "@/assets/about/lecture-tools.jpg";
+import PhotoLightbox from "@/components/PhotoLightbox";
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Gallery images for lightbox
+  const galleryImages = [
+    { src: exhibitionBooth, alt: "Выставка МЧС" },
+    { src: speakingCasual, alt: "Выступление на мероприятии" },
+    { src: portraitFormal, alt: "Александра Моисеева" },
+    { src: coPresenting2, alt: "Совместное выступление" },
+    { src: consultingMeeting, alt: "Консультация" },
+    { src: businessAngels, alt: "Ангелы бизнеса" },
+    { src: lectureTools, alt: "Лекция об инструментах ИИ" },
+    { src: coPresenting1, alt: "Совместное выступление" },
+  ];
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   // Handle hash scroll on page load
   useEffect(() => {
@@ -886,33 +906,34 @@ const About = () => {
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={exhibitionBooth} alt="Выставка МЧС" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={speakingCasual} alt="Выступление на мероприятии" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={portraitFormal} alt="Александра Моисеева" className="w-full h-40 md:h-48 object-cover" style={{ objectPosition: '65% top' }} loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={coPresenting2} alt="Совместное выступление" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={consultingMeeting} alt="Консультация" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={businessAngels} alt="Ангелы бизнеса" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={lectureTools} alt="Лекция об инструментах ИИ" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
-              </div>
-              <div className="overflow-hidden rounded-xl shadow-soft">
-                <img src={coPresenting1} alt="Совместное выступление" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
-              </div>
+              {galleryImages.map((image, index) => (
+                <div 
+                  key={index}
+                  className="overflow-hidden rounded-xl shadow-soft cursor-pointer group"
+                  onClick={() => openLightbox(index)}
+                >
+                  <img 
+                    src={image.src} 
+                    alt={image.alt} 
+                    className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" 
+                    style={index === 2 ? { objectPosition: 'center center' } : undefined}
+                    loading="lazy" 
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
+
+        {/* Lightbox */}
+        <PhotoLightbox
+          images={galleryImages}
+          currentIndex={lightboxIndex}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          onNavigate={setLightboxIndex}
+        />
+
 
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
