@@ -127,12 +127,42 @@ export default {
             opacity: "0",
           },
         },
+        "breathe": {
+          "0%, 100%": {
+            opacity: "0.8",
+            filter: "drop-shadow(0 0 20px rgba(73, 190, 216, 0.3))",
+          },
+          "50%": {
+            opacity: "1",
+            filter: "drop-shadow(0 0 50px rgba(73, 190, 216, 0.6))",
+          },
+        },
+        "twinkle": {
+          "0%, 100%": {
+            opacity: "0.5",
+            transform: "scale(0.9)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "scale(1.1)",
+          },
+        },
+        "garlandMove": {
+          "0%": {
+            strokeDashoffset: "0",
+          },
+          "100%": {
+            strokeDashoffset: "-100",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.5s ease-out forwards",
         "blink": "blink 1s infinite",
+        "breathe": "breathe 10s ease-in-out infinite",
+        "twinkle": "twinkle 2s ease-in-out infinite",
       },
     },
   },

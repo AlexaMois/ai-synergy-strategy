@@ -39,6 +39,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const TestPage = lazy(() => import("./pages/TestPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
+const NewYearGreeting = lazy(() => import("./pages/NewYearGreeting"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -128,6 +129,7 @@ const App = () => (
             <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
             <Route path="/checklist" element={<ChecklistPage />} />
             <Route path="/test" element={<TestPage />} />
+            <Route path="/newyear" element={<NewYearGreeting />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
