@@ -384,9 +384,22 @@ const CaseStudyKraypotrebsoyuz = () => {
               alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
               className="w-full h-auto rounded-2xl"
             />
-            <p className="text-sm text-muted-foreground text-center mt-4">
-              Выступление на ежегодном собрании Крайпотребсоюза · <a href="https://www.krayps.ru/news/main_news/?ELEMENT_ID=19160" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Источник</a>
-            </p>
+            <div className="mt-6 text-center">
+              <p className="text-lg font-semibold text-foreground mb-2">
+                Ключевые решения Совета Крайпотребсоюза
+              </p>
+              <p className="text-base text-muted-foreground mb-3">
+                17 декабря 2025 года состоялось расширенное заседание Совета Крайпотребсоюза, с участием членов Совета, руководителей районных кооперативных организаций, собственных хозяйств, главных бухгалтеров, ведущих специалистов по направлениям деятельности и ветеранов.
+              </p>
+              <a 
+                href="https://www.krayps.ru/news/main_news/?ELEMENT_ID=19160" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-1 text-primary hover:underline text-sm"
+              >
+                Источник <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </section>
 
