@@ -192,22 +192,31 @@ const About = () => {
           </div>
         </section>
 
-        {/* Photo: Award with Diploma */}
-        <section className="py-6 md:py-10">
+        {/* Photo: Business Success Award - Combined */}
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div className="grid md:grid-cols-3 gap-6 items-center">
               <div className="overflow-hidden rounded-2xl shadow-soft">
                 <img 
                   src={awardDiploma} 
                   alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" 
-                  className="w-full h-72 md:h-80 object-cover object-top"
+                  className="w-full h-64 md:h-72 object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-soft bg-muted">
+                <img 
+                  src={awardCeremony} 
+                  alt="Церемония награждения на премии «Бизнес-Успех» 2025" 
+                  className="w-full h-64 md:h-72 object-contain"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div className="p-4 md:p-6">
                 <p className="text-lg text-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">Финалист премии «Бизнес-Успех» 2025</span> — национальная предпринимательская премия для тех, кто строит бизнес на результатах, а не обещаниях.
+                  <span className="text-primary font-semibold">Премия «Бизнес-Успех» 2025</span> — национальная предпринимательская премия для тех, кто строит бизнес на результатах, а не обещаниях.
                 </p>
               </div>
             </div>
@@ -372,27 +381,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Photo: Award Ceremony */}
-        <section className="py-6 md:py-10">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="overflow-hidden rounded-2xl shadow-soft bg-muted">
-                <img 
-                  src={awardCeremony} 
-                  alt="Церемония награждения на премии «Бизнес-Успех» 2025" 
-                  className="w-full h-auto object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="p-4 md:p-6">
-                <p className="text-lg text-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">Награждение на премии «Бизнес-Успех» 2025</span> — признание практического подхода к внедрению ИИ в малый и средний бизнес.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Engineering Path - temporarily hidden */}
         {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-muted">
