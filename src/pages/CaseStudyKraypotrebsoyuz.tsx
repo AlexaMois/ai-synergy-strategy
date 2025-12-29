@@ -85,99 +85,108 @@ const CaseStudyKraypotrebsoyuz = () => {
         {/* Hero Section */}
         <section className="pt-32 pb-10 md:pb-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
-            <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
-            <h1 className="text-[28px] sm:text-[32px] md:text-[40px] text-foreground leading-tight mb-8">
-              Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-semibold">и отказались от серверов за 1,5 млн ₽</span>
-            </h1>
-            
-            {/* Hero Image */}
-            <img 
-              src={heroImage} 
-              alt="Александра Моисеева у карты Крайпотребсоюза" 
-              className="w-full h-64 md:h-80 object-cover rounded-2xl"
-            />
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">КЕЙС</p>
+                <h1 className="text-[28px] sm:text-[32px] md:text-[36px] text-foreground leading-tight">
+                  Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-semibold">и отказались от серверов за 1,5 млн ₽</span>
+                </h1>
+              </div>
+              
+              {/* Hero Image - fixed aspect ratio with object-position top for face visibility */}
+              <img 
+                src={heroImage} 
+                alt="Александра Моисеева у карты Крайпотребсоюза" 
+                className="w-full aspect-[4/3] object-cover object-top rounded-2xl"
+              />
+            </div>
           </div>
         </section>
 
-        {/* Situation Section */}
+        {/* Situation Section - Two columns */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Ситуация: запрос <span className="font-semibold">на внедрение ИИ</span></h2>
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Летом руководство Крайпотребсоюза поставило задачу —<br />
-              начать внедрение ИИ в управленческие и операционные процессы.
-            </p>
-            
-            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
-              <p className="text-base text-foreground mb-4">На старте рассматривался классический сценарий:</p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">собственный сервер</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">локальная языковая модель</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">кастомная разработка</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">отдельная IT-инфраструктура</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
-              <p className="text-lg font-medium text-foreground">
-                Оценка инвестиций — около <span className="text-primary font-bold">1,5 млн ₽</span> только на оборудование,<br />
-                без учёта сопровождения и масштабирования.
-              </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Летом руководство Крайпотребсоюза поставило задачу — начать внедрение ИИ в управленческие и операционные процессы.
+                </p>
+                
+                <div className="bg-card rounded-2xl p-6 shadow-soft">
+                  <p className="text-base text-foreground mb-4">На старте рассматривался классический сценарий:</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">собственный сервер</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">локальная языковая модель</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">кастомная разработка</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">отдельная IT-инфраструктура</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary flex items-center">
+                <p className="text-lg font-medium text-foreground">
+                  Оценка инвестиций — около <span className="text-primary font-bold">1,5 млн ₽</span> только на оборудование, без учёта сопровождения и масштабирования.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Decision Point Section */}
+        {/* Decision Point Section - Two columns */}
         <section className="py-10 md:py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Совместная точка <span className="font-semibold">принятия решения</span></h2>
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              На первых встречах мы с командой Крайпотребсоюза осознанно не стали выбирать технологию сразу.
-            </p>
-            
-            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
-              <p className="text-base text-foreground mb-4">Вместо этого совместно разобрали ключевой вопрос:</p>
-              <p className="text-xl font-medium text-primary italic leading-relaxed">
-                «Какую управленческую задачу должна решить эта инфраструктура<br />
-                и есть ли более простой путь к тому же результату?»
-              </p>
-            </div>
-            
-            <div className="bg-muted rounded-2xl p-6">
-              <p className="text-base font-medium text-foreground mb-3">Было принято решение:</p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">начать с аудита процессов</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">оценить реальные точки эффекта</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">и только потом выбирать архитектуру</span>
-                </li>
-              </ul>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  На первых встречах мы с командой Крайпотребсоюза осознанно не стали выбирать технологию сразу.
+                </p>
+                
+                <div className="bg-card rounded-2xl p-6 shadow-soft">
+                  <p className="text-base text-foreground mb-4">Вместо этого совместно разобрали ключевой вопрос:</p>
+                  <p className="text-xl font-medium text-primary italic leading-relaxed">
+                    «Какую управленческую задачу должна решить эта инфраструктура и есть ли более простой путь к тому же результату?»
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-muted rounded-2xl p-6 flex flex-col justify-center">
+                <p className="text-base font-medium text-foreground mb-3">Было принято решение:</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">начать с аудита процессов</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">оценить реальные точки эффекта</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">и только потом выбирать архитектуру</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Stage 1 Section */}
+        {/* Stage 1 Section - Two columns with photo on the right */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
@@ -185,49 +194,53 @@ const CaseStudyKraypotrebsoyuz = () => {
               <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и диагностика</h2>
             </div>
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              В течение первого месяца мы вместе с командой:
-            </p>
-            
-            <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">разобрали ключевые договорные и управленческие процессы</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">выявили <strong>6 точек максимального эффекта</strong></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">отделили реальные боли от гипотез</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span className="text-foreground">оценили готовность данных и сотрудников</span>
-                </li>
-              </ul>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  В течение первого месяца мы вместе с командой:
+                </p>
+                
+                <div className="bg-card rounded-2xl p-6 shadow-soft mb-6">
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">разобрали ключевые договорные и управленческие процессы</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">выявили <strong>6 точек максимального эффекта</strong></span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">отделили реальные боли от гипотез</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-primary font-bold">•</span>
+                      <span className="text-foreground">оценили готовность данных и сотрудников</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                  Параллельно было запущено обучение сотрудников работе с ИИ, чтобы снять опасения и подготовить команду к изменениям.
+                </p>
+                
+                <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
+                  <p className="text-base font-medium text-foreground">
+                    <span className="text-primary">Результат этапа:</span> стало понятно, что значительная часть задач может быть решена без тяжёлой серверной инфраструктуры.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Audit Photo - fixed aspect ratio with center positioning for group photo */}
+              <div className="flex items-center">
+                <img 
+                  src={auditImage} 
+                  alt="Рабочая встреча с командой Крайпотребсоюза" 
+                  className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
+                />
+              </div>
             </div>
-            
-            <p className="text-base text-muted-foreground leading-relaxed mb-6">
-              Параллельно было запущено обучение сотрудников работе с ИИ,<br />
-              чтобы снять опасения и подготовить команду к изменениям.
-            </p>
-            
-            <div className="bg-primary/10 rounded-2xl p-6 border-l-4 border-primary">
-              <p className="text-base font-medium text-foreground">
-                <span className="text-primary">Результат этапа:</span><br />
-                стало понятно, что значительная часть задач может быть решена без тяжёлой серверной инфраструктуры.
-              </p>
-            </div>
-            
-            {/* Audit Photo */}
-            <img 
-              src={auditImage} 
-              alt="Рабочая встреча с командой Крайпотребсоюза" 
-              className="mt-8 w-full h-48 md:h-64 object-cover rounded-2xl"
-            />
           </div>
         </section>
 
@@ -285,7 +298,7 @@ const CaseStudyKraypotrebsoyuz = () => {
           </div>
         </section>
 
-        {/* Stage 3 Section */}
+        {/* Stage 3 Section - Horizontal month cards */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
@@ -297,8 +310,9 @@ const CaseStudyKraypotrebsoyuz = () => {
               Проект развивался поэтапно:
             </p>
             
-            <div className="space-y-4 mb-6">
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
+            {/* Horizontal grid for month cards */}
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-card rounded-2xl p-6 shadow-soft h-full">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 1</span>
                 </div>
@@ -308,7 +322,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 </ul>
               </div>
               
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
+              <div className="bg-card rounded-2xl p-6 shadow-soft h-full">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 2–3</span>
                 </div>
@@ -319,7 +333,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 </ul>
               </div>
               
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
+              <div className="bg-card rounded-2xl p-6 shadow-soft h-full">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Месяц 3–4</span>
                 </div>
@@ -331,8 +345,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             </div>
             
             <p className="text-base text-muted-foreground italic">
-              OCR на текущий момент внедрён в формате пилота,<br />
-              проходит тестирование и масштабируется.
+              OCR на текущий момент внедрён в формате пилота, проходит тестирование и масштабируется.
             </p>
           </div>
         </section>
@@ -426,9 +439,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
                 <p className="text-lg text-foreground leading-relaxed mb-6">
-                  По итогам внедрения я была приглашена<br />
-                  на ежегодное общее собрание Крайпотребсоюза,<br />
-                  где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
+                  По итогам внедрения я была приглашена на ежегодное общее собрание Крайпотребсоюза, где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
                 </p>
                 
                 <div className="bg-primary/10 rounded-2xl p-6">
@@ -450,25 +461,23 @@ const CaseStudyKraypotrebsoyuz = () => {
                 </div>
               </div>
               
-              {/* Meeting Photos Gallery */}
-              <div className="grid grid-cols-1 gap-4">
+              {/* Meeting Photos Gallery - uniform aspect ratios */}
+              <div className="grid grid-cols-3 gap-3">
+                <img 
+                  src={meetingImage1} 
+                  alt="Участники собрания Крайпотребсоюза" 
+                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
+                />
                 <img 
                   src={meetingImage2} 
                   alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
-                  className="w-full h-48 md:h-56 object-cover rounded-2xl"
+                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
                 />
-                <div className="grid grid-cols-2 gap-4">
-                  <img 
-                    src={meetingImage1} 
-                    alt="Участники собрания Крайпотребсоюза" 
-                    className="w-full h-32 md:h-40 object-cover rounded-2xl"
-                  />
-                  <img 
-                    src={meetingImage3} 
-                    alt="Конференц-зал собрания Крайпотребсоюза" 
-                    className="w-full h-32 md:h-40 object-cover rounded-2xl"
-                  />
-                </div>
+                <img 
+                  src={meetingImage3} 
+                  alt="Конференц-зал собрания Крайпотребсоюза" 
+                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
+                />
               </div>
             </div>
           </div>
@@ -481,8 +490,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             
             <div className="bg-card rounded-2xl p-8 shadow-soft mb-6">
               <p className="text-xl text-foreground leading-relaxed mb-6">
-                Проект показал, что устойчивые решения по ИИ<br />
-                возникают не из технологий, а из <strong>совместной работы</strong>:
+                Проект показал, что устойчивые решения по ИИ возникают не из технологий, а из <strong>совместной работы</strong>:
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center mb-6">
@@ -492,9 +500,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               </div>
               
               <p className="text-lg text-foreground leading-relaxed text-center italic">
-                Одну и ту же задачу можно решать по-разному.<br />
-                В этом проекте мы совместно выбрали путь,<br />
-                который оказался <span className="text-primary font-semibold">проще, дешевле и устойчивее</span>.
+                Одну и ту же задачу можно решать по-разному. В этом проекте мы совместно выбрали путь, который оказался <span className="text-primary font-semibold">проще, дешевле и устойчивее</span>.
               </p>
             </div>
           </div>
