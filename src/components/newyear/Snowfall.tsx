@@ -42,7 +42,7 @@ const Snowfall: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {snowflakes.map((flake) => (
         <div
           key={flake.id}
