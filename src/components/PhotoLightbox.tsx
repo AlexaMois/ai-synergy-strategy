@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PhotoLightboxProps {
@@ -10,6 +10,35 @@ interface PhotoLightboxProps {
 }
 
 const PhotoLightbox = ({ images, currentIndex, isOpen, onClose, onNavigate }: PhotoLightboxProps) => {
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      onNavigate(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
+    } else if (isRightSwipe) {
+      onNavigate(currentIndex > 0 ? currentIndex - 1 : images.length - 1);
+    }
+  };
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!isOpen) return;
     
@@ -72,8 +101,12 @@ const PhotoLightbox = ({ images, currentIndex, isOpen, onClose, onNavigate }: Ph
 
       {/* Image */}
       <div 
+        ref={containerRef}
         className="max-w-[90vw] max-h-[90vh] flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <img
           src={currentImage.src}
