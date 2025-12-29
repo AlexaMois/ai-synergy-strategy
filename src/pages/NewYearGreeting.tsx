@@ -37,9 +37,10 @@ const NewYearGreeting: React.FC = () => {
       </Helmet>
 
       <Navigation />
-      <Snowfall />
 
       <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-20">
+        {/* Snowflakes only on this section */}
+        <Snowfall />
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/3 pointer-events-none" />
         
