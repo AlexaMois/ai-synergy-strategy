@@ -8,14 +8,15 @@ import { Button } from "@/components/ui/button";
 import { 
   Users, 
   AlertTriangle, 
-  Info, 
   Cog, 
   Package, 
   Lightbulb, 
   FileText, 
   TrendingUp,
   Clock,
-  Building2
+  Building2,
+  CheckCircle2,
+  ArrowRight
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
@@ -27,74 +28,25 @@ const ArchitecturePage = () => {
     }
   };
 
-  const sections = [
-    {
-      icon: Users,
-      heading: "Для кого это",
-      content: "Для тех, кто хочет внедрять ИИ не «точечно», а как часть управленческой логики. Для компаний, которые знают что внедрять, но не знают как."
-    },
-    {
-      icon: AlertTriangle,
-      heading: "Какая боль закрывает",
-      list: [
-        "Решения работают отдельно, не усиливают друг друга",
-        "Бизнес сталкивается с перегруженными «коробками» инструментов",
-        "Нет ясности что выбрать: какую платформу, какой язык модели, свой сервер или облако",
-        "Смета подрядчиков неочевидна и кажется завышена",
-        "Каждый инструмент живёт своей жизнью, нет интеграции"
-      ]
-    },
-    {
-      icon: Info,
-      heading: "Почему это важно",
-      content: "ИИ работает только тогда, когда идёт в связке с процессами. Если логики нет — эффект не появится, даже при дорогих технологиях."
-    },
-    {
-      icon: Cog,
-      heading: "Как это работает",
-      list: [
-        "Формулируем что должно измениться в бизнесе",
-        "Строю архитектуру: интеграции, маршруты данных, взаимодействие ролей",
-        "Выбираю инструменты без привязки к вендорам (только нужные)",
-        "Учитываю требования РФ: где данные, какие контуры, импортозамещение",
-        "Проектирую три сценария внедрения: быстрый / оптимальный / фундаментальный",
-        "Формирую карту внедрения с шагами, рисками, сроками"
-      ]
-    },
-    {
-      icon: Package,
-      heading: "Что вы получаете",
-      list: [
-        "Ясную обоснованную архитектуру, которую понимают управленцы и ИТ",
-        "Три сценария внедрения с разными затратами и сроками",
-        "Прозрачные критерии выбора подрядчиков",
-        "Конкретные требования к инструментам (а не размытые)",
-        "Техническое задание для разработки",
-        "Понимание где простота важнее мощности, а где наоборот",
-        "Реальный бюджет и сроки разработки"
-      ]
-    },
-    {
-      icon: Lightbulb,
-      heading: "В чём отличие",
-      content: "Я соединяю управленческое мышление и инженерную точность. Смотрю на систему так же, как собственник или CTO."
-    },
-    {
-      icon: FileText,
-      heading: "Реальный пример",
-      content: "Компания хотела внедрить 14 инструментов. После архитектуры осталось 3 — самые простые и недорогие. Эффект от трёх инструментов оказался в разы выше, чем от первоначального плана."
-    },
-    {
-      icon: TrendingUp,
-      heading: "Результат",
-      content: "Компании часто сокращают бюджет внедрения ×3–5, сохраняя качество. Понимание что внедрять и в каком порядке."
-    }
+  const painPoints = [
+    "Решения работают отдельно, не усиливают друг друга",
+    "Нет ясности что выбрать: платформу, язык модели, сервер или облако",
+    "Смета подрядчиков неочевидна и кажется завышена",
+    "Каждый инструмент живёт своей жизнью, нет интеграции"
   ];
 
-  const metrics = [
-    { value: "×3-5", label: "экономия на внедрении" },
-    { value: "3", label: "сценария реализации" },
-    { value: "100%", label: "готовое ТЗ" }
+  const process = [
+    "Формулируем что должно измениться в бизнесе",
+    "Строю архитектуру: интеграции, маршруты данных, роли",
+    "Выбираю инструменты без привязки к вендорам",
+    "Проектирую три сценария: быстрый / оптимальный / фундаментальный"
+  ];
+
+  const deliverables = [
+    "Ясная архитектура, понятная управленцам и ИТ",
+    "Три сценария внедрения с разными затратами",
+    "Прозрачные критерии выбора подрядчиков",
+    "Готовое техническое задание для разработки"
   ];
 
   return (
@@ -107,9 +59,6 @@ const ArchitecturePage = () => {
         <meta property="og:description" content="Проектирование AI-решения для вашего бизнеса. Выбор технологий, интеграция с CRM и 1С." />
         <meta property="og:url" content="https://aleksamois.ru/services/architecture" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesArchitecture())}
         </script>
@@ -118,119 +67,171 @@ const ArchitecturePage = () => {
       <Navigation />
 
       <main className="min-h-screen bg-background pt-24">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <PageBreadcrumbs 
             currentPage="Архитектура" 
             parentPages={[{ label: "Услуги", href: "/services" }]}
           />
 
-          {/* Hero */}
-          <section className="py-12 md:py-20">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-primary" />
+          {/* Hero - Compact */}
+          <section className="py-8 md:py-12">
+            <div className="grid lg:grid-cols-[1fr,auto] gap-8 items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full mb-4">
+                  <Building2 className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">Услуга 02</span>
                 </div>
-                <span className="text-primary font-medium">Услуга 02</span>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                  Архитектура
+                </h1>
+                <p className="text-lg text-foreground/80 max-w-2xl">
+                  Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, готовое ТЗ для разработчиков.
+                </p>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Архитектура
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-3xl">
-                Проектирование AI-решения, которое встраивается в ваш процесс. Выбираем технологии без лишних затрат, определяем интеграцию с CRM, 1С, производственными системами, готовим техническое задание для разработчиков.
+              
+              {/* Metrics Card */}
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 lg:min-w-[280px]">
+                <div className="grid grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-6">
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl md:text-3xl font-bold text-primary">×3-5</div>
+                    <div className="text-xs text-foreground/60">экономия на внедрении</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl md:text-3xl font-bold text-primary">3</div>
+                    <div className="text-xs text-foreground/60">сценария реализации</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl md:text-3xl font-bold text-primary">100%</div>
+                    <div className="text-xs text-foreground/60">готовое ТЗ</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Two Column Grid - Pain & Process */}
+          <section className="py-8 grid md:grid-cols-2 gap-6">
+            {/* Pain Points */}
+            <div className="bg-card rounded-xl p-5 border border-border shadow-soft">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertTriangle className="w-5 h-5 text-amber-500" />
+                <h2 className="font-semibold text-foreground">Какую боль закрывает</h2>
+              </div>
+              <ul className="space-y-2.5">
+                {painPoints.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Process */}
+            <div className="bg-card rounded-xl p-5 border border-border shadow-soft">
+              <div className="flex items-center gap-2 mb-4">
+                <Cog className="w-5 h-5 text-primary" />
+                <h2 className="font-semibold text-foreground">Как это работает</h2>
+              </div>
+              <ul className="space-y-2.5">
+                {process.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium">
+                      {i + 1}
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          {/* Deliverables */}
+          <section className="py-8">
+            <div className="bg-gradient-to-r from-gray-50 to-background rounded-2xl p-6 border border-border">
+              <div className="flex items-center gap-2 mb-5">
+                <Package className="w-5 h-5 text-primary" />
+                <h2 className="font-semibold text-foreground">Что вы получаете</h2>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {deliverables.map((item, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-foreground/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Three Cards Row */}
+          <section className="py-8 grid md:grid-cols-3 gap-4">
+            {/* For Who */}
+            <div className="bg-card rounded-xl p-5 border border-border">
+              <Users className="w-5 h-5 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground mb-2 text-sm">Для кого</h3>
+              <p className="text-sm text-foreground/70">
+                Компании, которые знают что внедрять, но не знают как правильно
               </p>
-              <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу
-              </Button>
+            </div>
+
+            {/* Difference */}
+            <div className="bg-card rounded-xl p-5 border border-border">
+              <Lightbulb className="w-5 h-5 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground mb-2 text-sm">В чём отличие</h3>
+              <p className="text-sm text-foreground/70">
+                Соединяю управленческое мышление и инженерную точность
+              </p>
+            </div>
+
+            {/* Example */}
+            <div className="bg-card rounded-xl p-5 border border-border">
+              <FileText className="w-5 h-5 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground mb-2 text-sm">Реальный пример</h3>
+              <p className="text-sm text-foreground/70">
+                14 инструментов → 3 самых простых. Эффект в разы выше плана
+              </p>
             </div>
           </section>
 
-          {/* Metrics */}
-          <section className="py-8 border-t border-border">
-            <div className="grid grid-cols-3 gap-4 p-6 bg-primary/5 rounded-xl">
-              {metrics.map((metric, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-primary">
-                    {metric.value}
-                  </div>
-                  <div className="text-xs md:text-sm text-muted-foreground mt-1">
-                    {metric.label}
-                  </div>
+          {/* Result Highlight */}
+          <section className="py-8">
+            <div className="bg-primary/5 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+              <div className="flex items-center gap-3 flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-primary" />
                 </div>
-              ))}
+                <span className="font-semibold text-foreground">Результат</span>
+              </div>
+              <p className="text-foreground/80 flex-1">
+                Сокращение бюджета внедрения в <span className="text-primary font-semibold">3–5 раз</span> с сохранением качества. 
+                Понимание что внедрять и в каком порядке.
+              </p>
             </div>
           </section>
 
-          {/* All Sections */}
-          <section className="py-12 border-t border-border">
-            <div className="grid md:grid-cols-2 gap-8">
-              {sections.map((section, index) => {
-                const Icon = section.icon;
-                return (
-                  <div key={index} className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {section.heading}
-                      </h3>
-                    </div>
-                    {section.content && (
-                      <p className="text-muted-foreground leading-relaxed">
-                        {section.content}
-                      </p>
-                    )}
-                    {section.list && (
-                      <ul className="space-y-2">
-                        {section.list.map((item, iIndex) => (
-                          <li key={iIndex} className="flex items-start gap-2 text-muted-foreground">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* Pricing */}
-          <section className="py-12 border-t border-border">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 bg-primary/5 rounded-2xl">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12">
-                <div>
-                  <div className="text-sm text-muted-foreground mb-1">Стоимость</div>
-                  <div className="text-3xl font-bold text-primary">от 60 000 ₽</div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-muted-foreground" />
+          {/* Pricing CTA */}
+          <section className="py-8">
+            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="flex flex-wrap items-center gap-6 md:gap-10">
                   <div>
-                    <div className="text-sm text-muted-foreground">Срок</div>
-                    <div className="font-medium text-foreground">7–10 дней</div>
+                    <div className="text-xs text-foreground/60 uppercase tracking-wide mb-1">Стоимость</div>
+                    <div className="text-2xl md:text-3xl font-bold text-primary">от 60 000 ₽</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-foreground/60" />
+                    <div>
+                      <div className="text-xs text-foreground/60">Срок</div>
+                      <div className="font-medium text-foreground">7–10 дней</div>
+                    </div>
                   </div>
                 </div>
+                <Button size="lg" onClick={scrollToContact} className="gap-2">
+                  Обсудить задачу
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
               </div>
-              <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу
-              </Button>
-            </div>
-          </section>
-
-          {/* CTA */}
-          <section className="py-12 border-t border-border">
-            <div className="bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Нужна архитектура ИИ-решения?
-              </h2>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Обсудим ваш проект и спроектируем систему, которая работает
-              </p>
-              <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу
-              </Button>
             </div>
           </section>
         </div>
