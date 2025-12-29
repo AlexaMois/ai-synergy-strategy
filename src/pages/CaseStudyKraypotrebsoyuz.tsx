@@ -376,6 +376,20 @@ const CaseStudyKraypotrebsoyuz = () => {
           </div>
         </section>
 
+        {/* Featured Photo - Full width */}
+        <section className="py-10 md:py-16 bg-muted">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <img 
+              src={meetingImage2} 
+              alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
+              className="w-full aspect-[16/9] object-cover object-top rounded-2xl"
+            />
+            <p className="text-sm text-muted-foreground text-center mt-4">
+              Выступление на ежегодном собрании Крайпотребсоюза
+            </p>
+          </div>
+        </section>
+
         {/* Results Section */}
         <section className="py-10 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
