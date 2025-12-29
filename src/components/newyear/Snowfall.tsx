@@ -21,7 +21,7 @@ const SnowflakeIcon: React.FC<{ size: number; opacity: number }> = ({ size, opac
   >
     <path
       d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07M12 6l-2-2M12 6l2-2M12 18l-2 2M12 18l2 2M6 12l-2-2M6 12l-2 2M18 12l2-2M18 12l2 2"
-      stroke="#78C5E8"
+      stroke="hsl(var(--primary))"
       strokeWidth="1.5"
       strokeLinecap="round"
     />
