@@ -376,11 +376,11 @@ const About = () => {
         <section className="py-6 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="overflow-hidden rounded-2xl shadow-soft">
+              <div className="overflow-hidden rounded-2xl shadow-soft bg-muted">
                 <img 
                   src={awardCeremony} 
                   alt="Церемония награждения на премии «Бизнес-Успех» 2025" 
-                  className="w-full h-80 md:h-96 object-cover object-top"
+                  className="w-full h-auto object-contain"
                   loading="lazy"
                   decoding="async"
                 />
