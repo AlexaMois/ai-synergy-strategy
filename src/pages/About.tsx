@@ -30,6 +30,11 @@ import businessAngels from "@/assets/about/business-angels.jpg";
 import presentingAudience from "@/assets/about/presenting-audience.jpg";
 import consultingMeeting from "@/assets/about/consulting-meeting.jpg";
 import exhibitionBooth from "@/assets/about/exhibition-booth.jpg";
+import speakingCasual from "@/assets/about/speaking-casual.jpg";
+import portraitFormal from "@/assets/about/portrait-formal.jpg";
+import coPresenting1 from "@/assets/about/co-presenting-1.jpg";
+import coPresenting2 from "@/assets/about/co-presenting-2.jpg";
+import lectureTools from "@/assets/about/lecture-tools.jpg";
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
@@ -260,7 +265,7 @@ const About = () => {
         <AIFramework />
 
         {/* Brief About Me - Collapsible */}
-        <section className="py-10 md:py-16 lg:py-20 bg-muted">
+        <section className="py-8 md:py-10 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
@@ -306,7 +311,7 @@ const About = () => {
         </section>
 
         {/* My Journey - Accordion */}
-        <section ref={journeyRef} className="py-10 md:py-16 lg:py-20">
+        <section ref={journeyRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-12 ${journeyAnimation('animate-fade-in-up')}`}>
               Мой путь: <span className="font-semibold">взрослая история без романтизации</span>
@@ -568,7 +573,7 @@ const About = () => {
         
 
         {/* Quote Block */}
-        <section ref={quoteRef} className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        <section ref={quoteRef} className="py-8 md:py-10 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-3xl">
             <div className={`bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 md:p-12 border-l-4 border-primary ${quoteAnimation('animate-fade-in-up')}`}>
               <blockquote>
@@ -603,7 +608,7 @@ const About = () => {
         </section>
 
         {/* Weak Sides - Collapsible */}
-        <section className="py-10 md:py-16 lg:py-20">
+        <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-4xl">
             <Collapsible open={weakSidesOpen} onOpenChange={setWeakSidesOpen}>
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
@@ -775,7 +780,7 @@ const About = () => {
         </section>
 
         {/* Credentials */}
-        <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20">
+        <section ref={credentialsRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
               Где мой профессионализм <span className="font-semibold">проверен фактами</span>
@@ -872,23 +877,38 @@ const About = () => {
         {/* Qualifications - Diploma & Certificate */}
         <Credentials />
 
-        {/* Photo: Exhibition Booth */}
-        <section className="py-6 md:py-10">
+        {/* Photo Gallery: Public Activity */}
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="p-4 md:p-6 order-2 md:order-1">
-                <p className="text-lg text-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">Выставка МЧС</span> — AI-решения для пожарной безопасности. Представляю практические инструменты автоматизации для специалистов.
-                </p>
+            <h2 className="section-title text-center mb-8">
+              Публичная <span className="font-semibold">деятельность</span>
+            </h2>
+            
+            {/* 4-column grid gallery */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={exhibitionBooth} alt="Выставка МЧС" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
               </div>
-              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
-                <img 
-                  src={exhibitionBooth} 
-                  alt="Стенд AI-Агентства «НейроРешения» на выставке МЧС" 
-                  className="w-full h-80 md:h-96 object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={speakingCasual} alt="Выступление на мероприятии" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={portraitFormal} alt="Александра Моисеева" className="w-full h-40 md:h-48 object-cover" style={{ objectPosition: '65% top' }} loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={coPresenting2} alt="Совместное выступление" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={consultingMeeting} alt="Консультация" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={businessAngels} alt="Ангелы бизнеса" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={lectureTools} alt="Лекция об инструментах ИИ" className="w-full h-40 md:h-48 object-cover object-center" loading="lazy" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-soft">
+                <img src={coPresenting1} alt="Совместное выступление" className="w-full h-40 md:h-48 object-cover object-top" loading="lazy" />
               </div>
             </div>
           </div>
@@ -897,30 +917,8 @@ const About = () => {
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
 
-        {/* Photo: Consulting Meeting */}
-        <section className="py-6 md:py-10 bg-muted">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="overflow-hidden rounded-2xl shadow-soft">
-                <img 
-                  src={consultingMeeting} 
-                  alt="Консультационная встреча с клиентом" 
-                  className="w-full h-72 md:h-80 object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="p-4 md:p-6">
-                <p className="text-lg text-foreground leading-relaxed">
-                  <span className="text-primary font-semibold">Индивидуальные консультации</span> — разбор конкретных задач бизнеса и подбор оптимальных решений под вашу ситуацию.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Testimonials */}
-        <section className="py-10 md:py-16 lg:py-20">
+        <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="section-title text-center mb-12">
               Отзывы <span className="font-semibold">клиентов</span>
@@ -958,7 +956,7 @@ const About = () => {
         </section>
 
         {/* How I Work Now */}
-        <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        <section className="py-8 md:py-10 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="section-title text-center mb-8">
               Как я работаю <span className="font-semibold">сейчас</span>
@@ -992,7 +990,7 @@ const About = () => {
         </section>
 
         {/* Energy & Recovery */}
-        <section className="py-10 md:py-16 lg:py-20">
+        <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-3xl">
             <h2 className="section-title text-center mb-8">
               Моя энергия <span className="font-semibold">и восстановление</span>
@@ -1012,7 +1010,7 @@ const About = () => {
         </section>
 
         {/* Resume */}
-        <section className="py-10 md:py-16 lg:py-20 bg-[#FAFBFC]">
+        <section className="py-8 md:py-10 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <h2 className="section-title mb-6">
               Полное резюме
