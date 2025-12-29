@@ -23,6 +23,13 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
+import awardDiploma from "@/assets/about/award-diploma.jpg";
+import speakingPodium from "@/assets/about/speaking-podium.jpg";
+import awardCeremony from "@/assets/about/award-ceremony.jpg";
+import businessAngels from "@/assets/about/business-angels.jpg";
+import presentingAudience from "@/assets/about/presenting-audience.jpg";
+import consultingMeeting from "@/assets/about/consulting-meeting.jpg";
+import exhibitionBooth from "@/assets/about/exhibition-booth.jpg";
 const About = () => {
   const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
@@ -764,6 +771,110 @@ const About = () => {
 
         {/* Qualifications - Diploma & Certificate */}
         <Credentials />
+
+        {/* Public Activity Photo Gallery */}
+        <section className="py-10 md:py-16 lg:py-20">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="section-title text-center mb-12">
+              Публичная <span className="font-semibold">деятельность</span>
+            </h2>
+            
+            {/* Main featured images - 2 column */}
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={speakingPodium} 
+                  alt="Выступление на конференции «Бизнес-Успех»" 
+                  className="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-sm font-medium">Выступление на форуме «Бизнес-Успех»</p>
+                </div>
+              </div>
+
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={awardCeremony} 
+                  alt="Церемония награждения премии «Бизнес-Успех»" 
+                  className="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-sm font-medium">Награждение на премии «Бизнес-Успех» 2025</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Secondary images - 3 column grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={awardDiploma} 
+                  alt="Диплом финалиста премии «Бизнес-Успех»" 
+                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={presentingAudience} 
+                  alt="Презентация для аудитории" 
+                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300 col-span-2 md:col-span-1">
+                <img 
+                  src={businessAngels} 
+                  alt="Мероприятие «Ангелы бизнеса»" 
+                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+
+            {/* Bottom row - 2 images */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={exhibitionBooth} 
+                  alt="Стенд AI-Агентства «НейроРешения» на выставке" 
+                  className="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-sm font-medium">Выставка МЧС — AI-решения для пожарной безопасности</p>
+                </div>
+              </div>
+
+              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
+                <img 
+                  src={consultingMeeting} 
+                  alt="Консультация с клиентом" 
+                  className="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-sm font-medium">Консультационная встреча</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
