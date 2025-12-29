@@ -475,16 +475,11 @@ const CaseStudyKraypotrebsoyuz = () => {
               </div>
             </div>
             
-            {/* Meeting Photos Gallery - large, full width */}
-            <div className="grid grid-cols-3 gap-4">
+            {/* Meeting Photos Gallery - two photos only */}
+            <div className="grid grid-cols-2 gap-4">
               <img 
                 src={meetingImage1} 
                 alt="Участники собрания Крайпотребсоюза" 
-                className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
-              />
-              <img 
-                src={meetingImage2} 
-                alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
                 className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
               />
               <img 
