@@ -78,11 +78,8 @@ const NewYearGreeting: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Separator */}
-                  <div className="h-px bg-border my-4" />
-
-                  {/* Block 2 - Greeting and gift */}
-                  <div className="space-y-3">
+                  {/* Block 2 - Greeting and gift with left accent */}
+                  <div className="space-y-3 border-l-2 border-primary/30 pl-4 mt-5">
                     <p>
                       От всего сердца поздравляю вас с наступающим <strong className="text-foreground">2026 годом</strong>.
                       Пусть новый год принесёт гармонию и ясность, уверенность в решениях и радость от того, что вы делаете.
