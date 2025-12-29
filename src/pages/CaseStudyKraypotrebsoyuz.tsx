@@ -385,7 +385,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               className="w-full h-auto rounded-2xl"
             />
             <p className="text-sm text-muted-foreground text-center mt-4">
-              Выступление на ежегодном собрании Крайпотребсоюза
+              Выступление на ежегодном собрании Крайпотребсоюза · <a href="https://www.krayps.ru/news/main_news/?ELEMENT_ID=19160" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Источник</a>
             </p>
           </div>
         </section>
