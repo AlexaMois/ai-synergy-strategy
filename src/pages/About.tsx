@@ -192,11 +192,55 @@ const About = () => {
           </div>
         </section>
 
+        {/* Photo: Award with Diploma */}
+        <section className="py-6 md:py-10">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="overflow-hidden rounded-2xl shadow-soft">
+                <img 
+                  src={awardDiploma} 
+                  alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" 
+                  className="w-full h-72 md:h-80 object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="p-4 md:p-6">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Финалист премии «Бизнес-Успех» 2025</span> — национальная предпринимательская премия для тех, кто строит бизнес на результатах, а не обещаниях.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Trust and Position */}
         <TrustAndPosition />
 
         {/* How I Choose */}
         <HowIChoose />
+
+        {/* Photo: Speaking at Podium */}
+        <section className="py-6 md:py-10 bg-muted">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="p-4 md:p-6 order-2 md:order-1">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Выступление на форуме «Бизнес-Успех»</span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе без иллюзий и пустых обещаний.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
+                <img 
+                  src={speakingPodium} 
+                  alt="Александра Моисеева выступает на форуме" 
+                  className="w-full h-72 md:h-80 object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Six Questions */}
         <SixQuestions />
@@ -325,6 +369,28 @@ const About = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </div>
+        </section>
+
+        {/* Photo: Award Ceremony */}
+        <section className="py-6 md:py-10">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="overflow-hidden rounded-2xl shadow-soft">
+                <img 
+                  src={awardCeremony} 
+                  alt="Церемония награждения на премии «Бизнес-Успех» 2025" 
+                  className="w-full h-80 md:h-96 object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="p-4 md:p-6">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Награждение на премии «Бизнес-Успех» 2025</span> — признание практического подхода к внедрению ИИ в малый и средний бизнес.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -524,6 +590,28 @@ const About = () => {
           </div>
         </section>
 
+        {/* Photo: Presenting to Audience */}
+        <section className="py-6 md:py-10">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="p-4 md:p-6 order-2 md:order-1">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Презентация на бизнес-форуме</span> — практические инструменты для привлечения и удержания клиентов с помощью технологий.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
+                <img 
+                  src={presentingAudience} 
+                  alt="Презентация для аудитории на бизнес-форуме" 
+                  className="w-full h-72 md:h-80 object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Weak Sides - Collapsible */}
         <section className="py-10 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -674,8 +762,30 @@ const About = () => {
           </div>
         </section>
 
+        {/* Photo: Business Angels Event */}
+        <section className="py-6 md:py-10 bg-muted">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="overflow-hidden rounded-2xl shadow-soft">
+                <img 
+                  src={businessAngels} 
+                  alt="Мероприятие «Ангелы бизнеса»" 
+                  className="w-full h-72 md:h-80 object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="p-4 md:p-6">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Мероприятие «Ангелы бизнеса»</span> — нетворкинг с предпринимателями, которые строят бизнес на ценностях и результате.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Credentials */}
-        <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20 bg-muted">
+        <section ref={credentialsRef} className="py-10 md:py-16 lg:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
               Где мой профессионализм <span className="font-semibold">проверен фактами</span>
@@ -772,105 +882,23 @@ const About = () => {
         {/* Qualifications - Diploma & Certificate */}
         <Credentials />
 
-        {/* Public Activity Photo Gallery */}
-        <section className="py-10 md:py-16 lg:py-20">
+        {/* Photo: Exhibition Booth */}
+        <section className="py-6 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title text-center mb-12">
-              Публичная <span className="font-semibold">деятельность</span>
-            </h2>
-            
-            {/* Main featured images - 2 column */}
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
-                <img 
-                  src={speakingPodium} 
-                  alt="Выступление на конференции «Бизнес-Успех»" 
-                  className="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-sm font-medium">Выступление на форуме «Бизнес-Успех»</p>
-                </div>
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="p-4 md:p-6 order-2 md:order-1">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Выставка МЧС</span> — AI-решения для пожарной безопасности. Представляю практические инструменты автоматизации для специалистов.
+                </p>
               </div>
-
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
-                <img 
-                  src={awardCeremony} 
-                  alt="Церемония награждения премии «Бизнес-Успех»" 
-                  className="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-sm font-medium">Награждение на премии «Бизнес-Успех» 2025</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Secondary images - 3 column grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300">
-                <img 
-                  src={awardDiploma} 
-                  alt="Диплом финалиста премии «Бизнес-Успех»" 
-                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300">
-                <img 
-                  src={presentingAudience} 
-                  alt="Презентация для аудитории" 
-                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-card transition-all duration-300 col-span-2 md:col-span-1">
-                <img 
-                  src={businessAngels} 
-                  alt="Мероприятие «Ангелы бизнеса»" 
-                  className="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-
-            {/* Bottom row - 2 images */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
+              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
                 <img 
                   src={exhibitionBooth} 
-                  alt="Стенд AI-Агентства «НейроРешения» на выставке" 
-                  className="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="Стенд AI-Агентства «НейроРешения» на выставке МЧС" 
+                  className="w-full h-80 md:h-96 object-cover object-top"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-sm font-medium">Выставка МЧС — AI-решения для пожарной безопасности</p>
-                </div>
-              </div>
-
-              <div className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-card transition-all duration-300">
-                <img 
-                  src={consultingMeeting} 
-                  alt="Консультация с клиентом" 
-                  className="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-sm font-medium">Консультационная встреча</p>
-                </div>
               </div>
             </div>
           </div>
@@ -878,6 +906,28 @@ const About = () => {
 
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
+
+        {/* Photo: Consulting Meeting */}
+        <section className="py-6 md:py-10 bg-muted">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="overflow-hidden rounded-2xl shadow-soft">
+                <img 
+                  src={consultingMeeting} 
+                  alt="Консультационная встреча с клиентом" 
+                  className="w-full h-72 md:h-80 object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="p-4 md:p-6">
+                <p className="text-lg text-foreground leading-relaxed">
+                  <span className="text-primary font-semibold">Индивидуальные консультации</span> — разбор конкретных задач бизнеса и подбор оптимальных решений под вашу ситуацию.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Testimonials */}
         <section className="py-10 md:py-16 lg:py-20">
