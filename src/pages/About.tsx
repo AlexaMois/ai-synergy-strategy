@@ -200,7 +200,8 @@ const About = () => {
                 <img 
                   src={awardDiploma} 
                   alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" 
-                  className="w-full h-64 md:h-72 object-cover object-top"
+                  className="w-full h-64 md:h-72 object-cover"
+                  style={{ objectPosition: '65% top' }}
                   loading="lazy"
                   decoding="async"
                 />
@@ -242,7 +243,8 @@ const About = () => {
                 <img 
                   src={speakingPodium} 
                   alt="Александра Моисеева выступает на форуме" 
-                  className="w-full h-72 md:h-80 object-cover object-top"
+                  className="w-full h-72 md:h-80 object-cover"
+                  style={{ objectPosition: '65% top' }}
                   loading="lazy"
                   decoding="async"
                 />
