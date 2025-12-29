@@ -1,14 +1,13 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Bot } from 'lucide-react';
 
 interface GiftCardProps {
   name: string;
   description: string;
   url: string;
-  emoji: string;
 }
 
-const GiftCard: React.FC<GiftCardProps> = ({ name, description, url, emoji }) => {
+const GiftCard: React.FC<GiftCardProps> = ({ name, description, url }) => {
   return (
     <a
       href={url}
@@ -16,29 +15,26 @@ const GiftCard: React.FC<GiftCardProps> = ({ name, description, url, emoji }) =>
       rel="noopener noreferrer"
       className="group block"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 sm:p-8 transition-all duration-500 hover:border-[#49BED8]/50 hover:bg-white/10 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(73,190,216,0.3)]">
-        {/* Glow effect on hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#49BED8]/10 via-transparent to-transparent" />
+      <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-soft transition-all duration-300 hover:shadow-card hover:-translate-y-0.5">
+        {/* Icon */}
+        <div className="w-12 h-12 rounded-xl bg-[#78C5E8]/10 flex items-center justify-center mb-4">
+          <Bot className="w-6 h-6 text-[#78C5E8]" />
+        </div>
         
-        <div className="relative z-10">
-          {/* Emoji */}
-          <div className="text-4xl sm:text-5xl mb-4">{emoji}</div>
-          
-          {/* Name */}
-          <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-            {name}
-          </h3>
-          
-          {/* Description */}
-          <p className="text-white/70 text-sm sm:text-base mb-6">
-            {description}
-          </p>
-          
-          {/* Button */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#49BED8]/20 border border-[#49BED8]/40 text-[#49BED8] text-sm font-medium transition-all duration-300 group-hover:bg-[#49BED8] group-hover:text-white group-hover:border-[#49BED8]">
-            Забрать
-            <ExternalLink className="w-4 h-4" />
-          </div>
+        {/* Name */}
+        <h3 className="text-lg font-semibold text-[#2A2D31] mb-1">
+          {name}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-[#2A2D31]/70 text-sm mb-5">
+          {description}
+        </p>
+        
+        {/* Button */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#78C5E8] text-white text-sm font-medium transition-all duration-300 group-hover:bg-[#5eb5d8]">
+          Забрать
+          <ExternalLink className="w-4 h-4" />
         </div>
       </div>
     </a>
