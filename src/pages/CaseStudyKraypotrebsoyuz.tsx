@@ -436,49 +436,48 @@ const CaseStudyKraypotrebsoyuz = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title mb-6">Продолжение сотрудничества</h2>
             
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <p className="text-lg text-foreground leading-relaxed mb-6">
-                  По итогам внедрения я была приглашена на ежегодное общее собрание Крайпотребсоюза, где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
-                </p>
-                
-                <div className="bg-primary/10 rounded-2xl p-6">
-                  <p className="text-base font-medium text-foreground mb-4">На собрании было принято решение:</p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-foreground">продолжить сотрудничество на весь <strong>2026 год</strong></span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-foreground">подключить собственные хозяйства Крайпотребсоюза</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-foreground">далее масштабировать решения на региональные подразделения</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            {/* Text block at top */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <p className="text-lg text-foreground leading-relaxed">
+                По итогам внедрения я была приглашена на ежегодное общее собрание Крайпотребсоюза, где Председатель Правления Вячеслав Васильевич подтвердил результаты проекта.
+              </p>
               
-              {/* Meeting Photos Gallery - uniform aspect ratios */}
-              <div className="grid grid-cols-3 gap-3">
-                <img 
-                  src={meetingImage1} 
-                  alt="Участники собрания Крайпотребсоюза" 
-                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
-                />
-                <img 
-                  src={meetingImage2} 
-                  alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
-                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
-                />
-                <img 
-                  src={meetingImage3} 
-                  alt="Конференц-зал собрания Крайпотребсоюза" 
-                  className="w-full aspect-[3/4] object-cover object-center rounded-xl"
-                />
+              <div className="bg-primary/10 rounded-2xl p-6">
+                <p className="text-base font-medium text-foreground mb-4">На собрании было принято решение:</p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">продолжить сотрудничество на весь <strong>2026 год</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">подключить собственные хозяйства Крайпотребсоюза</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Handshake className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">далее масштабировать решения на региональные подразделения</span>
+                  </li>
+                </ul>
               </div>
+            </div>
+            
+            {/* Meeting Photos Gallery - large, full width */}
+            <div className="grid grid-cols-3 gap-4">
+              <img 
+                src={meetingImage1} 
+                alt="Участники собрания Крайпотребсоюза" 
+                className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
+              />
+              <img 
+                src={meetingImage2} 
+                alt="Александра Моисеева выступает на собрании Крайпотребсоюза" 
+                className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
+              />
+              <img 
+                src={meetingImage3} 
+                alt="Конференц-зал собрания Крайпотребсоюза" 
+                className="w-full aspect-[4/3] object-cover object-center rounded-2xl"
+              />
             </div>
           </div>
         </section>
