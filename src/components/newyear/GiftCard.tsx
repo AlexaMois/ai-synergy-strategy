@@ -7,11 +7,11 @@ interface GiftCardProps {
 }
 
 const GiftCard: React.FC<GiftCardProps> = ({ name, description, url }) => {
+  const redirectUrl = `/redirect?to=${encodeURIComponent(url)}`;
+
   return (
     <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={redirectUrl}
       className="group block"
     >
       <div className="bg-white border border-[#2A2D31]/10 rounded-xl p-4 shadow-soft transition-all duration-300 hover:shadow-card hover:-translate-y-0.5">
