@@ -19,6 +19,7 @@ import {
   Shield
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import trainingTeamImage from "@/assets/services/training-team.jpg";
 
 const SupportPage = () => {
   const scrollToContact = () => {
@@ -176,7 +177,19 @@ const SupportPage = () => {
             </div>
           </section>
 
-          {/* All Sections */}
+          {/* Training Photo */}
+          <section className="py-8">
+            <div className="rounded-2xl overflow-hidden">
+              <img 
+                src={trainingTeamImage} 
+                alt="Обучение команды работе с ИИ" 
+                className="w-full h-auto"
+              />
+              <p className="text-sm text-muted-foreground text-center mt-4">
+                Обучение команды работе с ИИ-инструментами
+              </p>
+            </div>
+          </section>
           <section className="py-12 border-t border-border">
             <div className="grid md:grid-cols-2 gap-8">
               {sections.map((section, index) => {
