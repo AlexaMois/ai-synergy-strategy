@@ -29,24 +29,35 @@ const ArchitecturePage = () => {
   };
 
   const painPoints = [
-    "Решения работают отдельно, не усиливают друг друга",
-    "Нет ясности что выбрать: платформу, язык модели, сервер или облако",
-    "Смета подрядчиков неочевидна и кажется завышена",
-    "Каждый инструмент живёт своей жизнью, нет интеграции"
+    "Непонятно, какую технологию выбрать: Make, n8n, API, готовые платформы",
+    "Риск vendor lock-in — привязка к одному поставщику",
+    "Сложность масштабирования: решение работает сейчас, но не вырастет",
+    "Интеграционный хаос: системы не связаны между собой",
+    "Вопросы безопасности данных и compliance остаются открытыми",
+    "Нет понимания, как измерять успех внедрения"
   ];
 
   const process = [
-    "Формулируем что должно измениться в бизнесе",
-    "Строю архитектуру: интеграции, маршруты данных, роли",
-    "Выбираю инструменты без привязки к вендорам",
-    "Проектирую три сценария: быстрый / оптимальный / фундаментальный"
+    { title: "Анализ требований и ограничений", desc: "Понимаю, что нужно бизнесу, какие системы уже есть" },
+    { title: "Проектирование архитектуры", desc: "Выбираю оптимальный стек: LLM, интеграции, хранение данных" },
+    { title: "Валидация рисков", desc: "Проверяю узкие места, безопасность, масштабируемость" },
+    { title: "Тестирование гипотез", desc: "Прототипирование ключевых сценариев до полного внедрения" },
+    { title: "Формирование roadmap", desc: "Пошаговый план с контрольными точками и метриками" }
   ];
 
   const deliverables = [
-    "Ясная архитектура, понятная управленцам и ИТ",
-    "Три сценария внедрения с разными затратами",
-    "Прозрачные критерии выбора подрядчиков",
-    "Готовое техническое задание для разработки"
+    "Архитектурная схема решения с описанием компонентов",
+    "Выбор технологий с обоснованием (LLM, платформы, API)",
+    "Три сценария реализации: быстрый / оптимальный / комплексный",
+    "Анализ рисков и план их митигации",
+    "Критерии приёмки и KPI для каждого этапа",
+    "Roadmap развития системы на 6-12 месяцев"
+  ];
+
+  const whyImportant = [
+    { metric: "60%", text: "проектов проваливаются из-за плохой архитектуры" },
+    { metric: "×3-5", text: "экономия при правильном проектировании" },
+    { metric: "0", text: "переделок при грамотном планировании" }
   ];
 
   return (
@@ -133,16 +144,37 @@ const ArchitecturePage = () => {
                 <Cog className="w-5 h-5 text-primary" />
                 <h2 className="font-semibold text-foreground">Как это работает</h2>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {process.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/80">
-                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium">
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium mt-0.5">
                       {i + 1}
                     </span>
-                    {item}
+                    <div>
+                      <div className="text-sm font-medium text-foreground">{item.title}</div>
+                      <div className="text-xs text-foreground/60">{item.desc}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
+            </div>
+          </section>
+
+          {/* Why Important */}
+          <section className="py-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertTriangle className="w-5 h-5 text-amber-600" />
+                <h2 className="font-semibold text-foreground">Почему это важно</h2>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                {whyImportant.map((item, i) => (
+                  <div key={i} className="text-center">
+                    <div className="text-xl md:text-2xl font-bold text-amber-700">{item.metric}</div>
+                    <div className="text-xs text-foreground/70">{item.text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -171,7 +203,7 @@ const ArchitecturePage = () => {
               <Users className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">Для кого</h3>
               <p className="text-sm text-foreground/70">
-                Компании, которые знают что внедрять, но не знают как правильно
+                Для компаний, которые уже прошли диагностику и понимают, что им нужно ИИ-решение. Для тех, кто хочет избежать типичных ошибок: vendor lock-in, невозможность масштабирования, интеграционный хаос.
               </p>
             </div>
 
@@ -180,7 +212,7 @@ const ArchitecturePage = () => {
               <Lightbulb className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">В чём отличие</h3>
               <p className="text-sm text-foreground/70">
-                Соединяю управленческое мышление и инженерную точность
+                Я не привязана к конкретным вендорам и выбираю технологии под задачу, а не под партнёрские комиссии. Архитектура проектируется с учётом роста. Каждое решение обосновано экономически.
               </p>
             </div>
 
@@ -189,7 +221,7 @@ const ArchitecturePage = () => {
               <FileText className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">Реальный пример</h3>
               <p className="text-sm text-foreground/70">
-                14 инструментов → 3 самых простых. Эффект в разы выше плана
+                Производственная компания планировала enterprise-платформу за <span className="text-primary font-semibold">8 млн ₽</span>. После проектирования нашли решение на n8n + GigaChat + 1С за <span className="text-primary font-semibold">1,5 млн ₽</span> с теми же возможностями.
               </p>
             </div>
           </section>

@@ -29,24 +29,35 @@ const DiagnosticsPage = () => {
   };
 
   const painPoints = [
-    "Сложно понять что именно стоит автоматизировать",
+    "Сложно понять, что именно стоит автоматизировать",
     "Подрядчики предлагают разные решения, каждое «лучшее»",
     "Есть страх вложиться в инструмент, который не принесёт пользы",
-    "Нет единой картины процессов — только гипотезы"
+    "Нет единой картины процессов — только гипотезы",
+    "Неясно, с чего начать и какой бюджет закладывать",
+    "ИТ-отдел и бизнес говорят на разных языках"
   ];
 
   const process = [
-    "Разбираю цели бизнеса и контекст",
-    "Исследую процессы: где теряются время и деньги",
-    "Оцениваю зрелость данных и ИТ-ландшафт",
-    "Формирую карту решений: полезные → возможные → лишние"
+    { title: "Разбираю цели бизнеса и контекст", desc: "Понимаю стратегические приоритеты и ограничения" },
+    { title: "Исследую процессы", desc: "Где теряются время и деньги, какие узкие места" },
+    { title: "Оцениваю зрелость данных и ИТ-ландшафт", desc: "Что уже есть, что можно использовать" },
+    { title: "Анализирую готовность команды", desc: "Кто будет работать с решениями, какие навыки нужны" },
+    { title: "Формирую карту решений", desc: "Полезные → возможные → лишние" }
   ];
 
   const deliverables = [
-    "Четкий ответ где ИИ даст эффект, а где нет",
+    "Чёткий ответ: где ИИ даст эффект, а где нет",
     "Список решений для внедрения в ближайшие 2–6 недель",
     "Сценарии по уровню вложений: минимальный / оптимальный / расширенный",
-    "Понимание где простота важнее мощности"
+    "Понимание, где простота важнее мощности",
+    "Приоритизация задач по ROI",
+    "Карта рисков и зависимостей"
+  ];
+
+  const whyImportant = [
+    { metric: "70%", text: "ИИ-проектов не достигают целей без диагностики" },
+    { metric: "3-6 мес", text: "среднее время на исправление ошибок внедрения" },
+    { metric: "×5-10", text: "стоимость переделки выше первоначального внедрения" }
   ];
 
   return (
@@ -133,16 +144,37 @@ const DiagnosticsPage = () => {
                 <Cog className="w-5 h-5 text-primary" />
                 <h2 className="font-semibold text-foreground">Как это работает</h2>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {process.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/80">
-                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium">
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0 font-medium mt-0.5">
                       {i + 1}
                     </span>
-                    {item}
+                    <div>
+                      <div className="text-sm font-medium text-foreground">{item.title}</div>
+                      <div className="text-xs text-foreground/60">{item.desc}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
+            </div>
+          </section>
+
+          {/* Why Important */}
+          <section className="py-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertTriangle className="w-5 h-5 text-amber-600" />
+                <h2 className="font-semibold text-foreground">Почему это важно</h2>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                {whyImportant.map((item, i) => (
+                  <div key={i} className="text-center">
+                    <div className="text-xl md:text-2xl font-bold text-amber-700">{item.metric}</div>
+                    <div className="text-xs text-foreground/70">{item.text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -171,7 +203,7 @@ const DiagnosticsPage = () => {
               <Users className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">Для кого</h3>
               <p className="text-sm text-foreground/70">
-                CEO, COO, ИТ-директора, которые хотят решений на основе фактов
+                Для компаний, которые хотят внедрить ИИ, но не понимают, с чего начать. Для тех, кто уже пробовал и разочаровался. Для руководителей, которым важно принять решение на основе фактов, а не обещаний подрядчиков.
               </p>
             </div>
 
@@ -180,7 +212,7 @@ const DiagnosticsPage = () => {
               <Lightbulb className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">В чём отличие</h3>
               <p className="text-sm text-foreground/70">
-                Смотрю на смысл задачи, процессы, людей, данные и архитектуру вместе
+                Я не продаю конкретное решение — я ищу, что действительно нужно. Могу сказать «вам ИИ не нужен» или «начните с простого». Честность важнее продажи. Фокус на экономике, а не на технологиях ради технологий.
               </p>
             </div>
 
@@ -189,7 +221,7 @@ const DiagnosticsPage = () => {
               <FileText className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">Реальный пример</h3>
               <p className="text-sm text-foreground/70">
-                6 автоматизаций не использовались. Решение было рядом — неправильно встроено
+                Логистическая компания хотела внедрить «умного бота». После диагностики выяснилось: 80% обращений — типовые вопросы. Вместо дорогого ИИ внедрили простую базу знаний. Экономия: <span className="text-primary font-semibold">400 000 ₽</span> в год.
               </p>
             </div>
           </section>
