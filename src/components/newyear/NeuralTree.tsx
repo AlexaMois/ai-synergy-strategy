@@ -54,10 +54,15 @@ const NeuralTree: React.FC = () => {
 
   return (
     <div className="relative w-full max-w-[280px] lg:max-w-[320px] animate-breathe">
+      {/* Soft shadow underneath for "standing on surface" effect */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-[#78C5E8]/10 blur-xl rounded-full" />
+      
       <svg
         viewBox="0 0 400 350"
-        className="w-full h-auto"
-        style={{ filter: 'drop-shadow(0 0 40px rgba(120, 197, 232, 0.35))' }}
+        className="w-full h-auto relative"
+        style={{ 
+          filter: 'drop-shadow(0 8px 32px rgba(120, 197, 232, 0.3)) drop-shadow(0 4px 16px rgba(42, 45, 49, 0.08))' 
+        }}
       >
         <defs>
           {/* Gradient for garland lines - icy blue */}
