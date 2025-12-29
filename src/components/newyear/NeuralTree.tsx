@@ -53,41 +53,28 @@ const NeuralTree: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full max-w-[400px] mx-auto animate-breathe">
+    <div className="relative w-full max-w-[280px] lg:max-w-[320px] animate-breathe">
       <svg
         viewBox="0 0 400 350"
         className="w-full h-auto"
-        style={{ filter: 'drop-shadow(0 0 30px rgba(73, 190, 216, 0.4))' }}
+        style={{ filter: 'drop-shadow(0 0 40px rgba(120, 197, 232, 0.35))' }}
       >
         <defs>
-          {/* Gradient for garland lines */}
+          {/* Gradient for garland lines - icy blue */}
           <linearGradient id="garlandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#49BED8" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-            <stop offset="100%" stopColor="#49BED8" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#78C5E8" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#a8daf0" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#78C5E8" stopOpacity="0.6" />
           </linearGradient>
           
-          {/* Glow filter for nodes */}
+          {/* Light glow filter for nodes */}
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
             <feMerge>
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-
-          {/* Animated dash pattern */}
-          <pattern id="movingDash" patternUnits="userSpaceOnUse" width="20" height="1">
-            <circle cx="10" cy="0.5" r="2" fill="#ffffff">
-              <animate
-                attributeName="cx"
-                from="0"
-                to="20"
-                dur="1s"
-                repeatCount="indefinite"
-              />
-            </circle>
-          </pattern>
         </defs>
 
         {/* Garland lines with running lights effect */}
@@ -109,7 +96,7 @@ const NeuralTree: React.FC = () => {
                 stroke="url(#garlandGradient)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
-                opacity="0.6"
+                opacity="0.5"
               />
               {/* Animated running light */}
               <line
@@ -117,11 +104,11 @@ const NeuralTree: React.FC = () => {
                 y1={fromNode.y}
                 x2={toNode.x}
                 y2={toNode.y}
-                stroke="#ffffff"
+                stroke="#78C5E8"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeDasharray={`4 ${length - 4}`}
-                opacity="0.9"
+                opacity="0.8"
                 style={{
                   animation: `garlandMove ${2 + (index % 3)}s linear infinite`,
                   animationDelay: `${(index * 0.15) % 2}s`,
@@ -134,25 +121,25 @@ const NeuralTree: React.FC = () => {
         {/* Nodes (neural network points / light bulbs) */}
         {nodes.map((node, index) => (
           <g key={`node-${index}`} filter="url(#glow)">
-            {/* Outer glow */}
+            {/* Outer glow - icy blue */}
             <circle
               cx={node.x}
               cy={node.y}
-              r={node.size + 4}
-              fill="#49BED8"
-              opacity="0.3"
+              r={node.size + 5}
+              fill="#78C5E8"
+              opacity="0.25"
               style={{
                 animation: `twinkle ${2 + (index % 3)}s ease-in-out infinite`,
                 animationDelay: `${node.delay}s`,
               }}
             />
-            {/* Main bulb */}
+            {/* Main bulb - lighter blue */}
             <circle
               cx={node.x}
               cy={node.y}
               r={node.size}
-              fill="#ffffff"
-              opacity="0.9"
+              fill="#a8daf0"
+              opacity="0.85"
               style={{
                 animation: `twinkle ${1.5 + (index % 2)}s ease-in-out infinite`,
                 animationDelay: `${node.delay}s`,
@@ -163,7 +150,7 @@ const NeuralTree: React.FC = () => {
               cx={node.x}
               cy={node.y}
               r={node.size * 0.5}
-              fill="#49BED8"
+              fill="#78C5E8"
               opacity="1"
             />
           </g>
@@ -173,12 +160,12 @@ const NeuralTree: React.FC = () => {
         <g filter="url(#glow)" style={{ animation: 'twinkle 3s ease-in-out infinite' }}>
           <polygon
             points="200,5 205,20 220,20 208,30 213,45 200,35 187,45 192,30 180,20 195,20"
-            fill="#ffffff"
+            fill="#a8daf0"
             opacity="0.95"
           />
           <polygon
             points="200,10 203,18 213,18 205,24 208,35 200,28 192,35 195,24 187,18 197,18"
-            fill="#49BED8"
+            fill="#78C5E8"
           />
         </g>
       </svg>
