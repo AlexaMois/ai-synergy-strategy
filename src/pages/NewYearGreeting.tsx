@@ -56,12 +56,12 @@ const NewYearGreeting: React.FC = () => {
             <div className="flex-1 text-center lg:text-left space-y-6 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
               {/* Greeting header */}
               <div>
-                <p className="text-handwriting text-2xl sm:text-3xl mb-1">
+                <p className="text-lg sm:text-xl lg:text-2xl text-foreground font-medium">
                   С наступающим Новым годом,
                 </p>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-tight">
-                  дорогие коллеги
-                </h1>
+                <p className="text-handwriting text-primary">
+                  дорогие коллеги, партнёры и единомышленники
+                </p>
               </div>
 
               {/* Letter body */}
