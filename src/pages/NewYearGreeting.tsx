@@ -45,18 +45,13 @@ const NewYearGreeting: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/3 pointer-events-none" />
         
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-4 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
             
-            {/* Left - Neural Tree (hidden on small screens) */}
-            <div className="flex-shrink-0 animate-fade-in-up hidden sm:block">
-              <NeuralTree />
-            </div>
-
-            {/* Right - Text + Cards */}
-            <div className="flex-1 text-center lg:text-left space-y-3 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
+            {/* ЛЕВАЯ КОЛОНКА — текст */}
+            <div className="text-left space-y-4 animate-fade-in-up">
               {/* Greeting header */}
               <div>
-                <p className="text-base sm:text-lg lg:text-xl text-foreground font-medium">
+                <p className="text-xl sm:text-2xl lg:text-3xl text-foreground font-medium">
                   С наступающим Новым годом,
                 </p>
                 <p className="text-handwriting text-primary text-lg sm:text-xl">
@@ -65,7 +60,7 @@ const NewYearGreeting: React.FC = () => {
               </div>
 
               {/* Letter body card */}
-              <div className="bg-secondary/50 rounded-lg shadow-soft p-4 sm:p-5 max-w-[720px] mx-auto lg:mx-0">
+              <div className="bg-secondary/50 rounded-lg shadow-soft p-4 sm:p-5">
                 <div className="space-y-2 text-foreground/90 text-sm sm:text-base leading-relaxed font-raleway">
                   {/* Block 1 - Year reflection and gratitude */}
                   <div className="space-y-1.5">
@@ -89,41 +84,43 @@ const NewYearGreeting: React.FC = () => {
                 </div>
               </div>
 
-              {/* Signature + VPN note inline */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm">
-                <div>
-                  <span className="text-handwriting text-primary/80">С теплом, </span>
-                  <span className="font-medium text-foreground">Александра Моисеева</span>
-                </div>
-                <p className="text-muted-foreground text-xs sm:text-sm">
-                  Агенты работают в ChatGPT. Включите VPN.
-                </p>
+              {/* Signature */}
+              <div className="text-sm">
+                <span className="text-handwriting text-primary/80">С теплом, </span>
+                <span className="font-medium text-foreground">Александра Моисеева</span>
               </div>
 
-              {/* Gift Cards */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              {/* Back to home link */}
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm"
+              >
+                <Home className="w-3.5 h-3.5" />
+                <span>На главную</span>
+              </Link>
+            </div>
+
+            {/* ПРАВАЯ КОЛОНКА — визуал */}
+            <div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
+              <NeuralTree />
+              
+              {/* Gift Cards - вертикально */}
+              <div className="flex flex-col gap-3 w-full max-w-[280px]">
                 {gifts.map((gift) => (
                   <GiftCard key={gift.name} {...gift} />
                 ))}
               </div>
-
-              {/* Back to home link */}
-              <div className="flex justify-center lg:justify-start">
-                <Link 
-                  to="/" 
-                  className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm"
-                >
-                  <Home className="w-3.5 h-3.5" />
-                  <span>На главную</span>
-                </Link>
-              </div>
+              
+              <p className="text-muted-foreground text-xs text-center">
+                Агенты работают в ChatGPT. Включите VPN.
+              </p>
             </div>
             
           </div>
         </div>
       </section>
 
-      <Partners />
+      <Partners className="py-6" />
       <Contact />
       <Footer />
     </>

@@ -13,7 +13,11 @@ import focusGroup from '@/assets/partners/focus-group.png';
 import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
 import tsarskiyStol from '@/assets/partners/tsarskiy-stol.png';
 
-const Partners = () => {
+interface PartnersProps {
+  className?: string;
+}
+
+const Partners = ({ className }: PartnersProps) => {
   const partners = [
     { id: 1, name: "ОПОРА РОССИИ", logo: oporaRossii },
     { id: 2, name: "IT Park", logo: itPark },
@@ -32,7 +36,7 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-10 md:py-14 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className={className || "py-10 md:py-14 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100"}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="border-t border-border mb-10"></div>
         <div className="marquee-container">
