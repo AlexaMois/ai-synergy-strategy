@@ -45,17 +45,31 @@ const About = () => {
   const location = useLocation();
 
   // Gallery images for lightbox
-  const galleryImages = [
-    { src: exhibitionBooth, alt: "Выставка МЧС" },
-    { src: speakingCasual, alt: "Выступление на мероприятии" },
-    { src: portraitFormal, alt: "Александра Моисеева" },
-    { src: coPresenting2, alt: "Совместное выступление" },
-    { src: consultingMeeting, alt: "Консультация" },
-    { src: businessAngels, alt: "Ангелы бизнеса" },
-    { src: lectureTools, alt: "Лекция об инструментах ИИ" },
-    { src: coPresenting1, alt: "Совместное выступление" },
-  ];
-
+  const galleryImages = [{
+    src: exhibitionBooth,
+    alt: "Выставка МЧС"
+  }, {
+    src: speakingCasual,
+    alt: "Выступление на мероприятии"
+  }, {
+    src: portraitFormal,
+    alt: "Александра Моисеева"
+  }, {
+    src: coPresenting2,
+    alt: "Совместное выступление"
+  }, {
+    src: consultingMeeting,
+    alt: "Консультация"
+  }, {
+    src: businessAngels,
+    alt: "Ангелы бизнеса"
+  }, {
+    src: lectureTools,
+    alt: "Лекция об инструментах ИИ"
+  }, {
+    src: coPresenting1,
+    alt: "Совместное выступление"
+  }];
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
@@ -71,12 +85,14 @@ const About = () => {
           const navHeight = 100;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
         }
       }, 100);
     }
   }, [location.hash]);
-
   const scrollToContact = () => {
     if (location.pathname !== '/') {
       navigate('/#contact');
@@ -87,10 +103,12 @@ const About = () => {
       const navHeight = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
-
   const {
     ref: heroRef,
     getAnimationClass: heroAnimation
@@ -201,16 +219,7 @@ const About = () => {
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
                 <div className="relative w-full max-w-md">
-                  <img 
-                    src={alexandraHeadshot} 
-                    alt="Александра Моисеева" 
-                    className="w-full h-auto object-contain rounded-2xl"
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    width="400"
-                    height="400"
-                  />
+                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-2xl" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
                 </div>
               </div>
             </div>
@@ -222,23 +231,12 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6 items-center">
               <div className="overflow-hidden rounded-2xl shadow-soft">
-                <img 
-                  src={awardDiploma} 
-                  alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" 
-                  className="w-full h-64 md:h-72 object-cover"
-                  style={{ objectPosition: '65% top' }}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img src={awardDiploma} alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
+                  objectPosition: '65% top'
+                }} loading="lazy" decoding="async" />
               </div>
               <div className="overflow-hidden rounded-2xl shadow-soft bg-muted">
-                <img 
-                  src={awardCeremony} 
-                  alt="Церемония награждения на премии «Бизнес-Успех» 2025" 
-                  className="w-full h-64 md:h-72 object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img src={awardCeremony} alt="Церемония награждения на премии «Бизнес-Успех» 2025" className="w-full h-64 md:h-72 object-contain" loading="lazy" decoding="async" />
               </div>
               <div className="p-4 md:p-6">
                 <p className="text-lg text-foreground leading-relaxed">
@@ -265,14 +263,9 @@ const About = () => {
                 </p>
               </div>
               <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
-                <img 
-                  src={speakingPodium} 
-                  alt="Александра Моисеева выступает на форуме" 
-                  className="w-full h-72 md:h-80 object-cover"
-                  style={{ objectPosition: '65% top' }}
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-72 md:h-80 object-cover" style={{
+                  objectPosition: '65% top'
+                }} loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -615,13 +608,7 @@ const About = () => {
                 </p>
               </div>
               <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
-                <img 
-                  src={presentingAudience} 
-                  alt="Презентация для аудитории на бизнес-форуме" 
-                  className="w-full h-72 md:h-80 object-cover object-center"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img src={presentingAudience} alt="Презентация для аудитории на бизнес-форуме" className="w-full h-72 md:h-80 object-cover object-center" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -644,19 +631,8 @@ const About = () => {
                   <div className="mt-6 space-y-8 text-base text-muted-foreground leading-relaxed">
                     {/* Weak Side 1 */}
                     <div>
-                      <h3 className="text-lg font-medium text-foreground mb-3">
-                        Я не работаю с компаниями меньше 15 человек
-                      </h3>
-                      <div className="space-y-3">
-                        <p>
-                          <span className="font-medium text-foreground">Почему?</span><br />
-                          Слишком мало данных, чтобы построить качественное решение. ИИ работает на данных — если их мало, результат будет случайным. Плюс, невыгодно экономически (мой минимум затрат не окупится).
-                        </p>
-                        <p>
-                          <span className="font-medium text-primary">Что я рекомендую вместо этого?</span><br />
-                          Если у вас 5–15 человек → используйте готовые инструменты типа ChatGPT, Make, n8n. Не переплачивайте за консультацию. Напишите мне всё равно — дам совет за час.
-                        </p>
-                      </div>
+                      
+                      
                     </div>
 
                     {/* Weak Side 2 */}
@@ -782,13 +758,7 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div className="overflow-hidden rounded-2xl shadow-soft">
-                <img 
-                  src={businessAngels} 
-                  alt="Мероприятие «Ангелы бизнеса»" 
-                  className="w-full h-72 md:h-80 object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <img src={businessAngels} alt="Мероприятие «Ангелы бизнеса»" className="w-full h-72 md:h-80 object-cover object-top" loading="lazy" decoding="async" />
               </div>
               <div className="p-4 md:p-6">
                 <p className="text-lg text-foreground leading-relaxed">
@@ -906,33 +876,17 @@ const About = () => {
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {galleryImages.map((image, index) => (
-                <div 
-                  key={index}
-                  className="overflow-hidden rounded-xl shadow-soft cursor-pointer group"
-                  onClick={() => openLightbox(index)}
-                >
-                  <img 
-                    src={image.src} 
-                    alt={image.alt} 
-                    className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" 
-                    style={index === 2 ? { objectPosition: 'center center' } : undefined}
-                    loading="lazy" 
-                  />
-                </div>
-              ))}
+              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-xl shadow-soft cursor-pointer group" onClick={() => openLightbox(index)}>
+                  <img src={image.src} alt={image.alt} className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" style={index === 2 ? {
+                  objectPosition: 'center center'
+                } : undefined} loading="lazy" />
+                </div>)}
             </div>
           </div>
         </section>
 
         {/* Lightbox */}
-        <PhotoLightbox
-          images={galleryImages}
-          currentIndex={lightboxIndex}
-          isOpen={lightboxOpen}
-          onClose={() => setLightboxOpen(false)}
-          onNavigate={setLightboxIndex}
-        />
+        <PhotoLightbox images={galleryImages} currentIndex={lightboxIndex} isOpen={lightboxOpen} onClose={() => setLightboxOpen(false)} onNavigate={setLightboxIndex} />
 
 
         {/* Publications, Media & Speeches */}
