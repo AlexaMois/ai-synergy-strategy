@@ -31,14 +31,14 @@ const NewYearGreeting: React.FC = () => {
 
       <Navigation />
 
-      <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-16 pb-4">
+      <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-16 pb-2">
         {/* Snowflakes only on this section */}
         <Snowfall />
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/3 pointer-events-none" />
         
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
             
             {/* ЛЕВАЯ КОЛОНКА — текст */}
             <div className="text-left space-y-4 animate-fade-in-up">
