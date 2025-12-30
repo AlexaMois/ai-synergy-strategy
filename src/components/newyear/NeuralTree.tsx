@@ -154,13 +154,66 @@ const NeuralTree: React.FC = () => {
   [12, 18], [12, 19], [13, 19], [13, 20], [14, 20], [14, 21], [15, 21], [15, 22], [16, 22], [16, 23], [17, 23], [17, 24],
   // Cross connections for more density
   [4, 5], [8, 9], [9, 10], [13, 14], [14, 15], [15, 16], [19, 20], [20, 21], [21, 22], [22, 23]];
-  return <div className="relative w-[200px] sm:w-[240px] lg:w-[280px] animate-breathe">
+  return (
+    <div 
+      className="relative w-[200px] sm:w-[240px] lg:w-[280px] animate-breathe"
+      style={{ filter: 'drop-shadow(0 0 25px hsl(var(--primary) / 0.4))' }}
+    >
       {/* Soft shadow underneath */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-6 blur-xl rounded-full" style={{
-      backgroundColor: 'hsl(var(--primary) / 0.15)'
-    }} />
+      <div 
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-8 blur-2xl rounded-full" 
+        style={{ backgroundColor: 'hsl(var(--primary) / 0.25)' }} 
+      />
       
-      
-    </div>;
+      <svg viewBox="0 0 300 280" className="w-full h-auto">
+        {/* Garland connections */}
+        {garlands.map(([from, to], index) => (
+          <line
+            key={`garland-${index}`}
+            x1={nodes[from].x}
+            y1={nodes[from].y}
+            x2={nodes[to].x}
+            y2={nodes[to].y}
+            stroke="hsl(var(--primary) / 0.3)"
+            strokeWidth="1.5"
+            className="animate-garlandMove"
+            style={{ animationDelay: `${index * 0.05}s` }}
+          />
+        ))}
+        
+        {/* Nodes */}
+        {nodes.map((node, index) => (
+          <g key={`node-${index}`}>
+            {/* Glow circle */}
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={node.size * 2}
+              fill="hsl(var(--primary) / 0.15)"
+              className="animate-pulse"
+              style={{ animationDelay: `${node.delay}s` }}
+            />
+            {/* Main node */}
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={node.size}
+              fill="hsl(var(--primary))"
+              className="animate-twinkle"
+              style={{ animationDelay: `${node.delay}s` }}
+            />
+          </g>
+        ))}
+        
+        {/* Star on top */}
+        <polygon
+          points="150,5 153,18 166,18 156,26 160,40 150,32 140,40 144,26 134,18 147,18"
+          fill="hsl(var(--primary))"
+          className="animate-twinkle"
+          style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.8))' }}
+        />
+      </svg>
+    </div>
+  );
 };
 export default NeuralTree;

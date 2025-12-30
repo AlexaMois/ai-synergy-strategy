@@ -5,10 +5,12 @@ import { Home } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import NeuralTree from '@/components/newyear/NeuralTree';
 import Snowfall from '@/components/newyear/Snowfall';
+import Garland from '@/components/newyear/Garland';
 import GiftCard from '@/components/newyear/GiftCard';
 import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { useTypewriter } from '@/hooks/use-typewriter';
 const gifts = [{
   name: 'ИИ-Олег',
   description: 'Самопрезентация на максималках',
@@ -23,6 +25,12 @@ const gifts = [{
   url: 'https://chatgpt.com/g/g-hpTLTyhiG-ii-kris-kreativnyi-direktor'
 }];
 const NewYearGreeting: React.FC = () => {
+  const { displayedText, isComplete } = useTypewriter({
+    text: 'дорогие коллеги, партнёры и единомышленники',
+    speed: 40,
+    delay: 600
+  });
+
   return <>
       <Helmet>
         <title>С Новым 2026 годом! — Александра Моисеева</title>
@@ -32,6 +40,9 @@ const NewYearGreeting: React.FC = () => {
       <Navigation />
 
       <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-16 pb-2">
+        {/* Garland at the top */}
+        <Garland />
+        
         {/* Snowflakes only on this section */}
         <Snowfall />
         {/* Subtle gradient overlay */}
@@ -47,13 +58,17 @@ const NewYearGreeting: React.FC = () => {
                 <p className="text-xl sm:text-2xl lg:text-3xl text-foreground font-medium">
                   С наступающим Новым годом,
                 </p>
-                <p className="text-handwriting text-primary text-lg sm:text-xl">
-                  дорогие коллеги, партнёры и единомышленники
+                <p className="text-handwriting text-primary text-lg sm:text-xl min-h-[1.75rem]">
+                  {displayedText}
+                  {!isComplete && <span className="animate-blink ml-0.5">|</span>}
                 </p>
               </div>
 
               {/* Letter body card */}
-              <div className="bg-secondary/50 rounded-lg shadow-soft p-4 sm:p-5">
+              <div 
+                className="bg-secondary/60 rounded-xl shadow-card p-4 sm:p-5 backdrop-blur-sm border border-white/10 animate-fade-in-up"
+                style={{ animationDelay: '0.3s' }}
+              >
                 <div className="space-y-2 text-foreground/90 text-sm sm:text-base leading-relaxed font-raleway">
                   {/* Block 1 - Year reflection and gratitude */}
                   <div className="space-y-1.5">
@@ -78,13 +93,17 @@ const NewYearGreeting: React.FC = () => {
               </div>
 
               {/* Signature */}
-              <div className="text-sm">
+              <div className="text-sm animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
                 <span className="text-handwriting text-primary/80">С теплом, </span>
                 <span className="font-medium text-foreground">   Александра Моисеева</span>
               </div>
 
               {/* Back to home link */}
-              <Link to="/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm">
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm animate-fade-in-up"
+                style={{ animationDelay: '0.6s' }}
+              >
                 <Home className="w-3.5 h-3.5" />
                 <span>На главную    </span>
               </Link>
@@ -98,10 +117,18 @@ const NewYearGreeting: React.FC = () => {
               
               {/* Gift Cards - вертикально */}
               <div className="flex flex-col gap-3 w-full max-w-[280px]">
-                {gifts.map(gift => <GiftCard key={gift.name} {...gift} />)}
+                {gifts.map((gift, index) => (
+                  <div 
+                    key={gift.name}
+                    className="animate-fade-in-up"
+                    style={{ animationDelay: `${0.4 + index * 0.15}s` }}
+                  >
+                    <GiftCard {...gift} />
+                  </div>
+                ))}
               </div>
               
-              <p className="text-muted-foreground text-xs text-center">
+              <p className="text-muted-foreground text-xs text-center animate-fade-in-up" style={{ animationDelay: '0.85s' }}>
                 Агенты работают в ChatGPT. Включите VPN.
               </p>
             </div>
