@@ -9,28 +9,21 @@ import GiftCard from '@/components/newyear/GiftCard';
 import Partners from '@/components/Partners';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-
-const gifts = [
-  {
-    name: 'ИИ-Олег',
-    description: 'Самопрезентация на максималках',
-    url: 'https://chatgpt.com/g/g-67c57fc2efa08191a12afb92d5be172c-ii-oleg-samoprezentatsiia-na-maksimalkakh',
-  },
-  {
-    name: 'ИИ-Вася',
-    description: 'Пиши / Сокращай',
-    url: 'https://chatgpt.com/g/g-676432d60cb08191ab7710b67eb5a849-ii-vasia-pishi-sokrashchai',
-  },
-  {
-    name: 'ИИ-Крис',
-    description: 'Креативный директор',
-    url: 'https://chatgpt.com/g/g-hpTLTyhiG-ii-kris-kreativnyi-direktor',
-  },
-];
-
+const gifts = [{
+  name: 'ИИ-Олег',
+  description: 'Самопрезентация на максималках',
+  url: 'https://chatgpt.com/g/g-67c57fc2efa08191a12afb92d5be172c-ii-oleg-samoprezentatsiia-na-maksimalkakh'
+}, {
+  name: 'ИИ-Вася',
+  description: 'Пиши / Сокращай',
+  url: 'https://chatgpt.com/g/g-676432d60cb08191ab7710b67eb5a849-ii-vasia-pishi-sokrashchai'
+}, {
+  name: 'ИИ-Крис',
+  description: 'Креативный директор',
+  url: 'https://chatgpt.com/g/g-hpTLTyhiG-ii-kris-kreativnyi-direktor'
+}];
 const NewYearGreeting: React.FC = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>С Новым 2026 годом! — Александра Моисеева</title>
         <meta name="robots" content="noindex, nofollow" />
@@ -87,28 +80,25 @@ const NewYearGreeting: React.FC = () => {
               {/* Signature */}
               <div className="text-sm">
                 <span className="text-handwriting text-primary/80">С теплом, </span>
-                <span className="font-medium text-foreground">Александра Моисеева</span>
+                <span className="font-medium text-foreground">   Александра Моисеева</span>
               </div>
 
               {/* Back to home link */}
-              <Link 
-                to="/" 
-                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm"
-              >
+              <Link to="/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm">
                 <Home className="w-3.5 h-3.5" />
                 <span>На главную</span>
               </Link>
             </div>
 
             {/* ПРАВАЯ КОЛОНКА — визуал */}
-            <div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
+            <div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{
+            animationDelay: '0.15s'
+          }}>
               <NeuralTree />
               
               {/* Gift Cards - вертикально */}
               <div className="flex flex-col gap-3 w-full max-w-[280px]">
-                {gifts.map((gift) => (
-                  <GiftCard key={gift.name} {...gift} />
-                ))}
+                {gifts.map(gift => <GiftCard key={gift.name} {...gift} />)}
               </div>
               
               <p className="text-muted-foreground text-xs text-center">
@@ -123,8 +113,6 @@ const NewYearGreeting: React.FC = () => {
       <Partners className="py-6" />
       <Contact />
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default NewYearGreeting;
