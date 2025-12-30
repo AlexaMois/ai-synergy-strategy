@@ -973,10 +973,10 @@ const About = () => {
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 text-center">
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
               <p className="text-base md:text-lg text-text-body leading-relaxed">
-                Когда проект закрыт — я ухожу в природу, просто выключаю телефон и даю мозгу тишину — в этот момент приходит новая ясность.
+                Когда проект закрыт — я ухожу в природу, просто выключаю телефон и даю мозгу тишину — в этот момент приходят новые идеи и возвращается ресурс.
                 <br /><br />
                 <span className="font-medium text-text-heading">
-                  Это мой способ сохранять ясность и тот самый спокойный стиль работы.
+                  Это мой способ восстанавливать энергию и тот самый баланс.
                 </span>
               </p>
             </div>
