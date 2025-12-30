@@ -948,7 +948,7 @@ const About = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Инженер под конкретный проект</span>
+                  <span>Разработчики под конкретный проект</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
