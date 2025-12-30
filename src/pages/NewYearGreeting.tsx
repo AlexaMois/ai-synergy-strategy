@@ -86,7 +86,7 @@ const NewYearGreeting: React.FC = () => {
               {/* Back to home link */}
               <Link to="/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors text-xs sm:text-sm">
                 <Home className="w-3.5 h-3.5" />
-                <span>На главную</span>
+                <span>С теплом,   </span>
               </Link>
             </div>
 
