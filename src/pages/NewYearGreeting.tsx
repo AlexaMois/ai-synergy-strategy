@@ -80,7 +80,7 @@ const NewYearGreeting: React.FC = () => {
               {/* Signature */}
               <div className="text-sm">
                 <span className="text-handwriting text-primary/80">С теплом, </span>
-                <span className="font-medium text-foreground">   Александра Моисеева</span>
+                <span className="font-medium text-foreground">         Александра Моисеева</span>
               </div>
 
               {/* Back to home link */}
