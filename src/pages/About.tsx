@@ -944,7 +944,7 @@ const About = () => {
               <ul className="space-y-4 text-base text-text-body">
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Я + помощница</span>
+                  <span>Я</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary flex-shrink-0 mt-1">•</span>
