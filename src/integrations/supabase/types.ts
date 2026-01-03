@@ -29,6 +29,7 @@ export type Database = {
           min_savings: number
           name: string
           pain_points: string[]
+          pdf_base64: string | null
           pdf_sent: boolean
           phone: string
           potential_savings: number
@@ -51,6 +52,7 @@ export type Database = {
           min_savings: number
           name: string
           pain_points?: string[]
+          pdf_base64?: string | null
           pdf_sent?: boolean
           phone: string
           potential_savings: number
@@ -73,6 +75,7 @@ export type Database = {
           min_savings?: number
           name?: string
           pain_points?: string[]
+          pdf_base64?: string | null
           pdf_sent?: boolean
           phone?: string
           potential_savings?: number
