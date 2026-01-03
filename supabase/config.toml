@@ -2,3 +2,9 @@ project_id = "nzjqcbuceizpcavrmgnv"
 
 [functions.send-to-telegram]
 verify_jwt = false
+
+[functions.save-lead]
+verify_jwt = false
+
+[functions.telegram-webhook]
+verify_jwt = false
