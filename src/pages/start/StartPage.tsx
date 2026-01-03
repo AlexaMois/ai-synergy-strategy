@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback } from "react";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
@@ -74,7 +73,6 @@ ROI: ${Math.max(0, result.roi)}%`;
       </Helmet>
       
       <div className="min-h-screen bg-background">
-        <Navigation />
         <PageBreadcrumbs currentPage="С чего начать" />
         
         <main>

@@ -3,9 +3,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 
 // Lazy load pages
@@ -46,11 +48,109 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+// Minimal spinner loader
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="text-primary text-lg">Загрузка...</div>
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
   </div>
 );
+
+// Prefetch popular pages after initial load
+const usePrefetchRoutes = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      import("./pages/start/StartPage");
+      import("./pages/ServicesPage");
+      import("./pages/CasesPage");
+      import("./pages/About");
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+};
+
+const AppContent = () => {
+  usePrefetchRoutes();
+  
+  return (
+    <>
+      <Navigation />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Main */}
+          <Route path="/" element={<Index />} />
+          <Route path="/faq" element={<FAQPage />} />
+          
+          {/* Start */}
+          <Route path="/start" element={<StartPage />} />
+          
+          {/* Services */}
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/diagnostics" element={<DiagnosticsPage />} />
+          <Route path="/services/architecture" element={<ArchitecturePage />} />
+          <Route path="/services/support" element={<SupportPage />} />
+          <Route path="/services/add-ons" element={<AddOnsPage />} />
+          
+          {/* Products */}
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/voice-bot" element={<GolossokPricing />} />
+          <Route path="/products/doc-search" element={<CaseStudyDocSearch />} />
+          
+          {/* Cases */}
+          <Route path="/cases" element={<CasesPage />} />
+          <Route path="/cases/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
+          <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
+          <Route path="/cases/doc-search" element={<DocSearchCasePage />} />
+          <Route path="/cases/:slug" element={<CaseDetailPage />} />
+          
+          {/* Materials */}
+          <Route path="/materials" element={<MaterialsPage />} />
+          <Route path="/materials/resources" element={<ResourcesPage />} />
+          <Route path="/materials/blog" element={<Blog />} />
+          <Route path="/materials/blog/:slug" element={<BlogPost />} />
+          
+          {/* About */}
+          <Route path="/about" element={<About />} />
+          <Route path="/approach/contacts" element={<Navigate to="/about" replace />} />
+          
+          {/* Pricing */}
+          <Route path="/pricing" element={<PricingPage />} />
+          
+          {/* Demo */}
+          <Route path="/demo" element={<DemoPage />} />
+          <Route path="/demo/voice-bot" element={<GolossokDemo />} />
+          
+          {/* Legal */}
+          <Route path="/legal" element={<LegalPage />} />
+          <Route path="/legal/consent" element={<Consent />} />
+          <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/legal/cookies" element={<CookiesPolicy />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          
+          {/* Redirects for old URLs */}
+          <Route path="/approach" element={<Navigate to="/" replace />} />
+          <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
+          <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
+          <Route path="/blog/:slug" element={<Navigate to="/materials/blog/:slug" replace />} />
+          <Route path="/consent" element={<Navigate to="/legal/consent" replace />} />
+          <Route path="/privacy-policy" element={<Navigate to="/legal/privacy-policy" replace />} />
+          <Route path="/terms" element={<Navigate to="/legal/terms" replace />} />
+          <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
+          <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
+          <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
+          <Route path="/golossok-demo" element={<Navigate to="/demo/voice-bot" replace />} />
+          <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
+          <Route path="/checklist" element={<ChecklistPage />} />
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/newyear" element={<NewYearGreeting />} />
+          <Route path="/redirect" element={<Redirect />} />
+          
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -65,80 +165,7 @@ const App = () => (
       >
         <ScrollToTop />
         <BackToHome />
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            {/* Main */}
-            <Route path="/" element={<Index />} />
-            <Route path="/faq" element={<FAQPage />} />
-            
-            {/* Start */}
-            <Route path="/start" element={<StartPage />} />
-            
-            {/* Services */}
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/diagnostics" element={<DiagnosticsPage />} />
-            <Route path="/services/architecture" element={<ArchitecturePage />} />
-            <Route path="/services/support" element={<SupportPage />} />
-            <Route path="/services/add-ons" element={<AddOnsPage />} />
-            
-            {/* Products */}
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/voice-bot" element={<GolossokPricing />} />
-            <Route path="/products/doc-search" element={<CaseStudyDocSearch />} />
-            
-            {/* Cases */}
-            <Route path="/cases" element={<CasesPage />} />
-            <Route path="/cases/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
-            <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
-            <Route path="/cases/doc-search" element={<DocSearchCasePage />} />
-            <Route path="/cases/:slug" element={<CaseDetailPage />} />
-            
-            {/* Materials */}
-            <Route path="/materials" element={<MaterialsPage />} />
-            <Route path="/materials/resources" element={<ResourcesPage />} />
-            <Route path="/materials/blog" element={<Blog />} />
-            <Route path="/materials/blog/:slug" element={<BlogPost />} />
-            
-            {/* About */}
-            <Route path="/about" element={<About />} />
-            <Route path="/approach/contacts" element={<Navigate to="/about" replace />} />
-            
-            {/* Pricing */}
-            <Route path="/pricing" element={<PricingPage />} />
-            
-            {/* Demo */}
-            <Route path="/demo" element={<DemoPage />} />
-            <Route path="/demo/voice-bot" element={<GolossokDemo />} />
-            
-            {/* Legal */}
-            <Route path="/legal" element={<LegalPage />} />
-            <Route path="/legal/consent" element={<Consent />} />
-            <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/legal/cookies" element={<CookiesPolicy />} />
-            <Route path="/legal/terms" element={<Terms />} />
-            <Route path="/legal/terms" element={<Terms />} />
-            
-            {/* Redirects for old URLs */}
-            <Route path="/approach" element={<Navigate to="/" replace />} />
-            <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
-            <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
-            <Route path="/blog/:slug" element={<Navigate to="/materials/blog/:slug" replace />} />
-            <Route path="/consent" element={<Navigate to="/legal/consent" replace />} />
-            <Route path="/privacy-policy" element={<Navigate to="/legal/privacy-policy" replace />} />
-            <Route path="/terms" element={<Navigate to="/legal/terms" replace />} />
-            <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
-            <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
-            <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
-            <Route path="/golossok-demo" element={<Navigate to="/demo/voice-bot" replace />} />
-            <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
-            <Route path="/checklist" element={<ChecklistPage />} />
-            <Route path="/test" element={<TestPage />} />
-            <Route path="/newyear" element={<NewYearGreeting />} />
-            <Route path="/redirect" element={<Redirect />} />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

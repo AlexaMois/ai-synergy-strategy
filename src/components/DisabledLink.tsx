@@ -6,6 +6,7 @@ interface DisabledLinkProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  onMouseEnter?: () => void;
   style?: React.CSSProperties;
   disabled?: boolean;
   disabledLabel?: string;
@@ -16,6 +17,7 @@ const DisabledLink = ({
   children, 
   className, 
   onClick, 
+  onMouseEnter,
   style,
   disabled = false,
   disabledLabel
@@ -36,6 +38,7 @@ const DisabledLink = ({
         className={`${className} opacity-50 cursor-not-allowed`} 
         style={style}
         title={disabledLabel || "Скоро будет доступно"}
+        onMouseEnter={onMouseEnter}
       >
         {children}
       </span>
@@ -43,7 +46,7 @@ const DisabledLink = ({
   }
 
   return (
-    <Link to={to} className={className} onClick={handleClick} style={style}>
+    <Link to={to} className={className} onClick={handleClick} style={style} onMouseEnter={onMouseEnter}>
       {children}
     </Link>
   );

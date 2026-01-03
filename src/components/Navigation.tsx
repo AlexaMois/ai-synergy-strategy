@@ -1,9 +1,54 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
+
+// Preload page on hover for instant navigation
+const preloadPage = (path: string) => {
+  switch (path) {
+    case '/start':
+      import('../pages/start/StartPage');
+      break;
+    case '/services':
+      import('../pages/ServicesPage');
+      break;
+    case '/services/diagnostics':
+      import('../pages/services/DiagnosticsPage');
+      break;
+    case '/services/architecture':
+      import('../pages/services/ArchitecturePage');
+      break;
+    case '/services/support':
+      import('../pages/services/SupportPage');
+      break;
+    case '/services/add-ons':
+      import('../pages/services/AddOnsPage');
+      break;
+    case '/cases':
+      import('../pages/CasesPage');
+      break;
+    case '/products':
+      import('../pages/products/ProductsPage');
+      break;
+    case '/products/voice-bot':
+      import('../pages/GolossokPricing');
+      break;
+    case '/products/doc-search':
+      import('../pages/CaseStudyDocSearch');
+      break;
+    case '/about':
+      import('../pages/About');
+      break;
+    case '/materials/resources':
+      import('../pages/ResourcesPage');
+      break;
+    case '/materials/blog':
+      import('../pages/Blog');
+      break;
+  }
+};
 
 interface NavLink {
   href: string;
@@ -168,11 +213,15 @@ const Navigation = () => {
     }
   };
 
-  const handleMouseEnter = (label: string) => {
+  const handleMouseEnter = (label: string, href?: string) => {
     if (submenuTimeoutRef.current) {
       clearTimeout(submenuTimeoutRef.current);
     }
     setOpenSubmenu(label);
+    // Preload main page if available
+    if (href && href !== '#') {
+      preloadPage(href);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -180,6 +229,10 @@ const Navigation = () => {
       setOpenSubmenu(null);
     }, 150);
   };
+
+  const handleLinkHover = useCallback((href: string) => {
+    preloadPage(href);
+  }, []);
 
   const toggleMobileSubmenu = (label: string) => {
     setMobileOpenSubmenu(mobileOpenSubmenu === label ? null : label);
@@ -203,7 +256,7 @@ const Navigation = () => {
                     <div 
                       key={link.href}
                       className="relative"
-                      onMouseEnter={() => handleMouseEnter(link.label)}
+                      onMouseEnter={() => handleMouseEnter(link.label, link.href)}
                       onMouseLeave={handleMouseLeave}
                     >
                       <button 
@@ -238,6 +291,7 @@ const Navigation = () => {
                                 : "text-foreground hover:text-primary hover:bg-muted"
                             }`}
                             onClick={() => setOpenSubmenu(null)}
+                            onMouseEnter={() => handleLinkHover(subItem.href)}
                           >
                             {subItem.label}
                           </DisabledLink>
