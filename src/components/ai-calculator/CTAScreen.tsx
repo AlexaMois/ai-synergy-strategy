@@ -44,22 +44,6 @@ const CTAScreen = ({ onSubmit, data, result }: CTAScreenProps) => {
         </Button>
       </div>
       
-      {/* Подпись под основной кнопкой */}
-      <p className="text-sm text-muted-foreground/70 mb-6">
-        30 минут. Без обязательств.<br />
-        Результат — решение, стоит ли вообще внедрять ИИ.
-      </p>
-
-      {/* Вторичная кнопка */}
-      <Button
-        variant="ghost"
-        size="sm"
-        className="text-muted-foreground hover:text-foreground"
-        onClick={handleAskQuestion}
-      >
-        <MessageCircle className="w-4 h-4 mr-2" />
-        Задать вопрос
-      </Button>
     </div>
   );
 };
