@@ -303,7 +303,7 @@ const ResourcesPage = () => {
                   window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 }
               }}>
-                Обсудить задачу
+                Заказать звонок
               </Button>
             </div>
           </section>

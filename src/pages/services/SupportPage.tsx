@@ -66,7 +66,7 @@ const SupportPage = () => {
                   Контроль разработки и реализации, обучение команды, гарантия результата. Проверяю что подрядчик делает правильно и что метрики достигаются.
                 </p>
                 <Button size="lg" onClick={scrollToContact}>
-                  Обсудить задачу
+                  Заказать звонок
                 </Button>
               </div>
               
@@ -245,7 +245,7 @@ const SupportPage = () => {
                   </div>
                 </div>
                 <Button size="lg" onClick={scrollToContact}>
-                  Обсудить задачу <ArrowRight className="w-4 h-4 ml-2" />
+                  Заказать звонок <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </div>

@@ -433,7 +433,7 @@ const CaseDetailPage = () => {
                 Обсудим вашу задачу и найдём оптимальное решение
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу <ArrowRight className="ml-2 h-5 w-5" />
+                Заказать звонок <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </section>

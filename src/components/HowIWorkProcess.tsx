@@ -122,7 +122,7 @@ const HowIWorkProcess = () => {
                   }
                 }}
               >
-                Обсудить задачу
+                Заказать звонок
               </Button>
               <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
             </div>

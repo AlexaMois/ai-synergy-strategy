@@ -349,7 +349,7 @@ const Navigation = () => {
             {phoneNumber}
           </a>
           <Button size="sm" className="w-full" onClick={scrollToContact}>
-            Обсудить задачу
+            Заказать звонок
           </Button>
         </div>
       </div>
