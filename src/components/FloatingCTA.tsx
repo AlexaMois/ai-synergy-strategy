@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,6 +20,8 @@ const FloatingCTA = () => {
   }, []);
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'floating_cta' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;

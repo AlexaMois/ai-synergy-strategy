@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { trackCTAClick } from "@/utils/analytics";
 interface SolutionData {
   id: string;
   menuTitle: string;
@@ -178,6 +179,7 @@ const Hero = () => {
     setIsPaused(true); // Полная остановка навсегда
   }, []);
   const handleCTAClick = () => {
+    trackCTAClick({ location: 'hero', buttonText: currentSolution.ctaText });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({
