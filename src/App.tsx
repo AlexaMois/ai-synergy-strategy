@@ -36,6 +36,7 @@ const GolossokPricing = lazy(() => import("./pages/GolossokPricing"));
 const ChecklistPage = lazy(() => import("./pages/ChecklistPage"));
 const Consent = lazy(() => import("./pages/Consent"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const CookiesPolicy = lazy(() => import("./pages/CookiesPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const TestPage = lazy(() => import("./pages/TestPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
@@ -113,6 +114,8 @@ const App = () => (
             <Route path="/legal" element={<LegalPage />} />
             <Route path="/legal/consent" element={<Consent />} />
             <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal/cookies" element={<CookiesPolicy />} />
+            <Route path="/legal/terms" element={<Terms />} />
             <Route path="/legal/terms" element={<Terms />} />
             
             {/* Redirects for old URLs */}
