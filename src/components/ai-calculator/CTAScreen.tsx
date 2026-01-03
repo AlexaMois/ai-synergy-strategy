@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Send } from 'lucide-react';
+import { Send, ExternalLink } from 'lucide-react';
 import { DiagnosticData, CalculationResult } from './types';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -16,6 +16,7 @@ interface CTAScreenProps {
 const CTAScreen = ({ data, result }: CTAScreenProps) => {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [telegramLink, setTelegramLink] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     telegram: '',
@@ -41,14 +42,12 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-to-telegram', {
+      const { data: responseData, error } = await supabase.functions.invoke('save-lead', {
         body: {
-          formType: 'diagnostic',
           name: formData.name,
           telegram: formData.telegram,
           phone: formData.phone,
           industry: formData.industry,
-          pageUrl: window.location.href,
           diagnosticResults: {
             painPoints: data.painPoints,
             employeeCount: data.employeeCount,
@@ -65,16 +64,47 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
 
       if (error) throw error;
 
-      toast.success('Отчёт отправлен! Проверьте Telegram');
-      setShowForm(false);
-      setFormData({ name: '', telegram: '', phone: '', industry: '' });
+      if (responseData?.telegramLink) {
+        setTelegramLink(responseData.telegramLink);
+        toast.success('Данные сохранены!');
+      }
     } catch (error) {
-      console.error('Error sending to Telegram:', error);
-      toast.error('Ошибка отправки. Попробуйте ещё раз');
+      console.error('Error saving lead:', error);
+      toast.error('Ошибка сохранения. Попробуйте ещё раз');
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // Show Telegram link after successful submission
+  if (telegramLink) {
+    return (
+      <div className="text-center py-6 space-y-6">
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold text-foreground">Почти готово!</h3>
+          <p className="text-muted-foreground">
+            Нажмите кнопку ниже, чтобы получить отчёт в Telegram
+          </p>
+        </div>
+        
+        <Button
+          size="lg"
+          className="text-base px-8 py-6 h-auto"
+          onClick={() => window.open(telegramLink, '_blank')}
+        >
+          <ExternalLink className="w-5 h-5 mr-2" />
+          Открыть Telegram и получить отчёт
+        </Button>
+        
+        <button
+          onClick={handleScrollToContact}
+          className="block mx-auto text-sm text-muted-foreground hover:text-primary underline underline-offset-4 transition-colors"
+        >
+          Нужен разбор под ваш бизнес? Заказать звонок
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="text-center py-4">
