@@ -1,10 +1,10 @@
-// Helper to load Montserrat font for PDF generation with Cyrillic support
-// Using static TTF files from Google Fonts with full Unicode coverage
+// Helper to load Roboto font for PDF generation with full Unicode/Cyrillic support
+// Using raw GitHub hosted fonts that are guaranteed to work
 
 export const loadMontserratFont = async (): Promise<string | null> => {
   try {
-    // Montserrat Regular - full character set including Cyrillic
-    const response = await fetch('https://cdn.jsdelivr.net/fontsource/fonts/montserrat@latest/cyrillic-400-normal.ttf');
+    // Roboto Regular - full character set including Cyrillic from reliable source
+    const response = await fetch('https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Regular.ttf');
     if (!response.ok) {
       throw new Error(`Failed to fetch font: ${response.status}`);
     }
@@ -20,15 +20,15 @@ export const loadMontserratFont = async (): Promise<string | null> => {
     
     return base64FontData;
   } catch (err) {
-    console.error('Failed to load Montserrat font:', err);
+    console.error('Failed to load font:', err);
     return null;
   }
 };
 
 export const loadMontserratBoldFont = async (): Promise<string | null> => {
   try {
-    // Montserrat Bold - full character set including Cyrillic
-    const response = await fetch('https://cdn.jsdelivr.net/fontsource/fonts/montserrat@latest/cyrillic-700-normal.ttf');
+    // Roboto Bold - full character set including Cyrillic
+    const response = await fetch('https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Bold.ttf');
     if (!response.ok) {
       throw new Error(`Failed to fetch font: ${response.status}`);
     }
@@ -44,7 +44,7 @@ export const loadMontserratBoldFont = async (): Promise<string | null> => {
     
     return base64FontData;
   } catch (err) {
-    console.error('Failed to load Montserrat Bold font:', err);
+    console.error('Failed to load font:', err);
     return null;
   }
 };
