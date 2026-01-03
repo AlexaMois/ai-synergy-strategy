@@ -71,7 +71,7 @@ serve(async (req) => {
     console.log('Lead saved successfully:', lead.lead_id);
 
     // Construct Telegram bot link
-    const botUsername = 'sashaneurobot'; // Current bot
+    const botUsername = 'NeuroResheniyaBot';
     const telegramLink = `https://t.me/${botUsername}?start=${lead.lead_id}`;
 
     return new Response(
