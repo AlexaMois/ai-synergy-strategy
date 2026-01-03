@@ -445,13 +445,12 @@ const Hero = () => {
                     {currentSolution.ctaText}
                   </Button>
                   
-                  {currentSolution.caseLink ? <a href={currentSolution.caseLink} className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group">
+                  {currentSolution.caseLink && (
+                    <a href={currentSolution.caseLink} className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-200 text-sm font-medium group">
                       Посмотреть кейс
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                    </a> : <button onClick={handleCTAClick} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group">
-                      Задать вопрос
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                    </button>}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -468,7 +467,7 @@ const Hero = () => {
         });
       }
     }}>
-        
+        <span className="text-xs text-muted-foreground font-medium hidden sm:block">Листайте</span>
         <ChevronsDown className="w-5 h-5 text-muted-foreground animate-bounce-gentle" />
       </div>
     </section>;
