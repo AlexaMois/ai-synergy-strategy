@@ -470,7 +470,7 @@ const FAQPage = () => {
               onClick={scrollToContact}
               className="px-8"
             >
-              Обсудить задачу
+              Заказать звонок
             </Button>
           </section>
         </div>

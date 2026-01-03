@@ -192,7 +192,7 @@ const BlogPost = () => {
                   window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 }
               }}>
-                Обсудить задачу
+                Заказать звонок
               </Button>
             </div>
           </div>

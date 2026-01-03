@@ -506,7 +506,7 @@ const DocSearchCasePage = () => {
                     Посмотреть продукт
                   </Button>
                   <Button size="lg" variant="outline" onClick={scrollToContact}>
-                    Обсудить задачу
+                    Заказать звонок
                   </Button>
                 </div>
               </div>

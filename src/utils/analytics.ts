@@ -30,7 +30,7 @@ interface TrackCTAClickParams {
   pageUrl?: string;
 }
 
-export const trackCTAClick = ({ location, buttonText = 'Обсудить задачу', pageUrl }: TrackCTAClickParams) => {
+export const trackCTAClick = ({ location, buttonText = 'Заказать звонок', pageUrl }: TrackCTAClickParams) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'cta_click', {
       event_category: 'engagement',

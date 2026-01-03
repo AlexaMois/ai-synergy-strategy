@@ -218,7 +218,7 @@ const ChecklistPage = () => {
               По итогам вы получаете прозрачную картину и понятный план, с которого имеет смысл начинать внедрение.
             </p>
             <Button size="lg" onClick={scrollToContact}>
-              Обсудить задачу
+              Заказать звонок
             </Button>
         </section>
       </div>

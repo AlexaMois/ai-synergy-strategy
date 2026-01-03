@@ -68,7 +68,7 @@ const HowIWork = () => {
 
           <div className="text-center mt-12">
             <Button size="lg" onClick={scrollToContact}>
-              Обсудить задачу
+              Заказать звонок
             </Button>
           </div>
         </div>

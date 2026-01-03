@@ -50,7 +50,7 @@ const FloatingCTA = () => {
         onClick={scrollToContact}
       >
         <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
-        <span className="hidden sm:inline">Обсудить задачу</span>
+        <span className="hidden sm:inline">Заказать звонок</span>
       </Button>
     </div>
   );
