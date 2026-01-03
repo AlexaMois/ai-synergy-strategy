@@ -165,7 +165,7 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
 
   const risks = [
     'Отсутствие метрик эффективности',
-    'Дешёвые бот-решения без архитектуры',
+    'Дешёвые бот-решения без системного подхода',
     'Отсутствие ответственности за результат',
   ];
 
@@ -183,7 +183,7 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
   y += 12;
 
   const notToDo = [
-    'Внедрять без архитектуры',
+    'Внедрять без системного подхода',
     'Экономить на подготовке команды',
     'Игнорировать метрики успеха',
   ];
@@ -194,9 +194,27 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
     doc.text(`• ${item}`, margin, y);
     y += 6;
   });
+  y += 10;
+
+  // Next Step Block
+  y = addLine(y);
+  addText('СЛЕДУЮЩИЙ ШАГ', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  y += 12;
+
+  doc.setFontSize(10);
+  doc.setFont(fontName, 'normal');
+  const nextStepLines = doc.splitTextToSize(
+    'Короткий созвон 10–15 минут для разбора результатов и принятия решения о 60-минутной диагностике.',
+    contentWidth
+  );
+  doc.text(nextStepLines, margin, y);
+  y += nextStepLines.length * 5 + 6;
+
+  doc.setFont(fontName, 'bold');
+  doc.text('Контакт: +7 993 721 73 67, Telegram @NeuroResheniyaBot', margin, y);
 
   // Footer
-  y = doc.internal.pageSize.getHeight() - 30;
+  y = doc.internal.pageSize.getHeight() - 20;
   doc.setDrawColor(200, 200, 200);
   doc.line(margin, y, pageWidth - margin, y);
   y += 8;
@@ -204,16 +222,7 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
   doc.setFontSize(9);
   doc.setTextColor(120, 120, 120);
   doc.setFont(fontName, 'normal');
-  const footerLines = doc.splitTextToSize(
-    'Этот отчёт — предварительная оценка и не заменяет архитектурную диагностику.',
-    contentWidth
-  );
-  doc.text(footerLines, margin, y);
-  y += footerLines.length * 4 + 5;
-
-  doc.setTextColor(51, 51, 51);
-  doc.setFont(fontName, 'bold');
-  doc.text('Обсудить архитектуру внедрения: aleksandra-ai.ru/start', margin, y);
+  doc.text('Этот отчёт — предварительная оценка и не заменяет полную диагностику.', margin, y);
 
   // Return base64 or save
   if (returnBase64) {
