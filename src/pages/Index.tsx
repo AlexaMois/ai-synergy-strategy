@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   const location = useLocation();
@@ -156,6 +157,7 @@ const Index = () => {
       <Footer />
       <FloatingCTA />
       <CookieConsent />
+      <ExitIntentPopup />
     </div>
   );
 };
