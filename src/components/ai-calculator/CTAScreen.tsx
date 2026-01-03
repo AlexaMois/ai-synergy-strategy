@@ -20,8 +20,8 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
   const [telegramLink, setTelegramLink] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
-    telegram: '',
-    phone: '',
+    telegram: '@',
+    phone: '+7',
     industry: ''
   });
 
