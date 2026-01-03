@@ -93,7 +93,7 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
             onClick={handleScrollToContact}
             className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4 transition-colors"
           >
-            Нужен разбор под ваш бизнес? Оставить контакты
+            Нужен разбор под ваш бизнес? Заказать звонок
           </button>
         </div>
       ) : (
@@ -166,7 +166,7 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
             onClick={handleScrollToContact}
             className="w-full text-sm text-muted-foreground hover:text-primary underline underline-offset-4 transition-colors pt-2"
           >
-            Нужен разбор под ваш бизнес? Оставить контакты
+            Нужен разбор под ваш бизнес? Заказать звонок
           </button>
         </form>
       )}
