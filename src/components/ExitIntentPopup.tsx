@@ -59,7 +59,7 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[400px] p-0 overflow-hidden animate-in fade-in-0 slide-in-from-top-4 duration-300 mx-auto [&>button]:hidden">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[400px] p-0 overflow-hidden animate-in fade-in-0 zoom-in-95 duration-500 ease-out mx-auto [&>button]:hidden">
         {/* Content */}
         <div className="p-6 sm:p-8">
           <DialogHeader className="mb-5 sm:mb-6">
