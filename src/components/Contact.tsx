@@ -239,7 +239,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               </Label>
               <Textarea
                 id="comment"
-                placeholder="Расскажите о вашей задаче (необязательно)"
+                placeholder="Расскажите о вашей задаче"
                 rows={4}
                 {...register("comment")}
                 className={errors.comment ? "border-destructive" : ""}
