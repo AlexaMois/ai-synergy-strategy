@@ -1,10 +1,13 @@
-// Google Analytics event tracking utility
+// Google Analytics & Yandex.Metrika event tracking utility
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    ym?: (counterId: number, action: string, goalName?: string, params?: object) => void;
   }
 }
+
+const YANDEX_COUNTER_ID = 99058653;
 
 type CTALocation = 
   | 'hero'
@@ -56,4 +59,61 @@ export const trackDownload = (documentName: string) => {
       page_url: window.location.pathname,
     });
   }
+};
+
+// Scroll depth tracking for Yandex.Metrika
+const scrollDepthsTracked = new Set<number>();
+
+const trackScrollDepth = (depth: number) => {
+  if (scrollDepthsTracked.has(depth)) return;
+  
+  scrollDepthsTracked.add(depth);
+  
+  // Send to Yandex.Metrika
+  if (typeof window !== 'undefined' && window.ym) {
+    window.ym(YANDEX_COUNTER_ID, 'reachGoal', `scroll_${depth}`);
+  }
+  
+  // Also send to Google Analytics
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'scroll_depth', {
+      event_category: 'engagement',
+      event_label: `${depth}%`,
+      value: depth,
+      page_url: window.location.pathname,
+    });
+  }
+};
+
+export const initScrollTracking = () => {
+  if (typeof window === 'undefined') return;
+  
+  // Reset tracked depths on page change
+  scrollDepthsTracked.clear();
+  
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollHeight <= 0) return;
+    
+    const scrollPercent = Math.round((window.scrollY / scrollHeight) * 100);
+    
+    if (scrollPercent >= 25 && !scrollDepthsTracked.has(25)) {
+      trackScrollDepth(25);
+    }
+    if (scrollPercent >= 50 && !scrollDepthsTracked.has(50)) {
+      trackScrollDepth(50);
+    }
+    if (scrollPercent >= 75 && !scrollDepthsTracked.has(75)) {
+      trackScrollDepth(75);
+    }
+    if (scrollPercent >= 100 && !scrollDepthsTracked.has(100)) {
+      trackScrollDepth(100);
+    }
+  };
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
 };

@@ -16,9 +16,16 @@ import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import { initScrollTracking } from "@/utils/analytics";
 
 const Index = () => {
   const location = useLocation();
+  
+  // Initialize scroll depth tracking
+  useEffect(() => {
+    const cleanup = initScrollTracking();
+    return cleanup;
+  }, []);
   
   // Handle anchor scrolling when navigating with hash
   useEffect(() => {
