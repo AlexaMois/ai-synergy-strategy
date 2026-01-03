@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { trackFormSubmission } from "@/utils/analytics";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
@@ -89,6 +90,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
 
       setIsSubmitting(false);
       setIsSubmitted(true);
+      trackFormSubmission('contact');
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");

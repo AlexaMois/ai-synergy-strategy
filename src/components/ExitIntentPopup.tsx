@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { X, Phone, Check } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { trackCTAClick, trackDownload } from "@/utils/analytics";
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ const ExitIntentPopup = () => {
   const navigate = useNavigate();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'exit_intent' });
     setIsOpen(false);
     const element = document.querySelector('#contact');
     if (element) {
@@ -117,6 +119,7 @@ const ExitIntentPopup = () => {
                 variant="secondary"
                 className="w-full py-3 sm:py-3.5 text-sm sm:text-base min-h-[44px]"
                 onClick={() => {
+                  trackDownload('checklist_diagnostic');
                   toast({
                     title: "Эта страница находится в разработке",
                     description: "Скоро здесь появится полезная информация",
