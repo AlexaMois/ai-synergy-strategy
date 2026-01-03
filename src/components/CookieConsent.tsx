@@ -64,6 +64,19 @@ const CookieConsent = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Auto-close after 15 seconds (accept only necessary cookies)
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    const autoCloseTimer = setTimeout(() => {
+      const minConsent = { necessary: true, analytics: false, marketing: false };
+      setConsent(minConsent);
+      saveConsent(minConsent);
+    }, 15000);
+    
+    return () => clearTimeout(autoCloseTimer);
+  }, [isVisible]);
+
   const saveConsent = (newConsent: ConsentState) => {
     localStorage.setItem(
       CONSENT_STORAGE_KEY,
@@ -93,95 +106,72 @@ const CookieConsent = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9999] p-4 md:p-6">
-      <div className="max-w-4xl mx-auto bg-background border border-border rounded-xl shadow-2xl overflow-hidden">
-        {/* Main Banner */}
-        <div className="p-4 md:p-6">
-          <div className="flex items-start gap-4">
-            <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 flex-shrink-0">
-              <Cookie className="w-6 h-6 text-primary" />
-            </div>
+    <div className="fixed bottom-4 left-4 z-[9999] max-w-[320px] animate-in slide-in-from-left-4 fade-in duration-300">
+      <div className="bg-background border border-border rounded-lg shadow-lg overflow-hidden">
+        <div className="p-3">
+          <div className="flex items-start gap-2">
+            <Cookie className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
             
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-                <Cookie className="w-5 h-5 text-primary sm:hidden" />
-                Мы используем cookies
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Мы используем файлы cookies для анализа посещаемости и улучшения работы сайта. 
-                Вы можете принять все cookies или настроить их использование.{" "}
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-foreground leading-relaxed mb-2">
+                Мы используем cookies для улучшения работы сайта.{" "}
                 <Link to="/legal/cookies" className="text-primary hover:underline">
-                  Подробнее о cookies
+                  Подробнее
                 </Link>
               </p>
 
-              {/* Settings Panel */}
+              {/* Compact Settings Panel */}
               {showSettings && (
-                <div className="mb-4 p-4 bg-muted/50 rounded-lg space-y-3">
-                  <label className="flex items-center justify-between cursor-not-allowed opacity-70">
-                    <div>
-                      <span className="font-medium text-foreground">Необходимые</span>
-                      <p className="text-xs text-muted-foreground">Обеспечивают работу сайта</p>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={true}
-                      disabled
-                      className="w-5 h-5 rounded accent-primary"
-                    />
+                <div className="mb-2 p-2 bg-muted/50 rounded space-y-1.5 text-xs">
+                  <label className="flex items-center justify-between opacity-70">
+                    <span className="text-foreground">Необходимые</span>
+                    <input type="checkbox" checked disabled className="w-3.5 h-3.5 accent-primary" />
                   </label>
-                  
                   <label className="flex items-center justify-between cursor-pointer">
-                    <div>
-                      <span className="font-medium text-foreground">Аналитические</span>
-                      <p className="text-xs text-muted-foreground">Google Analytics, Яндекс.Метрика</p>
-                    </div>
+                    <span className="text-foreground">Аналитика</span>
                     <input
                       type="checkbox"
                       checked={consent.analytics}
                       onChange={(e) => setConsent({ ...consent, analytics: e.target.checked })}
-                      className="w-5 h-5 rounded accent-primary cursor-pointer"
+                      className="w-3.5 h-3.5 accent-primary cursor-pointer"
                     />
                   </label>
-                  
                   <label className="flex items-center justify-between cursor-pointer">
-                    <div>
-                      <span className="font-medium text-foreground">Маркетинговые</span>
-                      <p className="text-xs text-muted-foreground">Персонализация рекламы</p>
-                    </div>
+                    <span className="text-foreground">Маркетинг</span>
                     <input
                       type="checkbox"
                       checked={consent.marketing}
                       onChange={(e) => setConsent({ ...consent, marketing: e.target.checked })}
-                      className="w-5 h-5 rounded accent-primary cursor-pointer"
+                      className="w-3.5 h-3.5 accent-primary cursor-pointer"
                     />
                   </label>
                 </div>
               )}
 
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-2">
-                <Button onClick={acceptAll} className="flex-1 sm:flex-none">
-                  Принять все
+              {/* Compact Buttons */}
+              <div className="flex flex-wrap gap-1.5">
+                <Button onClick={acceptAll} size="sm" className="h-7 text-xs px-2.5">
+                  Принять
                 </Button>
                 
                 {showSettings ? (
-                  <Button onClick={acceptSelected} variant="outline" className="flex-1 sm:flex-none">
-                    Сохранить выбор
+                  <Button onClick={acceptSelected} variant="outline" size="sm" className="h-7 text-xs px-2.5">
+                    Сохранить
                   </Button>
                 ) : (
                   <Button 
                     onClick={() => setShowSettings(true)} 
                     variant="outline"
-                    className="flex-1 sm:flex-none gap-2"
+                    size="sm"
+                    className="h-7 text-xs px-2.5"
                   >
-                    <Settings className="w-4 h-4" />
+                    <Settings className="w-3 h-3 mr-1" />
                     Настроить
                   </Button>
                 )}
                 
-                <Button onClick={rejectAll} variant="ghost" className="text-muted-foreground">
-                  Только необходимые
+                <Button onClick={rejectAll} variant="ghost" size="sm" className="h-7 text-xs px-2 text-muted-foreground">
+                  Отклонить
                 </Button>
               </div>
             </div>
@@ -189,10 +179,10 @@ const CookieConsent = () => {
             {/* Close button */}
             <button
               onClick={rejectAll}
-              className="p-1 hover:bg-muted rounded-lg transition-colors flex-shrink-0"
+              className="p-0.5 hover:bg-muted rounded transition-colors flex-shrink-0"
               aria-label="Закрыть"
             >
-              <X className="w-5 h-5 text-muted-foreground" />
+              <X className="w-3.5 h-3.5 text-muted-foreground" />
             </button>
           </div>
         </div>
