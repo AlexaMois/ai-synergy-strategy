@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import TrustMarquee from "@/components/TrustMarquee";
@@ -148,7 +147,6 @@ const Index = () => {
           {JSON.stringify(organizationSchema)}
         </script>
       </Helmet>
-      <Navigation />
       <main>
         <Hero />
         <TrustMarquee />
