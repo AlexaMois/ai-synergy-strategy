@@ -11,6 +11,9 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// In-memory store for users waiting to ask a question
+const awaitingQuestionUsers = new Map<number, { leadId: string; name: string }>();
+
 // HTML escape function to prevent injection in Telegram messages
 function escapeHtml(text: string): string {
   if (!text || typeof text !== 'string') return '';
@@ -22,20 +25,24 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#x27;");
 }
 
-async function sendTelegramMessage(chatId: number | string, text: string, parseMode = 'HTML') {
+async function sendTelegramMessage(chatId: number | string, text: string, parseMode = 'HTML', replyMarkup?: object) {
+  const body: Record<string, unknown> = {
+    chat_id: chatId,
+    text,
+    parse_mode: parseMode
+  };
+  if (replyMarkup) {
+    body.reply_markup = replyMarkup;
+  }
   const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: parseMode
-    })
+    body: JSON.stringify(body)
   });
   return response.json();
 }
 
-async function sendTelegramDocument(chatId: number | string, pdfBase64: string, filename: string, caption: string) {
+async function sendTelegramDocument(chatId: number | string, pdfBase64: string, filename: string, caption: string, replyMarkup?: object) {
   // Decode base64 to Uint8Array and convert to ArrayBuffer
   const pdfBytes = decode(pdfBase64);
   const arrayBuffer = pdfBytes.buffer.slice(pdfBytes.byteOffset, pdfBytes.byteOffset + pdfBytes.byteLength) as ArrayBuffer;
@@ -45,10 +52,25 @@ async function sendTelegramDocument(chatId: number | string, pdfBase64: string, 
   formData.append('document', new Blob([arrayBuffer], { type: 'application/pdf' }), filename);
   formData.append('caption', caption);
   formData.append('parse_mode', 'HTML');
+  if (replyMarkup) {
+    formData.append('reply_markup', JSON.stringify(replyMarkup));
+  }
 
   const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
     method: 'POST',
     body: formData
+  });
+  return response.json();
+}
+
+async function answerCallbackQuery(callbackQueryId: string, text?: string) {
+  const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      callback_query_id: callbackQueryId,
+      text: text || ''
+    })
   });
   return response.json();
 }
@@ -99,6 +121,20 @@ function sanitizePhone(phone: string): string {
   return phone.replace(/[^\d+]/g, '').slice(0, 20);
 }
 
+// Inline keyboard for actions after PDF
+function getActionButtons(leadId: string) {
+  return {
+    inline_keyboard: [
+      [
+        { text: '📞 Записаться на созвон (10–15 мин)', callback_data: `call_${leadId}` }
+      ],
+      [
+        { text: '❓ Задать вопрос', callback_data: `question_${leadId}` }
+      ]
+    ]
+  };
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -112,6 +148,147 @@ serve(async (req) => {
 
     const update = await req.json();
     console.log('Telegram webhook received:', JSON.stringify(update, null, 2));
+
+    // Handle callback queries (inline button clicks)
+    if (update.callback_query) {
+      const callbackQuery = update.callback_query;
+      const chatId = callbackQuery.message?.chat?.id;
+      const data = callbackQuery.data || '';
+      
+      console.log(`Callback query: ${data} from chat ${chatId}`);
+      
+      // Parse callback data
+      if (data.startsWith('call_')) {
+        const leadId = data.replace('call_', '');
+        
+        // Find lead
+        const { data: lead, error } = await supabase
+          .from('leads')
+          .select('*')
+          .eq('lead_id', leadId)
+          .maybeSingle();
+        
+        if (lead && !error) {
+          const safeName = escapeHtml(lead.name);
+          const safeIndustry = escapeHtml(lead.industry);
+          
+          // Validate and format telegram username for clickable link
+          const tgUsername = sanitizeTelegramUsername(lead.telegram_nick);
+          const tgLink = tgUsername 
+            ? `<a href="https://t.me/${tgUsername}">@${tgUsername}</a>`
+            : escapeHtml(lead.telegram_nick);
+          
+          // Validate and format phone for clickable link
+          const phoneClean = sanitizePhone(lead.phone);
+          const phoneDisplay = escapeHtml(lead.phone);
+          const phoneLink = phoneClean ? `<a href="tel:${phoneClean}">${phoneDisplay}</a>` : phoneDisplay;
+          
+          // Send notification to admin
+          const adminMessage = `
+📞 <b>ЗАПРОС НА СОЗВОН</b>
+
+👤 <b>Имя:</b> ${safeName}
+📱 <b>Telegram:</b> ${tgLink}
+📞 <b>Телефон:</b> ${phoneLink}
+🏢 <b>Сфера:</b> ${safeIndustry}
+
+💰 <b>Потенциал:</b> ${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)}/год
+
+🆔 Lead ID: ${lead.lead_id}
+          `.trim();
+          
+          await sendTelegramMessage(TELEGRAM_ADMIN_CHAT_ID, adminMessage);
+          
+          // Confirm to user
+          await sendTelegramMessage(chatId, '✅ Отлично! Я передала вашу заявку. Свяжусь в ближайшее время, чтобы согласовать удобное время.\n\nТел.: +7 993 721 73 67');
+        }
+        
+        await answerCallbackQuery(callbackQuery.id, 'Заявка отправлена!');
+        
+      } else if (data.startsWith('question_')) {
+        const leadId = data.replace('question_', '');
+        
+        // Find lead to get the name
+        const { data: lead } = await supabase
+          .from('leads')
+          .select('name')
+          .eq('lead_id', leadId)
+          .maybeSingle();
+        
+        // Store that this user is waiting to ask a question
+        if (chatId) {
+          awaitingQuestionUsers.set(chatId, { 
+            leadId, 
+            name: lead?.name || 'Неизвестный' 
+          });
+        }
+        
+        await sendTelegramMessage(chatId, '✍️ Напишите ваш вопрос, и я передам его Александре:');
+        await answerCallbackQuery(callbackQuery.id);
+      }
+      
+      return new Response(JSON.stringify({ ok: true }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Handle regular text messages (for question flow)
+    if (update.message?.text && !update.message.text.startsWith('/')) {
+      const chatId = update.message.chat.id;
+      const userQuestion = update.message.text;
+      
+      // Check if user was waiting to ask a question
+      const pendingQuestion = awaitingQuestionUsers.get(chatId);
+      if (pendingQuestion) {
+        // Forward question to admin
+        const safeQuestion = escapeHtml(userQuestion);
+        const safeName = escapeHtml(pendingQuestion.name);
+        
+        // Find lead for more context
+        const { data: lead } = await supabase
+          .from('leads')
+          .select('telegram_nick, phone')
+          .eq('lead_id', pendingQuestion.leadId)
+          .maybeSingle();
+        
+        let contactInfo = '';
+        if (lead) {
+          const tgUsername = sanitizeTelegramUsername(lead.telegram_nick);
+          const tgLink = tgUsername 
+            ? `<a href="https://t.me/${tgUsername}">@${tgUsername}</a>`
+            : escapeHtml(lead.telegram_nick);
+          
+          const phoneClean = sanitizePhone(lead.phone);
+          const phoneDisplay = escapeHtml(lead.phone);
+          const phoneLink = phoneClean ? `<a href="tel:${phoneClean}">${phoneDisplay}</a>` : phoneDisplay;
+          
+          contactInfo = `\n📱 <b>Telegram:</b> ${tgLink}\n📞 <b>Телефон:</b> ${phoneLink}`;
+        }
+        
+        const adminMessage = `
+❓ <b>ВОПРОС ОТ ЛИДА</b>
+
+👤 <b>От:</b> ${safeName}${contactInfo}
+
+💬 <b>Вопрос:</b>
+${safeQuestion}
+
+🆔 Lead ID: ${pendingQuestion.leadId}
+        `.trim();
+        
+        await sendTelegramMessage(TELEGRAM_ADMIN_CHAT_ID, adminMessage);
+        
+        // Confirm to user
+        await sendTelegramMessage(chatId, '✅ Вопрос отправлен! Александра ответит вам в ближайшее время.');
+        
+        // Clear pending state
+        awaitingQuestionUsers.delete(chatId);
+        
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+    }
 
     // Handle /start command
     if (update.message?.text?.startsWith('/start')) {
@@ -151,6 +328,9 @@ serve(async (req) => {
         const safeName = escapeHtml(lead.name);
         const safeIndustry = escapeHtml(lead.industry);
         const safePainPoints = lead.pain_points.map((p: string) => escapeHtml(p));
+        
+        // Get inline buttons
+        const actionButtons = getActionButtons(leadId);
 
         // Send PDF if available
         if (lead.pdf_base64) {
@@ -165,21 +345,15 @@ serve(async (req) => {
 
 Ваш диагностический брифинг готов — отправляю PDF.
 
-Ключевое: потенциал ${effectRange} ₽/год, готовность к ИИ — ${getReadinessText(lead.ai_readiness_level).toLowerCase()}.
+Ключевое: потенциал ${effectRange} ₽/год, готовность к ИИ — ${getReadinessText(lead.ai_readiness_level).toLowerCase()}.`;
 
-Если хотите, можно коротко созвониться минут на 10–15.
-
-Напишите «созвон», и я предложу время.
-
-Тел.: +7 993 721 73 67`;
-
-          const sendResult = await sendTelegramDocument(chatId, lead.pdf_base64, filename, caption);
+          const sendResult = await sendTelegramDocument(chatId, lead.pdf_base64, filename, caption, actionButtons);
           console.log('PDF send result:', JSON.stringify(sendResult, null, 2));
           
           if (!sendResult.ok) {
             // Fallback to text message if PDF fails
             console.error('Failed to send PDF, sending text message');
-            await sendTelegramMessage(chatId, caption);
+            await sendTelegramMessage(chatId, caption, 'HTML', actionButtons);
           }
         } else {
           // No PDF, send text summary with escaped user input
@@ -206,7 +380,7 @@ ${safePainPoints.map((p: string) => `• ${p}`).join('\n')}
 📩 Скоро с вами свяжется консультант для разбора вашей ситуации.
           `.trim();
 
-          await sendTelegramMessage(chatId, userMessage);
+          await sendTelegramMessage(chatId, userMessage, 'HTML', actionButtons);
         }
 
         // Mark as pdf_sent
