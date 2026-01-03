@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 import { DiagnosticData, CalculationResult } from './types';
-import { loadPTSansFont, loadPTSansBoldFont } from './fonts/loadFont';
+import { loadMontserratFont, loadMontserratBoldFont } from './fonts/loadFont';
 
 const formatCurrency = (value: number): string => {
   return Math.round(value).toLocaleString('ru-RU');
@@ -19,23 +19,23 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
   const contentWidth = pageWidth - margin * 2;
   let y = 20;
 
-  // Load Cyrillic fonts
+  // Load Montserrat fonts with Cyrillic support
   const [fontRegular, fontBold] = await Promise.all([
-    loadPTSansFont(),
-    loadPTSansBoldFont()
+    loadMontserratFont(),
+    loadMontserratBoldFont()
   ]);
 
   if (fontRegular) {
-    doc.addFileToVFS('PTSans-Regular.ttf', fontRegular);
-    doc.addFont('PTSans-Regular.ttf', 'PTSans', 'normal');
+    doc.addFileToVFS('Montserrat-Regular.ttf', fontRegular);
+    doc.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal');
   }
   
   if (fontBold) {
-    doc.addFileToVFS('PTSans-Bold.ttf', fontBold);
-    doc.addFont('PTSans-Bold.ttf', 'PTSans', 'bold');
+    doc.addFileToVFS('Montserrat-Bold.ttf', fontBold);
+    doc.addFont('Montserrat-Bold.ttf', 'Montserrat', 'bold');
   }
 
-  const fontName = fontRegular ? 'PTSans' : 'helvetica';
+  const fontName = fontRegular ? 'Montserrat' : 'helvetica';
 
   // Helper function to add text
   const addText = (text: string, x: number, yPos: number, options?: { fontSize?: number; fontStyle?: 'normal' | 'bold'; color?: [number, number, number] }) => {
