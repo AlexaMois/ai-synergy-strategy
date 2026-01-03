@@ -4,6 +4,14 @@ import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
 const TELEGRAM_CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 5; // 5 requests per hour per IP
+const MAX_REQUESTS_PER_EMAIL = 3; // 3 requests per hour per email
+
+// In-memory rate limiting store (resets on function cold start)
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
 // Restrict CORS to production domain
 const corsHeaders = {
   "Access-Control-Allow-Origin": "https://aleksamois.ru",
@@ -35,10 +43,58 @@ const RequestBodySchema = z.object({
   data: ContactFormSchema,
   pageUrl: z.string().max(500),
   diagnosticResults: DiagnosticResultsSchema.optional(),
+  // Honeypot field - should always be empty
+  website: z.string().max(0).optional(),
 });
 
 type ContactFormData = z.infer<typeof ContactFormSchema>;
 type DiagnosticResults = z.infer<typeof DiagnosticResultsSchema>;
+
+// Rate limiting helper functions
+const checkRateLimit = (key: string, maxRequests: number): { allowed: boolean; remaining: number; resetIn: number } => {
+  const now = Date.now();
+  const record = rateLimitStore.get(key);
+
+  // Clean up expired entries
+  if (record && record.resetAt < now) {
+    rateLimitStore.delete(key);
+  }
+
+  const currentRecord = rateLimitStore.get(key);
+
+  if (!currentRecord) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, remaining: maxRequests - 1, resetIn: RATE_LIMIT_WINDOW_MS };
+  }
+
+  if (currentRecord.count >= maxRequests) {
+    return { 
+      allowed: false, 
+      remaining: 0, 
+      resetIn: currentRecord.resetAt - now 
+    };
+  }
+
+  currentRecord.count++;
+  return { 
+    allowed: true, 
+    remaining: maxRequests - currentRecord.count, 
+    resetIn: currentRecord.resetAt - now 
+  };
+};
+
+const getClientIP = (req: Request): string => {
+  // Try various headers for IP detection
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0].trim();
+  }
+  const realIP = req.headers.get("x-real-ip");
+  if (realIP) {
+    return realIP;
+  }
+  return "unknown";
+};
 
 const getPageName = (path: string): string => {
   const pageNames: Record<string, string> = {
@@ -156,6 +212,29 @@ serve(async (req) => {
       throw new Error("Telegram configuration is missing");
     }
 
+    // Get client IP for rate limiting
+    const clientIP = getClientIP(req);
+    
+    // Check IP-based rate limit
+    const ipRateLimit = checkRateLimit(`ip:${clientIP}`, MAX_REQUESTS_PER_WINDOW);
+    if (!ipRateLimit.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Слишком много запросов. Пожалуйста, попробуйте позже." 
+        }),
+        {
+          status: 429,
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": Math.ceil(ipRateLimit.resetIn / 1000).toString()
+          },
+        }
+      );
+    }
+
     // Parse and validate input with Zod
     const rawBody = await req.json();
     const validationResult = RequestBodySchema.safeParse(rawBody);
@@ -171,13 +250,46 @@ serve(async (req) => {
       );
     }
 
-    const { formType, data, pageUrl, diagnosticResults } = validationResult.data;
+    const { formType, data, pageUrl, diagnosticResults, website } = validationResult.data;
+
+    // Honeypot check - if filled, it's a bot
+    if (website && website.length > 0) {
+      console.warn(`Honeypot triggered from IP: ${clientIP}`);
+      // Return success to not alert the bot
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Check email-based rate limit
+    const emailRateLimit = checkRateLimit(`email:${data.email.toLowerCase()}`, MAX_REQUESTS_PER_EMAIL);
+    if (!emailRateLimit.allowed) {
+      console.warn(`Rate limit exceeded for email: ${data.email}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Заявка с этим email уже отправлена. Пожалуйста, дождитесь ответа." 
+        }),
+        {
+          status: 429,
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": Math.ceil(emailRateLimit.resetIn / 1000).toString()
+          },
+        }
+      );
+    }
 
     console.log("Received valid form submission:", {
       formType,
       pageUrl,
       hasDiagnosticResults: !!diagnosticResults,
       dataFields: Object.keys(data),
+      clientIP,
+      ipRemaining: ipRateLimit.remaining,
+      emailRemaining: emailRateLimit.remaining,
     });
 
     const message = formatMessage(formType, data, pageUrl, diagnosticResults);

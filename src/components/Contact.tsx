@@ -62,6 +62,9 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
 
   const consentValue = watch("consent");
 
+  // Honeypot state - hidden from users, bots will fill it
+  const [honeypot, setHoneypot] = useState("");
+
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
@@ -78,12 +81,18 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
             comment: data.comment || '',
           },
           pageUrl: location.pathname,
+          website: honeypot, // Honeypot field
         },
       });
 
       if (error) {
         console.error("Error sending to Telegram:", error);
-        toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
+        // Handle rate limit error
+        if (error.message?.includes("429") || error.message?.includes("rate")) {
+          toast.error("Слишком много запросов. Пожалуйста, попробуйте позже.");
+        } else {
+          toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
+        }
         setIsSubmitting(false);
         return;
       }
@@ -238,6 +247,20 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               {errors.comment && (
                 <p className="text-sm text-destructive">{errors.comment.message}</p>
               )}
+            </div>
+
+            {/* Honeypot field - hidden from users, catches bots */}
+            <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+              <Label htmlFor="website">Website</Label>
+              <Input
+                id="website"
+                name="website"
+                type="text"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             {/* Чекбокс и кнопка в одну строку на десктопе */}
