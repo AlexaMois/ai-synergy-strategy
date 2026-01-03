@@ -49,6 +49,10 @@ function formatCurrency(amount: number): string {
   }).format(amount);
 }
 
+function formatNumber(amount: number): string {
+  return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 }).format(amount);
+}
+
 function getReadinessEmoji(level: string): string {
   switch (level) {
     case 'high': return '🟢';
@@ -121,15 +125,20 @@ serve(async (req) => {
           const today = new Date().toLocaleDateString('ru-RU').replace(/\./g, '-');
           const filename = `AI-Diagnostic-Brief-${today}.pdf`;
           
-          const caption = `🎯 <b>Ваш диагностический отчёт готов!</b>
+          // Format effect range (numbers only, currency in text)
+          const effectRange = `${formatNumber(lead.min_savings)} – ${formatNumber(lead.max_savings)}`;
+          
+          const caption = `${lead.name}, добрый день.
 
-👤 ${lead.name}
-📊 Сфера: ${lead.industry}
+Ваш диагностический брифинг готов — отправляю PDF.
 
-${getReadinessEmoji(lead.ai_readiness_level)} AI-готовность: ${getReadinessText(lead.ai_readiness_level)}
-💰 Потенциал: ${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)}/год
+Ключевое: потенциал ${effectRange} ₽/год, готовность к ИИ — ${getReadinessText(lead.ai_readiness_level).toLowerCase()}.
 
-📩 Скоро с вами свяжется консультант`;
+Если хотите, можно коротко созвониться минут на 10–15.
+
+Напишите «созвон», и я предложу время.
+
+Тел.: +7 993 721 73 67`;
 
           const sendResult = await sendTelegramDocument(chatId, lead.pdf_base64, filename, caption);
           console.log('PDF send result:', JSON.stringify(sendResult, null, 2));
