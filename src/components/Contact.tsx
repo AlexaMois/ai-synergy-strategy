@@ -13,11 +13,46 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 
+// Format phone number as +7 (XXX) XXX-XX-XX
+const formatPhoneNumber = (value: string): string => {
+  const digits = value.replace(/\D/g, '');
+  
+  // Remove leading 8 or 7, we'll add +7 prefix
+  let cleaned = digits;
+  if (cleaned.startsWith('8') || cleaned.startsWith('7')) {
+    cleaned = cleaned.slice(1);
+  }
+  
+  // Limit to 10 digits (without country code)
+  cleaned = cleaned.slice(0, 10);
+  
+  // Build formatted string
+  let formatted = '+7';
+  if (cleaned.length > 0) {
+    formatted += ' (' + cleaned.slice(0, 3);
+  }
+  if (cleaned.length >= 3) {
+    formatted += ') ' + cleaned.slice(3, 6);
+  } else if (cleaned.length > 0) {
+    formatted += ')';
+  }
+  if (cleaned.length >= 6) {
+    formatted += '-' + cleaned.slice(6, 8);
+  }
+  if (cleaned.length >= 8) {
+    formatted += '-' + cleaned.slice(8, 10);
+  }
+  
+  return formatted;
+};
+
+const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
   company: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
   industry: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
-  phone: z.string().trim().min(1, "Обязательное поле").max(30, "Максимум 30 символов"),
+  phone: z.string().regex(phoneRegex, "Введите номер в формате +7 (XXX) XXX-XX-XX"),
   email: z.string().trim().email("Введите корректный email").max(255, "Максимум 255 символов"),
   comment: z.string().trim().max(1000, "Максимум 1000 символов").optional(),
   consent: z.boolean().refine(val => val === true, "Необходимо согласие на обработку данных")
@@ -53,7 +88,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
       name: "",
       company: "",
       industry: "",
-      phone: "",
+      phone: "+7",
       email: "",
       comment: defaultComment,
       consent: false
@@ -61,6 +96,12 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   });
 
   const consentValue = watch("consent");
+  const phoneValue = watch("phone");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setValue("phone", formatted, { shouldValidate: false });
+  };
 
   // Honeypot state - hidden from users, bots will fill it
   const [honeypot, setHoneypot] = useState("");
@@ -206,7 +247,8 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   id="phone"
                   type="tel"
                   placeholder="+7 (___) ___-__-__"
-                  {...register("phone")}
+                  value={phoneValue}
+                  onChange={handlePhoneChange}
                   className={errors.phone ? "border-destructive" : ""}
                 />
                 {errors.phone && (
