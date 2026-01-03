@@ -121,20 +121,15 @@ serve(async (req) => {
           const today = new Date().toLocaleDateString('ru-RU').replace(/\./g, '-');
           const filename = `AI-Diagnostic-Brief-${today}.pdf`;
           
-          // Format effect range
-          const effectRange = `${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)}`;
-          
-          const caption = `${lead.name}, добрый день.
+          const caption = `🎯 <b>Ваш диагностический отчёт готов!</b>
 
-Ваш диагностический брифинг готов — отправляю PDF.
+👤 ${lead.name}
+📊 Сфера: ${lead.industry}
 
-Ключевое: потенциал ${effectRange} ₽/год, готовность к ИИ — ${getReadinessText(lead.ai_readiness_level).toLowerCase()}.
+${getReadinessEmoji(lead.ai_readiness_level)} AI-готовность: ${getReadinessText(lead.ai_readiness_level)}
+💰 Потенциал: ${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)}/год
 
-Если хотите, можем коротко созвониться на 10–15 минут.
-
-Напишите «созвон», и я предложу время.
-
-Тел.: +7 993 721 73 67`;
+📩 Скоро с вами свяжется консультант`;
 
           const sendResult = await sendTelegramDocument(chatId, lead.pdf_base64, filename, caption);
           console.log('PDF send result:', JSON.stringify(sendResult, null, 2));
