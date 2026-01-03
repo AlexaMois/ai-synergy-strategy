@@ -14,8 +14,8 @@ const CTAScreen = ({ onSubmit, data, result }: CTAScreenProps) => {
     window.open('https://t.me/sashaneurobot', '_blank');
   };
 
-  const handleDownloadPDF = () => {
-    generatePDF(data, result);
+  const handleDownloadPDF = async () => {
+    await generatePDF(data, result);
   };
 
   return (
