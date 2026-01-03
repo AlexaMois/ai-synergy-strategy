@@ -1,12 +1,15 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 const HowIWork = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'how_i_work' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;

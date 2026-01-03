@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import { useNavigate, useLocation } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 // Photos
 import heroImage from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-hero.jpg";
@@ -22,6 +23,8 @@ const CaseStudyKraypotrebsoyuz = () => {
   const location = useLocation();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'cases', buttonText: 'Kraypotrebsoyuz CTA' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;

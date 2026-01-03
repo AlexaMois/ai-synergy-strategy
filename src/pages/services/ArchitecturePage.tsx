@@ -19,9 +19,11 @@ import {
   ArrowRight
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { trackCTAClick } from "@/utils/analytics";
 
 const ArchitecturePage = () => {
   const scrollToContact = () => {
+    trackCTAClick({ location: 'services', buttonText: 'Архитектура CTA' });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });

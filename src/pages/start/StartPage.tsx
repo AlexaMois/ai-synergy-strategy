@@ -11,6 +11,7 @@ import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
 import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
 import { formatFullCurrency } from "@/components/ai-calculator/calculationLogic";
+import { trackCTAClick } from "@/utils/analytics";
 
 const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(false);
@@ -34,6 +35,7 @@ const StartPage = () => {
   }, []);
 
   const handleCTA = useCallback(() => {
+    trackCTAClick({ location: 'other', buttonText: 'Start Page CTA' });
     contactRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 

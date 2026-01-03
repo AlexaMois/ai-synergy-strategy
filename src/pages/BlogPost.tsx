@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
+import { trackCTAClick } from "@/utils/analytics";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -182,6 +183,7 @@ const BlogPost = () => {
                 Запишитесь на бесплатный экспресс-аудит процессов
               </p>
               <Button size="lg" onClick={() => {
+                trackCTAClick({ location: 'blog_post' });
                 const element = document.querySelector('#contact');
                 if (element) {
                   const navHeight = 100;

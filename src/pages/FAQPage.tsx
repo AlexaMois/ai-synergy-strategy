@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { trackCTAClick } from "@/utils/analytics";
 
 interface FAQItem {
   question: string;
@@ -256,6 +257,7 @@ const FAQPage = () => {
   const navigate = useNavigate();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'faq' });
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
