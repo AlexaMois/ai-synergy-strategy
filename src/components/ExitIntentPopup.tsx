@@ -40,17 +40,38 @@ const ExitIntentPopup = () => {
       return;
     }
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      // Trigger when mouse moves to top of viewport (exit intent)
-      if (e.clientY <= 10 && !hasShown) {
+    let timeOnPage = false;
+    let scrollDepth = false;
+
+    const showPopup = () => {
+      if (timeOnPage && scrollDepth && !hasShown) {
         setIsOpen(true);
         setHasShown(true);
         sessionStorage.setItem("exitIntentShown", "true");
       }
     };
 
-    document.addEventListener("mouseleave", handleMouseLeave);
-    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+    // Trigger after 20 seconds on page
+    const timer = setTimeout(() => {
+      timeOnPage = true;
+      showPopup();
+    }, 20000);
+
+    // Trigger after 40% scroll
+    const handleScroll = () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent >= 40) {
+        scrollDepth = true;
+        showPopup();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [hasShown]);
 
   const handleClose = () => {
