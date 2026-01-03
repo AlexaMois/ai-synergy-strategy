@@ -126,7 +126,21 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">9. Изменения в политике</h2>
+              <h2 className="text-2xl font-medium text-foreground mb-3">9. Использование файлов cookies</h2>
+              <p className="mb-3">
+                <strong>9.1.</strong> Сайт использует файлы cookies для обеспечения корректной работы, анализа посещаемости и улучшения пользовательского опыта.
+              </p>
+              <p className="mb-3">
+                <strong>9.2.</strong> При первом посещении Сайта пользователь информируется об использовании cookies и может управлять настройками согласия.
+              </p>
+              <p>
+                <strong>9.3.</strong> Подробная информация о типах cookies, целях их использования и способах управления содержится в{" "}
+                <Link to="/legal/cookies" className="text-primary hover:underline">Политике использования cookies</Link>.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-medium text-foreground mb-3">10. Изменения в политике</h2>
               <p className="mb-3">
                 Оператор имеет право вносить изменения в настоящую Политику. Актуальная версия всегда доступна на официальном сайте Оператора. Новая редакция вступает в силу с момента размещения, если иное не предусмотрено.
               </p>

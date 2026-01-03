@@ -95,6 +95,9 @@ const Footer = () => {
                 <Link to="/privacy-policy" className="hover:text-primary transition-colors">
                   Политика в отношении обработки персональных данных
                 </Link>
+                <Link to="/legal/cookies" className="hover:text-primary transition-colors">
+                  Политика использования cookies
+                </Link>
                 <Link to="/terms" className="hover:text-primary transition-colors">
                   Договор-оферта
                 </Link>

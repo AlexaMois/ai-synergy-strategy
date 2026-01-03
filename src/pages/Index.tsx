@@ -14,6 +14,7 @@ import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
+import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   const location = useLocation();
@@ -154,6 +155,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingCTA />
+      <CookieConsent />
     </div>
   );
 };
