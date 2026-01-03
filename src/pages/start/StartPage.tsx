@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback } from "react";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet";
@@ -9,18 +8,12 @@ import { Play, Sparkles } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
 import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
-import { formatFullCurrency } from "@/components/ai-calculator/calculationLogic";
 import { trackCTAClick } from "@/utils/analytics";
 
 const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(false);
-  const [diagnosticResult, setDiagnosticResult] = useState<{
-    data: DiagnosticData;
-    result: CalculationResult;
-  } | null>(null);
   
   const diagnosticRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
@@ -30,31 +23,12 @@ const StartPage = () => {
   };
 
   const handleDiagnosticComplete = useCallback((data: DiagnosticData, result: CalculationResult) => {
-    setDiagnosticResult({ data, result });
+    // Results handled within AIDiagnostic component
   }, []);
 
   const handleCTA = useCallback(() => {
     trackCTAClick({ location: 'other', buttonText: 'Start Page CTA' });
-    contactRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
-
-  // Generate pre-filled comment for contact form
-  const getPrefilledComment = () => {
-    if (!diagnosticResult) return '';
-    
-    const { data, result } = diagnosticResult;
-    const painPointsText = data.painPoints.join(', ');
-    const savingsMin = formatFullCurrency(Math.round(result.minSavings));
-    const savingsMax = formatFullCurrency(Math.round(result.maxSavings));
-    
-    return `[AI-диагностика]
-Выбранные боли: ${painPointsText}
-Сотрудников: ${data.employeeCount}
-Ср. зарплата: ${formatFullCurrency(data.avgSalary)} ₽
-Доля времени на рутину: ${Math.round(data.routineTimeShare * 100)}%
-Потенциал экономии: ${savingsMin} – ${savingsMax} ₽/год
-ROI: ${Math.max(0, result.roi)}%`;
-  };
 
   return (
     <PageTransition>
@@ -116,11 +90,6 @@ ROI: ${Math.max(0, result.roi)}%`;
               </div>
             </section>
           )}
-
-          {/* Contact Section */}
-          <div ref={contactRef}>
-            <Contact defaultComment={getPrefilledComment()} />
-          </div>
         </main>
         
         <Footer />
