@@ -1,8 +1,10 @@
-// Helper to load font for PDF generation with Cyrillic support
-export const loadPTSansFont = async (): Promise<string | null> => {
+// Helper to load Montserrat font for PDF generation with Cyrillic support
+// Using static TTF files from Google Fonts with full Unicode coverage
+
+export const loadMontserratFont = async (): Promise<string | null> => {
   try {
-    // Load PT Sans Regular with Cyrillic subset from Google Fonts CDN
-    const response = await fetch('https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79D0-ExcOPIDU.ttf');
+    // Montserrat Regular - full character set including Cyrillic
+    const response = await fetch('https://cdn.jsdelivr.net/fontsource/fonts/montserrat@latest/cyrillic-400-normal.ttf');
     if (!response.ok) {
       throw new Error(`Failed to fetch font: ${response.status}`);
     }
@@ -18,15 +20,15 @@ export const loadPTSansFont = async (): Promise<string | null> => {
     
     return base64FontData;
   } catch (err) {
-    console.error('Failed to load PT Sans font:', err);
+    console.error('Failed to load Montserrat font:', err);
     return null;
   }
 };
 
-export const loadPTSansBoldFont = async (): Promise<string | null> => {
+export const loadMontserratBoldFont = async (): Promise<string | null> => {
   try {
-    // Load PT Sans Bold with Cyrillic subset from Google Fonts CDN
-    const response = await fetch('https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh0OqtLR8a8zI.ttf');
+    // Montserrat Bold - full character set including Cyrillic
+    const response = await fetch('https://cdn.jsdelivr.net/fontsource/fonts/montserrat@latest/cyrillic-700-normal.ttf');
     if (!response.ok) {
       throw new Error(`Failed to fetch font: ${response.status}`);
     }
@@ -42,7 +44,11 @@ export const loadPTSansBoldFont = async (): Promise<string | null> => {
     
     return base64FontData;
   } catch (err) {
-    console.error('Failed to load PT Sans Bold font:', err);
+    console.error('Failed to load Montserrat Bold font:', err);
     return null;
   }
 };
+
+// Legacy exports for backward compatibility
+export const loadPTSansFont = loadMontserratFont;
+export const loadPTSansBoldFont = loadMontserratBoldFont;
