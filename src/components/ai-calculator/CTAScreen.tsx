@@ -6,6 +6,7 @@ import { Send, ExternalLink } from 'lucide-react';
 import { DiagnosticData, CalculationResult } from './types';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { generatePDF } from './PDFGenerator';
 
 interface CTAScreenProps {
   onSubmit: () => void;
@@ -42,12 +43,17 @@ const CTAScreen = ({ data, result }: CTAScreenProps) => {
     setIsSubmitting(true);
 
     try {
+      // Generate PDF as base64
+      toast.info('Генерируем PDF...');
+      const pdfBase64 = await generatePDF(data, result, true);
+
       const { data: responseData, error } = await supabase.functions.invoke('save-lead', {
         body: {
           name: formData.name,
           telegram: formData.telegram,
           phone: formData.phone,
           industry: formData.industry,
+          pdfBase64,
           diagnosticResults: {
             painPoints: data.painPoints,
             employeeCount: data.employeeCount,

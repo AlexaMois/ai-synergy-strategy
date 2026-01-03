@@ -26,6 +26,7 @@ serve(async (req) => {
       telegram,
       phone,
       industry,
+      pdfBase64,
       diagnosticResults
     } = body;
 
@@ -45,6 +46,7 @@ serve(async (req) => {
         telegram_nick: telegram.trim(),
         phone: phone.trim(),
         industry: industry.trim(),
+        pdf_base64: pdfBase64 || null,
         pain_points: diagnosticResults.painPoints || [],
         employee_count: diagnosticResults.employeeCount || 0,
         avg_salary: diagnosticResults.avgSalary || 0,

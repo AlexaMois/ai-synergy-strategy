@@ -12,7 +12,7 @@ const getReadinessLevel = (score: number): string => {
   return 'Высокий (готовы масштабировать)';
 };
 
-export const generatePDF = async (data: DiagnosticData, result: CalculationResult) => {
+export const generatePDF = async (data: DiagnosticData, result: CalculationResult, returnBase64 = false): Promise<string | void> => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const margin = 20;
@@ -215,7 +215,11 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
   doc.setFont(fontName, 'bold');
   doc.text('Обсудить архитектуру внедрения: aleksandra-ai.ru/start', margin, y);
 
-  // Save
+  // Return base64 or save
+  if (returnBase64) {
+    return doc.output('datauristring').split(',')[1]; // Return only base64 part
+  }
+
   doc.save(`AI-Diagnostic-Brief-${today.replace(/\./g, '-')}.pdf`);
 };
 

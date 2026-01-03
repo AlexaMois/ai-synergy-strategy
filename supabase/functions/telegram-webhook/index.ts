@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { decode } from "https://deno.land/std@0.168.0/encoding/base64.ts";
 
 const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN') ?? '';
 const TELEGRAM_ADMIN_CHAT_ID = Deno.env.get('TELEGRAM_CHAT_ID') ?? '';
@@ -22,10 +23,14 @@ async function sendTelegramMessage(chatId: number | string, text: string, parseM
   return response.json();
 }
 
-async function sendTelegramDocument(chatId: number | string, document: ArrayBuffer, filename: string, caption: string) {
+async function sendTelegramDocument(chatId: number | string, pdfBase64: string, filename: string, caption: string) {
+  // Decode base64 to Uint8Array and convert to ArrayBuffer
+  const pdfBytes = decode(pdfBase64);
+  const arrayBuffer = pdfBytes.buffer.slice(pdfBytes.byteOffset, pdfBytes.byteOffset + pdfBytes.byteLength) as ArrayBuffer;
+  
   const formData = new FormData();
   formData.append('chat_id', String(chatId));
-  formData.append('document', new Blob([document], { type: 'application/pdf' }), filename);
+  formData.append('document', new Blob([arrayBuffer], { type: 'application/pdf' }), filename);
   formData.append('caption', caption);
   formData.append('parse_mode', 'HTML');
 
@@ -79,7 +84,6 @@ serve(async (req) => {
     // Handle /start command
     if (update.message?.text?.startsWith('/start')) {
       const chatId = update.message.chat.id;
-      const userId = update.message.from.id;
       const parts = update.message.text.split(' ');
       
       if (parts.length > 1) {
@@ -91,7 +95,7 @@ serve(async (req) => {
           .from('leads')
           .select('*')
           .eq('lead_id', leadId)
-          .single();
+          .maybeSingle();
 
         if (findError || !lead) {
           console.error('Lead not found:', findError);
@@ -111,8 +115,33 @@ serve(async (req) => {
           console.error('Error updating lead:', updateError);
         }
 
-        // Send user report message
-        const userMessage = `
+        // Send PDF if available
+        if (lead.pdf_base64) {
+          console.log('Sending PDF to user...');
+          const today = new Date().toLocaleDateString('ru-RU').replace(/\./g, '-');
+          const filename = `AI-Diagnostic-Brief-${today}.pdf`;
+          
+          const caption = `🎯 <b>Ваш диагностический отчёт готов!</b>
+
+👤 ${lead.name}
+📊 Сфера: ${lead.industry}
+
+${getReadinessEmoji(lead.ai_readiness_level)} AI-готовность: ${getReadinessText(lead.ai_readiness_level)}
+💰 Потенциал: ${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)}/год
+
+📩 Скоро с вами свяжется консультант`;
+
+          const sendResult = await sendTelegramDocument(chatId, lead.pdf_base64, filename, caption);
+          console.log('PDF send result:', JSON.stringify(sendResult, null, 2));
+          
+          if (!sendResult.ok) {
+            // Fallback to text message if PDF fails
+            console.error('Failed to send PDF, sending text message');
+            await sendTelegramMessage(chatId, caption);
+          }
+        } else {
+          // No PDF, send text summary
+          const userMessage = `
 🎯 <b>Ваш отчёт готов!</b>
 
 👤 <b>${lead.name}</b>
@@ -133,11 +162,12 @@ ${lead.pain_points.map((p: string) => `• ${p}`).join('\n')}
 ━━━━━━━━━━━━━━━━━━━━━
 
 📩 Скоро с вами свяжется консультант для разбора вашей ситуации.
-        `.trim();
+          `.trim();
 
-        await sendTelegramMessage(chatId, userMessage);
+          await sendTelegramMessage(chatId, userMessage);
+        }
 
-        // Mark as pdf_sent (we're sending text report for now)
+        // Mark as pdf_sent
         await supabase
           .from('leads')
           .update({ pdf_sent: true })
