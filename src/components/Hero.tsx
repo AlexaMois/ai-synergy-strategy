@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, ArrowRight, AlertCircle, Lightbulb, Quote, TrendingUp, ChevronDown, ChevronUp, ChevronsDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { trackCTAClick } from "@/utils/analytics";
@@ -113,6 +113,7 @@ const Hero = () => {
   const [isCardExpanded, setIsCardExpanded] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{
     [key: string]: HTMLButtonElement | null;
@@ -120,6 +121,17 @@ const Hero = () => {
   const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
   const currentIndex = solutions.findIndex(s => s.id === activeSolution);
   const minSwipeDistance = 50;
+
+  // Hide scroll hint on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollHint(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Swipe handlers
   const onTouchStart = (e: React.TouchEvent) => {
@@ -440,6 +452,23 @@ const Hero = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Hint */}
+      <div 
+        className={cn(
+          "absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-opacity duration-500 cursor-pointer",
+          showScrollHint ? "opacity-60 hover:opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => {
+          const nextSection = document.querySelector('#trust-marquee') || document.querySelector('section:nth-of-type(2)');
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+      >
+        <span className="text-xs text-muted-foreground font-medium hidden sm:block">Листайте</span>
+        <ChevronsDown className="w-5 h-5 text-muted-foreground animate-bounce-gentle" />
       </div>
     </section>;
 };

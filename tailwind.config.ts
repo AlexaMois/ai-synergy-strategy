@@ -155,6 +155,14 @@ export default {
             strokeDashoffset: "-100",
           },
         },
+        "bounce-gentle": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(8px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -163,6 +171,7 @@ export default {
         "blink": "blink 1s infinite",
         "breathe": "breathe 10s ease-in-out infinite",
         "twinkle": "twinkle 2s ease-in-out infinite",
+        "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
       },
     },
   },
