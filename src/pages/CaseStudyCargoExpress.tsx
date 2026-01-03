@@ -8,12 +8,15 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Image, Phone, MessageSquare, Mic } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 const CaseStudyCargoExpress = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'cases', buttonText: 'Cargo Express CTA' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;

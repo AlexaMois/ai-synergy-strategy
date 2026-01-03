@@ -7,9 +7,11 @@ import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Users, Cpu, Blocks, GraduationCap, Shield } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { trackCTAClick } from "@/utils/analytics";
 
 const AddOnsPage = () => {
   const scrollToContact = () => {
+    trackCTAClick({ location: 'services', buttonText: 'Доп. услуги CTA' });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });

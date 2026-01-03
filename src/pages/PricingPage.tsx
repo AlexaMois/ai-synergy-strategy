@@ -11,12 +11,15 @@ import AnimatedMetric from "@/components/AnimatedMetric";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
+import { trackCTAClick } from "@/utils/analytics";
 
 const PricingPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'pricing' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;

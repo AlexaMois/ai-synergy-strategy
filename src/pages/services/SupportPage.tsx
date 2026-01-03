@@ -14,9 +14,11 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import trainingTeamImage from "@/assets/services/training-team.jpg";
+import { trackCTAClick } from "@/utils/analytics";
 
 const SupportPage = () => {
   const scrollToContact = () => {
+    trackCTAClick({ location: 'services', buttonText: 'Сопровождение CTA' });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });

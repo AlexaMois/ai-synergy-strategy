@@ -27,11 +27,13 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 const DocSearchCasePage = () => {
   const navigate = useNavigate();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'cases', buttonText: 'DocSearch CTA' });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });

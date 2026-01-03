@@ -9,6 +9,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { ArrowRight } from "lucide-react";
 import { JSX } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { trackCTAClick } from "@/utils/analytics";
 
 const FAQ = () => {
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
@@ -16,6 +17,8 @@ const FAQ = () => {
   const location = useLocation();
 
   const scrollToContact = () => {
+    trackCTAClick({ location: 'faq' });
+    
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;
