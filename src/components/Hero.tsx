@@ -129,7 +129,9 @@ const Hero = () => {
         setShowScrollHint(false);
       }
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -191,7 +193,10 @@ const Hero = () => {
     setIsPaused(true); // Полная остановка навсегда
   }, []);
   const handleCTAClick = () => {
-    trackCTAClick({ location: 'hero', buttonText: currentSolution.ctaText });
+    trackCTAClick({
+      location: 'hero',
+      buttonText: currentSolution.ctaText
+    });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({
@@ -455,18 +460,14 @@ const Hero = () => {
       </div>
 
       {/* Scroll Hint */}
-      <div 
-        className={cn(
-          "absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-opacity duration-500 cursor-pointer",
-          showScrollHint ? "opacity-60 hover:opacity-100" : "opacity-0 pointer-events-none"
-        )}
-        onClick={() => {
-          const nextSection = document.querySelector('#trust-marquee') || document.querySelector('section:nth-of-type(2)');
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-      >
+      <div className={cn("absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-opacity duration-500 cursor-pointer", showScrollHint ? "opacity-60 hover:opacity-100" : "opacity-0 pointer-events-none")} onClick={() => {
+      const nextSection = document.querySelector('#trust-marquee') || document.querySelector('section:nth-of-type(2)');
+      if (nextSection) {
+        nextSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }}>
         <span className="text-xs text-muted-foreground font-medium hidden sm:block">Листайте</span>
         <ChevronsDown className="w-5 h-5 text-muted-foreground animate-bounce-gentle" />
       </div>
