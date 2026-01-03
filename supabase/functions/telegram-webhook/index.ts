@@ -5,10 +5,22 @@ import { decode } from "https://deno.land/std@0.168.0/encoding/base64.ts";
 const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN') ?? '';
 const TELEGRAM_ADMIN_CHAT_ID = Deno.env.get('TELEGRAM_CHAT_ID') ?? '';
 
+// Restricted CORS - webhook primarily receives from Telegram, but allow production domain for testing
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://aleksamois.ru',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// HTML escape function to prevent injection in Telegram messages
+function escapeHtml(text: string): string {
+  if (!text || typeof text !== 'string') return '';
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
 
 async function sendTelegramMessage(chatId: number | string, text: string, parseMode = 'HTML') {
   const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -71,6 +83,22 @@ function getReadinessText(level: string): string {
   }
 }
 
+// Validate and sanitize Telegram username (alphanumeric and underscores only)
+function sanitizeTelegramUsername(username: string): string {
+  const cleaned = username.replace(/^@/, '').trim();
+  // Telegram usernames: 5-32 chars, alphanumeric and underscores only
+  if (/^[a-zA-Z0-9_]{5,32}$/.test(cleaned)) {
+    return cleaned;
+  }
+  return '';
+}
+
+// Validate and format phone number
+function sanitizePhone(phone: string): string {
+  // Keep only digits and leading +
+  return phone.replace(/[^\d+]/g, '').slice(0, 20);
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -119,6 +147,11 @@ serve(async (req) => {
           console.error('Error updating lead:', updateError);
         }
 
+        // Escape user-provided data for HTML messages
+        const safeName = escapeHtml(lead.name);
+        const safeIndustry = escapeHtml(lead.industry);
+        const safePainPoints = lead.pain_points.map((p: string) => escapeHtml(p));
+
         // Send PDF if available
         if (lead.pdf_base64) {
           console.log('Sending PDF to user...');
@@ -128,7 +161,7 @@ serve(async (req) => {
           // Format effect range (numbers only, currency in text)
           const effectRange = `${formatNumber(lead.min_savings)} – ${formatNumber(lead.max_savings)}`;
           
-          const caption = `${lead.name}, добрый день.
+          const caption = `${safeName}, добрый день.
 
 Ваш диагностический брифинг готов — отправляю PDF.
 
@@ -149,12 +182,12 @@ serve(async (req) => {
             await sendTelegramMessage(chatId, caption);
           }
         } else {
-          // No PDF, send text summary
+          // No PDF, send text summary with escaped user input
           const userMessage = `
 🎯 <b>Ваш отчёт готов!</b>
 
-👤 <b>${lead.name}</b>
-📊 Сфера: ${lead.industry}
+👤 <b>${safeName}</b>
+📊 Сфера: ${safeIndustry}
 
 ━━━━━━━━━━━━━━━━━━━━━
 
@@ -166,7 +199,7 @@ ${formatCurrency(lead.min_savings)} – ${formatCurrency(lead.max_savings)} в �
 📈 <b>Ожидаемый ROI:</b> ${Math.round(lead.roi * 100)}%
 
 🔥 <b>Выявленные точки роста:</b>
-${lead.pain_points.map((p: string) => `• ${p}`).join('\n')}
+${safePainPoints.map((p: string) => `• ${p}`).join('\n')}
 
 ━━━━━━━━━━━━━━━━━━━━━
 
@@ -182,23 +215,26 @@ ${lead.pain_points.map((p: string) => `• ${p}`).join('\n')}
           .update({ pdf_sent: true })
           .eq('lead_id', leadId);
 
-        // Send admin notification
+        // Send admin notification with sanitized data
         if (TELEGRAM_ADMIN_CHAT_ID && !lead.admin_notified) {
-          // Format telegram username for clickable link
-          const tgUsername = lead.telegram_nick.replace(/^@/, '');
-          const tgLink = `<a href="https://t.me/${tgUsername}">@${tgUsername}</a>`;
+          // Validate and format telegram username for clickable link
+          const tgUsername = sanitizeTelegramUsername(lead.telegram_nick);
+          const tgLink = tgUsername 
+            ? `<a href="https://t.me/${tgUsername}">@${tgUsername}</a>`
+            : escapeHtml(lead.telegram_nick);
           
-          // Format phone for clickable link (remove non-digits except +)
-          const phoneClean = lead.phone.replace(/[^\d+]/g, '');
-          const phoneLink = `<a href="tel:${phoneClean}">${lead.phone}</a>`;
+          // Validate and format phone for clickable link
+          const phoneClean = sanitizePhone(lead.phone);
+          const phoneDisplay = escapeHtml(lead.phone);
+          const phoneLink = phoneClean ? `<a href="tel:${phoneClean}">${phoneDisplay}</a>` : phoneDisplay;
           
           const adminMessage = `
 🔔 <b>НОВЫЙ ЛИД ИЗ КАЛЬКУЛЯТОРА</b>
 
-👤 <b>Имя:</b> ${lead.name}
+👤 <b>Имя:</b> ${safeName}
 📱 <b>Telegram:</b> ${tgLink}
 📞 <b>Телефон:</b> ${phoneLink}
-🏢 <b>Сфера:</b> ${lead.industry}
+🏢 <b>Сфера:</b> ${safeIndustry}
 
 ━━━━━━━━━━━━━━━━━━━━━
 
@@ -213,7 +249,7 @@ ${getReadinessEmoji(lead.ai_readiness_level)} <b>AI-готовность:</b> ${
 📈 <b>ROI:</b> ${Math.round(lead.roi * 100)}%
 
 🔥 <b>Боли:</b>
-${lead.pain_points.map((p: string) => `• ${p}`).join('\n')}
+${safePainPoints.map((p: string) => `• ${p}`).join('\n')}
 
 ━━━━━━━━━━━━━━━━━━━━━
 🆔 Lead ID: ${lead.lead_id}
