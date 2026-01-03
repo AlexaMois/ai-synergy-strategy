@@ -175,12 +175,20 @@ ${lead.pain_points.map((p: string) => `• ${p}`).join('\n')}
 
         // Send admin notification
         if (TELEGRAM_ADMIN_CHAT_ID && !lead.admin_notified) {
+          // Format telegram username for clickable link
+          const tgUsername = lead.telegram_nick.replace(/^@/, '');
+          const tgLink = `<a href="https://t.me/${tgUsername}">@${tgUsername}</a>`;
+          
+          // Format phone for clickable link (remove non-digits except +)
+          const phoneClean = lead.phone.replace(/[^\d+]/g, '');
+          const phoneLink = `<a href="tel:${phoneClean}">${lead.phone}</a>`;
+          
           const adminMessage = `
 🔔 <b>НОВЫЙ ЛИД ИЗ КАЛЬКУЛЯТОРА</b>
 
 👤 <b>Имя:</b> ${lead.name}
-📱 <b>Telegram:</b> ${lead.telegram_nick}
-📞 <b>Телефон:</b> ${lead.phone}
+📱 <b>Telegram:</b> ${tgLink}
+📞 <b>Телефон:</b> ${phoneLink}
 🏢 <b>Сфера:</b> ${lead.industry}
 
 ━━━━━━━━━━━━━━━━━━━━━
