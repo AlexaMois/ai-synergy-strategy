@@ -1,14 +1,36 @@
 import { jsPDF } from 'jspdf';
 import { DiagnosticData, CalculationResult } from './types';
 
+// Base64 encoded PTSans font (subset for Cyrillic)
+const addCyrillicFont = async (doc: jsPDF) => {
+  // Using standard fonts with encoding workaround
+  // We'll use transliteration for reliable PDF output
+  return doc;
+};
+
 const formatCurrency = (value: number): string => {
   return Math.round(value).toLocaleString('ru-RU');
 };
 
-const getReadinessLevel = (score: number): string => {
-  if (score < 40) return 'Низкий (сначала порядок)';
-  if (score < 70) return 'Средний (можно начинать с пилота)';
-  return 'Высокий (можно масштабировать)';
+const getReadinessLevel = (score: number): { ru: string; en: string } => {
+  if (score < 40) return { ru: 'Низкий', en: 'Low (organize first)' };
+  if (score < 70) return { ru: 'Средний', en: 'Medium (start with pilot)' };
+  return { ru: 'Высокий', en: 'High (ready to scale)' };
+};
+
+const painPointsMap: Record<string, string> = {
+  'Ошибки и переделки': 'Errors and rework',
+  'Рутина и ручной труд': 'Routine and manual work',
+  'Потеря данных': 'Data loss',
+  'Неоптимальные закупки': 'Suboptimal procurement',
+  'Простои и ожидание': 'Downtime and waiting',
+  'Нехватка персонала': 'Staff shortage',
+  'Текучка кадров': 'Staff turnover',
+  'Медленные решения': 'Slow decision-making',
+  'Контроль вручную': 'Manual control',
+  'Хаос в документах': 'Document chaos',
+  'Потери клиентов': 'Customer loss',
+  'Дорогие поставщики': 'Expensive suppliers',
 };
 
 export const generatePDF = (data: DiagnosticData, result: CalculationResult) => {
@@ -39,13 +61,13 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
   doc.rect(0, 0, pageWidth, 45, 'F');
   
   addText('AI DIAGNOSTIC BRIEF', margin, 20, { fontSize: 18, fontStyle: 'bold', color: [255, 255, 255] });
-  addText('Предварительная оценка потенциала ИИ для вашего бизнеса', margin, 32, { fontSize: 11, color: [180, 180, 180] });
+  addText('Preliminary AI Potential Assessment for Your Business', margin, 32, { fontSize: 11, color: [180, 180, 180] });
 
   y = 55;
   
   // Date
   const today = new Date().toLocaleDateString('ru-RU');
-  addText(`Дата: ${today}`, margin, y, { fontSize: 10, color: [120, 120, 120] });
+  addText(`Date: ${today}`, margin, y, { fontSize: 10, color: [120, 120, 120] });
   y += 15;
 
   // Executive Summary
@@ -54,7 +76,7 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
   y += 10;
   
   const summaryLines = doc.splitTextToSize(
-    'На основе введённых параметров система оценила потенциал управленческого эффекта от внедрения ИИ и выявила зоны максимальной отдачи.',
+    'Based on the input parameters, the system evaluated the potential management impact of AI implementation and identified the zones of maximum return on investment.',
     contentWidth
   );
   doc.setFontSize(10);
@@ -65,7 +87,7 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
 
   // Key Figures
   y = addLine(y);
-  addText('КЛЮЧЕВЫЕ ПОКАЗАТЕЛИ', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('KEY METRICS', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
   doc.setFontSize(10);
@@ -73,105 +95,107 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
   doc.setTextColor(51, 51, 51);
   
   const keyFigures = [
-    [`Экономический эффект:`, `≈ ${formatCurrency(result.minSavings)} – ${formatCurrency(result.maxSavings)} ₽/год`],
-    [`Типичный ROI:`, `~${Math.max(0, result.roi)}%`],
-    [`Окупаемость:`, `~2–4 месяца`],
-    [`Стоимость бездействия:`, `≈ ${formatCurrency(result.minMonthlyLosses)} – ${formatCurrency(result.maxMonthlyLosses)} ₽/мес`],
-    [`Неэффективное время:`, `~${result.inefficientHours} часов/мес`],
+    [`Economic Effect:`, `${formatCurrency(result.minSavings)} - ${formatCurrency(result.maxSavings)} RUB/year`],
+    [`Typical ROI:`, `~${Math.max(0, result.roi)}%`],
+    [`Payback Period:`, `~2-4 months`],
+    [`Cost of Inaction:`, `${formatCurrency(result.minMonthlyLosses)} - ${formatCurrency(result.maxMonthlyLosses)} RUB/month`],
+    [`Inefficient Time:`, `~${result.inefficientHours} hours/month`],
   ];
 
   keyFigures.forEach(([label, value]) => {
     doc.setFont('helvetica', 'normal');
     doc.text(label, margin, y);
     doc.setFont('helvetica', 'bold');
-    doc.text(value, margin + 55, y);
+    doc.text(value, margin + 50, y);
     y += 6;
   });
   y += 5;
 
   // Risk Assessment
   y = addLine(y);
-  addText('РИСК-ОЦЕНКА', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('RISK ASSESSMENT', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
   const riskFigures = [
-    [`Потери из-за ошибок:`, `≈ ${formatCurrency(result.minErrorLosses)} – ${formatCurrency(result.maxErrorLosses)} ₽/год`],
-    [`Управленческая нагрузка:`, `~${result.managerControlHours} часов/мес`],
+    [`Error-related Losses:`, `${formatCurrency(result.minErrorLosses)} - ${formatCurrency(result.maxErrorLosses)} RUB/year`],
+    [`Management Overhead:`, `~${result.managerControlHours} hours/month`],
   ];
 
   riskFigures.forEach(([label, value]) => {
     doc.setFont('helvetica', 'normal');
     doc.text(label, margin, y);
     doc.setFont('helvetica', 'bold');
-    doc.text(value, margin + 55, y);
+    doc.text(value, margin + 50, y);
     y += 6;
   });
   y += 5;
 
   // AI Readiness Score
   y = addLine(y);
-  addText('ИНДЕКС ГОТОВНОСТИ', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('AI READINESS INDEX', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
+  const readiness = getReadinessLevel(result.aiReadinessScore);
   doc.setFont('helvetica', 'normal');
   doc.text('AI Readiness Score:', margin, y);
   doc.setFont('helvetica', 'bold');
-  doc.text(`${result.aiReadinessScore} / 100`, margin + 55, y);
+  doc.text(`${result.aiReadinessScore} / 100`, margin + 50, y);
   y += 6;
   
   doc.setFont('helvetica', 'normal');
-  doc.text('Уровень:', margin, y);
+  doc.text('Level:', margin, y);
   doc.setFont('helvetica', 'bold');
-  doc.text(getReadinessLevel(result.aiReadinessScore), margin + 55, y);
+  doc.text(readiness.en, margin + 50, y);
   y += 12;
 
   // Maximum Impact Zones
   y = addLine(y);
-  addText('ЗОНЫ МАКСИМАЛЬНОГО ЭФФЕКТА', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('MAXIMUM IMPACT ZONES', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   data.painPoints.slice(0, 3).forEach((zone) => {
-    doc.text(`• ${zone}`, margin, y);
+    const englishZone = painPointsMap[zone] || zone;
+    doc.text(`- ${englishZone}`, margin, y);
     y += 6;
   });
   y += 5;
 
   // Key Risks
   y = addLine(y);
-  addText('КЛЮЧЕВЫЕ РИСКИ', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('KEY RISKS', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
   const risks = [
-    'Отсутствие метрик',
-    '«Дешёвые боты»',
-    'Нет ответственности за результат',
+    'Lack of metrics',
+    'Cheap bot solutions',
+    'No accountability for results',
   ];
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   risks.forEach((risk) => {
-    doc.text(`• ${risk}`, margin, y);
+    doc.text(`- ${risk}`, margin, y);
     y += 6;
   });
   y += 5;
 
   // What NOT to do
   y = addLine(y);
-  addText('ЧТО НЕ РЕКОМЕНДУЕТСЯ ДЕЛАТЬ', margin, y, { fontSize: 13, fontStyle: 'bold' });
+  addText('WHAT NOT TO DO', margin, y, { fontSize: 13, fontStyle: 'bold' });
   y += 12;
 
   const notToDo = [
-    'Внедрять без архитектуры',
-    'Экономить на подготовке команды',
-    'Игнорировать метрики успеха',
+    'Implement without architecture',
+    'Skimp on team preparation',
+    'Ignore success metrics',
   ];
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   notToDo.forEach((item) => {
-    doc.text(`• ${item}`, margin, y);
+    doc.text(`- ${item}`, margin, y);
     y += 6;
   });
 
@@ -184,7 +208,7 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
   doc.setFontSize(9);
   doc.setTextColor(120, 120, 120);
   const footerLines = doc.splitTextToSize(
-    'Этот отчёт является предварительной оценкой и не заменяет архитектурную диагностику.',
+    'This report is a preliminary assessment and does not replace architectural diagnostics.',
     contentWidth
   );
   doc.text(footerLines, margin, y);
@@ -192,7 +216,7 @@ export const generatePDF = (data: DiagnosticData, result: CalculationResult) => 
 
   doc.setTextColor(51, 51, 51);
   doc.setFont('helvetica', 'bold');
-  doc.text('→ Обсудить архитектуру внедрения: aleksandra-ai.ru/start', margin, y);
+  doc.text('Discuss implementation architecture: aleksandra-ai.ru/start', margin, y);
 
   // Save
   doc.save(`AI-Diagnostic-Brief-${today.replace(/\./g, '-')}.pdf`);
