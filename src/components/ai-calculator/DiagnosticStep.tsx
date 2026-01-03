@@ -12,10 +12,24 @@ interface DiagnosticStepProps {
   onBack?: () => void;
 }
 
+const EMPLOYEE_COUNT_OPTIONS = [
+  { label: '1–5 человек', value: 3 },
+  { label: '6–15 человек', value: 10 },
+  { label: '16–30 человек', value: 23 },
+  { label: '30+ человек', value: 40 },
+];
+
+const SALARY_OPTIONS = [
+  { label: '40 000 – 60 000 ₽', value: 50000 },
+  { label: '60 000 – 90 000 ₽', value: 75000 },
+  { label: '90 000 – 130 000 ₽', value: 110000 },
+  { label: '130 000+ ₽', value: 150000 },
+];
+
 const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProps) => {
   const [selectedPainPoints, setSelectedPainPoints] = useState<string[]>([]);
-  const [employeeCount, setEmployeeCount] = useState('');
-  const [avgSalary, setAvgSalary] = useState('');
+  const [selectedEmployeeCount, setSelectedEmployeeCount] = useState<number | null>(null);
+  const [selectedSalary, setSelectedSalary] = useState<number | null>(null);
   const [selectedTimeShare, setSelectedTimeShare] = useState<number | null>(null);
   const [selectedCriticality, setSelectedCriticality] = useState<string | null>(null);
   const [selectedErrorTypes, setSelectedErrorTypes] = useState<string[]>([]);
@@ -86,15 +100,21 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
             <p className="text-sm text-muted-foreground">
               Только те, кто реально тратит на это время
             </p>
-            <div className="mt-6">
-              <Input
-                type="number"
-                placeholder="Например: 10"
-                value={employeeCount}
-                onChange={(e) => setEmployeeCount(e.target.value)}
-                className="text-lg h-14"
-                min={1}
-              />
+            <div className="space-y-3 mt-6">
+              {EMPLOYEE_COUNT_OPTIONS.map((option) => (
+                <button
+                  key={option.label}
+                  className={cn(
+                    'w-full text-left p-4 rounded-xl border transition-all',
+                    selectedEmployeeCount === option.value
+                      ? 'border-primary bg-primary/5'
+                      : 'border-border bg-background hover:border-primary/50'
+                  )}
+                  onClick={() => setSelectedEmployeeCount(option.value)}
+                >
+                  <span className="text-foreground">{option.label}</span>
+                </button>
+              ))}
             </div>
             <div className="flex gap-3 mt-6">
               {onBack && (
@@ -105,8 +125,8 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
               <Button
                 size="lg"
                 className="flex-1"
-                disabled={!employeeCount || parseInt(employeeCount) < 1}
-                onClick={() => onNext(parseInt(employeeCount))}
+                disabled={selectedEmployeeCount === null}
+                onClick={() => onNext(selectedEmployeeCount!)}
               >
                 Продолжить
               </Button>
@@ -118,17 +138,26 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
         return (
           <div className="space-y-4">
             <h3 className="text-xl md:text-2xl font-semibold text-foreground">
-              Средняя зарплата одного сотрудника в месяц (₽)
+              Средняя зарплата одного сотрудника в месяц
             </h3>
-            <div className="mt-6">
-              <Input
-                type="number"
-                placeholder="70 000"
-                value={avgSalary}
-                onChange={(e) => setAvgSalary(e.target.value)}
-                className="text-lg h-14"
-                min={10000}
-              />
+            <p className="text-sm text-muted-foreground">
+              Примерный диапазон для участвующих в процессах
+            </p>
+            <div className="space-y-3 mt-6">
+              {SALARY_OPTIONS.map((option) => (
+                <button
+                  key={option.label}
+                  className={cn(
+                    'w-full text-left p-4 rounded-xl border transition-all',
+                    selectedSalary === option.value
+                      ? 'border-primary bg-primary/5'
+                      : 'border-border bg-background hover:border-primary/50'
+                  )}
+                  onClick={() => setSelectedSalary(option.value)}
+                >
+                  <span className="text-foreground">{option.label}</span>
+                </button>
+              ))}
             </div>
             <div className="flex gap-3 mt-6">
               {onBack && (
@@ -139,8 +168,8 @@ const DiagnosticStep = ({ step, totalSteps, onNext, onBack }: DiagnosticStepProp
               <Button
                 size="lg"
                 className="flex-1"
-                disabled={!avgSalary || parseInt(avgSalary) < 10000}
-                onClick={() => onNext(parseInt(avgSalary))}
+                disabled={selectedSalary === null}
+                onClick={() => onNext(selectedSalary!)}
               >
                 Продолжить
               </Button>
