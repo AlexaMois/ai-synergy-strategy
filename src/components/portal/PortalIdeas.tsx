@@ -10,7 +10,23 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Search, ThumbsUp, Plus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
 
+// Client-side validation schema (matches server-side)
+const ideaFormSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(2, "Имя должно содержать минимум 2 символа")
+    .max(100, "Имя слишком длинное"),
+  email: z.string()
+    .trim()
+    .email("Некорректный email адрес")
+    .max(255, "Email слишком длинный"),
+  idea: z.string()
+    .trim()
+    .min(10, "Описание идеи должно содержать минимум 10 символов")
+    .max(2000, "Описание идеи слишком длинное"),
+});
 type IdeaStatus = "backlog" | "planned" | "in_progress" | "done";
 type IdeaPriority = "low" | "medium" | "high";
 
@@ -75,7 +91,9 @@ const PortalIdeas = () => {
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formIdea, setFormIdea] = useState("");
-
+  const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; idea?: string }>({});
+  // Honeypot field (hidden from users, bots will fill it)
+  const [honeypot, setHoneypot] = useState("");
   const queryClient = useQueryClient();
 
   const { data: ideas = [], isLoading } = useQuery({
@@ -127,28 +145,32 @@ const PortalIdeas = () => {
   });
 
   const submitMutation = useMutation({
-    mutationFn: async () => {
-      const { error } = await supabase.from("ideas").insert({
-        title: formIdea.substring(0, 100),
-        description: `От: ${formName} (${formEmail})\n\n${formIdea}`,
-        source: "client_form",
-        status: "backlog",
-        priority: "medium",
-        votes: 0,
+    mutationFn: async (data: { name: string; email: string; idea: string; website: string }) => {
+      const { data: response, error } = await supabase.functions.invoke("submit-idea", {
+        body: data,
       });
 
-      if (error) throw error;
+      if (error) {
+        throw new Error(error.message || "Не удалось отправить идею");
+      }
+
+      if (response?.error) {
+        throw new Error(response.error);
+      }
+
+      return response;
     },
     onSuccess: () => {
       setFormName("");
       setFormEmail("");
       setFormIdea("");
+      setFormErrors({});
       setIsDialogOpen(false);
       queryClient.invalidateQueries({ queryKey: ["portal-ideas"] });
       toast.success("Идея отправлена! Спасибо за предложение.");
     },
-    onError: () => {
-      toast.error("Не удалось отправить идею");
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : "Не удалось отправить идею");
     },
   });
 
@@ -163,11 +185,34 @@ const PortalIdeas = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formName.trim() || !formEmail.trim() || !formIdea.trim()) {
-      toast.error("Пожалуйста, заполните все поля");
+    setFormErrors({});
+
+    // Client-side validation
+    const result = ideaFormSchema.safeParse({
+      name: formName,
+      email: formEmail,
+      idea: formIdea,
+    });
+
+    if (!result.success) {
+      const errors: { name?: string; email?: string; idea?: string } = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as "name" | "email" | "idea";
+        if (field && !errors[field]) {
+          errors[field] = err.message;
+        }
+      });
+      setFormErrors(errors);
       return;
     }
-    submitMutation.mutate();
+
+    // Submit with honeypot
+    submitMutation.mutate({
+      name: formName.trim(),
+      email: formEmail.trim(),
+      idea: formIdea.trim(),
+      website: honeypot, // Honeypot - should be empty
+    });
   };
 
   return (
@@ -228,6 +273,18 @@ const PortalIdeas = () => {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot field - hidden from users, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                autoComplete="off"
+                tabIndex={-1}
+                aria-hidden="true"
+                className="absolute -left-[9999px] opacity-0 h-0 w-0"
+              />
+              
               <div className="space-y-2">
                 <Label htmlFor="name">Ваше имя</Label>
                 <Input
@@ -235,8 +292,11 @@ const PortalIdeas = () => {
                   value={formName}
                   onChange={(e) => setFormName(e.target.value)}
                   placeholder="Иван Петров"
-                  required
+                  className={formErrors.name ? "border-destructive" : ""}
                 />
+                {formErrors.name && (
+                  <p className="text-sm text-destructive">{formErrors.name}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
@@ -246,8 +306,11 @@ const PortalIdeas = () => {
                   value={formEmail}
                   onChange={(e) => setFormEmail(e.target.value)}
                   placeholder="ivan@company.ru"
-                  required
+                  className={formErrors.email ? "border-destructive" : ""}
                 />
+                {formErrors.email && (
+                  <p className="text-sm text-destructive">{formErrors.email}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="idea">Ваша идея</Label>
@@ -255,10 +318,17 @@ const PortalIdeas = () => {
                   id="idea"
                   value={formIdea}
                   onChange={(e) => setFormIdea(e.target.value)}
-                  placeholder="Опишите вашу идею или предложение..."
+                  placeholder="Опишите вашу идею или предложение (минимум 10 символов)..."
                   rows={4}
-                  required
+                  maxLength={2000}
+                  className={formErrors.idea ? "border-destructive" : ""}
                 />
+                {formErrors.idea && (
+                  <p className="text-sm text-destructive">{formErrors.idea}</p>
+                )}
+                <p className="text-xs text-muted-foreground text-right">
+                  {formIdea.length}/2000
+                </p>
               </div>
               <Button type="submit" className="w-full" disabled={submitMutation.isPending}>
                 {submitMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
