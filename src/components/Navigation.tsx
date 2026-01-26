@@ -47,7 +47,9 @@ const preloadPage = (path: string) => {
     case '/materials/blog':
       import('../pages/Blog');
       break;
-  }
+    case '/portal':
+      import('../pages/portal/PortalPage');
+      break;
 };
 interface NavLink {
   href: string;
@@ -160,6 +162,9 @@ const Navigation = () => {
     }, {
       href: "/materials/blog",
       label: "Блог"
+    }, {
+      href: "/portal",
+      label: "Портал обновлений"
     }]
   }];
   const scrollToContact = (e: React.MouseEvent) => {

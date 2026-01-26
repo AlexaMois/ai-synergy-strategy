@@ -45,6 +45,8 @@ const FAQPage = lazy(() => import("./pages/FAQPage"));
 const NewYearGreeting = lazy(() => import("./pages/NewYearGreeting"));
 const Redirect = lazy(() => import("./pages/Redirect"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PortalPage = lazy(() => import("./pages/portal/PortalPage"));
+const PortalAdminPage = lazy(() => import("./pages/portal/PortalAdminPage"));
 
 const queryClient = new QueryClient();
 
@@ -144,6 +146,10 @@ const AppContent = () => {
           <Route path="/test" element={<TestPage />} />
           <Route path="/newyear" element={<NewYearGreeting />} />
           <Route path="/redirect" element={<Redirect />} />
+          
+          {/* Portal */}
+          <Route path="/portal" element={<PortalPage />} />
+          <Route path="/portal/admin" element={<PortalAdminPage />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
