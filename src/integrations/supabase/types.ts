@@ -14,6 +14,35 @@ export type Database = {
   }
   public: {
     Tables: {
+      idea_votes: {
+        Row: {
+          created_at: string
+          id: string
+          idea_id: string
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          idea_id: string
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          idea_id?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "idea_votes_idea_id_fkey"
+            columns: ["idea_id"]
+            isOneToOne: false
+            referencedRelation: "ideas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ideas: {
         Row: {
           created_at: string
@@ -204,7 +233,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_idea_vote: {
+        Args: { p_idea_id: string; p_session_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       idea_priority: "low" | "medium" | "high"
