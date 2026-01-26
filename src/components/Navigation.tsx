@@ -50,6 +50,7 @@ const preloadPage = (path: string) => {
     case '/portal':
       import('../pages/portal/PortalPage');
       break;
+  }
 };
 interface NavLink {
   href: string;
