@@ -51,6 +51,16 @@ const priorityLabels: Record<IdeaPriority, string> = {
   high: "Высокий",
 };
 
+// Generate or retrieve session ID for vote tracking
+const getSessionId = (): string => {
+  let sessionId = localStorage.getItem("portal_session_id");
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem("portal_session_id", sessionId);
+  }
+  return sessionId;
+};
+
 const PortalIdeas = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<IdeaStatus | "all">("all");
@@ -83,15 +93,22 @@ const PortalIdeas = () => {
 
   const voteMutation = useMutation({
     mutationFn: async (ideaId: string) => {
-      const idea = ideas.find((i) => i.id === ideaId);
-      if (!idea) throw new Error("Idea not found");
-
-      const { error } = await supabase
-        .from("ideas")
-        .update({ votes: idea.votes + 1 })
-        .eq("id", ideaId);
+      const sessionId = getSessionId();
+      
+      // Use the secure RPC function to vote
+      const { data, error } = await supabase.rpc("increment_idea_vote", {
+        p_idea_id: ideaId,
+        p_session_id: sessionId,
+      });
 
       if (error) throw error;
+      
+      // Returns false if already voted
+      if (data === false) {
+        throw new Error("ALREADY_VOTED");
+      }
+      
+      return data;
     },
     onSuccess: (_, ideaId) => {
       const newVoted = new Set(votedIds).add(ideaId);
@@ -100,8 +117,12 @@ const PortalIdeas = () => {
       queryClient.invalidateQueries({ queryKey: ["portal-ideas"] });
       toast.success("Спасибо за голос!");
     },
-    onError: () => {
-      toast.error("Не удалось проголосовать");
+    onError: (error) => {
+      if (error instanceof Error && error.message === "ALREADY_VOTED") {
+        toast.error("Вы уже голосовали за эту идею");
+      } else {
+        toast.error("Не удалось проголосовать");
+      }
     },
   });
 
