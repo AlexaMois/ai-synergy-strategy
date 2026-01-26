@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ideas: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          priority: Database["public"]["Enums"]["idea_priority"]
+          source: Database["public"]["Enums"]["idea_source"]
+          status: Database["public"]["Enums"]["idea_status"]
+          title: string
+          updated_at: string
+          votes: number
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          priority?: Database["public"]["Enums"]["idea_priority"]
+          source?: Database["public"]["Enums"]["idea_source"]
+          status?: Database["public"]["Enums"]["idea_status"]
+          title: string
+          updated_at?: string
+          votes?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          priority?: Database["public"]["Enums"]["idea_priority"]
+          source?: Database["public"]["Enums"]["idea_source"]
+          status?: Database["public"]["Enums"]["idea_status"]
+          title?: string
+          updated_at?: string
+          votes?: number
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           admin_notified: boolean
@@ -86,6 +122,83 @@ export type Database = {
         }
         Relationships: []
       }
+      release_notes: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          published_at: string
+          status: Database["public"]["Enums"]["release_status"]
+          summary: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          published_at?: string
+          status?: Database["public"]["Enums"]["release_status"]
+          summary: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          published_at?: string
+          status?: Database["public"]["Enums"]["release_status"]
+          summary?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      roadmap_items: {
+        Row: {
+          created_at: string
+          eta: string | null
+          id: string
+          related_idea_id: string | null
+          short_description: string | null
+          status: Database["public"]["Enums"]["roadmap_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          eta?: string | null
+          id?: string
+          related_idea_id?: string | null
+          short_description?: string | null
+          status?: Database["public"]["Enums"]["roadmap_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          eta?: string | null
+          id?: string
+          related_idea_id?: string | null
+          short_description?: string | null
+          status?: Database["public"]["Enums"]["roadmap_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roadmap_items_related_idea_id_fkey"
+            columns: ["related_idea_id"]
+            isOneToOne: false
+            referencedRelation: "ideas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -94,7 +207,11 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      idea_priority: "low" | "medium" | "high"
+      idea_source: "client" | "internal" | "partner" | "client_form"
+      idea_status: "backlog" | "planned" | "in_progress" | "done"
+      release_status: "released" | "beta" | "internal"
+      roadmap_status: "planned" | "in_progress" | "done"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -221,6 +338,12 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      idea_priority: ["low", "medium", "high"],
+      idea_source: ["client", "internal", "partner", "client_form"],
+      idea_status: ["backlog", "planned", "in_progress", "done"],
+      release_status: ["released", "beta", "internal"],
+      roadmap_status: ["planned", "in_progress", "done"],
+    },
   },
 } as const

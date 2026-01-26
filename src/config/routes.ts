@@ -39,6 +39,8 @@ export const ALLOWED_ROUTES = [
   '/materials/resources',
   '/materials/blog',
   '/newyear',
+  '/portal',
+  '/portal/admin',
 ];
 
 export const isRouteAllowed = (path: string): boolean => {
