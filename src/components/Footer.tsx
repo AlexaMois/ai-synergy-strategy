@@ -111,7 +111,7 @@ const Footer = () => {
 
         {/* Копирайт */}
         <div className="border-t border-background/20 pt-6 text-center text-background/60 text-sm">
-          <p>© ИП Моисеева Александра Алексеевна, 2023–2025. Все права защищены.</p>
+          <p>© ИП Моисеева Александра Алексеевна, 2023–2026. Все права защищены.</p>
         </div>
       </div>
     </footer>;
