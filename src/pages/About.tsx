@@ -178,11 +178,11 @@ const About = () => {
   return <PageTransition>
       <Helmet>
         <title>Обо мне — Александра Моисеева | Независимый инженер ИИ</title>
-        <meta name="description" content="Независимый стратег и инженер ИИ с 13+ годами опыта. 36+ проектов, 350+ аудитов, ROI 200-400%. Сколково, SDS KAEO уровень 5." />
+        <meta name="description" content="Независимый стратег и инженер ИИ с 14+ годами опыта. 36+ проектов, 350+ аудитов, ROI 200-400%. Сколково, SDS KAEO уровень 5." />
         <meta name="keywords" content="Александра Моисеева, инженер ИИ, AI консультант, эксперт по искусственному интеллекту, Сколково" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
         <meta property="og:title" content="Обо мне — Александра Моисеева | Независимый инженер ИИ" />
-        <meta property="og:description" content="Независимый стратег и инженер ИИ с 13+ годами опыта. 36+ проектов, ROI 200-400%." />
+        <meta property="og:description" content="Независимый стратег и инженер ИИ с 14+ годами опыта. 36+ проектов, ROI 200-400%." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -294,7 +294,7 @@ const About = () => {
                   <div>
                       <p className="text-handwriting mb-2">Кто я</p>
                       <p className="text-base leading-relaxed">
-                        стратег и инженер по внедрению ИИ с 13+ годами опыта в управлении, финансах и операционке.
+                        стратег и инженер по внедрению ИИ. 14+ лет опыта в управлении и операциях. 4+ года специализации на ИИ-проектах. 36+ проектов на основе искусственного интеллекта.
                       </p>
                     </div>
                     <div>
