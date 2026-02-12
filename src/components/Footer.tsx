@@ -53,9 +53,9 @@ const Footer = () => {
           <div>
             <p className="text-lg font-semibold mb-4">Контакты</p>
             <div className="flex flex-col gap-3 text-background/80">
-              <a href="tel:+79937217367" className="flex items-center gap-2 text-base hover:text-primary transition-colors">
+              <a href="tel:+79950788837" className="flex items-center gap-2 text-base hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                +7 993 721 73 67
+                +7 995 078 88 37
               </a>
               <a href="mailto:ai@aleksamois.ru" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
                 <Mail className="w-4 h-4 text-primary" strokeWidth={1.5} />

@@ -56,8 +56,8 @@ const Index = () => {
     "url": "https://aleksamois.ru",
     "logo": "https://aleksamois.ru/og-image.png",
     "image": "https://aleksamois.ru/og-image.png",
-    "telephone": "+7 993 721 73 67",
-    "email": "neiroreshenia@yandex.com",
+    "telephone": "+7 995 078 88 37",
+    "email": "ai@aleksamois.ru",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "ул. Красной Гвардии, 24, офис 224",
@@ -90,8 +90,8 @@ const Index = () => {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+7 993 721 73 67",
-      "email": "neiroreshenia@yandex.com",
+      "telephone": "+7 995 078 88 37",
+      "email": "ai@aleksamois.ru",
       "contactType": "customer service",
       "availableLanguage": ["Russian"]
     },

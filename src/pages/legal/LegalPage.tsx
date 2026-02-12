@@ -97,8 +97,8 @@ const LegalPage = () => {
                     <p>ОГРНИП: 323246800027635</p>
                   </div>
                   <div>
-                    <p>Email: neiroreshenia@yandex.com</p>
-                    <p>Телефон: +7 993 721 73 67</p>
+                    <p>Email: ai@aleksamois.ru</p>
+                    <p>Телефон: +7 995 078 88 37</p>
                     <p>Сайт: https://aleksamois.ru</p>
                   </div>
                 </div>

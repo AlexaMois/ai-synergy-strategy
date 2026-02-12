@@ -120,8 +120,8 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-2xl font-medium text-foreground mb-3">8. Контактные данные Оператора</h2>
               <p>ИП Моисеева Александра Алексеевна</p>
-              <p>Email: neiroreshenia@yandex.com</p>
-              <p>Телефон: 8 (993) 721-73-67</p>
+              <p>Email: ai@aleksamois.ru</p>
+              <p>Телефон: +7 995 078 88 37</p>
               <p>Сайт: https://нейрорешения.рф</p>
             </section>
 
