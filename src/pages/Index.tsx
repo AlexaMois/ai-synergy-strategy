@@ -131,11 +131,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Александра Моисеева — Независимый стратег и инженер по ИИ</title>
-        <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%, окупаемость 3-6 месяцев. Без привязки к платформам." />
+        <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI достигается за 3–6 месяцев. Без привязки к платформам." />
         <meta name="keywords" content="ИИ консалтинг, внедрение искусственного интеллекта, AI стратегия, автоматизация бизнеса, нейросети для бизнеса, Александра Моисеева" />
         <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Александра Моисеева — Стратег и инженер ИИ | ROI 200-400%" />
-        <meta property="og:description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI 200-400%." />
+        <meta property="og:title" content="Александра Моисеева — Стратег и инженер ИИ | ROI за 3–6 месяцев" />
+        <meta property="og:description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI достигается за 3–6 месяцев." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
