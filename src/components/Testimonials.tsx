@@ -150,8 +150,8 @@ const Testimonials = () => {
     "description": "Консалтинг и внедрение ИИ-решений для бизнеса",
     "url": "https://aleksamois.ru",
     "image": "https://aleksamois.ru/og-image.png",
-    "telephone": "+7 993 721 73 67",
-    "email": "neiroreshenia@yandex.com",
+    "telephone": "+7 995 078 88 37",
+    "email": "ai@aleksamois.ru",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Красноярск",

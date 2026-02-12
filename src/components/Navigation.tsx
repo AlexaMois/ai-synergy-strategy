@@ -72,8 +72,8 @@ const Navigation = () => {
   const submenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const phoneNumber = "+7 993 721 73 67";
-  const phoneLink = "tel:+79937217367";
+  const phoneNumber = "+7 995 078 88 37";
+  const phoneLink = "tel:+79950788837";
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {

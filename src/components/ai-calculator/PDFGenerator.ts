@@ -211,7 +211,7 @@ export const generatePDF = async (data: DiagnosticData, result: CalculationResul
   y += nextStepLines.length * 5 + 6;
 
   doc.setFont(fontName, 'bold');
-  doc.text('Контакт: +7 993 721 73 67, Telegram @NeuroResheniyaBot', margin, y);
+  doc.text('Контакт: +7 995 078 88 37, Telegram @NeuroResheniyaBot', margin, y);
 
   // Footer
   y = doc.internal.pageSize.getHeight() - 20;
