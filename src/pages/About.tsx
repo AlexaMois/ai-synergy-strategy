@@ -803,21 +803,21 @@ const About = () => {
                       <AnimatedNumber value={14} className="text-primary" />
                     </div>
                     <div className="text-sm text-foreground">в торговле (Крайпотребсоюз и сети магазинов)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={250} suffix="–400%" className="text-primary" /></div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI достигается за 3–6 месяцев</div>
                   </div>
                   <div className="text-center p-4 bg-muted rounded-xl">
                     <div className="text-3xl font-bold text-primary mb-2">
                       <AnimatedNumber value={12} className="text-primary" />
                     </div>
                     <div className="text-sm text-foreground">в логистике (Грузовой Экспресс и др.)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={180} suffix="–320%" className="text-primary" /></div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI достигается за 3–6 месяцев</div>
                   </div>
                   <div className="text-center p-4 bg-muted rounded-xl">
                     <div className="text-3xl font-bold text-primary mb-2">
                       <AnimatedNumber value={10} className="text-primary" />
                     </div>
                     <div className="text-sm text-foreground">в программных продуктах (SaaS)</div>
-                    <div className="text-xs font-semibold text-primary mt-2">ROI <AnimatedNumber value={200} suffix="–400%" className="text-primary" /></div>
+                    <div className="text-xs font-semibold text-primary mt-2">ROI достигается за 3–6 месяцев</div>
                   </div>
                 </div>
               </div>
@@ -849,14 +849,14 @@ const About = () => {
 
               {/* ROI Highlight */}
               <div className="bg-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">
-                  <AnimatedNumber value={200} className="text-primary" />–<AnimatedNumber value={400} suffix="%" className="text-primary" />
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-3">
+                  ROI ДОСТИГАЕТСЯ
                 </div>
                 <div className="text-lg md:text-xl font-semibold text-foreground mb-2">
-                  ROI В ПЕРВЫЕ 3 МЕСЯЦА после запуска
+                  ЗА 3–6 МЕСЯЦЕВ
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  (не за год — за квартал!)
+                  Подтверждено проектами и метриками клиентов
                 </div>
               </div>
             </div>
