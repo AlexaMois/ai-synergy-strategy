@@ -224,11 +224,11 @@ const PricingPage = () => {
     <PageTransition>
       <Helmet>
         <title>Цены на AI-консалтинг — Александра Моисеева</title>
-        <meta name="description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽, полный цикл от 150 тыс. ₽. ROI 200-400%, окупаемость 3-12 недель." />
+        <meta name="description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽, полный цикл от 150 тыс. ₽. ROI достигается за 3–6 месяцев." />
         <meta name="keywords" content="цены AI консалтинг, стоимость внедрения ИИ, прайс AI услуги, ROI искусственный интеллект" />
         <link rel="canonical" href="https://aleksamois.ru/pricing" />
         <meta property="og:title" content="Цены на AI-консалтинг — Александра Моисеева" />
-        <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI 200-400%." />
+        <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI достигается за 3–6 месяцев." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
@@ -262,8 +262,8 @@ const PricingPage = () => {
             <div className="grid sm:grid-cols-3 gap-6 mb-12">
               <div className="bg-primary/10 rounded-2xl p-6 text-center">
                 <TrendingUp className="w-10 h-10 text-primary mx-auto mb-3" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold text-foreground mb-2">ROI 200–400%</h3>
-                <p className="text-sm text-muted-foreground">Средняя окупаемость для моих клиентов</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">ROI за 3–6 месяцев</h3>
+                <p className="text-sm text-muted-foreground">Подтверждённая окупаемость для моих клиентов</p>
               </div>
               <div className="bg-primary/10 rounded-2xl p-6 text-center">
                 <Clock className="w-10 h-10 text-primary mx-auto mb-3" strokeWidth={1.5} />
