@@ -259,9 +259,12 @@ const PublicationsMarquee = () => {
       aria-label="Публикации в СМИ и выступления Александры Моисеевой об ИИ для бизнеса"
     >
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="section-title text-center mb-8 md:mb-12">
+        <h2 className="section-title text-center mb-2 md:mb-3">
           Публикации, СМИ <span className="font-semibold">и выступления</span>
         </h2>
+        <p className="text-sm text-muted-foreground text-center mb-8 md:mb-12 italic">
+          *До 2024 года — под фамилией Колибри
+        </p>
       </div>
       
       {/* Две ленты */}
