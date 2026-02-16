@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { SEOHead } from "@/components/SEOHead";
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import TrustMarquee from "@/components/TrustMarquee";
@@ -129,20 +130,8 @@ const Index = () => {
   
   return (
     <div className="min-h-screen">
+      <SEOHead />
       <Helmet>
-        <title>Александра Моисеева — Независимый стратег и инженер по ИИ</title>
-        <meta name="description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI достигается за 3–6 месяцев. Без привязки к платформам." />
-        <meta name="keywords" content="ИИ консалтинг, внедрение искусственного интеллекта, AI стратегия, автоматизация бизнеса, нейросети для бизнеса, Александра Моисеева" />
-        <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Александра Моисеева — Стратег и инженер ИИ | ROI за 3–6 месяцев" />
-        <meta property="og:description" content="Независимая архитектура ИИ под задачи бизнеса: диагностика, стратегия, сопровождение. ROI достигается за 3–6 месяцев." />
-        <meta property="og:url" content="https://aleksamois.ru/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>

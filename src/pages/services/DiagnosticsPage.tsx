@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { SEOHead } from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -64,14 +65,8 @@ const DiagnosticsPage = () => {
 
   return (
     <PageTransition>
+      <SEOHead />
       <Helmet>
-        <title>Диагностика бизнес-процессов | Александра Моисеева</title>
-        <meta name="description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат за месяц, где нужна подготовка процессов, где он вообще не нужен." />
-        <link rel="canonical" href="https://aleksamois.ru/services/diagnostics" />
-        <meta property="og:title" content="Диагностика бизнес-процессов | Александра Моисеева" />
-        <meta property="og:description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат." />
-        <meta property="og:url" content="https://aleksamois.ru/services/diagnostics" />
-        <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesDiagnostics())}
         </script>

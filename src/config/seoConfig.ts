@@ -5,6 +5,7 @@ export const seoConfig: Record<string, {
   canonical: string;
   ogTitle: string;
   ogDescription: string;
+  ogImage: string;
 }> = {
   "/": {
     title: "Внедрение ИИ в бизнес с ROI от 3 месяцев | AI-консалтинг",
@@ -13,6 +14,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/",
     ogTitle: "Внедрение ИИ в бизнес — Александра Моисеева",
     ogDescription: "AI-консалтинг с гарантией ROI. 36+ проектов. Пилот от 200 тыс ₽.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/services": {
     title: "Услуги внедрения ИИ в бизнес | Аудит → Проект → Результат",
@@ -21,6 +23,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/services",
     ogTitle: "Услуги внедрения ИИ — НейроРешения",
     ogDescription: "Диагностика, проектирование, сопровождение. Независимый подход.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/services/diagnostics": {
     title: "AI-аудит бизнеса от 15 000 ₽ | Диагностика внедрения ИИ",
@@ -29,6 +32,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/services/diagnostics",
     ogTitle: "AI-аудит бизнеса от 15 000 ₽ — Александра Моисеева",
     ogDescription: "Экспресс-диагностика за 60 минут. Определим точки роста с ИИ.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/services/architecture": {
     title: "Архитектура ИИ-решений под ключ | Проект за 7-10 дней",
@@ -37,6 +41,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/services/architecture",
     ogTitle: "Проектирование ИИ-решений — НейроРешения",
     ogDescription: "Независимая архитектура AI-систем за 7-10 дней. Open-source.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/services/support": {
     title: "Сопровождение внедрения ИИ до результата | С гарантией",
@@ -45,6 +50,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/services/support",
     ogTitle: "Сопровождение ИИ-проектов — НейроРешения",
     ogDescription: "Контроль KPI, обучение команды, гарантия метрик. От 60 000 ₽/мес.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/services/add-ons": {
     title: "Дополнительные услуги ИИ | Обучение, интеграции, доработка",
@@ -53,6 +59,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/services/add-ons",
     ogTitle: "Доп. услуги по ИИ — НейроРешения",
     ogDescription: "Обучение сотрудников, интеграция с 1С/CRM, доработка.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/pricing": {
     title: "Стоимость внедрения ИИ в бизнес | Цены от 15 000 ₽",
@@ -61,6 +68,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/pricing",
     ogTitle: "Цены на внедрение ИИ — от 15 000 ₽",
     ogDescription: "Прозрачные тарифы. Аудит, проект, пилот, сопровождение.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/cases": {
     title: "Кейсы внедрения ИИ с цифрами экономии | Реальные ROI",
@@ -69,6 +77,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/cases",
     ogTitle: "Кейсы внедрения ИИ — НейроРешения",
     ogDescription: "Экономия от 1,3 млн ₽. Реальные проекты с цифрами ROI.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/cases/kraypotrebsoyuz": {
     title: "Кейс: экономия 1,3 млн ₽ на автоматизации документов ИИ",
@@ -77,6 +86,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/cases/kraypotrebsoyuz",
     ogTitle: "Кейс: экономия 1,3 млн ₽ с ИИ — Крайпотребсоюз",
     ogDescription: "Автоматизация документооборота. Проверка реквизитов, дублей.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/cases/cargo-express": {
     title: "Кейс: ИИ для логистики | Автоматизация Грузовой Экспресс",
@@ -85,6 +95,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/cases/cargo-express",
     ogTitle: "Кейс: ИИ в логистике — Грузовой Экспресс",
     ogDescription: "Автоматизация заявок 24/7, контроль документов, аналитика.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/cases/doc-search": {
     title: "Кейс: экономия 40-85 ч/мес с ИИ-базой знаний Doc Search",
@@ -93,6 +104,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/cases/doc-search",
     ogTitle: "Кейс: ИИ-база знаний Doc Search",
     ogDescription: "Экономия 40-85 ч/мес, онбординг за 1 день. Окупаемость 3 мес.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/products": {
     title: "ИИ-продукты для бизнеса | Готовые решения с ROI от 3 мес",
@@ -101,6 +113,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/products",
     ogTitle: "ИИ-продукты для бизнеса — НейроРешения",
     ogDescription: "Голосовой бот, база знаний, AI-аналитика. Пилот от 200 тыс ₽.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/products/doc-search": {
     title: "ИИ-база знаний для компании | Поиск по документам за 3 мин",
@@ -109,6 +122,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/products/doc-search",
     ogTitle: "Doc Search — ИИ-поиск по документам",
     ogDescription: "Сотрудники находят ответы за 3 мин вместо 30. Пилот от 200 тыс ₽.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/products/voice-bot": {
     title: "Голосовой ИИ-ассистент для бизнеса | Управляйте голосом",
@@ -117,6 +131,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/products/voice-bot",
     ogTitle: "Голосовой ИИ-ассистент — НейроРешения",
     ogDescription: "CRM голосом, авто-отчёты, аналитика по команде. Рутина −30%.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/about": {
     title: "Александра Моисеева | AI-стратег, 36+ проектов, ОПОРА РОССИИ",
@@ -125,6 +140,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/about",
     ogTitle: "Александра Моисеева — AI-стратег",
     ogDescription: "14+ лет в управлении, 36+ AI-проектов. ОПОРА РОССИИ, КРИТБИ.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/faq": {
     title: "FAQ: внедрение ИИ в бизнес — честные ответы на вопросы",
@@ -133,6 +149,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/faq",
     ogTitle: "FAQ по внедрению ИИ — НейроРешения",
     ogDescription: "Честные ответы на вопросы о стоимости, сроках и безопасности.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/start": {
     title: "С чего начать внедрение ИИ | Первый шаг — бесплатно",
@@ -141,6 +158,7 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/start",
     ogTitle: "Начните внедрение ИИ — бесплатно",
     ogDescription: "Бесплатная 15-мин диагностика: определим, нужен ли вам ИИ.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
   "/checklist": {
     title: "Чек-лист: нужен ли вашему бизнесу ИИ? | Бесплатный тест",
@@ -149,5 +167,6 @@ export const seoConfig: Record<string, {
     canonical: "https://aleksamois.ru/checklist",
     ogTitle: "Бесплатный чек-лист: нужен ли вам ИИ?",
     ogDescription: "15 признаков + персональные рекомендации. Пройдите за 3 мин.",
+    ogImage: "https://aleksamois.ru/og-image.png",
   },
 };
