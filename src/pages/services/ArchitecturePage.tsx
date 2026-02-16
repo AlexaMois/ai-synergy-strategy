@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-import { SEOHead } from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -65,8 +64,14 @@ const ArchitecturePage = () => {
 
   return (
     <PageTransition>
-      <SEOHead />
       <Helmet>
+        <title>Архитектура ИИ-решений | Александра Моисеева</title>
+        <meta name="description" content="Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, интеграция с CRM, 1С, готовое техническое задание." />
+        <link rel="canonical" href="https://aleksamois.ru/services/architecture" />
+        <meta property="og:title" content="Архитектура ИИ-решений | Александра Моисеева" />
+        <meta property="og:description" content="Проектирование AI-решения для вашего бизнеса. Выбор технологий, интеграция с CRM и 1С." />
+        <meta property="og:url" content="https://aleksamois.ru/services/architecture" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesArchitecture())}
         </script>
