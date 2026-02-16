@@ -16,9 +16,11 @@ export const SEOHead = () => {
       <meta property="og:description" content={config.ogDescription} />
       <meta property="og:url" content={config.canonical} />
       <meta property="og:type" content="website" />
+      <meta property="og:image" content={config.ogImage} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={config.ogTitle} />
       <meta name="twitter:description" content={config.ogDescription} />
+      <meta name="twitter:image" content={config.ogImage} />
     </Helmet>
   );
 };

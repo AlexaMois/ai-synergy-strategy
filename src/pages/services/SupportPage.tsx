@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { SEOHead } from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -27,14 +28,8 @@ const SupportPage = () => {
 
   return (
     <PageTransition>
+      <SEOHead />
       <Helmet>
-        <title>Сопровождение внедрения ИИ | Александра Моисеева</title>
-        <meta name="description" content="Контроль разработки и реализации, обучение команды, гарантия результата. Проверяю что подрядчик делает правильно и что обещанные метрики достигаются." />
-        <link rel="canonical" href="https://aleksamois.ru/services/support" />
-        <meta property="og:title" content="Сопровождение внедрения ИИ | Александра Моисеева" />
-        <meta property="og:description" content="Контроль разработки, обучение команды, гарантия результата." />
-        <meta property="og:url" content="https://aleksamois.ru/services/support" />
-        <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesSupport())}
         </script>
