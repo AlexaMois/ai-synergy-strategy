@@ -69,7 +69,7 @@ const BlogPost = () => {
         "@type": "BlogPosting",
         "headline": post.title,
         "description": post.seo.metaDescription,
-        "datePublished": new Date(post.date).toISOString(),
+        "datePublished": post.date,
         "author": {
           "@type": "Person",
           "name": "Александра Моисеева"
@@ -96,7 +96,7 @@ const BlogPost = () => {
   }, [post]);
 
   if (!slug || !post) {
-    return <Navigate to="/blog" replace />;
+    return <Navigate to="/materials/blog" replace />;
   }
 
   return (
@@ -108,7 +108,7 @@ const BlogPost = () => {
       <article className="pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <Link 
-            to="/blog" 
+            to="/materials/blog" 
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -209,7 +209,7 @@ const BlogPost = () => {
               {relatedPosts.map((relatedPost) => (
                 <Link 
                   key={relatedPost.slug} 
-                  to={`/blog/${relatedPost.slug}`}
+                  to={`/materials/blog/${relatedPost.slug}`}
                   className="bg-card rounded-2xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-all duration-300 border border-border"
                 >
                   <div className="flex items-center gap-3 mb-4">

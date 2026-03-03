@@ -2,13 +2,18 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
+
+const BlogOldRedirect = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/materials/blog/${slug}`} replace />;
+};
 
 // Lazy load pages
 const StartPage = lazy(() => import("./pages/start/StartPage"));
@@ -133,7 +138,7 @@ const AppContent = () => {
           <Route path="/approach" element={<Navigate to="/" replace />} />
           <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
           <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
-          <Route path="/blog/:slug" element={<Navigate to="/materials/blog/:slug" replace />} />
+          <Route path="/blog/:slug" element={<BlogOldRedirect />} />
           <Route path="/consent" element={<Navigate to="/legal/consent" replace />} />
           <Route path="/privacy-policy" element={<Navigate to="/legal/privacy-policy" replace />} />
           <Route path="/terms" element={<Navigate to="/legal/terms" replace />} />
