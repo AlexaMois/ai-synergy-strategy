@@ -1,70 +1,36 @@
 
 
-## Plan: Add New Blog Post with Inline Images
+## Plan: Redesign Blog Post Layout — Images Side-by-Side with Text
 
-### What needs to change
+### Problem
+Images are full-width and visually overwhelming. The article feels flat — no visual anchors, no rhythm, monotonous text blocks.
 
-The current `BlogPost` interface does not support images or FAQ sections. We need to extend it, add the article data, copy images, and update the renderer.
+### Changes to `src/pages/BlogPost.tsx`
 
-### 1. Copy uploaded images to project
+**1. Images: 1/3 width, floated alongside text**
 
-- `user-uploads://🖼️_ИЗОБРАЖЕНИЯ_-_visual_selection.png` -> `src/assets/blog/rag-system-schema.png` (RAG schema)
-- `user-uploads://🖼️_ИЗОБРАЖЕНИЯ_-_visual_selection_1.png` -> `src/assets/blog/llm-hallucinations.png` (hallucination levels)
-- `user-uploads://image-145.png` -> `src/assets/blog/test-questions-1.png` (test questions table)
-- `user-uploads://image-146.png` -> `src/assets/blog/test-questions-2.png` (test questions table)
-- `user-uploads://image-147.png` -> `src/assets/blog/test-questions-3.png` (test questions table)
+Replace the `BlogPostImage` component and image rendering logic:
 
-### 2. Extend BlogPost interface (`src/data/blogPosts.ts`)
+- Single images (`section.image`): render in a **2-column grid** — 2/3 text + 1/3 image side-by-side, alternating left/right per section (even sections: image right, odd: image left)
+- Multiple images (`section.images`): render in a **compact horizontal grid** (2-3 columns) with smaller thumbnails, not stacked vertically
+- `introImage`: same 1/3 treatment, floated right next to intro text
 
-Add optional fields to sections and the post:
+**2. Visual improvements for readability**
 
-```typescript
-export interface BlogPost {
-  // ...existing fields...
-  content: {
-    intro: string;
-    introImage?: { src: string; alt: string }; // image after intro
-    sections: {
-      heading: string;
-      content: string;
-      list?: string[];
-      image?: { src: string; alt: string }; // image after section
-      images?: { src: string; alt: string }[]; // multiple images (for test screenshots)
-    }[];
-    conclusion: string;
-    faq?: { question: string; answer: string }[]; // FAQ block
-  };
-  // ...
-}
-```
+- Add **section numbering** or **accent left border** on section headings (a thin primary-color bar) to create visual rhythm
+- Style the **numbered list items** in section_2 (6 types of checks) as **mini-cards** with a number badge, subtle background, and border — making them scannable
+- Add **subtle dividers** or **alternating background tints** between sections to break monotony
+- Make the **conclusion block** more visually distinct — add an icon or quote-style treatment
+- FAQ section: add subtle card styling to each accordion item
 
-### 3. Add the new article to `blogPosts` array
+**3. Specific CSS/layout changes**
 
-Insert at position 0 (newest first) with all 6 sections, FAQ, intro, conclusion, and image references pointing to the imported assets.
-
-- `introImage`: No uploaded image for intro (user said "specialist at laptop" but no file provided — skip or use placeholder text note). Actually, looking again, user said image 1 after intro but didn't provide a separate file for it. The 5 uploaded images map to: RAG schema, LLM hallucinations, and 3 test question screenshots. Let me re-read...
-
-User mapping:
-- Image 1 (after intro) — "Specialist at laptop" — no file uploaded for this. Skip.
-- Image 2 (after section_2) — RAG schema → `🖼️_ИЗОБРАЖЕНИЯ_-_visual_selection.png`
-- Image 3 (after section_3) — LLM hallucinations → `🖼️_ИЗОБРАЖЕНИЯ_-_visual_selection_1.png`
-- Image 4 (after section_4) — Test questions screenshots → `image-145.png`, `image-146.png`, `image-147.png`
-
-### 4. Update BlogPost renderer (`src/pages/BlogPost.tsx`)
-
-After the intro paragraph, render `introImage` if present. In the sections loop, after each section's list, render `section.image` or `section.images` as styled `<figure>` elements with rounded corners, shadow, alt text caption.
-
-### 5. Add FAQ rendering in BlogPost.tsx
-
-After the conclusion block, render `post.content.faq` as an accordion or simple Q&A list if present.
+- `BlogPostImage`: change from `w-full` to `max-w-[280px] md:max-w-[320px]` with `rounded-xl shadow-soft`
+- Section with image: wrap in `flex flex-col md:flex-row gap-6 items-start`, text in `flex-1`, image in `md:w-1/3`
+- Multiple images: `grid grid-cols-2 md:grid-cols-3 gap-4` with smaller thumbnails
+- Section headings: add `border-l-4 border-primary pl-4` accent
+- Section_2 list items: styled as cards with number badges
 
 ### Files to modify
-- `src/data/blogPosts.ts` — extend interface + add article
-- `src/pages/BlogPost.tsx` — render images and FAQ
-- Copy 5 image files to `src/assets/blog/`
-
-### Visual treatment for images
-- Rounded corners (`rounded-xl`), subtle shadow, max-width constrained
-- Alt text shown as caption below in `text-sm text-muted-foreground`
-- Multiple images (test screenshots) displayed in a grid or vertical stack with lightbox support using existing `PhotoLightbox` component
+- `src/pages/BlogPost.tsx` — layout restructure, visual enhancements
 
