@@ -8,21 +8,21 @@ import PhotoLightbox from "@/components/PhotoLightbox";
 
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
 import { trackCTAClick } from "@/utils/analytics";
 
-const BlogPostImage = ({ image, onClick }: { image: BlogImage; onClick?: () => void }) => (
-  <figure className="my-8">
+const BlogPostImageCompact = ({ image, onClick }: { image: BlogImage; onClick?: () => void }) => (
+  <figure className="m-0">
     <img
       src={image.src}
       alt={image.alt}
-      className="w-full rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300"
+      className="w-full rounded-xl shadow-soft cursor-pointer hover:shadow-card transition-shadow duration-300"
       onClick={onClick}
       loading="lazy"
     />
-    <figcaption className="text-sm text-muted-foreground mt-3 text-center italic">
+    <figcaption className="text-xs text-muted-foreground mt-2 text-center italic">
       {image.alt}
     </figcaption>
   </figure>
@@ -134,6 +134,11 @@ const BlogPost = () => {
     if (section.images) allImages.push(...section.images);
   });
 
+  // Check if a list looks like numbered items (starts with "1.", "2.", etc.)
+  const isNumberedList = (list: string[]) => {
+    return list.length > 0 && /^\d+\./.test(list[0]);
+  };
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
@@ -177,67 +182,147 @@ const BlogPost = () => {
           </header>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 whitespace-pre-line">
-              {post.content.intro}
-            </p>
-
-            {post.content.introImage && (
-              <BlogPostImage
-                image={post.content.introImage}
-                onClick={() => openLightbox(allImages, allImages.indexOf(post.content.introImage!))}
-              />
+            {/* Intro with optional side image */}
+            {post.content.introImage ? (
+              <div className="flex flex-col md:flex-row gap-6 items-start mb-10">
+                <div className="flex-1">
+                  <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                    {post.content.intro}
+                  </p>
+                </div>
+                <div className="w-full md:w-1/3 shrink-0">
+                  <BlogPostImageCompact
+                    image={post.content.introImage}
+                    onClick={() => openLightbox(allImages, allImages.indexOf(post.content.introImage!))}
+                  />
+                </div>
+              </div>
+            ) : (
+              <p className="text-lg text-muted-foreground leading-relaxed mb-10 whitespace-pre-line">
+                {post.content.intro}
+              </p>
             )}
 
-            {post.content.sections.map((section, index) => (
-              <section key={index} className="mb-10">
-                <h2 className="text-2xl text-foreground mb-4">
-                  <span className="font-semibold">{section.heading}</span>
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4 whitespace-pre-line">
-                  {section.content}
-                </p>
-                {section.list && section.list.length > 0 && (
-                  <ul className="space-y-3 mb-6">
-                    {section.list.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex gap-3">
-                        <span className="text-primary mt-1.5">•</span>
-                        <span className="text-base text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {section.image && (
-                  <BlogPostImage
-                    image={section.image}
-                    onClick={() => openLightbox(allImages, allImages.indexOf(section.image!))}
-                  />
-                )}
-                {section.images && section.images.length > 0 && (
-                  <div className="space-y-6 my-8">
-                    {section.images.map((img, imgIndex) => (
-                      <BlogPostImage
-                        key={imgIndex}
-                        image={img}
-                        onClick={() => openLightbox(allImages, allImages.indexOf(img))}
-                      />
-                    ))}
-                  </div>
-                )}
-              </section>
-            ))}
+            {post.content.sections.map((section, index) => {
+              const isEven = index % 2 === 0;
+              const hasImage = !!section.image;
+              const hasImages = section.images && section.images.length > 0;
 
-            <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12">
-              <p className="text-lg text-muted-foreground leading-relaxed font-medium whitespace-pre-line">
+              // Determine if list should be styled as numbered cards
+              const numberedCards = section.list && isNumberedList(section.list);
+
+              return (
+                <section
+                  key={index}
+                  className={`mb-10 pb-10 ${index < post.content.sections.length - 1 ? 'border-b border-border/50' : ''}`}
+                >
+                  {/* Section heading with accent bar */}
+                  <h2 className="text-2xl text-foreground mb-4 border-l-4 border-primary pl-4">
+                    <span className="font-semibold">{section.heading}</span>
+                  </h2>
+
+                  {/* Content + single image side by side */}
+                  {hasImage ? (
+                    <div className={`flex flex-col md:flex-row gap-6 items-start ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+                      <div className="flex-1">
+                        <p className="text-lg text-muted-foreground leading-relaxed mb-4 whitespace-pre-line">
+                          {section.content}
+                        </p>
+                        {section.list && !numberedCards && (
+                          <ul className="space-y-3 mb-4">
+                            {section.list.map((item, itemIndex) => (
+                              <li key={itemIndex} className="flex gap-3">
+                                <span className="text-primary mt-1.5">•</span>
+                                <span className="text-base text-muted-foreground">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                      <div className="w-full md:w-1/3 shrink-0">
+                        <BlogPostImageCompact
+                          image={section.image!}
+                          onClick={() => openLightbox(allImages, allImages.indexOf(section.image!))}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <p className="text-lg text-muted-foreground leading-relaxed mb-4 whitespace-pre-line">
+                        {section.content}
+                      </p>
+                      {section.list && !numberedCards && (
+                        <ul className="space-y-3 mb-4">
+                          {section.list.map((item, itemIndex) => (
+                            <li key={itemIndex} className="flex gap-3">
+                              <span className="text-primary mt-1.5">•</span>
+                              <span className="text-base text-muted-foreground">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  )}
+
+                  {/* Numbered list as mini-cards */}
+                  {numberedCards && section.list && (
+                    <div className="grid gap-3 sm:grid-cols-2 mt-4">
+                      {section.list.map((item, itemIndex) => {
+                        // Extract number prefix if exists
+                        const match = item.match(/^(\d+)\.\s*(.*)/s);
+                        const num = match ? match[1] : String(itemIndex + 1);
+                        const text = match ? match[2] : item;
+
+                        return (
+                          <div
+                            key={itemIndex}
+                            className="flex gap-4 items-start p-4 rounded-xl bg-muted/60 border border-border/40"
+                          >
+                            <span className="shrink-0 w-8 h-8 rounded-lg bg-primary/15 text-primary font-semibold text-sm flex items-center justify-center">
+                              {num}
+                            </span>
+                            <span className="text-base text-muted-foreground leading-relaxed">{text}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Multiple images in compact grid */}
+                  {hasImages && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                      {section.images!.map((img, imgIndex) => (
+                        <BlogPostImageCompact
+                          key={imgIndex}
+                          image={img}
+                          onClick={() => openLightbox(allImages, allImages.indexOf(img))}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </section>
+              );
+            })}
+
+            {/* Conclusion with quote styling */}
+            <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12 relative overflow-hidden">
+              <Quote className="absolute top-4 right-4 h-12 w-12 text-primary/15" />
+              <p className="text-lg text-muted-foreground leading-relaxed font-medium whitespace-pre-line relative z-10">
                 {post.content.conclusion}
               </p>
             </div>
 
+            {/* FAQ with card styling */}
             {post.content.faq && post.content.faq.length > 0 && (
               <div className="my-12">
-                <h2 className="text-2xl font-semibold text-foreground mb-6">Часто задаваемые вопросы</h2>
-                <Accordion type="single" collapsible className="w-full">
+                <h2 className="text-2xl font-semibold text-foreground mb-6 border-l-4 border-primary pl-4">Часто задаваемые вопросы</h2>
+                <Accordion type="single" collapsible className="w-full space-y-3">
                   {post.content.faq.map((item, index) => (
-                    <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionItem
+                      key={index}
+                      value={`faq-${index}`}
+                      className="border border-border/40 rounded-xl px-5 bg-muted/30 data-[state=open]:bg-muted/60 transition-colors"
+                    >
                       <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
                         {item.question}
                       </AccordionTrigger>
