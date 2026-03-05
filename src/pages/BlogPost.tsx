@@ -339,10 +339,10 @@ const BlogPost = () => {
           <div className="border-t border-border pt-12 mt-12">
             <div className="bg-muted rounded-2xl p-4 sm:p-6 md:p-8 text-center">
               <h3 className="text-2xl text-foreground mb-4">
-                Хотите внедрить ИИ <span className="font-semibold">без ошибок?</span>
+                Хотите проверить <span className="font-semibold">вашего ИИ-ассистента?</span>
               </h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Запишитесь на бесплатный экспресс-аудит процессов
+                Запросите аудит — разберём на примерах ваших документов
               </p>
               <Button size="lg" onClick={() => {
                 trackCTAClick({ location: 'blog_post' });
@@ -354,7 +354,7 @@ const BlogPost = () => {
                   window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 }
               }}>
-                Заказать звонок
+                Запросить аудит ИИ-ассистента
               </Button>
             </div>
           </div>
