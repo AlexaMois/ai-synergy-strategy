@@ -1,36 +1,33 @@
 
 
-## Plan: Redesign Blog Post Layout — Images Side-by-Side with Text
+## Plan: Content & Visual Enhancements for Blog Post
 
-### Problem
-Images are full-width and visually overwhelming. The article feels flat — no visual anchors, no rhythm, monotonous text blocks.
+### Changes to `src/data/blogPosts.ts`
+
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
+
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
 
 ### Changes to `src/pages/BlogPost.tsx`
 
-**1. Images: 1/3 width, floated alongside text**
-
-Replace the `BlogPostImage` component and image rendering logic:
-
-- Single images (`section.image`): render in a **2-column grid** — 2/3 text + 1/3 image side-by-side, alternating left/right per section (even sections: image right, odd: image left)
-- Multiple images (`section.images`): render in a **compact horizontal grid** (2-3 columns) with smaller thumbnails, not stacked vertically
-- `introImage`: same 1/3 treatment, floated right next to intro text
-
-**2. Visual improvements for readability**
-
-- Add **section numbering** or **accent left border** on section headings (a thin primary-color bar) to create visual rhythm
-- Style the **numbered list items** in section_2 (6 types of checks) as **mini-cards** with a number badge, subtle background, and border — making them scannable
-- Add **subtle dividers** or **alternating background tints** between sections to break monotony
-- Make the **conclusion block** more visually distinct — add an icon or quote-style treatment
-- FAQ section: add subtle card styling to each accordion item
-
-**3. Specific CSS/layout changes**
-
-- `BlogPostImage`: change from `w-full` to `max-w-[280px] md:max-w-[320px]` with `rounded-xl shadow-soft`
-- Section with image: wrap in `flex flex-col md:flex-row gap-6 items-start`, text in `flex-1`, image in `md:w-1/3`
-- Multiple images: `grid grid-cols-2 md:grid-cols-3 gap-4` with smaller thumbnails
-- Section headings: add `border-l-4 border-primary pl-4` accent
-- Section_2 list items: styled as cards with number badges
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
 
 ### Files to modify
-- `src/pages/BlogPost.tsx` — layout restructure, visual enhancements
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
