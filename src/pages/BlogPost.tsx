@@ -1,20 +1,47 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
+import PhotoLightbox from "@/components/PhotoLightbox";
 
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
-import { getBlogPostBySlug, getRelatedPosts } from "@/data/blogPosts";
+import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
 import { trackCTAClick } from "@/utils/analytics";
+
+const BlogPostImage = ({ image, onClick }: { image: BlogImage; onClick?: () => void }) => (
+  <figure className="my-8">
+    <img
+      src={image.src}
+      alt={image.alt}
+      className="w-full rounded-xl shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300"
+      onClick={onClick}
+      loading="lazy"
+    />
+    <figcaption className="text-sm text-muted-foreground mt-3 text-center italic">
+      {image.alt}
+    </figcaption>
+  </figure>
+);
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : undefined;
   const relatedPosts = slug ? getRelatedPosts(slug) : [];
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState<BlogImage[]>([]);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (images: BlogImage[], index: number) => {
+    setLightboxImages(images);
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,6 +126,14 @@ const BlogPost = () => {
     return <Navigate to="/materials/blog" replace />;
   }
 
+  // Collect all images for lightbox
+  const allImages: BlogImage[] = [];
+  if (post.content.introImage) allImages.push(post.content.introImage);
+  post.content.sections.forEach(section => {
+    if (section.image) allImages.push(section.image);
+    if (section.images) allImages.push(...section.images);
+  });
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
@@ -142,16 +177,23 @@ const BlogPost = () => {
           </header>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 whitespace-pre-line">
               {post.content.intro}
             </p>
+
+            {post.content.introImage && (
+              <BlogPostImage
+                image={post.content.introImage}
+                onClick={() => openLightbox(allImages, allImages.indexOf(post.content.introImage!))}
+              />
+            )}
 
             {post.content.sections.map((section, index) => (
               <section key={index} className="mb-10">
                 <h2 className="text-2xl text-foreground mb-4">
                   <span className="font-semibold">{section.heading}</span>
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4 whitespace-pre-line">
                   {section.content}
                 </p>
                 {section.list && section.list.length > 0 && (
@@ -164,14 +206,49 @@ const BlogPost = () => {
                     ))}
                   </ul>
                 )}
+                {section.image && (
+                  <BlogPostImage
+                    image={section.image}
+                    onClick={() => openLightbox(allImages, allImages.indexOf(section.image!))}
+                  />
+                )}
+                {section.images && section.images.length > 0 && (
+                  <div className="space-y-6 my-8">
+                    {section.images.map((img, imgIndex) => (
+                      <BlogPostImage
+                        key={imgIndex}
+                        image={img}
+                        onClick={() => openLightbox(allImages, allImages.indexOf(img))}
+                      />
+                    ))}
+                  </div>
+                )}
               </section>
             ))}
 
             <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12">
-              <p className="text-lg text-muted-foreground leading-relaxed font-medium">
+              <p className="text-lg text-muted-foreground leading-relaxed font-medium whitespace-pre-line">
                 {post.content.conclusion}
               </p>
             </div>
+
+            {post.content.faq && post.content.faq.length > 0 && (
+              <div className="my-12">
+                <h2 className="text-2xl font-semibold text-foreground mb-6">Часто задаваемые вопросы</h2>
+                <Accordion type="single" collapsible className="w-full">
+                  {post.content.faq.map((item, index) => (
+                    <AccordionItem key={index} value={`faq-${index}`}>
+                      <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-base text-muted-foreground leading-relaxed">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            )}
           </div>
 
           <div className="border-t border-border pt-12 mt-12">
@@ -243,6 +320,14 @@ const BlogPost = () => {
         <Footer />
         
       </div>
+
+      <PhotoLightbox
+        images={allImages}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onNavigate={setLightboxIndex}
+      />
     </PageTransition>
   );
 };
