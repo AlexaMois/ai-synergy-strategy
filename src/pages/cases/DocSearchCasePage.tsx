@@ -95,7 +95,7 @@ const DocSearchCasePage = () => {
         <link rel="canonical" href="https://aleksamois.ru/cases/doc-search" />
       </Helmet>
 
-      <Navigation />
+      
 
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 md:px-6">

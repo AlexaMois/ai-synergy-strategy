@@ -159,7 +159,7 @@ const CaseStudyDocSearch = () => {
         <meta property="og:url" content="https://aleksamois.ru/products/doc-search" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
 
         {/* Hero Section */}
         <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6">

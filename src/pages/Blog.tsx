@@ -56,7 +56,7 @@ const Blog = () => {
             {JSON.stringify(getBreadcrumbs.blog())}
           </script>
         </Helmet>
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Блог" 
           parentPages={[{ label: "Материалы", href: "/materials" }]} 

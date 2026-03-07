@@ -125,7 +125,7 @@ const Checklist30Page = () => {
           <meta property="og:description" content="Бесплатный шаблон для аудита корпоративного ИИ-ассистента по базе знаний компании." />
           <meta property="og:url" content="https://aleksamois.ru/materials/checklist-30" />
         </Helmet>
-        <Navigation />
+        
         <PageBreadcrumbs
           currentPage="Чек-лист: 30 вопросов"
           parentPages={[{ label: "Материалы", href: "/materials" }]}

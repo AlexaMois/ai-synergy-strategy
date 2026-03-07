@@ -311,7 +311,7 @@ const CaseDetailPage = () => {
         <link rel="canonical" href={`https://aleksamois.ru/cases/${caseData.slug}`} />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage={caseData.title} 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 

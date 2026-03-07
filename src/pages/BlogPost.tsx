@@ -142,7 +142,7 @@ const BlogPost = () => {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
       
       <main>
       <article className="pt-32 pb-16">
