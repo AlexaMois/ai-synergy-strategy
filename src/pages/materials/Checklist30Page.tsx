@@ -103,14 +103,7 @@ const errorPatterns = [
 ];
 
 const Checklist30Page = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const scrollToContact = () => {
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
     const element = document.querySelector('#contact');
     if (element) {
       const navHeight = 100;
