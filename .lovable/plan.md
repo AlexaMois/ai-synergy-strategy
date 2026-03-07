@@ -1,33 +1,37 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Plan: Fix Print — Force Accordion Content Into DOM
 
-### Changes to `src/data/blogPosts.ts`
+### Root Cause
+Radix Accordion **removes content from the DOM** when closed (no `forceMount`). CSS cannot show elements that don't exist in the DOM. That's why print CSS selectors have no effect — there's nothing to target.
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+### Fix
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+**File: `src/pages/materials/Checklist30Page.tsx`**
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+1. Add `forceMount` prop to every `<AccordionContent>` so content is always in the DOM regardless of open/close state
+2. Radix will set `data-state="closed"` with `height: 0; overflow: hidden` on screen — existing behavior unchanged
+3. Print CSS already targets `[data-state="closed"].overflow-hidden` with `height: auto !important` — will now work because content IS in the DOM
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+Single change at line ~200:
+```tsx
+<AccordionContent forceMount>
+```
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+**File: `src/index.css`** — minor tweak to ensure `forceMount` closed state is properly hidden on screen but visible in print:
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+Add a rule outside `@media print` to ensure `forceMount` closed content stays visually hidden on screen:
+```css
+/* Ensure forceMount accordion content hidden on screen when closed */
+[data-radix-accordion-content][data-state="closed"] {
+  height: 0 !important;
+  overflow: hidden !important;
+}
+```
 
-### Changes to `src/pages/BlogPost.tsx`
+The existing `@media print` block already has the override rules — they'll now actually work since content is in the DOM.
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
-
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+### Files
+- **Edit**: `src/pages/materials/Checklist30Page.tsx` (add `forceMount` to `AccordionContent`)
+- **Edit**: `src/index.css` (add screen-only hide rule for forceMount closed state)
 
