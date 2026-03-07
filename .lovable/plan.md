@@ -1,33 +1,45 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Plan: Professional Print-Ready Checklist
 
-### Changes to `src/data/blogPosts.ts`
+### Problem
+1. Accordion CSS selectors for print don't match Radix's actual DOM — blocks stay collapsed
+2. Print output looks like a webpage screenshot, not a professional working tool with checkboxes
+3. Need logo + contact info in print header, no buttons/CTA
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+### Fix 1: Correct print CSS selectors (`src/index.css`)
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+Replace current `@media print` block with correct Radix accordion selectors:
+```css
+/* Radix accordion content uses [data-state] directly on the content element */
+[data-state="closed"][role="region"],
+[data-state="closed"].overflow-hidden {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+```
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+Also hide: accordion trigger chevrons/expand-text, Partners section, the accordion trigger indicators.
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+### Fix 2: Add checkbox columns to question tables for print (`src/pages/materials/Checklist30Page.tsx`)
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+Add 3 extra columns to each question table that are hidden on screen but visible in print:
+- ✅ (Точно) | ⚠️ (Частично) | ❌ (Неверно) — each as an empty checkbox cell `☐`
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+This makes it a real working tool: print → go through questions → check boxes.
 
-### Changes to `src/pages/BlogPost.tsx`
+Add CSS class `print-only-col` for these columns (hidden on screen, visible in print).
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+### Fix 3: Print-only footer with contact info
 
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+Add a print-only footer block at the bottom with:
+- `+7 995 078 88 37` | `ai@aleksamois.ru` | `aleksamois.ru`
+- "Для профессионального аудита — свяжитесь с НейроРешения"
+
+### Files to Edit
+- **`src/index.css`** — rewrite `@media print` with correct selectors, add `print-only-col` utility
+- **`src/pages/materials/Checklist30Page.tsx`** — add print-only checkbox columns to tables, add print-only footer
 
