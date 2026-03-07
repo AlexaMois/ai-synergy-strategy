@@ -1068,6 +1068,12 @@
     }
   }
 }
+/* Ensure forceMount accordion content hidden on screen when closed */
+[data-radix-accordion-content][data-state="closed"] {
+  height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
 
 /* Print styles for Checklist30 */
 @media print {
