@@ -8,7 +8,7 @@ import PhotoLightbox from "@/components/PhotoLightbox";
 
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Quote, CheckCircle2 } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
 import { trackCTAClick } from "@/utils/analytics";
