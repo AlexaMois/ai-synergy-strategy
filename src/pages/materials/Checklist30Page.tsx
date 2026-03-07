@@ -329,6 +329,13 @@ const Checklist30Page = () => {
           </section>
         </main>
 
+        {/* Print-only footer */}
+        <div className="hidden print-footer">
+          <p className="font-medium">НейроРешения — независимый стратег по внедрению ИИ</p>
+          <p>+7 995 078 88 37 &nbsp;|&nbsp; ai@aleksamois.ru &nbsp;|&nbsp; aleksamois.ru</p>
+          <p className="mt-1">Для профессионального аудита вашей системы — свяжитесь с нами</p>
+        </div>
+
         <Contact />
         <Partners />
         <Footer />
