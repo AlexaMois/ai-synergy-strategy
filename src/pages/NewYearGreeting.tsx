@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+
 import NeuralTree from '@/components/newyear/NeuralTree';
 import Snowfall from '@/components/newyear/Snowfall';
 import GiftCard from '@/components/newyear/GiftCard';
