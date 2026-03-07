@@ -132,6 +132,15 @@ const Checklist30Page = () => {
         />
 
         <main className="container mx-auto py-12 md:py-20">
+          {/* Print-only header */}
+          <div className="print-only hidden items-center justify-between mb-8 pb-4 border-b-2 border-primary/30">
+            <img src={logoHorizontal} alt="НейроРешения" className="h-10" />
+            <div className="text-right text-sm">
+              <p className="font-medium">+7 995 078 88 37</p>
+              <p>ai@aleksamois.ru</p>
+            </div>
+          </div>
+
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-3">
