@@ -27,6 +27,7 @@ const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
 const DocSearchCasePage = lazy(() => import("./pages/cases/DocSearchCasePage"));
 const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
+const Checklist30Page = lazy(() => import("./pages/materials/Checklist30Page"));
 
 const DemoPage = lazy(() => import("./pages/demo/DemoPage"));
 const LegalPage = lazy(() => import("./pages/legal/LegalPage"));
