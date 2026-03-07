@@ -12,7 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const blocks = [
   {
