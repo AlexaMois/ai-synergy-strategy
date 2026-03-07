@@ -1078,7 +1078,9 @@
   .no-print,
   footer,
   #contact,
-  .breadcrumb-nav {
+  .breadcrumb-nav,
+  [data-radix-scroll-area-viewport] ~ *,
+  .partners-section {
     display: none !important;
   }
 
@@ -1087,18 +1089,45 @@
     display: flex !important;
   }
 
-  /* Force accordion content visible */
-  [data-state="closed"] > [data-radix-collapsible-content],
-  [data-state="closed"][data-radix-collapsible-content] {
-    display: block !important;
-    height: auto !important;
-    overflow: visible !important;
-    opacity: 1 !important;
+  /* Print-only table columns */
+  .print-only-col {
+    display: table-cell !important;
   }
 
-  /* Hide accordion chevrons */
-  [data-radix-accordion-trigger] svg {
+  /* Force ALL accordion content visible — target Radix's actual DOM structure */
+  [data-state="closed"] + [role="region"],
+  [data-state="closed"] ~ [role="region"],
+  [data-state="closed"][role="region"],
+  [data-state="closed"].overflow-hidden,
+  [data-radix-accordion-content][data-state="closed"],
+  .overflow-hidden[data-state="closed"] {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  /* Also force the AccordionContent wrapper */
+  [data-radix-accordion-item] [data-radix-accordion-content] {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  /* Hide accordion chevrons and expand/collapse text */
+  [data-radix-accordion-trigger] svg,
+  [data-radix-accordion-trigger] > span {
     display: none !important;
+  }
+
+  /* Remove accordion interactive styling */
+  [data-radix-accordion-trigger] {
+    cursor: default !important;
   }
 
   /* Page layout */
@@ -1108,18 +1137,39 @@
     background: #fff !important;
   }
 
-  .bg-card, .bg-muted, .bg-background, .bg-primary\/10 {
+  .bg-card, .bg-muted, .bg-background {
     background: #fff !important;
     border: 1px solid #ddd !important;
   }
 
+  .bg-primary\/10 {
+    background: #f0f4ff !important;
+    border: 1px solid #ddd !important;
+  }
+
   /* Prevent page breaks inside blocks */
-  table, .rounded-xl, .rounded-lg {
+  table {
     break-inside: avoid;
+  }
+
+  .rounded-xl, .rounded-lg {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   /* Remove shadows */
   * {
     box-shadow: none !important;
+  }
+
+  /* Print-only footer */
+  .print-footer {
+    display: block !important;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #333;
+    text-align: center;
+    font-size: 10pt;
+    color: #333;
   }
 }
