@@ -197,7 +197,7 @@ const Checklist30Page = () => {
                       <p className="text-sm text-muted-foreground mt-1">{block.description}</p>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent forceMount>
                     <div className="overflow-x-auto -mx-2 sm:-mx-4">
                       <Table>
                         <TableHeader>
