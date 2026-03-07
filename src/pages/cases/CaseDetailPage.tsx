@@ -293,7 +293,6 @@ const CaseDetailPage = () => {
     return (
       <PageTransition>
         <div className="min-h-screen">
-          <Navigation />
           <div className="pt-32 pb-20 text-center">
             <h1 className="text-2xl font-semibold text-foreground mb-4">Кейс не найден</h1>
             <Button onClick={() => navigate('/cases')}>Все кейсы</Button>
