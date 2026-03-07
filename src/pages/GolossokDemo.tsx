@@ -21,7 +21,6 @@ const GolossokDemo = () => {
         <meta property="og:url" content="https://aleksamois.ru/golossok-demo" />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
         <PageBreadcrumbs 
           currentPage="Демо голосового бота" 
           parentPages={[{ label: "Демо", href: "/demo" }]}
