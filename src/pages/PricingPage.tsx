@@ -4,7 +4,7 @@ import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 import AnimatedMetric from "@/components/AnimatedMetric";

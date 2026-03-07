@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { FileText, Shield, ScrollText, ArrowRight } from "lucide-react";
 

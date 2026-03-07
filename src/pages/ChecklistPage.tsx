@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Printer } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";

@@ -5,7 +5,7 @@ import Partners from "@/components/Partners";
 import PublicationsMarquee from "@/components/PublicationsMarquee";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";

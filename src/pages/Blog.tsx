@@ -5,7 +5,7 @@ import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { useState } from "react";

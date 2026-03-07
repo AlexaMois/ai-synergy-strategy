@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Lightbulb, Map, Megaphone } from "lucide-react";
 import PortalIdeas from "@/components/portal/PortalIdeas";

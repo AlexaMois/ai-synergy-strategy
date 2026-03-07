@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Play, Sparkles } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";

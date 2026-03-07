@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { Wallet, TrendingUp, AlertTriangle, Users, Shield, Search, X } from "lucide-react";
 import Navigation from "@/components/Navigation";

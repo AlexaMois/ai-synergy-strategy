@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
