@@ -305,7 +305,7 @@ const Checklist30Page = () => {
           </section>
 
           {/* Double CTA */}
-          <section className="bg-muted p-6 md:p-10 rounded-lg text-center">
+          <section className="bg-muted p-6 md:p-10 rounded-lg text-center no-print">
             <h2 className="text-2xl font-medium text-foreground mb-3">Что дальше?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Сохраните чек-лист и проведите аудит самостоятельно — или доверьте тестирование эксперту с готовой методологией и опытом в корпоративных RAG-системах.
