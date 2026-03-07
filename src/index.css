@@ -1068,3 +1068,58 @@
     }
   }
 }
+
+/* Print styles for Checklist30 */
+@media print {
+  /* Hide non-content elements */
+  nav,
+  .cookie-consent,
+  .floating-cta,
+  .no-print,
+  footer,
+  #contact,
+  .breadcrumb-nav {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  .print-only {
+    display: flex !important;
+  }
+
+  /* Force accordion content visible */
+  [data-state="closed"] > [data-radix-collapsible-content],
+  [data-state="closed"][data-radix-collapsible-content] {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Hide accordion chevrons */
+  [data-radix-accordion-trigger] svg {
+    display: none !important;
+  }
+
+  /* Page layout */
+  body {
+    font-size: 11pt !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  .bg-card, .bg-muted, .bg-background, .bg-primary\/10 {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+  }
+
+  /* Prevent page breaks inside blocks */
+  table, .rounded-xl, .rounded-lg {
+    break-inside: avoid;
+  }
+
+  /* Remove shadows */
+  * {
+    box-shadow: none !important;
+  }
+}

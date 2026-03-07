@@ -12,7 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const blocks = [
   {
@@ -103,14 +103,7 @@ const errorPatterns = [
 ];
 
 const Checklist30Page = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const scrollToContact = () => {
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
     const element = document.querySelector('#contact');
     if (element) {
       const navHeight = 100;
@@ -139,6 +132,15 @@ const Checklist30Page = () => {
         />
 
         <main className="container mx-auto py-12 md:py-20">
+          {/* Print-only header */}
+          <div className="print-only hidden items-center justify-between mb-8 pb-4 border-b-2 border-primary/30">
+            <img src={logoHorizontal} alt="НейроРешения" className="h-10" />
+            <div className="text-right text-sm">
+              <p className="font-medium">+7 995 078 88 37</p>
+              <p>ai@aleksamois.ru</p>
+            </div>
+          </div>
+
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground mb-3">
@@ -231,15 +233,17 @@ const Checklist30Page = () => {
           {/* Summary Results Table */}
           <section className="mb-12">
             <h2 className="text-2xl font-medium text-foreground mb-6">Сводная таблица результатов</h2>
+            <p className="text-sm text-muted-foreground mb-4 italic">Заполните таблицу по результатам тестирования</p>
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Блок</TableHead>
-                    <TableHead className="text-center w-20">Всего</TableHead>
-                    <TableHead className="text-center w-20">✅</TableHead>
-                    <TableHead className="text-center w-20">⚠️</TableHead>
-                    <TableHead className="text-center w-20">❌</TableHead>
+                    <TableHead className="text-center w-20">Вопросов</TableHead>
+                    <TableHead className="text-center w-24">✅ Точно</TableHead>
+                    <TableHead className="text-center w-24">⚠️ Частично</TableHead>
+                    <TableHead className="text-center w-24">❌ Неверно</TableHead>
+                    <TableHead className="text-center w-24">% точных</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -247,17 +251,19 @@ const Checklist30Page = () => {
                     <TableRow key={idx}>
                       <TableCell className="font-medium">{block.title.replace(/Блок \d+\.\s*/, '')}</TableCell>
                       <TableCell className="text-center">5</TableCell>
-                      <TableCell className="text-center">—</TableCell>
-                      <TableCell className="text-center">—</TableCell>
-                      <TableCell className="text-center">—</TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
                     </TableRow>
                   ))}
                   <TableRow className="border-t-2 border-primary/30 font-semibold">
                     <TableCell>Итого</TableCell>
                     <TableCell className="text-center">30</TableCell>
-                    <TableCell className="text-center">—</TableCell>
-                    <TableCell className="text-center">—</TableCell>
-                    <TableCell className="text-center">—</TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -299,7 +305,7 @@ const Checklist30Page = () => {
           </section>
 
           {/* Double CTA */}
-          <section className="bg-muted p-6 md:p-10 rounded-lg text-center">
+          <section className="bg-muted p-6 md:p-10 rounded-lg text-center no-print">
             <h2 className="text-2xl font-medium text-foreground mb-3">Что дальше?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Сохраните чек-лист и проведите аудит самостоятельно — или доверьте тестирование эксперту с готовой методологией и опытом в корпоративных RAG-системах.
