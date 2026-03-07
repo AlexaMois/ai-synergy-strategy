@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { Wallet, TrendingUp, AlertTriangle, Users, Shield, Search, X } from "lucide-react";
-import Navigation from "@/components/Navigation";
+
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
