@@ -1,4 +1,4 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
