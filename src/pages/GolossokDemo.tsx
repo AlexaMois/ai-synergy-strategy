@@ -1,5 +1,4 @@
 import Footer from "@/components/Footer";
-import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
