@@ -206,6 +206,9 @@ const Checklist30Page = () => {
                             <TableHead className="min-w-[140px]">Тип вопроса</TableHead>
                             <TableHead>Пример вопроса</TableHead>
                             {block.hasEtalon && <TableHead className="min-w-[200px]">Эталон</TableHead>}
+                            <TableHead className="hidden print-only-col text-center w-12">✅</TableHead>
+                            <TableHead className="hidden print-only-col text-center w-12">⚠️</TableHead>
+                            <TableHead className="hidden print-only-col text-center w-12">❌</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -219,6 +222,9 @@ const Checklist30Page = () => {
                                   {(q as any).etalon}
                                 </TableCell>
                               )}
+                              <TableCell className="hidden print-only-col text-center text-lg">☐</TableCell>
+                              <TableCell className="hidden print-only-col text-center text-lg">☐</TableCell>
+                              <TableCell className="hidden print-only-col text-center text-lg">☐</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
