@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Printer, Phone, CheckCircle2, AlertTriangle, XCircle, HelpCircle } from "lucide-react";
-import { Helmet } from "react-helmet";
-import Navigation from "@/components/Navigation";
+import { Helmet } from "react-helmet-async";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
@@ -125,7 +125,7 @@ const Checklist30Page = () => {
           <meta property="og:description" content="Бесплатный шаблон для аудита корпоративного ИИ-ассистента по базе знаний компании." />
           <meta property="og:url" content="https://aleksamois.ru/materials/checklist-30" />
         </Helmet>
-        <Navigation />
+        
         <PageBreadcrumbs
           currentPage="Чек-лист: 30 вопросов"
           parentPages={[{ label: "Материалы", href: "/materials" }]}

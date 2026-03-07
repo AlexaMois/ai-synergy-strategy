@@ -1,10 +1,10 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Mic, Search, ArrowRight, Play } from "lucide-react";
 
@@ -35,7 +35,7 @@ const DemoPage = () => {
         <link rel="canonical" href="https://aleksamois.ru/demo" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Демо" />
         
         <main>

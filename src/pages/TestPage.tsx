@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navigation from "@/components/Navigation";
+
 import Hero from "@/components/Hero";
 import MarqueeText from "@/components/MarqueeText";
 import SixQuestions from "@/components/SixQuestions";
@@ -41,7 +41,7 @@ const TestPage = () => {
   
   return (
     <div className="min-h-screen">
-      <Navigation />
+      
       <main>
         <Hero />
         <MarqueeText />

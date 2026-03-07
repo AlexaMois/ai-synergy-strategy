@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
@@ -142,7 +142,7 @@ const BlogPost = () => {
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
       
       <main>
       <article className="pt-32 pb-16">

@@ -26,11 +26,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://aleksamois.ru/checklist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 
   <!-- Services -->
   <url>
@@ -114,6 +109,53 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/checklist-30</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/testirovanie-ii-assistenta-baza-znanii</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/openclaw-dlya-biznesa-msp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/why-ai-projects-fail</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/ai-synergy-framework</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/ai-roi-calculation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/automation-checklist</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/russian-llm-comparison</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/materials/blog/team-ai-training</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <!-- Demo -->
   <url>
@@ -129,12 +171,22 @@
 
   <!-- Legal -->
   <url>
+    <loc>https://aleksamois.ru/legal</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://aleksamois.ru/legal/consent</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://aleksamois.ru/legal/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/legal/cookies</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

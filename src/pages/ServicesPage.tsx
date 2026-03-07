@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
 import PageTransition from "@/components/PageTransition";

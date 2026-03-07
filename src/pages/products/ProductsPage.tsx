@@ -1,10 +1,10 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Mic, Search, ArrowRight, Zap, Shield, Clock } from "lucide-react";
@@ -63,7 +63,7 @@ const ProductsPage = () => {
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Продукты" />
         
         <main>

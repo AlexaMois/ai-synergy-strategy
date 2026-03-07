@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet, Clock } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
@@ -185,7 +185,7 @@ const ResourcesPage = () => {
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Материалы" 
           parentPages={[{ label: "Материалы", href: "/materials" }]} 

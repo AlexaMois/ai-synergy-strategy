@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
@@ -295,7 +295,7 @@ const CasesPage = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
 
         <main className="pt-24 pb-16">
           <div className="container mx-auto px-4 max-w-6xl">

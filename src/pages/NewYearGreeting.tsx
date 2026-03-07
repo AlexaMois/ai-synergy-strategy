@@ -1,8 +1,8 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+
 import NeuralTree from '@/components/newyear/NeuralTree';
 import Snowfall from '@/components/newyear/Snowfall';
 import GiftCard from '@/components/newyear/GiftCard';
@@ -29,7 +29,7 @@ const NewYearGreeting: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <Navigation />
+      
 
       <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-16 pb-2">
         {/* Snowflakes only on this section */}

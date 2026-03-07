@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet";
-import Navigation from "@/components/Navigation";
+import { Helmet } from "react-helmet-async";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -69,7 +69,7 @@ const AddOnsPage = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      
 
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 md:px-6">

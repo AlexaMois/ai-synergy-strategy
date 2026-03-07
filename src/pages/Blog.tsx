@@ -1,11 +1,11 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import { useState } from "react";
@@ -56,7 +56,7 @@ const Blog = () => {
             {JSON.stringify(getBreadcrumbs.blog())}
           </script>
         </Helmet>
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Блог" 
           parentPages={[{ label: "Материалы", href: "/materials" }]} 

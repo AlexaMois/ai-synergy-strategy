@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet";
-import Navigation from "@/components/Navigation";
+import { Helmet } from "react-helmet-async";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
@@ -78,7 +78,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </script>
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Крайпотребсоюз" 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 

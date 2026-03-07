@@ -1,10 +1,10 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -159,7 +159,7 @@ const CaseStudyDocSearch = () => {
         <meta property="og:url" content="https://aleksamois.ru/products/doc-search" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
 
         {/* Hero Section */}
         <section className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6">

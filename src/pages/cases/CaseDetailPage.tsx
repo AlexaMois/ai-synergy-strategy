@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -293,7 +293,6 @@ const CaseDetailPage = () => {
     return (
       <PageTransition>
         <div className="min-h-screen">
-          <Navigation />
           <div className="pt-32 pb-20 text-center">
             <h1 className="text-2xl font-semibold text-foreground mb-4">Кейс не найден</h1>
             <Button onClick={() => navigate('/cases')}>Все кейсы</Button>
@@ -312,7 +311,7 @@ const CaseDetailPage = () => {
         <link rel="canonical" href={`https://aleksamois.ru/cases/${caseData.slug}`} />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage={caseData.title} 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 

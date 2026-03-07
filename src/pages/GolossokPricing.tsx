@@ -1,10 +1,10 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Mic, Check, Clock, Users, Shield, Zap } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -112,7 +112,7 @@ const GolossokPricing = () => {
         <meta property="og:url" content="https://aleksamois.ru/golossok-pricing" />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Голосовой бот" 
           parentPages={[{ label: "Продукты", href: "/products" }]}

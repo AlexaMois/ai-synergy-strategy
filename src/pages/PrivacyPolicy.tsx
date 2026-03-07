@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy = () => {
   return (
@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
         <link rel="canonical" href="https://aleksamois.ru/privacy-policy" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-      <Navigation />
+      
       
       <main className="container mx-auto px-4 py-10 md:py-16 lg:py-20 max-w-6xl">
         <Link 

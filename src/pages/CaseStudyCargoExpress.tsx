@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ const CaseStudyCargoExpress = () => {
         <meta property="og:url" content="https://aleksamois.ru/case-studies/cargo-express" />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Грузовой Экспресс" 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 
