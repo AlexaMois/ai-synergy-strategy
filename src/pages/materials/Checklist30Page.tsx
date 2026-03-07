@@ -233,15 +233,17 @@ const Checklist30Page = () => {
           {/* Summary Results Table */}
           <section className="mb-12">
             <h2 className="text-2xl font-medium text-foreground mb-6">Сводная таблица результатов</h2>
+            <p className="text-sm text-muted-foreground mb-4 italic">Заполните таблицу по результатам тестирования</p>
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Блок</TableHead>
-                    <TableHead className="text-center w-20">Всего</TableHead>
-                    <TableHead className="text-center w-20">✅</TableHead>
-                    <TableHead className="text-center w-20">⚠️</TableHead>
-                    <TableHead className="text-center w-20">❌</TableHead>
+                    <TableHead className="text-center w-20">Вопросов</TableHead>
+                    <TableHead className="text-center w-24">✅ Точно</TableHead>
+                    <TableHead className="text-center w-24">⚠️ Частично</TableHead>
+                    <TableHead className="text-center w-24">❌ Неверно</TableHead>
+                    <TableHead className="text-center w-24">% точных</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -249,17 +251,19 @@ const Checklist30Page = () => {
                     <TableRow key={idx}>
                       <TableCell className="font-medium">{block.title.replace(/Блок \d+\.\s*/, '')}</TableCell>
                       <TableCell className="text-center">5</TableCell>
-                      <TableCell className="text-center">—</TableCell>
-                      <TableCell className="text-center">—</TableCell>
-                      <TableCell className="text-center">—</TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                      <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
                     </TableRow>
                   ))}
                   <TableRow className="border-t-2 border-primary/30 font-semibold">
                     <TableCell>Итого</TableCell>
                     <TableCell className="text-center">30</TableCell>
-                    <TableCell className="text-center">—</TableCell>
-                    <TableCell className="text-center">—</TableCell>
-                    <TableCell className="text-center">—</TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
+                    <TableCell className="text-center"><span className="inline-block w-12 border-b-2 border-dotted border-muted-foreground/30">&nbsp;</span></TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
