@@ -8,7 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+
 import Index from "./pages/Index";
 
 const BlogOldRedirect = () => {
