@@ -46,6 +46,17 @@ const ResourcesPage = () => {
     isExternal: boolean;
     status: "ready" | "coming-soon";
   }[] = [{
+    id: 11,
+    category: "checklists",
+    title: "Чек-лист «30 вопросов для тестирования ИИ-ассистента»",
+    description: "Проверьте точность, устойчивость к ловушкам и поведение ИИ-ассистента при конфликтах в базе знаний",
+    type: "Чек-лист",
+    icon: CheckSquare,
+    link: "/materials/checklist-30",
+    actionLabel: "Открыть чек-лист",
+    isExternal: false,
+    status: "ready"
+  }, {
     id: 1,
     category: "checklists",
     title: "Чек-лист «10 вопросов перед внедрением ИИ»",
