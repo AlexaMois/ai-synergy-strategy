@@ -41,7 +41,7 @@ const TestPage = () => {
   
   return (
     <div className="min-h-screen">
-      <Navigation />
+      
       <main>
         <Hero />
         <MarqueeText />

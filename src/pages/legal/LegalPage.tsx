@@ -40,7 +40,7 @@ const LegalPage = () => {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Юридические документы" />
         
         <main>

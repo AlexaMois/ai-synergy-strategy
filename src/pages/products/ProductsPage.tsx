@@ -63,7 +63,7 @@ const ProductsPage = () => {
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Продукты" />
         
         <main>

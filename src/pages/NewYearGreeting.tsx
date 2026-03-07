@@ -29,7 +29,7 @@ const NewYearGreeting: React.FC = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <Navigation />
+      
 
       <section className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden pt-16 pb-2">
         {/* Snowflakes only on this section */}

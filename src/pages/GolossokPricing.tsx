@@ -112,7 +112,7 @@ const GolossokPricing = () => {
         <meta property="og:url" content="https://aleksamois.ru/golossok-pricing" />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Голосовой бот" 
           parentPages={[{ label: "Продукты", href: "/products" }]}
