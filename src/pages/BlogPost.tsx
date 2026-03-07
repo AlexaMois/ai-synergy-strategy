@@ -8,7 +8,7 @@ import PhotoLightbox from "@/components/PhotoLightbox";
 
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Quote, CheckCircle2 } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
 import { trackCTAClick } from "@/utils/analytics";
@@ -311,6 +311,28 @@ const BlogPost = () => {
                 {post.content.conclusion}
               </p>
             </div>
+
+            {/* Lead magnet banner for checklist article */}
+            {post.slug === 'testirovanie-ii-assistenta-baza-znanii' && (
+              <div className="my-12 bg-gradient-to-r from-primary/15 to-primary/5 border-l-4 border-primary rounded-xl p-5 sm:p-8">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <CheckCircle2 className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      Чек-лист: 30 вопросов для проверки ИИ-ассистента
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      Готовый шаблон для аудита вашего корпоративного ассистента — с примерами вопросов, эталонными ответами и таблицей интерпретации.
+                    </p>
+                    <Link to="/materials/checklist-30">
+                      <Button size="lg">Открыть чек-лист</Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* FAQ with card styling */}
             {post.content.faq && post.content.faq.length > 0 && (

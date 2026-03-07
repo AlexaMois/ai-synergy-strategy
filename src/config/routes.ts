@@ -38,6 +38,7 @@ export const ALLOWED_ROUTES = [
   '/materials',
   '/materials/resources',
   '/materials/blog',
+  '/materials/checklist-30',
   '/newyear',
   '/portal',
   '/portal/admin',
