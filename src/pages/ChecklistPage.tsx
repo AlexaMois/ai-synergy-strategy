@@ -96,7 +96,7 @@ const ChecklistPage = () => {
         <meta property="og:description" content="Бесплатный чек-лист для оценки готовности компании к внедрению ИИ." />
         <meta property="og:url" content="https://aleksamois.ru/checklist" />
       </Helmet>
-      <Navigation />
+      
       <PageBreadcrumbs currentPage="Чек-лист" />
       
       <main>

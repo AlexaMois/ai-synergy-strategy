@@ -239,7 +239,7 @@ const PricingPage = () => {
         </script>
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Цены" />
         
         <main>

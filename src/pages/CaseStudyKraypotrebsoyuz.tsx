@@ -78,7 +78,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </script>
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Крайпотребсоюз" 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 

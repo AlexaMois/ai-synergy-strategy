@@ -195,7 +195,7 @@ const About = () => {
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Обо мне" />
       
         <main>

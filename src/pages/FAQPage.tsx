@@ -326,7 +326,7 @@ const FAQPage = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      
 
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">

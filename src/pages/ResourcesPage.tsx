@@ -185,7 +185,7 @@ const ResourcesPage = () => {
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Материалы" 
           parentPages={[{ label: "Материалы", href: "/materials" }]} 

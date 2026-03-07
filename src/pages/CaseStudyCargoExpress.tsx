@@ -42,7 +42,7 @@ const CaseStudyCargoExpress = () => {
         <meta property="og:url" content="https://aleksamois.ru/case-studies/cargo-express" />
       </Helmet>
       <div className="min-h-screen">
-        <Navigation />
+        
         <PageBreadcrumbs 
           currentPage="Грузовой Экспресс" 
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 

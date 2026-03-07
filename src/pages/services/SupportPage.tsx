@@ -40,7 +40,7 @@ const SupportPage = () => {
         </script>
       </Helmet>
 
-      <Navigation />
+      
 
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 max-w-6xl pt-24">

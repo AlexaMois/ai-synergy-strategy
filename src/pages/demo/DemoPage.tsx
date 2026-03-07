@@ -35,7 +35,7 @@ const DemoPage = () => {
         <link rel="canonical" href="https://aleksamois.ru/demo" />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <Navigation />
+        
         <PageBreadcrumbs currentPage="Демо" />
         
         <main>
