@@ -15,14 +15,25 @@ import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
-import { initScrollTracking } from "@/utils/analytics";
+import { initScrollTracking, captureUTMParams, initEngagementTracking } from "@/utils/analytics";
 
 const Index = () => {
   const location = useLocation();
   
+  // Capture UTM params on load
+  useEffect(() => {
+    captureUTMParams();
+  }, []);
+  
   // Initialize scroll depth tracking
   useEffect(() => {
     const cleanup = initScrollTracking();
+    return cleanup;
+  }, []);
+  
+  // Initialize engagement time tracking
+  useEffect(() => {
+    const cleanup = initEngagementTracking();
     return cleanup;
   }, []);
   
