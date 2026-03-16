@@ -83,24 +83,9 @@ const Foundation = () => {
                     </span>
                   </div>
                   
-                  <div className="mb-3 sm:mb-4">
-                    <p className="text-xs sm:text-sm font-medium text-foreground mb-2">Включает:</p>
-                    {service.details.map((detail, idx) => (
-                      <p key={idx} className="text-xs sm:text-sm text-muted-foreground leading-snug flex items-start gap-2 mb-1.5">
-                        <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary mt-0.5 flex-shrink-0" strokeWidth={2} />
-                        <span>{detail}</span>
-                      </p>
-                    ))}
-                  </div>
-                  
-                  <div className="mb-3 sm:mb-4">
+                  <div className="mb-3 sm:mb-4 flex-grow">
                     <p className="text-xs sm:text-sm font-medium text-foreground mb-1">Результат:</p>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-snug">{service.result}</p>
-                  </div>
-                  
-                  <div className="mb-3 sm:mb-4 flex-grow">
-                    <p className="text-xs sm:text-sm font-medium text-foreground mb-2">Процесс:</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-snug">{service.process}</p>
                   </div>
                   
                   <span className="inline-flex items-center gap-2 text-primary font-medium mt-auto text-sm sm:text-base">
