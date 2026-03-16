@@ -47,12 +47,12 @@ const ProductsPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Продукты — Готовые ИИ-решения | Александра Моисеева</title>
-        <meta name="description" content="Готовые ИИ-продукты для бизнеса: голосовой бот GolossOK и система поиска по документации. Быстрое внедрение, проверенные результаты." />
-        <meta name="keywords" content="ИИ продукты, голосовой бот, поиск по документации, AI решения для бизнеса" />
+        <title>AI‑ассистенты и продукты для автоматизации бизнеса — голос, чат, документы | Александра Моисеева</title>
+        <meta name="description" content="Готовые AI‑модули для автоматизации бизнеса: голосовые ассистенты, чат‑боты, ИИ для документов и поиска по знаниям. Подключение к CRM, 1С и порталам без замены систем." />
+        <meta name="keywords" content="AI ассистенты для бизнеса, голосовой бот, автоматизация документов ИИ, чат‑бот для бизнеса" />
         <link rel="canonical" href="https://aleksamois.ru/products" />
-        <meta property="og:title" content="Продукты — Готовые ИИ-решения | Александра Моисеева" />
-        <meta property="og:description" content="Готовые ИИ-продукты для бизнеса: голосовой бот и система поиска по документации." />
+        <meta property="og:title" content="AI‑ассистенты и продукты для автоматизации бизнеса — голос, чат, документы | Александра Моисеева" />
+        <meta property="og:description" content="Готовые AI‑модули для автоматизации бизнеса: голосовые ассистенты, чат‑боты, ИИ для документов и поиска по знаниям. Подключение к CRM, 1С и порталам без замены систем." />
         <meta property="og:url" content="https://aleksamois.ru/products" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
