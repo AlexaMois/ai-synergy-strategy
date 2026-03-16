@@ -1,13 +1,33 @@
 
 
-## Plan: Сделать поп-ап прямоугольным с улучшенной читаемостью
+## Plan: Content & Visual Enhancements for Blog Post
 
-### Изменения в `src/components/ExitIntentPopup.tsx`
+### Changes to `src/data/blogPosts.ts`
 
-1. **Контейнер** — сменить `max-w-[420px]` на `max-w-[520px]`, добавить `rounded-xl` вместо `rounded-2xl` для более строгой прямоугольной формы.
-2. **Внутренние отступы** — увеличить горизонтальные паддинги (`px-8 sm:px-10`) для воздуха по бокам, текст не будет «прижат».
-3. **Текст** — выровнять заголовок и описание по левому краю (`text-left`) для естественного чтения, иконку тоже сдвинуть влево.
-4. **Кнопка и ссылка** — оставить на всю ширину, но с выравниванием по левой логике.
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
 
-Один файл, только стили — логика и тексты без изменений.
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
+
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+
+### Changes to `src/pages/BlogPost.tsx`
+
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+
+### Files to modify
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
