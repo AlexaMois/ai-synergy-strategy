@@ -46,23 +46,23 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[420px] p-0 overflow-hidden rounded-2xl shadow-elevated border-0 animate-in fade-in-0 zoom-in-95 duration-500 ease-out mx-auto [&>button]:hidden">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[520px] p-0 overflow-hidden rounded-xl shadow-elevated border-0 animate-in fade-in-0 zoom-in-95 duration-500 ease-out mx-auto [&>button]:hidden">
         {/* Accent gradient bar */}
         <div className="h-1 w-full bg-gradient-to-r from-primary to-primary-dark" />
 
-        <div className="p-6 sm:p-8 pt-5 sm:pt-6">
+        <div className="px-8 sm:px-10 py-6 sm:py-8">
           {/* Icon */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-start mb-4">
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-primary" />
             </div>
           </div>
 
           <DialogHeader className="mb-5 sm:mb-6">
-            <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-center text-foreground mb-3">
+            <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-left text-foreground mb-3">
               Уходите? Последний вопрос:
             </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base font-raleway text-center text-foreground/80 leading-relaxed">
+            <DialogDescription className="text-sm sm:text-base font-raleway text-left text-foreground/80 leading-relaxed">
               Есть процесс, который отнимает время каждый день — но руки не доходят разобраться? Пройдите короткий тест — за 3 минуты поймёте, где ИИ даст результат именно Вам.
             </DialogDescription>
           </DialogHeader>
