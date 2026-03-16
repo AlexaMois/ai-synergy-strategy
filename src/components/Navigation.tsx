@@ -69,7 +69,7 @@ const Navigation = () => {
   const [touchEnd, setTouchEnd] = useState(0);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
-  const submenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const submenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const phoneNumber = "+7 995 078 88 37";

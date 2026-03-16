@@ -118,7 +118,7 @@ interface MarqueeRowProps {
 const MarqueeRow = ({ items, direction, speed = 120 }: MarqueeRowProps) => {
   const [isPaused, setIsPaused] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Ширина одной карточки + gap (примерно 260px + 16px gap)
   const cardWidthWithGap = 276;
