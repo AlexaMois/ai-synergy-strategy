@@ -302,15 +302,15 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>FAQ — Вопросы об ИИ для бизнеса | Александра Моисеева</title>
+        <title>Вопросы об автоматизации бизнеса с ИИ — стоимость, сроки, риски | Александра Моисеева</title>
         <meta 
           name="description" 
-          content="45 ответов на главные вопросы о внедрении ИИ: стоимость, окупаемость, риски, безопасность данных, внедрение. Честные ответы без маркетинга." 
+          content="Отвечаю на главные вопросы директоров: сколько стоит автоматизация с ИИ, когда окупится, какие риски есть и чего точно не стоит делать, чтобы не превратить проект в очередной дорогой эксперимент." 
         />
-        <meta name="keywords" content="внедрение ИИ, стоимость ИИ, ROI ИИ, риски ИИ, безопасность ИИ, FAQ" />
+        <meta name="keywords" content="стоимость автоматизации бизнеса, риски автоматизации бизнес процессов, окупаемость ИИ, FAQ искусственный интеллект для бизнеса" />
         <link rel="canonical" href="https://aleksamois.ru/faq" />
-        <meta property="og:title" content="FAQ — Вопросы об ИИ для бизнеса | Александра Моисеева" />
-        <meta property="og:description" content="45 ответов на главные вопросы о внедрении ИИ: стоимость, окупаемость, риски, безопасность." />
+        <meta property="og:title" content="Вопросы об автоматизации бизнеса с ИИ — стоимость, сроки, риски | Александра Моисеева" />
+        <meta property="og:description" content="Отвечаю на главные вопросы директоров: сколько стоит автоматизация с ИИ, когда окупится, какие риски есть и чего точно не стоит делать." />
         <meta property="og:url" content="https://aleksamois.ru/faq" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
