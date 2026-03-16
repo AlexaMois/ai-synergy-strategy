@@ -67,10 +67,10 @@ const Blog = () => {
       <section className="pt-32 pb-20 bg-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6">
-            Разборы и статьи, <span className="font-semibold">практика внедрения ИИ</span>
+            Как использовать ИИ и автоматизацию так, <span className="font-semibold">чтобы это окупалось, а не «модно выглядело»</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Практичные материалы о внедрении искусственного интеллекта: разборы проектов, методология, аналитика и подходы, которые дают измеримый эффект.
+            В блоге я разбираю конкретные сценарии: как автоматизировать ввод данных с помощью голоса и OCR, как не потерять заявки между мессенджерами и CRM, как считать окупаемость ИИ‑проектов. Это тексты для директоров и руководителей, без «магии нейросетей», а с простым языком, цифрами и пошаговыми примерами.
           </p>
         </div>
       </section>

@@ -48,26 +48,11 @@ const ServicesPage = () => {
               {/* Left column - Text */}
               <div className="mb-0 mt-[20px] ml-[30px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
-                  Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
+                  Что именно мы <span className="font-semibold">автоматизируем в вашем бизнесе</span>
                 </h1>
-                <ul className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Помогаю внедрить ИИ так, чтобы он работал и приносил результаты</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Работаю с компаниями от 3 до 300 человек</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Помогаю внедрить ИИ без переделки процессов и остановки операционки</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Защищаю бизнес от неправильных решений и лишних затрат</span>
-                  </li>
-                </ul>
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
+                  Вместо абстрактного «внедрим ИИ» мы работаем с конкретной болью: ручной ввод и проверка данных, бардак в документообороте, потерянные заявки, слабый контроль по производству и отчётам. Я помогаю выбрать процессы, которые реально тормозят деньги, спроектировать решение на основе ИИ и довести его до стабильной работы в вашей связке CRM/1С/порталов.
+                </p>
                 
                 {/* Three stages process */}
                 

@@ -250,11 +250,11 @@ const PricingPage = () => {
               <div className="flex items-center justify-center gap-4 mb-6">
                 <DollarSign className="w-12 h-12 text-primary" strokeWidth={1.5} />
                 <h1 className="text-[28px] sm:text-[32px] md:text-[36px] text-foreground leading-tight">
-                  Прозрачные цены <span className="font-semibold">на AI-консалтинг</span>
+                  Сколько стоит <span className="font-semibold">убрать рутину и бардак в процессах</span>
                 </h1>
               </div>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Стоимость зависит от размера компании и глубины работы. Все цены включают обучение команды и техническую поддержку. Главное: я считаю ROI вашей компании, не мою комиссию.
+                Вместо «цена за час консультанта» я считаю стоимость проекта через экономию: сколько ручных часов и ошибок мы убираем и во сколько это сейчас обходится компании. На этой странице — типовые форматы работ и вилки бюджетов, чтобы вы сразу понимали порядок цифр и могли сопоставить их с ожидаемой отдачей.
               </p>
             </div>
 

@@ -71,10 +71,10 @@ const ProductsPage = () => {
           <section className="py-10 md:py-16 lg:py-20">
             <div className="container mx-auto px-4 max-w-5xl text-center">
               <h1 className="text-[28px] sm:text-[32px] md:text-[40px] text-foreground leading-tight mb-6">
-                Готовые <span className="font-semibold">ИИ-решения</span>
+                Готовые <span className="font-semibold">AI‑ассистенты, которые снимают рутину с команды</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-                Проверенные продукты с прогнозируемым результатом. Быстрое внедрение, понятная экономика, гарантия качества.
+                Если вам важно получить результат быстро, без долгого проектирования, подойдут готовые решения: голосовые ассистенты для ввода данных, чат‑боты для обработки заявок, ИИ‑модули для работы с документами и внутренними знаниями. Мы адаптируем их под ваши процессы и подключаем к текущим системам — так, чтобы команда почувствовала разгрузку уже в первые недели.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-8">

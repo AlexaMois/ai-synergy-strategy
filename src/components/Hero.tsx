@@ -217,7 +217,7 @@ const Hero = () => {
           {/* Badge + Title on one line */}
           <div className="flex flex-wrap items-center justify-between gap-3 mt-5 mb-2">
             <h1 className="text-xl sm:text-2xl lg:text-3xl text-foreground leading-[1.15] tracking-tight">
-              ИИ решения <span className="font-bold">для бизнеса и руководителей</span>
+              Автоматизация бизнеса с ИИ <span className="font-bold">без лишнего «зоо ИТ»</span>
             </h1>
             <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
               <span>🇷🇺</span>
@@ -225,8 +225,7 @@ const Hero = () => {
             </div>
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
-            Автоматизация продаж, документов, контроля и аналитики<br className="hidden sm:block" />
-            без переделки системы и остановки операционки.
+            Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры. Я помогаю директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
           </p>
         </div>
 
