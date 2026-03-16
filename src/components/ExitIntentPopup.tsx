@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +15,9 @@ const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const navigate = useNavigate();
+  const mobileTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mobileScrollReady = useRef(false);
+  const mobileTimeReady = useRef(false);
 
   useEffect(() => {
     const wasShown = sessionStorage.getItem("exitIntentShown");
@@ -23,19 +26,55 @@ const ExitIntentPopup = () => {
       return;
     }
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !hasShown) {
-        setIsOpen(true);
-        setHasShown(true);
-        sessionStorage.setItem("exitIntentShown", "true");
-      }
-    };
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
-    document.addEventListener("mouseleave", handleMouseLeave);
+    if (isMobile) {
+      // Mobile: show after 45s AND 40% scroll depth
+      const tryShowMobile = () => {
+        if (mobileTimeReady.current && mobileScrollReady.current && !hasShown) {
+          setIsOpen(true);
+          setHasShown(true);
+          sessionStorage.setItem("exitIntentShown", "true");
+        }
+      };
 
-    return () => {
-      document.removeEventListener("mouseleave", handleMouseLeave);
-    };
+      mobileTimerRef.current = setTimeout(() => {
+        mobileTimeReady.current = true;
+        tryShowMobile();
+      }, 45000);
+
+      const handleMobileScroll = () => {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollHeight <= 0) return;
+        const scrollPercent = (window.scrollY / scrollHeight) * 100;
+        if (scrollPercent >= 40) {
+          mobileScrollReady.current = true;
+          tryShowMobile();
+        }
+      };
+
+      window.addEventListener("scroll", handleMobileScroll, { passive: true });
+
+      return () => {
+        if (mobileTimerRef.current) clearTimeout(mobileTimerRef.current);
+        window.removeEventListener("scroll", handleMobileScroll);
+      };
+    } else {
+      // Desktop: mouseleave trigger
+      const handleMouseLeave = (e: MouseEvent) => {
+        if (e.clientY <= 0 && !hasShown) {
+          setIsOpen(true);
+          setHasShown(true);
+          sessionStorage.setItem("exitIntentShown", "true");
+        }
+      };
+
+      document.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        document.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }
   }, [hasShown]);
 
   const handleCTA = () => {

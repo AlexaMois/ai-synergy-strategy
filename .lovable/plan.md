@@ -1,57 +1,33 @@
 
 
-## План: Улучшение аналитики и снижение bounce rate
+## Plan: Content & Visual Enhancements for Blog Post
 
-### Что конкретно сделаем (4 задачи)
+### Changes to `src/data/blogPosts.ts`
 
----
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
 
-### 1. UTM-трекинг
-**Файл:** `src/utils/analytics.ts`
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
 
-Добавим функции для захвата UTM-параметров (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`) из URL при загрузке страницы. Сохраняем в `sessionStorage`. Передаём UTM-данные во все существующие analytics-события (`trackCTAClick`, `trackFormSubmission`, `trackDownload`, `trackScrollDepth`) как дополнительные параметры в GA и Яндекс.Метрику.
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
 
-**Файл:** `src/pages/Index.tsx` — вызываем `captureUTMParams()` в useEffect при загрузке.
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
 
-Это позволит отличить Telegram-трафик (если ссылки размечены) от настоящего Direct.
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
 
----
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
 
-### 2. Мобильный триггер для ExitIntentPopup
-**Файл:** `src/components/ExitIntentPopup.tsx`
+### Changes to `src/pages/BlogPost.tsx`
 
-Сейчас popup срабатывает только по `mouseleave` (десктоп). На мобиле он **никогда не показывается**.
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
 
-Добавим альтернативный триггер для мобильных:
-- Через **45 секунд** на странице **И** скролл ≥ 40% — показываем popup
-- Детекция мобильного через `window.matchMedia('(max-width: 767px)')`
-- Сохраняем ту же логику `sessionStorage` (раз за сессию)
-
----
-
-### 3. Трекинг Яндекс.Метрики для CTA-событий
-**Файл:** `src/utils/analytics.ts`
-
-Сейчас `trackCTAClick` и `trackFormSubmission` отправляют данные **только в GA**. Яндекс.Метрика получает только scroll depth. Добавим `window.ym(YANDEX_COUNTER_ID, 'reachGoal', ...)` в:
-- `trackCTAClick` → goal `cta_click`
-- `trackFormSubmission` → goal `form_submit`
-- `trackDownload` → goal `download`
-
-Это даст полную картину конверсий в обеих системах аналитики.
-
----
-
-### 4. Трекинг времени на странице (engagement time)
-**Файл:** `src/utils/analytics.ts`
-
-Добавим трекинг «активного времени» — отправляем событие `engaged_visit` в GA и Яндекс, если пользователь провёл на странице ≥ 30 секунд. Это поможет отфильтровать ботов (они обычно уходят за 0-2 сек) и понять реальный engagement.
-
----
-
-### Итого: 2 файла
-
-| Файл | Изменения |
-|-------|-----------|
-| `src/utils/analytics.ts` | UTM-захват, Яндекс goals для CTA/form/download, engagement time трекинг |
-| `src/components/ExitIntentPopup.tsx` | Мобильный триггер (таймер + scroll depth) |
+### Files to modify
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
