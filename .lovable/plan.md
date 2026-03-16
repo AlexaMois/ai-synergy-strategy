@@ -1,27 +1,33 @@
 
 
-## Plan: Визуально улучшить ExitIntentPopup
+## Plan: Content & Visual Enhancements for Blog Post
 
-### Что сделаем
+### Changes to `src/data/blogPosts.ts`
 
-Превратим простой белый поп-ап в визуально выразительный, сохраняя «мягкий премиум» стиль:
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
 
-1. **Акцентная полоса сверху** — тонкий градиент primary → primary-dark в верхней части карточки (4px), как визуальный маркер.
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
 
-2. **Иконка-эмоджи** — добавить иконку `Sparkles` из lucide-react над заголовком в мягком цветном круге (`bg-primary/10`, `text-primary`), чтобы привлечь внимание.
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
 
-3. **Улучшенная типографика** — заголовок крупнее (`text-2xl sm:text-[1.65rem]`), описание с `leading-relaxed` и чуть увеличенным межстрочным.
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
 
-4. **Кнопка с усиленным стилем** — размер `lg`, добавить `ArrowRight` иконку после текста для направления действия.
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
 
-5. **Мягкая тень на контейнере** — использовать `shadow-elevated` из дизайн-системы для «парящего» эффекта.
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
 
-6. **Скруглённые углы** — `rounded-2xl` для более мягкого, современного вида.
+### Changes to `src/pages/BlogPost.tsx`
 
-### Технические детали
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
 
-- Файл: `src/components/ExitIntentPopup.tsx`
-- Импорт: добавить `Sparkles`, `ArrowRight` из `lucide-react`
-- Все стили через существующие Tailwind-классы и CSS-переменные проекта
-- Логика и тексты остаются без изменений
+### Files to modify
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
