@@ -7,20 +7,41 @@ import type { Plugin } from 'vite';
 import fs from 'fs';
 import path from 'path';
 
-function extractBlogSlugs(root: string): string[] {
+function extractBlogEntries(root: string): Array<{ slug: string; date: string }> {
   const filePath = path.resolve(root, 'src/data/blogPosts.ts');
   const content = fs.readFileSync(filePath, 'utf-8');
-  const slugRegex = /slug:\s*["']([^"']+)["']/g;
-  const slugs: string[] = [];
+  
+  const entries: Array<{ slug: string; date: string }> = [];
+  const postRegex = /slug:\s*["']([^"']+)["'][\s\S]*?date:\s*["']([^"']+)["']/g;
   let match;
-  while ((match = slugRegex.exec(content)) !== null) {
-    slugs.push(match[1]);
+  while ((match = postRegex.exec(content)) !== null) {
+    entries.push({ slug: match[1], date: match[2] });
   }
-  return slugs;
+  return entries;
+}
+
+/**
+ * Convert Russian date like "5 марта 2026" to ISO "2026-03-05"
+ */
+function russianDateToISO(dateStr: string): string {
+  const months: Record<string, string> = {
+    'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
+    'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
+    'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12',
+  };
+  const parts = dateStr.trim().split(/\s+/);
+  if (parts.length === 3) {
+    const day = parts[0].padStart(2, '0');
+    const month = months[parts[1].toLowerCase()] || '01';
+    const year = parts[2];
+    return `${year}-${month}-${day}`;
+  }
+  return new Date().toISOString().split('T')[0];
 }
 
 function buildSitemapXml(root: string): string {
   const DOMAIN = 'https://aleksamois.ru';
+  const today = new Date().toISOString().split('T')[0];
 
   const staticRoutes = [
     { path: '/', priority: '1.0', changefreq: 'weekly' },
@@ -53,18 +74,20 @@ function buildSitemapXml(root: string): string {
     { path: '/legal/terms', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  const blogSlugs = extractBlogSlugs(root);
+  const blogEntries = extractBlogEntries(root);
+
   const allRoutes = [
-    ...staticRoutes,
-    ...blogSlugs.map(slug => ({
-      path: `/materials/blog/${slug}`,
+    ...staticRoutes.map(r => ({ ...r, lastmod: today })),
+    ...blogEntries.map(entry => ({
+      path: `/materials/blog/${entry.slug}`,
       priority: '0.6',
       changefreq: 'monthly',
+      lastmod: russianDateToISO(entry.date),
     })),
   ];
 
   const urls = allRoutes
-    .map(r => `  <url>\n    <loc>${DOMAIN}${r.path}</loc>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`)
+    .map(r => `  <url>\n    <loc>${DOMAIN}${r.path}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`)
     .join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;

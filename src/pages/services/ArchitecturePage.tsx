@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
+import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 
 const ArchitecturePage = () => {
   const scrollToContact = () => {
@@ -270,6 +271,8 @@ const ArchitecturePage = () => {
             </div>
           </section>
         </div>
+
+        <RelatedBlogPosts slugs={["testirovanie-ii-assistenta-baza-znanii", "russian-llm-comparison", "openclaw-dlya-biznesa-msp"]} />
 
         <Contact />
       </main>

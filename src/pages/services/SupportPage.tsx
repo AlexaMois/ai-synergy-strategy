@@ -15,6 +15,7 @@ import {
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import trainingTeamImage from "@/assets/services/training-team.jpg";
 import { trackCTAClick } from "@/utils/analytics";
+import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 
 const SupportPage = () => {
   const scrollToContact = () => {
@@ -262,6 +263,8 @@ const SupportPage = () => {
             </div>
           </section>
         </div>
+
+        <RelatedBlogPosts slugs={["team-ai-training", "why-ai-projects-fail", "ai-synergy-framework"]} />
 
         <Contact />
       </main>

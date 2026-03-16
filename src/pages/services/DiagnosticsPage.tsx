@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
+import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 
 const DiagnosticsPage = () => {
   const scrollToContact = () => {
@@ -270,6 +271,8 @@ const DiagnosticsPage = () => {
             </div>
           </section>
         </div>
+
+        <RelatedBlogPosts slugs={["why-ai-projects-fail", "ai-roi-calculation", "ai-synergy-framework"]} />
 
         <Contact />
       </main>
