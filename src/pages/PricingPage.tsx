@@ -223,12 +223,12 @@ const PricingPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Цены на AI-консалтинг — Александра Моисеева</title>
-        <meta name="description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽, полный цикл от 150 тыс. ₽. ROI достигается за 3–6 месяцев." />
-        <meta name="keywords" content="цены AI консалтинг, стоимость внедрения ИИ, прайс AI услуги, ROI искусственный интеллект" />
+        <title>Стоимость автоматизации бизнеса с ИИ — во что реально обойдётся убрать рутину | Александра Моисеева</title>
+        <meta name="description" content="Показываю, сколько стоит автоматизация бизнес‑процессов с ИИ и какую экономию по зарплатам и ошибкам это даёт. Прозрачные пакеты под малый и средний бизнес." />
+        <meta name="keywords" content="стоимость автоматизации бизнеса, цена внедрения ИИ, ROI автоматизации процессов, цены ИИ для бизнеса" />
         <link rel="canonical" href="https://aleksamois.ru/pricing" />
-        <meta property="og:title" content="Цены на AI-консалтинг — Александра Моисеева" />
-        <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI достигается за 3–6 месяцев." />
+        <meta property="og:title" content="Стоимость автоматизации бизнеса с ИИ — во что реально обойдётся убрать рутину | Александра Моисеева" />
+        <meta property="og:description" content="Показываю, сколько стоит автоматизация бизнес‑процессов с ИИ и какую экономию по зарплатам и ошибкам это даёт. Прозрачные пакеты под малый и средний бизнес." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
