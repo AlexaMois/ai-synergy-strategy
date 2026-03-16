@@ -217,7 +217,7 @@ const Hero = () => {
           {/* Badge + Title on one line */}
           <div className="flex flex-wrap items-center justify-between gap-3 mt-5 mb-2">
             <h1 className="text-xl sm:text-2xl lg:text-3xl text-foreground leading-[1.15] tracking-tight">
-              Автоматизация бизнеса с ИИ <span className="font-bold">без лишнего «зоо ИТ»</span>
+              Автоматизация бизнеса с ИИ <span className="font-bold">без лишнего «ИТ»</span>
             </h1>
             <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
               <span>🇷🇺</span>
