@@ -19,7 +19,7 @@ const PricingPage = () => {
 
   const scrollToContact = () => {
     trackCTAClick({ location: 'pricing' });
-    
+
     if (location.pathname !== '/') {
       navigate('/#contact');
       return;
@@ -34,191 +34,191 @@ const PricingPage = () => {
   };
 
   const companyServices = [
+  {
+    size: "10–50 человек",
+    icon: Building2,
+    description: "Малый бизнес и стартапы",
+    services: [
     {
-      size: "10–50 человек",
-      icon: Building2,
-      description: "Малый бизнес и стартапы",
-      services: [
-        {
-          name: "Аудит и диагностика",
-          price: "6–15 тыс. ₽",
-          duration: "3–4 недели",
-          details: [
-            "Анализ 3–5 ключевых процессов",
-            "Оценка зрелости данных",
-            "Roadmap с приоритетами",
-            "2–3 встречи с командой"
-          ]
-        },
-        {
-          name: "Стратегия и архитектура",
-          price: "60–120 тыс. ₽",
-          duration: "4–6 недель",
-          details: [
-            "Проектирование AI-решения",
-            "Выбор инструментов",
-            "Расчёт ROI",
-            "План внедрения"
-          ]
-        },
-        {
-          name: "Сопровождение",
-          price: "50–80 тыс. ₽/мес",
-          duration: "от 3 месяцев",
-          details: [
-            "Еженедельные встречи",
-            "Контроль качества",
-            "Обучение команды",
-            "Корректировки процессов"
-          ]
-        },
-        {
-          name: "Полный цикл",
-          price: "150–250 тыс. ₽",
-          duration: "3–6 месяцев",
-          details: [
-            "Аудит + Архитектура + Сопровождение",
-            "Гарантия результата",
-            "Все метрики отслеживаются",
-            "Команда работает самостоятельно"
-          ]
-        }
-      ]
+      name: "Аудит и диагностика",
+      price: "6–15 тыс. ₽",
+      duration: "3–4 недели",
+      details: [
+      "Анализ 3–5 ключевых процессов",
+      "Оценка зрелости данных",
+      "Roadmap с приоритетами",
+      "2–3 встречи с командой"]
+
     },
     {
-      size: "50–200 человек",
-      icon: Building2,
-      description: "Средний бизнес",
-      services: [
-        {
-          name: "Аудит и диагностика",
-          price: "25–60 тыс. ₽",
-          duration: "4–5 недель",
-          details: [
-            "Анализ 5–8 процессов",
-            "Оценка IT-инфраструктуры",
-            "Roadmap с 3 сценариями",
-            "3–4 встречи + отчёт"
-          ]
-        },
-        {
-          name: "Стратегия и архитектура",
-          price: "150–300 тыс. ₽",
-          duration: "6–8 недель",
-          details: [
-            "Комплексная архитектура",
-            "Интеграции с системами",
-            "3 варианта внедрения",
-            "Управление бюджетом"
-          ]
-        },
-        {
-          name: "Сопровождение",
-          price: "80–120 тыс. ₽/мес",
-          duration: "от 3 месяцев",
-          details: [
-            "2 встречи в неделю",
-            "Проверка подрядчиков",
-            "Обучение отделов",
-            "Отчёты и метрики"
-          ]
-        },
-        {
-          name: "Полный цикл",
-          price: "300–500 тыс. ₽",
-          duration: "4–8 месяцев",
-          details: [
-            "Полное сопровождение",
-            "Несколько подразделений",
-            "ROI-гарантии",
-            "Передача знаний команде"
-          ]
-        }
-      ]
+      name: "Стратегия и архитектура",
+      price: "60–120 тыс. ₽",
+      duration: "4–6 недель",
+      details: [
+      "Проектирование AI-решения",
+      "Выбор инструментов",
+      "Расчёт ROI",
+      "План внедрения"]
+
     },
     {
-      size: "200+ человек",
-      icon: Building2,
-      description: "Крупный бизнес и корпорации",
-      services: [
-        {
-          name: "Аудит и диагностика",
-          price: "80–200 тыс. ₽",
-          duration: "5–7 недель",
-          details: [
-            "Глубокий анализ всех процессов",
-            "Оценка всех систем",
-            "Roadmap для масштабирования",
-            "5+ встреч + презентация руководству"
-          ]
-        },
-        {
-          name: "Стратегия и архитектура",
-          price: "250–400 тыс. ₽",
-          duration: "8–12 недель",
-          details: [
-            "Enterprise архитектура",
-            "Сложные интеграции",
-            "Управление рисками",
-            "Несколько сценариев масштабирования"
-          ]
-        },
-        {
-          name: "Сопровождение",
-          price: "120–150 тыс. ₽/мес",
-          duration: "от 6 месяцев",
-          details: [
-            "Еженедельные статус-коллы",
-            "Координация подрядчиков",
-            "Корпоративное обучение",
-            "Compliance и безопасность"
-          ]
-        },
-        {
-          name: "Полный цикл",
-          price: "500–700 тыс. ₽",
-          duration: "6–12 месяцев",
-          details: [
-            "Корпоративное внедрение",
-            "Несколько департаментов",
-            "Change management",
-            "Долгосрочное партнёрство"
-          ]
-        }
-      ]
-    }
-  ];
+      name: "Сопровождение",
+      price: "50–80 тыс. ₽/мес",
+      duration: "от 3 месяцев",
+      details: [
+      "Еженедельные встречи",
+      "Контроль качества",
+      "Обучение команды",
+      "Корректировки процессов"]
+
+    },
+    {
+      name: "Полный цикл",
+      price: "150–250 тыс. ₽",
+      duration: "3–6 месяцев",
+      details: [
+      "Аудит + Архитектура + Сопровождение",
+      "Гарантия результата",
+      "Все метрики отслеживаются",
+      "Команда работает самостоятельно"]
+
+    }]
+
+  },
+  {
+    size: "50–200 человек",
+    icon: Building2,
+    description: "Средний бизнес",
+    services: [
+    {
+      name: "Аудит и диагностика",
+      price: "25–60 тыс. ₽",
+      duration: "4–5 недель",
+      details: [
+      "Анализ 5–8 процессов",
+      "Оценка IT-инфраструктуры",
+      "Roadmap с 3 сценариями",
+      "3–4 встречи + отчёт"]
+
+    },
+    {
+      name: "Стратегия и архитектура",
+      price: "150–300 тыс. ₽",
+      duration: "6–8 недель",
+      details: [
+      "Комплексная архитектура",
+      "Интеграции с системами",
+      "3 варианта внедрения",
+      "Управление бюджетом"]
+
+    },
+    {
+      name: "Сопровождение",
+      price: "80–120 тыс. ₽/мес",
+      duration: "от 3 месяцев",
+      details: [
+      "2 встречи в неделю",
+      "Проверка подрядчиков",
+      "Обучение отделов",
+      "Отчёты и метрики"]
+
+    },
+    {
+      name: "Полный цикл",
+      price: "300–500 тыс. ₽",
+      duration: "4–8 месяцев",
+      details: [
+      "Полное сопровождение",
+      "Несколько подразделений",
+      "ROI-гарантии",
+      "Передача знаний команде"]
+
+    }]
+
+  },
+  {
+    size: "200+ человек",
+    icon: Building2,
+    description: "Крупный бизнес и корпорации",
+    services: [
+    {
+      name: "Аудит и диагностика",
+      price: "80–200 тыс. ₽",
+      duration: "5–7 недель",
+      details: [
+      "Глубокий анализ всех процессов",
+      "Оценка всех систем",
+      "Roadmap для масштабирования",
+      "5+ встреч + презентация руководству"]
+
+    },
+    {
+      name: "Стратегия и архитектура",
+      price: "250–400 тыс. ₽",
+      duration: "8–12 недель",
+      details: [
+      "Enterprise архитектура",
+      "Сложные интеграции",
+      "Управление рисками",
+      "Несколько сценариев масштабирования"]
+
+    },
+    {
+      name: "Сопровождение",
+      price: "120–150 тыс. ₽/мес",
+      duration: "от 6 месяцев",
+      details: [
+      "Еженедельные статус-коллы",
+      "Координация подрядчиков",
+      "Корпоративное обучение",
+      "Compliance и безопасность"]
+
+    },
+    {
+      name: "Полный цикл",
+      price: "500–700 тыс. ₽",
+      duration: "6–12 месяцев",
+      details: [
+      "Корпоративное внедрение",
+      "Несколько департаментов",
+      "Change management",
+      "Долгосрочное партнёрство"]
+
+    }]
+
+  }];
+
 
   const additionalServices = [
-    {
-      name: "Экспресс-консультация",
-      price: "Бесплатно",
-      duration: "30 минут",
-      icon: Clock,
-      description: "Бесплатная диагностическая сессия для оценки потенциала AI в вашей компании"
-    },
-    {
-      name: "Разовая консультация",
-      price: "8 690 ₽/час",
-      duration: "от 1 часа",
-      icon: Users,
-      description: "Экспертная консультация по конкретному вопросу без обязательств"
-    },
-    {
-      name: "Обучение команды",
-      price: "от 30 тыс. ₽",
-      duration: "1–2 дня",
-      icon: Users,
-      description: "Тренинг для вашей команды по работе с AI-инструментами и системами"
-    },
-    {
-      name: "Проверка подрядчика",
-      price: "от 25 тыс. ₽",
-      duration: "1–2 недели",
-      icon: Shield,
-      description: "Независимая экспертиза бюджета и технического задания от AI-подрядчика"
-    }
-  ];
+  {
+    name: "Экспресс-консультация",
+    price: "Бесплатно",
+    duration: "30 минут",
+    icon: Clock,
+    description: "Бесплатная диагностическая сессия для оценки потенциала AI в вашей компании"
+  },
+  {
+    name: "Разовая консультация",
+    price: "8 690 ₽/час",
+    duration: "от 1 часа",
+    icon: Users,
+    description: "Экспертная консультация по конкретному вопросу без обязательств"
+  },
+  {
+    name: "Обучение команды",
+    price: "от 30 тыс. ₽",
+    duration: "1–2 дня",
+    icon: Users,
+    description: "Тренинг для вашей команды по работе с AI-инструментами и системами"
+  },
+  {
+    name: "Проверка подрядчика",
+    price: "от 25 тыс. ₽",
+    duration: "1–2 недели",
+    icon: Shield,
+    description: "Независимая экспертиза бюджета и технического задания от AI-подрядчика"
+  }];
+
 
   return (
     <PageTransition>
@@ -286,9 +286,9 @@ const PricingPage = () => {
             
             <div className="space-y-12">
               {companyServices.map((company, companyIndex) => {
-                const Icon = company.icon;
-                return (
-                  <div key={companyIndex} className="bg-card border border-border rounded-3xl p-6 md:p-8 shadow-soft">
+                  const Icon = company.icon;
+                  return (
+                    <div key={companyIndex} className="bg-card border border-border rounded-3xl p-6 md:p-8 shadow-soft">
                     <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
                       <Icon className="w-10 h-10 text-primary" strokeWidth={1.5} />
                       <div>
@@ -298,11 +298,11 @@ const PricingPage = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      {company.services.map((service, serviceIndex) => (
+                      {company.services.map((service, serviceIndex) =>
                         <div
                           key={serviceIndex}
-                          className="bg-muted rounded-2xl p-6 hover:bg-primary/10 transition-colors duration-200 border border-transparent hover:border-primary/20"
-                        >
+                          className="bg-muted rounded-2xl p-6 hover:bg-primary/10 transition-colors duration-200 border border-transparent hover:border-primary/20">
+                          
                           <h4 className="text-lg font-semibold text-foreground mb-2">{service.name}</h4>
                           <p className="text-2xl font-bold text-primary mb-1">{service.price}</p>
                           <p className="text-sm text-muted-foreground mb-4 flex items-center gap-2">
@@ -311,19 +311,19 @@ const PricingPage = () => {
                           </p>
                           
                           <ul className="space-y-2">
-                            {service.details.map((detail, detailIndex) => (
-                              <li key={detailIndex} className="text-sm text-muted-foreground flex items-start gap-2">
+                            {service.details.map((detail, detailIndex) =>
+                            <li key={detailIndex} className="text-sm text-muted-foreground flex items-start gap-2">
                                 <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
                                 <span>{detail}</span>
                               </li>
-                            ))}
+                            )}
                           </ul>
                         </div>
-                      ))}
+                        )}
                     </div>
-                  </div>
-                );
-              })}
+                  </div>);
+
+                })}
             </div>
           </div>
         </section>
@@ -335,12 +335,12 @@ const PricingPage = () => {
             
             <div className="grid sm:grid-cols-2 gap-6">
               {additionalServices.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <div
-                    key={index}
-                    className="bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card transition-shadow duration-200"
-                  >
+                  const Icon = service.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card transition-shadow duration-200">
+                      
                     <div className="flex items-start gap-4 mb-4">
                       <Icon className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={1.5} />
                       <div className="flex-grow">
@@ -352,9 +352,9 @@ const PricingPage = () => {
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-                  </div>
-                );
-              })}
+                  </div>);
+
+                })}
             </div>
           </div>
         </section>
@@ -447,7 +447,7 @@ const PricingPage = () => {
                 
                 <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
                   <p className="text-sm text-muted-foreground mb-2">Бюджет проекта</p>
-                  <p className="text-4xl font-bold text-primary mb-4">12 000 ₽</p>
+                  <p className="text-4xl font-bold text-primary mb-4">80 000 ₽</p>
                   <p className="text-sm text-muted-foreground italic mb-4">
                     "Мой самый маленький бюджет, но крутейший результат. Показывает, что не нужно тратить миллионы на ИИ — важна правильная архитектура."
                   </p>
@@ -483,8 +483,8 @@ const PricingPage = () => {
         
         <Footer />
       </div>
-    </PageTransition>
-  );
+    </PageTransition>);
+
 };
 
 export default PricingPage;
