@@ -60,7 +60,7 @@ const ExitIntentPopup = () => {
 
           <DialogHeader className="mb-5 sm:mb-6 space-y-3">
             <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-center text-foreground">
-              Уходите? Последний вопрос:
+              Уходите? <br />Последний вопрос:
             </DialogTitle>
             <p className="text-base sm:text-lg font-golos font-medium text-center text-foreground/90">
               Есть процесс, который отнимает время каждый день — но руки не доходят разобраться?
