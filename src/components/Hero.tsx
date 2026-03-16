@@ -118,8 +118,8 @@ const Hero = () => {
   const buttonRefs = useRef<{
     [key: string]: HTMLButtonElement | null;
   }>({});
-  const currentSolution = solutions.find(s => s.id === activeSolution) || solutions[0];
-  const currentIndex = solutions.findIndex(s => s.id === activeSolution);
+  const currentSolution = solutions.find((s) => s.id === activeSolution) || solutions[0];
+  const currentIndex = solutions.findIndex((s) => s.id === activeSolution);
   const minSwipeDistance = 50;
 
   // Hide scroll hint on scroll
@@ -180,8 +180,8 @@ const Hero = () => {
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
-      setActiveSolution(prev => {
-        const currentIdx = solutions.findIndex(s => s.id === prev);
+      setActiveSolution((prev) => {
+        const currentIdx = solutions.findIndex((s) => s.id === prev);
         const nextIdx = (currentIdx + 1) % solutions.length;
         return solutions[nextIdx].id;
       });
@@ -225,7 +225,7 @@ const Hero = () => {
             </div>
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
-            Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры. Я помогаю директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
+            Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры. Мы помогаем директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
           </p>
         </div>
 
@@ -238,7 +238,7 @@ const Hero = () => {
           <div ref={scrollContainerRef} className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide" style={{
           WebkitOverflowScrolling: 'touch'
         }}>
-            {solutions.map((solution, index) => <button key={solution.id} ref={el => buttonRefs.current[solution.id] = el} onClick={() => handleManualSelect(solution.id)} className={cn("flex-shrink-0 min-w-[110px] py-2 px-3 rounded-xl transition-all duration-300", "flex items-center gap-2 text-xs font-medium whitespace-nowrap", activeSolution === solution.id ? "bg-primary text-primary-foreground shadow-md border border-primary scale-105" : "bg-card/50 border border-border/30 text-muted-foreground opacity-60")}>
+            {solutions.map((solution, index) => <button key={solution.id} ref={(el) => buttonRefs.current[solution.id] = el} onClick={() => handleManualSelect(solution.id)} className={cn("flex-shrink-0 min-w-[110px] py-2 px-3 rounded-xl transition-all duration-300", "flex items-center gap-2 text-xs font-medium whitespace-nowrap", activeSolution === solution.id ? "bg-primary text-primary-foreground shadow-md border border-primary scale-105" : "bg-card/50 border border-border/30 text-muted-foreground opacity-60")}>
                 <span className={cn("font-bold tabular-nums", activeSolution === solution.id ? "text-primary-foreground" : "text-primary/60")}>
                   {formatNumber(index + 1)}
                 </span>
