@@ -1,3 +1,4 @@
+
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
@@ -40,89 +41,79 @@ const About = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { ref, getStaggeredClass, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const handleLinkClick = (href: string) => {
-    navigate(href);
-  };
-
-  const { elRef: numbersRef, isIntersecting: isNumbersIntersecting } = useIntersectionObserver({
+  const { ref: numbersRef, isVisible: numbersVisible } = useIntersectionObserver({
     threshold: 0.75,
   });
 
-  const { countUp: projectsCountUp } = useCountUp({
-    start: 0,
+  const projectsCount = useCountUp({
     end: 30,
-    duration: 3,
-    isIntersecting: isNumbersIntersecting,
+    duration: 3000,
+    isVisible: numbersVisible,
   });
 
-  const { countUp: clientsCountUp } = useCountUp({
-    start: 0,
+  const clientsCount = useCountUp({
     end: 20,
-    duration: 3,
-    isIntersecting: isNumbersIntersecting,
+    duration: 3000,
+    isVisible: numbersVisible,
   });
 
-  const { countUp: aiSolutionsCountUp } = useCountUp({
-    start: 0,
+  const aiSolutionsCount = useCountUp({
     end: 15,
-    duration: 3,
-    isIntersecting: isNumbersIntersecting,
+    duration: 3000,
+    isVisible: numbersVisible,
   });
 
-  const breadcrumbs = [
-    {
-      name: "Главная",
-      url: "/",
-    },
-    {
-      name: "Обо мне",
-      url: "/about",
-    },
+  const galleryImages = [
+    { src: speakingCasual, alt: "Выступление на конференции" },
+    { src: presentingAudience, alt: "Выступление на конференции" },
+    { src: lectureTools, alt: "Выступление на конференции" },
+    { src: coPresenting1, alt: "Совместное выступление" },
+    { src: coPresenting2, alt: "Совместное выступление" },
+    { src: exhibitionBooth, alt: "Выставка МЧС" },
   ];
 
-  const breadcrumbSchema = getBreadcrumbs({ breadcrumbs });
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const breadcrumbSchema = getBreadcrumbs.about();
 
   return (
     <PageTransition>
       <Helmet>
-        <title>Обо мне</title>
+        <title>Обо мне — Александра Моисеева | Независимый инженер ИИ</title>
         <meta name="description" content="Узнайте больше об эксперте по внедрению ИИ в бизнес — Александре Моисеевой. Опыт, компетенции и подход к проектам." />
-        <meta property="og:title" content="Обо мне" />
-        <meta property="og:description" content="Узнайте больше об эксперте по внедрению ИИ в бизнес — Александре Моисеевой. Опыт, компетенции и подход к проектам." />
+        <meta property="og:title" content="Обо мне — Александра Моисеева" />
+        <meta property="og:description" content="Узнайте больше об эксперте по внедрению ИИ в бизнес — Александре Моисеевой." />
         <meta property="og:url" content={`${window.location.origin}/about`} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
-      <PageBreadcrumbs breadcrumbs={breadcrumbs} />
+      <PageBreadcrumbs currentPage="Обо мне" />
 
       {/* Hero Section */}
       <section className="relative py-12 md:py-20 lg:py-24 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Text Content */}
             <div className="order-2 md:order-1">
               <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up")}`}>
                 Привет! Я <span className="text-primary">Александра Моисеева</span>
               </h1>
-              <p className={`text-lg text-text-body leading-relaxed mb-6 ${getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up", 0.2)}`}>
+              <p className={`text-lg text-muted-foreground leading-relaxed mb-6 ${getAnimationClass("animate-fade-in-up")}`}>
                 Я помогаю бизнесу находить и внедрять решения на основе искусственного интеллекта, которые реально работают и приносят пользу.
               </p>
-              <div className={getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up", 0.4)}>
+              <div className={getAnimationClass("animate-fade-in-up")}>
                 <Button size="lg" onClick={() => navigate("/contact")}>
                   Начать проект
                 </Button>
               </div>
             </div>
 
-            {/* Image */}
             <div className="order-1 md:order-2">
-              <div className={`relative rounded-2xl overflow-hidden shadow-soft ${getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up")}`}>
+              <div className={`relative rounded-2xl overflow-hidden shadow-soft ${getAnimationClass("animate-fade-in-up")}`}>
                 <img
                   src={alexandraHeadshot}
                   alt="Alexandra Moiseeva"
@@ -151,9 +142,7 @@ const About = () => {
                 src={speakingPodium}
                 alt="Александра Моисеева выступает на форуме"
                 className="w-full h-72 md:h-80 object-cover"
-                style={{
-                  objectPosition: "65% top",
-                }}
+                style={{ objectPosition: "65% top" }}
                 loading="lazy"
                 decoding="async"
               />
@@ -166,18 +155,17 @@ const About = () => {
       <section id="about" ref={ref} className="py-12 md:py-16 lg:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
-            <h2 className={`section-title text-center ${getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up")}`}>
+            <div className="w-24 h-px bg-border mx-auto mb-8"></div>
+            <h2 className={`section-title text-center ${getAnimationClass("animate-fade-in-up")}`}>
               Обо <span className="font-semibold">мне</span>
             </h2>
-            <p className={`text-lg text-text-body leading-relaxed text-center mb-8 ${getAnimationClass("animate-fade-in-up", "animate-mobile-slide-up", 0.2)}`}>
+            <p className={`text-lg text-muted-foreground leading-relaxed text-center mb-8 ${getAnimationClass("animate-fade-in-up")}`}>
               Более 5 лет я помогаю компаниям интегрировать искусственный интеллект в бизнес-процессы. Моя цель — сделать ИИ доступным и понятным инструментом для роста и оптимизации.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Left Column: Text and List */}
               <div>
-                <p className={`text-lg text-text-body leading-relaxed mb-6 ${getStaggeredClass(0, "animate-fade-in-up")}`}>
+                <p className={`text-lg text-muted-foreground leading-relaxed mb-6 ${getStaggeredClass(0, "animate-fade-in-up")}`}>
                   Я работаю с компаниями разного масштаба — от стартапов до крупных корпораций. Мой подход основан на глубоком понимании бизнес-задач клиента и поиске наиболее эффективных ИИ-решений.
                 </p>
                 <ul className={`list-disc pl-5 space-y-2 ${getStaggeredClass(1, "animate-fade-in-up")}`}>
@@ -188,7 +176,6 @@ const About = () => {
                 </ul>
               </div>
 
-              {/* Right Column: Image */}
               <div className={`relative rounded-2xl overflow-hidden shadow-soft ${getStaggeredClass(2, "animate-fade-in-up")}`}>
                 <img
                   src={consultingMeeting}
@@ -213,103 +200,84 @@ const About = () => {
       <section id="numbers" className="py-12 md:py-16 lg:py-20 bg-muted overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
+            <div className="w-24 h-px bg-border mx-auto mb-8"></div>
             <h2 className="section-title text-center">
               Ключевые <span className="font-semibold">цифры</span>
             </h2>
-            <p className="text-lg text-text-body leading-relaxed text-center mb-12">
+            <p className="text-lg text-muted-foreground leading-relaxed text-center mb-12">
               Несколько фактов обо мне и моей работе, которые говорят лучше всяких слов.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8 text-center" ref={numbersRef}>
-              {/* Projects Completed */}
+            <div className="grid md:grid-cols-3 gap-8 text-center" ref={numbersRef as React.RefObject<HTMLDivElement>}>
               <div>
                 <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2">
-                  {isMounted && <AnimatedNumber value={projectsCountUp} />}+
+                  {projectsCount}+
                 </div>
-                <p className="text-lg text-text-body">Завершенных проектов</p>
+                <p className="text-lg text-muted-foreground">Завершенных проектов</p>
               </div>
-
-              {/* Happy Clients */}
               <div>
                 <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2">
-                  {isMounted && <AnimatedNumber value={clientsCountUp} />}+
+                  {clientsCount}+
                 </div>
-                <p className="text-lg text-text-body">Довольных клиентов</p>
+                <p className="text-lg text-muted-foreground">Довольных клиентов</p>
               </div>
-
-              {/* AI Solutions Implemented */}
               <div>
                 <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2">
-                  {isMounted && <AnimatedNumber value={aiSolutionsCountUp} />}+
+                  {aiSolutionsCount}+
                 </div>
-                <p className="text-lg text-text-body">Внедренных ИИ-решений</p>
+                <p className="text-lg text-muted-foreground">Внедренных ИИ-решений</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section: Credentials */}
       <Credentials />
 
       {/* Section: Speaking */}
       <section id="speaking" className="py-12 md:py-16 lg:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
+            <div className="w-24 h-px bg-border mx-auto mb-8"></div>
             <h2 className="section-title text-center">
               Выступления <span className="font-semibold">и лекции</span>
             </h2>
-            <p className="text-lg text-text-body leading-relaxed text-center mb-12">
+            <p className="text-lg text-muted-foreground leading-relaxed text-center mb-12">
               Я регулярно выступаю на конференциях и форумах, делясь опытом внедрения ИИ в бизнес.
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Card 1 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={speakingCasual} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
-
-              {/* Card 2 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={presentingAudience} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
-
-              {/* Card 3 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={lectureTools} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
-
-              {/* Card 4 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={coPresenting1} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
-
-              {/* Card 5 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={coPresenting2} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
-
-              {/* Card 6 */}
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <PhotoLightbox src={exhibitionBooth} alt="Выступление на конференции" style={{ objectPosition: "top" }} />
-              </div>
+              {galleryImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative rounded-2xl overflow-hidden shadow-soft cursor-pointer hover:shadow-card transition-shadow"
+                  onClick={() => openLightbox(index)}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-64 object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section: Publications */}
+      <PhotoLightbox
+        images={galleryImages}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onNavigate={setLightboxIndex}
+      />
+
       <PublicationsMarquee />
-
-      {/* Section: Partners */}
       <Partners />
-
-      {/* Section: Contact */}
       <Contact />
-
-      {/* Footer */}
       <Footer />
     </PageTransition>
   );
