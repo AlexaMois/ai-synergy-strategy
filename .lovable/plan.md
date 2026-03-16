@@ -1,33 +1,76 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Анализ: что ещё улучшить для органического трафика
 
-### Changes to `src/data/blogPosts.ts`
+Метаданные и H1 обновлены — это основа. Теперь есть несколько технических и контентных пробелов, которые тормозят органику.
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+---
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+### 1. Sitemap: нет `<lastmod>` дат
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+Сейчас `sitemap.xml` не содержит `<lastmod>`. Google и Яндекс используют `lastmod` для приоритизации crawl-бюджета — без него они не знают, когда страница обновлялась.
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+**Что сделать**: добавить `<lastmod>` с текущей датой в `vite-plugin-sitemap.ts`. Для блог-постов — брать `date` из `blogPosts.ts`.
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+---
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+### 2. FAQ Schema на главной отсутствует
 
-### Changes to `src/pages/BlogPost.tsx`
+На `/faq` есть `FAQPage` JSON-LD schema — это хорошо. Но на **главной** (`/`) есть компонент `FAQ` с 5+ вопросами, и для них **нет** `FAQPage` schema. Google показывает FAQ rich snippets только если есть разметка.
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+**Что сделать**: добавить `FAQPage` JSON-LD schema в компонент `FAQ.tsx` (или в `Index.tsx`) для вопросов главной страницы.
 
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+---
+
+### 3. BlogPost: canonical URL отсутствует
+
+`BlogPost.tsx` устанавливает meta через DOM manipulation (не Helmet), и **не ставит canonical URL**. Без canonical Google может индексировать дубли (например, с query-параметрами).
+
+**Что сделать**: добавить `<link rel="canonical" href="https://aleksamois.ru/materials/blog/${slug}" />` в BlogPost.
+
+---
+
+### 4. BlogPost: нет `og:url` и `og:image`
+
+Блог-посты не устанавливают `og:url` и `og:image`. При шеринге в соцсети/мессенджеры — превью будет неполным.
+
+**Что сделать**: добавить og:url (canonical), og:image (introImage или дефолтный og-image).
+
+---
+
+### 5. Внутренняя перелинковка: блок «Связанные статьи» на страницах услуг
+
+Страницы услуг (diagnostics, architecture, support) не ссылаются на релевантные блог-посты. Это упущенный сигнал для поисковиков и потеря глубины просмотра.
+
+**Что сделать**: добавить блок «Полезные статьи по теме» (2-3 ссылки на блог) на каждую страницу услуг. Данные берём из `blogPosts.ts` по тегам/категориям.
+
+---
+
+### 6. `index.html`: title и description не синхронизированы с Helmet
+
+В `index.html` (строки 96-97) title и description — старые. Для SPA это fallback для ботов, которые не исполняют JS (часть ботов Яндекса). Нужно синхронизировать с новым title/description главной.
+
+---
+
+### Приоритет реализации
+
+| # | Задача | Влияние | Сложность |
+|---|--------|---------|-----------|
+| 1 | `index.html` title/description sync | Высокое (Яндекс) | 5 мин |
+| 2 | Sitemap `lastmod` | Среднее | 15 мин |
+| 3 | FAQ Schema на главной | Высокое (rich snippets) | 15 мин |
+| 4 | BlogPost canonical + og tags | Среднее | 10 мин |
+| 5 | Перелинковка услуг → блог | Среднее-высокое | 30 мин |
+
+### Файлы
+
+| Файл | Изменения |
+|------|-----------|
+| `index.html` | Обновить title и meta description на новые |
+| `vite-plugin-sitemap.ts` | Добавить `<lastmod>` в XML |
+| `src/components/FAQ.tsx` | Добавить FAQPage JSON-LD schema |
+| `src/pages/BlogPost.tsx` | Добавить canonical, og:url, og:image |
+| `src/pages/services/DiagnosticsPage.tsx` | Блок «Полезные статьи» с 2-3 ссылками |
+| `src/pages/services/ArchitecturePage.tsx` | Блок «Полезные статьи» с 2-3 ссылками |
+| `src/pages/services/SupportPage.tsx` | Блок «Полезные статьи» с 2-3 ссылками |
 
