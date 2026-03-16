@@ -264,6 +264,8 @@ const SupportPage = () => {
           </section>
         </div>
 
+        <RelatedBlogPosts slugs={["team-ai-training", "why-ai-projects-fail", "ai-synergy-framework"]} />
+
         <Contact />
       </main>
 

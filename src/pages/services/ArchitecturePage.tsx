@@ -272,6 +272,8 @@ const ArchitecturePage = () => {
           </section>
         </div>
 
+        <RelatedBlogPosts slugs={["testirovanie-ii-assistenta-baza-znanii", "russian-llm-comparison", "openclaw-dlya-biznesa-msp"]} />
+
         <Contact />
       </main>
 

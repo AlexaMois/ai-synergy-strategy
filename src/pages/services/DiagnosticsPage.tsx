@@ -272,6 +272,8 @@ const DiagnosticsPage = () => {
           </section>
         </div>
 
+        <RelatedBlogPosts slugs={["why-ai-projects-fail", "ai-roi-calculation", "ai-synergy-framework"]} />
+
         <Contact />
       </main>
 
