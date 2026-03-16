@@ -91,6 +91,39 @@ const BlogPost = () => {
         document.head.appendChild(meta);
       }
 
+      // og:url
+      const canonicalUrl = `https://aleksamois.ru/materials/blog/${slug}`;
+      const setOrCreateMeta = (property: string, content: string) => {
+        let el = document.querySelector(`meta[property="${property}"]`);
+        if (el) {
+          el.setAttribute("content", content);
+        } else {
+          el = document.createElement("meta");
+          el.setAttribute("property", property);
+          (el as HTMLMetaElement).content = content;
+          document.head.appendChild(el);
+        }
+      };
+      setOrCreateMeta("og:url", canonicalUrl);
+      setOrCreateMeta("og:type", "article");
+
+      // og:image
+      const ogImageUrl = post.content.introImage?.src
+        ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
+        : "https://aleksamois.ru/og-image.png";
+      setOrCreateMeta("og:image", ogImageUrl);
+
+      // canonical link
+      let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (canonicalLink) {
+        canonicalLink.href = canonicalUrl;
+      } else {
+        canonicalLink = document.createElement("link");
+        canonicalLink.rel = "canonical";
+        canonicalLink.href = canonicalUrl;
+        document.head.appendChild(canonicalLink);
+      }
+
       const structuredData = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
