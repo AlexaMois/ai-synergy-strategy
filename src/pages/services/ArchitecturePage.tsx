@@ -65,11 +65,12 @@ const ArchitecturePage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Архитектура ИИ-решений | Александра Моисеева</title>
-        <meta name="description" content="Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, интеграция с CRM, 1С, готовое техническое задание." />
+        <title>Архитектура решений для автоматизации бизнес‑процессов с ИИ | Александра Моисеева</title>
+        <meta name="description" content="Проектирую архитектуру ИИ‑систем: от голосовых ассистентов и OCR до RAG‑ассистентов и интеграций с CRM/1С без ломки текущей инфраструктуры." />
+        <meta name="keywords" content="архитектура ИИ решений, проектирование автоматизации бизнес процессов, независимый ИИ архитектор, интеграция ИИ с CRM и 1С" />
         <link rel="canonical" href="https://aleksamois.ru/services/architecture" />
-        <meta property="og:title" content="Архитектура ИИ-решений | Александра Моисеева" />
-        <meta property="og:description" content="Проектирование AI-решения для вашего бизнеса. Выбор технологий, интеграция с CRM и 1С." />
+        <meta property="og:title" content="Архитектура решений для автоматизации бизнес‑процессов с ИИ | Александра Моисеева" />
+        <meta property="og:description" content="Проектирую архитектуру ИИ‑систем: от голосовых ассистентов и OCR до RAG‑ассистентов и интеграций с CRM/1С без ломки текущей инфраструктуры." />
         <meta property="og:url" content="https://aleksamois.ru/services/architecture" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
