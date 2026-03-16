@@ -224,9 +224,14 @@ const Hero = () => {
               <span className="font-medium">Работаем по всей России  </span>
             </div>
           </div>
-          <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed max-w-2xl">
-            Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры. Мы помогаем директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
-          </p>
+          <blockquote className="relative max-w-2xl border-l-4 border-primary pl-4 sm:pl-5 py-2 sm:py-3 bg-primary/5 rounded-r-lg">
+            <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed italic">
+              Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры.
+            </p>
+            <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed mt-2 font-medium not-italic">
+              Мы помогаем директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
+            </p>
+          </blockquote>
         </div>
 
         {/* Mobile Horizontal Scroll Navigation */}
