@@ -65,11 +65,12 @@ const DiagnosticsPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Диагностика бизнес-процессов | Александра Моисеева</title>
-        <meta name="description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат за месяц, где нужна подготовка процессов, где он вообще не нужен." />
+        <title>Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева</title>
+        <meta name="description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
+        <meta name="keywords" content="аудит бизнес процессов, анализ автоматизации бизнес процессов, диагностика автоматизации, анализ ИИ‑готовности" />
         <link rel="canonical" href="https://aleksamois.ru/services/diagnostics" />
-        <meta property="og:title" content="Диагностика бизнес-процессов | Александра Моисеева" />
-        <meta property="og:description" content="Аудит и анализ процессов для внедрения ИИ. Честный разбор где ИИ даст результат." />
+        <meta property="og:title" content="Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева" />
+        <meta property="og:description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
         <meta property="og:url" content="https://aleksamois.ru/services/diagnostics" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
