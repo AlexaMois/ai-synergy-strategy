@@ -427,7 +427,7 @@ const PricingPage = () => {
                 <div>
                   <h3 className="text-2xl font-semibold text-foreground mb-4">Грузовой Экспресс</h3>
                   <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                    Логистическая компания, 15 человек. Потратили всего 12 000 ₽ на автоматизацию через Telegram-бота.
+                    Логистическая компания, 15 человек. Потратили всего 80 000 ₽ на автоматизацию через Telegram-бота.
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
