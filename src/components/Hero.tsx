@@ -224,13 +224,19 @@ const Hero = () => {
               <span className="font-medium">Работаем по всей России  </span>
             </div>
           </div>
-          <blockquote className="relative max-w-2xl border-l-4 border-primary pl-4 sm:pl-5 py-2 sm:py-3 bg-primary/5 rounded-r-lg">
-            <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed italic">
-              Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры.
-            </p>
-            <p className="text-xs sm:text-sm lg:text-base text-foreground leading-relaxed mt-2 font-medium not-italic">
-              Мы помогаем директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
-            </p>
+          <blockquote className="relative max-w-2xl overflow-hidden rounded-xl bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/20 border border-emerald-200/60 dark:border-emerald-800/40 shadow-sm">
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-emerald-400 to-green-500 rounded-l-xl" />
+            <div className="pl-5 sm:pl-6 pr-4 sm:pr-5 py-3 sm:py-4">
+              <div className="flex items-start gap-2 mb-2">
+                <span className="text-emerald-500 text-lg leading-none mt-0.5">✦</span>
+                <p className="text-xs sm:text-sm lg:text-base text-emerald-800/80 dark:text-emerald-300/80 leading-relaxed italic">
+                  Если у вас всё держится на нескольких людях, заявки и документы теряются, а директор занят тушением пожаров вместо развития — значит, система не работает, а люди закрывают её дыры.
+                </p>
+              </div>
+              <p className="text-xs sm:text-sm lg:text-base text-emerald-900 dark:text-emerald-100 leading-relaxed font-semibold not-italic ml-6">
+                Мы помогаем директорам производства и торговли за 4–6 недель убрать до 30% ручной рутины с помощью ИИ и автоматизации, не ломая текущие системы и не нанимая армию интеграторов.
+              </p>
+            </div>
           </blockquote>
         </div>
 
