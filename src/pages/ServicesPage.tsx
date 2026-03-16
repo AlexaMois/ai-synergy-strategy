@@ -21,12 +21,12 @@ const systemElements = [
 const ServicesPage = () => {
   return <PageTransition>
       <Helmet>
-        <title>Услуги — Александра Моисеева, Инженер по ИИ</title>
-        <meta name="description" content="Три этапа: диагностика → архитектура → сопровождение. Помогаю внедрить ИИ так, чтобы он работал и приносил результаты. Работаю с компаниями от 3 до 300 человек." />
-        <meta name="keywords" content="услуги ИИ, внедрение AI, аудит процессов, AI архитектура, консалтинг искусственный интеллект" />
+        <title>Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева</title>
+        <meta name="description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
+        <meta name="keywords" content="услуги по автоматизации бизнес процессов, автоматизация процессов с помощью ИИ, ИИ консалтинг, внедрение AI в бизнес" />
         <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Услуги — Александра Моисеева, Инженер по ИИ" />
-        <meta property="og:description" content="Три этапа: диагностика → архитектура → сопровождение. Помогаю внедрить ИИ так, чтобы он работал и приносил результаты." />
+        <meta property="og:title" content="Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева" />
+        <meta property="og:description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
