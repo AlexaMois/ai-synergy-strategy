@@ -58,12 +58,15 @@ const ExitIntentPopup = () => {
             </div>
           </div>
 
-          <DialogHeader className="mb-5 sm:mb-6">
-            <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-left text-foreground mb-3">
+          <DialogHeader className="mb-5 sm:mb-6 space-y-3">
+            <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-left text-foreground">
               Уходите? Последний вопрос:
             </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base font-raleway text-left text-foreground/80 leading-relaxed">
-              Есть процесс, который отнимает время каждый день — но руки не доходят разобраться? Пройдите короткий тест — за 3 минуты поймёте, где ИИ даст результат именно Вам.
+            <p className="text-base sm:text-lg font-golos font-medium text-left text-foreground/90">
+              Есть процесс, который отнимает время каждый день — но руки не доходят разобраться?
+            </p>
+            <DialogDescription className="text-sm sm:text-base font-raleway text-left text-foreground/70 leading-relaxed">
+              Пройдите короткий тест — за 3 минуты поймёте, где ИИ даст результат именно Вам.
             </DialogDescription>
           </DialogHeader>
 
