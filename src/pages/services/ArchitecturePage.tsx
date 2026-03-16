@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
+import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 
 const ArchitecturePage = () => {
   const scrollToContact = () => {
