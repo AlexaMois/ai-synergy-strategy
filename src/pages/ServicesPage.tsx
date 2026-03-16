@@ -21,12 +21,12 @@ const systemElements = [
 const ServicesPage = () => {
   return <PageTransition>
       <Helmet>
-        <title>Услуги — Александра Моисеева, Инженер по ИИ</title>
-        <meta name="description" content="Три этапа: диагностика → архитектура → сопровождение. Помогаю внедрить ИИ так, чтобы он работал и приносил результаты. Работаю с компаниями от 3 до 300 человек." />
-        <meta name="keywords" content="услуги ИИ, внедрение AI, аудит процессов, AI архитектура, консалтинг искусственный интеллект" />
+        <title>Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева</title>
+        <meta name="description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
+        <meta name="keywords" content="услуги по автоматизации бизнес процессов, автоматизация процессов с помощью ИИ, ИИ консалтинг, внедрение AI в бизнес" />
         <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Услуги — Александра Моисеева, Инженер по ИИ" />
-        <meta property="og:description" content="Три этапа: диагностика → архитектура → сопровождение. Помогаю внедрить ИИ так, чтобы он работал и приносил результаты." />
+        <meta property="og:title" content="Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева" />
+        <meta property="og:description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
@@ -48,26 +48,11 @@ const ServicesPage = () => {
               {/* Left column - Text */}
               <div className="mb-0 mt-[20px] ml-[30px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
-                  Услуги: <span className="font-semibold">стратегический и инженерный подход к ИИ</span>
+                  Что именно мы <span className="font-semibold">автоматизируем в вашем бизнесе</span>
                 </h1>
-                <ul className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Помогаю внедрить ИИ так, чтобы он работал и приносил результаты</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Работаю с компаниями от 3 до 300 человек</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Помогаю внедрить ИИ без переделки процессов и остановки операционки</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Защищаю бизнес от неправильных решений и лишних затрат</span>
-                  </li>
-                </ul>
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
+                  Вместо абстрактного «внедрим ИИ» мы работаем с конкретной болью: ручной ввод и проверка данных, бардак в документообороте, потерянные заявки, слабый контроль по производству и отчётам. Я помогаю выбрать процессы, которые реально тормозят деньги, спроектировать решение на основе ИИ и довести его до стабильной работы в вашей связке CRM/1С/порталов.
+                </p>
                 
                 {/* Three stages process */}
                 

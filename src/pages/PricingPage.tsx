@@ -223,12 +223,12 @@ const PricingPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Цены на AI-консалтинг — Александра Моисеева</title>
-        <meta name="description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽, полный цикл от 150 тыс. ₽. ROI достигается за 3–6 месяцев." />
-        <meta name="keywords" content="цены AI консалтинг, стоимость внедрения ИИ, прайс AI услуги, ROI искусственный интеллект" />
+        <title>Стоимость автоматизации бизнеса с ИИ — во что реально обойдётся убрать рутину | Александра Моисеева</title>
+        <meta name="description" content="Показываю, сколько стоит автоматизация бизнес‑процессов с ИИ и какую экономию по зарплатам и ошибкам это даёт. Прозрачные пакеты под малый и средний бизнес." />
+        <meta name="keywords" content="стоимость автоматизации бизнеса, цена внедрения ИИ, ROI автоматизации процессов, цены ИИ для бизнеса" />
         <link rel="canonical" href="https://aleksamois.ru/pricing" />
-        <meta property="og:title" content="Цены на AI-консалтинг — Александра Моисеева" />
-        <meta property="og:description" content="Прозрачные цены на AI-консалтинг. Аудит от 6 тыс. ₽, стратегия от 60 тыс. ₽. ROI достигается за 3–6 месяцев." />
+        <meta property="og:title" content="Стоимость автоматизации бизнеса с ИИ — во что реально обойдётся убрать рутину | Александра Моисеева" />
+        <meta property="og:description" content="Показываю, сколько стоит автоматизация бизнес‑процессов с ИИ и какую экономию по зарплатам и ошибкам это даёт. Прозрачные пакеты под малый и средний бизнес." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
@@ -250,11 +250,11 @@ const PricingPage = () => {
               <div className="flex items-center justify-center gap-4 mb-6">
                 <DollarSign className="w-12 h-12 text-primary" strokeWidth={1.5} />
                 <h1 className="text-[28px] sm:text-[32px] md:text-[36px] text-foreground leading-tight">
-                  Прозрачные цены <span className="font-semibold">на AI-консалтинг</span>
+                  Сколько стоит <span className="font-semibold">убрать рутину и бардак в процессах</span>
                 </h1>
               </div>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Стоимость зависит от размера компании и глубины работы. Все цены включают обучение команды и техническую поддержку. Главное: я считаю ROI вашей компании, не мою комиссию.
+                Вместо «цена за час консультанта» я считаю стоимость проекта через экономию: сколько ручных часов и ошибок мы убираем и во сколько это сейчас обходится компании. На этой странице — типовые форматы работ и вилки бюджетов, чтобы вы сразу понимали порядок цифр и могли сопоставить их с ожидаемой отдачей.
               </p>
             </div>
 

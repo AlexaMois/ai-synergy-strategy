@@ -1,6 +1,6 @@
 // SEO Configuration
 export const SEO = {
-  siteName: "Александра Моисеева — Стратег и инженер ИИ | ROI за 3–6 месяцев",
+  siteName: "Автоматизация бизнеса с ИИ — убираем рутину и бардак в процессах | Александра Моисеева",
   siteUrl: "https://aleksamois.ru",
   
   // Default OG image for all pages (1200x630)

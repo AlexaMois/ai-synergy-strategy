@@ -272,18 +272,18 @@ const CasesPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Кейсы внедрения ИИ — Реальные результаты | Александра Моисеева</title>
+        <title>Кейсы автоматизации бизнес‑процессов с ИИ — реальные цифры и результаты | Александра Моисеева</title>
         <meta
           name="description"
-          content="14+ кейсов внедрения ИИ для бизнеса: автоматизация процессов, AI-ассистенты, работа с документами. Экономия до 1,3 млн ₽, окупаемость от 1 месяца."
+          content="Реальные истории: как ИИ‑ассистенты, голосовые боты и RAG‑системы сократили ручной труд, ускорили обработку заявок и снизили брак на производстве."
         />
         <meta
           name="keywords"
-          content="кейсы внедрения ИИ, примеры AI автоматизации, результаты искусственный интеллект, ROI ИИ проектов"
+          content="примеры автоматизации бизнеса, кейсы автоматизации бизнес процессов, кейсы внедрения ИИ, результаты ИИ в бизнесе"
         />
         <link rel="canonical" href="https://aleksamois.ru/cases" />
-        <meta property="og:title" content="Кейсы внедрения ИИ — Реальные результаты | Александра Моисеева" />
-        <meta property="og:description" content="14+ кейсов внедрения ИИ для бизнеса. Экономия до 1,3 млн ₽, окупаемость от 1 месяца." />
+        <meta property="og:title" content="Кейсы автоматизации бизнес‑процессов с ИИ — реальные цифры и результаты | Александра Моисеева" />
+        <meta property="og:description" content="Реальные истории: как ИИ‑ассистенты, голосовые боты и RAG‑системы сократили ручной труд, ускорили обработку заявок и снизили брак на производстве." />
         <meta property="og:url" content="https://aleksamois.ru/cases" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
@@ -304,11 +304,10 @@ const CasesPage = () => {
             {/* Hero Section */}
             <section className="text-center mb-12 mt-8">
               <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-                Кейсы <span className="font-bold">внедрения ИИ</span>
+                Реальные кейсы: <span className="font-bold">что даёт автоматизация с ИИ в цифрах</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Реальные проекты с измеримыми результатами. 
-                Экономия времени, денег и ресурсов.
+                Здесь собраны проекты, где мы убирали ручной ввод данных, наводили порядок в заявках, снижали брак или ускоряли подготовку документов. Я показываю не только технологии, но и главное — какие процессы трогали, какие метрики измеряли и что в итоге получил собственник: в часах, рублях и нервных клетках.
               </p>
             </section>
 

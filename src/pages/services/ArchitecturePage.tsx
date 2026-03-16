@@ -65,11 +65,12 @@ const ArchitecturePage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Архитектура ИИ-решений | Александра Моисеева</title>
-        <meta name="description" content="Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, интеграция с CRM, 1С, готовое техническое задание." />
+        <title>Архитектура решений для автоматизации бизнес‑процессов с ИИ | Александра Моисеева</title>
+        <meta name="description" content="Проектирую архитектуру ИИ‑систем: от голосовых ассистентов и OCR до RAG‑ассистентов и интеграций с CRM/1С без ломки текущей инфраструктуры." />
+        <meta name="keywords" content="архитектура ИИ решений, проектирование автоматизации бизнес процессов, независимый ИИ архитектор, интеграция ИИ с CRM и 1С" />
         <link rel="canonical" href="https://aleksamois.ru/services/architecture" />
-        <meta property="og:title" content="Архитектура ИИ-решений | Александра Моисеева" />
-        <meta property="og:description" content="Проектирование AI-решения для вашего бизнеса. Выбор технологий, интеграция с CRM и 1С." />
+        <meta property="og:title" content="Архитектура решений для автоматизации бизнес‑процессов с ИИ | Александра Моисеева" />
+        <meta property="og:description" content="Проектирую архитектуру ИИ‑систем: от голосовых ассистентов и OCR до RAG‑ассистентов и интеграций с CRM/1С без ломки текущей инфраструктуры." />
         <meta property="og:url" content="https://aleksamois.ru/services/architecture" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
@@ -95,10 +96,10 @@ const ArchitecturePage = () => {
                   <span className="text-sm font-medium text-primary">Услуга 02</span>
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                  Архитектура
+                  Архитектура: как собрать ИИ‑решение без зоопарка из сервисов
                 </h1>
                 <p className="text-lg text-foreground/80 max-w-2xl">
-                  Проектирование AI-решения, которое встраивается в ваш процесс. Выбор технологий без лишних затрат, готовое ТЗ для разработчиков.
+                  У многих компаний уже есть CRM, 1С, порталы, таблицы, но всё склеено «костылями» и ручной работой. На этапе архитектуры мы не продаём очередную платформу — мы проектируем, как ИИ‑ассистенты, голос, OCR и RAG‑поиск встроятся в вашу текущую инфраструктуру так, чтобы процессы стали работать быстрее и стабильнее, а не превратились в ещё один ИТ‑проект ради галочки.
                 </p>
               </div>
               

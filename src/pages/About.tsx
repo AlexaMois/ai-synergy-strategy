@@ -177,12 +177,12 @@ const About = () => {
   });
   return <PageTransition>
       <Helmet>
-        <title>Обо мне — Александра Моисеева | Независимый инженер ИИ</title>
-        <meta name="description" content="Независимый стратег и инженер ИИ с 14+ годами опыта. 36+ проектов, 350+ аудитов. ROI достигается за 3–6 месяцев. Сколково, SDS KAEO уровень 5." />
-        <meta name="keywords" content="Александра Моисеева, инженер ИИ, AI консультант, эксперт по искусственному интеллекту, Сколково" />
+        <title>Александра Моисеева — стратег по автоматизации бизнеса с ИИ, Красноярск | НейроРешения</title>
+        <meta name="description" content="AI Strategy Consultant & Founder «НейроРешения». Разрабатываю и внедряю персональные AI‑решения для автоматизации бизнес‑процессов, сокращения затрат и повышения эффективности компаний." />
+        <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
-        <meta property="og:title" content="Обо мне — Александра Моисеева | Независимый инженер ИИ" />
-        <meta property="og:description" content="Независимый стратег и инженер ИИ с 14+ годами опыта. 36+ проектов. ROI достигается за 3–6 месяцев." />
+        <meta property="og:title" content="Александра Моисеева — стратег по автоматизации бизнеса с ИИ, Красноярск | НейроРешения" />
+        <meta property="og:description" content="AI Strategy Consultant & Founder «НейроРешения». Разрабатываю и внедряю персональные AI‑решения для автоматизации бизнес‑процессов, сокращения затрат и повышения эффективности компаний." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -205,13 +205,13 @@ const About = () => {
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
                 <h1 className="mb-4 leading-tight">
-                  Александра Моисеева
+                  Кто я и почему мне можно доверить ваши процессы
                 </h1>
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
-                  Независимый стратег и инженер ИИ
+                  Александра Моисеева — стратег по автоматизации бизнеса с ИИ
                 </p>
                 <p className="text-lg text-foreground leading-relaxed mb-8">
-                  Независимая архитектура ИИ под задачи бизнеса: без привязки к платформам и без лишних затрат.
+                  Я работаю с владельцами и директорами, у которых «нет рук, нет денег и бардак в процессах». 350+ диагностик, десятки проектов в production, собственные AI‑продукты. Мой фокус — не красивые презентации, а понятная экономика: где ИИ и автоматизация реально сократят ручной труд и потери, а где вам пока не нужны никакие технологии.
                 </p>
                 <Button size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
                   Заказать звонок
