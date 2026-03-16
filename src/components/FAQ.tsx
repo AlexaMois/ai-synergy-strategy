@@ -175,12 +175,36 @@ const FAQ = () => {
           Частые вопросы, <span className="font-semibold">честные ответы</span>
         </h2>
 
-        <div className={`max-w-4xl mx-auto ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
+        <div className={`max-w-5xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-0 ${getStaggeredClass(1, 'animate-fade-in-up')}`}>
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
+            {faqs.slice(0, 5).map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
+                className="border-b border-border pb-3"
+              >
+                <AccordionTrigger className="text-left text-base font-medium text-foreground hover:text-primary transition-colors duration-200 rounded-xl px-2 -mx-2">
+                  <span>{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-3">
+                  {faq.answer}
+                  <div className="mt-4">
+                    <Button size="sm" onClick={scrollToContact}>
+                      <span className="inline-flex items-center gap-2">
+                        Разобрать мой процесс
+                        <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                      </span>
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.slice(5).map((faq, index) => (
+              <AccordionItem
+                key={index + 5}
+                value={`item-${index + 5}`}
                 className="border-b border-border pb-3"
               >
                 <AccordionTrigger className="text-left text-base font-medium text-foreground hover:text-primary transition-colors duration-200 rounded-xl px-2 -mx-2">
