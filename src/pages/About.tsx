@@ -258,8 +258,7 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div className="p-4 md:p-6 order-2 md:order-1">
-                <p className="text-lg text-foreground leading-relaxed">Выступление  — делюсь практикой внедрения ИИ в малом и среднем бизнесе<span className="text-primary font-semibold">Выступление </span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе без иллюзий и пустых обещаний.
-                </p>
+                <p className="text-lg text-foreground leading-relaxed"><span className="text-primary font-semibold">Выступление</span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе.</p>
               </div>
               <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
                 <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-72 md:h-80 object-cover" style={{
