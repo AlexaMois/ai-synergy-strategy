@@ -13,6 +13,12 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { sections, faqItems } from "./plaud-guide-sections";
 
+const ANCHOR_MAP: Record<number, string> = {
+  1: "plaud-device",
+  4: "plaud-interface",
+  14: "plaud-service",
+};
+
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -76,40 +82,58 @@ const PlaudGuidePage = () => {
         backButtonLabel="Назад к ресурсам"
       />
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          {/* Hero */}
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Инструкция по PLAUD на русском языке
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Найди ответ на свой вопрос — просто напиши, что не понимаешь
-            </p>
-          </div>
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-sky-50/60 via-white to-white pb-10 pt-16 md:pt-24">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3">
+            Инструкция по PLAUD на русском языке
+          </h1>
+          <p className="text-lg md:text-xl text-slate-500 mt-3 max-w-2xl mx-auto">
+            Найди ответ на свой вопрос — просто напиши, что не понимаешь
+          </p>
 
           {/* Search */}
-          <div className="flex gap-3 max-w-2xl mx-auto mb-16">
+          <div className="max-w-2xl mx-auto mt-6 flex gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Например: как начать запись, autoflow, тариф, оплата..."
-                className="pl-12 h-13 rounded-2xl shadow-md text-base"
+                className="pl-12 bg-white border-2 border-sky-100 rounded-2xl px-5 py-3 shadow-sm focus-visible:border-sky-400 focus-visible:ring-2 focus-visible:ring-sky-100 text-base h-auto"
               />
             </div>
-            <Button className="h-13 rounded-2xl px-6 shrink-0">Найти</Button>
+            <Button className="rounded-2xl px-6 py-3 bg-sky-500 text-white font-semibold hover:bg-sky-600 transition-colors h-auto shrink-0">
+              Найти
+            </Button>
           </div>
 
-          {/* Sections */}
-          <div className="space-y-8">
-            {filteredSections.map((section, idx) => {
+          {/* Anchor navigation */}
+          <div className="flex flex-wrap justify-center gap-3 mt-8">
+            <a href="#plaud-device" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">
+              📱 Устройство
+            </a>
+            <a href="#plaud-interface" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">
+              💻 Интерфейс
+            </a>
+            <a href="#plaud-service" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">
+              ⚙️ Сервис и безопасность
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Sections */}
+      <section className="bg-slate-50/60 py-10 md:py-16">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="space-y-6 md:space-y-8">
+            {filteredSections.map((section) => {
               const Icon = section.icon;
               const partNum = section.id;
+              const anchorId = ANCHOR_MAP[section.id];
 
               return (
-                <div key={section.id}>
+                <div key={section.id} id={anchorId}>
                   {/* Divider with part number */}
                   {partNum > 0 && (
                     <div className="flex items-center gap-4 mb-6">
@@ -121,15 +145,12 @@ const PlaudGuidePage = () => {
                     </div>
                   )}
 
-                  <article
-                    data-tags={section.tags}
-                    className={`bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 hover:shadow-md transition-all duration-300 border-l-4 ${section.borderColor}`}
-                  >
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Icon className="h-5 w-5 text-primary" />
+                  <article className="rounded-2xl border border-slate-100 bg-white/80 shadow-sm px-4 py-5 md:px-8 md:py-7 flex flex-col gap-4 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center shrink-0">
+                        <Icon className="h-5 w-5" />
                       </div>
-                      <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+                      <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
                         {section.title}
                       </h2>
                     </div>
@@ -146,8 +167,8 @@ const PlaudGuidePage = () => {
             "вопросы ответы faq можно ли работает ли язык точность zoom интернет".includes(
               searchQuery.toLowerCase().trim()
             )) && (
-            <>
-              <div className="flex items-center gap-4 my-8">
+            <div className="mt-12">
+              <div className="flex items-center gap-4 mb-6">
                 <div className="h-px flex-1 bg-border" />
                 <span className="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-semibold shrink-0">
                   18
@@ -155,30 +176,33 @@ const PlaudGuidePage = () => {
                 <div className="h-px flex-1 bg-border" />
               </div>
 
-              <article className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 hover:shadow-md transition-all duration-300 border-l-4 border-sky-500">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                    <HelpCircle className="h-5 w-5 text-primary" />
+              <article className="rounded-2xl border border-slate-100 bg-white/80 shadow-sm px-4 py-5 md:px-8 md:py-7 flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center shrink-0">
+                    <HelpCircle className="h-5 w-5" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+                  <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
                     Частые вопросы
                   </h2>
                 </div>
 
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="single" collapsible className="w-full space-y-2">
                   {faqItems.map((item, index) => (
-                    <AccordionItem key={index} value={`faq-${index}`}>
-                      <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                    <AccordionItem key={index} value={`faq-${index}`} className="border-none">
+                      <AccordionTrigger
+                        hideIndicator={false}
+                        className="flex w-full items-center justify-between rounded-xl border border-slate-100 bg-white px-4 py-3 text-left text-sm md:text-base font-medium text-slate-900 hover:bg-slate-50 transition-colors hover:no-underline"
+                      >
                         {item.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                      <AccordionContent className="px-4 pb-4 pt-2 text-sm md:text-base text-slate-700 bg-slate-50/60 rounded-b-xl">
                         {item.answer}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </article>
-            </>
+            </div>
           )}
 
           {/* No results */}
