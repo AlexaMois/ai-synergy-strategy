@@ -1,33 +1,56 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## План: Добавить og:image и twitter:card на все страницы
 
-### Changes to `src/data/blogPosts.ts`
+### Страницы без og:image и twitter:card (13 файлов)
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+| Файл | og:image | twitter:card |
+|------|----------|-------------|
+| `src/pages/services/DiagnosticsPage.tsx` | ❌ | ❌ |
+| `src/pages/services/ArchitecturePage.tsx` | ❌ | ❌ |
+| `src/pages/services/SupportPage.tsx` | ❌ | ❌ |
+| `src/pages/demo/DemoPage.tsx` | ❌ | ❌ |
+| `src/pages/GolossokDemo.tsx` | ❌ | ❌ |
+| `src/pages/GolossokPricing.tsx` | ❌ | ❌ |
+| `src/pages/ChecklistPage.tsx` | ❌ | ❌ |
+| `src/pages/CaseStudyCargoExpress.tsx` | ❌ | ❌ |
+| `src/pages/CaseStudyKraypotrebsoyuz.tsx` | ❌ | ❌ |
+| `src/pages/CaseStudyDocSearch.tsx` | ❌ | ❌ |
+| `src/pages/cases/CaseDetailPage.tsx` | ❌ | ❌ |
+| `src/pages/cases/DocSearchCasePage.tsx` | ❌ | ❌ |
+| `src/pages/ResourcesPage.tsx` | ❌ | ❌ |
+| `src/pages/materials/Checklist30Page.tsx` | ❌ | ❌ |
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+**Не трогаем** (noindex или утилитарные): `LegalPage`, `PortalPage`, `PortalAdminPage`, `CookiesPolicy`, `Consent`, `Terms`, `NewYearGreeting`, `NotFound`, `Redirect`, `TestPage`.
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+### Изменение
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+В каждый из 14 файлов добавить 3 строки перед `</Helmet>`:
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+```html
+<meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
+```
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+Также добавить `og:type` где отсутствует (DemoPage, GolossokDemo, GolossokPricing, ChecklistPage, CaseStudyCargoExpress, CaseStudyDocSearch, CaseDetailPage, DocSearchCasePage, Checklist30Page).
 
-### Changes to `src/pages/BlogPost.tsx`
+### Файлы (14)
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
-
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+| Файл | Строки вставки |
+|------|---------------|
+| `DiagnosticsPage.tsx` | после строки 76 (og:type) |
+| `ArchitecturePage.tsx` | после строки 76 (og:type) |
+| `SupportPage.tsx` | после строки 39 (og:type) |
+| `DemoPage.tsx` | после строки 35 (canonical) |
+| `GolossokDemo.tsx` | после строки 20 (og:url) |
+| `GolossokPricing.tsx` | после строки 112 (og:url) |
+| `ChecklistPage.tsx` | после строки 97 (og:url) |
+| `CaseStudyCargoExpress.tsx` | после строки 42 (og:url) |
+| `CaseStudyKraypotrebsoyuz.tsx` | после строки 75 (og:type) |
+| `CaseStudyDocSearch.tsx` | после строки 159 (og:url) |
+| `CaseDetailPage.tsx` | после строки 311 (canonical) |
+| `DocSearchCasePage.tsx` | после строки 95 (canonical) |
+| `ResourcesPage.tsx` | после строки 182 (og:url) |
+| `Checklist30Page.tsx` | после строки 126 (og:url) |
 
