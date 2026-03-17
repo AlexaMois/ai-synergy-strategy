@@ -137,6 +137,32 @@ const Index = () => {
       ]
     }
   };
+
+  const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Автоматизация бизнеса с ИИ — Александра Моисеева",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".hero-description", ".foundation-description", "h1"]
+    },
+    "url": "https://aleksamois.ru/"
+  };
+
+  const siteNavigationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Основная навигация",
+    "hasPart": [
+      { "@type": "WebPage", "name": "Главная", "url": "https://aleksamois.ru/" },
+      { "@type": "WebPage", "name": "Услуги", "url": "https://aleksamois.ru/services" },
+      { "@type": "WebPage", "name": "Кейсы", "url": "https://aleksamois.ru/cases" },
+      { "@type": "WebPage", "name": "Блог", "url": "https://aleksamois.ru/materials/blog" },
+      { "@type": "WebPage", "name": "О нас", "url": "https://aleksamois.ru/about" },
+      { "@type": "WebPage", "name": "FAQ", "url": "https://aleksamois.ru/faq" },
+      { "@type": "WebPage", "name": "Контакты", "url": "https://aleksamois.ru/#contact" }
+    ]
+  };
   
   return (
     <div className="min-h-screen">
@@ -156,6 +182,12 @@ const Index = () => {
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(speakableSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(siteNavigationSchema)}
         </script>
       </Helmet>
       <main>
