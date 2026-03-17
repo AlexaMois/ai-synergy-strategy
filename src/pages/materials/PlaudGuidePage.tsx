@@ -28,11 +28,11 @@ const howToSchema = {
   })),
 };
 
-const ScreenshotPlaceholder = ({ className = "" }: { className?: string }) => (
+const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "" }: { text?: string; className?: string }) => (
   <div
     className={`rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center ${className}`}
   >
-    <p className="text-sm text-muted-foreground">Сюда будет добавлен скриншот</p>
+    <p className="text-sm text-muted-foreground text-center px-4">{text}</p>
   </div>
 );
 
@@ -40,7 +40,7 @@ const PlaudGuidePage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Инструкция PLAUD AI — как пользоваться | Александра Мойс</title>
+        <title>PLAUD: инструкция на русском языке | Александра Мойс</title>
         <meta name="description" content="Подробная инструкция по PLAUD AI: настройка, функции, облако, оплата, частые ошибки и FAQ." />
         <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       </Helmet>
@@ -58,12 +58,12 @@ const PlaudGuidePage = () => {
 
         {/* 1. Header */}
         <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+          <div className="container mx-auto px-4 max-w-4xl">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              Инструкция по PLAUD AI
+              PLAUD: инструкция на русском языке
             </h1>
             <p className="text-muted-foreground text-lg">
-              Всё, что нужно знать: от первого включения до ежедневного использования.
+              Показываю, как выбрать модель, запустить запись, разобраться в приложении, понять работу облака и настроить всё без путаницы.
             </p>
           </div>
         </section>
@@ -71,48 +71,48 @@ const PlaudGuidePage = () => {
         {/* 2. Что такое PLAUD */}
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Что такое PLAUD</h2>
-            <div className="space-y-3 text-muted-foreground mb-8">
-              <p>PLAUD — это компактное устройство для записи разговоров с автоматической расшифровкой и конспектированием через ИИ.</p>
-              <p>Вы записываете встречу, лекцию или звонок. Приложение превращает аудио в текст, выделяет ключевые мысли и формирует список задач.</p>
-              <p>Работает через мобильное приложение PLAUD AI (iOS и Android).</p>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Что такое PLAUD — простыми словами</h2>
+            <div className="space-y-3 text-muted-foreground mb-4">
+              <p>PLAUD записывает разговор, переводит речь в текст и формирует краткое содержание.</p>
+              <p>Пользователь запускает запись, открывает файл в приложении и запускает обработку. Система показывает расшифровку, саммари и выделяет ключевые мысли и договорённости.</p>
+              <p>PLAUD экономит время и избавляет от ручных конспектов.</p>
             </div>
-            <ScreenshotPlaceholder />
+            <p className="text-sm text-muted-foreground mb-8">
+              PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
+            </p>
+            <ScreenshotPlaceholder text="Сюда будет добавлен общий скрин устройства или интерфейса PLAUD" />
           </div>
         </section>
 
         {/* 3. Какую модель выбрать */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Какую модель выбрать</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Какую модель выбрать</h2>
+            <p className="text-muted-foreground mb-6">
+              Все модели PLAUD записывают звук, синхронизируются с приложением и формируют текст и саммари. Разница заключается в формате устройства и сценарии использования.
+            </p>
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Модель</TableHead>
-                    <TableHead>Форм-фактор</TableHead>
-                    <TableHead>Запись</TableHead>
-                    <TableHead>Память</TableHead>
-                    <TableHead>Батарея</TableHead>
-                    <TableHead>Лучше всего для</TableHead>
+                    <TableHead>Кому подходит</TableHead>
+                    <TableHead>Когда использовать</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {modelComparison.map((m) => (
                     <TableRow key={m.name}>
                       <TableCell className="font-medium">{m.name}</TableCell>
-                      <TableCell>{m.formFactor}</TableCell>
-                      <TableCell>{m.recording}</TableCell>
-                      <TableCell>{m.memory}</TableCell>
-                      <TableCell>{m.battery}</TableCell>
-                      <TableCell>{m.best}</TableCell>
+                      <TableCell>{m.audience}</TableCell>
+                      <TableCell>{m.useCase}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </div>
             <div className="mt-4 bg-secondary/30 rounded-xl px-5 py-3 text-sm text-muted-foreground">
-              Если не уверены — берите PLAUD Note. Это универсальная модель для большинства задач.
+              Пользователь выбирает модель по сценарию: офис и звонки — Note, перемещение и выезды — NotePin, переговорные — Note Pro.
             </div>
           </div>
         </section>
@@ -120,7 +120,10 @@ const PlaudGuidePage = () => {
         {/* 4. Как начать */}
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Как начать</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Как начать пользоваться PLAUD</h2>
+            <p className="text-muted-foreground mb-8">
+              Пользователь проходит последовательность действий и получает готовую запись с расшифровкой и саммари.
+            </p>
             <div className="space-y-8">
               {gettingStartedSteps.map((step) => (
                 <div key={step.number} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
@@ -135,51 +138,53 @@ const PlaudGuidePage = () => {
                       </div>
                     </div>
                   </div>
-                  <ScreenshotPlaceholder />
+                  <ScreenshotPlaceholder text={step.screenshot} />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 5. Как пользоваться (кнопки / режимы) */}
+        {/* 5. Как пользоваться */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Как пользоваться: кнопки и режимы</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Как пользоваться PLAUD</h2>
+            <p className="text-muted-foreground mb-8">
+              Пользователь управляет устройством через одну кнопку и выбирает режим записи в зависимости от ситуации.
+            </p>
             <div className="space-y-8">
               {usageItems.map((item, i) => (
                 <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                   <div className="space-y-2">
                     <h3 className="font-semibold text-foreground text-lg">{item.title}</h3>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      <p><span className="font-medium text-foreground">Что делает:</span> {item.what}</p>
-                      <p><span className="font-medium text-foreground">Когда использовать:</span> {item.when}</p>
-                    </div>
+                    <p className="text-sm text-muted-foreground">{item.what}</p>
+                    {item.detail && (
+                      <p className="text-sm text-muted-foreground whitespace-pre-line">{item.detail}</p>
+                    )}
                   </div>
-                  <ScreenshotPlaceholder />
+                  <ScreenshotPlaceholder text={item.screenshot} />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 6. Приложение: основные функции */}
+        {/* 6. Приложение */}
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Приложение: основные функции</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Приложение PLAUD: основные функции</h2>
+            <p className="text-muted-foreground mb-8">
+              Приложение показывает записи, обрабатывает их и формирует результат в удобном виде.
+            </p>
             <div className="space-y-10">
               {features.map((f, i) => (
                 <div key={i}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                    <div className="space-y-2">
-                      <h3 className="font-semibold text-foreground text-lg">{f.title}</h3>
-                      <div className="text-sm text-muted-foreground space-y-1">
-                        <p><span className="font-medium text-foreground">Что это:</span> {f.what}</p>
-                        <p><span className="font-medium text-foreground">Зачем:</span> {f.why}</p>
-                        <p><span className="font-medium text-foreground">Как использовать:</span> {f.how}</p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
+                      <p className="text-sm text-muted-foreground">{f.what}</p>
                     </div>
-                    <ScreenshotPlaceholder />
+                    <ScreenshotPlaceholder text={f.screenshot} />
                   </div>
                   {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
                 </div>
@@ -191,27 +196,24 @@ const PlaudGuidePage = () => {
         {/* 7. Облако */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Что такое облако и зачем оно</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Как работает облако в PLAUD</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               <div className="space-y-5">
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Что хранится на устройстве</h3>
-                  <p className="text-sm text-muted-foreground">{cloudInfo.onDevice}</p>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  {cloudInfo.intro.map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Что в облаке</h3>
-                  <p className="text-sm text-muted-foreground">{cloudInfo.inCloud}</p>
+                  <h3 className="font-semibold text-foreground mb-1">Что хранится где</h3>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{cloudInfo.storage}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Зачем облако</h3>
-                  <p className="text-sm text-muted-foreground">{cloudInfo.whyCloud}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Можно ли без него</h3>
-                  <p className="text-sm text-muted-foreground">{cloudInfo.withoutCloud}</p>
+                  <h3 className="font-semibold text-foreground mb-1">Как отключить облако</h3>
+                  <p className="text-sm text-muted-foreground">{cloudInfo.disable}</p>
                 </div>
               </div>
-              <ScreenshotPlaceholder />
+              <ScreenshotPlaceholder text="Сюда будет добавлен скрин настроек Cloud Sync" />
             </div>
           </div>
         </section>
@@ -219,27 +221,28 @@ const PlaudGuidePage = () => {
         {/* 8. Как оплачивать */}
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Как оплачивать</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Как работает оплата</h2>
+            <div className="space-y-2 text-muted-foreground mb-6">
+              {paymentInfo.intro.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
             <div className="space-y-5">
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Как работает лимит минут</h3>
-                <p className="text-sm text-muted-foreground">{paymentInfo.howLimitWorks}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Что происходит, когда минуты заканчиваются</h3>
-                <p className="text-sm text-muted-foreground">{paymentInfo.whenRunsOut}</p>
-              </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Где посмотреть остаток</h3>
                 <p className="text-sm text-muted-foreground">{paymentInfo.whereToCheck}</p>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Как купить дополнительные минуты</h3>
+                <h3 className="font-semibold text-foreground mb-1">Что происходит при окончании минут</h3>
+                <p className="text-sm text-muted-foreground">{paymentInfo.whenRunsOut}</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-1">Как пополнить минуты</h3>
                 <p className="text-sm text-muted-foreground">{paymentInfo.howToBuyMore}</p>
               </div>
             </div>
             <div className="mt-8">
-              <ScreenshotPlaceholder />
+              <ScreenshotPlaceholder text="Сюда будет добавлен скрин Membership Center или страницы с минутами" />
             </div>
           </div>
         </section>
