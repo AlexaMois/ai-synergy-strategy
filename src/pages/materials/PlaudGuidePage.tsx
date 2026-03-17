@@ -13,6 +13,7 @@ import {
   paymentInfo,
   mistakes,
   faqItems,
+  conclusionSteps,
 } from "./plaud-guide-sections";
 
 const howToSchema = {
@@ -250,8 +251,8 @@ const PlaudGuidePage = () => {
         {/* 9. Частые ошибки */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Частые ошибки</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Частые ошибки при работе с PLAUD</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {mistakes.map((m, i) => (
                 <div key={i} className="rounded-xl bg-secondary/30 p-5">
                   <p className="font-semibold text-foreground mb-2">{m.error}</p>
@@ -265,7 +266,7 @@ const PlaudGuidePage = () => {
         {/* 10. FAQ */}
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Частые вопросы</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Ответы на частые вопросы</h2>
             <Accordion type="single" collapsible className="w-full">
               {faqItems.map((item, i) => (
                 <AccordionItem key={i} value={`faq-${i}`}>
@@ -274,6 +275,25 @@ const PlaudGuidePage = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </section>
+
+        {/* 11. Итог */}
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Как использовать PLAUD эффективно</h2>
+            <div className="space-y-3 text-muted-foreground mb-6">
+              <p>PLAUD фиксирует разговор, превращает речь в текст и помогает быстро получить результат.</p>
+              <p>Пользователь запускает запись, обрабатывает файл и использует готовую информацию в работе.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-3">Что сделать сейчас:</h3>
+              <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+                {conclusionSteps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
       </div>
