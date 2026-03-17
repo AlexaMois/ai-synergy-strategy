@@ -149,7 +149,15 @@ const PlaudGuidePage = () => {
             <p className="text-sm text-muted-foreground mb-8">
               PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
             </p>
-            <ScreenshotPlaceholder text="Устройство PLAUD и приложение" imageSrc={plaudHeroDevice} />
+            <video
+              src={plaudDemo}
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              poster={plaudHeroDevice}
+              className="w-full rounded-xl"
+            />
           </div>
         </section>
 
