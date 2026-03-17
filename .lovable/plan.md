@@ -1,33 +1,52 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Аудит: что уже есть и чего не хватает
 
-### Changes to `src/data/blogPosts.ts`
+### Уже реализовано (хорошо)
+- robots.txt с разрешениями для основных ботов (Google, Yandex, Bing, Perplexity)
+- sitemap.xml с автогенерацией через Vite-плагин
+- JSON-LD: Organization, Person, LocalBusiness, ProfessionalService, WebSite, BreadcrumbList
+- FAQPage schema на /faq
+- BlogPosting schema на блог-постах
+- OG/Twitter мета-теги на всех страницах
+- Canonical URLs, hreflang для RU/СНГ
+- Yandex.Metrica + Google Analytics
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+### Что нужно добавить
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+#### 1. Файл `public/llms.txt` — стандарт для AI-поисковиков
+Новый стандарт (аналог robots.txt для нейросетей). Perplexity, ChatGPT Search, Gemini и другие AI-системы читают этот файл, чтобы понять суть сайта и какие страницы важны. Содержит краткое описание бизнеса, ключевые страницы, услуги, контакты.
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+#### 2. Файл `public/llms-full.txt` — расширенная версия
+Подробное описание каждой услуги, кейсов, экспертизы — для AI-систем, которые хотят глубокий контекст.
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+#### 3. Разрешить AI-ботов в `robots.txt`
+Добавить явные разрешения для:
+- `GPTBot` (OpenAI/ChatGPT Search)
+- `Google-Extended` (Gemini)
+- `ClaudeBot` (Anthropic)
+- `ChatGPT-User`
+- `Applebot-Extended` (Apple Intelligence)
+- `cohere-ai`
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+#### 4. Добавить `Speakable` schema на главную
+Google использует Speakable для голосовых ответов — пометить ключевые блоки текста (description, услуги) как "озвучиваемые".
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+#### 5. Улучшить BlogPosting schema
+Сейчас `datePublished` содержит русскую дату ("5 марта 2026") — поисковики ожидают ISO формат. Добавить `mainEntityOfPage`, `image`, `dateModified`, `wordCount`, `inLanguage`.
 
-### Changes to `src/pages/BlogPost.tsx`
+#### 6. Добавить `SiteNavigationElement` schema
+Помогает поисковикам и AI понять структуру навигации сайта.
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+---
 
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+### Файлы и изменения
+
+| Файл | Действие |
+|------|----------|
+| `public/llms.txt` | Создать — краткое описание для AI |
+| `public/llms-full.txt` | Создать — полное описание для AI |
+| `public/robots.txt` | Добавить GPTBot, ClaudeBot и др. |
+| `src/pages/Index.tsx` | Добавить Speakable + SiteNavigationElement schema |
+| `src/pages/BlogPost.tsx` | Исправить datePublished на ISO, добавить поля |
 
