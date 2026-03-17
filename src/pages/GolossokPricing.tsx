@@ -110,6 +110,10 @@ const GolossokPricing = () => {
         <meta property="og:title" content="Тарифы GolossOK — Цены на голосового AI-ассистента" />
         <meta property="og:description" content="Тарифы GolossOK: от бесплатного пробного периода до корпоративных решений." />
         <meta property="og:url" content="https://aleksamois.ru/golossok-pricing" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen">
         

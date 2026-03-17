@@ -157,6 +157,10 @@ const CaseStudyDocSearch = () => {
         <meta property="og:title" content="Интеллектуальный поиск по документации — QR + AI" />
         <meta property="og:description" content="QR-код на рабочем месте → ответ за 3 секунды. Экономия 50-100 часов/месяц." />
         <meta property="og:url" content="https://aleksamois.ru/products/doc-search" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         

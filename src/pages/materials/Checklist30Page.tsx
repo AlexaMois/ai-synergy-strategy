@@ -124,6 +124,10 @@ const Checklist30Page = () => {
           <meta property="og:title" content="Чек-лист: 30 вопросов для тестирования ИИ-ассистента" />
           <meta property="og:description" content="Бесплатный шаблон для аудита корпоративного ИИ-ассистента по базе знаний компании." />
           <meta property="og:url" content="https://aleksamois.ru/materials/checklist-30" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         </Helmet>
         
         <PageBreadcrumbs

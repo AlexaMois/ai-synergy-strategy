@@ -18,6 +18,10 @@ const GolossokDemo = () => {
         <meta property="og:title" content="GolossOK — Голосовой AI-ассистент для бизнеса" />
         <meta property="og:description" content="Голосовой AI-ассистент для автоматизации операционных задач. ×5 ускорение, 99% точность." />
         <meta property="og:url" content="https://aleksamois.ru/golossok-demo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen">
         <PageBreadcrumbs 

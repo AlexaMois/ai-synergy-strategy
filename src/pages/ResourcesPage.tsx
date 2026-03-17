@@ -183,6 +183,9 @@ const ResourcesPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.resources())}
         </script>
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         

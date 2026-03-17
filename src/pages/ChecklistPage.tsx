@@ -95,6 +95,10 @@ const ChecklistPage = () => {
         <meta property="og:title" content="Чек-лист: 10 вопросов перед внедрением ИИ" />
         <meta property="og:description" content="Бесплатный чек-лист для оценки готовности компании к внедрению ИИ." />
         <meta property="og:url" content="https://aleksamois.ru/checklist" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       
       <PageBreadcrumbs currentPage="Чек-лист" />
