@@ -1,33 +1,31 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Найдена критическая проблема: `index.html` — сломанные ссылки на изображения
 
-### Changes to `src/data/blogPosts.ts`
+### Что не так
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+Файл `index.html` — это **фоллбэк для всех поисковых роботов**, которые не выполняют JavaScript. Сейчас в нём **6 ссылок на Google Storage**, которые ненадёжны и могут сломаться:
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+| Строка | Тег | Текущее значение |
+|--------|-----|-----------------|
+| 113 | `og:image` | `storage.googleapis.com/gpt-engineer-file-uploads/...` |
+| 122 | `twitter:image` | `storage.googleapis.com/gpt-engineer-file-uploads/...` |
+| 152 | JSON-LD Organization `logo` | `storage.googleapis.com/...` |
+| 179 | JSON-LD Person `image` | `storage.googleapis.com/...` |
+| 202 | JSON-LD LocalBusiness `image` | `storage.googleapis.com/...` |
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+Helmet на страницах перезаписывает meta-теги, но **JSON-LD в `index.html` остаётся как есть** и виден всем роботам.
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+### Что нужно сделать
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+**1 файл: `index.html`** — заменить все Google Storage URL:
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+- `og:image` и `twitter:image` → `https://aleksamois.ru/og-image.png`
+- JSON-LD `logo` (Organization) → `https://aleksamois.ru/og-image.png`
+- JSON-LD `image` (Person) → `https://aleksamois.ru/og-image.png`
+- JSON-LD `image` (LocalBusiness) → `https://aleksamois.ru/og-image.png`
 
-### Changes to `src/pages/BlogPost.tsx`
+Это последнее, что осталось. После этого все ссылки на изображения по всему сайту будут указывать на ваш собственный домен — надёжно и постоянно.
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
-
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+На дизайн и контент сайта это **не влияет** — все изменения только в `<head>`.
 
