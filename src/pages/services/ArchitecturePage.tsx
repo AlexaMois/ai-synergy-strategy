@@ -77,6 +77,19 @@ const ArchitecturePage = () => {
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesArchitecture())}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Архитектура ИИ-решений для бизнеса",
+            "description": "Проектирую архитектуру ИИ-систем: от голосовых ассистентов и OCR до RAG-ассистентов и интеграций с CRM/1С без ломки текущей инфраструктуры.",
+            "provider": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
+            "areaServed": { "@type": "Country", "name": "Россия" },
+            "serviceType": "AI Architecture",
+            "url": "https://aleksamois.ru/services/architecture",
+            "offers": { "@type": "Offer", "priceCurrency": "RUB", "price": "150000", "description": "от 150 000 ₽" }
+          })}
+        </script>
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
