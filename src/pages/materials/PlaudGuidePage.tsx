@@ -117,8 +117,7 @@ const PlaudGuidePage = () => {
           <PageBreadcrumbs
             currentPage="Инструкция PLAUD AI"
             parentPages={[
-              { label: "Главная", href: "/" },
-              { label: "Материалы", href: "/materials/resources" },
+              { label: "Материалы", href: "/materials" },
             ]}
           />
         </div>
