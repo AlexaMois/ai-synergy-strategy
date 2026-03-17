@@ -113,7 +113,7 @@ const PlaudGuidePage = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 pt-24 pb-4">
+        <div className="container mx-auto px-4 pt-24 pb-4 relative z-20">
           <PageBreadcrumbs
             currentPage="Инструкция PLAUD AI"
             parentPages={[
