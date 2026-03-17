@@ -231,9 +231,9 @@ const PricingPage = () => {
         <meta property="og:description" content="Показываю, сколько стоит автоматизация бизнес‑процессов с ИИ и какую экономию по зарплатам и ошибкам это даёт. Прозрачные пакеты под малый и средний бизнес." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/SeDuxP3Pk3V5RVtJnT6UW1GlRPb2/social-images/social-1764599945173-Логотип Горизонтальный_Монтажная область 1.png" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.pricing())}
         </script>
