@@ -275,6 +275,23 @@
     line-height: 1.5;
   }
   
+  /* Accessibility: ссылки в контентных блоках с подчёркиванием */
+  main p a,
+  main li a,
+  .prose a,
+  article a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: hsl(var(--primary) / 0.4);
+    transition: text-decoration-color 0.2s ease;
+  }
+  main p a:hover,
+  main li a:hover,
+  .prose a:hover,
+  article a:hover {
+    text-decoration-color: hsl(var(--primary));
+  }
+
   .section-title {
     font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     font-size: 20px !important;
