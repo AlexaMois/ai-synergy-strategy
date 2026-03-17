@@ -52,6 +52,14 @@ const Blog = () => {
           <title>Блог об автоматизации бизнеса с ИИ — практические разборы и гайды | Александра Моисеева</title>
           <meta name="description" content="Статьи о внедрении искусственного интеллекта: диагностика, ROI, архитектура, ошибки проектов, обучение команды и практические подходы, которые дают измеримый эффект." />
           <meta name="keywords" content="блог об ИИ, внедрение искусственного интеллекта, методология AI, ROI от ИИ, автоматизация процессов, обучение команды ИИ, российские LLM, аналитика ИИ проектов" />
+          <link rel="canonical" href="https://aleksamois.ru/materials/blog" />
+          <meta property="og:title" content="Блог об автоматизации бизнеса с ИИ — практические разборы и гайды | Александра Моисеева" />
+          <meta property="og:description" content="Статьи о внедрении искусственного интеллекта: диагностика, ROI, архитектура, ошибки проектов, обучение команды и практические подходы, которые дают измеримый эффект." />
+          <meta property="og:url" content="https://aleksamois.ru/materials/blog" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
           <script type="application/ld+json">
             {JSON.stringify(getBreadcrumbs.blog())}
           </script>
