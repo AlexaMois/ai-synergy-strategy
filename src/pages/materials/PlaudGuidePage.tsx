@@ -16,6 +16,7 @@ import plaudWebapp from "@/assets/plaud/plaud-webapp.png";
 import plaudSummary from "@/assets/plaud/plaud-summary.webp";
 import plaudAsk from "@/assets/plaud/plaud-ask.png";
 import plaudMultimodal from "@/assets/plaud/plaud-multimodal.webp";
+import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
