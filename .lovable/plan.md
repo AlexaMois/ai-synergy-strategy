@@ -1,60 +1,33 @@
 
 
-## Plan: UI/UX Redesign of `/materials/plaud-guide`
+## Plan: Content & Visual Enhancements for Blog Post
 
-Two files to modify. Content stays identical — only classes, wrappers, and anchor navigation change.
+### Changes to `src/data/blogPosts.ts`
 
-### File 1: `src/pages/materials/plaud-guide-sections.tsx`
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
 
-**Helper components restyled:**
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
 
-- `Step`: change to `flex items-start gap-3 rounded-xl bg-sky-50/70 px-4 py-3`, circle becomes `mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold text-white`, text becomes `text-sm md:text-base text-slate-700`
-- `Steps`: change wrapper from `bg-gray-50 rounded-xl p-4 space-y-3` to `space-y-3` (background now on each Step)
-- `Warning`: change to `flex gap-3 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900` (remove border-l-4)
-- `Tip`: change to `flex gap-3 rounded-xl bg-sky-50 px-4 py-3 text-sm text-sky-900` (remove border-l-4)
-- All `h3` inside sections: change from `text-lg font-semibold text-foreground` to `mt-2 text-base md:text-lg font-semibold text-slate-900`
-- Tables: wrap all `<Table>` in `<div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">` for mobile scrolling
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
 
-**Remove `borderColor` field** from all section objects (no longer used since border-l-4 is removed).
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
 
-### File 2: `src/pages/materials/PlaudGuidePage.tsx`
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
 
-**1. Hero section** — wrap H1+subtitle+search in gradient background:
-```
-<section className="bg-gradient-to-b from-sky-50/60 via-white to-white pb-10 pt-16 md:pt-24">
-```
-- H1: `text-4xl md:text-5xl font-bold tracking-tight text-slate-900`
-- Subtitle: `text-lg md:text-xl text-slate-500 mt-3 max-w-2xl mx-auto`
-- Search input: `bg-white border-2 border-sky-100 rounded-2xl px-5 py-3 shadow-sm focus-visible:border-sky-400 focus-visible:ring-2 focus-visible:ring-sky-100`
-- Search button: `rounded-2xl px-6 py-3 bg-sky-500 text-white font-semibold hover:bg-sky-600`
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
 
-**2. Anchor navigation** — add 3 pill-buttons below hero:
-```jsx
-<div className="flex flex-wrap justify-center gap-3 mt-8 mb-10">
-  <a href="#plaud-device" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">📱 Устройство</a>
-  <a href="#plaud-interface" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">💻 Интерфейс</a>
-  <a href="#plaud-service" className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-600 bg-white hover:bg-sky-50 transition-colors">⚙️ Сервис и безопасность</a>
-</div>
-```
-Add `id="plaud-device"` on section id=1, `id="plaud-interface"` on section id=4, `id="plaud-service"` on section id=14.
+### Changes to `src/pages/BlogPost.tsx`
 
-**3. Page background**: `bg-slate-50/60` on the sections wrapper.
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
 
-**4. Cards restyled**:
-- Remove `border-l-4 ${section.borderColor}`
-- New: `rounded-2xl border border-slate-100 bg-white/80 shadow-sm px-4 py-5 md:px-8 md:py-7 flex flex-col gap-4 hover:shadow-md transition-shadow`
-- Icon: `w-9 h-9 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center`
-- H2: `text-xl md:text-2xl font-semibold text-slate-900`
-- Space between cards: `space-y-6 md:space-y-8`
-
-**5. FAQ section restyled**:
-- Add `mt-12` to FAQ wrapper
-- `AccordionTrigger`: `flex w-full items-center justify-between rounded-xl border border-slate-100 bg-white px-4 py-3 text-left text-sm md:text-base font-medium text-slate-900 hover:bg-slate-50 transition-colors`
-- `AccordionContent`: `px-4 pb-4 pt-2 text-sm md:text-base text-slate-700 bg-slate-50/60 rounded-b-xl`
-
-**6. Mobile adjustments**: container `px-4` (already is), cards `px-4 py-5` on mobile via responsive classes.
-
-### Files changed
-1. `src/pages/materials/plaud-guide-sections.tsx` — restyle helpers (Step, Steps, Warning, Tip), update h3 classes, wrap tables for mobile, remove `borderColor`
-2. `src/pages/materials/PlaudGuidePage.tsx` — hero gradient, anchor nav, card restyling, FAQ restyling, page background
+### Files to modify
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
