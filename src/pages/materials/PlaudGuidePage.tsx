@@ -48,10 +48,10 @@ const PlaudGuidePage = () => {
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 pt-24 pb-4">
           <PageBreadcrumbs
-            items={[
+            currentPage="Инструкция PLAUD AI"
+            parentPages={[
               { label: "Главная", href: "/" },
               { label: "Материалы", href: "/materials/resources" },
-              { label: "Инструкция PLAUD AI" },
             ]}
           />
         </div>
