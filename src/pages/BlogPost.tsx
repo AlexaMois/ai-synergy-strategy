@@ -124,19 +124,47 @@ const BlogPost = () => {
         document.head.appendChild(canonicalLink);
       }
 
+      // Convert Russian date to ISO format
+      const russianMonths: Record<string, string> = {
+        'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
+        'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
+        'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'
+      };
+      const dateMatch = post.date.match(/(\d+)\s+(\S+)\s+(\d{4})/);
+      const isoDate = dateMatch
+        ? `${dateMatch[3]}-${russianMonths[dateMatch[2]] || '01'}-${dateMatch[1].padStart(2, '0')}`
+        : post.date;
+
+      const wordCount = [post.content.intro, ...post.content.sections.map(s => s.content), post.content.conclusion]
+        .join(' ').split(/\s+/).length;
+
+      const articleImage = post.content.introImage?.src
+        ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
+        : "https://aleksamois.ru/og-image.png";
+
       const structuredData = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": post.title,
         "description": post.seo.metaDescription,
-        "datePublished": post.date,
+        "datePublished": isoDate,
+        "dateModified": isoDate,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        },
+        "image": articleImage,
+        "inLanguage": "ru",
+        "wordCount": wordCount,
         "author": {
           "@type": "Person",
-          "name": "Александра Моисеева"
+          "name": "Александра Моисеева",
+          "url": "https://aleksamois.ru/about"
         },
         "publisher": {
-          "@type": "Person",
-          "name": "Александра Моисеева"
+          "@type": "Organization",
+          "name": "НейроРешения",
+          "url": "https://aleksamois.ru"
         },
         "keywords": post.seo.keywords.join(", ")
       };

@@ -183,6 +183,12 @@ const Index = () => {
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(speakableSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(siteNavigationSchema)}
+        </script>
       </Helmet>
       <main>
         <Hero />
