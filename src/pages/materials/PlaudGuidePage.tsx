@@ -33,13 +33,25 @@ const howToSchema = {
   })),
 };
 
-const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "" }: { text?: string; className?: string }) => (
-  <div
-    className={`rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center ${className}`}
-  >
-    <p className="text-sm text-muted-foreground text-center px-4">{text}</p>
-  </div>
-);
+const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "", imageSrc }: { text?: string; className?: string; imageSrc?: string }) => {
+  if (imageSrc) {
+    return (
+      <img
+        src={imageSrc}
+        alt={text}
+        loading="lazy"
+        className={`rounded-xl w-full h-auto object-contain ${className}`}
+      />
+    );
+  }
+  return (
+    <div
+      className={`rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center ${className}`}
+    >
+      <p className="text-sm text-muted-foreground text-center px-4">{text}</p>
+    </div>
+  );
+};
 
 const PlaudGuidePage = () => {
   return (
