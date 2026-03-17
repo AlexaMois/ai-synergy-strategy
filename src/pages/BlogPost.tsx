@@ -106,6 +106,24 @@ const BlogPost = () => {
 
   return (
     <PageTransition>
+      {seoData && (
+        <Helmet>
+          <title>{post!.title} | Александра Моисеева</title>
+          <meta name="description" content={post!.seo.metaDescription} />
+          <meta name="keywords" content={post!.seo.keywords.join(", ")} />
+          <link rel="canonical" href={seoData.canonicalUrl} />
+          <meta property="og:title" content={post!.title} />
+          <meta property="og:description" content={post!.seo.metaDescription} />
+          <meta property="og:url" content={seoData.canonicalUrl} />
+          <meta property="og:type" content="article" />
+          <meta property="og:image" content={seoData.articleImage} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={seoData.articleImage} />
+          <script type="application/ld+json">
+            {JSON.stringify(seoData.structuredData)}
+          </script>
+        </Helmet>
+      )}
       <div className="min-h-screen bg-background">
         
       
