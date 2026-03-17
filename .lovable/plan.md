@@ -1,50 +1,33 @@
 
 
-## Анализ мобильной производительности (Score: 57)
+## Plan: Content & Visual Enhancements for Blog Post
 
-Мобильный Lighthouse симулирует медленный 4G (1.6 Mbps) + слабый CPU (4x throttle). Вот что влияет и что стоит делать.
+### Changes to `src/data/blogPosts.ts`
 
----
+**1. Add "promise" paragraph after intro**
+Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
 
-### НЕ СТОИТ исправлять (вне контроля или минимальный эффект)
+**2. Restructure section_2 (6 types of checks)**
+Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
 
-| Проблема | Причина |
-|----------|---------|
-| **Source maps** | Намеренно отключены для продакшена — это правильно |
-| **Console errors** | GTM 404 — проверьте, активен ли контейнер `GTM-MV45KCXD` в Google Tag Manager. WebSocket Yandex — стандартная ошибка метрики, не влияет |
-| **Кэширование** | Настраивается на уровне хостинга |
-| **Перенаправления** | Артефакт lovable.app → aleksamois.ru |
+**3. Rename section_4 heading**
+Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
 
----
+**4. Update excerpt with "корпоративный ИИ-помощник"**
+Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
 
-### СТОИТ исправить (реальный эффект на мобильном)
+**5. Add SEO keyword**
+Add "корпоративный ИИ-помощник" to `seo.keywords`.
 
-#### 1. Отложить загрузку аналитики (~1-2 сек экономии на мобильном)
-Сейчас в `<head>` загружаются **4 скрипта синхронно**: Google Analytics, GTM, 2x Yandex Metrika. На медленном 4G это ~1.5 сек блокировки.
+**6. Update conclusion**
+Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
 
-**Решение:** Загружать аналитику после `window.onload` или через `requestIdleCallback`. Это не повлияет на точность сбора данных (все счётчики отмечают время загрузки, а не подключения скрипта).
+### Changes to `src/pages/BlogPost.tsx`
 
-**Файл:** `index.html` — обернуть скрипты аналитики в отложенную загрузку
+**7. Update CTA block text**
+Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
 
-#### 2. Убрать dns-prefetch на storage.googleapis.com
-Строка 138: `<link rel="dns-prefetch" href="https://storage.googleapis.com">` — больше не нужна, все Google Storage URL заменены.
-
-**Файл:** `index.html` — удалить строку 138
-
-#### 3. Оптимизировать Google Fonts
-Сейчас загружаются 2 шрифта (Raleway + Golos Text) с 5 весами. Можно оставить только те, что реально используются, и добавить `&text=` для кириллицы.
-
-**Файл:** `index.html` — добавить `&subset=cyrillic` и убрать лишние веса если возможно
-
----
-
-### Итого: 1 файл, 3 изменения
-
-| Файл | Изменение | Эффект |
-|------|-----------|--------|
-| `index.html` | Отложить загрузку аналитики после `window.onload` | ~1-2 сек на мобильном |
-| `index.html` | Удалить dns-prefetch на storage.googleapis.com | Чистота кода |
-| `index.html` | Оптимизировать загрузку Google Fonts (subset) | ~100-200 мс |
-
-Основной выигрыш — пункт 1 (отложенная аналитика). Это может поднять мобильный score с 57 до ~65-70. Остальные 30 баллов — это ограничения медленного 4G: размер JS-бандла React + Radix UI неизбежен для SPA.
+### Files to modify
+- `src/data/blogPosts.ts` — content updates (items 1-6)
+- `src/pages/BlogPost.tsx` — CTA block text (item 7)
 
