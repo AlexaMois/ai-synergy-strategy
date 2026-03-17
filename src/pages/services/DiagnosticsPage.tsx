@@ -77,6 +77,19 @@ const DiagnosticsPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesDiagnostics())}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Аудит и диагностика бизнес-процессов",
+            "description": "Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев.",
+            "provider": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
+            "areaServed": { "@type": "Country", "name": "Россия" },
+            "serviceType": "AI Consulting",
+            "url": "https://aleksamois.ru/services/diagnostics",
+            "offers": { "@type": "Offer", "priceCurrency": "RUB", "price": "6000", "description": "от 6 000 ₽" }
+          })}
+        </script>
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />

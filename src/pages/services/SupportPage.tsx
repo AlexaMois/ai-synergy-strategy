@@ -40,6 +40,19 @@ const SupportPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.servicesSupport())}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Сопровождение автоматизации и внедрения ИИ",
+            "description": "Помогаю команде адаптироваться к ИИ-инструментам, настраиваю, тестирую и поддерживаю решения, чтобы система реально разгружала людей.",
+            "provider": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
+            "areaServed": { "@type": "Country", "name": "Россия" },
+            "serviceType": "AI Implementation Support",
+            "url": "https://aleksamois.ru/services/support",
+            "offers": { "@type": "Offer", "priceCurrency": "RUB", "price": "50000", "description": "от 50 000 ₽/мес" }
+          })}
+        </script>
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
