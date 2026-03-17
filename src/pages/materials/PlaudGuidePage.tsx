@@ -16,6 +16,7 @@ import plaudWebapp from "@/assets/plaud/plaud-webapp.png";
 import plaudSummary from "@/assets/plaud/plaud-summary.webp";
 import plaudAsk from "@/assets/plaud/plaud-ask.png";
 import plaudMultimodal from "@/assets/plaud/plaud-multimodal.webp";
+import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
@@ -116,8 +117,7 @@ const PlaudGuidePage = () => {
           <PageBreadcrumbs
             currentPage="Инструкция PLAUD AI"
             parentPages={[
-              { label: "Главная", href: "/" },
-              { label: "Материалы", href: "/materials/resources" },
+              { label: "Материалы", href: "/materials" },
             ]}
           />
         </div>
@@ -149,7 +149,15 @@ const PlaudGuidePage = () => {
             <p className="text-sm text-muted-foreground mb-8">
               PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
             </p>
-            <ScreenshotPlaceholder text="Устройство PLAUD и приложение" imageSrc={plaudHeroDevice} />
+            <video
+              src={plaudDemo}
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              poster={plaudHeroDevice}
+              className="w-full rounded-xl"
+            />
           </div>
         </section>
 
