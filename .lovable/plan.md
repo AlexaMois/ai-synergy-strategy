@@ -1,33 +1,116 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Plan: Rewrite PLAUD Guide as Practical Instruction Manual
 
-### Changes to `src/data/blogPosts.ts`
+Complete rewrite of both files. Strip all marketing, dark blocks, CTAs, fake pricing. Replace with clean instruction page where every block = text + screenshot placeholder.
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+### Data file: `src/pages/materials/plaud-guide-sections.tsx`
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+**Remove:** `valueCards`, `benefitCards`, `plans`, `conclusionTips`, `paymentSteps`, `securityCerts`, `securityTips`, `disableCloudSteps`
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+**Keep (with edits):** `modelComparison`, `gettingStartedSteps`, `interfaceBlocks`, `features`, `autoFlowSteps`, `faqItems`, `mistakes`
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+**Add:**
+- `usageItems` — array of button/mode descriptions (e.g. "Кнопка записи", "Режим звонка", "Пауза") each with `title`, `what`, `when` fields
+- `cloudInfo` — object with 4 fields: `onDevice`, `inCloud`, `whyCloud`, `withoutCloud` (string each)
+- `paymentInfo` — object with fields: `howLimitWorks`, `whenRunsOut`, `whereToCheck`, `howToBuyMore` (strings)
+- Add to `faqItems`: `{ q: "Что делать, если устройство не работает?", a: "..." }`
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+**Remove from features:** emoji field (no decorative icons)
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+### Page file: `src/pages/materials/PlaudGuidePage.tsx`
 
-### Changes to `src/pages/BlogPost.tsx`
+**Remove entirely:**
+- `Contact`, `Partners` components
+- All `sky-*` colors → use site palette (`#49BED8` for step numbers only)
+- Dark `bg-slate-900` AutoFlow section
+- Red `bg-red-50` payment section
+- Tariff cards section
+- Security certificates grid
+- CTA "Обсудить в Telegram" button
+- `benefitCards` / `valueCards` sections
+- "5 минут вместо часа" accent block
+- Gradient on hero
+- All Lucide icons except possibly ChevronDown in accordion
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+**Screenshot placeholder (reused everywhere):**
+```jsx
+<div className="rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center">
+  <p className="text-sm text-muted-foreground">Сюда будет добавлен скриншот</p>
+</div>
+```
 
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+**10 sections, each with specific layout:**
+
+#### 1. Header
+- White bg, `max-w-4xl`, centered
+- H1: `text-foreground` font-bold
+- One line subtitle in `text-muted-foreground`
+- No badge, no buttons, no cards
+
+#### 2. Что такое PLAUD
+- 2–3 short paragraphs of text
+- Below: full-width screenshot placeholder (large, `aspect-video`)
+
+#### 3. Какую модель выбрать
+- `Table` component (keep existing data)
+- Below table: one-line tip in light callout (`bg-secondary/30 rounded-xl px-5 py-3`)
+- No screenshot needed
+
+#### 4. Как начать (KEY BLOCK)
+- Each of the 5 steps rendered as:
+  - **Desktop**: 2-col grid — left: step card (number circle `bg-[#49BED8]` + title + 1-line desc), right: screenshot placeholder
+  - **Mobile**: stack vertically (step card, then placeholder below)
+- `grid grid-cols-1 md:grid-cols-2 gap-6` per step, `space-y-8` between steps
+
+#### 5. Как пользоваться (кнопки / режимы)
+- Each usage item as 2-col block:
+  - Left: title, "Что делает", "Когда использовать"
+  - Right: screenshot placeholder
+- Stacks on mobile
+
+#### 6. Приложение (функции)
+- NO icon cards. Each feature (Transcript, Summary, Ask PLAUD, Templates, Export, Search) as:
+  - 2-col block: left = what/why/how text, right = screenshot placeholder
+  - `space-y-10` between features
+  - Light divider between them (`border-b border-border/30`)
+
+#### 7. Облако
+- 2-col layout:
+  - Left: 4 sub-sections as short text blocks (что на устройстве / что в облаке / зачем / можно ли без)
+  - Right: screenshot placeholder
+- Light bg `bg-secondary/30` to highlight importance
+
+#### 8. Как оплачивать
+- Plain text with structured list items (no cards, no colors):
+  - Как работает лимит минут
+  - Что происходит, когда минуты заканчиваются
+  - Где посмотреть остаток
+  - Как купить дополнительные минуты
+- One screenshot placeholder at bottom (optional)
+
+#### 9. Частые ошибки
+- 3 simple cards: light bg `bg-secondary/30 rounded-xl p-5`
+- Text only: error title (bold) + consequence (muted)
+- No red, no icons
+
+#### 10. FAQ
+- Accordion, same as now but cleaner:
+  - No custom styling on trigger — use default accordion
+  - Add "Что делать, если устройство не работает?" question
+  - No decorative elements
+
+**Footer:** just `<Footer />` — no Contact, no Partners
+
+### Styling rules
+- All text: `text-foreground` (#212121) for headings, `text-muted-foreground` (#6B6B6B) for body
+- Accent `bg-[#49BED8]` only on step number circles
+- Cards: `rounded-xl border border-border/30 bg-white shadow-soft p-5`
+- Section spacing: `py-12 md:py-16`
+- Alternating white / `bg-secondary/30` backgrounds
+- No gradients, no dark sections, no red/amber colors
+
+### Files changed
+1. `src/pages/materials/plaud-guide-sections.tsx` — trim to instruction data only
+2. `src/pages/materials/PlaudGuidePage.tsx` — rewrite as 10-section instruction manual
 
