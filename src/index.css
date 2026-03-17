@@ -42,7 +42,7 @@
     
     /* Muted - for subtle backgrounds */
     --muted: 216 14% 96%;             /* #F5F6F8 */
-    --muted-foreground: 0 0% 45%;     /* #737373 - нейтральный серый */
+    --muted-foreground: 0 0% 38%;     /* #616161 - нейтральный серый, контраст 5.6:1 */
     
     --accent: 192 63% 57%;
     --accent-foreground: 0 0% 100%;
