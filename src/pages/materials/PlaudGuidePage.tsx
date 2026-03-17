@@ -1,188 +1,29 @@
 import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { Search, Mic, ToggleLeft, Bluetooth, FileText, ListChecks, UserRound, Download, FolderOpen, Mail, CreditCard } from "lucide-react";
+import { Search, HelpCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+} from "@/components/ui/accordion";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
-
-interface GuideSection {
-  id: number;
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  tags: string[];
-  text: string;
-  steps?: string[];
-  image: string;
-  imageAlt: string;
-}
-
-const sections: GuideSection[] = [
-  {
-    id: 1,
-    icon: Mic,
-    title: "Как начать и остановить запись",
-    tags: ["запись", "кнопка", "старт", "стоп", "режим"],
-    text: "Чтобы начать запись, нажмите и удерживайте кнопку на устройстве PLAUD в течение 1–2 секунд. Индикатор загорится, подтверждая начало записи. Для остановки — нажмите кнопку ещё раз.",
-    steps: [
-      "Убедитесь, что устройство заряжено и включено",
-      "Нажмите и удерживайте основную кнопку 1–2 секунды",
-      "Дождитесь индикации начала записи",
-      "Для остановки нажмите кнопку повторно",
-    ],
-    image: "/images/plaud/section-1.jpg",
-    imageAlt: "Кнопка записи на устройстве PLAUD AI",
-  },
-  {
-    id: 2,
-    icon: ToggleLeft,
-    title: "Режимы записи: встреча vs звонок",
-    tags: ["переключатель", "режим", "встреча", "звонок", "ползунок"],
-    text: "PLAUD поддерживает два режима записи. Режим «Встреча» оптимизирован для записи нескольких голосов в помещении. Режим «Звонок» — для записи телефонных разговоров через прикрепление к смартфону.",
-    steps: [
-      "Переключите ползунок на корпусе устройства",
-      "Режим «Встреча» — положите PLAUD рядом с участниками",
-      "Режим «Звонок» — прикрепите PLAUD к задней панели телефона",
-    ],
-    image: "/images/plaud/section-2.jpg",
-    imageAlt: "Переключатель режимов записи на PLAUD AI",
-  },
-  {
-    id: 3,
-    icon: Bluetooth,
-    title: "Как синхронизировать с телефоном",
-    tags: ["синхронизация", "приложение", "bluetooth", "передать", "файл"],
-    text: "После записи откройте приложение PLAUD на смартфоне. Устройство автоматически подключится по Bluetooth и начнёт передачу файла. Дождитесь завершения синхронизации — это может занять от нескольких секунд до пары минут.",
-    steps: [
-      "Откройте приложение PLAUD на телефоне",
-      "Убедитесь, что Bluetooth включён",
-      "Дождитесь автоматического подключения",
-      "Файл появится в списке записей после синхронизации",
-    ],
-    image: "/images/plaud/section-3.jpg",
-    imageAlt: "Синхронизация PLAUD AI с приложением на телефоне",
-  },
-  {
-    id: 4,
-    icon: FileText,
-    title: "Как запустить расшифровку",
-    tags: ["расшифровка", "транскрипт", "generate", "кнопка", "текст"],
-    text: "После синхронизации записи откройте нужный файл в приложении. Нажмите кнопку «Generate» или «Расшифровать». Система обработает аудио и выдаст текстовую расшифровку с разбивкой по спикерам.",
-    steps: [
-      "Откройте запись в приложении PLAUD",
-      "Нажмите кнопку «Generate» (или «Расшифровать»)",
-      "Дождитесь обработки — обычно 1–3 минуты",
-      "Готовый транскрипт появится под аудиофайлом",
-    ],
-    image: "/images/plaud/section-4.jpg",
-    imageAlt: "Расшифровка записи в приложении PLAUD AI",
-  },
-  {
-    id: 5,
-    icon: ListChecks,
-    title: "Как получить краткое содержание",
-    tags: ["саммари", "краткое", "содержание", "шаблон", "generate"],
-    text: "После расшифровки вы можете сгенерировать саммари — краткое содержание встречи. Выберите один из шаблонов (протокол встречи, список задач, краткий пересказ) и нажмите «Generate».",
-    steps: [
-      "Откройте расшифровку записи",
-      "Выберите шаблон саммари из списка",
-      "Нажмите «Generate» для генерации",
-      "Результат можно редактировать и экспортировать",
-    ],
-    image: "/images/plaud/section-5.jpg",
-    imageAlt: "Генерация саммари в приложении PLAUD AI",
-  },
-  {
-    id: 6,
-    icon: UserRound,
-    title: "Как переименовать спикеров",
-    tags: ["спикер", "докладчик", "имя", "переименовать"],
-    text: "В расшифровке спикеры отображаются как «Speaker 1», «Speaker 2» и т.д. Чтобы переименовать — нажмите на имя спикера в тексте и введите настоящее имя. PLAUD запомнит его для будущих записей.",
-    steps: [
-      "Откройте расшифровку с несколькими спикерами",
-      "Нажмите на метку «Speaker N» в тексте",
-      "Введите имя участника",
-      "Имя сохранится и будет применяться автоматически",
-    ],
-    image: "/images/plaud/section-6.jpg",
-    imageAlt: "Переименование спикеров в расшифровке PLAUD AI",
-  },
-  {
-    id: 7,
-    icon: Download,
-    title: "Как скачать или поделиться файлом",
-    tags: ["экспорт", "скачать", "pdf", "docx", "поделиться"],
-    text: "Готовую расшифровку или саммари можно экспортировать в PDF, DOCX или скопировать текст. Нажмите иконку «Поделиться» или «Экспорт» в правом верхнем углу файла.",
-    steps: [
-      "Откройте нужную расшифровку или саммари",
-      "Нажмите иконку экспорта (↑) в верхнем правом углу",
-      "Выберите формат: PDF, DOCX или текст",
-      "Файл сохранится или откроется меню отправки",
-    ],
-    image: "/images/plaud/section-7.jpg",
-    imageAlt: "Экспорт и отправка файлов из PLAUD AI",
-  },
-  {
-    id: 8,
-    icon: FolderOpen,
-    title: "Как организовать файлы по папкам",
-    tags: ["папки", "организация", "переместить", "тег"],
-    text: "В приложении PLAUD можно создавать папки и перемещать записи для удобной навигации. Используйте теги и папки, чтобы группировать записи по проектам, клиентам или темам.",
-    steps: [
-      "Перейдите в раздел «Записи» в приложении",
-      "Создайте новую папку через меню «+»",
-      "Перетащите или переместите записи в папку",
-      "Добавьте теги для быстрого поиска",
-    ],
-    image: "/images/plaud/section-8.jpg",
-    imageAlt: "Организация файлов по папкам в PLAUD AI",
-  },
-  {
-    id: 9,
-    icon: Mail,
-    title: "AutoFlow: автоматическая отправка на почту",
-    tags: ["autoflow", "автопилот", "автоматически", "почта", "email"],
-    text: "Функция AutoFlow позволяет автоматически отправлять расшифровку и саммари на указанный email сразу после обработки записи. Настройте один раз — и получайте результаты без лишних действий.",
-    steps: [
-      "Откройте настройки приложения PLAUD",
-      "Перейдите в раздел «AutoFlow»",
-      "Укажите email для автоматической отправки",
-      "Выберите шаблон саммари и формат экспорта",
-    ],
-    image: "/images/plaud/section-9.jpg",
-    imageAlt: "Настройка AutoFlow в приложении PLAUD AI",
-  },
-  {
-    id: 10,
-    icon: CreditCard,
-    title: "Тарифы и остаток минут",
-    tags: ["тариф", "минуты", "подписка", "оплата", "membership"],
-    text: "PLAUD предоставляет определённое количество минут расшифровки в зависимости от тарифного плана. Проверить остаток можно в настройках приложения. При необходимости — оформите подписку или докупите минуты.",
-    steps: [
-      "Откройте приложение и перейдите в «Профиль»",
-      "Проверьте остаток минут в разделе «Подписка»",
-      "Выберите подходящий тариф при необходимости",
-      "Оплата производится через App Store или Google Play",
-    ],
-    image: "/images/plaud/section-10.jpg",
-    imageAlt: "Тарифы и подписка PLAUD AI",
-  },
-];
+import { sections, faqItems } from "./plaud-guide-sections";
 
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "Как пользоваться PLAUD AI диктофоном",
-  "inLanguage": "ru",
-  "description": "Пошаговая инструкция по PLAUD: запись, расшифровка, саммари, AutoFlow",
-  "step": sections.map((s) => ({
+  name: "Как пользоваться PLAUD AI диктофоном",
+  inLanguage: "ru",
+  description:
+    "Полная пошаговая инструкция по PLAUD на русском языке: запись, расшифровка, саммари, AutoFlow, тарифы и оплата из России.",
+  step: sections.map((s) => ({
     "@type": "HowToStep",
-    "name": s.title,
-    "text": s.text,
+    name: s.title,
+    text: s.tags,
   })),
 };
 
@@ -195,8 +36,7 @@ const PlaudGuidePage = () => {
     return sections.filter(
       (s) =>
         s.title.toLowerCase().includes(q) ||
-        s.tags.some((tag) => tag.includes(q)) ||
-        s.text.toLowerCase().includes(q)
+        s.tags.includes(q)
     );
   }, [searchQuery]);
 
@@ -206,13 +46,13 @@ const PlaudGuidePage = () => {
         <title>Инструкция по PLAUD на русском языке | Александра Моисеева</title>
         <meta
           name="description"
-          content="Пошаговая инструкция по PLAUD AI на русском: запись, расшифровка, саммари, AutoFlow. Найдите ответ на любой вопрос по устройству."
+          content="Полная пошаговая инструкция по PLAUD AI на русском: запись, расшифровка, саммари, AutoFlow, тарифы, оплата из России. 18 разделов с примерами."
         />
         <link rel="canonical" href="https://aleksamois.ru/materials/plaud-guide" />
         <meta property="og:title" content="Инструкция по PLAUD на русском языке" />
         <meta
           property="og:description"
-          content="Полный гид по PLAUD AI: от записи до автоматической отправки на почту."
+          content="Полный гид по PLAUD AI: от записи до автоматической отправки на почту. 18 разделов."
         />
         <meta property="og:url" content="https://aleksamois.ru/materials/plaud-guide" />
         <meta property="og:type" content="article" />
@@ -255,64 +95,91 @@ const PlaudGuidePage = () => {
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Например: как начать запись, как расшифровать файл, как поделиться..."
+                placeholder="Например: как начать запись, autoflow, тариф, оплата..."
                 className="pl-12 h-13 rounded-2xl shadow-md text-base"
               />
             </div>
-            <Button
-              onClick={() => {}}
-              className="h-13 rounded-2xl px-6 shrink-0"
-            >
-              Найти
-            </Button>
+            <Button className="h-13 rounded-2xl px-6 shrink-0">Найти</Button>
           </div>
 
           {/* Sections */}
           <div className="space-y-8">
-            {filteredSections.map((section) => {
+            {filteredSections.map((section, idx) => {
               const Icon = section.icon;
+              const partNum = section.id;
+
               return (
-                <article
-                  key={section.id}
-                  data-tags={section.tags.join(" ")}
-                  className="bg-card rounded-xl border border-border/30 p-6 md:p-8 transition-all duration-300"
-                >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h2 className="text-xl md:text-2xl font-semibold text-foreground">
-                      {section.title}
-                    </h2>
-                  </div>
-
-                  <p className="text-muted-foreground mb-5 leading-relaxed">
-                    {section.text}
-                  </p>
-
-                  {section.steps && (
-                    <div className="mb-5">
-                      <h3 className="text-base font-medium text-foreground mb-3">
-                        Пошаговая инструкция
-                      </h3>
-                      <ol className="list-decimal list-inside space-y-1.5 text-muted-foreground">
-                        {section.steps.map((step, i) => (
-                          <li key={i}>{step}</li>
-                        ))}
-                      </ol>
+                <div key={section.id}>
+                  {/* Divider with part number */}
+                  {partNum > 0 && (
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="h-px flex-1 bg-border" />
+                      <span className="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-semibold shrink-0">
+                        {partNum}
+                      </span>
+                      <div className="h-px flex-1 bg-border" />
                     </div>
                   )}
 
-                  <img
-                    src={section.image}
-                    alt={section.imageAlt}
-                    loading="lazy"
-                    className="rounded-lg w-full max-w-lg"
-                  />
-                </article>
+                  <article
+                    data-tags={section.tags}
+                    className={`bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 hover:shadow-md transition-all duration-300 border-l-4 ${section.borderColor}`}
+                  >
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+                        {section.title}
+                      </h2>
+                    </div>
+
+                    {section.content}
+                  </article>
+                </div>
               );
             })}
           </div>
+
+          {/* Part 18: FAQ */}
+          {(!searchQuery.trim() ||
+            "вопросы ответы faq можно ли работает ли язык точность zoom интернет".includes(
+              searchQuery.toLowerCase().trim()
+            )) && (
+            <>
+              <div className="flex items-center gap-4 my-8">
+                <div className="h-px flex-1 bg-border" />
+                <span className="w-8 h-8 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-semibold shrink-0">
+                  18
+                </span>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+
+              <article className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 hover:shadow-md transition-all duration-300 border-l-4 border-sky-500">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <HelpCircle className="h-5 w-5 text-primary" />
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+                    Частые вопросы
+                  </h2>
+                </div>
+
+                <Accordion type="single" collapsible className="w-full">
+                  {faqItems.map((item, index) => (
+                    <AccordionItem key={index} value={`faq-${index}`}>
+                      <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </article>
+            </>
+          )}
 
           {/* No results */}
           {filteredSections.length === 0 && (
@@ -321,7 +188,7 @@ const PlaudGuidePage = () => {
                 По вашему запросу ничего не найдено
               </p>
               <a
-                href="https://t.me/aleksa_mois"
+                href="https://t.me/aleksamois"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-medium hover:underline"
