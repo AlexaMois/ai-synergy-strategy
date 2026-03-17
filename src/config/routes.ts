@@ -39,6 +39,7 @@ export const ALLOWED_ROUTES = [
   '/materials/resources',
   '/materials/blog',
   '/materials/checklist-30',
+  '/materials/plaud-guide',
   '/newyear',
   '/portal',
   '/portal/admin',
