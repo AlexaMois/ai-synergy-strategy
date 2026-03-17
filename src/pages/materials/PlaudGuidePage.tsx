@@ -13,6 +13,7 @@ import {
   paymentInfo,
   mistakes,
   faqItems,
+  conclusionSteps,
 } from "./plaud-guide-sections";
 
 const howToSchema = {
