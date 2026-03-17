@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { Helmet } from "react-helmet-async";
 
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
