@@ -48,141 +48,44 @@ const BlogPost = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Александра Моисеева`;
-      
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute("content", post.seo.metaDescription);
-      } else {
-        const meta = document.createElement("meta");
-        meta.name = "description";
-        meta.content = post.seo.metaDescription;
-        document.head.appendChild(meta);
-      }
+  // Convert Russian date to ISO format
+  const russianMonths: Record<string, string> = {
+    'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
+    'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
+    'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'
+  };
 
-      const metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (metaKeywords) {
-        metaKeywords.setAttribute("content", post.seo.keywords.join(", "));
-      } else {
-        const meta = document.createElement("meta");
-        meta.name = "keywords";
-        meta.content = post.seo.keywords.join(", ");
-        document.head.appendChild(meta);
-      }
+  const seoData = useMemo(() => {
+    if (!post) return null;
+    const canonicalUrl = `https://aleksamois.ru/materials/blog/${slug}`;
+    const dateMatch = post.date.match(/(\d+)\s+(\S+)\s+(\d{4})/);
+    const isoDate = dateMatch
+      ? `${dateMatch[3]}-${russianMonths[dateMatch[2]] || '01'}-${dateMatch[1].padStart(2, '0')}`
+      : post.date;
+    const wordCount = [post.content.intro, ...post.content.sections.map(s => s.content), post.content.conclusion]
+      .join(' ').split(/\s+/).length;
+    const articleImage = post.content.introImage?.src
+      ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
+      : "https://aleksamois.ru/og-image.png";
 
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) {
-        ogTitle.setAttribute("content", post.title);
-      } else {
-        const meta = document.createElement("meta");
-        meta.setAttribute("property", "og:title");
-        meta.content = post.title;
-        document.head.appendChild(meta);
-      }
-
-      const ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogDescription) {
-        ogDescription.setAttribute("content", post.seo.metaDescription);
-      } else {
-        const meta = document.createElement("meta");
-        meta.setAttribute("property", "og:description");
-        meta.content = post.seo.metaDescription;
-        document.head.appendChild(meta);
-      }
-
-      // og:url
-      const canonicalUrl = `https://aleksamois.ru/materials/blog/${slug}`;
-      const setOrCreateMeta = (property: string, content: string) => {
-        let el = document.querySelector(`meta[property="${property}"]`);
-        if (el) {
-          el.setAttribute("content", content);
-        } else {
-          el = document.createElement("meta");
-          el.setAttribute("property", property);
-          (el as HTMLMetaElement).content = content;
-          document.head.appendChild(el);
-        }
-      };
-      setOrCreateMeta("og:url", canonicalUrl);
-      setOrCreateMeta("og:type", "article");
-
-      // og:image
-      const ogImageUrl = post.content.introImage?.src
-        ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
-        : "https://aleksamois.ru/og-image.png";
-      setOrCreateMeta("og:image", ogImageUrl);
-
-      // canonical link
-      let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (canonicalLink) {
-        canonicalLink.href = canonicalUrl;
-      } else {
-        canonicalLink = document.createElement("link");
-        canonicalLink.rel = "canonical";
-        canonicalLink.href = canonicalUrl;
-        document.head.appendChild(canonicalLink);
-      }
-
-      // Convert Russian date to ISO format
-      const russianMonths: Record<string, string> = {
-        'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
-        'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
-        'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'
-      };
-      const dateMatch = post.date.match(/(\d+)\s+(\S+)\s+(\d{4})/);
-      const isoDate = dateMatch
-        ? `${dateMatch[3]}-${russianMonths[dateMatch[2]] || '01'}-${dateMatch[1].padStart(2, '0')}`
-        : post.date;
-
-      const wordCount = [post.content.intro, ...post.content.sections.map(s => s.content), post.content.conclusion]
-        .join(' ').split(/\s+/).length;
-
-      const articleImage = post.content.introImage?.src
-        ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
-        : "https://aleksamois.ru/og-image.png";
-
-      const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": post.title,
-        "description": post.seo.metaDescription,
-        "datePublished": isoDate,
-        "dateModified": isoDate,
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": canonicalUrl
-        },
-        "image": articleImage,
-        "inLanguage": "ru",
-        "wordCount": wordCount,
-        "author": {
-          "@type": "Person",
-          "name": "Александра Моисеева",
-          "url": "https://aleksamois.ru/about"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "НейроРешения",
-          "url": "https://aleksamois.ru"
-        },
-        "keywords": post.seo.keywords.join(", ")
-      };
-
-      let scriptTag = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
-      if (!scriptTag) {
-        scriptTag = document.createElement("script");
-        scriptTag.type = "application/ld+json";
-        document.head.appendChild(scriptTag);
-      }
-      scriptTag.textContent = JSON.stringify(structuredData);
-    }
-
-    return () => {
-      document.title = "Александра Моисеева | AI-консультант";
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.seo.metaDescription,
+      "datePublished": isoDate,
+      "dateModified": isoDate,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+      "image": articleImage,
+      "inLanguage": "ru",
+      "wordCount": wordCount,
+      "author": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
+      "publisher": { "@type": "Organization", "name": "НейроРешения", "url": "https://aleksamois.ru" },
+      "keywords": post.seo.keywords.join(", ")
     };
-  }, [post]);
+
+    return { canonicalUrl, articleImage, structuredData };
+  }, [post, slug]);
 
   if (!slug || !post) {
     return <Navigate to="/materials/blog" replace />;
