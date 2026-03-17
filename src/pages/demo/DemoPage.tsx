@@ -33,6 +33,10 @@ const DemoPage = () => {
         <meta name="description" content="Демонстрации ИИ-продуктов: голосовой бот GolossOK и система поиска по документации в действии." />
         <meta name="keywords" content="демо ИИ, демонстрация AI, голосовой бот демо, поиск документации демо" />
         <link rel="canonical" href="https://aleksamois.ru/demo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
         

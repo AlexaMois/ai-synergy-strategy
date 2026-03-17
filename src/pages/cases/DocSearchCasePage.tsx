@@ -93,6 +93,10 @@ const DocSearchCasePage = () => {
         <title>Кейс: Интеллектуальный поиск по технической документации | Александра Моисеева</title>
         <meta name="description" content="Кейс производственной компании: от хаоса в регламентах — к точным ответам за 3 секунды. Многоязычная документация, работа с изображениями, 100% точность ответов." />
         <link rel="canonical" href="https://aleksamois.ru/cases/doc-search" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
 
       

@@ -40,6 +40,10 @@ const CaseStudyCargoExpress = () => {
         <meta property="og:title" content="Кейс: Грузовой Экспресс — Приём заявок голосом в Telegram" />
         <meta property="og:description" content="Полная прозрачность без CRM. Экономия 9-12 часов/неделю на команду." />
         <meta property="og:url" content="https://aleksamois.ru/case-studies/cargo-express" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
       <div className="min-h-screen">
         
