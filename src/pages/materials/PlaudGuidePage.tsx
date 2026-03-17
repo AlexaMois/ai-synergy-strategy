@@ -4,6 +4,10 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import plaudDevice from "@/assets/plaud/plaud-note-device.webp";
+import plaudSummary from "@/assets/plaud/plaud-summary.webp";
+import plaudAsk from "@/assets/plaud/plaud-ask.png";
+import plaudMultimodal from "@/assets/plaud/plaud-multimodal.webp";
 import {
   modelComparison,
   gettingStartedSteps,
