@@ -4,7 +4,15 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import plaudDevice from "@/assets/plaud/plaud-note-device.webp";
+import { ExternalLink } from "lucide-react";
+import plaudHeroDevice from "@/assets/plaud/plaud-hero-device.png";
+import plaudTranscriptView from "@/assets/plaud/plaud-transcript-view.png";
+import plaudButtonPress from "@/assets/plaud/plaud-button-press.png";
+import plaudNotePhone from "@/assets/plaud/plaud-note-phone.png";
+import plaudEcosystem from "@/assets/plaud/plaud-ecosystem.png";
+import plaudAutoflow from "@/assets/plaud/plaud-autoflow.png";
+import plaudExport from "@/assets/plaud/plaud-export.png";
+import plaudWebapp from "@/assets/plaud/plaud-webapp.png";
 import plaudSummary from "@/assets/plaud/plaud-summary.webp";
 import plaudAsk from "@/assets/plaud/plaud-ask.png";
 import plaudMultimodal from "@/assets/plaud/plaud-multimodal.webp";
@@ -20,6 +28,8 @@ import {
   conclusionSteps,
 } from "./plaud-guide-sections";
 
+const PLAUD_URL = "https://www.plaud.ai/";
+
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -31,6 +41,33 @@ const howToSchema = {
     name: s.title,
     text: s.desc,
   })),
+};
+
+// Map feature titles to images
+const featureImageMap: Record<string, string> = {
+  "Transcript": plaudTranscriptView,
+  "Summary": plaudSummary,
+  "Ask PLAUD": plaudAsk,
+  "Templates": plaudWebapp,
+  "Export": plaudExport,
+  "Search": plaudWebapp,
+};
+
+// Map usage item index to images
+const usageImageMap: Record<number, string> = {
+  0: plaudMultimodal,    // Режим записи
+  1: plaudButtonPress,   // Запустите запись
+  2: plaudButtonPress,   // Остановите запись
+  3: plaudButtonPress,   // Отметьте момент
+};
+
+// Map getting started step to images
+const stepImageMap: Record<number, string> = {
+  1: plaudNotePhone,     // Зарядите
+  2: plaudEcosystem,     // Установите приложение
+  3: plaudMultimodal,    // Подключите устройство
+  4: plaudButtonPress,   // Запустите запись
+  5: plaudTranscriptView, // Обработайте запись
 };
 
 const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "", imageSrc }: { text?: string; className?: string; imageSrc?: string }) => {
@@ -52,6 +89,18 @@ const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен с
     </div>
   );
 };
+
+const PlaudLink = ({ children, className = "" }: { children?: React.ReactNode; className?: string }) => (
+  <a
+    href={PLAUD_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`inline-flex items-center gap-1 text-primary hover:text-primary/80 underline underline-offset-2 transition-colors ${className}`}
+  >
+    {children || "plaud.ai"}
+    <ExternalLink className="w-3.5 h-3.5" />
+  </a>
+);
 
 const PlaudGuidePage = () => {
   return (
@@ -79,8 +128,11 @@ const PlaudGuidePage = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
               PLAUD: инструкция на русском языке
             </h1>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg mb-4">
               Показываю, как выбрать модель, запустить запись, разобраться в приложении, понять работу облака и настроить всё без путаницы.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Официальный сайт: <PlaudLink />
             </p>
           </div>
         </section>
@@ -90,14 +142,14 @@ const PlaudGuidePage = () => {
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-6">Что такое PLAUD — простыми словами</h2>
             <div className="space-y-3 text-muted-foreground mb-4">
-              <p>PLAUD записывает разговор, переводит речь в текст и формирует краткое содержание.</p>
+              <p><a href={PLAUD_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2">PLAUD</a> записывает разговор, переводит речь в текст и формирует краткое содержание.</p>
               <p>Пользователь запускает запись, открывает файл в приложении и запускает обработку. Система показывает расшифровку, саммари и выделяет ключевые мысли и договорённости.</p>
               <p>PLAUD экономит время и избавляет от ручных конспектов.</p>
             </div>
             <p className="text-sm text-muted-foreground mb-8">
               PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
             </p>
-            <ScreenshotPlaceholder text="Устройство PLAUD Note" imageSrc={plaudDevice} />
+            <ScreenshotPlaceholder text="Устройство PLAUD и приложение" imageSrc={plaudHeroDevice} />
           </div>
         </section>
 
@@ -106,29 +158,32 @@ const PlaudGuidePage = () => {
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-4">Какую модель выбрать</h2>
             <p className="text-muted-foreground mb-6">
-              Все модели PLAUD записывают звук, синхронизируются с приложением и формируют текст и саммари. Разница заключается в формате устройства и сценарии использования.
+              Все модели PLAUD записывают звук, синхронизируются с приложением и формируют текст и саммари. Разница заключается в формате устройства и сценарии использования. Подробности — на <PlaudLink>официальном сайте</PlaudLink>.
             </p>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Модель</TableHead>
-                    <TableHead>Кому подходит</TableHead>
-                    <TableHead>Когда использовать</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {modelComparison.map((m) => (
-                    <TableRow key={m.name}>
-                      <TableCell className="font-medium">{m.name}</TableCell>
-                      <TableCell>{m.audience}</TableCell>
-                      <TableCell>{m.useCase}</TableCell>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Модель</TableHead>
+                      <TableHead>Кому подходит</TableHead>
+                      <TableHead>Когда использовать</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {modelComparison.map((m) => (
+                      <TableRow key={m.name}>
+                        <TableCell className="font-medium">{m.name}</TableCell>
+                        <TableCell>{m.audience}</TableCell>
+                        <TableCell>{m.useCase}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+              <ScreenshotPlaceholder text="PLAUD Note на телефоне" imageSrc={plaudNotePhone} />
             </div>
-            <div className="mt-4 bg-secondary/30 rounded-xl px-5 py-3 text-sm text-muted-foreground">
+            <div className="bg-secondary/30 rounded-xl px-5 py-3 text-sm text-muted-foreground">
               Пользователь выбирает модель по сценарию: офис и звонки — Note, перемещение и выезды — NotePin, переговорные — Note Pro.
             </div>
           </div>
@@ -155,7 +210,7 @@ const PlaudGuidePage = () => {
                       </div>
                     </div>
                   </div>
-                  <ScreenshotPlaceholder text={step.screenshot} />
+                  <ScreenshotPlaceholder text={step.screenshot} imageSrc={stepImageMap[step.number]} />
                 </div>
               ))}
             </div>
@@ -179,7 +234,7 @@ const PlaudGuidePage = () => {
                       <p className="text-sm text-muted-foreground whitespace-pre-line">{item.detail}</p>
                     )}
                   </div>
-                  <ScreenshotPlaceholder text={item.screenshot} />
+                  <ScreenshotPlaceholder text={item.screenshot} imageSrc={usageImageMap[i]} />
                 </div>
               ))}
             </div>
@@ -191,28 +246,27 @@ const PlaudGuidePage = () => {
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-4">Приложение PLAUD: основные функции</h2>
             <p className="text-muted-foreground mb-8">
-              Приложение показывает записи, обрабатывает их и формирует результат в удобном виде.
+              Приложение показывает записи, обрабатывает их и формирует результат в удобном виде. Скачать приложение можно на <PlaudLink>официальном сайте</PlaudLink>.
             </p>
             <div className="space-y-10">
-              {features.map((f, i) => (
-                <div key={i}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                    <div>
-                      <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
-                      <p className="text-sm text-muted-foreground">{f.what}</p>
+              {features.map((f, i) => {
+                const matchedImage = Object.entries(featureImageMap).find(([key]) => f.title.includes(key));
+                return (
+                  <div key={i}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                      <div>
+                        <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
+                        <p className="text-sm text-muted-foreground">{f.what}</p>
+                      </div>
+                      <ScreenshotPlaceholder
+                        text={f.screenshot}
+                        imageSrc={matchedImage?.[1]}
+                      />
                     </div>
-                    <ScreenshotPlaceholder
-                      text={f.screenshot}
-                      imageSrc={
-                        f.title.includes("Summary") ? plaudSummary :
-                        f.title.includes("Ask PLAUD") ? plaudAsk :
-                        undefined
-                      }
-                    />
+                    {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
                   </div>
-                  {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -237,7 +291,7 @@ const PlaudGuidePage = () => {
                   <p className="text-sm text-muted-foreground">{cloudInfo.disable}</p>
                 </div>
               </div>
-              <ScreenshotPlaceholder text="Сюда будет добавлен скрин настроек Cloud Sync" />
+              <ScreenshotPlaceholder text="AutoFlow — автоматическая обработка записей" imageSrc={plaudAutoflow} />
             </div>
           </div>
         </section>
@@ -266,8 +320,11 @@ const PlaudGuidePage = () => {
               </div>
             </div>
             <div className="mt-8">
-              <ScreenshotPlaceholder text="Сюда будет добавлен скрин Membership Center или страницы с минутами" />
+              <ScreenshotPlaceholder text="Веб-приложение PLAUD — список записей и шаблоны" imageSrc={plaudWebapp} />
             </div>
+            <p className="text-sm text-muted-foreground mt-4">
+              Подробнее об условиях — на <PlaudLink>официальном сайте</PlaudLink>.
+            </p>
           </div>
         </section>
 
@@ -309,13 +366,25 @@ const PlaudGuidePage = () => {
               <p>PLAUD фиксирует разговор, превращает речь в текст и помогает быстро получить результат.</p>
               <p>Пользователь запускает запись, обрабатывает файл и использует готовую информацию в работе.</p>
             </div>
-            <div>
+            <div className="mb-6">
               <h3 className="font-semibold text-foreground mb-3">Что сделать сейчас:</h3>
               <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                 {conclusionSteps.map((step, i) => (
                   <li key={i}>{step}</li>
                 ))}
               </ol>
+            </div>
+            <div className="rounded-xl bg-secondary/30 p-5 text-center">
+              <p className="text-muted-foreground mb-2">Узнать больше о PLAUD и выбрать устройство:</p>
+              <a
+                href={PLAUD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary/80 underline underline-offset-4 transition-colors"
+              >
+                Перейти на plaud.ai
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </section>
