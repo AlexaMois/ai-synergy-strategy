@@ -68,6 +68,17 @@ const ResourcesPage = () => {
     isExternal: false,
     status: "ready"
   }, {
+    id: 12,
+    category: "guides",
+    title: "Инструкция по PLAUD AI на русском языке",
+    description: "Полный гид по устройству PLAUD: запись, расшифровка, саммари, AutoFlow и тарифы",
+    type: "Гайд",
+    icon: Mic,
+    link: "/materials/plaud-guide",
+    actionLabel: "Открыть инструкцию",
+    isExternal: false,
+    status: "ready"
+  }, {
     id: 2,
     category: "guides",
     title: "Гайд «Как не потратить деньги на AI зря»",
