@@ -201,7 +201,14 @@ const PlaudGuidePage = () => {
                       <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
                       <p className="text-sm text-muted-foreground">{f.what}</p>
                     </div>
-                    <ScreenshotPlaceholder text={f.screenshot} />
+                    <ScreenshotPlaceholder
+                      text={f.screenshot}
+                      imageSrc={
+                        f.title.includes("Summary") ? plaudSummary :
+                        f.title.includes("Ask PLAUD") ? plaudAsk :
+                        undefined
+                      }
+                    />
                   </div>
                   {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
                 </div>
