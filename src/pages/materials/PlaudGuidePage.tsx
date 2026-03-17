@@ -4,6 +4,10 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import plaudDevice from "@/assets/plaud/plaud-note-device.webp";
+import plaudSummary from "@/assets/plaud/plaud-summary.webp";
+import plaudAsk from "@/assets/plaud/plaud-ask.png";
+import plaudMultimodal from "@/assets/plaud/plaud-multimodal.webp";
 import {
   modelComparison,
   gettingStartedSteps,
@@ -29,13 +33,25 @@ const howToSchema = {
   })),
 };
 
-const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "" }: { text?: string; className?: string }) => (
-  <div
-    className={`rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center ${className}`}
-  >
-    <p className="text-sm text-muted-foreground text-center px-4">{text}</p>
-  </div>
-);
+const ScreenshotPlaceholder = ({ text = "Сюда будет добавлен скриншот", className = "", imageSrc }: { text?: string; className?: string; imageSrc?: string }) => {
+  if (imageSrc) {
+    return (
+      <img
+        src={imageSrc}
+        alt={text}
+        loading="lazy"
+        className={`rounded-xl w-full h-auto object-contain ${className}`}
+      />
+    );
+  }
+  return (
+    <div
+      className={`rounded-xl border-2 border-dashed border-border/40 bg-secondary/30 aspect-video flex items-center justify-center ${className}`}
+    >
+      <p className="text-sm text-muted-foreground text-center px-4">{text}</p>
+    </div>
+  );
+};
 
 const PlaudGuidePage = () => {
   return (
@@ -81,7 +97,7 @@ const PlaudGuidePage = () => {
             <p className="text-sm text-muted-foreground mb-8">
               PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
             </p>
-            <ScreenshotPlaceholder text="Сюда будет добавлен общий скрин устройства или интерфейса PLAUD" />
+            <ScreenshotPlaceholder text="Устройство PLAUD Note" imageSrc={plaudDevice} />
           </div>
         </section>
 
@@ -185,7 +201,14 @@ const PlaudGuidePage = () => {
                       <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
                       <p className="text-sm text-muted-foreground">{f.what}</p>
                     </div>
-                    <ScreenshotPlaceholder text={f.screenshot} />
+                    <ScreenshotPlaceholder
+                      text={f.screenshot}
+                      imageSrc={
+                        f.title.includes("Summary") ? plaudSummary :
+                        f.title.includes("Ask PLAUD") ? plaudAsk :
+                        undefined
+                      }
+                    />
                   </div>
                   {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
                 </div>
