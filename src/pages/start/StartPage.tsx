@@ -41,6 +41,9 @@ const StartPage = () => {
         <meta property="og:description" content="Онлайн‑диагностика: находим 3–5 процессов, где автоматизация с ИИ даёт быстрый ROI без переделки всей IT‑системы и найма армии интеграторов." />
         <meta property="og:url" content="https://aleksamois.ru/start" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.start())}
         </script>
