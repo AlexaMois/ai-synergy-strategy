@@ -1,33 +1,36 @@
 
 
-## Plan: Content & Visual Enhancements for Blog Post
+## Plan: Remove all НФИИ mentions across the project
 
-### Changes to `src/data/blogPosts.ts`
+Found НФИИ in **8 files**. Here are all changes:
 
-**1. Add "promise" paragraph after intro**
-Append to `intro` field: "После этой статьи вы сможете самостоятельно оценить качество вашего ИИ-ассистента, выявить скрытые ошибки и понять, где система нуждается в доработке."
+### 1. `src/components/Partners.tsx`
+- Remove `import nfii` (line 6)
+- Remove partner entry `{ id: 6, name: "НФИИ", ... }` (line 27)
 
-**2. Restructure section_2 (6 types of checks)**
-Move the 6 items from `content` string into `list` array as numbered items ("1. Точность извлечения факта — ..."), so renderer displays them as mini-cards with number badges. Keep only the introductory sentence in `content`.
+### 2. `src/components/Trust.tsx`
+- Remove `"Член НФИИ"` from facts array (line 13)
 
-**3. Rename section_4 heading**
-Change "Как выглядит правильное тестирование RAG-системы на практике" → "Тестирование RAG-системы по базе знаний компании: как это выглядит на практике" (closes the target search query).
+### 3. `src/components/TrustMarquee.tsx`
+- Remove `"Член НФИИ"` from facts array (line 10)
 
-**4. Update excerpt with "корпоративный ИИ-помощник"**
-Change excerpt to: "Как проверить, что корпоративный ИИ-помощник работает точно по внутренним документам и не галлюцинирует. 6 типов тестов для RAG-системы с примерами, чек-листом и реальными кейсами."
+### 4. `src/components/TrustAndPosition.tsx`
+- Remove the `Член НФИИ<br />` line (line 79)
 
-**5. Add SEO keyword**
-Add "корпоративный ИИ-помощник" to `seo.keywords`.
+### 5. `src/components/Footer.tsx`
+- Remove `/ Член НФИИ` from the certificates text (line 85)
 
-**6. Update conclusion**
-Append personal CTA paragraph: "Если хочется понять, как выглядит тест-план именно под вашу базу знаний — приходите с документами на консультацию, разберём на живых примерах."
+### 6. `src/components/PublicationsMarquee.tsx`
+- Remove `import logoNfii` (line 5)
+- Remove 3 НФИИ publication entries: id 1 (line 35), id 12 (line 55), id 22 (line 58)
 
-### Changes to `src/pages/BlogPost.tsx`
+### 7. `src/pages/Index.tsx`
+- Remove НФИИ from `memberOf` JSON-LD schema (line 93)
 
-**7. Update CTA block text**
-Change heading to: "Хотите проверить вашего ИИ-ассистента?" with subtext "Запросите аудит — разберём на примерах ваших документов" and button text "Запросить аудит ИИ-ассистента".
+### 8. `public/llms-full.txt`
+- Remove "НФИИ (Национальная Федерация Искусственного Интеллекта), " from membership line (line 12)
 
-### Files to modify
-- `src/data/blogPosts.ts` — content updates (items 1-6)
-- `src/pages/BlogPost.tsx` — CTA block text (item 7)
+### What stays untouched
+- All other partners, publications, and content remain intact
+- No sections become empty after removal — no need to hide anything
 
