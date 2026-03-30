@@ -76,7 +76,7 @@ const TrustAndPosition = () => {
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">Дипломированный специалист по ИИ <br />
                     Член ОПОРА РОССИИ<br />
-                    Член НФИИ<br />
+                    
                     Резидент IT Парк Казань<br />
                     Резидент КРИТБИ
                   </p>
