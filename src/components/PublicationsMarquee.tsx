@@ -32,7 +32,7 @@ interface Publication {
 
 const publications: Publication[] = [
   // Максимально разнообразный порядок - чередуем все источники
-  { id: 1, source: 'НФИИ', title: 'НейроТендеролог: ИИ для автоматизации тендерного поиска', url: 'https://nfai.ru/tpost/6zm7z4mem1-neirotenderolog-iskusstvennii-intellekt', type: 'read', logo: logoNfii, alt: 'Публикация НФИИ о НейроТендерологе', ariaLabel: 'Открыть статью НФИИ об автоматизации тендерного поиска' },
+  
   { id: 14, source: 'АБН', title: 'Новая реальность: как ИИ повлияет на образование в РФ', url: 'https://abnews.ru/news/2024/8/17/novaya-realnost-kak-ii-povliyaet-na-obrazovanie-v-rf', type: 'read', logo: logoAbn, alt: 'Статья АБН об ИИ в образовании', ariaLabel: 'Открыть статью об ИИ в образовании' },
   { id: 3, source: 'Деловой Квартал', title: 'ИИ — драйвер для бизнеса', url: 'https://read.flypdf.ru/v/b0f78794-edc0-4b7f-8058-82b8055de534#page/62', type: 'read', logo: logoDelovoyKvartal, alt: 'Статья об ИИ как драйвере бизнеса', ariaLabel: 'Открыть статью об ИИ как драйвере бизнеса' },
   { id: 15, source: '7 НЕБО', title: 'Александра Колибри — спикер на фестивале «7 НЕБО»', url: 'https://t.me/festival7nebo/11706', type: 'read', logo: logo7nebo, alt: 'Выступление на фестивале 7 НЕБО', ariaLabel: 'Открыть публикацию о фестивале' },
