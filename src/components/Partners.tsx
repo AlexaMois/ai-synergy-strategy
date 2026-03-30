@@ -3,7 +3,7 @@ import itPark from '@/assets/partners/it-park.png';
 import combox from '@/assets/partners/combox.jpg';
 import software from '@/assets/partners/software.svg';
 import kritbi from '@/assets/partners/kritbi.jpg';
-import nfii from '@/assets/partners/nfii.jpg';
+
 import centrSvarki from '@/assets/partners/centr-svarki.png';
 import kraypotrebsoyuz from '@/assets/partners/kraypotrebsoyuz.png';
 import agentstvoPozharnoy from '@/assets/partners/agentstvo-pozharnoy.png';
