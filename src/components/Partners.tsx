@@ -3,7 +3,7 @@ import itPark from '@/assets/partners/it-park.png';
 import combox from '@/assets/partners/combox.jpg';
 import software from '@/assets/partners/software.svg';
 import kritbi from '@/assets/partners/kritbi.jpg';
-import nfii from '@/assets/partners/nfii.jpg';
+
 import centrSvarki from '@/assets/partners/centr-svarki.png';
 import kraypotrebsoyuz from '@/assets/partners/kraypotrebsoyuz.png';
 import agentstvoPozharnoy from '@/assets/partners/agentstvo-pozharnoy.png';
@@ -24,7 +24,7 @@ const Partners = ({ className }: PartnersProps) => {
     { id: 3, name: "COMBOX Technology", logo: combox },
     { id: 4, name: "Software", logo: software },
     { id: 5, name: "КРИТБИ", logo: kritbi },
-    { id: 6, name: "НФИИ", logo: nfii },
+    
     { id: 7, name: "Центр Сварки", logo: centrSvarki },
     { id: 8, name: "Крайпотребсоюз", logo: kraypotrebsoyuz },
     { id: 9, name: "Агентство Пожарной Безопасности", logo: agentstvoPozharnoy },
