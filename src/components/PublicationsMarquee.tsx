@@ -2,7 +2,7 @@ import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useRef, useCallback } from 'react';
 
 // Импорт логотипов
-import logoNfii from '@/assets/partners/nfii.jpg';
+
 import logoOpora from '@/assets/partners/opora-rossii.png';
 import logoDelovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
 import logoKps from '@/assets/partners/kraypotrebsoyuz.png';
