@@ -1,18 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
-import { X, ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { QUIZ_QUESTIONS, type Question } from "./quizConfig";
+import { QUIZ_QUESTIONS, type Question, type FieldDef, type PhotoSlot } from "./quizConfig";
 
 interface StylistQuizProps {
   onClose: () => void;
 }
 
-type AnswerValue = string | string[];
+type AnswerValue = string | string[] | number | Record<string, string>;
+
+interface UploadedPhoto {
+  slotId: string;
+  path: string; // storage path
+  name: string;
+  size: number;
+}
 
 const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
+  const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
+  const [otherText, setOtherText] = useState<Record<string, string>>({});
   const [website, setWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -21,7 +30,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const current: Question | undefined = QUIZ_QUESTIONS[step];
   const progress = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
-  // Lock body scroll
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -32,6 +40,27 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
 
   const isAnswered = (q: Question): boolean => {
     const v = answers[q.id];
+    if (q.type === "welcome") return true;
+    if (q.type === "photo") {
+      const min = q.minPhotos ?? (q.required ? 1 : 0);
+      return photos.length >= min;
+    }
+    if (q.type === "multifield") {
+      const obj = (v as Record<string, string>) || {};
+      const requiredFields = (q.fields || []).filter((f) => f.required);
+      return requiredFields.every((f) => (obj[f.id] || "").trim().length > 0);
+    }
+    if (q.type === "single_with_other") {
+      if (typeof v !== "string" || !v) return !q.required;
+      if (v === q.otherValue) {
+        return (otherText[q.id] || "").trim().length > 0;
+      }
+      return true;
+    }
+    if (q.type === "scale") {
+      if (typeof v === "number") return true;
+      return !q.required;
+    }
     if (!q.required) return true;
     if (q.type === "multi") return Array.isArray(v) && v.length > 0;
     return typeof v === "string" && v.trim().length > 0;
@@ -57,7 +86,11 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const handleNext = () => {
     if (!current) return;
     if (!isAnswered(current)) {
-      toast.error("Это поле важно для подбора образа");
+      if (current.type === "photo") {
+        toast.error("Загрузи хотя бы одно фото");
+      } else {
+        toast.error("Это поле важно для подбора образа");
+      }
       return;
     }
     if (step < total - 1) setStep(step + 1);
@@ -71,15 +104,17 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const handleSubmit = async () => {
     setSubmitting(true);
     try {
-      const name = (answers["name"] as string) || "";
-      const contactRaw = ((answers["contact"] as string) || "").trim();
+      const contacts = (answers["contacts"] as Record<string, string>) || {};
+      const name = (contacts.name || "").trim();
+      const contactRaw = (contacts.contact || "").trim();
+      const city = (contacts.city || "").trim();
       const contact_type: "telegram" | "phone" =
         /^[+\d\s()\-]+$/.test(contactRaw) && contactRaw.replace(/\D/g, "").length >= 7
           ? "phone"
           : "telegram";
 
       const payload = QUIZ_QUESTIONS
-        .filter((q) => q.id !== "name" && q.id !== "contact")
+        .filter((q) => q.type !== "welcome" && q.type !== "photo" && q.id !== "contacts")
         .map((q) => {
           const v = answers[q.id];
           if (q.type === "multi" && Array.isArray(v)) {
@@ -91,8 +126,34 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
             const label = (q.options || []).find((o) => o.value === v)?.label || v;
             return { question: q.title, value: label };
           }
+          if (q.type === "single_with_other" && typeof v === "string") {
+            if (v === q.otherValue) {
+              return { question: q.title, value: (otherText[q.id] || "").trim() };
+            }
+            const label = (q.options || []).find((o) => o.value === v)?.label || v;
+            return { question: q.title, value: label };
+          }
+          if (q.type === "scale" && typeof v === "number") {
+            const sub = q.scaleLabels?.[v];
+            return { question: q.title, value: sub ? `${v} — ${sub}` : String(v) };
+          }
           return { question: q.title, value: typeof v === "string" ? v : "" };
+        })
+        .filter((a) => {
+          const val = a.value;
+          if (Array.isArray(val)) return val.length > 0;
+          return typeof val === "string" && val.trim().length > 0;
         });
+
+      // City injected as part of answers
+      if (city) payload.unshift({ question: "Город", value: city });
+
+      const photoPayload = photos.map((p) => {
+        const slot = QUIZ_QUESTIONS.find((q) => q.id === "photos")?.slots?.find(
+          (s) => s.id === p.slotId,
+        );
+        return { slotId: p.slotId, slotLabel: slot?.label || p.slotId, path: p.path };
+      });
 
       const { data, error } = await supabase.functions.invoke("save-stylist-lead", {
         body: {
@@ -100,6 +161,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           contact: contactRaw,
           contact_type,
           answers: payload,
+          photos: photoPayload,
           website,
         },
       });
@@ -129,7 +191,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         color: "hsl(40 30% 95%)",
       }}
     >
-      {/* Soft glow accents */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full opacity-20 blur-[120px]"
@@ -141,7 +202,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         style={{ background: "hsl(270 40% 65%)" }}
       />
 
-      {/* Top bar */}
       <div className="relative z-10 flex items-center justify-between px-5 sm:px-10 py-5">
         <div className="text-sm tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
         <button
@@ -153,8 +213,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         </button>
       </div>
 
-      {/* Progress */}
-      {!done && (
+      {!done && current?.type !== "welcome" && (
         <div className="relative z-10 px-5 sm:px-10">
           <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
             <div
@@ -172,7 +231,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         </div>
       )}
 
-      {/* Content */}
       <div className="relative z-10 flex-1 overflow-y-auto px-5 sm:px-10 py-8 sm:py-12">
         <div className="max-w-2xl mx-auto">
           {done ? (
@@ -182,13 +240,17 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               key={current.id}
               q={current}
               value={answers[current.id]}
+              photos={photos}
+              setPhotos={setPhotos}
+              otherText={otherText[current.id] || ""}
+              setOtherText={(t) => setOtherText((p) => ({ ...p, [current.id]: t }))}
               onSetValue={(v) => setAnswer(current.id, v)}
               onToggleMulti={(v) => toggleMulti(current.id, v, current.maxSelect)}
               onEnter={handleNext}
+              onStart={handleNext}
             />
           ) : null}
 
-          {/* Honeypot */}
           <input
             type="text"
             name="website"
@@ -203,8 +265,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         </div>
       </div>
 
-      {/* Bottom action bar */}
-      {!done && (
+      {!done && current?.type !== "welcome" && (
         <div
           className="relative z-10 px-5 sm:px-10 py-5 border-t border-white/10"
           style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
@@ -257,12 +318,59 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
 interface QuestionViewProps {
   q: Question;
   value: AnswerValue | undefined;
+  photos: UploadedPhoto[];
+  setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+  otherText: string;
+  setOtherText: (t: string) => void;
   onSetValue: (v: AnswerValue) => void;
   onToggleMulti: (v: string) => void;
   onEnter: () => void;
+  onStart: () => void;
 }
 
-const QuestionView = ({ q, value, onSetValue, onToggleMulti, onEnter }: QuestionViewProps) => {
+const QuestionView = ({
+  q,
+  value,
+  photos,
+  setPhotos,
+  otherText,
+  setOtherText,
+  onSetValue,
+  onToggleMulti,
+  onEnter,
+  onStart,
+}: QuestionViewProps) => {
+  if (q.type === "welcome") {
+    return (
+      <div className="animate-fade-in text-center py-8 sm:py-16">
+        <div className="text-xs tracking-[0.3em] uppercase opacity-60 mb-6">Анкета · 16 шагов</div>
+        <h2
+          className="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight"
+          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+        >
+          {q.title}
+        </h2>
+        {q.subtitle && (
+          <p className="mt-6 text-base sm:text-lg opacity-75 leading-relaxed max-w-xl mx-auto">
+            {q.subtitle}
+          </p>
+        )}
+        <button
+          onClick={onStart}
+          className="mt-12 inline-flex items-center gap-2 px-9 py-4 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-[1.03]"
+          style={{
+            background: "linear-gradient(135deg, hsl(20 60% 75%), hsl(45 60% 88%))",
+            color: "hsl(300 20% 8%)",
+            boxShadow: "0 0 40px hsl(20 60% 75% / 0.45)",
+          }}
+        >
+          {q.ctaLabel || "Начать"}
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="animate-fade-in">
       <h2
@@ -277,32 +385,35 @@ const QuestionView = ({ q, value, onSetValue, onToggleMulti, onEnter }: Question
 
       <div className="mt-8 sm:mt-10">
         {q.type === "single" && q.options && (
-          <div className="grid gap-3">
-            {q.options.map((opt) => {
-              const active = value === opt.value;
-              return (
-                <button
-                  key={opt.value}
-                  onClick={() => onSetValue(opt.value)}
-                  className="text-left px-5 py-4 rounded-2xl border transition-all duration-300"
-                  style={{
-                    background: active ? "hsl(20 60% 75% / 0.12)" : "hsl(0 0% 100% / 0.04)",
-                    borderColor: active ? "hsl(20 60% 75%)" : "hsl(0 0% 100% / 0.12)",
-                    backdropFilter: "blur(12px)",
-                    boxShadow: active ? "0 0 24px hsl(20 60% 75% / 0.25)" : "none",
-                  }}
-                >
-                  <span className="font-medium">{opt.label}</span>
-                </button>
-              );
-            })}
-          </div>
+          <SingleOptions q={q} value={value as string | undefined} onSetValue={onSetValue} />
+        )}
+
+        {q.type === "single_with_other" && q.options && (
+          <>
+            <SingleOptions q={q} value={value as string | undefined} onSetValue={onSetValue} />
+            {value === q.otherValue && (
+              <input
+                type="text"
+                value={otherText}
+                onChange={(e) => setOtherText(e.target.value)}
+                placeholder={q.otherPlaceholder || "Свой вариант…"}
+                className="mt-4 w-full px-5 py-4 rounded-2xl text-base outline-none border transition-all"
+                style={{
+                  background: "hsl(0 0% 100% / 0.04)",
+                  borderColor: "hsl(20 60% 75% / 0.5)",
+                  color: "hsl(40 30% 95%)",
+                  backdropFilter: "blur(12px)",
+                }}
+                autoFocus
+              />
+            )}
+          </>
         )}
 
         {q.type === "multi" && q.options && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {q.options.map((opt) => {
-              const arr = Array.isArray(value) ? value : [];
+              const arr = Array.isArray(value) ? (value as string[]) : [];
               const active = arr.includes(opt.value);
               return (
                 <button
@@ -322,9 +433,7 @@ const QuestionView = ({ q, value, onSetValue, onToggleMulti, onEnter }: Question
               );
             })}
             {q.maxSelect && (
-              <p className="col-span-full text-xs opacity-50 mt-1">
-                Максимум {q.maxSelect}
-              </p>
+              <p className="col-span-full text-xs opacity-50 mt-1">Максимум {q.maxSelect}</p>
             )}
           </div>
         )}
@@ -368,7 +477,307 @@ const QuestionView = ({ q, value, onSetValue, onToggleMulti, onEnter }: Question
             autoFocus
           />
         )}
+
+        {q.type === "scale" && (
+          <ScaleField q={q} value={typeof value === "number" ? value : undefined} onSetValue={onSetValue} />
+        )}
+
+        {q.type === "multifield" && (
+          <MultiFieldView
+            q={q}
+            value={(value as Record<string, string>) || {}}
+            onSetValue={onSetValue}
+            onEnter={onEnter}
+          />
+        )}
+
+        {q.type === "photo" && (
+          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} />
+        )}
       </div>
+    </div>
+  );
+};
+
+const SingleOptions = ({
+  q,
+  value,
+  onSetValue,
+}: {
+  q: Question;
+  value: string | undefined;
+  onSetValue: (v: AnswerValue) => void;
+}) => (
+  <div className="grid gap-3">
+    {(q.options || []).map((opt) => {
+      const active = value === opt.value;
+      return (
+        <button
+          key={opt.value}
+          onClick={() => onSetValue(opt.value)}
+          className="text-left px-5 py-4 rounded-2xl border transition-all duration-300"
+          style={{
+            background: active ? "hsl(20 60% 75% / 0.12)" : "hsl(0 0% 100% / 0.04)",
+            borderColor: active ? "hsl(20 60% 75%)" : "hsl(0 0% 100% / 0.12)",
+            backdropFilter: "blur(12px)",
+            boxShadow: active ? "0 0 24px hsl(20 60% 75% / 0.25)" : "none",
+          }}
+        >
+          <span className="font-medium">{opt.label}</span>
+        </button>
+      );
+    })}
+  </div>
+);
+
+const ScaleField = ({
+  q,
+  value,
+  onSetValue,
+}: {
+  q: Question;
+  value: number | undefined;
+  onSetValue: (v: AnswerValue) => void;
+}) => {
+  const min = q.scaleMin ?? 1;
+  const max = q.scaleMax ?? 10;
+  const v = value ?? Math.round((min + max) / 2);
+  const labels = q.scaleLabels || {};
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs opacity-60">{labels[min] || min}</span>
+        <span
+          className="text-4xl font-serif"
+          style={{
+            fontFamily: "Georgia, serif",
+            color: "hsl(20 60% 78%)",
+            textShadow: "0 0 24px hsl(20 60% 75% / 0.5)",
+          }}
+        >
+          {v}
+        </span>
+        <span className="text-xs opacity-60 text-right">{labels[max] || max}</span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={1}
+        value={v}
+        onChange={(e) => onSetValue(Number(e.target.value))}
+        className="w-full ns-scale-range"
+        style={{ accentColor: "hsl(20 60% 75%)" }}
+      />
+      <div className="flex justify-between mt-3 text-[10px] opacity-50">
+        {Array.from({ length: max - min + 1 }, (_, i) => min + i).map((n) => (
+          <span key={n} className="w-4 text-center">
+            {n}
+          </span>
+        ))}
+      </div>
+      {labels[5] && v === 5 && (
+        <p className="mt-4 text-sm opacity-70 text-center">{labels[5]}</p>
+      )}
+      {value === undefined && (
+        <p className="mt-4 text-xs opacity-50 text-center">Передвинь, чтобы зафиксировать</p>
+      )}
+    </div>
+  );
+};
+
+const MultiFieldView = ({
+  q,
+  value,
+  onSetValue,
+  onEnter,
+}: {
+  q: Question;
+  value: Record<string, string>;
+  onSetValue: (v: AnswerValue) => void;
+  onEnter: () => void;
+}) => {
+  const fields = q.fields || [];
+  return (
+    <div className="grid gap-4">
+      {fields.map((f: FieldDef) => (
+        <div key={f.id}>
+          <label className="block text-xs uppercase tracking-wider opacity-60 mb-2">
+            {f.label}
+            {f.required && <span style={{ color: "hsl(20 60% 75%)" }}> *</span>}
+          </label>
+          <input
+            type={f.type === "tel" ? "tel" : "text"}
+            value={value[f.id] || ""}
+            onChange={(e) => onSetValue({ ...value, [f.id]: e.target.value })}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                onEnter();
+              }
+            }}
+            placeholder={f.placeholder}
+            className="w-full px-5 py-4 rounded-2xl text-base outline-none border transition-all"
+            style={{
+              background: "hsl(0 0% 100% / 0.04)",
+              borderColor: "hsl(0 0% 100% / 0.15)",
+              color: "hsl(40 30% 95%)",
+              backdropFilter: "blur(12px)",
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const PhotoUploadView = ({
+  q,
+  photos,
+  setPhotos,
+}: {
+  q: Question;
+  photos: UploadedPhoto[];
+  setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+}) => {
+  const slots = q.slots || [];
+  const min = q.minPhotos ?? 1;
+
+  return (
+    <div className="grid gap-4">
+      {slots.map((slot) => (
+        <PhotoSlotInput key={slot.id} slot={slot} photos={photos} setPhotos={setPhotos} />
+      ))}
+      <p className="text-xs opacity-60 mt-1">
+        Минимум {min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)
+      </p>
+    </div>
+  );
+};
+
+const PhotoSlotInput = ({
+  slot,
+  photos,
+  setPhotos,
+}: {
+  slot: PhotoSlot;
+  photos: UploadedPhoto[];
+  setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const slotPhotos = photos.filter((p) => p.slotId === slot.id);
+
+  const handleFiles = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setUploading(true);
+    try {
+      const sessionId = sessionStorage.getItem("ns_session") ||
+        (() => {
+          const id = crypto.randomUUID();
+          sessionStorage.setItem("ns_session", id);
+          return id;
+        })();
+
+      const newPhotos: UploadedPhoto[] = [];
+      for (const file of Array.from(files)) {
+        if (file.size > 10 * 1024 * 1024) {
+          toast.error(`Файл "${file.name}" больше 10 МБ`);
+          continue;
+        }
+        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+        const path = `${sessionId}/${slot.id}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+        const { error } = await supabase.storage
+          .from("stylist-uploads")
+          .upload(path, file, { contentType: file.type, upsert: false });
+        if (error) {
+          console.error("Upload error:", error);
+          toast.error(`Не удалось загрузить "${file.name}"`);
+          continue;
+        }
+        newPhotos.push({ slotId: slot.id, path, name: file.name, size: file.size });
+      }
+      if (newPhotos.length > 0) {
+        setPhotos((prev) => [...prev, ...newPhotos]);
+        toast.success(`Загружено: ${newPhotos.length}`);
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Ошибка загрузки");
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  };
+
+  const removePhoto = (path: string) => {
+    setPhotos((prev) => prev.filter((p) => p.path !== path));
+    void supabase.storage.from("stylist-uploads").remove([path]).catch(() => {});
+  };
+
+  return (
+    <div
+      className="rounded-2xl border p-4"
+      style={{
+        background: "hsl(0 0% 100% / 0.03)",
+        borderColor: "hsl(0 0% 100% / 0.12)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-medium">{slot.label}</span>
+        <button
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-colors disabled:opacity-50"
+          style={{
+            background: "hsl(20 60% 75% / 0.15)",
+            border: "1px solid hsl(20 60% 75% / 0.4)",
+            color: "hsl(40 40% 92%)",
+          }}
+        >
+          {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImagePlus className="w-3.5 h-3.5" />}
+          {uploading ? "Загружаю…" : "Добавить"}
+        </button>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={(e) => handleFiles(e.target.files)}
+        />
+      </div>
+      {slotPhotos.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
+          {slotPhotos.map((p) => (
+            <div
+              key={p.path}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
+              style={{
+                background: "hsl(0 0% 100% / 0.06)",
+                border: "1px solid hsl(0 0% 100% / 0.12)",
+              }}
+            >
+              <Check className="w-3 h-3" style={{ color: "hsl(20 60% 78%)" }} />
+              <span className="opacity-80 max-w-[180px] truncate">{p.name}</span>
+              <button
+                onClick={() => removePhoto(p.path)}
+                aria-label="Удалить"
+                className="opacity-50 hover:opacity-100 transition-opacity"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-xs opacity-50 flex items-center gap-2">
+          <Upload className="w-3.5 h-3.5" />
+          Файл не выбран
+        </div>
+      )}
     </div>
   );
 };
@@ -388,10 +797,10 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
       className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
     >
-      Спасибо, образ начинает складываться
+      Твои ответы сохранены
     </h2>
     <p className="mt-5 text-base sm:text-lg opacity-75 max-w-lg mx-auto leading-relaxed">
-      Александра свяжется с тобой в течение 24 часов и пришлёт персональный разбор
+      Александра соберёт стиль-разбор на основе твоих ответов
     </p>
     <button
       onClick={onClose}
