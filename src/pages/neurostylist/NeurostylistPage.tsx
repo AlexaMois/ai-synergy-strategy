@@ -604,7 +604,7 @@ const BentoCard = ({
           border: "1px solid rgba(243,199,165,0.3)",
         }}
       >
-        <Icon className="w-4 h-4" style={{ color: "#F3C7A5" }} />
+        <Icon className="ns-bento-icon w-4 h-4" style={{ color: "#F3C7A5", transition: "color 0.4s" }} />
       </div>
     </div>
     <div className="relative">
@@ -634,9 +634,9 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
       className="relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
-          "radial-gradient(circle at 30% 30%, rgba(255,241,221,0.95) 0%, #F3C7A5 60%, #E5A87E 100%)",
+          "radial-gradient(circle, #F5C9A0 0%, #E8956A 100%)",
         boxShadow:
-          "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 30px rgba(243,199,165,0.5), 0 8px 24px rgba(42,14,30,0.5)",
+          "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 30px rgba(232,149,106,0.55), 0 8px 24px rgba(42,14,30,0.5)",
       }}
     >
       <span
@@ -644,7 +644,7 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
           fontFamily: "Georgia, serif",
           fontSize: 22,
           fontWeight: 500,
-          color: "#2A0E1E",
+          color: "#1A0910",
           letterSpacing: "-0.02em",
         }}
       >
