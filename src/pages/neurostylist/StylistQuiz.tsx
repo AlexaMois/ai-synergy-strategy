@@ -319,6 +319,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               onToggleMulti={(v) => toggleMulti(current.id, v, current.maxSelect)}
               onEnter={handleNext}
               onStart={handleNext}
+              testMode={testMode}
             />
           ) : null}
 
@@ -397,6 +398,7 @@ interface QuestionViewProps {
   onToggleMulti: (v: string) => void;
   onEnter: () => void;
   onStart: () => void;
+  testMode?: boolean;
 }
 
 const QuestionView = ({
@@ -410,6 +412,7 @@ const QuestionView = ({
   onToggleMulti,
   onEnter,
   onStart,
+  testMode,
 }: QuestionViewProps) => {
   if (q.type === "welcome") {
     return (
@@ -557,7 +560,7 @@ const QuestionView = ({
         )}
 
         {q.type === "photo" && (
-          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} />
+          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} testMode={testMode} />
         )}
       </div>
     </div>
