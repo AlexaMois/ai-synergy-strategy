@@ -15,6 +15,11 @@ import look2 from "@/assets/neurostylist/look-2.jpg";
 import look3 from "@/assets/neurostylist/look-3.jpg";
 import look4 from "@/assets/neurostylist/look-4.jpg";
 import look5 from "@/assets/neurostylist/look-5.jpg";
+import lookCard1 from "@/assets/neurostylist/look-card-1.jpg";
+import lookCard2 from "@/assets/neurostylist/look-card-2.jpg";
+import lookCard3 from "@/assets/neurostylist/look-card-3.jpg";
+import lookCard4 from "@/assets/neurostylist/look-card-4.jpg";
+import lookCard5 from "@/assets/neurostylist/look-card-5.jpg";
 
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
@@ -407,10 +412,10 @@ const NeurostylistPage = () => {
         /* ==== Lookbook cards (section 04) ==== */
         .ns-look-card {
           position: relative;
-          aspect-ratio: 3 / 5;
+          aspect-ratio: 3 / 5.3;
           border-radius: 18px;
           overflow: hidden;
-          background: linear-gradient(180deg, #2A1422 0%, #1A0910 100%);
+          background: #1a0910;
           border: 1px solid rgba(247,237,227,0.08);
           box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
           transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
@@ -425,30 +430,26 @@ const NeurostylistPage = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center top;
-          /* tone the bright studio whites into the plum atmosphere */
-          filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
-          mix-blend-mode: luminosity;
-          opacity: 0.88;
+          object-position: center center;
         }
         .ns-look-tone {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(42,20,34,0.7) 0%, rgba(26,9,16,0.15) 30%, rgba(26,9,16,0.2) 55%, rgba(20,8,16,0.95) 100%);
+          background: linear-gradient(180deg, rgba(26,9,16,0) 0%, rgba(26,9,16,0) 60%, rgba(26,9,16,0.85) 82%, rgba(26,9,16,1) 100%);
           mix-blend-mode: normal;
           pointer-events: none;
         }
         .ns-look-plum {
           position: absolute;
           inset: 0;
-          background: rgba(70,30,50,0.42);
+          background: linear-gradient(180deg, rgba(60,28,46,0.12) 0%, rgba(60,28,46,0.24) 100%);
           mix-blend-mode: multiply;
           pointer-events: none;
         }
         .ns-look-caption {
           position: absolute;
-          left: 0; right: 0; top: 0;
-          padding: 18px 18px 0 18px;
+          left: 0; right: 0; bottom: 0;
+          padding: 0 18px 18px 18px;
           z-index: 3;
         }
         .ns-look-num {
@@ -476,16 +477,14 @@ const NeurostylistPage = () => {
           text-transform: uppercase;
           color: #E8B888;
           text-shadow: 0 1px 2px rgba(20,8,18,0.95), 0 2px 14px rgba(20,8,18,0.85);
+          margin-bottom: 8px;
         }
         .ns-look-desc {
-          position: absolute;
-          left: 18px; right: 18px; bottom: 18px;
           font-family: 'Outfit', sans-serif;
           font-size: 12.5px;
           line-height: 1.45;
           color: rgba(247,237,227,0.82);
           text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-          z-index: 3;
         }
         @media (max-width: 640px) {
           .ns-look-row {
@@ -1045,11 +1044,11 @@ const NeurostylistPage = () => {
               {/* Lookbook row */}
               <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
                 {[
-                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: look1 },
-                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: look2 },
-                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: look3 },
-                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: look4 },
-                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: look5 },
+                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: lookCard1 },
+                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: lookCard2 },
+                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: lookCard3 },
+                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: lookCard4 },
+                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: lookCard5 },
                 ].map((look) => (
                   <article key={look.n} className="ns-look-card">
                     <img
@@ -1064,8 +1063,8 @@ const NeurostylistPage = () => {
                       <div className="ns-look-num">{look.n}</div>
                       <div className="ns-look-line" />
                       <div className="ns-look-label">{look.label}</div>
+                      <div className="ns-look-desc">{look.desc}</div>
                     </div>
-                    <div className="ns-look-desc">{look.desc}</div>
                   </article>
                 ))}
               </div>
