@@ -827,13 +827,10 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
     >
       <Check className="w-10 h-10" style={{ color: "hsl(300 20% 8%)" }} strokeWidth={3} />
     </div>
-    <h2
-      className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-      style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-    >
-      Твои ответы сохранены
+    <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
+      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.5em" />
     </h2>
-    <p className="mt-5 text-base sm:text-lg opacity-75 max-w-lg mx-auto leading-relaxed">
+    <p className="ns-eyebrow mt-5 text-base sm:text-lg opacity-80 max-w-lg mx-auto leading-relaxed">
       Александра соберёт стиль-разбор на основе твоих ответов
     </p>
     <button
@@ -852,3 +849,37 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
 );
 
 export default StylistQuiz;
+
+// ===== Calligraphy title — last word in cursive (Pinyon Script) =====
+function CalligraphyTitle({
+  text,
+  cursiveSize = "1.5em",
+}: {
+  text: string;
+  cursiveSize?: string;
+}) {
+  const trimmed = text.trim().replace(/[?!.…]+$/, "");
+  const punct = text.trim().slice(trimmed.length);
+  const parts = trimmed.split(/\s+/);
+  if (parts.length < 2) {
+    return (
+      <span className="ns-cursive" style={{ fontSize: cursiveSize, display: "inline-block" }}>
+        {text}
+      </span>
+    );
+  }
+  const tailWord = parts.pop() as string;
+  const head = parts.join(" ");
+  return (
+    <>
+      <span className="block">{head}</span>
+      <span
+        className="ns-cursive"
+        style={{ fontSize: cursiveSize, display: "inline-block", marginTop: "0.05em" }}
+      >
+        {tailWord}
+        {punct}
+      </span>
+    </>
+  );
+}
