@@ -1058,11 +1058,11 @@ const BentoCard = ({
     <div className="ns-bento-spot" aria-hidden />
 
     {/* Spacer to push editorial caption to the bottom */}
-    <div className="flex-1" />
+    <div className="flex-1 relative z-10" />
 
     {/* Horizontal luxury palette swatches (only for Colors card) */}
     {palette && palette.length > 0 && (
-      <div className="relative px-6 sm:px-7 mb-3">
+      <div className="relative z-10 px-6 sm:px-7 mb-3">
         <div
           className="flex w-full rounded-md overflow-hidden"
           style={{
@@ -1083,7 +1083,7 @@ const BentoCard = ({
     )}
 
     {/* Editorial caption: oversized translucent rose-gold number + label + 1-line description */}
-    <div className="relative px-6 sm:px-7 pb-5 sm:pb-6 pt-2">
+    <div className="relative z-10 px-6 sm:px-7 pb-5 sm:pb-6 pt-2">
       <div className="flex items-end gap-4">
         <span
           aria-hidden
