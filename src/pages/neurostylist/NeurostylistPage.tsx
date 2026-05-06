@@ -205,7 +205,6 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1
                 <h1 className="ns-fade-up ns-delay-1 leading-[1.05]">
                   <span
                     style={{
