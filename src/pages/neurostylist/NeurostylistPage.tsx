@@ -928,8 +928,29 @@ const BentoCard = ({
   description: string;
   className?: string;
   large?: boolean;
-}) => (
+}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+    el.style.transform = `translate3d(${px * 8}px, ${py * 8 - 6}px, 0)`;
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "";
+  };
+  return (
   <div
+    ref={ref}
+    data-reveal
+    onMouseMove={onMove}
+    onMouseLeave={onLeave}
     className={`ns-bento-card relative rounded-3xl p-6 sm:p-7 border overflow-hidden flex flex-col justify-between ${className}`}
     style={{
       background:
@@ -941,6 +962,7 @@ const BentoCard = ({
         "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 14px 40px rgba(20,8,18,0.45)",
     }}
   >
+    <div className="ns-bento-spot" aria-hidden />
     {/* inner glow */}
     <div
       aria-hidden
@@ -993,15 +1015,17 @@ const BentoCard = ({
     </div>
   </div>
 );
+};
 
-const ProcessStep = ({ n, title, desc, delay = 0 }: { n: string; title: string; desc: string; delay?: number }) => (
-  <div className="relative flex flex-col items-center text-center">
+const ProcessStep = ({ n, title, desc, detail, delay = 0 }: { n: string; title: string; desc: string; detail?: string; delay?: number }) => (
+  <div className="ns-process-step relative flex flex-col items-center text-center" data-reveal>
     <div
       className="ns-breathe relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
           "radial-gradient(circle at 35% 35%, #F5E6D0 0%, #D4956A 45%, #8B4E1E 100%)",
         animationDelay: `${delay}s`,
+        transition: "transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease",
       }}
     >
       <span
@@ -1025,7 +1049,33 @@ const ProcessStep = ({ n, title, desc, delay = 0 }: { n: string; title: string; 
     <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "rgba(247,237,227,0.55)" }}>
       {desc}
     </p>
+    {detail && (
+      <p
+        className="ns-step-detail mt-2 text-[10px] tracking-[0.25em] uppercase"
+        style={{ color: "rgba(212,149,106,0.85)" }}
+      >
+        {detail}
+      </p>
+    )}
   </div>
 );
+
+const SplitText = ({ text }: { text: string }) => {
+  const chars = Array.from(text);
+  return (
+    <span className="ns-split" aria-label={text}>
+      {chars.map((ch, i) => (
+        <span
+          key={i}
+          className="ns-letter"
+          aria-hidden
+          style={{ transitionDelay: `${i * 45}ms`, whiteSpace: ch === " " ? "pre" : "normal" }}
+        >
+          {ch === " " ? "\u00A0" : ch}
+        </span>
+      ))}
+    </span>
+  );
+};
 
 export default NeurostylistPage;
