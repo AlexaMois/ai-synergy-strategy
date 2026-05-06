@@ -943,7 +943,12 @@ const BentoCard = ({
   large?: boolean;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const supportsHoverRef = useRef<boolean>(true);
+  useEffect(() => {
+    supportsHoverRef.current = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  }, []);
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!supportsHoverRef.current) return;
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
