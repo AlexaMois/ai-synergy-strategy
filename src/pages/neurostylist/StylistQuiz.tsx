@@ -243,7 +243,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       />
 
       <div className="relative z-10 flex items-center justify-between px-5 sm:px-10 py-5">
-        <div className="text-sm tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
+        <div className="text-base tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
         <button
           onClick={onClose}
           aria-label="Закрыть"
@@ -265,7 +265,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               }}
             />
           </div>
-          <div className="mt-3 text-xs tracking-wider opacity-60">
+          <div className="mt-3 text-sm tracking-wider opacity-60">
             Шаг {step + 1} из {total}
           </div>
         </div>
