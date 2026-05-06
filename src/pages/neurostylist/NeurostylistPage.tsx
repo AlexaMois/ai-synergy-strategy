@@ -649,7 +649,7 @@ const NeurostylistPage = () => {
                         paddingBottom: "0.08em",
                       }}
                     >
-                      из деталей
+                      <SplitText text="из деталей" />
                     </span>
                   </h2>
                 </div>
@@ -720,7 +720,7 @@ const NeurostylistPage = () => {
                 >
                   <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
-                <h2 className="max-w-4xl mx-auto">
+                <h2 className="max-w-4xl mx-auto" data-reveal>
                   <span
                     style={{
                       display: "block",
@@ -752,7 +752,7 @@ const NeurostylistPage = () => {
                       paddingBottom: "0.08em",
                     }}
                   >
-                    а образ складывается
+                    <SplitText text="а образ складывается" />
                   </span>
                 </h2>
               </div>
@@ -798,7 +798,7 @@ const NeurostylistPage = () => {
               >
                 <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
-              <h2>
+              <h2 data-reveal>
                 <span
                   style={{
                     display: "block",
@@ -830,7 +830,7 @@ const NeurostylistPage = () => {
                     paddingBottom: "0.1em",
                   }}
                 >
-                  уже можно собрать
+                  <SplitText text="уже можно собрать" />
                 </span>
               </h2>
 
