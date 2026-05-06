@@ -479,7 +479,7 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1 className="ns-fade-up ns-delay-1" data-reveal>
+                <h1 className="ns-fade-up ns-delay-1 is-revealed" data-reveal>
                   <span
                     style={{
                       display: "block",
