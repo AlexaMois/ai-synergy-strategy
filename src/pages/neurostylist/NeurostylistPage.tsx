@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Palette, Shirt, Sparkles, Scissors, Gem, Heart } from "lucide-react";
@@ -8,6 +8,135 @@ import heroImg from "@/assets/neurostylist-hero.jpg";
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const openQuiz = () => setQuizOpen(true);
+
+  // -------- Scroll progress + active section label ----------
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState<"01" | "02" | "03" | "04">("01");
+  const sectionRefs = {
+    s1: useRef<HTMLElement | null>(null),
+    s2: useRef<HTMLElement | null>(null),
+    s3: useRef<HTMLElement | null>(null),
+    s4: useRef<HTMLElement | null>(null),
+  };
+
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setScrollProgress(max > 0 ? Math.min(1, Math.max(0, h.scrollTop / max)) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const map = new Map<Element, "01" | "02" | "03" | "04">();
+    if (sectionRefs.s1.current) map.set(sectionRefs.s1.current, "01");
+    if (sectionRefs.s2.current) map.set(sectionRefs.s2.current, "02");
+    if (sectionRefs.s3.current) map.set(sectionRefs.s3.current, "03");
+    if (sectionRefs.s4.current) map.set(sectionRefs.s4.current, "04");
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const id = map.get(visible.target);
+          if (id) setActiveSection(id);
+        }
+      },
+      { threshold: [0.2, 0.5, 0.8] }
+    );
+    map.forEach((_, el) => io.observe(el));
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // -------- Reveal-on-scroll for [data-reveal] ----------
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add("is-revealed");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    // Подстраховка: всё, что попало во вьюпорт сразу после mount — раскрыть
+    const t = window.setTimeout(() => {
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          el.classList.add("is-revealed");
+        }
+      });
+    }, 80);
+    return () => {
+      window.clearTimeout(t);
+      io.disconnect();
+    };
+  }, []);
+
+  // -------- Hero mirror parallax + cursor light ----------
+  const heroRef = useRef<HTMLElement | null>(null);
+  const mirrorRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const hero = heroRef.current;
+    const mirror = mirrorRef.current;
+    if (!hero || !mirror) return;
+    let raf = 0;
+    let tx = 0, ty = 0, rx = 0, ry = 0;
+    let targetTx = 0, targetTy = 0, targetRx = 0, targetRy = 0;
+    const onMove = (e: MouseEvent) => {
+      const r = hero.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5; // -0.5..0.5
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      targetTx = px * 18;
+      targetTy = py * 14;
+      targetRy = px * 5;
+      targetRx = -py * 4;
+      const mr = mirror.getBoundingClientRect();
+      const mx = ((e.clientX - mr.left) / mr.width) * 100;
+      const my = ((e.clientY - mr.top) / mr.height) * 100;
+      mirror.style.setProperty("--mx", `${mx}%`);
+      mirror.style.setProperty("--my", `${my}%`);
+    };
+    const onLeave = () => {
+      targetTx = 0; targetTy = 0; targetRx = 0; targetRy = 0;
+    };
+    const tick = () => {
+      tx += (targetTx - tx) * 0.08;
+      ty += (targetTy - ty) * 0.08;
+      rx += (targetRx - rx) * 0.08;
+      ry += (targetRy - ry) * 0.08;
+      mirror.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    hero.addEventListener("mousemove", onMove);
+    hero.addEventListener("mouseleave", onLeave);
+    return () => {
+      cancelAnimationFrame(raf);
+      hero.removeEventListener("mousemove", onMove);
+      hero.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  const sectionLabels: Record<string, string> = useMemo(
+    () => ({
+      "01": "ВВЕДЕНИЕ",
+      "02": "ДЕТАЛИ",
+      "03": "ПРОЦЕСС",
+      "04": "ПРИГЛАШЕНИЕ",
+    }),
+    []
+  );
 
   return (
     <>
@@ -139,6 +268,109 @@ const NeurostylistPage = () => {
         .ns-breathe { animation: ns-breathe 3.5s ease-in-out infinite; }
         .ns-label-scroll { animation: ns-label-scroll 6s ease-in-out infinite alternate; }
 
+        /* ---- Reveal on scroll ---- */
+        [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(0.2,0.8,0.2,1), transform 1s cubic-bezier(0.2,0.8,0.2,1); }
+        [data-reveal].is-revealed { opacity: 1; transform: translateY(0); }
+        [data-reveal-delay="1"] { transition-delay: 0.08s; }
+        [data-reveal-delay="2"] { transition-delay: 0.16s; }
+        [data-reveal-delay="3"] { transition-delay: 0.24s; }
+        [data-reveal-delay="4"] { transition-delay: 0.32s; }
+        [data-reveal-delay="5"] { transition-delay: 0.40s; }
+        [data-reveal-delay="6"] { transition-delay: 0.48s; }
+
+        /* ---- Cursive accent reveal: soft fade-up (compatible with gradient-text) ---- */
+        .ns-cursive-accent {
+          display: inline-block;
+          background-image: linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1);
+        }
+        [data-reveal].is-revealed .ns-cursive-accent {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* ---- Bento magnetic + spotlight ---- */
+        .ns-bento-card { will-change: transform; }
+        .ns-bento-card .ns-bento-spot {
+          position: absolute; inset: 0; border-radius: inherit;
+          background: radial-gradient(380px circle at var(--mx,50%) var(--my,50%), rgba(245,230,208,0.18), transparent 55%);
+          opacity: 0; transition: opacity 0.5s ease;
+          pointer-events: none; z-index: 1;
+        }
+        .ns-bento-card:hover .ns-bento-spot { opacity: 1; }
+        .ns-bento-card > * { position: relative; z-index: 2; }
+        .ns-bento-card .ns-bento-spot { z-index: 1; }
+
+        /* ---- Mirror parallax + cursor light ---- */
+        .ns-mirror-wrap {
+          perspective: 1200px;
+          transform-style: preserve-3d;
+        }
+        .ns-mirror {
+          transform-origin: center center;
+          transition: transform 0.18s ease-out;
+        }
+        .ns-mirror::after {
+          content: "";
+          position: absolute; inset: 0; border-radius: inherit;
+          background: radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,236,210,0.32), transparent 60%);
+          mix-blend-mode: screen;
+          pointer-events: none;
+          z-index: 3;
+          opacity: 0.85;
+        }
+
+        /* ---- Process step hover details ---- */
+        .ns-process-step .ns-step-detail {
+          opacity: 0; transform: translateY(-6px);
+          transition: opacity 0.45s ease, transform 0.45s ease;
+          pointer-events: none;
+        }
+        .ns-process-step:hover .ns-step-detail {
+          opacity: 1; transform: translateY(0);
+        }
+        .ns-process-step:hover .ns-breathe {
+          animation-play-state: paused;
+          transform: scale(1.08);
+          box-shadow: 0 0 0 1px rgba(245,230,208,0.7) inset, 0 0 60px rgba(212,149,106,0.85), 0 0 120px rgba(212,149,106,0.4), 0 12px 36px rgba(42,14,30,0.6);
+        }
+
+        /* ---- Drawing line between process steps ---- */
+        .ns-flow-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2.4s cubic-bezier(0.2,0.8,0.2,1); }
+        [data-reveal].is-revealed .ns-flow-line { stroke-dashoffset: 0; }
+
+        /* ---- Side progress rail ---- */
+        .ns-rail {
+          position: fixed; left: 22px; top: 50%; transform: translateY(-50%);
+          width: 1px; height: 220px;
+          background: rgba(247,237,227,0.08);
+          z-index: 30; pointer-events: none;
+        }
+        .ns-rail-fill {
+          position: absolute; left: 0; top: 0; width: 1px;
+          background: linear-gradient(180deg, transparent, #D4956A 30%, #F5E6D0 50%, #D4956A 70%, transparent);
+          transform-origin: top;
+        }
+        .ns-rail-label {
+          position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+          writing-mode: vertical-rl; text-orientation: mixed;
+          font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+          color: rgba(212,149,106,0.7); white-space: nowrap;
+          transition: opacity 0.5s ease;
+        }
+        @media (max-width: 1023px) { .ns-rail { display: none; } }
+
+        @media (prefers-reduced-motion: reduce) {
+          [data-reveal] { opacity: 1 !important; transform: none !important; }
+          .ns-split .ns-letter { opacity: 1 !important; transform: none !important; }
+          .ns-flow-line { stroke-dashoffset: 0 !important; }
+        }
       `}</style>
 
       <div
@@ -150,6 +382,17 @@ const NeurostylistPage = () => {
           fontFamily: "'Outfit', sans-serif",
         }}
       >
+        {/* Side progress rail with dynamic section label */}
+        <div aria-hidden className="ns-rail">
+          <div
+            className="ns-rail-fill"
+            style={{ height: `${Math.round(scrollProgress * 100)}%` }}
+          />
+          <div className="ns-rail-label">
+            КАРТА · {activeSection} · {sectionLabels[activeSection]}
+          </div>
+        </div>
+
         {/* Layered background glows */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
@@ -198,7 +441,10 @@ const NeurostylistPage = () => {
           </header>
 
           {/* HERO — full viewport, asymmetric */}
-          <section className="relative px-6 sm:px-10 lg:px-16 min-h-[calc(100vh-90px)] flex items-center">
+          <section
+            ref={(el) => { heroRef.current = el; sectionRefs.s1.current = el; }}
+            className="relative px-6 sm:px-10 lg:px-16 min-h-[calc(100vh-90px)] flex items-center"
+          >
             {/* Big watermark word */}
             <div
               aria-hidden
@@ -219,13 +465,6 @@ const NeurostylistPage = () => {
             </div>
 
             {/* Vertical STYLE MAP label */}
-            <div
-              aria-hidden
-              className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical ns-label-scroll text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
-              style={{ color: "rgba(212,149,106,0.55)" }}
-            >
-              КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;01
-            </div>
 
             <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
               {/* LEFT: text */}
@@ -245,7 +484,7 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1 className="ns-fade-up ns-delay-1">
+                <h1 className="ns-fade-up ns-delay-1 is-revealed" data-reveal>
                   <span
                     style={{
                       display: "block",
@@ -279,7 +518,7 @@ const NeurostylistPage = () => {
                     }}
                     className="ns-glow-pulse"
                   >
-                    сильнее
+                    <span className="ns-cursive-accent">сильнее</span>
                   </span>
                 </h1>
 
@@ -326,7 +565,11 @@ const NeurostylistPage = () => {
 
               {/* RIGHT: mirror visual */}
               <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-                <div className="ns-mirror relative w-[280px] sm:w-[360px] lg:w-[440px] aspect-[4/5] rounded-[200px] overflow-hidden">
+                <div className="ns-mirror-wrap relative w-[280px] sm:w-[360px] lg:w-[440px] aspect-[4/5]">
+                <div
+                  ref={mirrorRef}
+                  className="ns-mirror relative w-full h-full rounded-[200px] overflow-hidden"
+                >
                   {/* Атласная ткань — анимированный мягкий слой */}
                   <div
                     aria-hidden
@@ -363,6 +606,7 @@ const NeurostylistPage = () => {
                     }}
                   />
                 </div>
+                </div>
                 {/* small caption */}
                 <div
                   className="hidden lg:block absolute -bottom-2 right-0 text-[10px] tracking-[0.4em] uppercase ns-fade-in ns-delay-4"
@@ -383,7 +627,7 @@ const NeurostylistPage = () => {
           </section>
 
           {/* BENTO — детали образа */}
-          <section className="px-6 sm:px-10 lg:px-16 pt-24 sm:pt-32 pb-20 sm:pb-28">
+          <section ref={sectionRefs.s2} className="px-6 sm:px-10 lg:px-16 pt-24 sm:pt-32 pb-20 sm:pb-28">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12 sm:mb-16">
                 <div>
@@ -393,7 +637,7 @@ const NeurostylistPage = () => {
                   >
                     <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
-                  <h2>
+                  <h2 data-reveal>
                     <span
                       style={{
                         display: "block",
@@ -425,7 +669,7 @@ const NeurostylistPage = () => {
                         paddingBottom: "0.08em",
                       }}
                     >
-                      из деталей
+                      <span className="ns-cursive-accent">из деталей</span>
                     </span>
                   </h2>
                 </div>
@@ -487,7 +731,7 @@ const NeurostylistPage = () => {
           </section>
 
           {/* PROCESS */}
-          <section className="relative px-6 sm:px-10 lg:px-16 py-24 sm:py-32">
+          <section ref={sectionRefs.s3} className="relative px-6 sm:px-10 lg:px-16 py-24 sm:py-32">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 sm:mb-20">
                 <div
@@ -496,7 +740,7 @@ const NeurostylistPage = () => {
                 >
                   <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
-                <h2 className="max-w-4xl mx-auto">
+                <h2 className="max-w-4xl mx-auto" data-reveal>
                   <span
                     style={{
                       display: "block",
@@ -528,36 +772,52 @@ const NeurostylistPage = () => {
                       paddingBottom: "0.08em",
                     }}
                   >
-                    а образ складывается
+                    <span className="ns-cursive-accent">а образ складывается</span>
                   </span>
                 </h2>
               </div>
 
               {/* Steps path */}
               <div className="relative">
-                {/* connecting glow line — desktop */}
-                <div
+                {/* drawing connecting line — desktop */}
+                <svg
                   aria-hidden
-                  className="hidden md:block absolute top-[38px] left-[8%] right-[8%] h-px"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, transparent 0%, #D4956A 20%, #D4956A 50%, #D4956A 80%, transparent 100%)",
-                    opacity: 0.5,
-                  }}
-                />
+                  data-reveal
+                  viewBox="0 0 1000 80"
+                  preserveAspectRatio="none"
+                  className="hidden md:block absolute top-[24px] left-[8%] right-[8%] h-[40px] w-[84%]"
+                  style={{ pointerEvents: "none" }}
+                >
+                  <defs>
+                    <linearGradient id="ns-flow-grad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#D4956A" stopOpacity="0" />
+                      <stop offset="20%" stopColor="#D4956A" stopOpacity="0.7" />
+                      <stop offset="50%" stopColor="#F5E6D0" stopOpacity="0.9" />
+                      <stop offset="80%" stopColor="#D4956A" stopOpacity="0.7" />
+                      <stop offset="100%" stopColor="#D4956A" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    className="ns-flow-line"
+                    d="M 10 38 Q 250 8 500 40 T 990 38"
+                    fill="none"
+                    stroke="url(#ns-flow-grad)"
+                    strokeWidth="1.2"
+                  />
+                </svg>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-6 relative">
-                  <ProcessStep delay={0} n="01" title="Настроение" desc="Ловим вектор образа." />
-                  <ProcessStep delay={0.7} n="02" title="Внешность" desc="Колорит и черты." />
-                  <ProcessStep delay={1.4} n="03" title="Цвет" desc="Палитра и оттенки." />
-                  <ProcessStep delay={2.1} n="04" title="Детали" desc="Силуэты и акценты." />
-                  <ProcessStep delay={2.8} n="05" title="Разбор" desc="Персональный ответ." />
+                  <ProcessStep delay={0} n="01" title="Настроение" desc="Ловим вектор образа." detail="2 минуты · 4 вопроса" />
+                  <ProcessStep delay={0.7} n="02" title="Внешность" desc="Колорит и черты." detail="фото + 3 вопроса" />
+                  <ProcessStep delay={1.4} n="03" title="Цвет" desc="Палитра и оттенки." detail="индивидуальная палитра" />
+                  <ProcessStep delay={2.1} n="04" title="Детали" desc="Силуэты и акценты." detail="силуэт · фактуры · аксессуары" />
+                  <ProcessStep delay={2.8} n="05" title="Разбор" desc="Персональный ответ." detail="готовый образ за 24 ч" />
                 </div>
               </div>
             </div>
           </section>
 
           {/* FINAL CTA — closed style room */}
-          <section className="relative px-6 sm:px-10 lg:px-16 py-28 sm:py-36">
+          <section ref={sectionRefs.s4} className="relative px-6 sm:px-10 lg:px-16 py-28 sm:py-36">
             {/* spotlight */}
             <div
               aria-hidden
@@ -574,7 +834,7 @@ const NeurostylistPage = () => {
               >
                 <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
-              <h2>
+              <h2 data-reveal>
                 <span
                   style={{
                     display: "block",
@@ -606,7 +866,7 @@ const NeurostylistPage = () => {
                     paddingBottom: "0.1em",
                   }}
                 >
-                  уже можно собрать
+                  <span className="ns-cursive-accent">уже можно собрать</span>
                 </span>
               </h2>
 
@@ -677,8 +937,29 @@ const BentoCard = ({
   description: string;
   className?: string;
   large?: boolean;
-}) => (
+}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+    el.style.transform = `translate3d(${px * 8}px, ${py * 8 - 6}px, 0)`;
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "";
+  };
+  return (
   <div
+    ref={ref}
+    data-reveal
+    onMouseMove={onMove}
+    onMouseLeave={onLeave}
     className={`ns-bento-card relative rounded-3xl p-6 sm:p-7 border overflow-hidden flex flex-col justify-between ${className}`}
     style={{
       background:
@@ -690,6 +971,7 @@ const BentoCard = ({
         "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 14px 40px rgba(20,8,18,0.45)",
     }}
   >
+    <div className="ns-bento-spot" aria-hidden />
     {/* inner glow */}
     <div
       aria-hidden
@@ -742,15 +1024,17 @@ const BentoCard = ({
     </div>
   </div>
 );
+};
 
-const ProcessStep = ({ n, title, desc, delay = 0 }: { n: string; title: string; desc: string; delay?: number }) => (
-  <div className="relative flex flex-col items-center text-center">
+const ProcessStep = ({ n, title, desc, detail, delay = 0 }: { n: string; title: string; desc: string; detail?: string; delay?: number }) => (
+  <div className="ns-process-step relative flex flex-col items-center text-center" data-reveal>
     <div
       className="ns-breathe relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
           "radial-gradient(circle at 35% 35%, #F5E6D0 0%, #D4956A 45%, #8B4E1E 100%)",
         animationDelay: `${delay}s`,
+        transition: "transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease",
       }}
     >
       <span
@@ -774,6 +1058,14 @@ const ProcessStep = ({ n, title, desc, delay = 0 }: { n: string; title: string; 
     <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "rgba(247,237,227,0.55)" }}>
       {desc}
     </p>
+    {detail && (
+      <p
+        className="ns-step-detail mt-2 text-[10px] tracking-[0.25em] uppercase"
+        style={{ color: "rgba(212,149,106,0.85)" }}
+      >
+        {detail}
+      </p>
+    )}
   </div>
 );
 
