@@ -63,7 +63,7 @@ const NeurostylistPage = () => {
         .ns-glow-2 { animation: ns-float-slower 18s ease-in-out infinite; }
         .ns-mirror { animation: ns-mirror-glow 6s ease-in-out infinite, ns-fade-in 1.4s ease-out both; }
         .ns-grain {
-          background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.92 0 0 0 0 0.85 0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+          background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.62 0 0 0 0 0.42 0 0 0 0.14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
         }
         .ns-vertical {
           writing-mode: vertical-rl;
