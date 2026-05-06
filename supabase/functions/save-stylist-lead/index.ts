@@ -32,6 +32,7 @@ const SaveStylistLeadSchema = z.object({
   answers: z.array(AnswerItemSchema).max(50),
   photos: z.array(PhotoItemSchema).max(20).optional().default([]),
   website: z.string().max(0).optional(),
+  test_mode: z.boolean().optional().default(false),
 });
 
 function checkRateLimit(key: string, maxRequests: number) {
@@ -83,8 +84,12 @@ function formatTelegramMessage(
   contactType: string,
   answers: Array<{ question: string; value: string | string[] | number }>,
   photoCount: number,
+  testMode: boolean,
 ): string {
-  let msg = `👗 <b>НейроСтилист — новая анкета</b>\n\n`;
+  const header = testMode
+    ? `🧪 <b>[TEST] НейроСтилист — тестовая анкета</b>`
+    : `👗 <b>НейроСтилист — новая анкета</b>`;
+  let msg = `${header}\n\n`;
   msg += `👤 <b>Имя:</b> ${escapeHtml(name)}\n`;
   const contactIcon = contactType === "phone" ? "📞" : "💬";
   msg += `${contactIcon} <b>Контакт:</b> ${escapeHtml(contact)}\n`;
@@ -132,7 +137,7 @@ serve(async (req) => {
       );
     }
 
-    const { name, contact, contact_type, answers, photos, website } = parsed.data;
+    const { name, contact, contact_type, answers, photos, website, test_mode } = parsed.data;
 
     if (website && website.length > 0) {
       console.warn("Honeypot triggered from", clientIP);
@@ -176,6 +181,7 @@ serve(async (req) => {
           contact_type,
           answers,
           photos.length,
+          test_mode,
         );
         const tgRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: "POST",

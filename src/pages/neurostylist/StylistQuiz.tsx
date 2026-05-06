@@ -26,6 +26,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
+  // Test mode: ?test=1 in URL allows submitting without photos for E2E checks.
+  const testMode = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const params = new URLSearchParams(window.location.search);
+    return params.get("test") === "1";
+  }, []);
+
   const total = QUIZ_QUESTIONS.length;
   const current: Question | undefined = QUIZ_QUESTIONS[step];
   const progress = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
@@ -42,7 +49,8 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     const v = answers[q.id];
     if (q.type === "welcome") return true;
     if (q.type === "photo") {
-      const min = q.minPhotos ?? (q.required ? 1 : 0);
+      const baseMin = q.minPhotos ?? (q.required ? 1 : 0);
+      const min = testMode ? 0 : baseMin;
       return photos.length >= min;
     }
     if (q.type === "multifield") {
@@ -163,6 +171,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           answers: payload,
           photos: photoPayload,
           website,
+          test_mode: testMode,
         },
       });
 
@@ -310,6 +319,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               onToggleMulti={(v) => toggleMulti(current.id, v, current.maxSelect)}
               onEnter={handleNext}
               onStart={handleNext}
+              testMode={testMode}
             />
           ) : null}
 
@@ -388,6 +398,7 @@ interface QuestionViewProps {
   onToggleMulti: (v: string) => void;
   onEnter: () => void;
   onStart: () => void;
+  testMode?: boolean;
 }
 
 const QuestionView = ({
@@ -401,6 +412,7 @@ const QuestionView = ({
   onToggleMulti,
   onEnter,
   onStart,
+  testMode,
 }: QuestionViewProps) => {
   if (q.type === "welcome") {
     return (
@@ -548,7 +560,7 @@ const QuestionView = ({
         )}
 
         {q.type === "photo" && (
-          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} />
+          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} testMode={testMode} />
         )}
       </div>
     </div>
@@ -692,21 +704,38 @@ const PhotoUploadView = ({
   q,
   photos,
   setPhotos,
+  testMode,
 }: {
   q: Question;
   photos: UploadedPhoto[];
   setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+  testMode?: boolean;
 }) => {
   const slots = q.slots || [];
-  const min = q.minPhotos ?? 1;
+  const baseMin = q.minPhotos ?? 1;
+  const min = testMode ? 0 : baseMin;
 
   return (
     <div className="grid gap-4">
+      {testMode && (
+        <div
+          className="text-xs px-4 py-3 rounded-xl border"
+          style={{
+            background: "hsl(20 60% 75% / 0.08)",
+            borderColor: "hsl(20 60% 75% / 0.4)",
+            color: "hsl(40 30% 95%)",
+          }}
+        >
+          🧪 Тестовый режим — фото можно не загружать
+        </div>
+      )}
       {slots.map((slot) => (
         <PhotoSlotInput key={slot.id} slot={slot} photos={photos} setPhotos={setPhotos} />
       ))}
       <p className="text-xs opacity-60 mt-1">
-        Минимум {min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)
+        {min === 0
+          ? "Фото не обязательны (тест) · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)"
+          : `Минимум ${min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)`}
       </p>
     </div>
   );
