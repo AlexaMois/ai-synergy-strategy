@@ -427,21 +427,21 @@ const NeurostylistPage = () => {
           object-fit: cover;
           object-position: center top;
           /* tone the bright studio whites into the plum atmosphere */
-          filter: saturate(0.78) contrast(1.05) brightness(0.92) hue-rotate(-8deg);
+          filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
           mix-blend-mode: luminosity;
-          opacity: 0.92;
+          opacity: 0.88;
         }
         .ns-look-tone {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(42,20,34,0.55) 0%, rgba(26,9,16,0.0) 28%, rgba(26,9,16,0.0) 55%, rgba(20,8,16,0.92) 100%);
+          background: linear-gradient(180deg, rgba(42,20,34,0.7) 0%, rgba(26,9,16,0.15) 30%, rgba(26,9,16,0.2) 55%, rgba(20,8,16,0.95) 100%);
           mix-blend-mode: normal;
           pointer-events: none;
         }
         .ns-look-plum {
           position: absolute;
           inset: 0;
-          background: rgba(60,28,46,0.32);
+          background: rgba(70,30,50,0.42);
           mix-blend-mode: multiply;
           pointer-events: none;
         }
@@ -470,11 +470,12 @@ const NeurostylistPage = () => {
         }
         .ns-look-label {
           font-family: 'Outfit', sans-serif;
-          font-size: 10px;
+          font-size: 10.5px;
+          font-weight: 500;
           letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: #D4956A;
-          text-shadow: 0 1px 8px rgba(20,8,18,0.7);
+          color: #E8B888;
+          text-shadow: 0 1px 2px rgba(20,8,18,0.95), 0 2px 14px rgba(20,8,18,0.85);
         }
         .ns-look-desc {
           position: absolute;
