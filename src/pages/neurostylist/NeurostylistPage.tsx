@@ -55,30 +55,32 @@ const NeurostylistPage = () => {
 
   // -------- Reveal-on-scroll for [data-reveal] ----------
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            e.target.classList.add("is-revealed");
+            (e.target as HTMLElement).classList.add("is-revealed");
             io.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.18, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
-    els.forEach((el) => {
-      // Если элемент уже виден на момент монтирования — раскрываем сразу,
-      // чтобы hero не «висел» прозрачным до первого скролла.
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) {
-        // микро-задержка, чтобы CSS-transition сыграл, а не «прыгнул»
-        requestAnimationFrame(() => el.classList.add("is-revealed"));
-      } else {
-        io.observe(el);
-      }
-    });
-    return () => io.disconnect();
+    els.forEach((el) => io.observe(el));
+    // Подстраховка: всё, что попало во вьюпорт сразу после mount — раскрыть
+    const t = window.setTimeout(() => {
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          el.classList.add("is-revealed");
+        }
+      });
+    }, 80);
+    return () => {
+      window.clearTimeout(t);
+      io.disconnect();
+    };
   }, []);
 
   // -------- Hero mirror parallax + cursor light ----------
