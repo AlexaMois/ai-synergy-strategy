@@ -403,6 +403,106 @@ const NeurostylistPage = () => {
           .ns-bento-card .ns-bento-spot { display: none; }
           .ns-mirror::after { display: none; }
         }
+
+        /* ==== Lookbook cards (section 04) ==== */
+        .ns-look-card {
+          position: relative;
+          aspect-ratio: 3 / 5;
+          border-radius: 18px;
+          overflow: hidden;
+          background: linear-gradient(180deg, #2A1422 0%, #1A0910 100%);
+          border: 1px solid rgba(247,237,227,0.08);
+          box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
+          transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
+        }
+        .ns-look-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 50px 80px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,149,106,0.18) inset;
+        }
+        .ns-look-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+          /* tone the bright studio whites into the plum atmosphere */
+          filter: saturate(0.78) contrast(1.05) brightness(0.92) hue-rotate(-8deg);
+          mix-blend-mode: luminosity;
+          opacity: 0.92;
+        }
+        .ns-look-tone {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(42,20,34,0.55) 0%, rgba(26,9,16,0.0) 28%, rgba(26,9,16,0.0) 55%, rgba(20,8,16,0.92) 100%);
+          mix-blend-mode: normal;
+          pointer-events: none;
+        }
+        .ns-look-plum {
+          position: absolute;
+          inset: 0;
+          background: rgba(60,28,46,0.32);
+          mix-blend-mode: multiply;
+          pointer-events: none;
+        }
+        .ns-look-caption {
+          position: absolute;
+          left: 0; right: 0; top: 0;
+          padding: 18px 18px 0 18px;
+          z-index: 3;
+        }
+        .ns-look-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 44px;
+          line-height: 1;
+          color: #E8B888;
+          opacity: 0.92;
+          text-shadow: 0 2px 18px rgba(20,8,18,0.6);
+          margin-bottom: 6px;
+        }
+        .ns-look-line {
+          width: 28px;
+          height: 1px;
+          background: rgba(212,149,106,0.55);
+          margin-bottom: 10px;
+        }
+        .ns-look-label {
+          font-family: 'Outfit', sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: #D4956A;
+          text-shadow: 0 1px 8px rgba(20,8,18,0.7);
+        }
+        .ns-look-desc {
+          position: absolute;
+          left: 18px; right: 18px; bottom: 18px;
+          font-family: 'Outfit', sans-serif;
+          font-size: 12.5px;
+          line-height: 1.45;
+          color: rgba(247,237,227,0.82);
+          text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+          z-index: 3;
+        }
+        @media (max-width: 640px) {
+          .ns-look-row {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 4px 24px 18px;
+            margin: 0 -24px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .ns-look-row::-webkit-scrollbar { display: none; }
+          .ns-look-row > * {
+            flex: 0 0 64%;
+            scroll-snap-align: center;
+          }
+          .ns-look-num { font-size: 38px; }
+        }
       `}</style>
 
       <div
