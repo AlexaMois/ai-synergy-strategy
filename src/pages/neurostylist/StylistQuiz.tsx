@@ -26,6 +26,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
+  // Test mode: ?test=1 in URL allows submitting without photos for E2E checks.
+  const testMode = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const params = new URLSearchParams(window.location.search);
+    return params.get("test") === "1";
+  }, []);
+
   const total = QUIZ_QUESTIONS.length;
   const current: Question | undefined = QUIZ_QUESTIONS[step];
   const progress = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
@@ -42,7 +49,8 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     const v = answers[q.id];
     if (q.type === "welcome") return true;
     if (q.type === "photo") {
-      const min = q.minPhotos ?? (q.required ? 1 : 0);
+      const baseMin = q.minPhotos ?? (q.required ? 1 : 0);
+      const min = testMode ? 0 : baseMin;
       return photos.length >= min;
     }
     if (q.type === "multifield") {
