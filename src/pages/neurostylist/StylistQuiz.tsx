@@ -253,6 +253,55 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         .ns-quiz .ns-cursive {
           vertical-align: -0.04em;
         }
+        /* Декоративный силуэт-«шёпот» — премиальный визуальный намёк.
+           Сатиновое платье цвета rose gold, прижато к правому краю,
+           растворяется в фон по горизонтали и тонировано под палитру. */
+        .ns-quiz .ns-silhouette {
+          position: absolute;
+          right: -3%;
+          bottom: 0;
+          top: 0;
+          width: clamp(360px, 48vw, 720px);
+          background-image: var(--ns-silhouette-url);
+          background-repeat: no-repeat;
+          background-position: right bottom;
+          background-size: contain;
+          mix-blend-mode: luminosity;
+          filter: saturate(1.2) brightness(1.04) contrast(1.05);
+          -webkit-mask-image: linear-gradient(to left, black 18%, rgba(0,0,0,0.55) 55%, transparent 92%);
+          mask-image: linear-gradient(to left, black 18%, rgba(0,0,0,0.55) 55%, transparent 92%);
+          opacity: 0;
+          transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+          pointer-events: none;
+          z-index: 1;
+          will-change: opacity;
+        }
+        /* Разная интенсивность по типу экрана: ярче на welcome/final, тише на вопросах */
+        .ns-quiz[data-screen="welcome"] .ns-silhouette { opacity: 0.26; }
+        .ns-quiz[data-screen="final"]   .ns-silhouette { opacity: 0.22; }
+        .ns-quiz[data-screen="question"] .ns-silhouette { opacity: 0.11; }
+        /* Мягкий «занавес» слева от силуэта, чтобы текст оставался читаемым */
+        .ns-quiz .ns-silhouette-veil {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 2;
+          background: linear-gradient(
+            to right,
+            hsl(295 35% 12% / 0.55) 0%,
+            hsl(295 35% 12% / 0.25) 35%,
+            transparent 65%
+          );
+        }
+        /* На мобильных скрываем — силуэт мешает компактной вёрстке */
+        @media (max-width: 767px) {
+          .ns-quiz .ns-silhouette,
+          .ns-quiz .ns-silhouette-veil { display: none; }
+        }
+        /* Уважаем prefers-reduced-motion — без fade */
+        @media (prefers-reduced-motion: reduce) {
+          .ns-quiz .ns-silhouette { transition: none; }
+        }
       `}</style>
 
       <div
@@ -265,6 +314,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         className="pointer-events-none absolute -bottom-40 -left-32 w-[420px] h-[420px] rounded-full opacity-15 blur-[120px]"
         style={{ background: "hsl(270 40% 65%)" }}
       />
+      {/* Силуэт + затемняющий занавес — порядок важен: сначала картинка, потом veil поверх */}
+      <div
+        aria-hidden
+        className="ns-silhouette"
+        style={{ ["--ns-silhouette-url" as string]: `url(${silhouetteUrl})` }}
+      />
+      <div aria-hidden className="ns-silhouette-veil" />
 
       <div className="relative z-10 flex items-center justify-between px-5 sm:px-10 py-5">
         <div className="text-base tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
