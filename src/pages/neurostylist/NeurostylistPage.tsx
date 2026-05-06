@@ -449,7 +449,7 @@ const NeurostylistPage = () => {
                     fontFamily: "'Outfit', sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(28px, 3.5vw, 52px)",
-                    color: "#F7EDE3",
+                    color: "rgba(247,237,227,0.45)",
                     letterSpacing: "-0.01em",
                   }}
                 >
@@ -517,7 +517,7 @@ const NeurostylistPage = () => {
                   fontFamily: "'Outfit', sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(28px, 3.5vw, 52px)",
-                  color: "#F7EDE3",
+                  color: "rgba(247,237,227,0.6)",
                   letterSpacing: "-0.01em",
                 }}
               >
@@ -698,7 +698,7 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
     </div>
     <h3
       className="text-base sm:text-lg tracking-tight mb-1.5"
-      style={{ color: "#FBF4EA", fontWeight: 600 }}
+      style={{ color: "#F7EDE3", fontWeight: 600 }}
     >
       {title}
     </h3>
