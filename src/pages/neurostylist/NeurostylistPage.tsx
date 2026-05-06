@@ -617,7 +617,7 @@ const NeurostylistPage = () => {
                   >
                     <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
-                  <h2>
+                  <h2 data-reveal>
                     <span
                       style={{
                         display: "block",
@@ -759,22 +759,38 @@ const NeurostylistPage = () => {
 
               {/* Steps path */}
               <div className="relative">
-                {/* connecting glow line — desktop */}
-                <div
+                {/* drawing connecting line — desktop */}
+                <svg
                   aria-hidden
-                  className="hidden md:block absolute top-[38px] left-[8%] right-[8%] h-px"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, transparent 0%, #D4956A 20%, #D4956A 50%, #D4956A 80%, transparent 100%)",
-                    opacity: 0.5,
-                  }}
-                />
+                  data-reveal
+                  viewBox="0 0 1000 80"
+                  preserveAspectRatio="none"
+                  className="hidden md:block absolute top-[24px] left-[8%] right-[8%] h-[40px] w-[84%]"
+                  style={{ pointerEvents: "none" }}
+                >
+                  <defs>
+                    <linearGradient id="ns-flow-grad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#D4956A" stopOpacity="0" />
+                      <stop offset="20%" stopColor="#D4956A" stopOpacity="0.7" />
+                      <stop offset="50%" stopColor="#F5E6D0" stopOpacity="0.9" />
+                      <stop offset="80%" stopColor="#D4956A" stopOpacity="0.7" />
+                      <stop offset="100%" stopColor="#D4956A" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    className="ns-flow-line"
+                    d="M 10 38 Q 250 8 500 40 T 990 38"
+                    fill="none"
+                    stroke="url(#ns-flow-grad)"
+                    strokeWidth="1.2"
+                  />
+                </svg>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-6 relative">
-                  <ProcessStep delay={0} n="01" title="Настроение" desc="Ловим вектор образа." />
-                  <ProcessStep delay={0.7} n="02" title="Внешность" desc="Колорит и черты." />
-                  <ProcessStep delay={1.4} n="03" title="Цвет" desc="Палитра и оттенки." />
-                  <ProcessStep delay={2.1} n="04" title="Детали" desc="Силуэты и акценты." />
-                  <ProcessStep delay={2.8} n="05" title="Разбор" desc="Персональный ответ." />
+                  <ProcessStep delay={0} n="01" title="Настроение" desc="Ловим вектор образа." detail="2 минуты · 4 вопроса" />
+                  <ProcessStep delay={0.7} n="02" title="Внешность" desc="Колорит и черты." detail="фото + 3 вопроса" />
+                  <ProcessStep delay={1.4} n="03" title="Цвет" desc="Палитра и оттенки." detail="индивидуальная палитра" />
+                  <ProcessStep delay={2.1} n="04" title="Детали" desc="Силуэты и акценты." detail="силуэт · фактуры · аксессуары" />
+                  <ProcessStep delay={2.8} n="05" title="Разбор" desc="Персональный ответ." detail="готовый образ за 24 ч" />
                 </div>
               </div>
             </div>
