@@ -224,47 +224,38 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1 className="ns-fade-up ns-delay-1 leading-[1.05]">
+                <h1 className="ns-fade-up ns-delay-1">
                   <span
                     style={{
                       display: "block",
                       fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "clamp(28px, 3.5vw, 52px)",
-                      color: "#F7EDE3",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    Собери образ,
-                  </span>
-                  <span
-                    style={{
-                      display: "block",
-                      fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 200,
-                      fontSize: "clamp(24px, 3vw, 44px)",
-                      color: "#D4956A",
-                      letterSpacing: 0,
-                      marginTop: "0.4em",
-                    }}
-                  >
-                    в котором ты узнаёшь&nbsp;себя
-                  </span>
-                  <span
-                    style={{
-                      display: "block",
-                      fontFamily: "'Italianno', cursive",
                       fontWeight: 400,
-                      fontSize: "clamp(80px, 12vw, 150px)",
-                      lineHeight: 0.95,
+                      fontSize: "clamp(13px, 1vw, 15px)",
+                      color: "rgba(247,237,227,0.55)",
+                      letterSpacing: "0.32em",
+                      textTransform: "uppercase",
+                      marginBottom: "0.6em",
+                    }}
+                  >
+                    Собери образ, в котором узнаёшь себя
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
+                      fontWeight: 400,
+                      fontSize: "clamp(80px, 11vw, 160px)",
+                      lineHeight: 0.9,
                       letterSpacing: "0.01em",
                       backgroundImage:
-                        "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
+                        "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
                       WebkitTextFillColor: "transparent",
-                      marginTop: "0.15em",
+                      filter: "drop-shadow(0 4px 24px rgba(139,78,30,0.35))",
+                      paddingBottom: "0.1em",
                     }}
                   >
                     сильнее
@@ -366,29 +357,36 @@ const NeurostylistPage = () => {
                   >
                     <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
-                  <h2
-                    className="leading-[1.05]"
-                    style={{
-                      fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "clamp(28px, 3.5vw, 52px)",
-                      color: "#F7EDE3",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    Образ складывается
-                    <br />
+                  <h2>
                     <span
                       style={{
-                        fontFamily: "'Italianno', cursive",
+                        display: "block",
+                        fontFamily: "'Outfit', sans-serif",
                         fontWeight: 400,
-                        fontSize: "clamp(40px, 5vw, 72px)",
-                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
+                        fontSize: "clamp(13px, 1vw, 15px)",
+                        color: "rgba(247,237,227,0.5)",
+                        letterSpacing: "0.32em",
+                        textTransform: "uppercase",
+                        marginBottom: "0.5em",
+                      }}
+                    >
+                      Образ складывается
+                    </span>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
+                        fontWeight: 400,
+                        fontSize: "clamp(56px, 7vw, 110px)",
+                        lineHeight: 0.95,
+                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         color: "transparent",
                         WebkitTextFillColor: "transparent",
-                        lineHeight: 1.0,
+                        filter: "drop-shadow(0 3px 18px rgba(139,78,30,0.3))",
+                        paddingBottom: "0.08em",
                       }}
                     >
                       из деталей
@@ -462,29 +460,39 @@ const NeurostylistPage = () => {
                 >
                   <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
-                <h2
-                  className="leading-[1.05] max-w-3xl mx-auto"
-                  style={{
-                    fontFamily: "'Outfit', sans-serif",
-                    fontWeight: 300,
-                    fontSize: "clamp(28px, 3.5vw, 52px)",
-                    color: "rgba(247,237,227,0.45)",
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  Ты отвечаешь на вопросы,
-                  <br />
+                <h2 className="max-w-4xl mx-auto">
                   <span
                     style={{
+                      display: "block",
                       fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "clamp(28px, 3.5vw, 52px)",
-                      color: "#D4956A",
-                      letterSpacing: "-0.01em",
-                      lineHeight: 1.1,
+                      fontWeight: 400,
+                      fontSize: "clamp(13px, 1vw, 15px)",
+                      color: "rgba(247,237,227,0.5)",
+                      letterSpacing: "0.32em",
+                      textTransform: "uppercase",
+                      marginBottom: "0.5em",
                     }}
                   >
-                    а образ начинает складываться
+                    Ты отвечаешь на вопросы
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
+                      fontWeight: 400,
+                      fontSize: "clamp(48px, 6vw, 92px)",
+                      lineHeight: 0.95,
+                      backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                      WebkitTextFillColor: "transparent",
+                      filter: "drop-shadow(0 3px 18px rgba(139,78,30,0.3))",
+                      paddingBottom: "0.08em",
+                    }}
+                  >
+                    а образ складывается
                   </span>
                 </h2>
               </div>
@@ -530,29 +538,36 @@ const NeurostylistPage = () => {
               >
                 <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
-              <h2
-                className="leading-[1.05]"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontWeight: 300,
-                  fontSize: "clamp(28px, 3.5vw, 52px)",
-                  color: "rgba(247,237,227,0.6)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Твой образ
-                <br />
+              <h2>
                 <span
                   style={{
-                    fontFamily: "'Italianno', cursive",
+                    display: "block",
+                    fontFamily: "'Outfit', sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(52px, 7vw, 100px)",
-                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
+                    fontSize: "clamp(13px, 1vw, 15px)",
+                    color: "rgba(247,237,227,0.5)",
+                    letterSpacing: "0.32em",
+                    textTransform: "uppercase",
+                    marginBottom: "0.5em",
+                  }}
+                >
+                  Твой образ
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
+                    fontWeight: 400,
+                    fontSize: "clamp(64px, 8vw, 120px)",
+                    lineHeight: 0.95,
+                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
                     WebkitTextFillColor: "transparent",
-                    lineHeight: 1.0,
+                    filter: "drop-shadow(0 4px 22px rgba(139,78,30,0.35))",
+                    paddingBottom: "0.1em",
                   }}
                 >
                   уже можно собрать
