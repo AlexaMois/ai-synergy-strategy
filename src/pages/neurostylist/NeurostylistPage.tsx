@@ -222,7 +222,7 @@ const NeurostylistPage = () => {
                   <span
                     style={{
                       backgroundImage:
-                        "linear-gradient(100deg, #FFE9D2 0%, #F3C7A5 35%, #C77DFF 75%, #9B6CFF 100%)",
+                        "linear-gradient(135deg, #FFD4A8 0%, #F3C7A5 30%, #E8956A 65%, #C49DFF 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
