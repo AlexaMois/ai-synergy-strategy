@@ -184,7 +184,7 @@ const NeurostylistPage = () => {
               className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
               style={{ color: "rgba(243,199,165,0.55)" }}
             >
-              STYLE&nbsp;&nbsp;MAP&nbsp;&nbsp;·&nbsp;&nbsp;01
+              КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;01
             </div>
 
             <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -202,7 +202,7 @@ const NeurostylistPage = () => {
                   }}
                 >
                   <span style={{ width: 6, height: 6, borderRadius: 999, background: "#F3C7A5" }} />
-                  AI Fitting Room
+                  Умная примерочная
                 </div>
 
                 <h1
@@ -305,7 +305,7 @@ const NeurostylistPage = () => {
                   className="hidden lg:block absolute -bottom-2 right-0 text-[10px] tracking-[0.4em] uppercase ns-fade-in ns-delay-4"
                   style={{ color: "rgba(247,237,227,0.4)" }}
                 >
-                  Digital&nbsp;Mirror · 2026
+                  Цифровое&nbsp;зеркало · 2026
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@ const NeurostylistPage = () => {
               className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.4em] uppercase ns-fade-in ns-delay-4"
               style={{ color: "rgba(247,237,227,0.4)" }}
             >
-              ↓&nbsp;&nbsp;Scroll
+              ↓&nbsp;&nbsp;Пролистай
             </div>
           </section>
 
@@ -328,7 +328,7 @@ const NeurostylistPage = () => {
                     className="text-[11px] tracking-[0.4em] uppercase mb-4"
                     style={{ color: "#F3C7A5" }}
                   >
-                    <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Style Map · 02
+                    <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
                   <h2
                     className="leading-[1.05] tracking-tight"
@@ -409,7 +409,7 @@ const NeurostylistPage = () => {
                   className="text-[11px] tracking-[0.4em] uppercase mb-4"
                   style={{ color: "#F3C7A5" }}
                 >
-                  <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Process · 03
+                  <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
                 <h2
                   className="leading-[1.05] tracking-tight max-w-3xl mx-auto"
@@ -467,7 +467,7 @@ const NeurostylistPage = () => {
                 className="text-[11px] tracking-[0.4em] uppercase mb-6"
                 style={{ color: "#F3C7A5" }}
               >
-                <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Invitation · 04
+                <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
               <h2
                 className="leading-[1.05] tracking-tight"
