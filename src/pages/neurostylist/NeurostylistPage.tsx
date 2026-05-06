@@ -414,7 +414,10 @@ const NeurostylistPage = () => {
           </header>
 
           {/* HERO — full viewport, asymmetric */}
-          <section className="relative px-6 sm:px-10 lg:px-16 min-h-[calc(100vh-90px)] flex items-center">
+          <section
+            ref={heroRef as React.RefObject<HTMLElement>}
+            className="relative px-6 sm:px-10 lg:px-16 min-h-[calc(100vh-90px)] flex items-center"
+          >
             {/* Big watermark word */}
             <div
               aria-hidden
@@ -440,7 +443,7 @@ const NeurostylistPage = () => {
               className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical ns-label-scroll text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
               style={{ color: "rgba(212,149,106,0.55)" }}
             >
-              КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;01
+              КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;{activeSection}&nbsp;&nbsp;·&nbsp;&nbsp;{sectionLabels[activeSection]}
             </div>
 
             <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -461,7 +464,7 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1 className="ns-fade-up ns-delay-1">
+                <h1 className="ns-fade-up ns-delay-1" data-reveal>
                   <span
                     style={{
                       display: "block",
@@ -495,7 +498,7 @@ const NeurostylistPage = () => {
                     }}
                     className="ns-glow-pulse"
                   >
-                    сильнее
+                    <SplitText text="сильнее" />
                   </span>
                 </h1>
 
@@ -542,7 +545,11 @@ const NeurostylistPage = () => {
 
               {/* RIGHT: mirror visual */}
               <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-                <div className="ns-mirror relative w-[280px] sm:w-[360px] lg:w-[440px] aspect-[4/5] rounded-[200px] overflow-hidden">
+                <div className="ns-mirror-wrap relative w-[280px] sm:w-[360px] lg:w-[440px] aspect-[4/5]">
+                <div
+                  ref={mirrorRef}
+                  className="ns-mirror relative w-full h-full rounded-[200px] overflow-hidden"
+                >
                   {/* Атласная ткань — анимированный мягкий слой */}
                   <div
                     aria-hidden
@@ -578,6 +585,7 @@ const NeurostylistPage = () => {
                         "inset 0 0 0 1px rgba(212,149,106,0.5), inset 0 0 40px rgba(212,149,106,0.25), inset 0 0 100px rgba(155,108,255,0.18)",
                     }}
                   />
+                </div>
                 </div>
                 {/* small caption */}
                 <div
