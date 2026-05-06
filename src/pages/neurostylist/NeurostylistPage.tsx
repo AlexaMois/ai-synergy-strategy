@@ -429,8 +429,8 @@ const NeurostylistPage = () => {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: center center;
+          object-fit: contain;
+          object-position: center bottom;
         }
         .ns-look-tone {
           position: absolute;
@@ -449,42 +449,21 @@ const NeurostylistPage = () => {
         .ns-look-caption {
           position: absolute;
           left: 0; right: 0; bottom: 0;
-          padding: 0 18px 18px 18px;
+          padding: 0 18px 20px 18px;
           z-index: 3;
         }
-        .ns-look-num {
-          font-family: 'Cormorant Garamond', serif;
-          font-style: italic;
-          font-weight: 400;
-          font-size: 44px;
-          line-height: 1;
-          color: #E8B888;
-          opacity: 0.92;
-          text-shadow: 0 2px 18px rgba(20,8,18,0.6);
-          margin-bottom: 6px;
-        }
         .ns-look-line {
-          width: 28px;
+          width: 32px;
           height: 1px;
-          background: rgba(212,149,106,0.55);
-          margin-bottom: 10px;
-        }
-        .ns-look-label {
-          font-family: 'Outfit', sans-serif;
-          font-size: 10.5px;
-          font-weight: 500;
-          letter-spacing: 0.32em;
-          text-transform: uppercase;
-          color: #E8B888;
-          text-shadow: 0 1px 2px rgba(20,8,18,0.95), 0 2px 14px rgba(20,8,18,0.85);
-          margin-bottom: 8px;
+          background: rgba(212,149,106,0.7);
+          margin-bottom: 12px;
         }
         .ns-look-desc {
           font-family: 'Outfit', sans-serif;
           font-size: 12.5px;
           line-height: 1.45;
-          color: rgba(247,237,227,0.82);
-          text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+          color: rgba(247,237,227,0.92);
+          text-shadow: 0 2px 12px rgba(0,0,0,0.7);
         }
         @media (max-width: 640px) {
           .ns-look-row {
@@ -501,7 +480,6 @@ const NeurostylistPage = () => {
             flex: 0 0 64%;
             scroll-snap-align: center;
           }
-          .ns-look-num { font-size: 38px; }
         }
       `}</style>
 
