@@ -328,7 +328,7 @@ const NeurostylistPage = () => {
                     className="text-[11px] tracking-[0.4em] uppercase mb-4"
                     style={{ color: "#F3C7A5" }}
                   >
-                    ◆&nbsp;&nbsp;Style Map · 02
+                    <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Style Map · 02
                   </div>
                   <h2
                     className="leading-[1.05] tracking-tight"
@@ -409,7 +409,7 @@ const NeurostylistPage = () => {
                   className="text-[11px] tracking-[0.4em] uppercase mb-4"
                   style={{ color: "#F3C7A5" }}
                 >
-                  ◆&nbsp;&nbsp;Process · 03
+                  <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Process · 03
                 </div>
                 <h2
                   className="leading-[1.05] tracking-tight max-w-3xl mx-auto"
@@ -466,7 +466,7 @@ const NeurostylistPage = () => {
                 className="text-[11px] tracking-[0.4em] uppercase mb-6"
                 style={{ color: "#F3C7A5" }}
               >
-                ◆&nbsp;&nbsp;Invitation · 04
+                <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Invitation · 04
               </div>
               <h2
                 className="leading-[1.05] tracking-tight"
