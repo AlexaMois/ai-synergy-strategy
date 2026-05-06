@@ -256,6 +256,105 @@ const NeurostylistPage = () => {
         .ns-breathe { animation: ns-breathe 3.5s ease-in-out infinite; }
         .ns-label-scroll { animation: ns-label-scroll 6s ease-in-out infinite alternate; }
 
+        /* ---- Reveal on scroll ---- */
+        [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(0.2,0.8,0.2,1), transform 1s cubic-bezier(0.2,0.8,0.2,1); }
+        [data-reveal].is-revealed { opacity: 1; transform: translateY(0); }
+        [data-reveal-delay="1"] { transition-delay: 0.08s; }
+        [data-reveal-delay="2"] { transition-delay: 0.16s; }
+        [data-reveal-delay="3"] { transition-delay: 0.24s; }
+        [data-reveal-delay="4"] { transition-delay: 0.32s; }
+        [data-reveal-delay="5"] { transition-delay: 0.40s; }
+        [data-reveal-delay="6"] { transition-delay: 0.48s; }
+
+        /* ---- Split-letters for cursive accents ---- */
+        .ns-split { display: inline-block; }
+        .ns-split .ns-letter {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(40px) rotate(-2deg);
+          transition: opacity 1.1s cubic-bezier(0.2,0.8,0.2,1), transform 1.1s cubic-bezier(0.2,0.8,0.2,1);
+        }
+        [data-reveal].is-revealed .ns-split .ns-letter {
+          opacity: 1;
+          transform: translateY(0) rotate(0);
+        }
+
+        /* ---- Bento magnetic + spotlight ---- */
+        .ns-bento-card { will-change: transform; }
+        .ns-bento-card .ns-bento-spot {
+          position: absolute; inset: 0; border-radius: inherit;
+          background: radial-gradient(380px circle at var(--mx,50%) var(--my,50%), rgba(245,230,208,0.18), transparent 55%);
+          opacity: 0; transition: opacity 0.5s ease;
+          pointer-events: none; z-index: 1;
+        }
+        .ns-bento-card:hover .ns-bento-spot { opacity: 1; }
+        .ns-bento-card > * { position: relative; z-index: 2; }
+        .ns-bento-card .ns-bento-spot { z-index: 1; }
+
+        /* ---- Mirror parallax + cursor light ---- */
+        .ns-mirror-wrap {
+          perspective: 1200px;
+          transform-style: preserve-3d;
+        }
+        .ns-mirror {
+          transform-origin: center center;
+          transition: transform 0.18s ease-out;
+        }
+        .ns-mirror::after {
+          content: "";
+          position: absolute; inset: 0; border-radius: inherit;
+          background: radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(255,236,210,0.32), transparent 60%);
+          mix-blend-mode: screen;
+          pointer-events: none;
+          z-index: 3;
+          opacity: 0.85;
+        }
+
+        /* ---- Process step hover details ---- */
+        .ns-process-step .ns-step-detail {
+          opacity: 0; transform: translateY(-6px);
+          transition: opacity 0.45s ease, transform 0.45s ease;
+          pointer-events: none;
+        }
+        .ns-process-step:hover .ns-step-detail {
+          opacity: 1; transform: translateY(0);
+        }
+        .ns-process-step:hover .ns-breathe {
+          animation-play-state: paused;
+          transform: scale(1.08);
+          box-shadow: 0 0 0 1px rgba(245,230,208,0.7) inset, 0 0 60px rgba(212,149,106,0.85), 0 0 120px rgba(212,149,106,0.4), 0 12px 36px rgba(42,14,30,0.6);
+        }
+
+        /* ---- Drawing line between process steps ---- */
+        .ns-flow-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2.4s cubic-bezier(0.2,0.8,0.2,1); }
+        [data-reveal].is-revealed .ns-flow-line { stroke-dashoffset: 0; }
+
+        /* ---- Side progress rail ---- */
+        .ns-rail {
+          position: fixed; left: 22px; top: 50%; transform: translateY(-50%);
+          width: 1px; height: 220px;
+          background: rgba(247,237,227,0.08);
+          z-index: 30; pointer-events: none;
+        }
+        .ns-rail-fill {
+          position: absolute; left: 0; top: 0; width: 1px;
+          background: linear-gradient(180deg, transparent, #D4956A 30%, #F5E6D0 50%, #D4956A 70%, transparent);
+          transform-origin: top;
+        }
+        .ns-rail-label {
+          position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+          writing-mode: vertical-rl; text-orientation: mixed;
+          font-size: 9px; letter-spacing: 0.55em; text-transform: uppercase;
+          color: rgba(212,149,106,0.7); white-space: nowrap;
+          transition: opacity 0.5s ease;
+        }
+        @media (max-width: 1023px) { .ns-rail { display: none; } }
+
+        @media (prefers-reduced-motion: reduce) {
+          [data-reveal] { opacity: 1 !important; transform: none !important; }
+          .ns-split .ns-letter { opacity: 1 !important; transform: none !important; }
+          .ns-flow-line { stroke-dashoffset: 0 !important; }
+        }
       `}</style>
 
       <div
