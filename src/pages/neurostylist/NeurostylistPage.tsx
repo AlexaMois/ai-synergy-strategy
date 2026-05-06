@@ -10,6 +10,11 @@ import cardMakeup from "@/assets/neurostylist/card-makeup.jpg";
 import cardHair from "@/assets/neurostylist/card-hair.jpg";
 import cardAccessories from "@/assets/neurostylist/card-accessories.jpg";
 import cardMood from "@/assets/neurostylist/card-mood.jpg";
+import look1 from "@/assets/neurostylist/look-1.jpg";
+import look2 from "@/assets/neurostylist/look-2.jpg";
+import look3 from "@/assets/neurostylist/look-3.jpg";
+import look4 from "@/assets/neurostylist/look-4.jpg";
+import look5 from "@/assets/neurostylist/look-5.jpg";
 
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
@@ -397,6 +402,107 @@ const NeurostylistPage = () => {
           }
           .ns-bento-card .ns-bento-spot { display: none; }
           .ns-mirror::after { display: none; }
+        }
+
+        /* ==== Lookbook cards (section 04) ==== */
+        .ns-look-card {
+          position: relative;
+          aspect-ratio: 3 / 5;
+          border-radius: 18px;
+          overflow: hidden;
+          background: linear-gradient(180deg, #2A1422 0%, #1A0910 100%);
+          border: 1px solid rgba(247,237,227,0.08);
+          box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
+          transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
+        }
+        .ns-look-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 50px 80px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,149,106,0.18) inset;
+        }
+        .ns-look-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+          /* tone the bright studio whites into the plum atmosphere */
+          filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
+          mix-blend-mode: luminosity;
+          opacity: 0.88;
+        }
+        .ns-look-tone {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(42,20,34,0.7) 0%, rgba(26,9,16,0.15) 30%, rgba(26,9,16,0.2) 55%, rgba(20,8,16,0.95) 100%);
+          mix-blend-mode: normal;
+          pointer-events: none;
+        }
+        .ns-look-plum {
+          position: absolute;
+          inset: 0;
+          background: rgba(70,30,50,0.42);
+          mix-blend-mode: multiply;
+          pointer-events: none;
+        }
+        .ns-look-caption {
+          position: absolute;
+          left: 0; right: 0; top: 0;
+          padding: 18px 18px 0 18px;
+          z-index: 3;
+        }
+        .ns-look-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 44px;
+          line-height: 1;
+          color: #E8B888;
+          opacity: 0.92;
+          text-shadow: 0 2px 18px rgba(20,8,18,0.6);
+          margin-bottom: 6px;
+        }
+        .ns-look-line {
+          width: 28px;
+          height: 1px;
+          background: rgba(212,149,106,0.55);
+          margin-bottom: 10px;
+        }
+        .ns-look-label {
+          font-family: 'Outfit', sans-serif;
+          font-size: 10.5px;
+          font-weight: 500;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: #E8B888;
+          text-shadow: 0 1px 2px rgba(20,8,18,0.95), 0 2px 14px rgba(20,8,18,0.85);
+        }
+        .ns-look-desc {
+          position: absolute;
+          left: 18px; right: 18px; bottom: 18px;
+          font-family: 'Outfit', sans-serif;
+          font-size: 12.5px;
+          line-height: 1.45;
+          color: rgba(247,237,227,0.82);
+          text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+          z-index: 3;
+        }
+        @media (max-width: 640px) {
+          .ns-look-row {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 4px 24px 18px;
+            margin: 0 -24px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .ns-look-row::-webkit-scrollbar { display: none; }
+          .ns-look-row > * {
+            flex: 0 0 64%;
+            scroll-snap-align: center;
+          }
+          .ns-look-num { font-size: 38px; }
         }
       `}</style>
 
@@ -869,56 +975,102 @@ const NeurostylistPage = () => {
             {/* spotlight */}
             <div
               aria-hidden
-              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-40 blur-[140px]"
+              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-25 blur-[140px]"
               style={{
                 background:
                   "radial-gradient(ellipse at center, #D4956A 0%, rgba(155,108,255,0.4) 50%, transparent 75%)",
               }}
             />
-            <div className="relative max-w-4xl mx-auto text-center">
-              <div
-                className="text-[11px] tracking-[0.4em] uppercase mb-6"
-                style={{ color: "#D4956A" }}
-              >
-                <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
+            <div className="relative max-w-7xl mx-auto">
+              {/* Header row: title left, supporting text right */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-end mb-14 sm:mb-20">
+                <div>
+                  <div
+                    className="text-[11px] tracking-[0.4em] uppercase mb-6"
+                    style={{ color: "#D4956A" }}
+                  >
+                    <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
+                  </div>
+                  <h2 data-reveal>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "'Outfit', sans-serif",
+                        fontWeight: 400,
+                        fontSize: "clamp(13px, 1vw, 15px)",
+                        color: "rgba(247,237,227,0.5)",
+                        letterSpacing: "0.32em",
+                        textTransform: "uppercase",
+                        marginBottom: "0.5em",
+                      }}
+                    >
+                      Твой образ
+                    </span>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontStyle: "italic",
+                        fontWeight: 400,
+                        fontSize: "clamp(54px, 7vw, 110px)",
+                        lineHeight: 0.95,
+                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        WebkitTextFillColor: "transparent",
+                        filter: "drop-shadow(0 4px 22px rgba(139,78,30,0.35))",
+                        paddingBottom: "0.1em",
+                      }}
+                    >
+                      <span className="ns-cursive-accent">уже можно собрать</span>
+                    </span>
+                  </h2>
+                </div>
+                <div className="lg:text-right lg:pb-4">
+                  <p
+                    className="max-w-md lg:ml-auto"
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      fontSize: "clamp(14px, 1vw, 16px)",
+                      lineHeight: 1.55,
+                      color: "rgba(247,237,227,0.72)",
+                    }}
+                  >
+                    Пять образов, из которых складывается твоя цельная картинка.
+                  </p>
+                </div>
               </div>
-              <h2 data-reveal>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Outfit', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(13px, 1vw, 15px)",
-                    color: "rgba(247,237,227,0.5)",
-                    letterSpacing: "0.32em",
-                    textTransform: "uppercase",
-                    marginBottom: "0.5em",
-                  }}
-                >
-                  Твой образ
-                </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Cormorant Garamond', serif",
-                      fontStyle: "italic",
-                    fontWeight: 400,
-                    fontSize: "clamp(64px, 8vw, 120px)",
-                    lineHeight: 0.95,
-                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    WebkitTextFillColor: "transparent",
-                    filter: "drop-shadow(0 4px 22px rgba(139,78,30,0.35))",
-                    paddingBottom: "0.1em",
-                  }}
-                >
-                  <span className="ns-cursive-accent">уже можно собрать</span>
-                </span>
-              </h2>
 
-              <div className="mt-12 flex flex-col items-center gap-4">
+              {/* Lookbook row */}
+              <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
+                {[
+                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: look1 },
+                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: look2 },
+                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: look3 },
+                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: look4 },
+                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: look5 },
+                ].map((look) => (
+                  <article key={look.n} className="ns-look-card">
+                    <img
+                      src={look.img}
+                      alt={`Образ ${look.n} — ${look.label}`}
+                      loading="lazy"
+                      className="ns-look-img"
+                    />
+                    <div className="ns-look-plum" />
+                    <div className="ns-look-tone" />
+                    <div className="ns-look-caption">
+                      <div className="ns-look-num">{look.n}</div>
+                      <div className="ns-look-line" />
+                      <div className="ns-look-label">{look.label}</div>
+                    </div>
+                    <div className="ns-look-desc">{look.desc}</div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-14 sm:mt-16 flex flex-col items-center gap-4">
                 <button
                   onClick={openQuiz}
                   className="ns-cta inline-flex items-center justify-center rounded-full font-semibold"
