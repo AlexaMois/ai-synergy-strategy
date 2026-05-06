@@ -410,7 +410,8 @@ const NeurostylistPage = () => {
           aspect-ratio: 3 / 5.3;
           border-radius: 18px;
           overflow: hidden;
-          background: #1A0910;
+          background:
+            radial-gradient(ellipse 90% 60% at 50% 30%, #3a1830 0%, #2a1020 55%, #1a0910 100%);
           border: 1px solid rgba(247,237,227,0.08);
           box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
           transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
@@ -424,10 +425,11 @@ const NeurostylistPage = () => {
           left: 0; right: 0; top: 0;
           width: 100%;
           height: 88%;
-          object-fit: cover;
-          object-position: center top;
+          object-fit: contain;
+          object-position: center bottom;
           /* tone the bright studio whites into the plum atmosphere */
-          filter: saturate(0.55) contrast(1.05) brightness(0.78) sepia(0.18) hue-rotate(-25deg);
+          filter: saturate(0.45) contrast(1.05) brightness(0.7) sepia(0.25) hue-rotate(-30deg);
+          mix-blend-mode: multiply;
         }
         .ns-look-tone {
           position: absolute;
