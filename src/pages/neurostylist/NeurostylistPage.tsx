@@ -1038,9 +1038,7 @@ const NeurostylistPage = () => {
                     <div className="ns-look-plum" />
                     <div className="ns-look-tone" />
                     <div className="ns-look-caption">
-                      <div className="ns-look-num">{look.n}</div>
                       <div className="ns-look-line" />
-                      <div className="ns-look-label">{look.label}</div>
                       <div className="ns-look-desc">{look.desc}</div>
                     </div>
                   </article>
