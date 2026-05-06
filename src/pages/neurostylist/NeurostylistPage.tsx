@@ -514,7 +514,7 @@ const NeurostylistPage = () => {
                     }}
                     className="ns-glow-pulse"
                   >
-                    <SplitText text="сильнее" />
+                    <span className="ns-cursive-accent">сильнее</span>
                   </span>
                 </h1>
 
@@ -665,7 +665,7 @@ const NeurostylistPage = () => {
                         paddingBottom: "0.08em",
                       }}
                     >
-                      <SplitText text="из деталей" />
+                      <span className="ns-cursive-accent">из деталей</span>
                     </span>
                   </h2>
                 </div>
@@ -768,7 +768,7 @@ const NeurostylistPage = () => {
                       paddingBottom: "0.08em",
                     }}
                   >
-                    <SplitText text="а образ складывается" />
+                    <span className="ns-cursive-accent">а образ складывается</span>
                   </span>
                 </h2>
               </div>
@@ -862,7 +862,7 @@ const NeurostylistPage = () => {
                     paddingBottom: "0.1em",
                   }}
                 >
-                  <SplitText text="уже можно собрать" />
+                  <span className="ns-cursive-accent">уже можно собрать</span>
                 </span>
               </h2>
 
@@ -1064,23 +1064,5 @@ const ProcessStep = ({ n, title, desc, detail, delay = 0 }: { n: string; title: 
     )}
   </div>
 );
-
-const SplitText = ({ text }: { text: string }) => {
-  const chars = Array.from(text);
-  return (
-    <span className="ns-split" aria-label={text}>
-      {chars.map((ch, i) => (
-        <span
-          key={i}
-          className="ns-letter"
-          aria-hidden
-          style={{ transitionDelay: `${i * 45}ms`, whiteSpace: ch === " " ? "pre" : "normal" }}
-        >
-          {ch === " " ? "\u00A0" : ch}
-        </span>
-      ))}
-    </span>
-  );
-};
 
 export default NeurostylistPage;
