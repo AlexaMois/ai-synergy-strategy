@@ -724,25 +724,11 @@ const PhotoUploadView = ({
 
   return (
     <div className="grid gap-4">
-      {testMode && (
-        <div
-          className="text-xs px-4 py-3 rounded-xl border"
-          style={{
-            background: "hsl(20 60% 75% / 0.08)",
-            borderColor: "hsl(20 60% 75% / 0.4)",
-            color: "hsl(40 30% 95%)",
-          }}
-        >
-          🧪 Тестовый режим — фото можно не загружать
-        </div>
-      )}
       {slots.map((slot) => (
         <PhotoSlotInput key={slot.id} slot={slot} photos={photos} setPhotos={setPhotos} />
       ))}
       <p className="text-xs opacity-60 mt-1">
-        {min === 0
-          ? "Фото не обязательны (тест) · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)"
-          : `Минимум ${min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)`}
+        Фото не обязательны · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)
       </p>
     </div>
   );
