@@ -113,16 +113,23 @@ const NeurostylistPage = () => {
         {/* Layered background glows */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
-            className="absolute top-[-15%] right-[-10%] w-[700px] h-[700px] rounded-full opacity-30 blur-[140px] ns-glow-1"
-            style={{ background: "radial-gradient(circle, #F3C7A5 0%, transparent 70%)" }}
+            className="absolute top-[-15%] right-[-10%] w-[700px] h-[700px] rounded-full blur-[140px] ns-glow-1"
+            style={{ background: "radial-gradient(circle, #E8A87C 0%, transparent 70%)", opacity: 0.39 }}
           />
           <div
-            className="absolute top-[40%] left-[-15%] w-[600px] h-[600px] rounded-full opacity-25 blur-[150px] ns-glow-2"
-            style={{ background: "radial-gradient(circle, #9B6CFF 0%, transparent 70%)" }}
+            className="absolute top-[40%] left-[-15%] w-[600px] h-[600px] rounded-full blur-[150px] ns-glow-2"
+            style={{ background: "radial-gradient(ellipse, #C4785A 0%, transparent 70%)", opacity: 0.28 }}
           />
           <div
             className="absolute bottom-[-10%] left-[30%] w-[500px] h-[500px] rounded-full opacity-20 blur-[140px] ns-glow-1"
             style={{ background: "radial-gradient(circle, #C77DFF 0%, transparent 70%)" }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(196,120,90,0.18) 0%, transparent 70%)",
+            }}
           />
           <div
             className="absolute top-[20%] left-[40%] w-[400px] h-[400px] rounded-full opacity-15 blur-[120px]"
