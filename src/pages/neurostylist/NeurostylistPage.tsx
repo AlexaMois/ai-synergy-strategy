@@ -225,11 +225,15 @@ const NeurostylistPage = () => {
 const CTAButton = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => (
   <button
     onClick={onClick}
-    className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-semibold transition-all duration-500 hover:scale-[1.03] hover:-translate-y-0.5"
+    className="inline-flex items-center justify-center rounded-full font-semibold transition-all duration-500 hover:scale-[1.03] hover:-translate-y-0.5"
     style={{
-      background: "linear-gradient(135deg, hsl(20 60% 75%), hsl(45 60% 88%))",
-      color: "hsl(300 20% 8%)",
-      boxShadow: "0 0 50px hsl(20 60% 75% / 0.45), 0 8px 30px hsl(300 20% 8% / 0.4)",
+      padding: "20px 40px",
+      fontSize: "clamp(16px, 1.4vw, 18px)",
+      background: "linear-gradient(135deg, #FFE9D2 0%, #F3C7A5 100%)",
+      color: "#2A0E1E",
+      letterSpacing: "0.01em",
+      boxShadow:
+        "0 0 0 1px rgba(255,233,210,0.35) inset, 0 0 60px rgba(243,199,165,0.55), 0 0 120px rgba(243,199,165,0.25), 0 14px 40px rgba(42,14,30,0.5)",
     }}
   >
     {children}
@@ -248,26 +252,29 @@ const DetailCard = ({
   <div
     className="rounded-3xl p-6 sm:p-7 border transition-all duration-500 hover:-translate-y-1"
     style={{
-      background: "hsl(0 0% 100% / 0.04)",
-      borderColor: "hsl(0 0% 100% / 0.1)",
+      background: "rgba(255,255,255,0.06)",
+      borderColor: "rgba(247,237,227,0.16)",
       backdropFilter: "blur(14px)",
       WebkitBackdropFilter: "blur(14px)",
-      boxShadow: "0 8px 40px hsl(300 20% 8% / 0.4)",
+      boxShadow:
+        "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 12px 40px rgba(20,8,18,0.45)",
     }}
   >
     <div
       className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4"
       style={{
-        background: "hsl(20 60% 75% / 0.15)",
-        border: "1px solid hsl(20 60% 75% / 0.3)",
+        background: "rgba(243,199,165,0.14)",
+        border: "1px solid rgba(243,199,165,0.32)",
       }}
     >
-      <Icon className="w-5 h-5" style={{ color: "hsl(20 60% 75%)" }} />
+      <Icon className="w-5 h-5" style={{ color: "#F3C7A5" }} />
     </div>
-    <h3 className="text-lg font-semibold tracking-tight" style={{ color: "hsl(45 60% 88%)" }}>
+    <h3 className="text-lg font-semibold tracking-tight" style={{ color: "#F7EDE3" }}>
       {title}
     </h3>
-    <p className="mt-2 text-sm opacity-70 leading-relaxed">{description}</p>
+    <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgba(247,237,227,0.58)" }}>
+      {description}
+    </p>
   </div>
 );
 
