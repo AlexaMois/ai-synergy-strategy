@@ -258,18 +258,20 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
            растворяется в фон по горизонтали и тонировано под палитру. */
         .ns-quiz .ns-silhouette {
           position: absolute;
-          right: -3%;
+          right: -6%;
           bottom: 0;
           top: 0;
-          width: clamp(360px, 48vw, 720px);
+          width: clamp(320px, 42vw, 620px);
           background-image: var(--ns-silhouette-url);
           background-repeat: no-repeat;
           background-position: right bottom;
           background-size: contain;
-          mix-blend-mode: luminosity;
-          filter: saturate(1.2) brightness(1.04) contrast(1.05);
-          -webkit-mask-image: linear-gradient(to left, black 18%, rgba(0,0,0,0.55) 55%, transparent 92%);
-          mask-image: linear-gradient(to left, black 18%, rgba(0,0,0,0.55) 55%, transparent 92%);
+          /* Soft-light даёт лёгкий золотистый оттенок без деталей лица.
+             Лёгкий blur размывает черты, оставляя силуэт и текстуру ткани. */
+          mix-blend-mode: soft-light;
+          filter: blur(2.5px) saturate(1.4) brightness(1.15) contrast(0.95);
+          -webkit-mask-image: linear-gradient(to left, black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.15) 70%, transparent 95%);
+          mask-image: linear-gradient(to left, black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.15) 70%, transparent 95%);
           opacity: 0;
           transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
           pointer-events: none;
@@ -277,9 +279,9 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           will-change: opacity;
         }
         /* Разная интенсивность по типу экрана: ярче на welcome/final, тише на вопросах */
-        .ns-quiz[data-screen="welcome"] .ns-silhouette { opacity: 0.26; }
-        .ns-quiz[data-screen="final"]   .ns-silhouette { opacity: 0.22; }
-        .ns-quiz[data-screen="question"] .ns-silhouette { opacity: 0.11; }
+        .ns-quiz[data-screen="welcome"]  .ns-silhouette { opacity: 0.55; }
+        .ns-quiz[data-screen="final"]    .ns-silhouette { opacity: 0.45; }
+        .ns-quiz[data-screen="question"] .ns-silhouette { opacity: 0.28; }
         /* Мягкий «занавес» слева от силуэта, чтобы текст оставался читаемым */
         .ns-quiz .ns-silhouette-veil {
           position: absolute;
@@ -288,9 +290,9 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           z-index: 2;
           background: linear-gradient(
             to right,
-            hsl(295 35% 12% / 0.55) 0%,
-            hsl(295 35% 12% / 0.25) 35%,
-            transparent 65%
+            hsl(295 35% 12% / 0.45) 0%,
+            hsl(295 35% 12% / 0.15) 40%,
+            transparent 70%
           );
         }
         /* На мобильных скрываем — силуэт мешает компактной вёрстке */
