@@ -67,7 +67,17 @@ const NeurostylistPage = () => {
       },
       { threshold: 0.18, rootMargin: "0px 0px -60px 0px" }
     );
-    els.forEach((el) => io.observe(el));
+    els.forEach((el) => {
+      // Если элемент уже виден на момент монтирования — раскрываем сразу,
+      // чтобы hero не «висел» прозрачным до первого скролла.
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        // микро-задержка, чтобы CSS-transition сыграл, а не «прыгнул»
+        requestAnimationFrame(() => el.classList.add("is-revealed"));
+      } else {
+        io.observe(el);
+      }
+    });
     return () => io.disconnect();
   }, []);
 
@@ -449,13 +459,6 @@ const NeurostylistPage = () => {
             </div>
 
             {/* Vertical STYLE MAP label */}
-            <div
-              aria-hidden
-              className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical ns-label-scroll text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
-              style={{ color: "rgba(212,149,106,0.55)" }}
-            >
-              КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;{activeSection}&nbsp;&nbsp;·&nbsp;&nbsp;{sectionLabels[activeSection]}
-            </div>
 
             <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
               {/* LEFT: text */}
