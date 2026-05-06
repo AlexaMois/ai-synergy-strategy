@@ -184,13 +184,53 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col"
+      className="ns-quiz fixed inset-0 z-[100] flex flex-col"
       style={{
         background:
           "radial-gradient(ellipse at top right, hsl(290 30% 18%) 0%, hsl(295 35% 12%) 50%, hsl(300 20% 8%) 100%)",
         color: "hsl(40 30% 95%)",
       }}
     >
+      {/* Scoped CSS reset to defeat global !important h*/p/input rules from index.css */}
+      <style>{`
+        .ns-quiz, .ns-quiz * { box-sizing: border-box; }
+        .ns-quiz h1, .ns-quiz h2, .ns-quiz h3, .ns-quiz h4, .ns-quiz h5, .ns-quiz h6 {
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          color: inherit !important;
+          margin: 0 !important;
+        }
+        .ns-quiz p { color: inherit; font-size: inherit; line-height: inherit; }
+        .ns-quiz input::placeholder,
+        .ns-quiz textarea::placeholder { color: hsl(40 30% 95% / 0.4); }
+        .ns-quiz .ns-serif {
+          font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+        }
+        .ns-quiz .ns-cursive {
+          font-family: 'Pinyon Script', 'Allura', 'Snell Roundhand', cursive;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 0.005em;
+          background-image: linear-gradient(135deg, #F8E8D0 0%, #F0C998 35%, #D4956A 70%, #B17347 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          padding: 0.05em 0.06em 0.18em;
+          line-height: 1.05;
+          filter: drop-shadow(0 2px 18px rgba(212,149,106,0.35));
+        }
+        .ns-quiz .ns-eyebrow {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-style: italic;
+          letter-spacing: 0.04em;
+        }
+      `}</style>
+
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full opacity-20 blur-[120px]"
