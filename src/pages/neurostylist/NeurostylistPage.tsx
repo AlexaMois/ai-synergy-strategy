@@ -704,7 +704,7 @@ const NeurostylistPage = () => {
           </section>
 
           {/* BENTO — детали образа */}
-          <section ref={sectionRefs.s2} className="px-6 sm:px-10 lg:px-16 pt-24 sm:pt-32 pb-20 sm:pb-28">
+          <section ref={sectionRefs.s2} className="px-6 sm:px-10 lg:px-16 pt-12 sm:pt-20 lg:pt-32 pb-12 sm:pb-20 lg:pb-28">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12 sm:mb-16">
                 <div>
@@ -829,7 +829,7 @@ const NeurostylistPage = () => {
           </section>
 
           {/* PROCESS */}
-          <section ref={sectionRefs.s3} className="relative px-6 sm:px-10 lg:px-16 py-24 sm:py-32">
+          <section ref={sectionRefs.s3} className="relative px-6 sm:px-10 lg:px-16 py-12 sm:py-20 lg:py-32">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 sm:mb-20">
                 <div
@@ -915,7 +915,7 @@ const NeurostylistPage = () => {
           </section>
 
           {/* FINAL CTA — closed style room */}
-          <section ref={sectionRefs.s4} className="relative px-6 sm:px-10 lg:px-16 py-28 sm:py-36">
+          <section ref={sectionRefs.s4} className="relative px-6 sm:px-10 lg:px-16 py-14 sm:py-24 lg:py-36">
             {/* spotlight */}
             <div
               aria-hidden
