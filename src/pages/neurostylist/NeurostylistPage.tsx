@@ -99,10 +99,29 @@ const NeurostylistPage = () => {
         @media (max-width: 767px) {
           .ns-hero-decor { opacity: 0.55 !important; }
         }
+        /* Сбрасываем глобальные h1/h2/h3 !important из index.css только на этой странице */
+        .ns-page h1,
+        .ns-page h2,
+        .ns-page h3,
+        .ns-page h4,
+        .ns-page h5,
+        .ns-page h6 {
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          color: inherit !important;
+        }
+        .ns-page h1 > span,
+        .ns-page h2 > span,
+        .ns-page h3 > span {
+          font-family: inherit;
+        }
+
       `}</style>
 
       <div
-        className="relative min-h-screen overflow-hidden"
+        className="ns-page relative min-h-screen overflow-hidden"
         style={{
           background:
             "radial-gradient(ellipse 70% 50% at 75% 25%, hsl(340 35% 18%) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, hsl(270 35% 16%) 0%, transparent 65%), radial-gradient(ellipse 100% 80% at 50% 50%, hsl(310 25% 10%) 0%, hsl(300 30% 5%) 100%)",
