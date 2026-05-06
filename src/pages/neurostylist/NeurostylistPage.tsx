@@ -107,7 +107,7 @@ const NeurostylistPage = () => {
           background:
             "radial-gradient(ellipse 70% 50% at 75% 25%, hsl(340 35% 18%) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, hsl(270 35% 16%) 0%, transparent 65%), radial-gradient(ellipse 100% 80% at 50% 50%, hsl(310 25% 10%) 0%, hsl(300 30% 5%) 100%)",
           color: "#F7EDE3",
-          fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+          fontFamily: "'Outfit', sans-serif",
         }}
       >
         {/* Layered background glows */}
@@ -164,7 +164,7 @@ const NeurostylistPage = () => {
               aria-hidden
               className="ns-hero-decor pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none ns-fade-in"
               style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontFamily: "'Outfit', sans-serif",
                 fontSize: "clamp(180px, 28vw, 420px)",
                 fontWeight: 400,
                 lineHeight: 1,
@@ -632,7 +632,7 @@ const BentoCard = ({
     <div className="relative flex items-start justify-between">
       <span
         style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Outfit', sans-serif",
           fontSize: large ? "clamp(48px, 6vw, 80px)" : "clamp(28px, 3vw, 40px)",
           fontWeight: 300,
           lineHeight: 1,
@@ -660,7 +660,7 @@ const BentoCard = ({
         className={`tracking-tight ${large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"}`}
         style={{
           color: "#FBF4EA",
-          fontFamily: large ? "Georgia, serif" : "inherit",
+          fontFamily: "'Outfit', sans-serif",
           fontWeight: large ? 400 : 600,
         }}
       >
@@ -689,7 +689,7 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
     >
       <span
         style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Outfit', sans-serif",
           fontSize: 22,
           fontWeight: 500,
           color: "#1A0910",
