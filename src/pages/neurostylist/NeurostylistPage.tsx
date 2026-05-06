@@ -709,13 +709,12 @@ const NeurostylistPage = () => {
               </div>
 
               {/* Bento grid */}
-              <div className="grid grid-cols-12 auto-rows-[160px] sm:auto-rows-[180px] gap-4 sm:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
                 <BentoCard
                   num="01"
                   icon={Palette}
                   title="Цвета"
-                  description="Палитра, в которой ты звучишь чище всего."
-                  className="col-span-12 sm:col-span-7 row-span-2"
+                  description="Палитра, в которой ты звучишь сильнее."
                   large
                   image={cardColors}
                   imageAlt="Шёлк и кашемир в сливово-тауповой палитре"
@@ -735,27 +734,24 @@ const NeurostylistPage = () => {
                   icon={Shirt}
                   title="Силуэты"
                   description="Линии, которые подчёркивают тебя."
-                  className="col-span-12 sm:col-span-5 row-span-1"
                   image={cardSilhouette}
                   imageAlt="Силуэт: топ на одно плечо и wide-leg брюки"
-                  focal="50% 35%"
+                  focal="50% 40%"
                 />
                 <BentoCard
                   num="03"
                   icon={Sparkles}
                   title="Макияж"
                   description="Акценты, которые работают на образ."
-                  className="col-span-6 sm:col-span-5 row-span-1"
                   image={cardMakeup}
                   imageAlt="Чистый дорогой макияж в taupe и rose nude"
-                  focal="50% 40%"
+                  focal="55% 35%"
                 />
                 <BentoCard
                   num="04"
                   icon={Scissors}
                   title="Укладка"
-                  description="Форма волос как часть характера."
-                  className="col-span-6 sm:col-span-4 row-span-1"
+                  description="Форма волос, которая создаёт настроение."
                   image={cardHair}
                   imageAlt="Асимметричный боб, холодный блонд"
                   focal="60% 50%"
