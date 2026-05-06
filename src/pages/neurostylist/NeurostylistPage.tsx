@@ -74,15 +74,16 @@ const NeurostylistPage = () => {
         }
         .ns-bento-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(243,199,165,0.45) !important;
+          border-color: rgba(232,149,106,0.55) !important;
           box-shadow:
             inset 0 1px 0 rgba(247,237,227,0.12),
             0 1px 2px rgba(0,0,0,0.3),
-            0 24px 70px rgba(243,199,165,0.18),
+            0 24px 70px rgba(232,149,106,0.25),
             0 12px 40px rgba(20,8,18,0.6) !important;
         }
+        .ns-bento-card:hover .ns-bento-icon { color: #E8956A !important; }
         .ns-cta {
-          background-image: linear-gradient(135deg, #FFF1DD 0%, #F3C7A5 50%, #E5A87E 100%);
+          background-image: linear-gradient(135deg, #FFF1DD 0%, #F5C9A0 35%, #E89A6A 70%, #F3C7A5 100%);
           background-size: 200% 100%;
           transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s, background-position 0.8s;
         }
@@ -91,8 +92,8 @@ const NeurostylistPage = () => {
           background-position: 100% 0;
           box-shadow:
             0 0 0 1px rgba(255,241,221,0.5) inset,
-            0 0 80px rgba(243,199,165,0.7),
-            0 0 160px rgba(243,199,165,0.35),
+            0 0 80px rgba(232,154,106,0.9),
+            0 0 160px rgba(232,154,106,0.45),
             0 20px 50px rgba(42,14,30,0.6);
         }
         @media (max-width: 767px) {
