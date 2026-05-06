@@ -203,6 +203,9 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       {/* Scoped CSS reset to defeat global important rules from index.css */}
       <style>{`
         .ns-quiz, .ns-quiz * { box-sizing: border-box; }
+        .ns-quiz {
+          font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
         .ns-quiz h1, .ns-quiz h2, .ns-quiz h3, .ns-quiz h4, .ns-quiz h5, .ns-quiz h6 {
           font-family: inherit !important;
           font-size: inherit !important;
@@ -215,35 +218,40 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         .ns-quiz input::placeholder,
         .ns-quiz textarea::placeholder { color: hsl(40 30% 95% / 0.4); }
         .ns-quiz .ns-serif {
-          font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
-          font-weight: 500;
-          letter-spacing: -0.01em;
+          font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+          font-weight: 400;
+          font-style: italic;
+          letter-spacing: 0.005em;
+          color: rgba(247, 237, 227, 0.92);
         }
         .ns-quiz .ns-cursive {
-          font-family: 'Marck Script', 'Caveat', 'Pinyon Script', 'Allura', 'Snell Roundhand', cursive;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-style: italic;
           font-weight: 400;
-          font-style: normal;
-          letter-spacing: 0.005em;
-          background-image: linear-gradient(135deg, #FFF1DB 0%, #F6D6A8 30%, #E5B584 65%, #C68B5C 100%);
+          letter-spacing: 0.01em;
+          background-image: linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
           -webkit-text-fill-color: transparent;
-          padding: 0 0.04em 0.05em;
-          line-height: 0.9;
-          filter: drop-shadow(0 2px 14px rgba(246,214,168,0.45));
+          padding: 0 0.02em 0.08em;
+          line-height: 1;
+          filter: drop-shadow(0 4px 24px rgba(139,78,30,0.35)) drop-shadow(0 0 20px rgba(212,149,106,0.4));
         }
         .ns-quiz .ns-eyebrow {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-style: italic;
-          letter-spacing: 0.04em;
+          font-family: 'Outfit', sans-serif;
+          font-weight: 400;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: rgba(247, 237, 227, 0.55);
         }
         /* Унифицированная типографика заголовков квиза.
            Используем role="heading" + div, чтобы обойти глобальный !important reset на h1-h6. */
         .ns-quiz .ns-title {
-          font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-          font-weight: 500;
-          letter-spacing: -0.01em;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-style: italic;
+          font-weight: 400;
+          letter-spacing: 0.005em;
           line-height: 1.08;
           color: hsl(40 30% 96%);
           margin: 0;
@@ -251,14 +259,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         .ns-quiz .ns-title--lg { font-size: clamp(34px, 6.2vw, 64px); }
         .ns-quiz .ns-title--md { font-size: clamp(28px, 5vw, 52px); }
         .ns-quiz .ns-subtitle {
+          font-family: 'Outfit', sans-serif;
+          font-style: normal;
+          letter-spacing: normal;
+          text-transform: none;
           font-size: clamp(16px, 2.1vw, 22px);
           line-height: 1.55;
           color: hsl(40 30% 95% / 0.82);
-        }
-        /* Marck Script (кириллица) имеет нормальный x-height —
-           слегка приподнимем базовую линию, чтобы росчерки не «висли». */
-        .ns-quiz .ns-cursive {
-          vertical-align: -0.04em;
         }
       `}</style>
 
