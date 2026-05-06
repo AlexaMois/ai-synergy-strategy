@@ -714,6 +714,18 @@ const NeurostylistPage = () => {
                   description="Палитра, в которой ты звучишь чище всего."
                   className="col-span-12 sm:col-span-7 row-span-2"
                   large
+                  image={cardColors}
+                  imageAlt="Шёлк и кашемир в сливово-тауповой палитре"
+                  focal="center"
+                  palette={[
+                    "#2C2A2E",
+                    "#7E7164",
+                    "#F2E9DD",
+                    "#7C8A99",
+                    "#B89099",
+                    "#5E2E48",
+                    "#C9A084",
+                  ]}
                 />
                 <BentoCard
                   num="02"
@@ -721,6 +733,9 @@ const NeurostylistPage = () => {
                   title="Силуэты"
                   description="Линии, которые подчёркивают тебя."
                   className="col-span-12 sm:col-span-5 row-span-1"
+                  image={cardSilhouette}
+                  imageAlt="Силуэт: топ на одно плечо и wide-leg брюки"
+                  focal="50% 35%"
                 />
                 <BentoCard
                   num="03"
@@ -728,6 +743,9 @@ const NeurostylistPage = () => {
                   title="Макияж"
                   description="Акценты, которые работают на образ."
                   className="col-span-6 sm:col-span-5 row-span-1"
+                  image={cardMakeup}
+                  imageAlt="Чистый дорогой макияж в taupe и rose nude"
+                  focal="50% 40%"
                 />
                 <BentoCard
                   num="04"
@@ -735,6 +753,9 @@ const NeurostylistPage = () => {
                   title="Укладка"
                   description="Форма волос как часть характера."
                   className="col-span-6 sm:col-span-4 row-span-1"
+                  image={cardHair}
+                  imageAlt="Асимметричный боб, холодный блонд"
+                  focal="60% 50%"
                 />
                 <BentoCard
                   num="05"
@@ -742,6 +763,9 @@ const NeurostylistPage = () => {
                   title="Аксессуары"
                   description="Детали, которые завершают."
                   className="col-span-6 sm:col-span-4 row-span-1"
+                  image={cardAccessories}
+                  imageAlt="Очки, серьги розового золота, ремень с золотой фурнитурой"
+                  focal="55% 60%"
                 />
                 <BentoCard
                   num="06"
@@ -749,6 +773,9 @@ const NeurostylistPage = () => {
                   title="Настроение"
                   description="Ощущение, которое ты транслируешь."
                   className="col-span-6 sm:col-span-4 row-span-1"
+                  image={cardMood}
+                  imageAlt="Атмосферный fashion-портрет: уверенный взгляд и шёлк"
+                  focal="50% 30%"
                 />
               </div>
             </div>
