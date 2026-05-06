@@ -278,17 +278,17 @@ const NeurostylistPage = () => {
         [data-reveal-delay="5"] { transition-delay: 0.40s; }
         [data-reveal-delay="6"] { transition-delay: 0.48s; }
 
-        /* ---- Split-letters for cursive accents ---- */
-        .ns-split { display: inline-block; }
-        .ns-split .ns-letter {
+        /* ---- Cursive accent reveal: clip-path wipe (works with gradient-text) ---- */
+        .ns-cursive-accent {
           display: inline-block;
-          opacity: 0;
-          transform: translateY(40px) rotate(-2deg);
-          transition: opacity 1.1s cubic-bezier(0.2,0.8,0.2,1), transform 1.1s cubic-bezier(0.2,0.8,0.2,1);
+          clip-path: inset(0 100% 0 0);
+          transform: translateY(28px);
+          transition: clip-path 1.4s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1);
         }
-        [data-reveal].is-revealed .ns-split .ns-letter {
-          opacity: 1;
-          transform: translateY(0) rotate(0);
+        [data-reveal].is-revealed .ns-cursive-accent,
+        [data-reveal-self].is-revealed.ns-cursive-accent {
+          clip-path: inset(0 0 0 0);
+          transform: translateY(0);
         }
 
         /* ---- Bento magnetic + spotlight ---- */
