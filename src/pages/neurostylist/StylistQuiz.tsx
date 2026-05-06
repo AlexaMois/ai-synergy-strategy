@@ -246,11 +246,10 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           line-height: 1.55;
           color: hsl(40 30% 95% / 0.82);
         }
-        /* Курсив должен «сидеть» на той же базовой линии, что и серифный текст,
-           но визуально иметь схожую высоту строчных. Pinyon Script имеет очень
-           маленький x-height — компенсируем em-размером и vertical-align. */
+        /* Marck Script (кириллица) имеет нормальный x-height —
+           слегка приподнимем базовую линию, чтобы росчерки не «висли». */
         .ns-quiz .ns-cursive {
-          vertical-align: -0.08em;
+          vertical-align: -0.04em;
         }
       `}</style>
 
@@ -408,7 +407,7 @@ const QuestionView = ({
       <div className="animate-fade-in text-center py-8 sm:py-16">
         <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · 16 шагов</div>
         <div role="heading" aria-level={1} className="ns-title ns-title--lg ns-serif">
-          <CalligraphyTitle text={q.title} cursiveSize="2.05em" />
+          <CalligraphyTitle text={q.title} cursiveSize="1.28em" />
         </div>
         {q.subtitle && (
           <p className="ns-eyebrow ns-subtitle mt-7 sm:mt-8 opacity-85 leading-relaxed max-w-xl mx-auto">
@@ -434,7 +433,7 @@ const QuestionView = ({
   return (
     <div className="animate-fade-in">
       <div role="heading" aria-level={2} className="ns-title ns-title--md ns-serif">
-        <CalligraphyTitle text={q.title} cursiveSize="2em" />
+        <CalligraphyTitle text={q.title} cursiveSize="1.25em" />
       </div>
       {q.subtitle && (
         <p className="ns-eyebrow ns-subtitle mt-5 sm:mt-6 opacity-80 leading-relaxed">{q.subtitle}</p>
@@ -851,7 +850,7 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
       <Check className="w-10 h-10" style={{ color: "hsl(300 20% 8%)" }} strokeWidth={3} />
     </div>
     <div role="heading" aria-level={1} className="ns-title ns-title--md ns-serif">
-      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="2em" />
+      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.25em" />
     </div>
     <p className="ns-eyebrow ns-subtitle mt-6 sm:mt-7 opacity-85 max-w-lg mx-auto leading-relaxed">
       Александра соберёт стиль-разбор на основе твоих ответов
