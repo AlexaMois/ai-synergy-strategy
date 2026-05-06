@@ -87,6 +87,10 @@ const NeurostylistPage = () => {
   const heroRef = useRef<HTMLElement | null>(null);
   const mirrorRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
+    // Только для устройств с настоящим курсором — на touch отключаем,
+    // чтобы зеркало не «прыгало» от тапов.
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!supportsHover) return;
     const hero = heroRef.current;
     const mirror = mirrorRef.current;
     if (!hero || !mirror) return;
