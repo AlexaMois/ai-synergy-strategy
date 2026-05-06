@@ -243,7 +243,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       />
 
       <div className="relative z-10 flex items-center justify-between px-5 sm:px-10 py-5">
-        <div className="text-sm tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
+        <div className="text-base tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
         <button
           onClick={onClose}
           aria-label="Закрыть"
@@ -265,7 +265,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               }}
             />
           </div>
-          <div className="mt-3 text-xs tracking-wider opacity-60">
+          <div className="mt-3 text-sm tracking-wider opacity-60">
             Шаг {step + 1} из {total}
           </div>
         </div>
@@ -383,12 +383,12 @@ const QuestionView = ({
   if (q.type === "welcome") {
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
-        <div className="ns-eyebrow text-sm opacity-70 mb-5">анкета · 16 шагов</div>
-        <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
-          <CalligraphyTitle text={q.title} cursiveSize="1.6em" />
+        <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · 16 шагов</div>
+        <h2 className="ns-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight">
+          <CalligraphyTitle text={q.title} cursiveSize="1.7em" />
         </h2>
         {q.subtitle && (
-          <p className="ns-eyebrow mt-7 text-base sm:text-lg opacity-80 leading-relaxed max-w-xl mx-auto">
+          <p className="ns-eyebrow mt-8 text-lg sm:text-xl md:text-2xl opacity-85 leading-relaxed max-w-xl mx-auto">
             {q.subtitle}
           </p>
         )}
@@ -410,11 +410,11 @@ const QuestionView = ({
 
   return (
     <div className="animate-fade-in">
-      <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
-        <CalligraphyTitle text={q.title} cursiveSize="1.5em" />
+      <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
+        <CalligraphyTitle text={q.title} cursiveSize="1.55em" />
       </h2>
       {q.subtitle && (
-        <p className="ns-eyebrow mt-3 text-base sm:text-lg opacity-75 leading-relaxed">{q.subtitle}</p>
+        <p className="ns-eyebrow mt-5 text-lg sm:text-xl md:text-2xl opacity-80 leading-relaxed">{q.subtitle}</p>
       )}
 
       <div className="mt-8 sm:mt-10">
@@ -827,10 +827,10 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
     >
       <Check className="w-10 h-10" style={{ color: "hsl(300 20% 8%)" }} strokeWidth={3} />
     </div>
-    <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
-      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.5em" />
+    <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
+      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.55em" />
     </h2>
-    <p className="ns-eyebrow mt-5 text-base sm:text-lg opacity-80 max-w-lg mx-auto leading-relaxed">
+    <p className="ns-eyebrow mt-6 text-lg sm:text-xl md:text-2xl opacity-85 max-w-lg mx-auto leading-relaxed">
       Александра соберёт стиль-разбор на основе твоих ответов
     </p>
     <button
@@ -850,7 +850,48 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
 
 export default StylistQuiz;
 
-// ===== Calligraphy title — last word in cursive (Pinyon Script) =====
+// ===== Calligraphy title — два рукописных акцента в каждом заголовке =====
+// Стоп-слова, которые НЕ выделяем курсивом (служебные части речи)
+const STOP_WORDS = new Set([
+  "и", "а", "но", "или", "да", "не", "ни", "же", "ли", "бы", "то",
+  "в", "во", "на", "по", "с", "со", "к", "ко", "о", "об", "от", "до", "из", "у", "за", "при", "про", "для", "над", "под", "без",
+  "что", "как", "где", "куда", "когда", "чем", "кто", "тебя", "тебе", "твой", "твоя", "твои", "твоё", "твое",
+  "это", "этот", "эта", "эти", "то", "та", "те", "сейчас", "ещё", "уже", "очень", "более", "менее",
+  "хочется", "должен", "должна", "должно", "должны", "быть", "есть", "может",
+]);
+
+function pickCursiveIndices(words: string[]): Set<number> {
+  const isMeaningful = (w: string) => {
+    const clean = w.toLowerCase().replace(/[«»"'(),.:;!?…—–-]/g, "");
+    return clean.length >= 3 && !STOP_WORDS.has(clean);
+  };
+  const meaningful: number[] = [];
+  words.forEach((w, i) => {
+    if (isMeaningful(w)) meaningful.push(i);
+  });
+
+  const picks = new Set<number>();
+  if (meaningful.length === 0) {
+    // fallback — первое и последнее
+    picks.add(0);
+    if (words.length > 1) picks.add(words.length - 1);
+    return picks;
+  }
+  // первое значимое
+  picks.add(meaningful[0]);
+  // последнее значимое (если отличается)
+  const last = meaningful[meaningful.length - 1];
+  if (last !== meaningful[0]) {
+    picks.add(last);
+  } else if (words.length - 1 !== meaningful[0]) {
+    // есть только одно значимое — добавим финальное слово как акцент
+    picks.add(words.length - 1);
+  } else if (words.length > 1) {
+    picks.add(0);
+  }
+  return picks;
+}
+
 function CalligraphyTitle({
   text,
   cursiveSize = "1.5em",
@@ -858,28 +899,44 @@ function CalligraphyTitle({
   text: string;
   cursiveSize?: string;
 }) {
-  const trimmed = text.trim().replace(/[?!.…]+$/, "");
-  const punct = text.trim().slice(trimmed.length);
-  const parts = trimmed.split(/\s+/);
+  const cleaned = text.trim();
+  const parts = cleaned.split(/\s+/);
+
   if (parts.length < 2) {
     return (
       <span className="ns-cursive" style={{ fontSize: cursiveSize, display: "inline-block" }}>
-        {text}
+        {cleaned}
       </span>
     );
   }
-  const tailWord = parts.pop() as string;
-  const head = parts.join(" ");
+
+  const cursiveIdx = pickCursiveIndices(parts);
+
   return (
-    <>
-      <span className="block">{head}</span>
-      <span
-        className="ns-cursive"
-        style={{ fontSize: cursiveSize, display: "inline-block", marginTop: "0.05em" }}
-      >
-        {tailWord}
-        {punct}
-      </span>
-    </>
+    <span style={{ display: "inline" }}>
+      {parts.map((word, i) => {
+        const isCursive = cursiveIdx.has(i);
+        return (
+          <span key={i}>
+            {isCursive ? (
+              <span
+                className="ns-cursive"
+                style={{
+                  fontSize: cursiveSize,
+                  display: "inline-block",
+                  verticalAlign: "baseline",
+                  lineHeight: 0.85,
+                }}
+              >
+                {word}
+              </span>
+            ) : (
+              <span>{word}</span>
+            )}
+            {i < parts.length - 1 ? " " : ""}
+          </span>
+        );
+      })}
+    </span>
   );
 }
