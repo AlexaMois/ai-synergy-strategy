@@ -146,7 +146,7 @@ const NeurostylistPage = () => {
               className="text-[11px] sm:text-xs tracking-[0.4em] uppercase font-medium"
               style={{ color: "rgba(247,237,227,0.78)" }}
             >
-              <span style={{ color: "#F3C7A5" }}>◆</span>&nbsp;&nbsp;НейроСтилист
+              <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;НейроСтилист
             </div>
             <Link
               to="/"
