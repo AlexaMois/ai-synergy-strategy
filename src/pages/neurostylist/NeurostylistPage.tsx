@@ -1044,11 +1044,11 @@ const NeurostylistPage = () => {
               {/* Lookbook row */}
               <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
                 {[
-                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: look1 },
-                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: look2 },
-                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: look3 },
-                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: look4 },
-                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: look5 },
+                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: lookCard1 },
+                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: lookCard2 },
+                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: lookCard3 },
+                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: lookCard4 },
+                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: lookCard5 },
                 ].map((look) => (
                   <article key={look.n} className="ns-look-card">
                     <img
