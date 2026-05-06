@@ -1021,7 +1021,7 @@ const BentoCard = ({
     data-reveal
     onMouseMove={onMove}
     onMouseLeave={onLeave}
-    className={`ns-bento-card group relative rounded-3xl border overflow-hidden flex flex-col justify-between ${className}`}
+    className={`ns-bento-card group relative rounded-2xl border overflow-hidden flex flex-col h-[380px] sm:h-[420px] ${className}`}
     style={{
       background:
         "linear-gradient(180deg, #1A0910 0%, #2A1620 100%)",
@@ -1030,23 +1030,23 @@ const BentoCard = ({
         "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 14px 40px rgba(20,8,18,0.45)",
     }}
   >
-    {/* Editorial image fills the card */}
+    {/* Editorial image fills only the upper portion of the card */}
     {image && (
       <img
         src={image}
         alt={imageAlt || title}
         loading="lazy"
-        className="ns-bento-media absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-        style={{ objectPosition: focal }}
+        className="ns-bento-media absolute inset-x-0 top-0 w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        style={{ objectPosition: focal, height: "62%" }}
       />
     )}
-    {/* Editorial dark gradient overlay for legibility */}
+    {/* Editorial dark gradient overlay for legibility — strong fade into the caption zone */}
     <div
       aria-hidden
       className="ns-bento-overlay absolute inset-0 pointer-events-none"
       style={{
         background:
-          "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0) 45%, rgba(20,10,18,0.55) 100%)",
+          "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0) 38%, rgba(20,10,18,0.85) 62%, rgba(20,10,18,0.96) 100%)",
       }}
     />
     <div className="ns-bento-spot" aria-hidden />
@@ -1054,79 +1054,82 @@ const BentoCard = ({
     {/* Spacer to push editorial caption to the bottom */}
     <div className="flex-1 relative z-10" />
 
-    {/* Horizontal luxury palette swatches (only for Colors card) */}
-    {palette && palette.length > 0 && (
-      <div className="relative z-10 px-6 sm:px-7 mb-3">
-        <div
-          className="flex w-full rounded-md overflow-hidden"
-          style={{
-            height: large ? 22 : 16,
-            boxShadow: "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(247,237,227,0.1)",
-          }}
-        >
-          {palette.map((c, i) => (
-            <div
-              key={i}
-              className="flex-1 transition-transform duration-500 ease-out hover:scale-y-110"
-              style={{ background: c }}
-              aria-hidden
-            />
-          ))}
-        </div>
-      </div>
-    )}
+    {/* Editorial caption block — sits in the lower portion of the card */}
+    <div className="relative z-10 px-6 sm:px-7 pb-6 pt-3 flex flex-col">
+      {/* oversized translucent rose-gold number */}
+      <span
+        aria-hidden
+        className="leading-none select-none block"
+        style={{
+          fontFamily: "'Cormorant Garamond', 'Outfit', serif",
+          fontStyle: "italic",
+          fontWeight: 400,
+          fontSize: "clamp(44px, 4.2vw, 60px)",
+          background:
+            "linear-gradient(135deg, #F5E6D0 0%, #E8B888 35%, #D4956A 70%, #B07A4E 100%)",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          color: "transparent",
+          WebkitTextFillColor: "transparent",
+          filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.6))",
+          letterSpacing: "-0.02em",
+          marginBottom: 10,
+        }}
+      >
+        {num}
+      </span>
 
-    {/* Editorial caption: oversized translucent rose-gold number + label + 1-line description */}
-    <div className="relative z-10 px-6 sm:px-7 pb-5 sm:pb-6 pt-2">
-      <div className="flex items-end gap-3 sm:gap-4">
-        <span
-          aria-hidden
-          className="leading-none select-none shrink-0"
-          style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontWeight: 300,
-            fontSize: large ? "clamp(72px, 7vw, 110px)" : "clamp(36px, 3.4vw, 52px)",
-            background:
-              "linear-gradient(135deg, rgba(245,230,208,0.85) 0%, rgba(212,149,106,0.55) 60%, rgba(212,149,106,0.25) 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-            WebkitTextFillColor: "transparent",
-            opacity: 0.78,
-            filter: "drop-shadow(0 2px 16px rgba(0,0,0,0.55))",
-            letterSpacing: "-0.04em",
-          }}
-        >
-          {num}
-        </span>
-        <div className="flex-1 min-w-0 pb-1">
-          <div
-            className="mb-1"
-            style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontSize: large ? 12 : 10,
-              fontWeight: 500,
-              letterSpacing: "0.32em",
-              textTransform: "uppercase",
-              color: "#D4956A",
-              textShadow: "0 1px 6px rgba(0,0,0,0.6)",
-            }}
-          >
-            {title}
-          </div>
-          <p
-            className={`leading-snug truncate ${large ? "text-base sm:text-[17px]" : "text-[12px] sm:text-[13px]"}`}
-            style={{
-              color: "rgba(251,244,234,0.82)",
-              textShadow: "0 1px 8px rgba(0,0,0,0.7)",
-              fontFamily: "'Outfit', sans-serif",
-              fontWeight: 300,
-            }}
-          >
-            {description}
-          </p>
-        </div>
+      {/* small uppercase label */}
+      <div
+        style={{
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: 11,
+          fontWeight: 500,
+          letterSpacing: "0.32em",
+          textTransform: "uppercase",
+          color: "#D4956A",
+          textShadow: "0 1px 6px rgba(0,0,0,0.7)",
+          marginBottom: 6,
+        }}
+      >
+        {title}
       </div>
+
+      {/* short 1-2 line description */}
+      <p
+        className="text-[13px] sm:text-sm leading-snug"
+        style={{
+          color: "rgba(251,244,234,0.78)",
+          textShadow: "0 1px 8px rgba(0,0,0,0.75)",
+          fontFamily: "'Outfit', sans-serif",
+          fontWeight: 300,
+          maxWidth: "92%",
+        }}
+      >
+        {description}
+      </p>
+
+      {/* Horizontal luxury palette swatches (only for Colors card) — appears under text */}
+      {palette && palette.length > 0 && (
+        <div className="mt-4">
+          <div
+            className="flex w-full rounded-sm overflow-hidden"
+            style={{
+              height: 14,
+              boxShadow: "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(247,237,227,0.1)",
+            }}
+          >
+            {palette.map((c, i) => (
+              <div
+                key={i}
+                className="flex-1 transition-transform duration-500 ease-out hover:scale-y-110"
+                style={{ background: c }}
+                aria-hidden
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   </div>
 );
