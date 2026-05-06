@@ -405,40 +405,14 @@ const NeurostylistPage = () => {
           .ns-mirror::after { display: none; }
         }
 
-        /* ==== Lookbook (section 04) — single bordeaux card ==== */
+        /* ==== Lookbook (section 04) — plain image + white captions ==== */
         .ns-lookbook-wrap {
           width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-        .ns-lookbook-card {
-          position: relative;
-          width: 100%;
           max-width: 1100px;
-          border-radius: 28px;
-          overflow: hidden;
-          padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 48px) clamp(28px, 3.5vw, 44px);
-          background:
-            radial-gradient(ellipse 80% 60% at 50% 0%, rgba(120,40,60,0.55) 0%, transparent 65%),
-            linear-gradient(180deg, #4A1424 0%, #38101C 45%, #2A0B17 100%);
-          border: 1px solid rgba(212,149,106,0.18);
-          box-shadow:
-            0 50px 100px -40px rgba(0,0,0,0.85),
-            0 0 0 1px rgba(247,237,227,0.04) inset,
-            0 0 120px rgba(120,40,60,0.25) inset;
-        }
-        .ns-lookbook-glow {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse 60% 40% at 50% 30%, rgba(212,149,106,0.10) 0%, transparent 70%);
-          pointer-events: none;
-        }
-        .ns-lookbook-image-wrap {
-          position: relative;
-          z-index: 1;
-          width: 100%;
+          margin: 0 auto;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
         }
         .ns-lookbook-image {
           width: 100%;
@@ -448,46 +422,31 @@ const NeurostylistPage = () => {
           filter: drop-shadow(0 30px 50px rgba(0,0,0,0.55));
         }
         .ns-lookbook-captions {
-          position: relative;
-          z-index: 1;
-          margin-top: clamp(20px, 2.5vw, 36px);
+          width: 100%;
+          max-width: 980px;
+          margin-top: clamp(18px, 2vw, 28px);
           display: grid;
           grid-template-columns: repeat(5, 1fr);
           gap: clamp(10px, 1.5vw, 22px);
         }
-        .ns-lookbook-cap {
-          text-align: left;
-        }
+        .ns-lookbook-cap { text-align: left; }
         .ns-lookbook-line {
           width: 28px;
           height: 1px;
           background: rgba(212,149,106,0.75);
           margin-bottom: 10px;
         }
-        .ns-lookbook-label {
-          font-family: 'Outfit', sans-serif;
-          font-size: 10.5px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: rgba(212,149,106,0.95);
-          margin-bottom: 6px;
-        }
         .ns-lookbook-desc {
           font-family: 'Outfit', sans-serif;
           font-size: 12.5px;
           line-height: 1.45;
-          color: rgba(247,237,227,0.82);
+          color: rgba(247,237,227,0.92);
         }
         @media (max-width: 768px) {
-          .ns-lookbook-captions {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-          }
+          .ns-lookbook-captions { grid-template-columns: repeat(2, 1fr); gap: 18px; }
         }
         @media (max-width: 420px) {
-          .ns-lookbook-captions {
-            grid-template-columns: 1fr;
-          }
+          .ns-lookbook-captions { grid-template-columns: 1fr; }
         }
       `}</style>
 
