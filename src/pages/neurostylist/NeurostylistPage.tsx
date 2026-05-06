@@ -760,8 +760,7 @@ const NeurostylistPage = () => {
                   num="05"
                   icon={Gem}
                   title="Аксессуары"
-                  description="Детали, которые завершают."
-                  className="col-span-6 sm:col-span-4 row-span-1"
+                  description="Детали, которые завершают всё."
                   image={cardAccessories}
                   imageAlt="Очки, серьги розового золота, ремень с золотой фурнитурой"
                   focal="55% 60%"
@@ -771,7 +770,6 @@ const NeurostylistPage = () => {
                   icon={Heart}
                   title="Настроение"
                   description="Ощущение, которое ты транслируешь."
-                  className="col-span-6 sm:col-span-4 row-span-1"
                   image={cardMood}
                   imageAlt="Атмосферный fashion-портрет: уверенный взгляд и шёлк"
                   focal="50% 30%"
