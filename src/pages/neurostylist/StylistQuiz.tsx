@@ -191,7 +191,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         color: "hsl(40 30% 95%)",
       }}
     >
-      {/* Scoped CSS reset to defeat global !important h*/p/input rules from index.css */}
+      {/* Scoped CSS reset to defeat global important rules from index.css */}
       <style>{`
         .ns-quiz, .ns-quiz * { box-sizing: border-box; }
         .ns-quiz h1, .ns-quiz h2, .ns-quiz h3, .ns-quiz h4, .ns-quiz h5, .ns-quiz h6 {
