@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { Palette, Shirt, Sparkles, Scissors, Gem, Heart } from "lucide-react";
 import StylistQuiz from "./StylistQuiz";
 import heroImg from "@/assets/neurostylist-hero.jpg";
+import cardColors from "@/assets/neurostylist/card-colors.jpg";
+import cardSilhouette from "@/assets/neurostylist/card-silhouette.jpg";
+import cardMakeup from "@/assets/neurostylist/card-makeup.jpg";
+import cardHair from "@/assets/neurostylist/card-hair.jpg";
+import cardAccessories from "@/assets/neurostylist/card-accessories.jpg";
+import cardMood from "@/assets/neurostylist/card-mood.jpg";
 
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
