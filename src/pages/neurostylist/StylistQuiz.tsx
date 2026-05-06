@@ -383,15 +383,12 @@ const QuestionView = ({
   if (q.type === "welcome") {
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
-        <div className="text-xs tracking-[0.3em] uppercase opacity-60 mb-6">Анкета · 16 шагов</div>
-        <h2
-          className="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight"
-          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-        >
-          {q.title}
+        <div className="ns-eyebrow text-sm opacity-70 mb-5">анкета · 16 шагов</div>
+        <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+          <CalligraphyTitle text={q.title} cursiveSize="1.6em" />
         </h2>
         {q.subtitle && (
-          <p className="mt-6 text-base sm:text-lg opacity-75 leading-relaxed max-w-xl mx-auto">
+          <p className="ns-eyebrow mt-7 text-base sm:text-lg opacity-80 leading-relaxed max-w-xl mx-auto">
             {q.subtitle}
           </p>
         )}
@@ -413,14 +410,11 @@ const QuestionView = ({
 
   return (
     <div className="animate-fade-in">
-      <h2
-        className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-        style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-      >
-        {q.title}
+      <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
+        <CalligraphyTitle text={q.title} cursiveSize="1.5em" />
       </h2>
       {q.subtitle && (
-        <p className="mt-3 text-base sm:text-lg opacity-70 leading-relaxed">{q.subtitle}</p>
+        <p className="ns-eyebrow mt-3 text-base sm:text-lg opacity-75 leading-relaxed">{q.subtitle}</p>
       )}
 
       <div className="mt-8 sm:mt-10">
