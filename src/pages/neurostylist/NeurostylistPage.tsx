@@ -10,11 +10,6 @@ import cardMakeup from "@/assets/neurostylist/card-makeup.jpg";
 import cardHair from "@/assets/neurostylist/card-hair.jpg";
 import cardAccessories from "@/assets/neurostylist/card-accessories.jpg";
 import cardMood from "@/assets/neurostylist/card-mood.jpg";
-import look1 from "@/assets/neurostylist/look-1.jpg";
-import look2 from "@/assets/neurostylist/look-2.jpg";
-import look3 from "@/assets/neurostylist/look-3.jpg";
-import look4 from "@/assets/neurostylist/look-4.jpg";
-import look5 from "@/assets/neurostylist/look-5.jpg";
 import lookCard1 from "@/assets/neurostylist/look-card-1.jpg";
 import lookCard2 from "@/assets/neurostylist/look-card-2.jpg";
 import lookCard3 from "@/assets/neurostylist/look-card-3.jpg";
@@ -412,7 +407,7 @@ const NeurostylistPage = () => {
         /* ==== Lookbook cards (section 04) ==== */
         .ns-look-card {
           position: relative;
-          aspect-ratio: 3 / 5.3;
+          aspect-ratio: 15 / 26;
           border-radius: 18px;
           overflow: hidden;
           background: #1a0910;
@@ -429,13 +424,14 @@ const NeurostylistPage = () => {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
           object-position: center bottom;
+          display: block;
         }
         .ns-look-tone {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(26,9,16,0) 0%, rgba(26,9,16,0) 60%, rgba(26,9,16,0.85) 82%, rgba(26,9,16,1) 100%);
+          background: linear-gradient(180deg, rgba(26,9,16,0) 0%, rgba(26,9,16,0.08) 52%, rgba(26,9,16,0.74) 84%, rgba(26,9,16,0.96) 100%);
           mix-blend-mode: normal;
           pointer-events: none;
         }
