@@ -307,10 +307,10 @@ export const QUIZ_QUESTIONS: Question[] = [
   {
     id: "photos",
     type: "photo",
-    title: "Фото сделают разбор точнее",
-    subtitle: "Загрузи хотя бы одно фото — это сильно поможет",
-    required: true,
-    minPhotos: 1,
+    title: "Фото помогают собрать образ точнее",
+    subtitle: "Можно загрузить здесь, прислать ссылку или отправить отдельно",
+    required: false,
+    minPhotos: 0,
     slots: [
       { id: "face", label: "Фото лица" },
       { id: "full", label: "Фото в полный рост" },
