@@ -184,13 +184,53 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col"
+      className="ns-quiz fixed inset-0 z-[100] flex flex-col"
       style={{
         background:
           "radial-gradient(ellipse at top right, hsl(290 30% 18%) 0%, hsl(295 35% 12%) 50%, hsl(300 20% 8%) 100%)",
         color: "hsl(40 30% 95%)",
       }}
     >
+      {/* Scoped CSS reset to defeat global important rules from index.css */}
+      <style>{`
+        .ns-quiz, .ns-quiz * { box-sizing: border-box; }
+        .ns-quiz h1, .ns-quiz h2, .ns-quiz h3, .ns-quiz h4, .ns-quiz h5, .ns-quiz h6 {
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          color: inherit !important;
+          margin: 0 !important;
+        }
+        .ns-quiz p { color: inherit; font-size: inherit; line-height: inherit; }
+        .ns-quiz input::placeholder,
+        .ns-quiz textarea::placeholder { color: hsl(40 30% 95% / 0.4); }
+        .ns-quiz .ns-serif {
+          font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+        }
+        .ns-quiz .ns-cursive {
+          font-family: 'Pinyon Script', 'Allura', 'Snell Roundhand', cursive;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 0.005em;
+          background-image: linear-gradient(135deg, #F8E8D0 0%, #F0C998 35%, #D4956A 70%, #B17347 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          padding: 0.05em 0.06em 0.18em;
+          line-height: 1.05;
+          filter: drop-shadow(0 2px 18px rgba(212,149,106,0.35));
+        }
+        .ns-quiz .ns-eyebrow {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-style: italic;
+          letter-spacing: 0.04em;
+        }
+      `}</style>
+
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full opacity-20 blur-[120px]"
@@ -343,15 +383,12 @@ const QuestionView = ({
   if (q.type === "welcome") {
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
-        <div className="text-xs tracking-[0.3em] uppercase opacity-60 mb-6">Анкета · 16 шагов</div>
-        <h2
-          className="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight"
-          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-        >
-          {q.title}
+        <div className="ns-eyebrow text-sm opacity-70 mb-5">анкета · 16 шагов</div>
+        <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+          <CalligraphyTitle text={q.title} cursiveSize="1.6em" />
         </h2>
         {q.subtitle && (
-          <p className="mt-6 text-base sm:text-lg opacity-75 leading-relaxed max-w-xl mx-auto">
+          <p className="ns-eyebrow mt-7 text-base sm:text-lg opacity-80 leading-relaxed max-w-xl mx-auto">
             {q.subtitle}
           </p>
         )}
@@ -373,14 +410,11 @@ const QuestionView = ({
 
   return (
     <div className="animate-fade-in">
-      <h2
-        className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-        style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-      >
-        {q.title}
+      <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
+        <CalligraphyTitle text={q.title} cursiveSize="1.5em" />
       </h2>
       {q.subtitle && (
-        <p className="mt-3 text-base sm:text-lg opacity-70 leading-relaxed">{q.subtitle}</p>
+        <p className="ns-eyebrow mt-3 text-base sm:text-lg opacity-75 leading-relaxed">{q.subtitle}</p>
       )}
 
       <div className="mt-8 sm:mt-10">
@@ -793,13 +827,10 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
     >
       <Check className="w-10 h-10" style={{ color: "hsl(300 20% 8%)" }} strokeWidth={3} />
     </div>
-    <h2
-      className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-      style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-    >
-      Твои ответы сохранены
+    <h2 className="ns-serif text-3xl sm:text-4xl md:text-5xl leading-[1.1] tracking-tight">
+      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.5em" />
     </h2>
-    <p className="mt-5 text-base sm:text-lg opacity-75 max-w-lg mx-auto leading-relaxed">
+    <p className="ns-eyebrow mt-5 text-base sm:text-lg opacity-80 max-w-lg mx-auto leading-relaxed">
       Александра соберёт стиль-разбор на основе твоих ответов
     </p>
     <button
@@ -818,3 +849,37 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
 );
 
 export default StylistQuiz;
+
+// ===== Calligraphy title — last word in cursive (Pinyon Script) =====
+function CalligraphyTitle({
+  text,
+  cursiveSize = "1.5em",
+}: {
+  text: string;
+  cursiveSize?: string;
+}) {
+  const trimmed = text.trim().replace(/[?!.…]+$/, "");
+  const punct = text.trim().slice(trimmed.length);
+  const parts = trimmed.split(/\s+/);
+  if (parts.length < 2) {
+    return (
+      <span className="ns-cursive" style={{ fontSize: cursiveSize, display: "inline-block" }}>
+        {text}
+      </span>
+    );
+  }
+  const tailWord = parts.pop() as string;
+  const head = parts.join(" ");
+  return (
+    <>
+      <span className="block">{head}</span>
+      <span
+        className="ns-cursive"
+        style={{ fontSize: cursiveSize, display: "inline-block", marginTop: "0.05em" }}
+      >
+        {tailWord}
+        {punct}
+      </span>
+    </>
+  );
+}
