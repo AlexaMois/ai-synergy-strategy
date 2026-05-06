@@ -175,9 +175,46 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         },
       });
 
-      if (error || (data && (data as { error?: string }).error)) {
-        const msg = error?.message || (data as { error?: string })?.error || "Не удалось отправить";
-        toast.error(msg);
+      // Try to extract structured error body even on non-2xx (FunctionsHttpError)
+      let errBody: { error?: string; details?: Record<string, string[]> } | null = null;
+      if (error && typeof (error as { context?: Response }).context?.json === "function") {
+        try {
+          errBody = await (error as { context: Response }).context.clone().json();
+        } catch {
+          /* ignore */
+        }
+      }
+      const dataErr = data && (data as { error?: string }).error
+        ? (data as { error?: string; details?: Record<string, string[]> })
+        : null;
+      const failure = errBody || dataErr;
+
+      if (error || failure) {
+        const fieldLabels: Record<string, string> = {
+          name: "Имя",
+          contact: "Контакт",
+          contact_type: "Тип контакта",
+          answers: "Ответы анкеты",
+          photos: "Фото",
+          website: "Скрытое поле",
+        };
+        const details = failure?.details;
+        if (details && typeof details === "object") {
+          const lines = Object.entries(details)
+            .map(([field, msgs]) => `• ${fieldLabels[field] || field}: ${(msgs as string[]).join(", ")}`)
+            .join("\n");
+          toast.error(failure?.error || "Проверь данные анкеты", {
+            description: lines || undefined,
+            duration: 8000,
+          });
+        } else {
+          const msg =
+            failure?.error ||
+            error?.message ||
+            "Не удалось отправить, попробуй ещё раз";
+          toast.error(msg);
+        }
+        console.error("save-stylist-lead failed:", { error, failure });
         setSubmitting(false);
         return;
       }
