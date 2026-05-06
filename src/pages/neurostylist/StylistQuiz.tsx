@@ -947,8 +947,6 @@ function CalligraphyTitle({
                 style={{
                   fontSize: cursiveSize,
                   display: "inline-block",
-                  verticalAlign: "baseline",
-                  lineHeight: 0.85,
                 }}
               >
                 {word}
