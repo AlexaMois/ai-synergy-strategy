@@ -215,19 +215,42 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           font-weight: 400;
           font-style: normal;
           letter-spacing: 0.005em;
-          background-image: linear-gradient(135deg, #F8E8D0 0%, #F0C998 35%, #D4956A 70%, #B17347 100%);
+          background-image: linear-gradient(135deg, #FFF1DB 0%, #F6D6A8 30%, #E5B584 65%, #C68B5C 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
           -webkit-text-fill-color: transparent;
-          padding: 0.05em 0.06em 0.18em;
-          line-height: 1.05;
-          filter: drop-shadow(0 2px 18px rgba(212,149,106,0.35));
+          padding: 0 0.04em 0.05em;
+          line-height: 0.9;
+          filter: drop-shadow(0 2px 14px rgba(246,214,168,0.45));
         }
         .ns-quiz .ns-eyebrow {
           font-family: 'Cormorant Garamond', Georgia, serif;
           font-style: italic;
           letter-spacing: 0.04em;
+        }
+        /* Унифицированная типографика заголовков квиза.
+           Используем role="heading" + div, чтобы обойти глобальный !important reset на h1-h6. */
+        .ns-quiz .ns-title {
+          font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          line-height: 1.08;
+          color: hsl(40 30% 96%);
+          margin: 0;
+        }
+        .ns-quiz .ns-title--lg { font-size: clamp(34px, 6.2vw, 64px); }
+        .ns-quiz .ns-title--md { font-size: clamp(28px, 5vw, 52px); }
+        .ns-quiz .ns-subtitle {
+          font-size: clamp(16px, 2.1vw, 22px);
+          line-height: 1.55;
+          color: hsl(40 30% 95% / 0.82);
+        }
+        /* Курсив должен «сидеть» на той же базовой линии, что и серифный текст,
+           но визуально иметь схожую высоту строчных. Pinyon Script имеет очень
+           маленький x-height — компенсируем em-размером и vertical-align. */
+        .ns-quiz .ns-cursive {
+          vertical-align: -0.08em;
         }
       `}</style>
 
