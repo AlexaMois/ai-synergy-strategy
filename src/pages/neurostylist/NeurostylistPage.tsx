@@ -234,13 +234,13 @@ const NeurostylistPage = () => {
                   <span
                     style={{
                       display: "block",
-                      fontFamily: "'Alex Brush', cursive",
+                      fontFamily: "'Italianno', cursive",
                       fontWeight: 400,
-                      fontSize: "clamp(72px, 11vw, 148px)",
-                      lineHeight: 1.0,
+                      fontSize: "clamp(80px, 12vw, 150px)",
+                      lineHeight: 0.95,
                       letterSpacing: "0.01em",
                       backgroundImage:
-                        "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #A0622A 100%)",
+                        "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
@@ -361,10 +361,10 @@ const NeurostylistPage = () => {
                     <br />
                     <span
                       style={{
-                        fontFamily: "'Alex Brush', cursive",
+                        fontFamily: "'Italianno', cursive",
                         fontWeight: 400,
                         fontSize: "clamp(40px, 5vw, 72px)",
-                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 50%, #A0622A 100%)",
+                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         color: "transparent",
@@ -457,15 +457,12 @@ const NeurostylistPage = () => {
                   <br />
                   <span
                     style={{
-                      fontFamily: "'Alex Brush', cursive",
-                      fontWeight: 400,
-                      fontSize: "clamp(40px, 5vw, 72px)",
-                      backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 50%, #A0622A 100%)",
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                      WebkitTextFillColor: "transparent",
-                      lineHeight: 1.0,
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "clamp(28px, 3.5vw, 52px)",
+                      color: "#D4956A",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.1,
                     }}
                   >
                     а образ начинает складываться
@@ -528,10 +525,10 @@ const NeurostylistPage = () => {
                 <br />
                 <span
                   style={{
-                    fontFamily: "'Alex Brush', cursive",
+                    fontFamily: "'Italianno', cursive",
                     fontWeight: 400,
-                    fontSize: "clamp(52px, 7vw, 96px)",
-                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #A0622A 100%)",
+                    fontSize: "clamp(52px, 7vw, 100px)",
+                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #C07040 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
