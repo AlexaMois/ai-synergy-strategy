@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Palette, Shirt, Sparkles, Scissors, Gem, Heart } from "lucide-react";
@@ -8,6 +8,123 @@ import heroImg from "@/assets/neurostylist-hero.jpg";
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const openQuiz = () => setQuizOpen(true);
+
+  // -------- Scroll progress + active section label ----------
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState<"01" | "02" | "03" | "04">("01");
+  const sectionRefs = {
+    s1: useRef<HTMLElement | null>(null),
+    s2: useRef<HTMLElement | null>(null),
+    s3: useRef<HTMLElement | null>(null),
+    s4: useRef<HTMLElement | null>(null),
+  };
+
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setScrollProgress(max > 0 ? Math.min(1, Math.max(0, h.scrollTop / max)) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const map = new Map<Element, "01" | "02" | "03" | "04">();
+    if (sectionRefs.s1.current) map.set(sectionRefs.s1.current, "01");
+    if (sectionRefs.s2.current) map.set(sectionRefs.s2.current, "02");
+    if (sectionRefs.s3.current) map.set(sectionRefs.s3.current, "03");
+    if (sectionRefs.s4.current) map.set(sectionRefs.s4.current, "04");
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const id = map.get(visible.target);
+          if (id) setActiveSection(id);
+        }
+      },
+      { threshold: [0.2, 0.5, 0.8] }
+    );
+    map.forEach((_, el) => io.observe(el));
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // -------- Reveal-on-scroll for [data-reveal] ----------
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-revealed");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -60px 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // -------- Hero mirror parallax + cursor light ----------
+  const heroRef = useRef<HTMLElement | null>(null);
+  const mirrorRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const hero = heroRef.current;
+    const mirror = mirrorRef.current;
+    if (!hero || !mirror) return;
+    let raf = 0;
+    let tx = 0, ty = 0, rx = 0, ry = 0;
+    let targetTx = 0, targetTy = 0, targetRx = 0, targetRy = 0;
+    const onMove = (e: MouseEvent) => {
+      const r = hero.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5; // -0.5..0.5
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      targetTx = px * 18;
+      targetTy = py * 14;
+      targetRy = px * 5;
+      targetRx = -py * 4;
+      const mr = mirror.getBoundingClientRect();
+      const mx = ((e.clientX - mr.left) / mr.width) * 100;
+      const my = ((e.clientY - mr.top) / mr.height) * 100;
+      mirror.style.setProperty("--mx", `${mx}%`);
+      mirror.style.setProperty("--my", `${my}%`);
+    };
+    const onLeave = () => {
+      targetTx = 0; targetTy = 0; targetRx = 0; targetRy = 0;
+    };
+    const tick = () => {
+      tx += (targetTx - tx) * 0.08;
+      ty += (targetTy - ty) * 0.08;
+      rx += (targetRx - rx) * 0.08;
+      ry += (targetRy - ry) * 0.08;
+      mirror.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      raf = requestAnimationFrame(tick);
+    };
+    tick();
+    hero.addEventListener("mousemove", onMove);
+    hero.addEventListener("mouseleave", onLeave);
+    return () => {
+      cancelAnimationFrame(raf);
+      hero.removeEventListener("mousemove", onMove);
+      hero.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  const sectionLabels: Record<string, string> = useMemo(
+    () => ({
+      "01": "ВВЕДЕНИЕ",
+      "02": "ДЕТАЛИ",
+      "03": "ПРОЦЕСС",
+      "04": "ПРИГЛАШЕНИЕ",
+    }),
+    []
+  );
 
   return (
     <>
