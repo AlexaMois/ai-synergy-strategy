@@ -436,7 +436,8 @@ const NeurostylistPage = () => {
                   className="hidden md:block absolute top-[38px] left-[8%] right-[8%] h-px"
                   style={{
                     background:
-                      "linear-gradient(90deg, transparent 0%, rgba(243,199,165,0.4) 20%, rgba(199,125,255,0.4) 50%, rgba(243,199,165,0.4) 80%, transparent 100%)",
+                      "linear-gradient(90deg, transparent 0%, #E8956A 20%, #F3C7A5 50%, #E8956A 80%, transparent 100%)",
+                    opacity: 0.5,
                   }}
                 />
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-6 relative">
