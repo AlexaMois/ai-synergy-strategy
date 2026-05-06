@@ -443,10 +443,10 @@ const NeurostylistPage = () => {
           color: rgba(247,237,227,0.92);
         }
         @media (max-width: 768px) {
-          .ns-lookbook-captions { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+          .ns-lookbook-captions { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: -40px; }
         }
         @media (max-width: 420px) {
-          .ns-lookbook-captions { grid-template-columns: 1fr; }
+          .ns-lookbook-captions { grid-template-columns: 1fr; gap: 12px; margin-top: -40px; }
         }
       `}</style>
 
