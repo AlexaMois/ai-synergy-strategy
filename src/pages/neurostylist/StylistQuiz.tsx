@@ -827,10 +827,10 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
     >
       <Check className="w-10 h-10" style={{ color: "hsl(300 20% 8%)" }} strokeWidth={3} />
     </div>
-    <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
-      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="1.55em" />
-    </h2>
-    <p className="ns-eyebrow mt-6 text-lg sm:text-xl md:text-2xl opacity-85 max-w-lg mx-auto leading-relaxed">
+    <div role="heading" aria-level={1} className="ns-title ns-title--md ns-serif">
+      <CalligraphyTitle text="Твои ответы сохранены" cursiveSize="2em" />
+    </div>
+    <p className="ns-eyebrow ns-subtitle mt-6 sm:mt-7 opacity-85 max-w-lg mx-auto leading-relaxed">
       Александра соберёт стиль-разбор на основе твоих ответов
     </p>
     <button
