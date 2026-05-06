@@ -206,32 +206,50 @@ const NeurostylistPage = () => {
                 </div>
 
                 <h1
-                  className="ns-fade-up ns-delay-1 leading-[0.98] tracking-tight"
-                  style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "clamp(44px, 7.2vw, 104px)",
-                    fontWeight: 400,
-                  }}
-                >
-                  <span style={{ color: "#FBF4EA" }}>Собери образ,</span>
-                  <br />
-                  <span style={{ color: "#F3C7A5", fontStyle: "italic", fontWeight: 300 }}>
-                    в котором ты узнаёшь&nbsp;себя
-                  </span>
-                  <br />
+                <h1 className="ns-fade-up ns-delay-1 leading-[1.05]">
                   <span
                     style={{
+                      display: "block",
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "clamp(28px, 3.5vw, 52px)",
+                      color: "#F7EDE3",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    Собери образ,
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 200,
+                      fontSize: "clamp(24px, 3vw, 44px)",
+                      color: "#F3C7A5",
+                      letterSpacing: 0,
+                      marginTop: "0.4em",
+                    }}
+                  >
+                    в котором ты узнаёшь&nbsp;себя
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Alex Brush', cursive",
+                      fontWeight: 400,
+                      fontSize: "clamp(72px, 11vw, 148px)",
+                      lineHeight: 1.0,
+                      letterSpacing: "0.01em",
                       backgroundImage:
-                        "linear-gradient(135deg, #FFD4A8 0%, #F3C7A5 30%, #E8956A 65%, #C49DFF 100%)",
+                        "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
                       WebkitTextFillColor: "transparent",
-                      fontSize: "clamp(56px, 9vw, 132px)",
-                      letterSpacing: "-0.02em",
+                      marginTop: "0.15em",
                     }}
                   >
-                    сильнее.
+                    сильнее
                   </span>
                 </h1>
 
