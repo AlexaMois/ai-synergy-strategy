@@ -948,6 +948,10 @@ const BentoCard = ({
   description,
   className = "",
   large = false,
+  image,
+  imageAlt,
+  palette,
+  focal = "center",
 }: {
   num: string;
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
@@ -955,6 +959,10 @@ const BentoCard = ({
   description: string;
   className?: string;
   large?: boolean;
+  image?: string;
+  imageAlt?: string;
+  palette?: string[];
+  focal?: string;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const supportsHoverRef = useRef<boolean>(true);
@@ -983,25 +991,37 @@ const BentoCard = ({
     data-reveal
     onMouseMove={onMove}
     onMouseLeave={onLeave}
-    className={`ns-bento-card relative rounded-3xl p-6 sm:p-7 border overflow-hidden flex flex-col justify-between ${className}`}
+    className={`ns-bento-card group relative rounded-3xl border overflow-hidden flex flex-col justify-between ${className}`}
     style={{
       background:
-        "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)",
+        "linear-gradient(180deg, #1A0910 0%, #2A1620 100%)",
       borderColor: "rgba(212,149,106,0.18)",
-      backdropFilter: "blur(18px)",
-      WebkitBackdropFilter: "blur(18px)",
       boxShadow:
         "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 14px 40px rgba(20,8,18,0.45)",
     }}
   >
-    <div className="ns-bento-spot" aria-hidden />
-    {/* inner glow */}
+    {/* Editorial image fills the card */}
+    {image && (
+      <img
+        src={image}
+        alt={imageAlt || title}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        style={{ objectPosition: focal }}
+      />
+    )}
+    {/* Editorial dark gradient overlay for legibility */}
     <div
       aria-hidden
-      className="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-25 blur-[60px] pointer-events-none"
-      style={{ background: "#D4956A" }}
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(20,8,18,0.55) 0%, rgba(20,8,18,0.15) 35%, rgba(20,8,18,0.25) 60%, rgba(20,8,18,0.85) 100%)",
+      }}
     />
-    <div className="relative flex items-start justify-between">
+    <div className="ns-bento-spot" aria-hidden />
+
+    <div className="relative flex items-start justify-between p-6 sm:p-7">
       <span
         style={{
           fontFamily: "'Outfit', sans-serif",
@@ -1013,6 +1033,7 @@ const BentoCard = ({
           backgroundClip: "text",
           color: "transparent",
           WebkitTextFillColor: "transparent",
+          textShadow: "0 2px 12px rgba(0,0,0,0.5)",
         }}
       >
         {num}
@@ -1020,27 +1041,53 @@ const BentoCard = ({
       <div
         className="w-9 h-9 rounded-xl flex items-center justify-center"
         style={{
-          background: "rgba(212,149,106,0.12)",
-          border: "1px solid rgba(212,149,106,0.3)",
+          background: "rgba(20,8,18,0.55)",
+          border: "1px solid rgba(212,149,106,0.45)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         <Icon className="ns-bento-icon w-4 h-4" style={{ color: "#D4956A", transition: "color 0.4s" }} />
       </div>
     </div>
-    <div className="relative">
+
+    {/* Horizontal luxury palette swatches (only for Colors card) */}
+    {palette && palette.length > 0 && (
+      <div className="relative px-6 sm:px-7 mb-3">
+        <div
+          className="flex w-full rounded-md overflow-hidden"
+          style={{
+            height: large ? 26 : 18,
+            boxShadow: "0 6px 20px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(247,237,227,0.08)",
+          }}
+        >
+          {palette.map((c, i) => (
+            <div
+              key={i}
+              className="flex-1 transition-transform duration-500 ease-out hover:scale-y-110"
+              style={{ background: c }}
+              aria-hidden
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div className="relative p-6 sm:p-7 pt-0">
       <h3
         className={`tracking-tight ${large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"}`}
         style={{
           color: "#FBF4EA",
           fontFamily: "'Outfit', sans-serif",
           fontWeight: large ? 400 : 600,
+          textShadow: "0 2px 12px rgba(0,0,0,0.55)",
         }}
       >
         {title}
       </h3>
       <p
         className={`mt-2 leading-relaxed ${large ? "text-base max-w-xs" : "text-sm"}`}
-        style={{ color: "rgba(247,237,227,0.6)" }}
+        style={{ color: "rgba(247,237,227,0.78)", textShadow: "0 1px 8px rgba(0,0,0,0.55)" }}
       >
         {description}
       </p>
