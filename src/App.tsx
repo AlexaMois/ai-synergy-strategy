@@ -55,6 +55,7 @@ const Redirect = lazy(() => import("./pages/Redirect"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PortalPage = lazy(() => import("./pages/portal/PortalPage"));
 const PortalAdminPage = lazy(() => import("./pages/portal/PortalAdminPage"));
+const NeurostylistPage = lazy(() => import("./pages/neurostylist/NeurostylistPage"));
 
 const queryClient = new QueryClient();
 
@@ -160,7 +161,10 @@ const AppContent = () => {
           {/* Portal */}
           <Route path="/portal" element={<PortalPage />} />
           <Route path="/portal/admin" element={<PortalAdminPage />} />
-          
+
+          {/* Neurostylist (standalone) */}
+          <Route path="/neurostylist" element={<NeurostylistPage />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

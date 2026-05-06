@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.submit-idea]
 verify_jwt = false
+
+[functions.save-stylist-lead]
+verify_jwt = false

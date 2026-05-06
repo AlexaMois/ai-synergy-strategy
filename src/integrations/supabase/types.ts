@@ -228,6 +228,39 @@ export type Database = {
           },
         ]
       }
+      stylist_leads: {
+        Row: {
+          answers: Json
+          contact: string
+          contact_type: string
+          created_at: string
+          id: string
+          lead_id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          contact: string
+          contact_type?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          contact?: string
+          contact_type?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
