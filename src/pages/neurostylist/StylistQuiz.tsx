@@ -3,7 +3,6 @@ import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2 } f
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { QUIZ_QUESTIONS, type Question, type FieldDef, type PhotoSlot } from "./quizConfig";
-import silhouetteUrl from "@/assets/stylist-silhouette.png";
 
 interface StylistQuizProps {
   onClose: () => void;
@@ -186,7 +185,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   return (
     <div
       className="ns-quiz fixed inset-0 z-[100] flex flex-col"
-      data-screen={done ? "final" : current?.type === "welcome" ? "welcome" : "question"}
       style={{
         background:
           "radial-gradient(ellipse at top right, hsl(290 30% 18%) 0%, hsl(295 35% 12%) 50%, hsl(300 20% 8%) 100%)",
@@ -253,57 +251,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         .ns-quiz .ns-cursive {
           vertical-align: -0.04em;
         }
-        /* Декоративный силуэт-«шёпот» — премиальный визуальный намёк.
-           Сатиновое платье цвета rose gold, прижато к правому краю,
-           растворяется в фон по горизонтали и тонировано под палитру. */
-        .ns-quiz .ns-silhouette {
-          position: absolute;
-          right: -6%;
-          bottom: 0;
-          top: 0;
-          width: clamp(320px, 42vw, 620px);
-          background-image: var(--ns-silhouette-url);
-          background-repeat: no-repeat;
-          background-position: right bottom;
-          background-size: contain;
-          /* Soft-light даёт лёгкий золотистый оттенок без деталей лица.
-             Лёгкий blur размывает черты, оставляя силуэт и текстуру ткани. */
-          mix-blend-mode: soft-light;
-          filter: blur(2.5px) saturate(1.4) brightness(1.15) contrast(0.95);
-          -webkit-mask-image: linear-gradient(to left, black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.15) 70%, transparent 95%);
-          mask-image: linear-gradient(to left, black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.15) 70%, transparent 95%);
-          opacity: 0;
-          transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-          pointer-events: none;
-          z-index: 1;
-          will-change: opacity;
-        }
-        /* Разная интенсивность по типу экрана: ярче на welcome/final, тише на вопросах */
-        .ns-quiz[data-screen="welcome"]  .ns-silhouette { opacity: 0.55; }
-        .ns-quiz[data-screen="final"]    .ns-silhouette { opacity: 0.45; }
-        .ns-quiz[data-screen="question"] .ns-silhouette { opacity: 0.28; }
-        /* Мягкий «занавес» слева от силуэта, чтобы текст оставался читаемым */
-        .ns-quiz .ns-silhouette-veil {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 2;
-          background: linear-gradient(
-            to right,
-            hsl(295 35% 12% / 0.45) 0%,
-            hsl(295 35% 12% / 0.15) 40%,
-            transparent 70%
-          );
-        }
-        /* На мобильных скрываем — силуэт мешает компактной вёрстке */
-        @media (max-width: 767px) {
-          .ns-quiz .ns-silhouette,
-          .ns-quiz .ns-silhouette-veil { display: none; }
-        }
-        /* Уважаем prefers-reduced-motion — без fade */
-        @media (prefers-reduced-motion: reduce) {
-          .ns-quiz .ns-silhouette { transition: none; }
-        }
       `}</style>
 
       <div
@@ -316,13 +263,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         className="pointer-events-none absolute -bottom-40 -left-32 w-[420px] h-[420px] rounded-full opacity-15 blur-[120px]"
         style={{ background: "hsl(270 40% 65%)" }}
       />
-      {/* Силуэт + затемняющий занавес — порядок важен: сначала картинка, потом veil поверх */}
-      <div
-        aria-hidden
-        className="ns-silhouette"
-        style={{ ["--ns-silhouette-url" as string]: `url(${silhouetteUrl})` }}
-      />
-      <div aria-hidden className="ns-silhouette-veil" />
 
       <div className="relative z-10 flex items-center justify-between px-5 sm:px-10 py-5">
         <div className="text-base tracking-[0.2em] uppercase opacity-70">НейроСтилист</div>
