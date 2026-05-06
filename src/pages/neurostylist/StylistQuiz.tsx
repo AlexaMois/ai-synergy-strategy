@@ -384,11 +384,11 @@ const QuestionView = ({
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
         <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · 16 шагов</div>
-        <h2 className="ns-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight">
-          <CalligraphyTitle text={q.title} cursiveSize="1.7em" />
-        </h2>
+        <div role="heading" aria-level={1} className="ns-title ns-title--lg ns-serif">
+          <CalligraphyTitle text={q.title} cursiveSize="2.05em" />
+        </div>
         {q.subtitle && (
-          <p className="ns-eyebrow mt-8 text-lg sm:text-xl md:text-2xl opacity-85 leading-relaxed max-w-xl mx-auto">
+          <p className="ns-eyebrow ns-subtitle mt-7 sm:mt-8 opacity-85 leading-relaxed max-w-xl mx-auto">
             {q.subtitle}
           </p>
         )}
@@ -410,11 +410,11 @@ const QuestionView = ({
 
   return (
     <div className="animate-fade-in">
-      <h2 className="ns-serif text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
-        <CalligraphyTitle text={q.title} cursiveSize="1.55em" />
-      </h2>
+      <div role="heading" aria-level={2} className="ns-title ns-title--md ns-serif">
+        <CalligraphyTitle text={q.title} cursiveSize="2em" />
+      </div>
       {q.subtitle && (
-        <p className="ns-eyebrow mt-5 text-lg sm:text-xl md:text-2xl opacity-80 leading-relaxed">{q.subtitle}</p>
+        <p className="ns-eyebrow ns-subtitle mt-5 sm:mt-6 opacity-80 leading-relaxed">{q.subtitle}</p>
       )}
 
       <div className="mt-8 sm:mt-10">
