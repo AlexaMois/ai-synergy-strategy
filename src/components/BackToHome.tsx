@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 const BackToHome = () => {
   const location = useLocation();
   
-  // Показываем только на внутренних страницах
-  if (location.pathname === '/') return null;
+  // Скрываем на главной и на standalone-лендинге /neurostylist
+  if (location.pathname === '/' || location.pathname.startsWith('/neurostylist')) return null;
   
   return (
     <Link

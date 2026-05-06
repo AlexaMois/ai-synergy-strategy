@@ -83,7 +83,7 @@ const NeurostylistPage = () => {
         }
         .ns-bento-card:hover .ns-bento-icon { color: #D4956A !important; }
         .ns-cta {
-          background-image: linear-gradient(135deg, #F5E6D0 0%, #F5E6D0 35%, #D4956A 70%, #D4956A 100%);
+          background-image: linear-gradient(135deg, #F5E6D0 0%, #D4956A 40%, #C07040 70%, #D4956A 100%);
           background-size: 200% 100%;
           transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s, background-position 0.8s;
         }
@@ -682,9 +682,9 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
       className="relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
-          "radial-gradient(circle, #F5E6D0 0%, #D4956A 100%)",
+          "radial-gradient(circle at 35% 35%, #F5E6D0 0%, #D4956A 45%, #8B4E1E 100%)",
         boxShadow:
-          "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 30px rgba(196,123,69,0.55), 0 8px 24px rgba(42,14,30,0.5)",
+          "0 0 0 1px rgba(212,149,106,0.4) inset, 0 0 30px rgba(196,123,69,0.5), 0 0 60px rgba(196,123,69,0.2), 0 8px 24px rgba(42,14,30,0.5)",
       }}
     >
       <span
