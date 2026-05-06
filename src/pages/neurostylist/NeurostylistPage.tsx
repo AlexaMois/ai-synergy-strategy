@@ -281,6 +281,11 @@ const NeurostylistPage = () => {
         /* ---- Cursive accent reveal: soft fade-up (compatible with gradient-text) ---- */
         .ns-cursive-accent {
           display: inline-block;
+          background-image: linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
           opacity: 0;
           transform: translateY(28px);
           transition: opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1);
