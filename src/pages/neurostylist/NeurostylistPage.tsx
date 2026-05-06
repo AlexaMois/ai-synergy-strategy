@@ -375,6 +375,20 @@ const NeurostylistPage = () => {
           .ns-split .ns-letter { opacity: 1 !important; transform: none !important; }
           .ns-flow-line { stroke-dashoffset: 0 !important; }
         }
+
+        /* ---- Touch-устройства: показываем детали шагов всегда,
+               отключаем hover-залипание Bento/CTA, убираем magnetic. ---- */
+        @media (hover: none), (pointer: coarse) {
+          .ns-process-step .ns-step-detail { opacity: 1; transform: none; }
+          .ns-bento-card:hover {
+            transform: none !important;
+          }
+          .ns-cta:hover {
+            transform: none !important;
+          }
+          .ns-bento-card .ns-bento-spot { display: none; }
+          .ns-mirror::after { display: none; }
+        }
       `}</style>
 
       <div
