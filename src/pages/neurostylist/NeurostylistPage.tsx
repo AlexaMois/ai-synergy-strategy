@@ -407,10 +407,10 @@ const NeurostylistPage = () => {
         /* ==== Lookbook cards (section 04) ==== */
         .ns-look-card {
           position: relative;
-          aspect-ratio: 3 / 5.2;
+          aspect-ratio: 3 / 5;
           border-radius: 18px;
           overflow: hidden;
-          background: linear-gradient(180deg, #2A1422 0%, #1A0910 100%);
+          background: #1A0910;
           border: 1px solid rgba(247,237,227,0.08);
           box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
           transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
@@ -424,8 +424,8 @@ const NeurostylistPage = () => {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: contain;
-          object-position: center bottom;
+          object-fit: cover;
+          object-position: center 20%;
           /* tone the bright studio whites into the plum atmosphere */
           filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
           mix-blend-mode: luminosity;
