@@ -87,6 +87,10 @@ const NeurostylistPage = () => {
   const heroRef = useRef<HTMLElement | null>(null);
   const mirrorRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
+    // Только для устройств с настоящим курсором — на touch отключаем,
+    // чтобы зеркало не «прыгало» от тапов.
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!supportsHover) return;
     const hero = heroRef.current;
     const mirror = mirrorRef.current;
     if (!hero || !mirror) return;
@@ -370,6 +374,20 @@ const NeurostylistPage = () => {
           [data-reveal] { opacity: 1 !important; transform: none !important; }
           .ns-split .ns-letter { opacity: 1 !important; transform: none !important; }
           .ns-flow-line { stroke-dashoffset: 0 !important; }
+        }
+
+        /* ---- Touch-устройства: показываем детали шагов всегда,
+               отключаем hover-залипание Bento/CTA, убираем magnetic. ---- */
+        @media (hover: none), (pointer: coarse) {
+          .ns-process-step .ns-step-detail { opacity: 1; transform: none; }
+          .ns-bento-card:hover {
+            transform: none !important;
+          }
+          .ns-cta:hover {
+            transform: none !important;
+          }
+          .ns-bento-card .ns-bento-spot { display: none; }
+          .ns-mirror::after { display: none; }
         }
       `}</style>
 
@@ -939,7 +957,12 @@ const BentoCard = ({
   large?: boolean;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const supportsHoverRef = useRef<boolean>(true);
+  useEffect(() => {
+    supportsHoverRef.current = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  }, []);
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!supportsHoverRef.current) return;
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
