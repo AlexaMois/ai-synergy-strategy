@@ -976,7 +976,7 @@ const NeurostylistPage = () => {
 
 const BentoCard = ({
   num,
-  icon: Icon,
+  icon: _Icon,
   title,
   description,
   className = "",
