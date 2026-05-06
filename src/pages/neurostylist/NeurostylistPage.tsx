@@ -407,7 +407,7 @@ const NeurostylistPage = () => {
         /* ==== Lookbook cards (section 04) ==== */
         .ns-look-card {
           position: relative;
-          aspect-ratio: 3 / 5;
+          aspect-ratio: 3 / 5.2;
           border-radius: 18px;
           overflow: hidden;
           background: linear-gradient(180deg, #2A1422 0%, #1A0910 100%);
@@ -424,8 +424,8 @@ const NeurostylistPage = () => {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: center top;
+          object-fit: contain;
+          object-position: center bottom;
           /* tone the bright studio whites into the plum atmosphere */
           filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
           mix-blend-mode: luminosity;
@@ -434,7 +434,7 @@ const NeurostylistPage = () => {
         .ns-look-tone {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(42,20,34,0.7) 0%, rgba(26,9,16,0.15) 30%, rgba(26,9,16,0.2) 55%, rgba(20,8,16,0.95) 100%);
+          background: linear-gradient(180deg, rgba(42,20,34,0.35) 0%, rgba(26,9,16,0.0) 25%, rgba(26,9,16,0.0) 55%, rgba(20,8,16,0.92) 78%, rgba(20,8,16,0.98) 100%);
           mix-blend-mode: normal;
           pointer-events: none;
         }
@@ -447,8 +447,8 @@ const NeurostylistPage = () => {
         }
         .ns-look-caption {
           position: absolute;
-          left: 0; right: 0; top: 0;
-          padding: 18px 18px 0 18px;
+          left: 0; right: 0; bottom: 0;
+          padding: 0 18px 18px 18px;
           z-index: 3;
         }
         .ns-look-num {
@@ -476,16 +476,14 @@ const NeurostylistPage = () => {
           text-transform: uppercase;
           color: #E8B888;
           text-shadow: 0 1px 2px rgba(20,8,18,0.95), 0 2px 14px rgba(20,8,18,0.85);
+          margin-bottom: 8px;
         }
         .ns-look-desc {
-          position: absolute;
-          left: 18px; right: 18px; bottom: 18px;
           font-family: 'Outfit', sans-serif;
           font-size: 12.5px;
           line-height: 1.45;
           color: rgba(247,237,227,0.82);
           text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-          z-index: 3;
         }
         @media (max-width: 640px) {
           .ns-look-row {
