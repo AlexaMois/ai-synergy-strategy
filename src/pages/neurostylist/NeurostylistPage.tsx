@@ -46,8 +46,8 @@ const NeurostylistPage = () => {
           to { opacity: 1; }
         }
         @keyframes ns-mirror-glow {
-          0%, 100% { filter: drop-shadow(0 0 60px rgba(243,199,165,0.35)) drop-shadow(0 0 120px rgba(155,108,255,0.18)); }
-          50% { filter: drop-shadow(0 0 90px rgba(243,199,165,0.5)) drop-shadow(0 0 160px rgba(155,108,255,0.28)); }
+          0%, 100% { filter: drop-shadow(0 0 60px rgba(212,149,106,0.35)) drop-shadow(0 0 120px rgba(155,108,255,0.18)); }
+          50% { filter: drop-shadow(0 0 90px rgba(212,149,106,0.5)) drop-shadow(0 0 160px rgba(155,108,255,0.28)); }
         }
         @keyframes ns-shimmer {
           0% { background-position: -200% 0; }
@@ -74,16 +74,16 @@ const NeurostylistPage = () => {
         }
         .ns-bento-card:hover {
           transform: translateY(-6px);
-          border-color: rgba(232,149,106,0.55) !important;
+          border-color: rgba(196,123,69,0.55) !important;
           box-shadow:
             inset 0 1px 0 rgba(247,237,227,0.12),
             0 1px 2px rgba(0,0,0,0.3),
-            0 24px 70px rgba(232,149,106,0.25),
+            0 24px 70px rgba(196,123,69,0.25),
             0 12px 40px rgba(20,8,18,0.6) !important;
         }
-        .ns-bento-card:hover .ns-bento-icon { color: #E8956A !important; }
+        .ns-bento-card:hover .ns-bento-icon { color: #D4956A !important; }
         .ns-cta {
-          background-image: linear-gradient(135deg, #FFF1DD 0%, #F5C9A0 35%, #E89A6A 70%, #F3C7A5 100%);
+          background-image: linear-gradient(135deg, #F5E6D0 0%, #D4956A 40%, #C07040 70%, #D4956A 100%);
           background-size: 200% 100%;
           transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s, background-position 0.8s;
         }
@@ -92,8 +92,8 @@ const NeurostylistPage = () => {
           background-position: 100% 0;
           box-shadow:
             0 0 0 1px rgba(255,241,221,0.5) inset,
-            0 0 80px rgba(232,154,106,0.9),
-            0 0 160px rgba(232,154,106,0.45),
+            0 0 80px rgba(196,123,69,0.9),
+            0 0 160px rgba(196,123,69,0.45),
             0 20px 50px rgba(42,14,30,0.6);
         }
         @media (max-width: 767px) {
@@ -114,11 +114,11 @@ const NeurostylistPage = () => {
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             className="absolute top-[-15%] right-[-10%] w-[700px] h-[700px] rounded-full blur-[140px] ns-glow-1"
-            style={{ background: "radial-gradient(circle, #E8A87C 0%, transparent 70%)", opacity: 0.39 }}
+            style={{ background: "radial-gradient(circle, #C07040 0%, transparent 70%)", opacity: 0.39 }}
           />
           <div
             className="absolute top-[40%] left-[-15%] w-[600px] h-[600px] rounded-full blur-[150px] ns-glow-2"
-            style={{ background: "radial-gradient(ellipse, #C4785A 0%, transparent 70%)", opacity: 0.28 }}
+            style={{ background: "radial-gradient(ellipse, #A0622A 0%, transparent 70%)", opacity: 0.28 }}
           />
           <div
             className="absolute bottom-[-10%] left-[30%] w-[500px] h-[500px] rounded-full opacity-20 blur-[140px] ns-glow-1"
@@ -133,7 +133,7 @@ const NeurostylistPage = () => {
           />
           <div
             className="absolute top-[20%] left-[40%] w-[400px] h-[400px] rounded-full opacity-15 blur-[120px]"
-            style={{ background: "radial-gradient(circle, #FFE9D2 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #F5E6D0 0%, transparent 70%)" }}
           />
           {/* Grain */}
           <div className="absolute inset-0 ns-grain opacity-[0.12] mix-blend-overlay" />
@@ -146,7 +146,7 @@ const NeurostylistPage = () => {
               className="text-[11px] sm:text-xs tracking-[0.4em] uppercase font-medium"
               style={{ color: "rgba(247,237,227,0.78)" }}
             >
-              <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;НейроСтилист
+              <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;НейроСтилист
             </div>
             <Link
               to="/"
@@ -182,7 +182,7 @@ const NeurostylistPage = () => {
             <div
               aria-hidden
               className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
-              style={{ color: "rgba(243,199,165,0.55)" }}
+              style={{ color: "rgba(212,149,106,0.55)" }}
             >
               КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;01
             </div>
@@ -193,15 +193,15 @@ const NeurostylistPage = () => {
                 <div
                   className="ns-fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6 sm:mb-8"
                   style={{
-                    background: "rgba(243,199,165,0.08)",
-                    border: "1px solid rgba(243,199,165,0.25)",
-                    color: "#F3C7A5",
+                    background: "rgba(212,149,106,0.08)",
+                    border: "1px solid rgba(212,149,106,0.25)",
+                    color: "#D4956A",
                     fontSize: 11,
                     letterSpacing: "0.3em",
                     textTransform: "uppercase",
                   }}
                 >
-                  <span style={{ width: 6, height: 6, borderRadius: 999, background: "#F3C7A5" }} />
+                  <span style={{ width: 6, height: 6, borderRadius: 999, background: "#D4956A" }} />
                   Умная примерочная
                 </div>
 
@@ -224,7 +224,7 @@ const NeurostylistPage = () => {
                       fontFamily: "'Outfit', sans-serif",
                       fontWeight: 200,
                       fontSize: "clamp(24px, 3vw, 44px)",
-                      color: "#F3C7A5",
+                      color: "#D4956A",
                       letterSpacing: 0,
                       marginTop: "0.4em",
                     }}
@@ -240,7 +240,7 @@ const NeurostylistPage = () => {
                       lineHeight: 1.0,
                       letterSpacing: "0.01em",
                       backgroundImage:
-                        "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
+                        "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #A0622A 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
@@ -273,7 +273,7 @@ const NeurostylistPage = () => {
                       color: "#2A0E1E",
                       letterSpacing: "0.02em",
                       boxShadow:
-                        "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 60px rgba(243,199,165,0.55), 0 0 120px rgba(243,199,165,0.25), 0 16px 44px rgba(42,14,30,0.55)",
+                        "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 60px rgba(212,149,106,0.55), 0 0 120px rgba(212,149,106,0.25), 0 16px 44px rgba(42,14,30,0.55)",
                     }}
                   >
                     Собрать для меня образ
@@ -313,7 +313,7 @@ const NeurostylistPage = () => {
                     className="absolute inset-0 rounded-[200px] pointer-events-none"
                     style={{
                       boxShadow:
-                        "inset 0 0 0 1px rgba(243,199,165,0.5), inset 0 0 40px rgba(243,199,165,0.25), inset 0 0 100px rgba(155,108,255,0.18)",
+                        "inset 0 0 0 1px rgba(212,149,106,0.5), inset 0 0 40px rgba(212,149,106,0.25), inset 0 0 100px rgba(155,108,255,0.18)",
                     }}
                   />
                 </div>
@@ -343,9 +343,9 @@ const NeurostylistPage = () => {
                 <div>
                   <div
                     className="text-[11px] tracking-[0.4em] uppercase mb-4"
-                    style={{ color: "#F3C7A5" }}
+                    style={{ color: "#D4956A" }}
                   >
-                    <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
+                    <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
                   <h2
                     className="leading-[1.05]"
@@ -364,7 +364,7 @@ const NeurostylistPage = () => {
                         fontFamily: "'Alex Brush', cursive",
                         fontWeight: 400,
                         fontSize: "clamp(40px, 5vw, 72px)",
-                        backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 50%, #A0622A 100%)",
                         WebkitBackgroundClip: "text",
                         backgroundClip: "text",
                         color: "transparent",
@@ -439,9 +439,9 @@ const NeurostylistPage = () => {
               <div className="text-center mb-16 sm:mb-20">
                 <div
                   className="text-[11px] tracking-[0.4em] uppercase mb-4"
-                  style={{ color: "#F3C7A5" }}
+                  style={{ color: "#D4956A" }}
                 >
-                  <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
+                  <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
                 <h2
                   className="leading-[1.05] max-w-3xl mx-auto"
@@ -460,7 +460,7 @@ const NeurostylistPage = () => {
                       fontFamily: "'Alex Brush', cursive",
                       fontWeight: 400,
                       fontSize: "clamp(40px, 5vw, 72px)",
-                      backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                      backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 50%, #A0622A 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
@@ -481,7 +481,7 @@ const NeurostylistPage = () => {
                   className="hidden md:block absolute top-[38px] left-[8%] right-[8%] h-px"
                   style={{
                     background:
-                      "linear-gradient(90deg, transparent 0%, #E8956A 20%, #F3C7A5 50%, #E8956A 80%, transparent 100%)",
+                      "linear-gradient(90deg, transparent 0%, #D4956A 20%, #D4956A 50%, #D4956A 80%, transparent 100%)",
                     opacity: 0.5,
                   }}
                 />
@@ -504,15 +504,15 @@ const NeurostylistPage = () => {
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-40 blur-[140px]"
               style={{
                 background:
-                  "radial-gradient(ellipse at center, #F3C7A5 0%, rgba(155,108,255,0.4) 50%, transparent 75%)",
+                  "radial-gradient(ellipse at center, #D4956A 0%, rgba(155,108,255,0.4) 50%, transparent 75%)",
               }}
             />
             <div className="relative max-w-4xl mx-auto text-center">
               <div
                 className="text-[11px] tracking-[0.4em] uppercase mb-6"
-                style={{ color: "#F3C7A5" }}
+                style={{ color: "#D4956A" }}
               >
-                <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
+                <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
               <h2
                 className="leading-[1.05]"
@@ -531,7 +531,7 @@ const NeurostylistPage = () => {
                     fontFamily: "'Alex Brush', cursive",
                     fontWeight: 400,
                     fontSize: "clamp(52px, 7vw, 96px)",
-                    backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
+                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #D4956A 45%, #A0622A 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -553,7 +553,7 @@ const NeurostylistPage = () => {
                     color: "#2A0E1E",
                     letterSpacing: "0.02em",
                     boxShadow:
-                      "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 70px rgba(243,199,165,0.6), 0 0 140px rgba(243,199,165,0.3), 0 18px 50px rgba(42,14,30,0.6)",
+                      "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 70px rgba(212,149,106,0.6), 0 0 140px rgba(212,149,106,0.3), 0 18px 50px rgba(42,14,30,0.6)",
                   }}
                 >
                   Собрать для меня образ
@@ -616,7 +616,7 @@ const BentoCard = ({
     style={{
       background:
         "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)",
-      borderColor: "rgba(243,199,165,0.18)",
+      borderColor: "rgba(212,149,106,0.18)",
       backdropFilter: "blur(18px)",
       WebkitBackdropFilter: "blur(18px)",
       boxShadow:
@@ -627,7 +627,7 @@ const BentoCard = ({
     <div
       aria-hidden
       className="absolute -top-20 -right-20 w-48 h-48 rounded-full opacity-25 blur-[60px] pointer-events-none"
-      style={{ background: "#F3C7A5" }}
+      style={{ background: "#D4956A" }}
     />
     <div className="relative flex items-start justify-between">
       <span
@@ -636,7 +636,7 @@ const BentoCard = ({
           fontSize: large ? "clamp(48px, 6vw, 80px)" : "clamp(28px, 3vw, 40px)",
           fontWeight: 300,
           lineHeight: 1,
-          background: "linear-gradient(135deg, #F3C7A5 0%, rgba(243,199,165,0.3) 100%)",
+          background: "linear-gradient(135deg, #D4956A 0%, rgba(212,149,106,0.3) 100%)",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
           color: "transparent",
@@ -648,11 +648,11 @@ const BentoCard = ({
       <div
         className="w-9 h-9 rounded-xl flex items-center justify-center"
         style={{
-          background: "rgba(243,199,165,0.12)",
-          border: "1px solid rgba(243,199,165,0.3)",
+          background: "rgba(212,149,106,0.12)",
+          border: "1px solid rgba(212,149,106,0.3)",
         }}
       >
-        <Icon className="ns-bento-icon w-4 h-4" style={{ color: "#F3C7A5", transition: "color 0.4s" }} />
+        <Icon className="ns-bento-icon w-4 h-4" style={{ color: "#D4956A", transition: "color 0.4s" }} />
       </div>
     </div>
     <div className="relative">
@@ -682,9 +682,9 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
       className="relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
-          "radial-gradient(circle, #F5C9A0 0%, #E8956A 100%)",
+          "radial-gradient(circle at 35% 35%, #F5E6D0 0%, #D4956A 45%, #8B4E1E 100%)",
         boxShadow:
-          "0 0 0 1px rgba(255,241,221,0.4) inset, 0 0 30px rgba(232,149,106,0.55), 0 8px 24px rgba(42,14,30,0.5)",
+          "0 0 0 1px rgba(212,149,106,0.4) inset, 0 0 30px rgba(196,123,69,0.5), 0 0 60px rgba(196,123,69,0.2), 0 8px 24px rgba(42,14,30,0.5)",
       }}
     >
       <span
