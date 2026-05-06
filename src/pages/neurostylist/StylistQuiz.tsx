@@ -171,6 +171,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           answers: payload,
           photos: photoPayload,
           website,
+          test_mode: testMode,
         },
       });
 
