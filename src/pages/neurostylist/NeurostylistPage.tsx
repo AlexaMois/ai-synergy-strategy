@@ -316,6 +316,9 @@ const NeurostylistPage = () => {
         .ns-bento-card:hover .ns-bento-spot { opacity: 1; }
         .ns-bento-card > * { position: relative; z-index: 2; }
         .ns-bento-card .ns-bento-spot { z-index: 1; }
+       .ns-bento-card > .ns-bento-media,
+       .ns-bento-card > .ns-bento-overlay { position: absolute; z-index: 1; }
+       .ns-bento-card > .ns-bento-overlay { z-index: 2; }
 
         /* ---- Mirror parallax + cursor light ---- */
         .ns-mirror-wrap {
