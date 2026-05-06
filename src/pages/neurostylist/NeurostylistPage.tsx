@@ -348,17 +348,32 @@ const NeurostylistPage = () => {
                     <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
                   <h2
-                    className="leading-[1.05] tracking-tight"
+                    className="leading-[1.05]"
                     style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontSize: "clamp(34px, 4.5vw, 64px)",
-                      color: "#FBF4EA",
-                      fontWeight: 400,
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "clamp(28px, 3.5vw, 52px)",
+                      color: "#F7EDE3",
+                      letterSpacing: "-0.01em",
                     }}
                   >
                     Образ складывается
                     <br />
-                    <span style={{ color: "#F3C7A5", fontStyle: "italic" }}>из деталей.</span>
+                    <span
+                      style={{
+                        fontFamily: "'Alex Brush', cursive",
+                        fontWeight: 400,
+                        fontSize: "clamp(40px, 5vw, 72px)",
+                        backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        WebkitTextFillColor: "transparent",
+                        lineHeight: 1.0,
+                      }}
+                    >
+                      из деталей
+                    </span>
                   </h2>
                 </div>
                 <p
@@ -429,18 +444,31 @@ const NeurostylistPage = () => {
                   <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
                 <h2
-                  className="leading-[1.05] tracking-tight max-w-3xl mx-auto"
+                  className="leading-[1.05] max-w-3xl mx-auto"
                   style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "clamp(32px, 4.2vw, 60px)",
-                    color: "#FBF4EA",
-                    fontWeight: 400,
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "clamp(28px, 3.5vw, 52px)",
+                    color: "#F7EDE3",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   Ты отвечаешь на вопросы,
                   <br />
-                  <span style={{ color: "#F3C7A5", fontStyle: "italic" }}>
-                    а образ начинает складываться.
+                  <span
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      fontWeight: 400,
+                      fontSize: "clamp(40px, 5vw, 72px)",
+                      backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                      WebkitTextFillColor: "transparent",
+                      lineHeight: 1.0,
+                    }}
+                  >
+                    а образ начинает складываться
                   </span>
                 </h2>
               </div>
@@ -487,28 +515,31 @@ const NeurostylistPage = () => {
                 <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
               <h2
-                className="leading-[1.05] tracking-tight"
+                className="leading-[1.05]"
                 style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  fontSize: "clamp(36px, 5.5vw, 78px)",
-                  color: "#FBF4EA",
-                  fontWeight: 400,
+                  fontFamily: "'Outfit', sans-serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(28px, 3.5vw, 52px)",
+                  color: "#F7EDE3",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 Твой образ
                 <br />
                 <span
                   style={{
-                    backgroundImage:
-                      "linear-gradient(100deg, #FFE9D2 0%, #F3C7A5 50%, #C77DFF 100%)",
+                    fontFamily: "'Alex Brush', cursive",
+                    fontWeight: 400,
+                    fontSize: "clamp(52px, 7vw, 96px)",
+                    backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
                     WebkitTextFillColor: "transparent",
-                    fontStyle: "italic",
+                    lineHeight: 1.0,
                   }}
                 >
-                  уже можно собрать.
+                  уже можно собрать
                 </span>
               </h2>
 
