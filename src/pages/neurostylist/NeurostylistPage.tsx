@@ -424,7 +424,7 @@ const NeurostylistPage = () => {
         .ns-lookbook-captions {
           width: 100%;
           max-width: 980px;
-          margin-top: -8px;
+          margin-top: -120px;
           display: grid;
           grid-template-columns: repeat(5, 1fr);
           gap: clamp(10px, 1.5vw, 22px);
