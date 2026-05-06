@@ -19,12 +19,19 @@ const AnswerItemSchema = z.object({
   value: z.union([z.string().max(2000), z.array(z.string().max(500)).max(30), z.number()]),
 });
 
+const PhotoItemSchema = z.object({
+  slotId: z.string().min(1).max(50),
+  slotLabel: z.string().min(1).max(200),
+  path: z.string().min(1).max(500),
+});
+
 const SaveStylistLeadSchema = z.object({
   name: z.string().trim().min(1).max(100),
   contact: z.string().trim().min(1).max(100),
   contact_type: z.enum(["telegram", "phone"]).default("telegram"),
   answers: z.array(AnswerItemSchema).max(50),
-  website: z.string().max(0).optional(), // honeypot
+  photos: z.array(PhotoItemSchema).max(20).optional().default([]),
+  website: z.string().max(0).optional(),
 });
 
 function checkRateLimit(key: string, maxRequests: number) {
@@ -75,6 +82,7 @@ function formatTelegramMessage(
   contact: string,
   contactType: string,
   answers: Array<{ question: string; value: string | string[] | number }>,
+  photoCount: number,
 ): string {
   let msg = `👗 <b>НейроСтилист — новая анкета</b>\n\n`;
   msg += `👤 <b>Имя:</b> ${escapeHtml(name)}\n`;
@@ -82,6 +90,7 @@ function formatTelegramMessage(
   msg += `${contactIcon} <b>Контакт:</b> ${escapeHtml(contact)}\n`;
   msg += `🆔 <b>ID:</b> ${escapeHtml(leadId)}\n`;
   msg += `🕐 <b>Время:</b> ${formatDateTime()} (МСК)\n`;
+  if (photoCount > 0) msg += `📸 <b>Фото:</b> ${photoCount}\n`;
   msg += `\n━━━ <b>ОТВЕТЫ</b> ━━━\n`;
   for (const a of answers) {
     const v = Array.isArray(a.value) ? a.value.join(", ") : String(a.value);
@@ -123,9 +132,8 @@ serve(async (req) => {
       );
     }
 
-    const { name, contact, contact_type, answers, website } = parsed.data;
+    const { name, contact, contact_type, answers, photos, website } = parsed.data;
 
-    // Honeypot
     if (website && website.length > 0) {
       console.warn("Honeypot triggered from", clientIP);
       return new Response(JSON.stringify({ success: true }), {
@@ -145,7 +153,7 @@ serve(async (req) => {
         name,
         contact,
         contact_type,
-        answers,
+        answers: { answers, photos },
       })
       .select("lead_id")
       .single();
@@ -158,18 +166,64 @@ serve(async (req) => {
       });
     }
 
-    // Telegram notification (best-effort)
+    // Telegram (best-effort)
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
       try {
-        const text = formatTelegramMessage(lead.lead_id, name, contact, contact_type, answers);
+        const text = formatTelegramMessage(
+          lead.lead_id,
+          name,
+          contact,
+          contact_type,
+          answers,
+          photos.length,
+        );
         const tgRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: "HTML" }),
         });
         if (!tgRes.ok) {
-          const errBody = await tgRes.text();
-          console.error("Telegram send failed:", tgRes.status, errBody);
+          console.error("Telegram send failed:", tgRes.status, await tgRes.text());
+        }
+
+        // Send photos: download from storage via signed URL, then upload to Telegram via FormData
+        for (const photo of photos) {
+          try {
+            const { data: signed, error: signErr } = await supabase.storage
+              .from("stylist-uploads")
+              .createSignedUrl(photo.path, 600);
+            if (signErr || !signed?.signedUrl) {
+              console.error("Sign URL failed for", photo.path, signErr);
+              continue;
+            }
+            const fileRes = await fetch(signed.signedUrl);
+            if (!fileRes.ok) {
+              console.error("Photo fetch failed:", photo.path, fileRes.status);
+              continue;
+            }
+            const blob = await fileRes.blob();
+            const form = new FormData();
+            form.append("chat_id", String(TELEGRAM_CHAT_ID));
+            form.append("caption", `${photo.slotLabel} · ${lead.lead_id}`);
+            form.append("photo", blob, photo.path.split("/").pop() || "photo.jpg");
+            const photoRes = await fetch(
+              `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`,
+              { method: "POST", body: form },
+            );
+            if (!photoRes.ok) {
+              // Photo too large or wrong format — fall back to document
+              const docForm = new FormData();
+              docForm.append("chat_id", String(TELEGRAM_CHAT_ID));
+              docForm.append("caption", `${photo.slotLabel} · ${lead.lead_id}`);
+              docForm.append("document", blob, photo.path.split("/").pop() || "photo.jpg");
+              await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
+                method: "POST",
+                body: docForm,
+              });
+            }
+          } catch (photoErr) {
+            console.error("Photo send exception:", photo.path, photoErr);
+          }
         }
       } catch (tgErr) {
         console.error("Telegram exception:", tgErr);
