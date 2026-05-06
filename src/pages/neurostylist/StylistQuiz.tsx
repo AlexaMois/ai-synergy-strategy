@@ -388,7 +388,7 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
       className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
     >
-      Спасибо. Образ начинает складываться
+      Спасибо, образ начинает складываться
     </h2>
     <p className="mt-5 text-base sm:text-lg opacity-75 max-w-lg mx-auto leading-relaxed">
       Александра свяжется с тобой в течение 24 часов и пришлёт персональный разбор
