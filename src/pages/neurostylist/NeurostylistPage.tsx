@@ -1042,14 +1042,14 @@ const BentoCard = ({
         src={image}
         alt={imageAlt || title}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        className="ns-bento-media absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         style={{ objectPosition: focal }}
       />
     )}
     {/* Editorial dark gradient overlay for legibility */}
     <div
       aria-hidden
-      className="absolute inset-0 pointer-events-none"
+      className="ns-bento-overlay absolute inset-0 pointer-events-none"
       style={{
         background:
           "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0) 45%, rgba(20,10,18,0.55) 100%)",
