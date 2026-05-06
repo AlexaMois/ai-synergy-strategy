@@ -850,7 +850,48 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
 
 export default StylistQuiz;
 
-// ===== Calligraphy title — last word in cursive (Pinyon Script) =====
+// ===== Calligraphy title — два рукописных акцента в каждом заголовке =====
+// Стоп-слова, которые НЕ выделяем курсивом (служебные части речи)
+const STOP_WORDS = new Set([
+  "и", "а", "но", "или", "да", "не", "ни", "же", "ли", "бы", "то",
+  "в", "во", "на", "по", "с", "со", "к", "ко", "о", "об", "от", "до", "из", "у", "за", "при", "про", "для", "над", "под", "без",
+  "что", "как", "где", "куда", "когда", "чем", "кто", "тебя", "тебе", "твой", "твоя", "твои", "твоё", "твое",
+  "это", "этот", "эта", "эти", "то", "та", "те", "сейчас", "ещё", "уже", "очень", "более", "менее",
+  "хочется", "должен", "должна", "должно", "должны", "быть", "есть", "может",
+]);
+
+function pickCursiveIndices(words: string[]): Set<number> {
+  const isMeaningful = (w: string) => {
+    const clean = w.toLowerCase().replace(/[«»"'(),.:;!?…—–-]/g, "");
+    return clean.length >= 3 && !STOP_WORDS.has(clean);
+  };
+  const meaningful: number[] = [];
+  words.forEach((w, i) => {
+    if (isMeaningful(w)) meaningful.push(i);
+  });
+
+  const picks = new Set<number>();
+  if (meaningful.length === 0) {
+    // fallback — первое и последнее
+    picks.add(0);
+    if (words.length > 1) picks.add(words.length - 1);
+    return picks;
+  }
+  // первое значимое
+  picks.add(meaningful[0]);
+  // последнее значимое (если отличается)
+  const last = meaningful[meaningful.length - 1];
+  if (last !== meaningful[0]) {
+    picks.add(last);
+  } else if (words.length - 1 !== meaningful[0]) {
+    // есть только одно значимое — добавим финальное слово как акцент
+    picks.add(words.length - 1);
+  } else if (words.length > 1) {
+    picks.add(0);
+  }
+  return picks;
+}
+
 function CalligraphyTitle({
   text,
   cursiveSize = "1.5em",
@@ -858,28 +899,44 @@ function CalligraphyTitle({
   text: string;
   cursiveSize?: string;
 }) {
-  const trimmed = text.trim().replace(/[?!.…]+$/, "");
-  const punct = text.trim().slice(trimmed.length);
-  const parts = trimmed.split(/\s+/);
+  const cleaned = text.trim();
+  const parts = cleaned.split(/\s+/);
+
   if (parts.length < 2) {
     return (
       <span className="ns-cursive" style={{ fontSize: cursiveSize, display: "inline-block" }}>
-        {text}
+        {cleaned}
       </span>
     );
   }
-  const tailWord = parts.pop() as string;
-  const head = parts.join(" ");
+
+  const cursiveIdx = pickCursiveIndices(parts);
+
   return (
-    <>
-      <span className="block">{head}</span>
-      <span
-        className="ns-cursive"
-        style={{ fontSize: cursiveSize, display: "inline-block", marginTop: "0.05em" }}
-      >
-        {tailWord}
-        {punct}
-      </span>
-    </>
+    <span style={{ display: "inline" }}>
+      {parts.map((word, i) => {
+        const isCursive = cursiveIdx.has(i);
+        return (
+          <span key={i}>
+            {isCursive ? (
+              <span
+                className="ns-cursive"
+                style={{
+                  fontSize: cursiveSize,
+                  display: "inline-block",
+                  verticalAlign: "baseline",
+                  lineHeight: 0.85,
+                }}
+              >
+                {word}
+              </span>
+            ) : (
+              <span>{word}</span>
+            )}
+            {i < parts.length - 1 ? " " : ""}
+          </span>
+        );
+      })}
+    </span>
   );
 }
