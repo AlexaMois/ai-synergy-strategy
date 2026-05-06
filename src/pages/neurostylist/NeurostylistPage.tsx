@@ -242,9 +242,10 @@ const NeurostylistPage = () => {
                   <span
                     style={{
                       display: "block",
-                      fontFamily: "'Pinyon Script', cursive",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
                       fontWeight: 400,
-                      fontSize: "clamp(110px, 17vw, 220px)",
+                      fontSize: "clamp(80px, 11vw, 160px)",
                       lineHeight: 0.9,
                       letterSpacing: "0.01em",
                       backgroundImage:
@@ -374,9 +375,10 @@ const NeurostylistPage = () => {
                     <span
                       style={{
                         display: "block",
-                        fontFamily: "'Pinyon Script', cursive",
+                        fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
                         fontWeight: 400,
-                        fontSize: "clamp(72px, 9vw, 130px)",
+                        fontSize: "clamp(56px, 7vw, 110px)",
                         lineHeight: 0.95,
                         backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                         WebkitBackgroundClip: "text",
@@ -476,9 +478,10 @@ const NeurostylistPage = () => {
                   <span
                     style={{
                       display: "block",
-                      fontFamily: "'Pinyon Script', cursive",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
                       fontWeight: 400,
-                      fontSize: "clamp(60px, 7.5vw, 110px)",
+                      fontSize: "clamp(48px, 6vw, 92px)",
                       lineHeight: 0.95,
                       backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                       WebkitBackgroundClip: "text",
@@ -553,9 +556,10 @@ const NeurostylistPage = () => {
                 <span
                   style={{
                     display: "block",
-                    fontFamily: "'Pinyon Script', cursive",
+                    fontFamily: "'Cormorant Garamond', serif",
+                      fontStyle: "italic",
                     fontWeight: 400,
-                    fontSize: "clamp(80px, 10vw, 150px)",
+                    fontSize: "clamp(64px, 8vw, 120px)",
                     lineHeight: 0.95,
                     backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
                     WebkitBackgroundClip: "text",
