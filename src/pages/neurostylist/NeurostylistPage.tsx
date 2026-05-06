@@ -1084,33 +1084,33 @@ const BentoCard = ({
 
     {/* Editorial caption: oversized translucent rose-gold number + label + 1-line description */}
     <div className="relative z-10 px-6 sm:px-7 pb-5 sm:pb-6 pt-2">
-      <div className="flex items-end gap-4">
+      <div className="flex items-end gap-3 sm:gap-4">
         <span
           aria-hidden
-          className="leading-none select-none"
+          className="leading-none select-none shrink-0"
           style={{
             fontFamily: "'Outfit', sans-serif",
             fontWeight: 300,
-            fontSize: large ? "clamp(64px, 7vw, 104px)" : "clamp(44px, 4.4vw, 68px)",
+            fontSize: large ? "clamp(72px, 7vw, 110px)" : "clamp(36px, 3.4vw, 52px)",
             background:
               "linear-gradient(135deg, rgba(245,230,208,0.85) 0%, rgba(212,149,106,0.55) 60%, rgba(212,149,106,0.25) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
             WebkitTextFillColor: "transparent",
-            opacity: 0.85,
+            opacity: 0.78,
             filter: "drop-shadow(0 2px 16px rgba(0,0,0,0.55))",
             letterSpacing: "-0.04em",
           }}
         >
           {num}
         </span>
-        <div className="flex-1 min-w-0 pb-1.5">
+        <div className="flex-1 min-w-0 pb-1">
           <div
-            className="mb-1.5"
+            className="mb-1"
             style={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: 11,
+              fontSize: large ? 12 : 10,
               fontWeight: 500,
               letterSpacing: "0.32em",
               textTransform: "uppercase",
@@ -1121,7 +1121,7 @@ const BentoCard = ({
             {title}
           </div>
           <p
-            className={`leading-snug truncate ${large ? "text-base sm:text-[17px]" : "text-[13px] sm:text-sm"}`}
+            className={`leading-snug truncate ${large ? "text-base sm:text-[17px]" : "text-[12px] sm:text-[13px]"}`}
             style={{
               color: "rgba(251,244,234,0.82)",
               textShadow: "0 1px 8px rgba(0,0,0,0.7)",
