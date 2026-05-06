@@ -211,7 +211,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           letter-spacing: -0.01em;
         }
         .ns-quiz .ns-cursive {
-          font-family: 'Pinyon Script', 'Allura', 'Snell Roundhand', cursive;
+          font-family: 'Marck Script', 'Caveat', 'Pinyon Script', 'Allura', 'Snell Roundhand', cursive;
           font-weight: 400;
           font-style: normal;
           letter-spacing: 0.005em;
