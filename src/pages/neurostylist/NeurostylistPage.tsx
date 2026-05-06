@@ -10,6 +10,11 @@ import cardMakeup from "@/assets/neurostylist/card-makeup.jpg";
 import cardHair from "@/assets/neurostylist/card-hair.jpg";
 import cardAccessories from "@/assets/neurostylist/card-accessories.jpg";
 import cardMood from "@/assets/neurostylist/card-mood.jpg";
+import look1 from "@/assets/neurostylist/look-1.jpg";
+import look2 from "@/assets/neurostylist/look-2.jpg";
+import look3 from "@/assets/neurostylist/look-3.jpg";
+import look4 from "@/assets/neurostylist/look-4.jpg";
+import look5 from "@/assets/neurostylist/look-5.jpg";
 
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
