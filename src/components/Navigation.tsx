@@ -72,6 +72,9 @@ const Navigation = () => {
   const submenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  // Hide global navigation on standalone landings
+  const hideOn = ["/neurostylist"];
+  if (hideOn.includes(location.pathname)) return null;
   const phoneNumber = "+7 995 078 88 37";
   const phoneLink = "tel:+79950788837";
   useEffect(() => {
