@@ -118,6 +118,27 @@ const NeurostylistPage = () => {
           font-family: inherit;
         }
 
+
+        @keyframes ns-silk {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes ns-glow-pulse {
+          0%, 100% { filter: drop-shadow(0 4px 24px rgba(139,78,30,0.35)) drop-shadow(0 0 20px rgba(212,149,106,0.4)) drop-shadow(0 0 60px rgba(212,149,106,0.15)); }
+          50%      { filter: drop-shadow(0 4px 24px rgba(139,78,30,0.45)) drop-shadow(0 0 40px rgba(212,149,106,0.7)) drop-shadow(0 0 100px rgba(212,149,106,0.3)); }
+        }
+        @keyframes ns-breathe {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(212,149,106,0.4) inset, 0 0 30px rgba(196,123,69,0.4), 0 0 60px rgba(196,123,69,0.15), 0 8px 24px rgba(42,14,30,0.5); }
+          50%      { transform: scale(1.06); box-shadow: 0 0 0 1px rgba(212,149,106,0.5) inset, 0 0 50px rgba(196,123,69,0.7), 0 0 90px rgba(196,123,69,0.3), 0 8px 24px rgba(42,14,30,0.5); }
+        }
+        @keyframes ns-label-scroll {
+          0%   { transform: translateY(-50%) translateX(0); }
+          100% { transform: translateY(-50%) translateX(0) translateY(-12px); }
+        }
+        .ns-glow-pulse { animation: ns-glow-pulse 4s ease-in-out infinite; }
+        .ns-breathe { animation: ns-breathe 3.5s ease-in-out infinite; }
+        .ns-label-scroll { animation: ns-label-scroll 6s ease-in-out infinite alternate; }
+
       `}</style>
 
       <div
@@ -200,7 +221,7 @@ const NeurostylistPage = () => {
             {/* Vertical STYLE MAP label */}
             <div
               aria-hidden
-              className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
+              className="hidden lg:block absolute left-6 top-1/2 -translate-y-1/2 ns-vertical ns-label-scroll text-[10px] tracking-[0.6em] uppercase ns-fade-in ns-delay-2"
               style={{ color: "rgba(212,149,106,0.55)" }}
             >
               КАРТА&nbsp;&nbsp;СТИЛЯ&nbsp;&nbsp;·&nbsp;&nbsp;01
@@ -254,9 +275,9 @@ const NeurostylistPage = () => {
                       backgroundClip: "text",
                       color: "transparent",
                       WebkitTextFillColor: "transparent",
-                      filter: "drop-shadow(0 4px 24px rgba(139,78,30,0.35))",
                       paddingBottom: "0.1em",
                     }}
+                    className="ns-glow-pulse"
                   >
                     сильнее
                   </span>
@@ -306,6 +327,21 @@ const NeurostylistPage = () => {
               {/* RIGHT: mirror visual */}
               <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
                 <div className="ns-mirror relative w-[280px] sm:w-[360px] lg:w-[440px] aspect-[4/5] rounded-[200px] overflow-hidden">
+                  {/* Атласная ткань — анимированный мягкий слой */}
+                  <div
+                    aria-hidden
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: 'inherit',
+                      background: 'linear-gradient(135deg, rgba(196,120,90,0.18), rgba(120,60,140,0.22), rgba(196,120,90,0.12))',
+                      backgroundSize: '300% 300%',
+                      animation: 'ns-silk 8s ease-in-out infinite',
+                      mixBlendMode: 'overlay',
+                      pointerEvents: 'none',
+                      zIndex: 1,
+                    }}
+                  />
                   <img
                     src={heroImg}
                     alt="Цифровая примерочная"
@@ -510,11 +546,11 @@ const NeurostylistPage = () => {
                   }}
                 />
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-6 relative">
-                  <ProcessStep n="01" title="Настроение" desc="Ловим вектор образа." />
-                  <ProcessStep n="02" title="Внешность" desc="Колорит и черты." />
-                  <ProcessStep n="03" title="Цвет" desc="Палитра и оттенки." />
-                  <ProcessStep n="04" title="Детали" desc="Силуэты и акценты." />
-                  <ProcessStep n="05" title="Разбор" desc="Персональный ответ." />
+                  <ProcessStep delay={0} n="01" title="Настроение" desc="Ловим вектор образа." />
+                  <ProcessStep delay={0.7} n="02" title="Внешность" desc="Колорит и черты." />
+                  <ProcessStep delay={1.4} n="03" title="Цвет" desc="Палитра и оттенки." />
+                  <ProcessStep delay={2.1} n="04" title="Детали" desc="Силуэты и акценты." />
+                  <ProcessStep delay={2.8} n="05" title="Разбор" desc="Персональный ответ." />
                 </div>
               </div>
             </div>
@@ -707,15 +743,14 @@ const BentoCard = ({
   </div>
 );
 
-const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: string }) => (
+const ProcessStep = ({ n, title, desc, delay = 0 }: { n: string; title: string; desc: string; delay?: number }) => (
   <div className="relative flex flex-col items-center text-center">
     <div
-      className="relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
+      className="ns-breathe relative w-[76px] h-[76px] rounded-full flex items-center justify-center mb-5"
       style={{
         background:
           "radial-gradient(circle at 35% 35%, #F5E6D0 0%, #D4956A 45%, #8B4E1E 100%)",
-        boxShadow:
-          "0 0 0 1px rgba(212,149,106,0.4) inset, 0 0 30px rgba(196,123,69,0.5), 0 0 60px rgba(196,123,69,0.2), 0 8px 24px rgba(42,14,30,0.5)",
+        animationDelay: `${delay}s`,
       }}
     >
       <span
