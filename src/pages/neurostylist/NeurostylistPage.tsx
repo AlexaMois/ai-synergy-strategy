@@ -15,11 +15,7 @@ import look2 from "@/assets/neurostylist/look-2.jpg";
 import look3 from "@/assets/neurostylist/look-3.jpg";
 import look4 from "@/assets/neurostylist/look-4.jpg";
 import look5 from "@/assets/neurostylist/look-5.jpg";
-import lookCard1 from "@/assets/neurostylist/look-card-1.jpg";
-import lookCard2 from "@/assets/neurostylist/look-card-2.jpg";
-import lookCard3 from "@/assets/neurostylist/look-card-3.jpg";
-import lookCard4 from "@/assets/neurostylist/look-card-4.jpg";
-import lookCard5 from "@/assets/neurostylist/look-card-5.jpg";
+import lookbookFull from "@/assets/neurostylist/lookbook-full.png";
 
 const NeurostylistPage = () => {
   const [quizOpen, setQuizOpen] = useState(false);
@@ -409,76 +405,88 @@ const NeurostylistPage = () => {
           .ns-mirror::after { display: none; }
         }
 
-        /* ==== Lookbook cards (section 04) ==== */
-        .ns-look-card {
-          position: relative;
-          aspect-ratio: 3 / 5.3;
-          border-radius: 18px;
-          overflow: hidden;
-          background: #1a0910;
-          border: 1px solid rgba(247,237,227,0.08);
-          box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,149,106,0.04) inset;
-          transition: transform 600ms cubic-bezier(.2,.8,.2,1), box-shadow 600ms;
-        }
-        .ns-look-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 50px 80px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,149,106,0.18) inset;
-        }
-        .ns-look-img {
-          position: absolute;
-          inset: 0;
+        /* ==== Lookbook (section 04) — single bordeaux card ==== */
+        .ns-lookbook-wrap {
           width: 100%;
-          height: 100%;
-          object-fit: contain;
-          object-position: center bottom;
+          display: flex;
+          justify-content: center;
         }
-        .ns-look-tone {
+        .ns-lookbook-card {
+          position: relative;
+          width: 100%;
+          max-width: 1100px;
+          border-radius: 28px;
+          overflow: hidden;
+          padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 48px) clamp(28px, 3.5vw, 44px);
+          background:
+            radial-gradient(ellipse 80% 60% at 50% 0%, rgba(120,40,60,0.55) 0%, transparent 65%),
+            linear-gradient(180deg, #4A1424 0%, #38101C 45%, #2A0B17 100%);
+          border: 1px solid rgba(212,149,106,0.18);
+          box-shadow:
+            0 50px 100px -40px rgba(0,0,0,0.85),
+            0 0 0 1px rgba(247,237,227,0.04) inset,
+            0 0 120px rgba(120,40,60,0.25) inset;
+        }
+        .ns-lookbook-glow {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(26,9,16,0) 0%, rgba(26,9,16,0) 60%, rgba(26,9,16,0.85) 82%, rgba(26,9,16,1) 100%);
-          mix-blend-mode: normal;
+          background: radial-gradient(ellipse 60% 40% at 50% 30%, rgba(212,149,106,0.10) 0%, transparent 70%);
           pointer-events: none;
         }
-        .ns-look-plum {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(60,28,46,0.12) 0%, rgba(60,28,46,0.24) 100%);
-          mix-blend-mode: multiply;
-          pointer-events: none;
+        .ns-lookbook-image-wrap {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          display: flex;
+          justify-content: center;
         }
-        .ns-look-caption {
-          position: absolute;
-          left: 0; right: 0; bottom: 0;
-          padding: 0 18px 20px 18px;
-          z-index: 3;
+        .ns-lookbook-image {
+          width: 100%;
+          max-width: 980px;
+          height: auto;
+          display: block;
+          filter: drop-shadow(0 30px 50px rgba(0,0,0,0.55));
         }
-        .ns-look-line {
-          width: 32px;
+        .ns-lookbook-captions {
+          position: relative;
+          z-index: 1;
+          margin-top: clamp(20px, 2.5vw, 36px);
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: clamp(10px, 1.5vw, 22px);
+        }
+        .ns-lookbook-cap {
+          text-align: left;
+        }
+        .ns-lookbook-line {
+          width: 28px;
           height: 1px;
-          background: rgba(212,149,106,0.7);
-          margin-bottom: 12px;
+          background: rgba(212,149,106,0.75);
+          margin-bottom: 10px;
         }
-        .ns-look-desc {
+        .ns-lookbook-label {
+          font-family: 'Outfit', sans-serif;
+          font-size: 10.5px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(212,149,106,0.95);
+          margin-bottom: 6px;
+        }
+        .ns-lookbook-desc {
           font-family: 'Outfit', sans-serif;
           font-size: 12.5px;
           line-height: 1.45;
-          color: rgba(247,237,227,0.92);
-          text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+          color: rgba(247,237,227,0.82);
         }
-        @media (max-width: 640px) {
-          .ns-look-row {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 4px 24px 18px;
-            margin: 0 -24px;
-            -webkit-overflow-scrolling: touch;
+        @media (max-width: 768px) {
+          .ns-lookbook-captions {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
           }
-          .ns-look-row::-webkit-scrollbar { display: none; }
-          .ns-look-row > * {
-            flex: 0 0 64%;
-            scroll-snap-align: center;
+        }
+        @media (max-width: 420px) {
+          .ns-lookbook-captions {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
@@ -1019,30 +1027,34 @@ const NeurostylistPage = () => {
                 </div>
               </div>
 
-              {/* Lookbook row */}
-              <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
-                {[
-                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: lookCard1 },
-                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: lookCard2 },
-                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: lookCard3 },
-                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: lookCard4 },
-                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: lookCard5 },
-                ].map((look) => (
-                  <article key={look.n} className="ns-look-card">
+              {/* Lookbook — single bordeaux card with full reference image */}
+              <div className="ns-lookbook-wrap">
+                <article className="ns-lookbook-card">
+                  <div className="ns-lookbook-glow" aria-hidden />
+                  <div className="ns-lookbook-image-wrap">
                     <img
-                      src={look.img}
-                      alt={`Образ ${look.n} — ${look.label}`}
+                      src={lookbookFull}
+                      alt="Пять образов: предприниматель, городская дерзость, женская сила, магнетизм, публичный лидер"
                       loading="lazy"
-                      className="ns-look-img"
+                      className="ns-lookbook-image"
                     />
-                    <div className="ns-look-plum" />
-                    <div className="ns-look-tone" />
-                    <div className="ns-look-caption">
-                      <div className="ns-look-line" />
-                      <div className="ns-look-desc">{look.desc}</div>
-                    </div>
-                  </article>
-                ))}
+                  </div>
+                  <div className="ns-lookbook-captions">
+                    {[
+                      { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо" },
+                      { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс + широкие брюки" },
+                      { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки" },
+                      { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками" },
+                      { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной" },
+                    ].map((c) => (
+                      <div key={c.n} className="ns-lookbook-cap">
+                        <div className="ns-lookbook-line" />
+                        <div className="ns-lookbook-label">{c.label}</div>
+                        <div className="ns-lookbook-desc">{c.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
               </div>
 
               <div className="mt-14 sm:mt-16 flex flex-col items-center gap-4">
