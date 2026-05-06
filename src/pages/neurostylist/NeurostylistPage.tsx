@@ -32,75 +32,115 @@ const NeurostylistPage = () => {
         className="relative min-h-screen overflow-hidden"
         style={{
           background:
-            "radial-gradient(ellipse at top, hsl(290 30% 18%) 0%, hsl(295 35% 12%) 45%, hsl(300 20% 8%) 100%)",
-          color: "hsl(40 30% 95%)",
+            "radial-gradient(ellipse 80% 60% at 50% 30%, hsl(295 38% 20%) 0%, hsl(295 35% 13%) 45%, hsl(300 22% 7%) 100%)",
+          color: "#F7EDE3",
           fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
         }}
       >
         {/* Soft background glows */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-25 blur-[140px]"
-          style={{ background: "hsl(20 60% 75%)" }}
+          className="pointer-events-none absolute -top-40 -right-40 w-[640px] h-[640px] rounded-full opacity-30 blur-[150px]"
+          style={{ background: "#F3C7A5" }}
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute top-[40%] -left-40 w-[500px] h-[500px] rounded-full opacity-20 blur-[140px]"
-          style={{ background: "hsl(270 40% 65%)" }}
+          className="pointer-events-none absolute top-[38%] -left-40 w-[520px] h-[520px] rounded-full opacity-22 blur-[150px]"
+          style={{ background: "#9B6CFF" }}
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute bottom-0 right-1/4 w-[420px] h-[420px] rounded-full opacity-15 blur-[140px]"
-          style={{ background: "hsl(45 60% 88%)" }}
+          className="pointer-events-none absolute bottom-0 right-1/4 w-[460px] h-[460px] rounded-full opacity-15 blur-[150px]"
+          style={{ background: "#FFE9D2" }}
+        />
+        {/* Hero center glow — soft plum + rose-gold halo behind hero block */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[12%] w-[820px] h-[520px] rounded-full opacity-35 blur-[160px]"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, #F3C7A5 0%, rgba(155,108,255,0.5) 55%, transparent 75%)",
+          }}
         />
 
         <div className="relative z-10">
           {/* Tiny header */}
           <header className="px-6 sm:px-10 py-6 flex items-center justify-between">
-            <div className="text-sm tracking-[0.25em] uppercase opacity-70">НейроСтилист</div>
+            <div className="text-sm tracking-[0.25em] uppercase" style={{ color: "rgba(247,237,227,0.72)" }}>
+              НейроСтилист
+            </div>
             <Link
               to="/"
-              className="text-xs sm:text-sm opacity-60 hover:opacity-100 transition-opacity"
+              className="text-xs sm:text-sm hover:opacity-100 transition-opacity"
+              style={{ color: "rgba(247,237,227,0.55)" }}
             >
               aleksamois.ru
             </Link>
           </header>
 
           {/* Hero */}
-          <section className="px-6 sm:px-10 pt-10 sm:pt-20 pb-16 sm:pb-24">
+          <section className="px-6 sm:px-10 pt-10 sm:pt-16 pb-10 sm:pb-14">
             <div className="max-w-4xl mx-auto text-center">
               <h1
                 className="font-serif leading-[1.05] tracking-tight text-[40px] sm:text-6xl md:text-7xl"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: "#F7EDE3" }}
               >
-                Собери образ,<br />
-                <span style={{ color: "hsl(20 60% 75%)" }}>в котором ты узнаешь себя</span>
+                <span style={{ color: "#F7EDE3" }}>Собери образ,</span>
                 <br />
-                сильнее.
+                <span style={{ color: "#F3C7A5" }}>в котором ты узнаешь себя</span>
+                <br />
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(90deg, #F3C7A5 0%, #9B6CFF 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  сильнее.
+                </span>
               </h1>
-              <p className="mt-7 text-base sm:text-lg md:text-xl opacity-75 leading-relaxed max-w-2xl mx-auto">
+              <p
+                className="mt-7 mx-auto"
+                style={{
+                  color: "rgba(247,237,227,0.72)",
+                  fontSize: "clamp(16px, 1.6vw, 20px)",
+                  lineHeight: 1.6,
+                  maxWidth: 660,
+                }}
+              >
                 Стиль-диагностика собирает твой образ по внешности, характеру, ритму жизни,
                 цветам, силуэтам, макияжу и деталям.
               </p>
 
-              <div className="mt-12">
+              <div className="mt-10 sm:mt-12">
                 <CTAButton onClick={openQuiz}>Собрать для меня образ</CTAButton>
-                <p className="mt-4 text-sm opacity-60">Заполнить анкету</p>
+                <p
+                  style={{
+                    marginTop: 15,
+                    fontSize: 13.5,
+                    color: "rgba(247,237,227,0.48)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Заполнить анкету
+                </p>
               </div>
             </div>
           </section>
 
           {/* What gets gathered */}
-          <section className="px-6 sm:px-10 py-16 sm:py-24">
+          <section className="px-6 sm:px-10 pt-6 sm:pt-10 pb-16 sm:pb-24">
             <div className="max-w-5xl mx-auto">
               <h2
                 className="font-serif text-center text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: "#F7EDE3" }}
               >
                 Образ складывается из деталей.
               </h2>
 
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+              <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
                 <DetailCard icon={Palette} title="Цвета" description="Палитра, в которой ты звучишь чище всего." />
                 <DetailCard icon={Shirt} title="Силуэты" description="Линии, которые подчёркивают тебя." />
                 <DetailCard icon={Sparkles} title="Макияж" description="Акценты, которые работают на образ." />
@@ -116,10 +156,11 @@ const NeurostylistPage = () => {
             <div className="max-w-3xl mx-auto">
               <h2
                 className="font-serif text-center text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: "#F7EDE3" }}
               >
-                Ты отвечаешь на вопросы,<br />
-                <span style={{ color: "hsl(20 60% 75%)" }}>а образ начинает складываться.</span>
+                <span style={{ color: "#F7EDE3" }}>Ты отвечаешь на вопросы,</span>
+                <br />
+                <span style={{ color: "#F3C7A5" }}>а образ начинает складываться.</span>
               </h2>
 
               <ol className="mt-12 space-y-5">
@@ -137,13 +178,22 @@ const NeurostylistPage = () => {
             <div className="max-w-3xl mx-auto text-center">
               <h2
                 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: "#F7EDE3" }}
               >
                 Твой образ уже можно собрать.
               </h2>
               <div className="mt-10">
                 <CTAButton onClick={openQuiz}>Собрать для меня образ</CTAButton>
-                <p className="mt-4 text-sm opacity-60">Заполнить анкету</p>
+                <p
+                  style={{
+                    marginTop: 15,
+                    fontSize: 13.5,
+                    color: "rgba(247,237,227,0.48)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Заполнить анкету
+                </p>
               </div>
             </div>
           </section>
@@ -175,11 +225,15 @@ const NeurostylistPage = () => {
 const CTAButton = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => (
   <button
     onClick={onClick}
-    className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-lg font-semibold transition-all duration-500 hover:scale-[1.03] hover:-translate-y-0.5"
+    className="inline-flex items-center justify-center rounded-full font-semibold transition-all duration-500 hover:scale-[1.03] hover:-translate-y-0.5"
     style={{
-      background: "linear-gradient(135deg, hsl(20 60% 75%), hsl(45 60% 88%))",
-      color: "hsl(300 20% 8%)",
-      boxShadow: "0 0 50px hsl(20 60% 75% / 0.45), 0 8px 30px hsl(300 20% 8% / 0.4)",
+      padding: "20px 40px",
+      fontSize: "clamp(16px, 1.4vw, 18px)",
+      background: "linear-gradient(135deg, #FFE9D2 0%, #F3C7A5 100%)",
+      color: "#2A0E1E",
+      letterSpacing: "0.01em",
+      boxShadow:
+        "0 0 0 1px rgba(255,233,210,0.35) inset, 0 0 60px rgba(243,199,165,0.55), 0 0 120px rgba(243,199,165,0.25), 0 14px 40px rgba(42,14,30,0.5)",
     }}
   >
     {children}
@@ -198,26 +252,29 @@ const DetailCard = ({
   <div
     className="rounded-3xl p-6 sm:p-7 border transition-all duration-500 hover:-translate-y-1"
     style={{
-      background: "hsl(0 0% 100% / 0.04)",
-      borderColor: "hsl(0 0% 100% / 0.1)",
+      background: "rgba(255,255,255,0.06)",
+      borderColor: "rgba(247,237,227,0.16)",
       backdropFilter: "blur(14px)",
       WebkitBackdropFilter: "blur(14px)",
-      boxShadow: "0 8px 40px hsl(300 20% 8% / 0.4)",
+      boxShadow:
+        "inset 0 1px 0 rgba(247,237,227,0.08), 0 1px 2px rgba(0,0,0,0.25), 0 12px 40px rgba(20,8,18,0.45)",
     }}
   >
     <div
       className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4"
       style={{
-        background: "hsl(20 60% 75% / 0.15)",
-        border: "1px solid hsl(20 60% 75% / 0.3)",
+        background: "rgba(243,199,165,0.14)",
+        border: "1px solid rgba(243,199,165,0.32)",
       }}
     >
-      <Icon className="w-5 h-5" style={{ color: "hsl(20 60% 75%)" }} />
+      <Icon className="w-5 h-5" style={{ color: "#F3C7A5" }} />
     </div>
-    <h3 className="text-lg font-semibold tracking-tight" style={{ color: "hsl(45 60% 88%)" }}>
+    <h3 className="text-lg font-semibold tracking-tight" style={{ color: "#F7EDE3" }}>
       {title}
     </h3>
-    <p className="mt-2 text-sm opacity-70 leading-relaxed">{description}</p>
+    <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgba(247,237,227,0.58)" }}>
+      {description}
+    </p>
   </div>
 );
 
