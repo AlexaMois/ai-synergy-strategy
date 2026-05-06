@@ -3,6 +3,7 @@ import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2 } f
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { QUIZ_QUESTIONS, type Question, type FieldDef, type PhotoSlot } from "./quizConfig";
+import silhouetteUrl from "@/assets/stylist-silhouette.png";
 
 interface StylistQuizProps {
   onClose: () => void;
@@ -185,6 +186,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   return (
     <div
       className="ns-quiz fixed inset-0 z-[100] flex flex-col"
+      data-screen={done ? "final" : current?.type === "welcome" ? "welcome" : "question"}
       style={{
         background:
           "radial-gradient(ellipse at top right, hsl(290 30% 18%) 0%, hsl(295 35% 12%) 50%, hsl(300 20% 8%) 100%)",
