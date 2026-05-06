@@ -974,56 +974,102 @@ const NeurostylistPage = () => {
             {/* spotlight */}
             <div
               aria-hidden
-              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-40 blur-[140px]"
+              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-25 blur-[140px]"
               style={{
                 background:
                   "radial-gradient(ellipse at center, #D4956A 0%, rgba(155,108,255,0.4) 50%, transparent 75%)",
               }}
             />
-            <div className="relative max-w-4xl mx-auto text-center">
-              <div
-                className="text-[11px] tracking-[0.4em] uppercase mb-6"
-                style={{ color: "#D4956A" }}
-              >
-                <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
+            <div className="relative max-w-7xl mx-auto">
+              {/* Header row: title left, supporting text right */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-end mb-14 sm:mb-20">
+                <div>
+                  <div
+                    className="text-[11px] tracking-[0.4em] uppercase mb-6"
+                    style={{ color: "#D4956A" }}
+                  >
+                    <span style={{ color: "#D4956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
+                  </div>
+                  <h2 data-reveal>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "'Outfit', sans-serif",
+                        fontWeight: 400,
+                        fontSize: "clamp(13px, 1vw, 15px)",
+                        color: "rgba(247,237,227,0.5)",
+                        letterSpacing: "0.32em",
+                        textTransform: "uppercase",
+                        marginBottom: "0.5em",
+                      }}
+                    >
+                      Твой образ
+                    </span>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontStyle: "italic",
+                        fontWeight: 400,
+                        fontSize: "clamp(54px, 7vw, 110px)",
+                        lineHeight: 0.95,
+                        backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        WebkitTextFillColor: "transparent",
+                        filter: "drop-shadow(0 4px 22px rgba(139,78,30,0.35))",
+                        paddingBottom: "0.1em",
+                      }}
+                    >
+                      <span className="ns-cursive-accent">уже можно собрать</span>
+                    </span>
+                  </h2>
+                </div>
+                <div className="lg:text-right lg:pb-4">
+                  <p
+                    className="max-w-md lg:ml-auto"
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      fontSize: "clamp(14px, 1vw, 16px)",
+                      lineHeight: 1.55,
+                      color: "rgba(247,237,227,0.72)",
+                    }}
+                  >
+                    Пять образов, из которых складывается твоя цельная картинка.
+                  </p>
+                </div>
               </div>
-              <h2 data-reveal>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Outfit', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(13px, 1vw, 15px)",
-                    color: "rgba(247,237,227,0.5)",
-                    letterSpacing: "0.32em",
-                    textTransform: "uppercase",
-                    marginBottom: "0.5em",
-                  }}
-                >
-                  Твой образ
-                </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "'Cormorant Garamond', serif",
-                      fontStyle: "italic",
-                    fontWeight: 400,
-                    fontSize: "clamp(64px, 8vw, 120px)",
-                    lineHeight: 0.95,
-                    backgroundImage: "linear-gradient(135deg, #F5E6D0 0%, #E8B888 25%, #D4956A 55%, #A0622A 85%, #8B4E1E 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    WebkitTextFillColor: "transparent",
-                    filter: "drop-shadow(0 4px 22px rgba(139,78,30,0.35))",
-                    paddingBottom: "0.1em",
-                  }}
-                >
-                  <span className="ns-cursive-accent">уже можно собрать</span>
-                </span>
-              </h2>
 
-              <div className="mt-12 flex flex-col items-center gap-4">
+              {/* Lookbook row */}
+              <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
+                {[
+                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: look1 },
+                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: look2 },
+                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: look3 },
+                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: look4 },
+                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: look5 },
+                ].map((look) => (
+                  <article key={look.n} className="ns-look-card">
+                    <img
+                      src={look.img}
+                      alt={`Образ ${look.n} — ${look.label}`}
+                      loading="lazy"
+                      className="ns-look-img"
+                    />
+                    <div className="ns-look-plum" />
+                    <div className="ns-look-tone" />
+                    <div className="ns-look-caption">
+                      <div className="ns-look-num">{look.n}</div>
+                      <div className="ns-look-line" />
+                      <div className="ns-look-label">{look.label}</div>
+                    </div>
+                    <div className="ns-look-desc">{look.desc}</div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-14 sm:mt-16 flex flex-col items-center gap-4">
                 <button
                   onClick={openQuiz}
                   className="ns-cta inline-flex items-center justify-center rounded-full font-semibold"
