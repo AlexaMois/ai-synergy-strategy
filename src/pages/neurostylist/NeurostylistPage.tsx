@@ -366,6 +366,17 @@ const NeurostylistPage = () => {
           fontFamily: "'Outfit', sans-serif",
         }}
       >
+        {/* Side progress rail with dynamic section label */}
+        <div aria-hidden className="ns-rail">
+          <div
+            className="ns-rail-fill"
+            style={{ height: `${Math.round(scrollProgress * 100)}%` }}
+          />
+          <div className="ns-rail-label">
+            КАРТА · {activeSection} · {sectionLabels[activeSection]}
+          </div>
+        </div>
+
         {/* Layered background glows */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
