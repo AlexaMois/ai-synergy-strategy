@@ -407,7 +407,7 @@ const NeurostylistPage = () => {
         /* ==== Lookbook cards (section 04) ==== */
         .ns-look-card {
           position: relative;
-          aspect-ratio: 3 / 5;
+          aspect-ratio: 3 / 5.3;
           border-radius: 18px;
           overflow: hidden;
           background: #1A0910;
@@ -421,27 +421,26 @@ const NeurostylistPage = () => {
         }
         .ns-look-img {
           position: absolute;
-          inset: 0;
+          left: 0; right: 0; top: 0;
           width: 100%;
-          height: 100%;
+          height: 88%;
           object-fit: cover;
-          object-position: center 20%;
+          object-position: center top;
           /* tone the bright studio whites into the plum atmosphere */
-          filter: saturate(0.7) contrast(1.08) brightness(0.85) hue-rotate(-12deg);
-          mix-blend-mode: luminosity;
-          opacity: 0.88;
+          filter: saturate(0.55) contrast(1.05) brightness(0.78) sepia(0.18) hue-rotate(-25deg);
         }
         .ns-look-tone {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(42,20,34,0.35) 0%, rgba(26,9,16,0.0) 25%, rgba(26,9,16,0.0) 55%, rgba(20,8,16,0.92) 78%, rgba(20,8,16,0.98) 100%);
+          background: linear-gradient(180deg, rgba(26,9,16,0) 0%, rgba(26,9,16,0) 60%, rgba(26,9,16,0.85) 82%, rgba(26,9,16,1) 100%);
           mix-blend-mode: normal;
           pointer-events: none;
         }
         .ns-look-plum {
           position: absolute;
-          inset: 0;
-          background: rgba(70,30,50,0.42);
+          left: 0; right: 0; top: 0;
+          height: 88%;
+          background: linear-gradient(180deg, rgba(60,28,46,0.35) 0%, rgba(60,28,46,0.45) 100%);
           mix-blend-mode: multiply;
           pointer-events: none;
         }
