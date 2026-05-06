@@ -107,7 +107,7 @@ const NeurostylistPage = () => {
           background:
             "radial-gradient(ellipse 70% 50% at 75% 25%, hsl(340 35% 18%) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, hsl(270 35% 16%) 0%, transparent 65%), radial-gradient(ellipse 100% 80% at 50% 50%, hsl(310 25% 10%) 0%, hsl(300 30% 5%) 100%)",
           color: "#F7EDE3",
-          fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+          fontFamily: "'Outfit', sans-serif",
         }}
       >
         {/* Layered background glows */}
@@ -164,7 +164,7 @@ const NeurostylistPage = () => {
               aria-hidden
               className="ns-hero-decor pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none ns-fade-in"
               style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontFamily: "'Outfit', sans-serif",
                 fontSize: "clamp(180px, 28vw, 420px)",
                 fontWeight: 400,
                 lineHeight: 1,
@@ -205,33 +205,50 @@ const NeurostylistPage = () => {
                   Умная примерочная
                 </div>
 
-                <h1
-                  className="ns-fade-up ns-delay-1 leading-[0.98] tracking-tight"
-                  style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "clamp(44px, 7.2vw, 104px)",
-                    fontWeight: 400,
-                  }}
-                >
-                  <span style={{ color: "#FBF4EA" }}>Собери образ,</span>
-                  <br />
-                  <span style={{ color: "#F3C7A5", fontStyle: "italic", fontWeight: 300 }}>
-                    в котором ты узнаёшь&nbsp;себя
-                  </span>
-                  <br />
+                <h1 className="ns-fade-up ns-delay-1 leading-[1.05]">
                   <span
                     style={{
+                      display: "block",
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "clamp(28px, 3.5vw, 52px)",
+                      color: "#F7EDE3",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    Собери образ,
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 200,
+                      fontSize: "clamp(24px, 3vw, 44px)",
+                      color: "#F3C7A5",
+                      letterSpacing: 0,
+                      marginTop: "0.4em",
+                    }}
+                  >
+                    в котором ты узнаёшь&nbsp;себя
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "'Alex Brush', cursive",
+                      fontWeight: 400,
+                      fontSize: "clamp(72px, 11vw, 148px)",
+                      lineHeight: 1.0,
+                      letterSpacing: "0.01em",
                       backgroundImage:
-                        "linear-gradient(135deg, #FFD4A8 0%, #F3C7A5 30%, #E8956A 65%, #C49DFF 100%)",
+                        "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",
                       WebkitTextFillColor: "transparent",
-                      fontSize: "clamp(56px, 9vw, 132px)",
-                      letterSpacing: "-0.02em",
+                      marginTop: "0.15em",
                     }}
                   >
-                    сильнее.
+                    сильнее
                   </span>
                 </h1>
 
@@ -331,17 +348,32 @@ const NeurostylistPage = () => {
                     <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Карта стиля · 02
                   </div>
                   <h2
-                    className="leading-[1.05] tracking-tight"
+                    className="leading-[1.05]"
                     style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontSize: "clamp(34px, 4.5vw, 64px)",
-                      color: "#FBF4EA",
-                      fontWeight: 400,
+                      fontFamily: "'Outfit', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "clamp(28px, 3.5vw, 52px)",
+                      color: "#F7EDE3",
+                      letterSpacing: "-0.01em",
                     }}
                   >
                     Образ складывается
                     <br />
-                    <span style={{ color: "#F3C7A5", fontStyle: "italic" }}>из деталей.</span>
+                    <span
+                      style={{
+                        fontFamily: "'Alex Brush', cursive",
+                        fontWeight: 400,
+                        fontSize: "clamp(40px, 5vw, 72px)",
+                        backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        WebkitTextFillColor: "transparent",
+                        lineHeight: 1.0,
+                      }}
+                    >
+                      из деталей
+                    </span>
                   </h2>
                 </div>
                 <p
@@ -412,18 +444,31 @@ const NeurostylistPage = () => {
                   <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Процесс · 03
                 </div>
                 <h2
-                  className="leading-[1.05] tracking-tight max-w-3xl mx-auto"
+                  className="leading-[1.05] max-w-3xl mx-auto"
                   style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "clamp(32px, 4.2vw, 60px)",
-                    color: "#FBF4EA",
-                    fontWeight: 400,
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "clamp(28px, 3.5vw, 52px)",
+                    color: "#F7EDE3",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   Ты отвечаешь на вопросы,
                   <br />
-                  <span style={{ color: "#F3C7A5", fontStyle: "italic" }}>
-                    а образ начинает складываться.
+                  <span
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      fontWeight: 400,
+                      fontSize: "clamp(40px, 5vw, 72px)",
+                      backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 100%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                      WebkitTextFillColor: "transparent",
+                      lineHeight: 1.0,
+                    }}
+                  >
+                    а образ начинает складываться
                   </span>
                 </h2>
               </div>
@@ -470,28 +515,31 @@ const NeurostylistPage = () => {
                 <span style={{ color: "#E8956A" }}>◆</span>&nbsp;&nbsp;Приглашение · 04
               </div>
               <h2
-                className="leading-[1.05] tracking-tight"
+                className="leading-[1.05]"
                 style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  fontSize: "clamp(36px, 5.5vw, 78px)",
-                  color: "#FBF4EA",
-                  fontWeight: 400,
+                  fontFamily: "'Outfit', sans-serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(28px, 3.5vw, 52px)",
+                  color: "#F7EDE3",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 Твой образ
                 <br />
                 <span
                   style={{
-                    backgroundImage:
-                      "linear-gradient(100deg, #FFE9D2 0%, #F3C7A5 50%, #C77DFF 100%)",
+                    fontFamily: "'Alex Brush', cursive",
+                    fontWeight: 400,
+                    fontSize: "clamp(52px, 7vw, 96px)",
+                    backgroundImage: "linear-gradient(135deg, #F5C9A0 0%, #E8956A 50%, #F3C7A5 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
                     WebkitTextFillColor: "transparent",
-                    fontStyle: "italic",
+                    lineHeight: 1.0,
                   }}
                 >
-                  уже можно собрать.
+                  уже можно собрать
                 </span>
               </h2>
 
@@ -584,7 +632,7 @@ const BentoCard = ({
     <div className="relative flex items-start justify-between">
       <span
         style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Outfit', sans-serif",
           fontSize: large ? "clamp(48px, 6vw, 80px)" : "clamp(28px, 3vw, 40px)",
           fontWeight: 300,
           lineHeight: 1,
@@ -612,7 +660,7 @@ const BentoCard = ({
         className={`tracking-tight ${large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"}`}
         style={{
           color: "#FBF4EA",
-          fontFamily: large ? "Georgia, serif" : "inherit",
+          fontFamily: "'Outfit', sans-serif",
           fontWeight: large ? 400 : 600,
         }}
       >
@@ -641,7 +689,7 @@ const ProcessStep = ({ n, title, desc }: { n: string; title: string; desc: strin
     >
       <span
         style={{
-          fontFamily: "Georgia, serif",
+          fontFamily: "'Outfit', sans-serif",
           fontSize: 22,
           fontWeight: 500,
           color: "#1A0910",
