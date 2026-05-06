@@ -1037,7 +1037,7 @@ const BentoCard = ({
         alt={imageAlt || title}
         loading="lazy"
         className="ns-bento-media absolute inset-x-0 top-0 w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-        style={{ objectPosition: focal, height: "62%" }}
+        style={{ objectPosition: focal, height: "60%" }}
       />
     )}
     {/* Editorial dark gradient overlay for legibility — strong fade into the caption zone */}
@@ -1046,7 +1046,7 @@ const BentoCard = ({
       className="ns-bento-overlay absolute inset-0 pointer-events-none"
       style={{
         background:
-          "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0) 38%, rgba(20,10,18,0.85) 62%, rgba(20,10,18,0.96) 100%)",
+          "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0.08) 34%, rgba(20,10,18,0.88) 58%, rgba(16,6,12,0.98) 100%)",
       }}
     />
     <div className="ns-bento-spot" aria-hidden />
@@ -1055,7 +1055,12 @@ const BentoCard = ({
     <div className="flex-1 relative z-10" />
 
     {/* Editorial caption block — sits in the lower portion of the card */}
-    <div className="relative z-10 px-6 sm:px-7 pb-6 pt-3 flex flex-col">
+    <div
+      className="relative z-10 px-6 sm:px-7 pb-6 pt-4 flex flex-col"
+      style={{
+        background: "linear-gradient(180deg, rgba(22,8,16,0.08) 0%, rgba(18,7,13,0.84) 18%, rgba(15,5,11,0.97) 100%)",
+      }}
+    >
       {/* oversized translucent rose-gold number */}
       <span
         aria-hidden
@@ -1064,7 +1069,7 @@ const BentoCard = ({
           fontFamily: "'Cormorant Garamond', 'Outfit', serif",
           fontStyle: "italic",
           fontWeight: 400,
-          fontSize: "clamp(44px, 4.2vw, 60px)",
+          fontSize: "clamp(46px, 4.4vw, 62px)",
           background:
             "linear-gradient(135deg, #F5E6D0 0%, #E8B888 35%, #D4956A 70%, #B07A4E 100%)",
           WebkitBackgroundClip: "text",
@@ -1073,7 +1078,7 @@ const BentoCard = ({
           WebkitTextFillColor: "transparent",
           filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.6))",
           letterSpacing: "-0.02em",
-          marginBottom: 10,
+          marginBottom: 12,
         }}
       >
         {num}
@@ -1083,13 +1088,13 @@ const BentoCard = ({
       <div
         style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: 500,
           letterSpacing: "0.32em",
           textTransform: "uppercase",
           color: "#D4956A",
           textShadow: "0 1px 6px rgba(0,0,0,0.7)",
-          marginBottom: 6,
+          marginBottom: 8,
         }}
       >
         {title}
@@ -1097,13 +1102,13 @@ const BentoCard = ({
 
       {/* short 1-2 line description */}
       <p
-        className="text-[13px] sm:text-sm leading-snug"
+        className="text-[15px] sm:text-[15px] leading-[1.35]"
         style={{
-          color: "rgba(251,244,234,0.78)",
+          color: "rgba(251,244,234,0.86)",
           textShadow: "0 1px 8px rgba(0,0,0,0.75)",
           fontFamily: "'Outfit', sans-serif",
           fontWeight: 300,
-          maxWidth: "92%",
+          maxWidth: "88%",
         }}
       >
         {description}
