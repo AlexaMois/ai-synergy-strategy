@@ -316,6 +316,9 @@ const NeurostylistPage = () => {
         .ns-bento-card:hover .ns-bento-spot { opacity: 1; }
         .ns-bento-card > * { position: relative; z-index: 2; }
         .ns-bento-card .ns-bento-spot { z-index: 1; }
+       .ns-bento-card > .ns-bento-media,
+       .ns-bento-card > .ns-bento-overlay { position: absolute; z-index: 1; }
+       .ns-bento-card > .ns-bento-overlay { z-index: 2; }
 
         /* ---- Mirror parallax + cursor light ---- */
         .ns-mirror-wrap {
@@ -976,7 +979,7 @@ const NeurostylistPage = () => {
 
 const BentoCard = ({
   num,
-  icon: Icon,
+  icon: _Icon,
   title,
   description,
   className = "",
@@ -1039,59 +1042,32 @@ const BentoCard = ({
         src={image}
         alt={imageAlt || title}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        className="ns-bento-media absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         style={{ objectPosition: focal }}
       />
     )}
     {/* Editorial dark gradient overlay for legibility */}
     <div
       aria-hidden
-      className="absolute inset-0 pointer-events-none"
+      className="ns-bento-overlay absolute inset-0 pointer-events-none"
       style={{
         background:
-          "linear-gradient(180deg, rgba(20,8,18,0.55) 0%, rgba(20,8,18,0.15) 35%, rgba(20,8,18,0.25) 60%, rgba(20,8,18,0.85) 100%)",
+          "linear-gradient(180deg, rgba(20,10,18,0) 0%, rgba(20,10,18,0) 45%, rgba(20,10,18,0.55) 100%)",
       }}
     />
     <div className="ns-bento-spot" aria-hidden />
 
-    <div className="relative flex items-start justify-between p-6 sm:p-7">
-      <span
-        style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontSize: large ? "clamp(48px, 6vw, 80px)" : "clamp(28px, 3vw, 40px)",
-          fontWeight: 300,
-          lineHeight: 1,
-          background: "linear-gradient(135deg, #D4956A 0%, rgba(212,149,106,0.3) 100%)",
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          color: "transparent",
-          WebkitTextFillColor: "transparent",
-          textShadow: "0 2px 12px rgba(0,0,0,0.5)",
-        }}
-      >
-        {num}
-      </span>
-      <div
-        className="w-9 h-9 rounded-xl flex items-center justify-center"
-        style={{
-          background: "rgba(20,8,18,0.55)",
-          border: "1px solid rgba(212,149,106,0.45)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
-        <Icon className="ns-bento-icon w-4 h-4" style={{ color: "#D4956A", transition: "color 0.4s" }} />
-      </div>
-    </div>
+    {/* Spacer to push editorial caption to the bottom */}
+    <div className="flex-1 relative z-10" />
 
     {/* Horizontal luxury palette swatches (only for Colors card) */}
     {palette && palette.length > 0 && (
-      <div className="relative px-6 sm:px-7 mb-3">
+      <div className="relative z-10 px-6 sm:px-7 mb-3">
         <div
           className="flex w-full rounded-md overflow-hidden"
           style={{
-            height: large ? 26 : 18,
-            boxShadow: "0 6px 20px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(247,237,227,0.08)",
+            height: large ? 22 : 16,
+            boxShadow: "0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(247,237,227,0.1)",
           }}
         >
           {palette.map((c, i) => (
@@ -1106,24 +1082,57 @@ const BentoCard = ({
       </div>
     )}
 
-    <div className="relative p-6 sm:p-7 pt-0">
-      <h3
-        className={`tracking-tight ${large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"}`}
-        style={{
-          color: "#FBF4EA",
-          fontFamily: "'Outfit', sans-serif",
-          fontWeight: large ? 400 : 600,
-          textShadow: "0 2px 12px rgba(0,0,0,0.55)",
-        }}
-      >
-        {title}
-      </h3>
-      <p
-        className={`mt-2 leading-relaxed ${large ? "text-base max-w-xs" : "text-sm"}`}
-        style={{ color: "rgba(247,237,227,0.78)", textShadow: "0 1px 8px rgba(0,0,0,0.55)" }}
-      >
-        {description}
-      </p>
+    {/* Editorial caption: oversized translucent rose-gold number + label + 1-line description */}
+    <div className="relative z-10 px-6 sm:px-7 pb-5 sm:pb-6 pt-2">
+      <div className="flex items-end gap-3 sm:gap-4">
+        <span
+          aria-hidden
+          className="leading-none select-none shrink-0"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 300,
+            fontSize: large ? "clamp(72px, 7vw, 110px)" : "clamp(36px, 3.4vw, 52px)",
+            background:
+              "linear-gradient(135deg, rgba(245,230,208,0.85) 0%, rgba(212,149,106,0.55) 60%, rgba(212,149,106,0.25) 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+            WebkitTextFillColor: "transparent",
+            opacity: 0.78,
+            filter: "drop-shadow(0 2px 16px rgba(0,0,0,0.55))",
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {num}
+        </span>
+        <div className="flex-1 min-w-0 pb-1">
+          <div
+            className="mb-1"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: large ? 12 : 10,
+              fontWeight: 500,
+              letterSpacing: "0.32em",
+              textTransform: "uppercase",
+              color: "#D4956A",
+              textShadow: "0 1px 6px rgba(0,0,0,0.6)",
+            }}
+          >
+            {title}
+          </div>
+          <p
+            className={`leading-snug truncate ${large ? "text-base sm:text-[17px]" : "text-[12px] sm:text-[13px]"}`}
+            style={{
+              color: "rgba(251,244,234,0.82)",
+              textShadow: "0 1px 8px rgba(0,0,0,0.7)",
+              fontFamily: "'Outfit', sans-serif",
+              fontWeight: 300,
+            }}
+          >
+            {description}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 );
