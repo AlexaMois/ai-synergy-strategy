@@ -704,21 +704,38 @@ const PhotoUploadView = ({
   q,
   photos,
   setPhotos,
+  testMode,
 }: {
   q: Question;
   photos: UploadedPhoto[];
   setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+  testMode?: boolean;
 }) => {
   const slots = q.slots || [];
-  const min = q.minPhotos ?? 1;
+  const baseMin = q.minPhotos ?? 1;
+  const min = testMode ? 0 : baseMin;
 
   return (
     <div className="grid gap-4">
+      {testMode && (
+        <div
+          className="text-xs px-4 py-3 rounded-xl border"
+          style={{
+            background: "hsl(20 60% 75% / 0.08)",
+            borderColor: "hsl(20 60% 75% / 0.4)",
+            color: "hsl(40 30% 95%)",
+          }}
+        >
+          🧪 Тестовый режим — фото можно не загружать
+        </div>
+      )}
       {slots.map((slot) => (
         <PhotoSlotInput key={slot.id} slot={slot} photos={photos} setPhotos={setPhotos} />
       ))}
       <p className="text-xs opacity-60 mt-1">
-        Минимум {min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)
+        {min === 0
+          ? "Фото не обязательны (тест) · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)"
+          : `Минимум ${min} фото · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)`}
       </p>
     </div>
   );
