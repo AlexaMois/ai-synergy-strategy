@@ -1015,30 +1015,34 @@ const NeurostylistPage = () => {
                 </div>
               </div>
 
-              {/* Lookbook row */}
-              <div className="ns-look-row grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
-                {[
-                  { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо", img: lookCard1 },
-                  { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс / корсетный пояс + широкие брюки", img: lookCard2 },
-                  { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки", img: lookCard3 },
-                  { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками", img: lookCard4 },
-                  { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной", img: lookCard5 },
-                ].map((look) => (
-                  <article key={look.n} className="ns-look-card">
+              {/* Lookbook — single bordeaux card with full reference image */}
+              <div className="ns-lookbook-wrap">
+                <article className="ns-lookbook-card">
+                  <div className="ns-lookbook-glow" aria-hidden />
+                  <div className="ns-lookbook-image-wrap">
                     <img
-                      src={look.img}
-                      alt={`Образ ${look.n} — ${look.label}`}
+                      src={lookbookFull}
+                      alt="Пять образов: предприниматель, городская дерзость, женская сила, магнетизм, публичный лидер"
                       loading="lazy"
-                      className="ns-look-img"
+                      className="ns-lookbook-image"
                     />
-                    <div className="ns-look-plum" />
-                    <div className="ns-look-tone" />
-                    <div className="ns-look-caption">
-                      <div className="ns-look-line" />
-                      <div className="ns-look-desc">{look.desc}</div>
-                    </div>
-                  </article>
-                ))}
+                  </div>
+                  <div className="ns-lookbook-captions">
+                    {[
+                      { n: "1", label: "Предприниматель", desc: "Топ на одно плечо + брюки-палаццо" },
+                      { n: "2", label: "Городская дерзость", desc: "Рубашка под пояс + широкие брюки" },
+                      { n: "3", label: "Женская сила", desc: "Жилет в талию + прямые брюки" },
+                      { n: "4", label: "Магнетизм", desc: "Боди с открытой спиной + брюки со стрелками" },
+                      { n: "5", label: "Публичный лидер", desc: "Платье с открытой спиной" },
+                    ].map((c) => (
+                      <div key={c.n} className="ns-lookbook-cap">
+                        <div className="ns-lookbook-line" />
+                        <div className="ns-lookbook-label">{c.label}</div>
+                        <div className="ns-lookbook-desc">{c.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
               </div>
 
               <div className="mt-14 sm:mt-16 flex flex-col items-center gap-4">
