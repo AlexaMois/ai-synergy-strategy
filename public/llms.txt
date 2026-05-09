@@ -17,12 +17,21 @@
 
 ## Ключевые страницы
 - Главная: https://aleksamois.ru/
+- С чего начать: https://aleksamois.ru/start
 - Услуги: https://aleksamois.ru/services
 - Диагностика: https://aleksamois.ru/services/diagnostics
 - Архитектура: https://aleksamois.ru/services/architecture
 - Сопровождение: https://aleksamois.ru/services/support
+- Дополнительные услуги: https://aleksamois.ru/services/add-ons
+- Продукты: https://aleksamois.ru/products
+- Голосовой ИИ-ассистент Golossok: https://aleksamois.ru/products/voice-bot
+- Поиск по документам DocSearch: https://aleksamois.ru/products/doc-search
+- Цены: https://aleksamois.ru/pricing
 - Кейсы: https://aleksamois.ru/cases
+- Материалы: https://aleksamois.ru/materials
 - Блог: https://aleksamois.ru/materials/blog
+- Чек-лист «30 вопросов для тестирования ИИ-ассистента»: https://aleksamois.ru/materials/checklist-30
+- Инструкция по PLAUD AI на русском языке: https://aleksamois.ru/materials/plaud-guide
 - О нас: https://aleksamois.ru/about
 - FAQ: https://aleksamois.ru/faq
 - Контакты: https://aleksamois.ru/#contact
