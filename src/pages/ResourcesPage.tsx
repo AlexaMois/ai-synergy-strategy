@@ -165,10 +165,10 @@ const ResourcesPage = () => {
         <title>Ресурсы — Чек-листы, гайды и архитектуры | Александра Моисеева</title>
         <meta name="description" content="Бесплатные материалы для самостоятельной оценки AI-готовности: чек-листы, гайды, архитектуры кейсов и видео. Скачайте и начните внедрение ИИ." />
         <meta name="keywords" content="чек-лист ИИ, гайд внедрение AI, архитектура AI решений, бесплатные материалы искусственный интеллект" />
-        <link rel="canonical" href="https://aleksamois.ru/resources" />
+        <link rel="canonical" href="https://aleksamois.ru/materials/resources" />
         <meta property="og:title" content="Ресурсы — Чек-листы, гайды и архитектуры" />
         <meta property="og:description" content="Бесплатные материалы для самостоятельной оценки AI-готовности компании." />
-        <meta property="og:url" content="https://aleksamois.ru/resources" />
+        <meta property="og:url" content="https://aleksamois.ru/materials/resources" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.resources())}
         </script>
