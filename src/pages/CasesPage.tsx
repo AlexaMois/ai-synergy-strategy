@@ -73,7 +73,7 @@ const cases: CaseItem[] = [
     ],
     industry: "production",
     solutionType: "docs",
-    link: "/cases/doc-search",
+    link: "/products/doc-search",
     status: "ready",
     image: caseDocSearch,
   },

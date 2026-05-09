@@ -32,13 +32,13 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/cases', priority: '0.8', changefreq: 'weekly' },
   { path: '/cases/kraypotrebsoyuz', priority: '0.7', changefreq: 'monthly' },
   { path: '/cases/cargo-express', priority: '0.7', changefreq: 'monthly' },
-  { path: '/cases/doc-search', priority: '0.7', changefreq: 'monthly' },
 
   // Materials
   { path: '/materials', priority: '0.8', changefreq: 'weekly' },
   { path: '/materials/blog', priority: '0.7', changefreq: 'weekly' },
   { path: '/materials/resources', priority: '0.7', changefreq: 'monthly' },
   { path: '/materials/checklist-30', priority: '0.7', changefreq: 'monthly' },
+  { path: '/materials/plaud-guide', priority: '0.6', changefreq: 'monthly' },
 
   // Legal
   { path: '/legal', priority: '0.3', changefreq: 'yearly' },

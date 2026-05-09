@@ -452,7 +452,7 @@ const PricingPage = () => {
                     "Мой самый маленький бюджет, но крутейший результат. Показывает, что не нужно тратить миллионы на ИИ — важна правильная архитектура."
                   </p>
                   <Button asChild className="w-full">
-                    <a href="/case-studies/cargo-express">
+                    <a href="/cases/cargo-express">
                       Смотреть детальный разбор →
                     </a>
                   </Button>

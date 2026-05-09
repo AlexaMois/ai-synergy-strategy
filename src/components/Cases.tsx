@@ -46,7 +46,7 @@ const Cases = () => {
       quoteAuthor: "Главный вывод",
       resultsSummary: "Вопрос решается за 3–5 минут вместо 20–30 / Экономия 40–85 часов в месяц на команде / Снижение брака на 30–50% / Пилот подтвердил окупаемость ≈ 3 месяца",
       buttonText: "Читать кейс →",
-      link: "/cases/doc-search",
+      link: "/products/doc-search",
       bgColor: "#F8F3FF"
     },
     {

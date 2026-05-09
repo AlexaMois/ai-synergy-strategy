@@ -26,7 +26,6 @@ const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
-const DocSearchCasePage = lazy(() => import("./pages/cases/DocSearchCasePage"));
 const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
 const Checklist30Page = lazy(() => import("./pages/materials/Checklist30Page"));
 const PlaudGuidePage = lazy(() => import("./pages/materials/PlaudGuidePage"));
@@ -41,12 +40,10 @@ const CaseStudyKraypotrebsoyuz = lazy(() => import("./pages/CaseStudyKraypotrebs
 const CaseStudyCargoExpress = lazy(() => import("./pages/CaseStudyCargoExpress"));
 const CaseStudyDocSearch = lazy(() => import("./pages/CaseStudyDocSearch"));
 const GolossokPricing = lazy(() => import("./pages/GolossokPricing"));
-const ChecklistPage = lazy(() => import("./pages/ChecklistPage"));
 const Consent = lazy(() => import("./pages/Consent"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiesPolicy = lazy(() => import("./pages/CookiesPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
-const TestPage = lazy(() => import("./pages/TestPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 const NewYearGreeting = lazy(() => import("./pages/NewYearGreeting"));
 const Redirect = lazy(() => import("./pages/Redirect"));
@@ -108,7 +105,7 @@ const AppContent = () => {
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/cases/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
           <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
-          <Route path="/cases/doc-search" element={<DocSearchCasePage />} />
+          <Route path="/cases/doc-search" element={<Navigate to="/products/doc-search" replace />} />
           <Route path="/cases/:slug" element={<CaseDetailPage />} />
           
           {/* Materials */}
@@ -132,10 +129,9 @@ const AppContent = () => {
           <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/legal/cookies" element={<CookiesPolicy />} />
           <Route path="/legal/terms" element={<Terms />} />
-          <Route path="/legal/terms" element={<Terms />} />
           
           {/* Redirects for old URLs */}
-          <Route path="/approach" element={<Navigate to="/" replace />} />
+          <Route path="/approach" element={<Navigate to="/about" replace />} />
           <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
           <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
           <Route path="/blog/:slug" element={<BlogOldRedirect />} />
@@ -146,8 +142,7 @@ const AppContent = () => {
           <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
           <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
           <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
-          <Route path="/checklist" element={<ChecklistPage />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/checklist" element={<Navigate to="/materials/checklist-30" replace />} />
           <Route path="/newyear" element={<NewYearGreeting />} />
           <Route path="/redirect" element={<Redirect />} />
           

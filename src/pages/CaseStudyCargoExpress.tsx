@@ -36,10 +36,10 @@ const CaseStudyCargoExpress = () => {
         <title>Кейс: Грузовой Экспресс — Приём заявок голосом в Telegram</title>
         <meta name="description" content="Как транспортно-логистическая компания получила полную прозрачность без CRM: Telegram-бот для голосового приёма заявок + Google Sheets. Экономия 9-12 часов/неделю, 0% потерь заявок." />
         <meta name="keywords" content="автоматизация логистики, Telegram бот для бизнеса, голосовой ввод заявок, кейс внедрения ИИ, Грузовой Экспресс" />
-        <link rel="canonical" href="https://aleksamois.ru/case-studies/cargo-express" />
+        <link rel="canonical" href="https://aleksamois.ru/cases/cargo-express" />
         <meta property="og:title" content="Кейс: Грузовой Экспресс — Приём заявок голосом в Telegram" />
         <meta property="og:description" content="Полная прозрачность без CRM. Экономия 9-12 часов/неделю на команду." />
-        <meta property="og:url" content="https://aleksamois.ru/case-studies/cargo-express" />
+        <meta property="og:url" content="https://aleksamois.ru/cases/cargo-express" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
