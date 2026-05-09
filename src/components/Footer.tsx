@@ -45,6 +45,8 @@ const Footer = () => {
               <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
               <DisabledLink to="/materials/resources" className="hover:text-primary transition-colors">Материалы</DisabledLink>
               <DisabledLink to="/materials/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
+              <DisabledLink to="/pricing" className="hover:text-primary transition-colors">Цены</DisabledLink>
+              <DisabledLink to="/faq" className="hover:text-primary transition-colors">FAQ</DisabledLink>
               <a href="/#contact" onClick={e => scrollToSection(e, '#contact')} className="hover:text-primary transition-colors">Контакты</a>
             </div>
           </div>
@@ -89,16 +91,16 @@ const Footer = () => {
             <div>
               <p className="text-background/90 font-medium mb-2">Юридические документы</p>
               <div className="flex flex-col gap-1">
-                <Link to="/consent" className="hover:text-primary transition-colors">
+                <Link to="/legal/consent" className="hover:text-primary transition-colors">
                   Согласие на обработку персональных данных
                 </Link>
-                <Link to="/privacy-policy" className="hover:text-primary transition-colors">
+                <Link to="/legal/privacy-policy" className="hover:text-primary transition-colors">
                   Политика в отношении обработки персональных данных
                 </Link>
                 <Link to="/legal/cookies" className="hover:text-primary transition-colors">
                   Политика использования cookies
                 </Link>
-                <Link to="/terms" className="hover:text-primary transition-colors">
+                <Link to="/legal/terms" className="hover:text-primary transition-colors">
                   Договор-оферта
                 </Link>
               </div>
