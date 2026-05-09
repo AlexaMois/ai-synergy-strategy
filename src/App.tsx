@@ -31,7 +31,6 @@ const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
 const Checklist30Page = lazy(() => import("./pages/materials/Checklist30Page"));
 const PlaudGuidePage = lazy(() => import("./pages/materials/PlaudGuidePage"));
 
-const DemoPage = lazy(() => import("./pages/demo/DemoPage"));
 const LegalPage = lazy(() => import("./pages/legal/LegalPage"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
 const About = lazy(() => import("./pages/About"));
@@ -41,7 +40,6 @@ const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const CaseStudyKraypotrebsoyuz = lazy(() => import("./pages/CaseStudyKraypotrebsoyuz"));
 const CaseStudyCargoExpress = lazy(() => import("./pages/CaseStudyCargoExpress"));
 const CaseStudyDocSearch = lazy(() => import("./pages/CaseStudyDocSearch"));
-const GolossokDemo = lazy(() => import("./pages/GolossokDemo"));
 const GolossokPricing = lazy(() => import("./pages/GolossokPricing"));
 const ChecklistPage = lazy(() => import("./pages/ChecklistPage"));
 const Consent = lazy(() => import("./pages/Consent"));
@@ -128,10 +126,6 @@ const AppContent = () => {
           {/* Pricing */}
           <Route path="/pricing" element={<PricingPage />} />
           
-          {/* Demo */}
-          <Route path="/demo" element={<DemoPage />} />
-          <Route path="/demo/voice-bot" element={<GolossokDemo />} />
-          
           {/* Legal */}
           <Route path="/legal" element={<LegalPage />} />
           <Route path="/legal/consent" element={<Consent />} />
@@ -151,7 +145,6 @@ const AppContent = () => {
           <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
           <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
           <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
-          <Route path="/golossok-demo" element={<Navigate to="/demo/voice-bot" replace />} />
           <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
           <Route path="/checklist" element={<ChecklistPage />} />
           <Route path="/test" element={<TestPage />} />
