@@ -63,7 +63,7 @@ const ResourcesPage = () => {
     description: "Оцените готовность вашей компании к внедрению ИИ по 10 ключевым параметрам",
     type: "Чек-лист",
     icon: CheckSquare,
-    link: "/checklist",
+    link: "/materials/checklist-30",
     actionLabel: "Открыть чек-лист",
     isExternal: false,
     status: "ready"

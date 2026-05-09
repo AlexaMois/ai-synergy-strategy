@@ -70,7 +70,7 @@ export const getBreadcrumbs = {
   caseDocSearch: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
     { name: "Кейсы", path: "/cases" },
-    { name: "Интеллектуальный поиск", path: "/cases/doc-search" }
+    { name: "Интеллектуальный поиск", path: "/products/doc-search" }
   ]),
   
   caseCargoExpress: () => generateBreadcrumbSchema([
