@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
       <Helmet>
         <title>Политика конфиденциальности | Александра Моисеева</title>
         <meta name="description" content="Политика компании в отношении обработки персональных данных ИП Моисеева Александра Алексеевна. Условия хранения, права субъекта ПДн." />
-        <link rel="canonical" href="https://aleksamois.ru/privacy-policy" />
+        <link rel="canonical" href="https://aleksamois.ru/legal/privacy-policy" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       

@@ -317,7 +317,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   />
                   <Label htmlFor="consent" className="text-sm text-foreground leading-relaxed cursor-pointer">
                     Я согласен(а) с{" "}
-                    <Link to="/consent" className="text-primary hover:underline">
+                    <Link to="/legal/consent" className="text-primary hover:underline">
                       условиями обработки персональных данных
                     </Link>
                     . Сайт не передаёт информацию третьим лицам.
