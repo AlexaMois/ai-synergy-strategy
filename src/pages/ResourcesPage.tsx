@@ -123,17 +123,6 @@ const ResourcesPage = () => {
     isExternal: true,
     status: "coming-soon"
   }, {
-    id: 6,
-    category: "videos",
-    title: "Демо GolossOK в действии",
-    description: "Живая демонстрация работы AI-помощника для автоматизации бизнес-коммуникаций",
-    type: "Видео",
-    icon: Play,
-    link: "/demo/voice-bot",
-    actionLabel: "Смотреть демо",
-    isExternal: false,
-    status: "ready"
-  }, {
     id: 7,
     category: "documentation",
     title: "Шаблон технического задания на внедрение ИИ",

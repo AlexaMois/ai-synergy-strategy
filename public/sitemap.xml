@@ -162,18 +162,6 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Demo -->
-  <url>
-    <loc>https://aleksamois.ru/demo</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/demo/voice-bot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
   <!-- Legal -->
   <url>
     <loc>https://aleksamois.ru/legal</loc>
