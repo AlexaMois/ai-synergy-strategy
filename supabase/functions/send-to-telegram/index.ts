@@ -106,7 +106,6 @@ const getPageName = (path: string): string => {
     "/resources": "Материалы",
     "/pricing": "Цены",
     "/checklist": "Чек-лист",
-    "/golossok-demo": "GolossOK Демо",
     "/golossok-pricing": "GolossOK Цены",
     "/start": "AI-диагностика",
     "/case-studies/kraypotrebsoyuz": "Кейс: Крайпотребсоюз",
