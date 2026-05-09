@@ -24,7 +24,6 @@ const ProductsPage = () => {
         { value: "4-6 нед", label: "окупаемость" }
       ],
       price: "от 30 000 ₽/мес",
-      demoLink: "/demo/voice-bot",
       pricingLink: "/products/voice-bot"
     },
     {
@@ -39,7 +38,6 @@ const ProductsPage = () => {
         { value: "1 мес", label: "окупаемость" }
       ],
       price: "от 150 000 ₽ разово",
-      demoLink: "/demo/doc-search",
       pricingLink: "/products/doc-search"
     }
   ];
@@ -129,9 +127,6 @@ const ProductsPage = () => {
                       <div className="flex items-center justify-between pt-6 border-t border-border">
                         <p className="text-lg font-semibold text-foreground">{product.price}</p>
                         <div className="flex gap-3">
-                          <Button variant="outline" size="sm" asChild>
-                            <Link to={product.demoLink}>Демо</Link>
-                          </Button>
                           <Button size="sm" asChild>
                             <Link to={product.pricingLink}>
                               Подробнее

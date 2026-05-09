@@ -302,11 +302,6 @@ const GolossokPricing = () => {
               <Button size="lg" onClick={scrollToContact}>
                 Запросить пробный период
               </Button>
-              <Button size="lg" variant="secondary" asChild>
-                <a href="/golossok-demo">
-                  Посмотреть демо
-                </a>
-              </Button>
             </div>
           </div>
         </section>

@@ -40,10 +40,6 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/materials/resources', priority: '0.7', changefreq: 'monthly' },
   { path: '/materials/checklist-30', priority: '0.7', changefreq: 'monthly' },
 
-  // Demo
-  { path: '/demo', priority: '0.6', changefreq: 'monthly' },
-  { path: '/demo/voice-bot', priority: '0.6', changefreq: 'monthly' },
-
   // Legal
   { path: '/legal', priority: '0.3', changefreq: 'yearly' },
   { path: '/legal/consent', priority: '0.3', changefreq: 'yearly' },

@@ -7,7 +7,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, Play, FileSpreadsheet, Clock, Mic } from "lucide-react";
+import { FileText, Video, Download, ExternalLink, CheckSquare, BookOpen, Layout, FileCode, FileSpreadsheet, Clock, Mic } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { Link } from "react-router-dom";
 
@@ -122,17 +122,6 @@ const ResourcesPage = () => {
     actionLabel: "Смотреть видео",
     isExternal: true,
     status: "coming-soon"
-  }, {
-    id: 6,
-    category: "videos",
-    title: "Демо GolossOK в действии",
-    description: "Живая демонстрация работы AI-помощника для автоматизации бизнес-коммуникаций",
-    type: "Видео",
-    icon: Play,
-    link: "/demo/voice-bot",
-    actionLabel: "Смотреть демо",
-    isExternal: false,
-    status: "ready"
   }, {
     id: 7,
     category: "documentation",
