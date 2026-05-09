@@ -57,17 +57,6 @@ const ResourcesPage = () => {
     isExternal: false,
     status: "ready"
   }, {
-    id: 1,
-    category: "checklists",
-    title: "Чек-лист «10 вопросов перед внедрением ИИ»",
-    description: "Оцените готовность вашей компании к внедрению ИИ по 10 ключевым параметрам",
-    type: "Чек-лист",
-    icon: CheckSquare,
-    link: "/materials/checklist-30",
-    actionLabel: "Открыть чек-лист",
-    isExternal: false,
-    status: "ready"
-  }, {
     id: 12,
     category: "guides",
     title: "Инструкция по PLAUD AI на русском языке",
