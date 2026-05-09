@@ -43,7 +43,7 @@ const CaseStudyKraypotrebsoyuz = () => {
     "@graph": [
       {
         "@type": ["Article", "CaseStudy"],
-        "@id": "https://aleksamois.ru/case-studies/kraypotrebsoyuz#article",
+        "@id": "https://aleksamois.ru/cases/kraypotrebsoyuz#article",
         "headline": "Крайпотребсоюз: как совместно выстроили ИИ-архитектуру и отказались от серверов за 1,5 млн ₽",
         "description": "Как региональное объединение кооперативов сэкономило 1,3 млн ₽ благодаря правильной архитектуре вместо покупки серверов",
         "author": {
@@ -54,7 +54,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         "publisher": { "@id": "https://aleksamois.ru/#organization" },
         "datePublished": "2024-06-15",
         "dateModified": "2025-12-26",
-        "mainEntityOfPage": "https://aleksamois.ru/case-studies/kraypotrebsoyuz",
+        "mainEntityOfPage": "https://aleksamois.ru/cases/kraypotrebsoyuz",
         "about": {
           "@type": "Thing",
           "name": "ИИ-архитектура и автоматизация договорного документооборота"
@@ -68,10 +68,10 @@ const CaseStudyKraypotrebsoyuz = () => {
       <Helmet>
         <title>Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽ | Александра Моисеева</title>
         <meta name="description" content="Кейс: как совместно выстроили ИИ-архитектуру и сэкономили 1,3 млн ₽ на серверном оборудовании. Внедрение Bpium, автоматизация договоров." />
-        <link rel="canonical" href="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
+        <link rel="canonical" href="https://aleksamois.ru/cases/kraypotrebsoyuz" />
         <meta property="og:title" content="Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽" />
         <meta property="og:description" content="Как региональное объединение кооперативов сэкономило 1,3 млн ₽ благодаря правильной архитектуре" />
-        <meta property="og:url" content="https://aleksamois.ru/case-studies/kraypotrebsoyuz" />
+        <meta property="og:url" content="https://aleksamois.ru/cases/kraypotrebsoyuz" />
         <meta property="og:type" content="article" />
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}

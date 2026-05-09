@@ -81,7 +81,7 @@ export const getBreadcrumbs = {
   
   blog: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
-    { name: "Блог", path: "/blog" }
+    { name: "Блог", path: "/materials/blog" }
   ]),
   
   faq: () => generateBreadcrumbSchema([
@@ -112,7 +112,7 @@ export const getBreadcrumbs = {
   
   resources: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
-    { name: "Материалы", path: "/resources" }
+    { name: "Материалы", path: "/materials/resources" }
   ]),
   
   materials: () => generateBreadcrumbSchema([

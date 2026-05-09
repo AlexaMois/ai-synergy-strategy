@@ -10,7 +10,7 @@ const Consent = () => {
       <Helmet>
         <title>Согласие на обработку персональных данных | Александра Моисеева</title>
         <meta name="description" content="Согласие на обработку персональных данных ИП Моисеева Александра Алексеевна. Цели обработки, перечень данных, права субъекта." />
-        <link rel="canonical" href="https://aleksamois.ru/consent" />
+        <link rel="canonical" href="https://aleksamois.ru/legal/consent" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       

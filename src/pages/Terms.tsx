@@ -10,7 +10,7 @@ const Terms = () => {
       <Helmet>
         <title>Договор-оферта | Александра Моисеева</title>
         <meta name="description" content="Договор-оферта на оказание информационно-консультационных услуг ИП Моисеева Александра Алексеевна. Условия, порядок оплаты, гарантии." />
-        <link rel="canonical" href="https://aleksamois.ru/terms" />
+        <link rel="canonical" href="https://aleksamois.ru/legal/terms" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       
