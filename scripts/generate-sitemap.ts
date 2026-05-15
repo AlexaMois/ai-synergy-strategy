@@ -18,6 +18,7 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
 
   // Services
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
+  { path: '/services/automation', priority: '0.9', changefreq: 'monthly' },
   { path: '/services/diagnostics', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/architecture', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/support', priority: '0.8', changefreq: 'monthly' },
