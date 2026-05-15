@@ -56,4 +56,4 @@ Disallow: /
 User-agent: PetalBot
 Disallow: /
 
-Sitemap: https://aleksamois.ru/sitemap.xml
+Sitemap: https://www.aleksamois.ru/sitemap.xml
