@@ -15,26 +15,26 @@
 - Сопровождение внедрения — пилот от 200 тыс. ₽, ROI 3–6 месяцев, гарантия результата
 - Дополнительно: обучение команды, аудит существующих ИИ-решений
 
-## Ключевые страницы
-- Главная: https://aleksamois.ru/
-- С чего начать: https://aleksamois.ru/start
-- Услуги: https://aleksamois.ru/services
-- Диагностика: https://aleksamois.ru/services/diagnostics
-- Архитектура: https://aleksamois.ru/services/architecture
-- Сопровождение: https://aleksamois.ru/services/support
-- Дополнительные услуги: https://aleksamois.ru/services/add-ons
-- Продукты: https://aleksamois.ru/products
-- Голосовой ИИ-ассистент Golossok: https://aleksamois.ru/products/voice-bot
-- Поиск по документам DocSearch: https://aleksamois.ru/products/doc-search
-- Цены: https://aleksamois.ru/pricing
-- Кейсы: https://aleksamois.ru/cases
-- Материалы: https://aleksamois.ru/materials
-- Блог: https://aleksamois.ru/materials/blog
-- Чек-лист «30 вопросов для тестирования ИИ-ассистента»: https://aleksamois.ru/materials/checklist-30
-- Инструкция по PLAUD AI на русском языке: https://aleksamois.ru/materials/plaud-guide
-- О нас: https://aleksamois.ru/about
-- FAQ: https://aleksamois.ru/faq
-- Контакты: https://aleksamois.ru/#contact
+## Pages
+- [Главная](https://aleksamois.ru/): обзор практики, подход и ключевые результаты.
+- [С чего начать](https://aleksamois.ru/start): как выбрать первый шаг по внедрению ИИ.
+- [Услуги](https://aleksamois.ru/services): полный каталог услуг по ИИ и автоматизации.
+- [Диагностика AI-готовности](https://aleksamois.ru/services/diagnostics): экспресс-аудит процессов и расчёт ROI.
+- [Архитектура ИИ-решений](https://aleksamois.ru/services/architecture): проектирование AI-систем без привязки к вендорам.
+- [Сопровождение внедрения](https://aleksamois.ru/services/support): запуск пилота с гарантией результата.
+- [Дополнительные услуги](https://aleksamois.ru/services/add-ons): обучение команды и аудит существующих ИИ-решений.
+- [Продукты](https://aleksamois.ru/products): готовые ИИ-продукты для бизнеса.
+- [Голосовой ИИ-ассистент Golossok](https://aleksamois.ru/products/voice-bot): голосовой бот для приёма и обработки звонков.
+- [Поиск по документам DocSearch](https://aleksamois.ru/products/doc-search): семантический поиск по корпоративной базе знаний.
+- [Цены](https://aleksamois.ru/pricing): стоимость пилотов и сопровождения.
+- [Кейсы](https://aleksamois.ru/cases): реальные внедрения ИИ с метриками.
+- [Материалы](https://aleksamois.ru/materials): чек-листы, инструкции и статьи.
+- [Блог](https://aleksamois.ru/materials/blog): статьи об ИИ для бизнеса.
+- [Чек-лист «30 вопросов»](https://aleksamois.ru/materials/checklist-30): чек-лист для тестирования ИИ-ассистента.
+- [Инструкция по PLAUD AI](https://aleksamois.ru/materials/plaud-guide): руководство на русском языке.
+- [Об Александре](https://aleksamois.ru/about): опыт, подход и принципы работы.
+- [FAQ](https://aleksamois.ru/faq): ответы на главные вопросы директоров.
 
-## Подробная версия
-Для полного описания услуг, кейсов и экспертизы смотрите: https://aleksamois.ru/llms-full.txt
+## Optional
+- [Контакты](https://aleksamois.ru/#contact): email, телефон и Telegram.
+- [Полная версия](https://aleksamois.ru/llms-full.txt): расширенное описание услуг, кейсов и экспертизы.
