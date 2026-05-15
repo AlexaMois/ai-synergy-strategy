@@ -177,12 +177,12 @@ const About = () => {
   });
   return <PageTransition>
       <Helmet>
-        <title>Александра Моисеева — стратег по автоматизации бизнеса с ИИ, Красноярск | НейроРешения</title>
-        <meta name="description" content="AI Strategy Consultant & Founder «НейроРешения». Разрабатываю и внедряю персональные AI‑решения для автоматизации бизнес‑процессов, сокращения затрат и повышения эффективности компаний." />
+        <title>Александра Моисеева — стратег по ИИ для бизнеса</title>
+        <meta name="description" content="Стратег и инженер по ИИ. Проектирую и внедряю AI-решения для автоматизации процессов, снижения затрат и роста эффективности бизнеса." />
         <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
-        <meta property="og:title" content="Александра Моисеева — стратег по автоматизации бизнеса с ИИ, Красноярск | НейроРешения" />
-        <meta property="og:description" content="AI Strategy Consultant & Founder «НейроРешения». Разрабатываю и внедряю персональные AI‑решения для автоматизации бизнес‑процессов, сокращения затрат и повышения эффективности компаний." />
+        <meta property="og:title" content="Александра Моисеева — стратег по ИИ для бизнеса" />
+        <meta property="og:description" content="Стратег и инженер по ИИ. Проектирую и внедряю AI-решения для автоматизации процессов, снижения затрат и роста эффективности бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
