@@ -103,12 +103,12 @@ const GolossokPricing = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Тарифы GolossOK — Цены на голосового AI-ассистента</title>
-        <meta name="description" content="Тарифы GolossOK: от бесплатного пробного периода до корпоративных решений. Стартовый от 30 000 ₽/мес, окупаемость 4-6 недель." />
+        <title>Голосовой бот GolossOK — AI-ассистент для звонков</title>
+        <meta name="description" content="Голосовой бот GolossOK для входящих и исходящих звонков: приём заявок, квалификация, напоминания. От 30 000 ₽/мес, окупаемость 4–6 недель." />
         <meta name="keywords" content="цены GolossOK, тарифы голосовой ассистент, стоимость AI бота, прайс автоматизация голосом" />
         <link rel="canonical" href="https://aleksamois.ru/products/voice-bot" />
-        <meta property="og:title" content="Тарифы GolossOK — Цены на голосового AI-ассистента" />
-        <meta property="og:description" content="Тарифы GolossOK: от бесплатного пробного периода до корпоративных решений." />
+        <meta property="og:title" content="Голосовой бот GolossOK — AI-ассистент для звонков" />
+        <meta property="og:description" content="Голосовой бот GolossOK для входящих и исходящих звонков. От 30 000 ₽/мес, окупаемость 4–6 недель." />
         <meta property="og:url" content="https://aleksamois.ru/products/voice-bot" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
