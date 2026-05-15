@@ -141,6 +141,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://aleksamois.ru/materials/blog/golosovoy-bot-dlya-biznesa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aleksamois.ru/materials/blog/openclaw-dlya-biznesa-msp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
