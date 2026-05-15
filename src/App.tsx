@@ -23,6 +23,7 @@ const DiagnosticsPage = lazy(() => import("./pages/services/DiagnosticsPage"));
 const ArchitecturePage = lazy(() => import("./pages/services/ArchitecturePage"));
 const SupportPage = lazy(() => import("./pages/services/SupportPage"));
 const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
+const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
@@ -91,6 +92,7 @@ const AppContent = () => {
           
           {/* Services */}
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/automation" element={<AutomationHubPage />} />
           <Route path="/services/diagnostics" element={<DiagnosticsPage />} />
           <Route path="/services/architecture" element={<ArchitecturePage />} />
           <Route path="/services/support" element={<SupportPage />} />
