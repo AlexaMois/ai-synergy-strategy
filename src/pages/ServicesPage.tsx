@@ -21,12 +21,12 @@ const systemElements = [
 const ServicesPage = () => {
   return <PageTransition>
       <Helmet>
-        <title>Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева</title>
-        <meta name="description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
+        <title>Автоматизация бизнес-процессов с ИИ — под ключ</title>
+        <meta name="description" content="Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Пилот за 4–6 недель, ROI 3–6 мес." />
         <meta name="keywords" content="услуги по автоматизации бизнес процессов, автоматизация процессов с помощью ИИ, ИИ консалтинг, внедрение AI в бизнес" />
         <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Услуги по автоматизации бизнес‑процессов с ИИ — под ключ | Александра Моисеева" />
-        <meta property="og:description" content="Проектирую и внедряю автоматизацию процессов с помощью ИИ: ввод и проверка данных, документооборот, продажи, контроль качества, управленческая отчётность." />
+        <meta property="og:title" content="Автоматизация бизнес-процессов с ИИ — под ключ" />
+        <meta property="og:description" content="Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Пилот за 4–6 недель, ROI 3–6 мес." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
