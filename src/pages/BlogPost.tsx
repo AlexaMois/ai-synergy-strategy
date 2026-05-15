@@ -84,7 +84,17 @@ const BlogPost = () => {
       "keywords": post.seo.keywords.join(", ")
     };
 
-    return { canonicalUrl, articleImage, structuredData };
+    const faqStructuredData = post.content.faq && post.content.faq.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": post.content.faq.map(item => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+      }))
+    } : null;
+
+    return { canonicalUrl, articleImage, structuredData, faqStructuredData };
   }, [post, slug]);
 
   if (!slug || !post) {
@@ -122,6 +132,11 @@ const BlogPost = () => {
           <script type="application/ld+json">
             {JSON.stringify(seoData.structuredData)}
           </script>
+          {seoData.faqStructuredData && (
+            <script type="application/ld+json">
+              {JSON.stringify(seoData.faqStructuredData)}
+            </script>
+          )}
         </Helmet>
       )}
       <div className="min-h-screen bg-background">
