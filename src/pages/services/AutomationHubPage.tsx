@@ -151,7 +151,7 @@ const faq: { q: string; a: string }[] = [
 
 const AutomationHubPage = () => {
   const handleCTA = (where: string) => {
-    trackCTAClick({ location: "automation-hub", buttonText: where });
+    trackCTAClick({ location: "services", buttonText: `automation-hub:${where}` });
     const el = document.getElementById("contact");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
