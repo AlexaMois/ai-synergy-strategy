@@ -306,7 +306,21 @@ const BlogPost = () => {
             <div className="bg-primary/10 rounded-2xl p-4 sm:p-6 md:p-8 my-12 relative overflow-hidden">
               <Quote className="absolute top-4 right-4 h-12 w-12 text-primary/15" />
               <p className="text-lg text-muted-foreground leading-relaxed font-medium whitespace-pre-line relative z-10">
-                {post.content.conclusion}
+                {post.content.conclusion.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+                  /^https?:\/\//.test(part) ? (
+                    <a
+                      key={i}
+                      href={part}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline underline-offset-2 hover:text-primary/80 break-all"
+                    >
+                      {part}
+                    </a>
+                  ) : (
+                    <span key={i}>{part}</span>
+                  )
+                )}
               </p>
             </div>
 
