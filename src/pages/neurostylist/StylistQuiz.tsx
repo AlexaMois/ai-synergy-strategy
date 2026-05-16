@@ -78,8 +78,12 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     const v = answers[q.id];
     if (q.type === "welcome") return true;
     if (q.type === "photo") {
-      // фото не обязательны, но если есть — каждый должен иметь тип
-      return photos.every((p) => p.type && p.type.length > 0);
+      // каждый загруженный фото должен иметь тип
+      if (!photos.every((p) => p.type && p.type.length > 0)) return false;
+      // обязательно: минимум 1 фото лица и 1 фото в полный рост
+      const hasFace = photos.some((p) => p.type === "face");
+      const hasFull = photos.some((p) => p.type === "full");
+      return hasFace && hasFull;
     }
     if (q.type === "review_items") {
       // Любой набор валиден, но частично заполненные вещи требуют описание ИЛИ фото
