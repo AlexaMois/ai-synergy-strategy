@@ -111,11 +111,11 @@ function renderAnswerBlock(a: Answer): string {
 }
 
 function renderPhotosSection(photos: Photo[], maxPhotos: number): string {
-  // Exclude per-item photos (slotId starts with review_item_) from "Типы фото"
+  // Exclude per-item photos (slotId starts with review_item_) from this section —
+  // they are listed in "5 вещей для разбора".
   const general = photos.filter((p) => !p.slotId.startsWith("review_item_"));
-  const total = photos.length;
 
-  let block = `\n🔹 <b>Всего фото</b>\n${total} из ${maxPhotos}\n`;
+  let block = `\n🔹 <b>Всего фото</b>\n${general.length} из ${maxPhotos}\n`;
 
   if (general.length > 0) {
     const counts = new Map<string, number>();
@@ -126,6 +126,10 @@ function renderPhotosSection(photos: Photo[], maxPhotos: number): string {
     block += `\n🔹 <b>Типы фото</b>\n${escapeHtml(lines)}\n`;
   }
   return block;
+}
+
+function countGeneralPhotos(photos: Photo[]): number {
+  return photos.filter((p) => !p.slotId.startsWith("review_item_")).length;
 }
 
 function formatTelegramMessage(
@@ -148,7 +152,8 @@ function formatTelegramMessage(
   msg += `${contactIcon} <b>Контакт:</b> ${escapeHtml(contact)}\n`;
   msg += `🆔 <b>ID:</b> ${escapeHtml(leadId)}\n`;
   msg += `🕐 <b>Время:</b> ${formatDateTime()} (МСК)\n`;
-  msg += `📸 <b>Фото:</b> ${photos.length} из ${maxPhotos}\n`;
+  const generalCount = countGeneralPhotos(photos);
+  msg += `📸 <b>Фото:</b> ${generalCount} из ${maxPhotos}\n`;
   msg += `🧺 <b>Вещей на разбор:</b> ${itemsCount}\n`;
 
   // Group answers by section
@@ -164,18 +169,19 @@ function formatTelegramMessage(
   const renderedSections = new Set<string>();
   let idx = 0;
   for (const section of SECTION_ORDER) {
-    idx++;
     const items = grouped.get(section) ?? [];
     const isPhotos = section === "Фото";
-    const isItems = section === "5 вещей для разбора";
 
-    // Skip section entirely if nothing to render
-    if (!isPhotos && items.length === 0) {
-      // Items section: still show header even if empty? Skip if 0.
-      if (isItems && itemsCount === 0) continue;
-      if (!isItems) continue;
+    // Decide whether to render this section
+    let hasContent: boolean;
+    if (isPhotos) {
+      hasContent = photos.length > 0;
+    } else {
+      hasContent = items.length > 0;
     }
+    if (!hasContent) continue;
 
+    idx++;
     msg += `\n━━━ <b>${idx}. ${escapeHtml(section.toUpperCase())}</b> ━━━\n`;
 
     if (isPhotos) {
