@@ -10,6 +10,7 @@ export type QuestionType =
   | "scale"
   | "multifield"
   | "photo"
+  | "review_items"
   | "single_with_other";
 
 export interface QuestionOption {
@@ -25,10 +26,14 @@ export interface FieldDef {
   type?: "text" | "tel";
 }
 
-export interface PhotoSlot {
-  id: string;
+export interface PhotoTypeOption {
+  value: string;
   label: string;
-  required?: boolean;
+}
+
+export interface ReviewItemQuestionOption {
+  value: string;
+  label: string;
 }
 
 export interface Question {
@@ -40,6 +45,8 @@ export interface Question {
   placeholder?: string;
   required?: boolean;
   maxSelect?: number;
+  // section grouping ("О вас", "Образ жизни" и т.д.)
+  section?: string;
   // welcome / final
   ctaLabel?: string;
   // scale
@@ -48,13 +55,32 @@ export interface Question {
   scaleLabels?: Record<number, string>;
   // multifield
   fields?: FieldDef[];
-  // photo
-  slots?: PhotoSlot[];
-  minPhotos?: number;
+  // photo (universal uploader with per-photo type)
+  photoTypes?: PhotoTypeOption[];
+  maxPhotos?: number;
+  photoHint?: string[];
+  // review_items
+  maxItems?: number;
+  reviewQuestionOptions?: ReviewItemQuestionOption[];
   // single_with_other
   otherValue?: string;
   otherPlaceholder?: string;
 }
+
+// ---- Section labels (used for progress display) ----
+export const SECTIONS = [
+  "О вас",
+  "Образ жизни",
+  "Цель и желаемое впечатление",
+  "Фигура, посадка и зоны акцента",
+  "Цвета",
+  "Гардероб",
+  "Покупки и бюджет",
+  "Волосы и макияж",
+  "Фото",
+  "5 вещей для разбора",
+  "Финальный комментарий",
+] as const;
 
 // ---- Shared option sets ----
 const STYLE_MODE_OPTIONS: QuestionOption[] = [
@@ -70,8 +96,33 @@ const STYLE_MODE_OPTIONS: QuestionOption[] = [
   { value: "home_comfort", label: "Дом / комфорт" },
 ];
 
+export const PHOTO_TYPES: PhotoTypeOption[] = [
+  { value: "face", label: "Лицо / портрет" },
+  { value: "full", label: "Полный рост" },
+  { value: "outfit_like", label: "Мой образ, который нравится" },
+  { value: "outfit_dislike", label: "Мой образ, который не нравится" },
+  { value: "wardrobe_item", label: "Вещь из моего гардероба" },
+  { value: "item_for_review", label: "Вещь на разбор" },
+  { value: "want_to_buy", label: "Вещь, которую хочу купить" },
+  { value: "reference", label: "Референс / нравится настроение" },
+  { value: "event_outfit", label: "Разовый образ / мероприятие" },
+  { value: "other", label: "Другое" },
+];
+
+const REVIEW_QUESTION_OPTIONS: ReviewItemQuestionOption[] = [
+  { value: "keep_or_remove", label: "Оставить или убрать" },
+  { value: "what_to_wear", label: "С чем носить" },
+  { value: "modernize", label: "Как осовременить" },
+  { value: "color_fit", label: "Подходит ли по цвету" },
+  { value: "shape_fit", label: "Подходит ли по фигуре" },
+  { value: "buy_pair", label: "Стоит ли докупить к ней пару" },
+  { value: "for_work", label: "Можно ли носить на работу" },
+  { value: "for_evening", label: "Можно ли носить на выход" },
+  { value: "other", label: "Другое" },
+];
+
 export const QUIZ_QUESTIONS: Question[] = [
-  // Screen 1 — Welcome
+  // Welcome
   {
     id: "welcome",
     type: "welcome",
@@ -81,9 +132,10 @@ export const QUIZ_QUESTIONS: Question[] = [
     ctaLabel: "Начать",
   },
 
-  // Screen 2 — Contacts
+  // ===== Раздел 1. О вас =====
   {
     id: "contacts",
+    section: "О вас",
     type: "multifield",
     title: "Как с тобой связаться",
     subtitle: "Эти данные нужны, чтобы прислать готовый разбор",
@@ -94,10 +146,9 @@ export const QUIZ_QUESTIONS: Question[] = [
       { id: "city", label: "Город", placeholder: "Город", required: true },
     ],
   },
-
-  // ===== Блок 1. Данные о клиентке =====
   {
     id: "client_data",
+    section: "О вас",
     type: "multifield",
     title: "Параметры и размеры",
     subtitle: "Базовые данные — помогают точнее подобрать посадку",
@@ -113,6 +164,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "weight_change",
+    section: "О вас",
     type: "single",
     title: "Менялся ли вес за последние 6–12 месяцев?",
     options: [
@@ -125,9 +177,10 @@ export const QUIZ_QUESTIONS: Question[] = [
     ],
   },
 
-  // ===== Блок 2. Образ жизни =====
+  // ===== Раздел 2. Образ жизни =====
   {
     id: "occupation",
+    section: "Образ жизни",
     type: "longtext",
     title: "Чем вы занимаетесь?",
     subtitle: "Работа, бизнес, декрет, учёба, публичная деятельность, свободный график и т.д.",
@@ -136,6 +189,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "work_format",
+    section: "Образ жизни",
     type: "multi",
     title: "Какой у вас формат жизни и работы?",
     required: true,
@@ -155,6 +209,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "dress_code",
+    section: "Образ жизни",
     type: "single",
     title: "Есть ли дресс-код?",
     required: true,
@@ -168,6 +223,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "life_scenarios",
+    section: "Образ жизни",
     type: "multi",
     title: "Для каких 3 сценариев в первую очередь нужен стиль?",
     subtitle: "Максимум 3 варианта",
@@ -191,9 +247,10 @@ export const QUIZ_QUESTIONS: Question[] = [
     ],
   },
 
-  // ===== Желаемый образ (существующие) =====
+  // ===== Раздел 3. Цель и желаемое впечатление =====
   {
     id: "goal",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Какой образ хочется собрать?",
     subtitle: "Выбери то, что откликается",
@@ -216,6 +273,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "impression",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Какое впечатление должен создавать твой образ?",
     required: true,
@@ -237,22 +295,18 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "boldness",
+    section: "Цель и желаемое впечатление",
     type: "scale",
     title: "Насколько смело собираем образ?",
     subtitle: "Шкала от 1 до 10",
     required: true,
     scaleMin: 1,
     scaleMax: 10,
-    scaleLabels: {
-      1: "мягкое обновление",
-      5: "заметное обновление",
-      10: "вау-образ",
-    },
+    scaleLabels: { 1: "мягкое обновление", 5: "заметное обновление", 10: "вау-образ" },
   },
-
-  // ===== Блок 4. Ограничения =====
   {
     id: "avoid_image",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Что точно не хочется видеть в образе?",
     maxSelect: 10,
@@ -272,6 +326,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "never_wear",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Что вы точно не носите?",
     maxSelect: 16,
@@ -296,20 +351,21 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "physical_discomfort",
+    section: "Цель и желаемое впечатление",
     type: "longtext",
     title: "Какие вещи физически неудобны?",
     placeholder: "Например: жмёт талия, натирает обувь, неудобны каблуки, не люблю плотные ткани",
   },
   {
     id: "disliked_looks",
+    section: "Цель и желаемое впечатление",
     type: "longtext",
     title: "Какие образы вам точно не нравятся?",
     placeholder: "Можно написать своими словами или привести примеры",
   },
-
-  // ===== Где образ должен работать (существующий) =====
   {
     id: "lifestyle",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Где образ должен работать чаще всего?",
     required: true,
@@ -327,10 +383,9 @@ export const QUIZ_QUESTIONS: Question[] = [
       { value: "all", label: "Всё вместе" },
     ],
   },
-
-  // ===== Блок 3. Стилевые режимы =====
   {
     id: "style_modes",
+    section: "Цель и желаемое впечатление",
     type: "multi",
     title: "Какие стилевые режимы вам нужны?",
     subtitle: "Чтобы стиль не получался одним жёстким образом",
@@ -340,15 +395,17 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "main_mode",
+    section: "Цель и желаемое впечатление",
     type: "single",
     title: "Какой режим самый важный сейчас?",
     required: true,
     options: STYLE_MODE_OPTIONS,
   },
 
-  // ===== Фигура (существующие) =====
+  // ===== Раздел 4. Фигура, посадка и зоны акцента =====
   {
     id: "highlight_zones",
+    section: "Фигура, посадка и зоны акцента",
     type: "multi",
     title: "Какие зоны хочется подчеркнуть?",
     maxSelect: 5,
@@ -366,6 +423,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "fit",
+    section: "Фигура, посадка и зоны акцента",
     type: "multi",
     title: "Что важно по посадке?",
     maxSelect: 5,
@@ -381,9 +439,10 @@ export const QUIZ_QUESTIONS: Question[] = [
     ],
   },
 
-  // ===== Блок 5. Цвета =====
+  // ===== Раздел 5. Цвета =====
   {
     id: "colors",
+    section: "Цвета",
     type: "longtext",
     title: "Какие цвета тебе нравятся?",
     subtitle: "Например: сливовый, фиолетовый, молочный, шоколадный, голубой, красный, чёрный",
@@ -391,12 +450,14 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "colors_compliments",
+    section: "Цвета",
     type: "longtext",
     title: "В каких цветах вам чаще делают комплименты?",
     placeholder: "Перечисли свободно…",
   },
   {
     id: "colors_disliked",
+    section: "Цвета",
     type: "longtext",
     title: "Какие цвета вы не любите?",
     required: true,
@@ -404,28 +465,27 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "colors_to_test",
+    section: "Цвета",
     type: "longtext",
     title: "Какие цвета хотите проверить — идут вам или нет?",
     placeholder: "Например: сиреневый, сливовый, красный, молочный, голубой",
   },
   {
     id: "brightness_readiness",
+    section: "Цвета",
     type: "scale",
     title: "Насколько готовы к ярким цветам?",
     subtitle: "1 — только спокойные, 10 — готова к ярким акцентам",
     required: true,
     scaleMin: 1,
     scaleMax: 10,
-    scaleLabels: {
-      1: "только спокойные",
-      5: "сдержанные акценты",
-      10: "готова к ярким",
-    },
+    scaleLabels: { 1: "только спокойные", 5: "сдержанные акценты", 10: "готова к ярким" },
   },
 
-  // ===== Гардероб =====
+  // ===== Раздел 6. Гардероб =====
   {
     id: "clothes",
+    section: "Гардероб",
     type: "multi",
     title: "Какие вещи ты носишь чаще всего?",
     maxSelect: 8,
@@ -446,6 +506,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "wardrobe_change",
+    section: "Гардероб",
     type: "multi",
     title: "Что сейчас хочется изменить в гардеробе?",
     maxSelect: 6,
@@ -462,9 +523,9 @@ export const QUIZ_QUESTIONS: Question[] = [
       { value: "whole_style", label: "Собрать цельный стиль" },
     ],
   },
-  // ===== Блок 6. Гардероб — детально =====
   {
     id: "orphan_items",
+    section: "Гардероб",
     type: "longtext",
     title: "Какие вещи есть, но не знаете, с чем их носить?",
     required: true,
@@ -472,26 +533,30 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "unused_items",
+    section: "Гардероб",
     type: "longtext",
     title: "Какие вещи покупали, но почти не носите?",
     placeholder: "Перечисли свободно…",
   },
   {
     id: "keep_in_style",
+    section: "Гардероб",
     type: "longtext",
     title: "Что хочется оставить в своём стиле?",
     placeholder: "Перечисли свободно…",
   },
   {
     id: "replace_items",
+    section: "Гардероб",
     type: "longtext",
     title: "Что хочется заменить или убрать из гардероба?",
     placeholder: "Перечисли свободно…",
   },
 
-  // ===== Блок 7. Покупки и бюджет =====
+  // ===== Раздел 7. Покупки и бюджет =====
   {
     id: "shopping_places",
+    section: "Покупки и бюджет",
     type: "multi",
     title: "Где обычно покупаете одежду?",
     maxSelect: 15,
@@ -515,6 +580,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "budget_per_item",
+    section: "Покупки и бюджет",
     type: "single",
     title: "Комфортный бюджет на одну вещь",
     options: [
@@ -528,6 +594,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "budget_wardrobe",
+    section: "Покупки и бюджет",
     type: "single",
     title: "Бюджет на обновление гардероба в ближайшее время",
     options: [
@@ -542,6 +609,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "priorities_to_buy",
+    section: "Покупки и бюджет",
     type: "multi",
     title: "Что хочется докупить в первую очередь?",
     maxSelect: 14,
@@ -563,9 +631,10 @@ export const QUIZ_QUESTIONS: Question[] = [
     ],
   },
 
-  // ===== Макияж / волосы (существующие) =====
+  // ===== Раздел 8. Волосы и макияж =====
   {
     id: "makeup",
+    section: "Волосы и макияж",
     type: "single",
     title: "Какой макияж тебе ближе?",
     options: [
@@ -580,6 +649,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "hair",
+    section: "Волосы и макияж",
     type: "single",
     title: "Что хочется по волосам?",
     options: [
@@ -591,10 +661,9 @@ export const QUIZ_QUESTIONS: Question[] = [
       { value: "face_shape", label: "Подобрать форму у лица" },
     ],
   },
-
-  // ===== Блок 8. Волосы и макияж — расширение =====
   {
     id: "hair_length",
+    section: "Волосы и макияж",
     type: "single",
     title: "Текущая длина волос",
     options: [
@@ -607,6 +676,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "hair_color_current",
+    section: "Волосы и макияж",
     type: "text",
     title: "Текущий цвет волос",
     placeholder: "Например: тёмно-русый, окрашенный блонд",
@@ -614,6 +684,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "haircut_change_readiness",
+    section: "Волосы и макияж",
     type: "scale",
     title: "Готовность менять стрижку",
     subtitle: "1 — оставить как есть, 10 — готова на смену",
@@ -623,6 +694,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "haircolor_change_readiness",
+    section: "Волосы и макияж",
     type: "scale",
     title: "Готовность менять цвет волос",
     subtitle: "1 — оставить, 10 — готова на смену",
@@ -632,6 +704,7 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "styling_time",
+    section: "Волосы и макияж",
     type: "single",
     title: "Сколько времени готовы тратить на укладку?",
     options: [
@@ -644,14 +717,14 @@ export const QUIZ_QUESTIONS: Question[] = [
   },
   {
     id: "makeup_change",
+    section: "Волосы и макияж",
     type: "longtext",
     title: "Что хочется изменить в макияже?",
     placeholder: "По желанию",
   },
-
-  // ===== Аксессуары (существующий) =====
   {
     id: "accessories",
+    section: "Волосы и макияж",
     type: "multi",
     title: "Какие детали хочется добавить?",
     maxSelect: 6,
@@ -668,25 +741,42 @@ export const QUIZ_QUESTIONS: Question[] = [
     ],
   },
 
-  // ===== Фото (существующее) =====
+  // ===== Раздел 9. Фото =====
   {
     id: "photos",
+    section: "Фото",
     type: "photo",
     title: "Фото помогают собрать образ точнее",
-    subtitle: "Можно загрузить здесь, прислать ссылку или отправить отдельно",
+    subtitle: "Загрузите до 20 фото. Для каждого выберите тип — так референсы не смешаются с реальными вещами.",
     required: false,
-    minPhotos: 0,
-    slots: [
-      { id: "face", label: "Фото лица" },
-      { id: "full", label: "Фото в полный рост" },
-      { id: "outfit", label: "Фото образа, который ты часто носишь" },
-      { id: "refs", label: "Скриншоты образов, которые нравятся" },
+    maxPhotos: 20,
+    photoTypes: PHOTO_TYPES,
+    photoHint: [
+      "1–2 фото лица при дневном свете",
+      "2–3 фото в полный рост",
+      "2–3 образа, которые вам нравятся",
+      "1–2 образа, которые вам не нравятся",
+      "до 5 вещей, которые хотите разобрать",
+      "до 5 референсов, если есть",
     ],
   },
 
-  // ===== Финальная фраза =====
+  // ===== Раздел 10. 5 вещей для разбора =====
+  {
+    id: "review_items",
+    section: "5 вещей для разбора",
+    type: "review_items",
+    title: "5 вещей для стартового разбора",
+    subtitle:
+      "Загрузите до 5 вещей, которые хотите разобрать в первую очередь. Это могут быть вещи, которые вы носите, не знаете с чем сочетать, хотите оставить или заменить.",
+    maxItems: 5,
+    reviewQuestionOptions: REVIEW_QUESTION_OPTIONS,
+  },
+
+  // ===== Раздел 11. Финальный комментарий =====
   {
     id: "final_phrase",
+    section: "Финальный комментарий",
     type: "single_with_other",
     title: "Какой фразой хочется описать новый образ?",
     required: true,
@@ -700,5 +790,29 @@ export const QUIZ_QUESTIONS: Question[] = [
       { value: "as_wanted", label: "Я выгляжу так, как давно хотела" },
       { value: "own", label: "Свой вариант" },
     ],
+  },
+  {
+    id: "good_result",
+    section: "Финальный комментарий",
+    type: "longtext",
+    title: "Что для вас будет хорошим результатом после разбора?",
+    placeholder: "Опишите свободно…",
+    required: true,
+  },
+  {
+    id: "life_fit",
+    section: "Финальный комментарий",
+    type: "longtext",
+    title: "Что важно учесть, чтобы рекомендации были реально удобны в жизни?",
+    placeholder: "Например: ритм дня, физическая активность, погода, дети, бюджет…",
+    required: true,
+  },
+  {
+    id: "never_propose",
+    section: "Финальный комментарий",
+    type: "longtext",
+    title: "Что точно нельзя предлагать?",
+    placeholder: "Опишите свободно…",
+    required: true,
   },
 ];
