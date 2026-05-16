@@ -161,56 +161,68 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           ? "phone"
           : "telegram";
 
-      const payload = QUIZ_QUESTIONS
-        .filter(
-          (q) =>
-            q.type !== "welcome" &&
-            q.type !== "photo" &&
-            q.type !== "review_items" &&
-            q.id !== "contacts",
-        )
-        .map((q) => {
-          const v = answers[q.id];
-          if (q.type === "multi" && Array.isArray(v)) {
-            const opts = q.options || [];
-            const labels = v.map((val) => opts.find((o) => o.value === val)?.label || val);
-            return { question: q.title, value: labels };
-          }
-          if (q.type === "single" && typeof v === "string") {
-            const label = (q.options || []).find((o) => o.value === v)?.label || v;
-            return { question: q.title, value: label };
-          }
-          if (q.type === "single_with_other" && typeof v === "string") {
-            if (v === q.otherValue) {
-              return { question: q.title, value: (otherText[q.id] || "").trim() };
-            }
-            const label = (q.options || []).find((o) => o.value === v)?.label || v;
-            return { question: q.title, value: label };
-          }
-          if (q.type === "scale" && typeof v === "number") {
-            const sub = q.scaleLabels?.[v];
-            return { question: q.title, value: sub ? `${v} — ${sub}` : String(v) };
-          }
-          if (q.type === "multifield") {
-            const obj = (v as Record<string, string>) || {};
-            const lines = (q.fields || [])
-              .map((f) => {
-                const val = (obj[f.id] || "").trim();
-                return val ? `${f.label}: ${val}` : "";
-              })
-              .filter(Boolean)
-              .join("; ");
-            return { question: q.title, value: lines };
-          }
-          return { question: q.title, value: typeof v === "string" ? v : "" };
-        })
-        .filter((a) => {
-          const val = a.value;
-          if (Array.isArray(val)) return val.length > 0;
-          return typeof val === "string" && val.trim().length > 0;
-        });
+      type PayloadAnswer = {
+        section: string;
+        question: string;
+        value: string | string[];
+      };
+      const payload: PayloadAnswer[] = [];
 
-      if (city) payload.unshift({ question: "Город", value: city });
+      // Город — отдельной строкой в "Данные клиентки"
+      if (city) {
+        payload.push({ section: "Данные клиентки", question: "Город", value: city });
+      }
+
+      for (const q of QUIZ_QUESTIONS) {
+        if (
+          q.type === "welcome" ||
+          q.type === "photo" ||
+          q.type === "review_items" ||
+          q.id === "contacts"
+        ) {
+          continue;
+        }
+        const section = q.section || "Прочее";
+        const v = answers[q.id];
+
+        if (q.type === "multifield") {
+          const obj = (v as Record<string, string>) || {};
+          for (const f of q.fields || []) {
+            const val = (obj[f.id] || "").trim();
+            if (val) payload.push({ section, question: f.label, value: val });
+          }
+          continue;
+        }
+        if (q.type === "multi" && Array.isArray(v)) {
+          const opts = q.options || [];
+          const labels = v.map((val) => opts.find((o) => o.value === val)?.label || val);
+          if (labels.length > 0) payload.push({ section, question: q.title, value: labels });
+          continue;
+        }
+        if (q.type === "single" && typeof v === "string" && v) {
+          const label = (q.options || []).find((o) => o.value === v)?.label || v;
+          payload.push({ section, question: q.title, value: label });
+          continue;
+        }
+        if (q.type === "single_with_other" && typeof v === "string" && v) {
+          if (v === q.otherValue) {
+            const t = (otherText[q.id] || "").trim();
+            if (t) payload.push({ section, question: q.title, value: t });
+          } else {
+            const label = (q.options || []).find((o) => o.value === v)?.label || v;
+            payload.push({ section, question: q.title, value: label });
+          }
+          continue;
+        }
+        if (q.type === "scale" && typeof v === "number") {
+          const sub = q.scaleLabels?.[v];
+          payload.push({ section, question: q.title, value: sub ? `${v} — ${sub}` : String(v) });
+          continue;
+        }
+        if (typeof v === "string" && v.trim()) {
+          payload.push({ section, question: q.title, value: v.trim() });
+        }
+      }
 
       // === 5 вещей для разбора → отдельный блок в ответах ===
       const reviewQuestionOpts = QUIZ_QUESTIONS.find((q) => q.id === "review_items")?.reviewQuestionOptions || [];
@@ -232,6 +244,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         }
         if (it.photoPath) parts.push("Фото: прикреплено");
         payload.push({
+          section: "5 вещей для разбора",
           question: `Вещь на разбор №${i + 1}`,
           value: parts.join("\n") || "—",
         });
@@ -262,6 +275,8 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           contact_type,
           answers: payload,
           photos: photoPayload,
+          items_count: filledReviewItems.length,
+          max_photos: 20,
           website,
           test_mode: testMode,
         },
