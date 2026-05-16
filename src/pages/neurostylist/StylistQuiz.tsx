@@ -459,9 +459,10 @@ const QuestionView = ({
   testMode,
 }: QuestionViewProps) => {
   if (q.type === "welcome") {
+    const stepsCount = QUIZ_QUESTIONS.filter((x) => x.type !== "welcome").length;
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
-        <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · 16 шагов</div>
+        <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · {stepsCount} шагов</div>
         <div role="heading" aria-level={1} className="ns-title ns-title--lg ns-serif">
           <CalligraphyTitle text={q.title} cursiveSize="1.28em" />
         </div>
