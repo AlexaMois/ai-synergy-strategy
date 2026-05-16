@@ -1198,12 +1198,14 @@ const ReviewItemCard = ({
   const handleFile = async (file: File) => {
     setUploading(true);
     try {
-      if (item.photoPath) {
-        void supabase.storage.from("stylist-uploads").remove([item.photoPath]).catch(() => {});
-      }
       const path = await uploadFileToStorage(file, `review-${index + 1}`);
       if (path) {
+        // удаляем старый файл только после успешной загрузки нового
+        const oldPath = item.photoPath;
         onChange({ photoPath: path, photoName: file.name });
+        if (oldPath) {
+          void supabase.storage.from("stylist-uploads").remove([oldPath]).catch(() => {});
+        }
       }
     } finally {
       setUploading(false);
