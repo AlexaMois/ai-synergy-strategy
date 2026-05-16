@@ -1,8 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2 } from "lucide-react";
+import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { QUIZ_QUESTIONS, type Question, type FieldDef, type PhotoSlot } from "./quizConfig";
+import {
+  QUIZ_QUESTIONS,
+  SECTIONS,
+  PHOTO_TYPES,
+  type Question,
+  type FieldDef,
+  type PhotoTypeOption,
+} from "./quizConfig";
 
 interface StylistQuizProps {
   onClose: () => void;
@@ -11,22 +18,36 @@ interface StylistQuizProps {
 type AnswerValue = string | string[] | number | Record<string, string>;
 
 interface UploadedPhoto {
-  slotId: string;
-  path: string; // storage path
+  type: string; // PHOTO_TYPES value, may be "" until user picks
+  path: string;
   name: string;
   size: number;
 }
+
+interface ReviewItem {
+  id: string;
+  photoPath?: string;
+  photoName?: string;
+  description: string;
+  status: "" | "wearing" | "shelved";
+  questions: string[];
+}
+
+const STATUS_OPTIONS = [
+  { value: "wearing", label: "Ношу сейчас" },
+  { value: "shelved", label: "Лежит без дела" },
+] as const;
 
 const StylistQuiz = ({ onClose }: StylistQuizProps) => {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
+  const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
   const [otherText, setOtherText] = useState<Record<string, string>>({});
-  const [website, setWebsite] = useState(""); // honeypot
+  const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
-  // Test mode: ?test=1 in URL allows submitting without photos for E2E checks.
   const testMode = useMemo(() => {
     if (typeof window === "undefined") return false;
     const params = new URLSearchParams(window.location.search);
@@ -35,6 +56,14 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
 
   const total = QUIZ_QUESTIONS.length;
   const current: Question | undefined = QUIZ_QUESTIONS[step];
+
+  // Section index (1..11) for current question
+  const currentSectionIndex = useMemo(() => {
+    if (!current?.section) return 0;
+    const idx = SECTIONS.indexOf(current.section as (typeof SECTIONS)[number]);
+    return idx >= 0 ? idx + 1 : 0;
+  }, [current]);
+
   const progress = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
   useEffect(() => {
@@ -49,9 +78,12 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     const v = answers[q.id];
     if (q.type === "welcome") return true;
     if (q.type === "photo") {
-      const baseMin = q.minPhotos ?? (q.required ? 1 : 0);
-      const min = testMode ? 0 : baseMin;
-      return photos.length >= min;
+      // фото не обязательны, но если есть — каждый должен иметь тип
+      return photos.every((p) => p.type && p.type.length > 0);
+    }
+    if (q.type === "review_items") {
+      // Любой набор валиден, но частично заполненные вещи требуют описание ИЛИ фото
+      return true;
     }
     if (q.type === "multifield") {
       const obj = (v as Record<string, string>) || {};
@@ -60,9 +92,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     }
     if (q.type === "single_with_other") {
       if (typeof v !== "string" || !v) return !q.required;
-      if (v === q.otherValue) {
-        return (otherText[q.id] || "").trim().length > 0;
-      }
+      if (v === q.otherValue) return (otherText[q.id] || "").trim().length > 0;
       return true;
     }
     if (q.type === "scale") {
@@ -95,7 +125,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     if (!current) return;
     if (!isAnswered(current)) {
       if (current.type === "photo") {
-        toast.error("Загрузи хотя бы одно фото");
+        toast.error("У некоторых фото не выбран тип");
       } else {
         toast.error("Это поле важно для подбора образа");
       }
@@ -122,7 +152,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           : "telegram";
 
       const payload = QUIZ_QUESTIONS
-        .filter((q) => q.type !== "welcome" && q.type !== "photo" && q.id !== "contacts")
+        .filter(
+          (q) =>
+            q.type !== "welcome" &&
+            q.type !== "photo" &&
+            q.type !== "review_items" &&
+            q.id !== "contacts",
+        )
         .map((q) => {
           const v = answers[q.id];
           if (q.type === "multi" && Array.isArray(v)) {
@@ -145,6 +181,17 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
             const sub = q.scaleLabels?.[v];
             return { question: q.title, value: sub ? `${v} — ${sub}` : String(v) };
           }
+          if (q.type === "multifield") {
+            const obj = (v as Record<string, string>) || {};
+            const lines = (q.fields || [])
+              .map((f) => {
+                const val = (obj[f.id] || "").trim();
+                return val ? `${f.label}: ${val}` : "";
+              })
+              .filter(Boolean)
+              .join("; ");
+            return { question: q.title, value: lines };
+          }
           return { question: q.title, value: typeof v === "string" ? v : "" };
         })
         .filter((a) => {
@@ -153,14 +200,49 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           return typeof val === "string" && val.trim().length > 0;
         });
 
-      // City injected as part of answers
       if (city) payload.unshift({ question: "Город", value: city });
 
-      const photoPayload = photos.map((p) => {
-        const slot = QUIZ_QUESTIONS.find((q) => q.id === "photos")?.slots?.find(
-          (s) => s.id === p.slotId,
-        );
-        return { slotId: p.slotId, slotLabel: slot?.label || p.slotId, path: p.path };
+      // === 5 вещей для разбора → отдельный блок в ответах ===
+      const reviewQuestionOpts = QUIZ_QUESTIONS.find((q) => q.id === "review_items")?.reviewQuestionOptions || [];
+      const filledReviewItems = reviewItems.filter(
+        (it) => it.photoPath || it.description.trim() || it.questions.length > 0,
+      );
+      filledReviewItems.forEach((it, i) => {
+        const parts: string[] = [];
+        if (it.description.trim()) parts.push(`Что это: ${it.description.trim()}`);
+        if (it.status) {
+          const stLabel = STATUS_OPTIONS.find((o) => o.value === it.status)?.label;
+          if (stLabel) parts.push(`Статус: ${stLabel}`);
+        }
+        if (it.questions.length > 0) {
+          const qLabels = it.questions.map(
+            (q) => reviewQuestionOpts.find((o) => o.value === q)?.label || q,
+          );
+          parts.push(`Вопросы: ${qLabels.join(", ")}`);
+        }
+        if (it.photoPath) parts.push("Фото: прикреплено");
+        payload.push({
+          question: `Вещь на разбор №${i + 1}`,
+          value: parts.join("\n") || "—",
+        });
+      });
+
+      // === Photos payload (фото блока «Фото» + фото вещей на разбор) ===
+      const photoPayload: { slotId: string; slotLabel: string; path: string }[] = [];
+      for (const p of photos) {
+        if (!p.type) continue;
+        const label = PHOTO_TYPES.find((t) => t.value === p.type)?.label || p.type;
+        photoPayload.push({ slotId: p.type, slotLabel: label, path: p.path });
+      }
+      filledReviewItems.forEach((it, i) => {
+        if (!it.photoPath) return;
+        const desc = it.description.trim();
+        const label = `Вещь на разбор №${i + 1}${desc ? " — " + desc : ""}`;
+        photoPayload.push({
+          slotId: `review_item_${i + 1}`,
+          slotLabel: label,
+          path: it.photoPath,
+        });
       });
 
       const { data, error } = await supabase.functions.invoke("save-stylist-lead", {
@@ -175,7 +257,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         },
       });
 
-      // Try to extract structured error body even on non-2xx (FunctionsHttpError)
       let errBody: { error?: string; details?: Record<string, string[]> } | null = null;
       if (error && typeof (error as { context?: Response }).context?.json === "function") {
         try {
@@ -208,10 +289,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
             duration: 8000,
           });
         } else {
-          const msg =
-            failure?.error ||
-            error?.message ||
-            "Не удалось отправить, попробуй ещё раз";
+          const msg = failure?.error || error?.message || "Не удалось отправить, попробуй ещё раз";
           toast.error(msg);
         }
         console.error("save-stylist-lead failed:", { error, failure });
@@ -237,7 +315,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         color: "hsl(40 30% 95%)",
       }}
     >
-      {/* Scoped CSS reset to defeat global important rules from index.css */}
       <style>{`
         .ns-quiz, .ns-quiz * { box-sizing: border-box; }
         .ns-quiz {
@@ -254,6 +331,17 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         .ns-quiz p { color: inherit; font-size: inherit; line-height: inherit; }
         .ns-quiz input::placeholder,
         .ns-quiz textarea::placeholder { color: hsl(40 30% 95% / 0.4); }
+        .ns-quiz select {
+          background: hsl(0 0% 100% / 0.06);
+          color: hsl(40 30% 95%);
+          border: 1px solid hsl(0 0% 100% / 0.18);
+          border-radius: 12px;
+          padding: 10px 14px;
+          font-size: 14px;
+          outline: none;
+        }
+        .ns-quiz select:focus { border-color: hsl(20 60% 75%); }
+        .ns-quiz select option { background: hsl(295 35% 12%); color: hsl(40 30% 95%); }
         .ns-quiz .ns-serif {
           font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
           font-weight: 400;
@@ -282,8 +370,6 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           text-transform: uppercase;
           color: rgba(247, 237, 227, 0.55);
         }
-        /* Унифицированная типографика заголовков квиза.
-           Используем role="heading" + div, чтобы обойти глобальный !important reset на h1-h6. */
         .ns-quiz .ns-title {
           font-family: 'Cormorant Garamond', Georgia, serif;
           font-style: italic;
@@ -340,9 +426,17 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               }}
             />
           </div>
-          <div className="mt-3 text-sm tracking-wider opacity-60">
-            Шаг {step + 1} из {total}
-          </div>
+          {currentSectionIndex > 0 && (
+            <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+              <span className="tracking-wider opacity-70">
+                Шаг {currentSectionIndex} из {SECTIONS.length}
+              </span>
+              <span className="opacity-50">·</span>
+              <span className="font-medium" style={{ color: "hsl(20 60% 80%)" }}>
+                {current?.section}
+              </span>
+            </div>
+          )}
         </div>
       )}
 
@@ -357,6 +451,8 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
               value={answers[current.id]}
               photos={photos}
               setPhotos={setPhotos}
+              reviewItems={reviewItems}
+              setReviewItems={setReviewItems}
               otherText={otherText[current.id] || ""}
               setOtherText={(t) => setOtherText((p) => ({ ...p, [current.id]: t }))}
               onSetValue={(v) => setAnswer(current.id, v)}
@@ -436,6 +532,8 @@ interface QuestionViewProps {
   value: AnswerValue | undefined;
   photos: UploadedPhoto[];
   setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
+  reviewItems: ReviewItem[];
+  setReviewItems: React.Dispatch<React.SetStateAction<ReviewItem[]>>;
   otherText: string;
   setOtherText: (t: string) => void;
   onSetValue: (v: AnswerValue) => void;
@@ -450,16 +548,17 @@ const QuestionView = ({
   value,
   photos,
   setPhotos,
+  reviewItems,
+  setReviewItems,
   otherText,
   setOtherText,
   onSetValue,
   onToggleMulti,
   onEnter,
   onStart,
-  testMode,
 }: QuestionViewProps) => {
   if (q.type === "welcome") {
-    const stepsCount = QUIZ_QUESTIONS.filter((x) => x.type !== "welcome").length;
+    const stepsCount = SECTIONS.length;
     return (
       <div className="animate-fade-in text-center py-8 sm:py-16">
         <div className="ns-eyebrow text-base sm:text-lg opacity-70 mb-6">анкета · {stepsCount} шагов</div>
@@ -605,7 +704,11 @@ const QuestionView = ({
         )}
 
         {q.type === "photo" && (
-          <PhotoUploadView q={q} photos={photos} setPhotos={setPhotos} testMode={testMode} />
+          <TypedPhotoUploadView q={q} photos={photos} setPhotos={setPhotos} />
+        )}
+
+        {q.type === "review_items" && (
+          <ReviewItemsView q={q} items={reviewItems} setItems={setReviewItems} />
         )}
       </div>
     </div>
@@ -745,82 +848,76 @@ const MultiFieldView = ({
   );
 };
 
-const PhotoUploadView = ({
+// ===== Typed photo uploader (with per-photo type) =====
+
+async function uploadFileToStorage(file: File, keyPrefix: string): Promise<string | null> {
+  if (file.size > 10 * 1024 * 1024) {
+    toast.error(`Файл «${file.name}» больше 10 МБ`);
+    return null;
+  }
+  const sessionId =
+    sessionStorage.getItem("ns_session") ||
+    (() => {
+      const id = crypto.randomUUID();
+      sessionStorage.setItem("ns_session", id);
+      return id;
+    })();
+  const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+  const path = `${sessionId}/${keyPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { error } = await supabase.storage
+    .from("stylist-uploads")
+    .upload(path, file, { contentType: file.type, upsert: false });
+  if (error) {
+    console.error("Upload error:", error);
+    toast.error(`Не удалось загрузить «${file.name}»`);
+    return null;
+  }
+  return path;
+}
+
+const TypedPhotoUploadView = ({
   q,
   photos,
   setPhotos,
-  testMode,
 }: {
   q: Question;
-  photos: UploadedPhoto[];
-  setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
-  testMode?: boolean;
-}) => {
-  const slots = q.slots || [];
-  const baseMin = q.minPhotos ?? 1;
-  const min = testMode ? 0 : baseMin;
-
-  return (
-    <div className="grid gap-4">
-      {slots.map((slot) => (
-        <PhotoSlotInput key={slot.id} slot={slot} photos={photos} setPhotos={setPhotos} />
-      ))}
-      <p className="text-xs opacity-60 mt-1">
-        Фото не обязательны · до 10 МБ каждое (JPG, PNG, HEIC, WEBP)
-      </p>
-    </div>
-  );
-};
-
-const PhotoSlotInput = ({
-  slot,
-  photos,
-  setPhotos,
-}: {
-  slot: PhotoSlot;
   photos: UploadedPhoto[];
   setPhotos: React.Dispatch<React.SetStateAction<UploadedPhoto[]>>;
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
-  const slotPhotos = photos.filter((p) => p.slotId === slot.id);
+  const max = q.maxPhotos ?? 20;
+  const types = q.photoTypes ?? PHOTO_TYPES;
+  const hint = q.photoHint ?? [];
 
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
+    const remaining = max - photos.length;
+    if (remaining <= 0) {
+      toast.error(
+        `Можно загрузить до ${max} фото. Оставьте самые важные: лицо, полный рост, любимые образы, спорные вещи и 5 вещей для разбора.`,
+      );
+      return;
+    }
+    const filesArr = Array.from(files);
+    if (filesArr.length > remaining) {
+      toast.error(
+        `Можно загрузить до ${max} фото. Оставьте самые важные: лицо, полный рост, любимые образы, спорные вещи и 5 вещей для разбора.`,
+      );
+    }
+    const toUpload = filesArr.slice(0, remaining);
     setUploading(true);
     try {
-      const sessionId = sessionStorage.getItem("ns_session") ||
-        (() => {
-          const id = crypto.randomUUID();
-          sessionStorage.setItem("ns_session", id);
-          return id;
-        })();
-
-      const newPhotos: UploadedPhoto[] = [];
-      for (const file of Array.from(files)) {
-        if (file.size > 10 * 1024 * 1024) {
-          toast.error(`Файл "${file.name}" больше 10 МБ`);
-          continue;
-        }
-        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-        const path = `${sessionId}/${slot.id}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-        const { error } = await supabase.storage
-          .from("stylist-uploads")
-          .upload(path, file, { contentType: file.type, upsert: false });
-        if (error) {
-          console.error("Upload error:", error);
-          toast.error(`Не удалось загрузить "${file.name}"`);
-          continue;
-        }
-        newPhotos.push({ slotId: slot.id, path, name: file.name, size: file.size });
+      const uploaded: UploadedPhoto[] = [];
+      for (const file of toUpload) {
+        const path = await uploadFileToStorage(file, "photo");
+        if (!path) continue;
+        uploaded.push({ type: "", path, name: file.name, size: file.size });
       }
-      if (newPhotos.length > 0) {
-        setPhotos((prev) => [...prev, ...newPhotos]);
-        toast.success(`Загружено: ${newPhotos.length}`);
+      if (uploaded.length > 0) {
+        setPhotos((prev) => [...prev, ...uploaded]);
+        toast.success(`Загружено: ${uploaded.length}. Выберите тип для каждого фото.`);
       }
-    } catch (e) {
-      console.error(e);
-      toast.error("Ошибка загрузки");
     } finally {
       setUploading(false);
       if (inputRef.current) inputRef.current.value = "";
@@ -832,29 +929,57 @@ const PhotoSlotInput = ({
     void supabase.storage.from("stylist-uploads").remove([path]).catch(() => {});
   };
 
+  const updateType = (path: string, type: string) => {
+    setPhotos((prev) => prev.map((p) => (p.path === path ? { ...p, type } : p)));
+  };
+
+  const count = photos.length;
+  const reachedMax = count >= max;
+
   return (
-    <div
-      className="rounded-2xl border p-4"
-      style={{
-        background: "hsl(0 0% 100% / 0.03)",
-        borderColor: "hsl(0 0% 100% / 0.12)",
-        backdropFilter: "blur(12px)",
-      }}
-    >
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm font-medium">{slot.label}</span>
+    <div className="grid gap-4">
+      {hint.length > 0 && (
+        <div
+          className="rounded-2xl border p-4 text-sm leading-relaxed"
+          style={{
+            background: "hsl(0 0% 100% / 0.03)",
+            borderColor: "hsl(0 0% 100% / 0.1)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <div className="opacity-80 mb-2">Лучше всего добавить:</div>
+          <ul className="space-y-1 opacity-75">
+            {hint.map((h, i) => (
+              <li key={i}>— {h}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="text-sm font-medium">
+          Загружено{" "}
+          <span style={{ color: "hsl(20 60% 80%)" }}>
+            {count} из {max}
+          </span>{" "}
+          фото
+        </div>
         <button
           onClick={() => inputRef.current?.click()}
-          disabled={uploading}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-colors disabled:opacity-50"
+          disabled={uploading || reachedMax}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50"
           style={{
             background: "hsl(20 60% 75% / 0.15)",
             border: "1px solid hsl(20 60% 75% / 0.4)",
             color: "hsl(40 40% 92%)",
           }}
         >
-          {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImagePlus className="w-3.5 h-3.5" />}
-          {uploading ? "Загружаю…" : "Добавить"}
+          {uploading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <ImagePlus className="w-4 h-4" />
+          )}
+          {uploading ? "Загружаю…" : reachedMax ? "Лимит достигнут" : "Добавить фото"}
         </button>
         <input
           ref={inputRef}
@@ -865,35 +990,311 @@ const PhotoSlotInput = ({
           onChange={(e) => handleFiles(e.target.files)}
         />
       </div>
-      {slotPhotos.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          {slotPhotos.map((p) => (
+
+      {photos.length === 0 ? (
+        <div
+          className="rounded-2xl border-2 border-dashed p-8 text-center"
+          style={{ borderColor: "hsl(0 0% 100% / 0.12)" }}
+        >
+          <Upload className="w-6 h-6 mx-auto mb-2 opacity-50" />
+          <div className="text-sm opacity-60">Файлы пока не выбраны</div>
+        </div>
+      ) : (
+        <div className="grid gap-3">
+          {photos.map((p) => (
             <div
               key={p.path}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
+              className="rounded-2xl border p-3 flex items-center gap-3"
               style={{
-                background: "hsl(0 0% 100% / 0.06)",
-                border: "1px solid hsl(0 0% 100% / 0.12)",
+                background: "hsl(0 0% 100% / 0.04)",
+                borderColor: p.type
+                  ? "hsl(0 0% 100% / 0.12)"
+                  : "hsl(20 60% 75% / 0.5)",
               }}
             >
-              <Check className="w-3 h-3" style={{ color: "hsl(20 60% 78%)" }} />
-              <span className="opacity-80 max-w-[180px] truncate">{p.name}</span>
+              <div className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ background: "hsl(20 60% 75% / 0.15)" }}>
+                <ImagePlus className="w-4 h-4" style={{ color: "hsl(20 60% 80%)" }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs opacity-80 truncate mb-2">{p.name}</div>
+                <select
+                  value={p.type}
+                  onChange={(e) => updateType(p.path, e.target.value)}
+                  className="w-full"
+                >
+                  <option value="">— выберите тип фото —</option>
+                  {types.map((t: PhotoTypeOption) => (
+                    <option key={t.value} value={t.value}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <button
                 onClick={() => removePhoto(p.path)}
-                aria-label="Удалить"
-                className="opacity-50 hover:opacity-100 transition-opacity"
+                aria-label="Удалить фото"
+                className="shrink-0 p-2 opacity-60 hover:opacity-100 transition-opacity"
               >
-                <Trash2 className="w-3 h-3" />
+                <Trash2 className="w-4 h-4" />
               </button>
             </div>
           ))}
         </div>
-      ) : (
-        <div className="text-xs opacity-50 flex items-center gap-2">
-          <Upload className="w-3.5 h-3.5" />
-          Файл не выбран
+      )}
+
+      <p className="text-xs opacity-60">
+        До 10 МБ каждое (JPG, PNG, HEIC, WEBP). Фото не обязательны, но сильно помогают разбору.
+      </p>
+    </div>
+  );
+};
+
+// ===== 5 вещей для разбора =====
+
+const ReviewItemsView = ({
+  q,
+  items,
+  setItems,
+}: {
+  q: Question;
+  items: ReviewItem[];
+  setItems: React.Dispatch<React.SetStateAction<ReviewItem[]>>;
+}) => {
+  const max = q.maxItems ?? 5;
+  const questionOptions = q.reviewQuestionOptions ?? [];
+
+  const addItem = () => {
+    if (items.length >= max) {
+      toast.error(`Максимум ${max} вещей в стартовом разборе`);
+      return;
+    }
+    setItems((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), description: "", status: "", questions: [] },
+    ]);
+  };
+
+  const updateItem = (id: string, patch: Partial<ReviewItem>) => {
+    setItems((prev) => prev.map((it) => (it.id === id ? { ...it, ...patch } : it)));
+  };
+
+  const removeItem = (id: string) => {
+    setItems((prev) => {
+      const target = prev.find((x) => x.id === id);
+      if (target?.photoPath) {
+        void supabase.storage.from("stylist-uploads").remove([target.photoPath]).catch(() => {});
+      }
+      return prev.filter((x) => x.id !== id);
+    });
+  };
+
+  const toggleQuestion = (id: string, value: string) => {
+    setItems((prev) =>
+      prev.map((it) => {
+        if (it.id !== id) return it;
+        const has = it.questions.includes(value);
+        return {
+          ...it,
+          questions: has ? it.questions.filter((v) => v !== value) : [...it.questions, value],
+        };
+      }),
+    );
+  };
+
+  return (
+    <div className="grid gap-4">
+      {items.length === 0 && (
+        <div
+          className="rounded-2xl border-2 border-dashed p-6 text-center text-sm opacity-70"
+          style={{ borderColor: "hsl(0 0% 100% / 0.14)" }}
+        >
+          Пока ни одной вещи. Добавьте до {max} — это сильно ускорит разбор.
         </div>
       )}
+
+      {items.map((it, idx) => (
+        <ReviewItemCard
+          key={it.id}
+          index={idx}
+          item={it}
+          questionOptions={questionOptions}
+          onChange={(patch) => updateItem(it.id, patch)}
+          onRemove={() => removeItem(it.id)}
+          onToggleQuestion={(v) => toggleQuestion(it.id, v)}
+        />
+      ))}
+
+      {items.length < max && (
+        <button
+          onClick={addItem}
+          className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded-2xl text-sm font-medium transition-colors"
+          style={{
+            background: "hsl(20 60% 75% / 0.12)",
+            border: "1px dashed hsl(20 60% 75% / 0.5)",
+            color: "hsl(40 40% 92%)",
+          }}
+        >
+          <Plus className="w-4 h-4" />
+          Добавить вещь ({items.length}/{max})
+        </button>
+      )}
+    </div>
+  );
+};
+
+const ReviewItemCard = ({
+  index,
+  item,
+  questionOptions,
+  onChange,
+  onRemove,
+  onToggleQuestion,
+}: {
+  index: number;
+  item: ReviewItem;
+  questionOptions: { value: string; label: string }[];
+  onChange: (patch: Partial<ReviewItem>) => void;
+  onRemove: () => void;
+  onToggleQuestion: (v: string) => void;
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (file: File) => {
+    setUploading(true);
+    try {
+      if (item.photoPath) {
+        void supabase.storage.from("stylist-uploads").remove([item.photoPath]).catch(() => {});
+      }
+      const path = await uploadFileToStorage(file, `review-${index + 1}`);
+      if (path) {
+        onChange({ photoPath: path, photoName: file.name });
+      }
+    } finally {
+      setUploading(false);
+      if (inputRef.current) inputRef.current.value = "";
+    }
+  };
+
+  return (
+    <div
+      className="rounded-2xl border p-4 grid gap-4"
+      style={{
+        background: "hsl(0 0% 100% / 0.04)",
+        borderColor: "hsl(0 0% 100% / 0.14)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <div className="flex items-center justify-between">
+        <div className="text-sm font-semibold" style={{ color: "hsl(20 60% 82%)" }}>
+          Вещь №{index + 1}
+        </div>
+        <button
+          onClick={onRemove}
+          className="text-xs opacity-60 hover:opacity-100 inline-flex items-center gap-1"
+          aria-label="Удалить вещь"
+        >
+          <Trash2 className="w-3.5 h-3.5" /> Удалить
+        </button>
+      </div>
+
+      {/* Фото */}
+      <div>
+        <label className="block text-xs uppercase tracking-wider opacity-60 mb-2">Фото вещи</label>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => inputRef.current?.click()}
+            disabled={uploading}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50"
+            style={{
+              background: "hsl(20 60% 75% / 0.15)",
+              border: "1px solid hsl(20 60% 75% / 0.4)",
+              color: "hsl(40 40% 92%)",
+            }}
+          >
+            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
+            {uploading ? "Загружаю…" : item.photoPath ? "Заменить фото" : "Добавить фото"}
+          </button>
+          {item.photoName && (
+            <span className="text-xs opacity-70 truncate max-w-[220px]">{item.photoName}</span>
+          )}
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) void handleFile(f);
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Что это за вещь */}
+      <div>
+        <label className="block text-xs uppercase tracking-wider opacity-60 mb-2">Что это за вещь</label>
+        <input
+          type="text"
+          value={item.description}
+          onChange={(e) => onChange({ description: e.target.value })}
+          placeholder="Например: бежевый блейзер из льна"
+          className="w-full px-5 py-3 rounded-2xl text-base outline-none border transition-all"
+          style={{
+            background: "hsl(0 0% 100% / 0.04)",
+            borderColor: "hsl(0 0% 100% / 0.15)",
+            color: "hsl(40 30% 95%)",
+          }}
+        />
+      </div>
+
+      {/* Статус */}
+      <div>
+        <label className="block text-xs uppercase tracking-wider opacity-60 mb-2">Носите сейчас?</label>
+        <div className="grid grid-cols-2 gap-2">
+          {STATUS_OPTIONS.map((opt) => {
+            const active = item.status === opt.value;
+            return (
+              <button
+                key={opt.value}
+                onClick={() => onChange({ status: active ? "" : opt.value })}
+                className="text-left px-4 py-3 rounded-xl border text-sm transition-all"
+                style={{
+                  background: active ? "hsl(20 60% 75% / 0.12)" : "hsl(0 0% 100% / 0.04)",
+                  borderColor: active ? "hsl(20 60% 75%)" : "hsl(0 0% 100% / 0.12)",
+                }}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Вопрос */}
+      <div>
+        <label className="block text-xs uppercase tracking-wider opacity-60 mb-2">В чём вопрос?</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {questionOptions.map((opt) => {
+            const active = item.questions.includes(opt.value);
+            return (
+              <button
+                key={opt.value}
+                onClick={() => onToggleQuestion(opt.value)}
+                className="text-left px-4 py-3 rounded-xl border text-sm transition-all flex items-center justify-between gap-2"
+                style={{
+                  background: active ? "hsl(20 60% 75% / 0.12)" : "hsl(0 0% 100% / 0.04)",
+                  borderColor: active ? "hsl(20 60% 75%)" : "hsl(0 0% 100% / 0.12)",
+                }}
+              >
+                <span>{opt.label}</span>
+                {active && <Check className="w-3.5 h-3.5 shrink-0" style={{ color: "hsl(20 60% 75%)" }} />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
@@ -932,8 +1333,7 @@ const FinalScreen = ({ onClose }: { onClose: () => void }) => (
 
 export default StylistQuiz;
 
-// ===== Calligraphy title — два рукописных акцента в каждом заголовке =====
-// Стоп-слова, которые НЕ выделяем курсивом (служебные части речи)
+// ===== Calligraphy title =====
 const STOP_WORDS = new Set([
   "и", "а", "но", "или", "да", "не", "ни", "же", "ли", "бы", "то",
   "в", "во", "на", "по", "с", "со", "к", "ко", "о", "об", "от", "до", "из", "у", "за", "при", "про", "для", "над", "под", "без",
@@ -954,19 +1354,15 @@ function pickCursiveIndices(words: string[]): Set<number> {
 
   const picks = new Set<number>();
   if (meaningful.length === 0) {
-    // fallback — первое и последнее
     picks.add(0);
     if (words.length > 1) picks.add(words.length - 1);
     return picks;
   }
-  // первое значимое
   picks.add(meaningful[0]);
-  // последнее значимое (если отличается)
   const last = meaningful[meaningful.length - 1];
   if (last !== meaningful[0]) {
     picks.add(last);
   } else if (words.length - 1 !== meaningful[0]) {
-    // есть только одно значимое — добавим финальное слово как акцент
     picks.add(words.length - 1);
   } else if (words.length > 1) {
     picks.add(0);
