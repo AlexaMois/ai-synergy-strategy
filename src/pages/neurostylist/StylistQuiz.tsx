@@ -129,7 +129,13 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     if (!current) return;
     if (!isAnswered(current)) {
       if (current.type === "photo") {
-        toast.error("У некоторых фото не выбран тип");
+        const hasFace = photos.some((p) => p.type === "face");
+        const hasFull = photos.some((p) => p.type === "full");
+        if (!photos.every((p) => p.type && p.type.length > 0)) {
+          toast.error("У некоторых фото не выбран тип");
+        } else if (!hasFace || !hasFull) {
+          toast.error("Нужно минимум 1 фото лица и 1 фото в полный рост");
+        }
       } else {
         toast.error("Это поле важно для подбора образа");
       }
