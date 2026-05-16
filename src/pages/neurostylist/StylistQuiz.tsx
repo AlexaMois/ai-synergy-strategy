@@ -785,6 +785,15 @@ const ScaleField = ({
   const v = value ?? Math.round((min + max) / 2);
   const labels = q.scaleLabels || {};
 
+  // Если значение ещё не зафиксировано — сохраним default при первом рендере,
+  // чтобы отображаемое число совпадало с сохранённым значением.
+  useEffect(() => {
+    if (value === undefined) {
+      onSetValue(Math.round((min + max) / 2));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -1189,12 +1198,14 @@ const ReviewItemCard = ({
   const handleFile = async (file: File) => {
     setUploading(true);
     try {
-      if (item.photoPath) {
-        void supabase.storage.from("stylist-uploads").remove([item.photoPath]).catch(() => {});
-      }
       const path = await uploadFileToStorage(file, `review-${index + 1}`);
       if (path) {
+        // удаляем старый файл только после успешной загрузки нового
+        const oldPath = item.photoPath;
         onChange({ photoPath: path, photoName: file.name });
+        if (oldPath) {
+          void supabase.storage.from("stylist-uploads").remove([oldPath]).catch(() => {});
+        }
       }
     } finally {
       setUploading(false);
