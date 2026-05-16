@@ -785,6 +785,15 @@ const ScaleField = ({
   const v = value ?? Math.round((min + max) / 2);
   const labels = q.scaleLabels || {};
 
+  // Если значение ещё не зафиксировано — сохраним default при первом рендере,
+  // чтобы отображаемое число совпадало с сохранённым значением.
+  useEffect(() => {
+    if (value === undefined) {
+      onSetValue(Math.round((min + max) / 2));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
