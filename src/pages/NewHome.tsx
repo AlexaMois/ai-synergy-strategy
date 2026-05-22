@@ -179,11 +179,11 @@ const NewHome = () => {
                     <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
                   </div>
                 ))}
-                <div className="bg-accent text-foreground p-5 md:p-7 flex flex-col justify-center">
+                <div className="bg-accent text-white p-5 md:p-7 flex flex-col justify-center">
                   <div className="font-iriska text-2xl md:text-4xl leading-tight mb-2">
                     Клиенты возвращаются за следующим этапом
                   </div>
-                  <p className="text-xs md:text-sm text-foreground/75 leading-snug">
+                  <p className="text-xs md:text-sm text-white/85 leading-snug">
                     Большинство клиентов продолжают работу после первого проекта: стратегия,
                     внедрение, сопровождение, новые цифровые инструменты.
                   </p>
