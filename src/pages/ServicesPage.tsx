@@ -142,39 +142,44 @@ const ServicesPage = () => {
                     </div>
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
-                    <div className="w-full max-w-sm flex flex-col items-center gap-3 text-center">
-                      {/* Уровень 1: Система */}
-                      <div className="px-6 py-3 rounded-2xl bg-accent text-foreground font-bold text-base md:text-lg shadow-card ring-1 ring-foreground/10 uppercase tracking-widest">
-                        Система
-                      </div>
-                      <div className="w-px h-5 bg-foreground/20" aria-hidden="true" />
-                      {/* Уровень 2: Компания */}
-                      <div className="px-5 py-2.5 rounded-xl bg-background text-foreground font-semibold shadow-card ring-1 ring-foreground/10">
-                        Компания
-                      </div>
-                      <div className="w-px h-5 bg-foreground/20" aria-hidden="true" />
-                      {/* Уровень 3: Люди / Процессы / Данные */}
-                      <div className="flex gap-2 flex-wrap justify-center">
-                        {["Люди", "Процессы", "Данные"].map((t) => (
-                          <div
-                            key={t}
-                            className="px-3.5 py-2 rounded-lg bg-background/80 text-foreground text-sm font-medium ring-1 ring-foreground/10 shadow-sm"
-                          >
-                            {t}
+                    <div className="w-full max-w-md lg:max-w-lg rounded-[28px] bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-6 md:p-8">
+                      <div className="w-full flex flex-col items-center gap-6 text-center">
+                        {/* Уровень 1: Система */}
+                        <div className="relative">
+                          <div className="absolute inset-0 rounded-2xl bg-accent/40 blur-xl" aria-hidden="true" />
+                          <div className="relative px-7 py-3.5 rounded-2xl bg-accent text-foreground font-bold text-lg md:text-xl shadow-card ring-1 ring-accent/40 uppercase tracking-widest">
+                            Система
                           </div>
-                        ))}
-                      </div>
-                      <div className="w-px h-5 bg-foreground/20" aria-hidden="true" />
-                      {/* Уровень 4: Форматы работы */}
-                      <div className="grid grid-cols-2 gap-2 w-full">
-                        {["Стратегия", "Аудит", "Внедрение", "Сопровождение"].map((t) => (
-                          <div
-                            key={t}
-                            className="px-3 py-2 rounded-lg bg-foreground/5 text-foreground text-sm font-medium ring-1 ring-foreground/10"
-                          >
-                            {t}
-                          </div>
-                        ))}
+                        </div>
+                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
+                        {/* Уровень 2: Компания */}
+                        <div className="px-6 py-3 rounded-xl bg-background text-foreground font-semibold text-base md:text-lg shadow-card ring-1 ring-foreground/10">
+                          Компания
+                        </div>
+                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
+                        {/* Уровень 3: Люди / Процессы / Данные */}
+                        <div className="flex gap-3 flex-wrap justify-center">
+                          {["Люди", "Процессы", "Данные"].map((t) => (
+                            <div
+                              key={t}
+                              className="px-4 py-2.5 rounded-lg bg-background text-foreground text-base font-medium ring-1 ring-foreground/10 shadow-sm"
+                            >
+                              {t}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
+                        {/* Уровень 4: Форматы работы */}
+                        <div className="grid grid-cols-2 gap-3 w-full">
+                          {["Стратегия", "Аудит", "Внедрение", "Сопровождение"].map((t) => (
+                            <div
+                              key={t}
+                              className="px-4 py-3 rounded-xl bg-background text-foreground text-base font-semibold ring-1 ring-foreground/10 shadow-card hover:-translate-y-0.5 hover:shadow-plate transition-all duration-300"
+                            >
+                              {t}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
