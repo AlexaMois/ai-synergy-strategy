@@ -229,7 +229,7 @@ const ServicesDetailed = () => {
   // Палитры под фирменный стиль NewHome / StartPage
   const palettes = [
     { bg: "bg-surface-mint",     text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
-    { bg: "bg-accent",           text: "text-background", muted: "text-background/75", chipBg: "bg-background/20 text-background", border: "border-background/15", innerBg: "bg-background/10",   pillDark: false },
+    { bg: "bg-accent",           text: "text-foreground", muted: "text-foreground/70", chipBg: "bg-foreground/10 text-foreground", border: "border-foreground/15", innerBg: "bg-background/60",   pillDark: false },
     { bg: "bg-surface-sand",     text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
     { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
     { bg: "bg-surface-blush",    text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
