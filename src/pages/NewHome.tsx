@@ -38,20 +38,21 @@ const NewHome = () => {
       <main>
         <section className="container mx-auto max-w-6xl px-4 pt-28 md:pt-36 pb-16 md:pb-24">
           <div className="max-w-3xl">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-              Александра Моисеева · НейроРешения
-            </p>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground mb-6">
-              Архитектор цифрового развития бизнеса
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground mb-4">
+              Александра Моисеева
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8">
-              Я — эксперт по цифровизации компаний. Агентство «НейроРешения» — методология и
-              продуктовая система, через которую проекты доходят до результата.
+            <p className="text-xl md:text-2xl text-foreground/80 mb-6">
+              Эксперт и архитектор цифрового развития бизнеса
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground mb-8">
+              Основатель агентства «НейроРешения». Помогаю собственникам и руководителям понять,
+              какие процессы стоит перевести в цифровой формат первыми, как снизить ручную нагрузку
+              и как внедрять инструменты поэтапно.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link to="/start">
-                  С чего начать <ArrowRight className="ml-2 h-4 w-4" />
+                  Подобрать формат работы <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
