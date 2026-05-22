@@ -329,6 +329,16 @@
     line-height: 1.4;
     display: inline-block;
   }
+
+  /* Allow explicit light text colors on dark plates to win over global h1-h6 !important rules */
+  h1.text-white, h2.text-white, h3.text-white, h4.text-white, h5.text-white, h6.text-white,
+  h1.text-background, h2.text-background, h3.text-background, h4.text-background, h5.text-background, h6.text-background {
+    color: #ffffff !important;
+  }
+  h1 .text-accent, h2 .text-accent, h3 .text-accent,
+  h4 .text-accent, h5 .text-accent, h6 .text-accent {
+    color: hsl(var(--accent)) !important;
+  }
   
   @media (min-width: 640px) {
     .text-handwriting {
