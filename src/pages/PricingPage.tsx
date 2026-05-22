@@ -366,12 +366,12 @@ const PricingPage = () => {
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
               <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                <div className="max-w-3xl mb-12">
-                  <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.05] mb-5">
-                    Что влияет на{" "}
-                    <span className="font-iriska font-normal italic text-accent">стоимость</span>
-                  </h2>
-                  <p className="text-base md:text-lg text-background/70">
+                 <div className="max-w-3xl mb-12">
+                   <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
+                     Что влияет на{" "}
+                     <span className="font-iriska font-normal italic text-accent">стоимость</span>
+                   </h2>
+                   <p className="text-base md:text-lg text-white/70">
                     Шесть факторов, которые задают итоговую цену проекта.
                   </p>
                 </div>
@@ -379,9 +379,17 @@ const PricingPage = () => {
                   {factors.map((f, i) => {
                     const Icon = f.icon;
                     return (
-                      <div key={i} className="flex items-start gap-4">
-                        <Icon className="w-7 h-7 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                        <p className="text-base md:text-lg text-background/90 leading-snug">{f.text}</p>
+                      <div
+                        key={i}
+                        className="group flex items-start gap-4 cursor-default transition-transform duration-300 hover:-translate-y-1"
+                      >
+                        <Icon
+                          className="w-7 h-7 text-accent flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-4deg]"
+                          strokeWidth={1.5}
+                        />
+                        <p className="text-base md:text-lg text-white/90 leading-snug transition-colors duration-300 group-hover:text-white">
+                          {f.text}
+                        </p>
                       </div>
                     );
                   })}
