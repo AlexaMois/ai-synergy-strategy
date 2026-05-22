@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon } from "lucide-react";
+import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -287,6 +287,40 @@ const NewHome = () => {
                 Смотреть все кейсы <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
+          </div>
+        </section>
+
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
+            О нас говорят
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2 mb-4">
+            {[
+              {
+                quote: "Александра, вы творите историю. Вас первого внешнего эксперта пригласили на наше закрытое заседание правления.",
+                author: "Ольга Яковлевна",
+                role: "руководитель юридического отдела, Крайпотребсоюз",
+              },
+              {
+                quote: "Вы даже не представляете, как вы всем нужны — просто они ещё об этом не знают.",
+                author: "Максим Андриянов",
+                role: "генеральный директор, АкТрансСервис",
+              },
+            ].map((q) => (
+              <figure
+                key={q.author}
+                className="flex flex-col rounded-2xl border border-border bg-card p-6 md:p-8"
+              >
+                <Quote className="h-6 w-6 text-accent mb-4" />
+                <blockquote className="text-base md:text-lg text-foreground/90 leading-relaxed mb-4 flex-1">
+                  «{q.quote}»
+                </blockquote>
+                <figcaption className="text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">{q.author}</span>
+                  <span> — {q.role}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
