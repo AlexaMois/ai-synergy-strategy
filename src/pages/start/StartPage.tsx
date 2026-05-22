@@ -213,23 +213,48 @@ const StartPage = () => {
                 внедрения и регулярного сопровождения цифровых инструментов.
               </p>
             </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[260px] lg:grid-flow-dense">
               {formats.map((item, i) => {
                 const palettes = [
-                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70", iconBg: "bg-accent/15 text-accent" },
-                  { bg: "bg-accent", text: "text-background", muted: "text-background/80", iconBg: "bg-background/20 text-background" },
-                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70", iconBg: "bg-accent/15 text-accent" },
-                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70", iconBg: "bg-accent/15 text-accent" },
-                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70", iconBg: "bg-accent/15 text-accent" },
-                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground", iconBg: "bg-accent/15 text-accent" },
-                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70", iconBg: "bg-accent/20 text-accent" },
+                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-accent", text: "text-background", muted: "text-background/80" },
+                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
+                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
+                ];
+                // Асимметричная masonry-сетка на 12 колонок.
+                // Карточка #1 (стратегия) — флагман: широкая и в две строки.
+                // Карточки #5 и #6 — широкие нижние полосы.
+                const layouts = [
+                  { span: "lg:col-span-4 lg:row-span-1", size: "sm" }, // 0 чат
+                  { span: "lg:col-span-5 lg:row-span-2", size: "xl" }, // 1 стратегия — флагман
+                  { span: "lg:col-span-3 lg:row-span-1", size: "sm" }, // 2 аудит
+                  { span: "lg:col-span-4 lg:row-span-1", size: "md" }, // 3 обучение
+                  { span: "lg:col-span-3 lg:row-span-1", size: "sm" }, // 4 внедрение
+                  { span: "lg:col-span-7 lg:row-span-1", size: "wide" },// 5 проектирование — широкая
+                  { span: "lg:col-span-5 lg:row-span-1", size: "wide" },// 6 поддержка — широкая тёмная
                 ];
                 const p = palettes[i % palettes.length];
+                const l = layouts[i];
+                const isFlagship = l.size === "xl";
+                const isWide = l.size === "wide";
+                const sketchCls = isFlagship
+                  ? "w-52 md:w-72 lg:w-80"
+                  : isWide
+                  ? "w-40 md:w-48"
+                  : "w-32 md:w-40";
+                const titleCls = isFlagship
+                  ? "text-2xl md:text-3xl lg:text-4xl"
+                  : isWide
+                  ? "text-xl md:text-2xl"
+                  : "text-lg md:text-xl";
                 return (
                   <Link
                     key={i}
                     to={item.to}
-                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 min-h-[280px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 ${l.span} min-h-[260px]`}
                   >
                     <img
                       src={item.sketch}
@@ -237,10 +262,10 @@ const StartPage = () => {
                       width={512}
                       height={512}
                       loading="lazy"
-                      className="absolute -bottom-4 -right-4 w-36 md:w-40 h-auto object-contain opacity-90 pointer-events-none"
+                      className={`absolute -bottom-4 -right-4 ${sketchCls} h-auto object-contain opacity-90 pointer-events-none`}
                     />
-                    <p className={`text-sm ${p.muted} mb-2 relative max-w-[85%]`}>{item.situation}</p>
-                    <h3 className={`text-lg md:text-xl font-bold ${p.text} leading-tight mb-6 relative max-w-[85%]`}>
+                    <p className={`text-sm ${p.muted} mb-2 relative max-w-[80%]`}>{item.situation}</p>
+                    <h3 className={`${titleCls} font-bold ${p.text} leading-[1.05] mb-6 relative max-w-[80%]`}>
                       {item.format}
                     </h3>
                     <div className="mt-auto flex items-center justify-between relative">
