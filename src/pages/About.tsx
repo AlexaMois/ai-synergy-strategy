@@ -928,40 +928,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* How I Work Now */}
-        <section className="py-8 md:py-10 bg-[#FAFBFC]">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="section-title text-center mb-8">
-              Как я работаю <span className="font-semibold">сейчас</span>
-            </h2>
-            <p className="text-lg text-text-body text-center mb-8">
-              Формат, который я выбираю на 2026 год:<br />
-              <span className="font-semibold">индивидуальная работа + партнёрские команды → глубина вместо масштаба.</span>
-            </p>
-            
-            <div className="bg-white rounded-2xl shadow-card p-6 md:p-8 gradient-border gradient-border-hover">
-              <ul className="space-y-4 text-base text-text-body">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Я</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Разработчики под конкретный проект</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>TT Consulting и Combox Technology для крупных проектов</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary flex-shrink-0 mt-1">•</span>
-                  <span>Контроль архитектуры и результата — на мне</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Energy & Recovery */}
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-3xl">
