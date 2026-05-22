@@ -218,7 +218,7 @@ const Testimonials = () => {
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Скриншоты реальных отзывов из Telegram и Яндекс.Карт
+              Скриншоты реальных отзывов из переписок в мессенджерах
             </p>
           </div>
           
@@ -246,7 +246,7 @@ const Testimonials = () => {
         <div className="text-center mb-12">
           <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Скриншоты реальных отзывов из Telegram и Яндекс.Карт
+            Скриншоты реальных отзывов из переписок в мессенджерах
           </p>
         </div>
 
