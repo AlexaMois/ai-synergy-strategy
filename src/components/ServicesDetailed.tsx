@@ -335,24 +335,6 @@ const ServicesDetailed = () => {
                     
                     <AccordionContent className="px-6 pb-6">
                       <div className="pt-4 space-y-6">
-                        {/* Metrics grid */}
-                        <div className="grid grid-cols-3 gap-4 p-5 bg-primary/5 rounded-xl shadow-soft ring-1 ring-primary/10">
-                          {service.metrics.map((metric, mIndex) => (
-                            <div 
-                              key={mIndex} 
-                              className="text-center animate-fade-in-up"
-                              style={{ animationDelay: `${mIndex * 0.1}s` }}
-                            >
-                              <div className="text-2xl md:text-3xl font-bold text-primary">
-                                {metric.value}
-                              </div>
-                              <div className="text-xs md:text-sm text-muted-foreground mt-1">
-                                {metric.label}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
                         {/* Sections in two columns on desktop with vertical divider */}
                         <div className="flex flex-col md:flex-row md:gap-0">
                           {/* Left column */}
@@ -442,18 +424,9 @@ const ServicesDetailed = () => {
                                 {service.price}
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <Clock className="w-5 h-5 text-muted-foreground" />
-                              <div>
-                                <div className="text-sm text-muted-foreground">Срок</div>
-                                <div className="font-medium text-foreground">
-                                  {service.timeline}
-                                </div>
-                              </div>
-                            </div>
                           </div>
                           
-                          <Button size="lg" className="w-full sm:w-auto" onClick={scrollToContact}>
+                          <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate(service.href)}>
                             {service.cta}
                           </Button>
                         </div>
