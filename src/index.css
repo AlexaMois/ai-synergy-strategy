@@ -332,8 +332,31 @@
 
   /* Allow explicit light text colors on dark plates to win over global h1-h6 !important rules */
   h1.text-white, h2.text-white, h3.text-white, h4.text-white, h5.text-white, h6.text-white,
-  h1.text-background, h2.text-background, h3.text-background, h4.text-background, h5.text-background, h6.text-background {
-    color: #ffffff !important;
+  h1.text-background, h2.text-background, h3.text-background, h4.text-background, h5.text-background, h6.text-background,
+  h1.text-primary-foreground, h2.text-primary-foreground, h3.text-primary-foreground, h4.text-primary-foreground, h5.text-primary-foreground, h6.text-primary-foreground,
+  h1.text-accent-foreground, h2.text-accent-foreground, h3.text-accent-foreground, h4.text-accent-foreground, h5.text-accent-foreground, h6.text-accent-foreground {
+    color: hsl(var(--background)) !important;
+  }
+  h1.text-primary-foreground, h2.text-primary-foreground, h3.text-primary-foreground,
+  h4.text-primary-foreground, h5.text-primary-foreground, h6.text-primary-foreground {
+    color: hsl(var(--primary-foreground)) !important;
+  }
+  h1.text-accent-foreground, h2.text-accent-foreground, h3.text-accent-foreground,
+  h4.text-accent-foreground, h5.text-accent-foreground, h6.text-accent-foreground {
+    color: hsl(var(--accent-foreground)) !important;
+  }
+  /* Inner spans with explicit light colors must also win over h1-h6 cascade */
+  h1 .text-white, h2 .text-white, h3 .text-white, h4 .text-white, h5 .text-white, h6 .text-white,
+  h1 .text-background, h2 .text-background, h3 .text-background, h4 .text-background, h5 .text-background, h6 .text-background {
+    color: hsl(var(--background)) !important;
+  }
+  h1 .text-primary-foreground, h2 .text-primary-foreground, h3 .text-primary-foreground,
+  h4 .text-primary-foreground, h5 .text-primary-foreground, h6 .text-primary-foreground {
+    color: hsl(var(--primary-foreground)) !important;
+  }
+  h1 .text-accent-foreground, h2 .text-accent-foreground, h3 .text-accent-foreground,
+  h4 .text-accent-foreground, h5 .text-accent-foreground, h6 .text-accent-foreground {
+    color: hsl(var(--accent-foreground)) !important;
   }
   h1 .text-accent, h2 .text-accent, h3 .text-accent,
   h4 .text-accent, h5 .text-accent, h6 .text-accent {
