@@ -9,7 +9,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
 
-import Index from "./pages/Index";
+import Index from "./pages/NewHome";
+const OldHome = lazy(() => import("./pages/OldHome"));
 
 const BlogOldRedirect = () => {
   const { slug } = useParams();
@@ -86,6 +87,7 @@ const AppContent = () => {
           {/* Main */}
           <Route path="/" element={<Index />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/old-home" element={<OldHome />} />
           
           {/* Start */}
           <Route path="/start" element={<StartPage />} />
