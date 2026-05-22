@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap } from "lucide-react";
+import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap, ChevronDown } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
@@ -100,6 +100,7 @@ const FEATURED_PALETTES = ["bg-surface-mint", "bg-surface-lavender", "bg-surface
 
 const CasesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showMore, setShowMore] = useState(false);
   const [activeIndustry, setActiveIndustry] = useState("all");
   const [activeSolutionType, setActiveSolutionType] = useState("all");
 
