@@ -356,23 +356,61 @@ const CasesPage = () => {
                 <span className="font-iriska font-normal italic text-accent">каждом кейсе</span>
               </h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
               {[
-                { n: "01", title: "Сначала процесс", text: "Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.", bg: "bg-surface-mint" },
-                { n: "02", title: "Потом решение", text: "Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.", bg: "bg-surface-lavender" },
-                { n: "03", title: "Затем внедрение", text: "Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.", bg: "bg-surface-blush" },
-                { n: "04", title: "В финале результат", text: "Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.", bg: "bg-surface-sand" },
+                {
+                  n: "01",
+                  title: "Сначала процесс",
+                  text: "Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.",
+                  bg: "bg-surface-mint",
+                  col: "md:col-span-7",
+                  pad: "p-8 md:p-12",
+                  title_size: "text-2xl md:text-4xl",
+                  text_size: "text-base md:text-lg",
+                },
+                {
+                  n: "02",
+                  title: "Потом решение",
+                  text: "Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.",
+                  bg: "bg-surface-lavender",
+                  col: "md:col-span-5",
+                  pad: "p-7 md:p-9",
+                  title_size: "text-xl md:text-2xl",
+                  text_size: "text-sm md:text-base",
+                },
+                {
+                  n: "03",
+                  title: "Затем внедрение",
+                  text: "Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.",
+                  bg: "bg-surface-blush",
+                  col: "md:col-span-6",
+                  pad: "p-6 md:p-7",
+                  title_size: "text-lg md:text-xl",
+                  text_size: "text-sm md:text-[15px]",
+                },
+                {
+                  n: "04",
+                  title: "В финале результат",
+                  text: "Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.",
+                  bg: "bg-surface-sand",
+                  col: "md:col-span-6",
+                  pad: "p-6 md:p-7",
+                  title_size: "text-lg md:text-xl",
+                  text_size: "text-sm md:text-[15px]",
+                },
               ].map((card) => (
                 <div
                   key={card.n}
                   className={cn(
-                    "rounded-[28px] p-7 md:p-8 shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col",
-                    card.bg
+                    "rounded-[28px] shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col",
+                    card.bg,
+                    card.col,
+                    card.pad
                   )}
                 >
                   <span className="text-sm font-mono text-muted-foreground mb-4">{card.n}</span>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">{card.title}</h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{card.text}</p>
+                  <h3 className={cn("font-bold text-foreground leading-tight mb-3", card.title_size)}>{card.title}</h3>
+                  <p className={cn("text-muted-foreground leading-relaxed", card.text_size)}>{card.text}</p>
                 </div>
               ))}
             </div>
