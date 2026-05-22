@@ -99,23 +99,35 @@ const NewHome = () => {
 
         <TrustMarquee />
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
-            Компания в цифрах
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {stats.map(({ value, suffix, label, decimals }) => (
-              <div key={label} className="rounded-2xl border border-border bg-card p-5 md:p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
-                  <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
+        <section className="bg-secondary py-16 md:py-24">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
+              <div className="md:col-span-5">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                  Компания в цифрах
+                </p>
+                <div className="text-6xl md:text-8xl font-bold text-foreground leading-none mb-4">
+                  <AnimatedNumber value={360} suffix="" />
                 </div>
-                <p className="text-sm text-muted-foreground leading-snug">{label}</p>
+                <p className="text-lg md:text-xl text-foreground/80 mb-6">
+                  диагностик за 3,5 года практики
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground max-w-md">
+                  Ключевая метрика работы — сумма ненужных расходов, которых удалось избежать клиентам.
+                </p>
               </div>
-            ))}
+              <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">
+                {stats.slice(1).map(({ value, suffix, label, decimals }) => (
+                  <div key={label} className="bg-card p-5 md:p-7">
+                    <div className="text-2xl md:text-4xl font-bold text-foreground mb-1">
+                      <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
+                    </div>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className="text-center text-sm md:text-base text-muted-foreground mt-8 max-w-2xl mx-auto">
-            Ключевая метрика работы — сумма ненужных расходов, которых удалось избежать клиентам.
-          </p>
         </section>
 
         <div className="pt-16 md:pt-20">
@@ -125,24 +137,38 @@ const NewHome = () => {
           <Partners />
         </div>
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="max-w-3xl mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Когда компании нужен внешний взгляд на цифровое развитие
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
-              К цифровому развитию стоит подходить не с покупки программы или выбора подрядчика,
-              а с понимания, какие процессы действительно требуют изменений. Сначала нужно увидеть
-              ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании работать
-              быстрее и спокойнее.
-            </p>
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+          <div className="grid md:grid-cols-12 gap-10 mb-12">
+            <div className="md:col-span-5">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
+                Когда компании нужен внешний взгляд на цифровое развитие
+              </h2>
+            </div>
+            <div className="md:col-span-7 md:pt-3">
+              <p className="text-base md:text-lg text-muted-foreground">
+                К цифровому развитию стоит подходить не с покупки программы или выбора подрядчика,
+                а с понимания, какие процессы действительно требуют изменений. Сначала нужно увидеть
+                ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании
+                работать быстрее и спокойнее.
+              </p>
+            </div>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {externalViewCards.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="rounded-2xl border border-border bg-card p-6">
-                <Icon className="h-6 w-6 text-accent mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+          <div className="divide-y divide-border border-y border-border">
+            {externalViewCards.map(({ icon: Icon, title, text }, i) => (
+              <div
+                key={title}
+                className="grid md:grid-cols-12 gap-6 py-6 md:py-8 items-start"
+              >
+                <div className="md:col-span-1 text-3xl md:text-4xl font-bold text-accent/60 tabular-nums">
+                  0{i + 1}
+                </div>
+                <div className="md:col-span-4 flex items-center gap-3">
+                  <Icon className="h-5 w-5 text-accent shrink-0" />
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground">{title}</h3>
+                </div>
+                <div className="md:col-span-7">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{text}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -239,119 +265,141 @@ const NewHome = () => {
           </div>
         </section>
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
-            Результаты клиентов
-          </h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "Грузовой Экспресс",
-                text: "Перевозчик на север. Заявки приходили из разных каналов, терялись и дублировались. Вместо сложной CRM собрали рабочую схему: голос, Telegram и Excel.",
-                result: "Заявки стали попадать в единую рабочую систему, руководитель получил понятный контроль.",
-                to: "/cases/cargo-express",
-              },
-              {
-                title: "АкТрансСервис",
-                text: "Транспорт, вахта, нефтегаз. В работе было 53 000 позиций. Вместо дорогого внешнего решения собрали другой путь и внедрили инструменты под реальные задачи компании.",
-                result: "Сохранено 1,7 млн ₽ за квартал.",
-                to: "/cases/aktransservice",
-              },
-              {
-                title: "Крайпотребсоюз",
-                text: "51 организация и 300+ точек. Для компании был создан НейроТендеролог, которым больше года пользуются 8 компаний.",
-                result: "Сохранено 1,3 млн ₽ за квартал.",
-                to: "/cases/kraypotrebsoyuz",
-              },
-            ].map((c) => (
-              <div key={c.title} className="flex flex-col rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3">{c.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{c.text}</p>
-                <div className="mt-auto space-y-3">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Результат</p>
-                    <p className="text-sm text-foreground/80">{c.result}</p>
-                  </div>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to={c.to}>
-                      Подробнее <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Button asChild size="lg" variant="outline">
-              <Link to="/cases">
+        <section className="bg-secondary py-16 md:py-24">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground">
+                Результаты клиентов
+              </h2>
+              <Link to="/cases" className="inline-flex items-center text-accent hover:underline font-medium">
                 Смотреть все кейсы <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
+            </div>
+            <div className="grid md:grid-cols-12 gap-4">
+              {/* Featured large case */}
+              <Link
+                to="/cases/aktransservice"
+                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-foreground text-background p-8 md:p-10 min-h-[320px] hover:bg-foreground/90 transition-colors"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
+                    Кейс · Транспорт · Нефтегаз
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">АкТрансСервис</h3>
+                  <p className="text-sm md:text-base text-background/70 leading-relaxed max-w-md">
+                    В работе было 53 000 позиций. Вместо дорогого внешнего решения собрали другой
+                    путь и внедрили инструменты под реальные задачи компании.
+                  </p>
+                </div>
+                <div className="mt-8 flex items-end justify-between gap-4">
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
+                      1,7 млн ₽
+                    </div>
+                    <p className="text-xs text-background/60">сохранено за квартал</p>
+                  </div>
+                  <ArrowRight className="h-6 w-6 text-accent group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              {/* Two smaller stacked cases */}
+              <Link
+                to="/cases/kraypotrebsoyuz"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] hover:border-accent transition-colors"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                    Кейс
+                  </p>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Крайпотребсоюз</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    51 организация и 300+ точек. Создан НейроТендеролог, которым больше года пользуются 8 компаний.
+                  </p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-2xl font-bold text-accent">1,3 млн ₽ / квартал</span>
+                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              <Link
+                to="/cases/cargo-express"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] hover:border-accent transition-colors"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                    Кейс
+                  </p>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Грузовой Экспресс</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Перевозчик на север. Вместо сложной CRM собрали рабочую схему: голос, Telegram и Excel.
+                  </p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-foreground/80">Единая система заявок</span>
+                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
           </div>
         </section>
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
+        <section className="container mx-auto max-w-6xl px-4 py-20 md:py-28">
+          <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6 text-center">
             О нас говорят
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2 mb-4">
-            {[
-              {
-                quote: "Александра, вы творите историю. Вас первого внешнего эксперта пригласили на наше закрытое заседание правления.",
-                author: "Ольга Яковлевна",
-                role: "руководитель юридического отдела, Крайпотребсоюз",
-              },
-              {
-                quote: "Вы даже не представляете, как вы всем нужны — просто они ещё об этом не знают.",
-                author: "Максим Андриянов",
-                role: "генеральный директор, АкТрансСервис",
-              },
-            ].map((q) => (
-              <figure
-                key={q.author}
-                className="flex flex-col rounded-2xl border border-border bg-card p-6 md:p-8"
-              >
-                <Quote className="h-6 w-6 text-accent mb-4" />
-                <blockquote className="text-base md:text-lg text-foreground/90 leading-relaxed mb-4 flex-1">
-                  «{q.quote}»
-                </blockquote>
-                <figcaption className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">{q.author}</span>
-                  <span> — {q.role}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          </p>
+          <figure className="max-w-4xl mx-auto text-center mb-16">
+            <Quote className="h-10 w-10 text-accent mx-auto mb-6" />
+            <blockquote className="text-2xl md:text-4xl font-bold text-foreground leading-snug mb-6">
+              «Александра, вы творите историю. Вас первого внешнего эксперта пригласили на наше
+              закрытое заседание правления».
+            </blockquote>
+            <figcaption className="text-sm md:text-base text-muted-foreground">
+              <span className="font-semibold text-foreground">Ольга Яковлевна</span>
+              <span> — руководитель юридического отдела, Крайпотребсоюз</span>
+            </figcaption>
+          </figure>
+          <figure className="max-w-2xl ml-auto border-l-2 border-accent pl-6 md:pl-8">
+            <blockquote className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-3 italic">
+              «Вы даже не представляете, как вы всем нужны — просто они ещё об этом не знают».
+            </blockquote>
+            <figcaption className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Максим Андриянов</span>
+              <span> — генеральный директор, АкТрансСервис</span>
+            </figcaption>
+          </figure>
         </section>
 
         <Testimonials />
 
-        <section className="container mx-auto max-w-5xl px-4 py-16 md:py-20">
-          <div className="max-w-3xl mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Кому помогаем
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
-              Работаю с собственниками и руководителями компаний от 5 до 300 сотрудников.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-6 md:p-8 mb-6">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
-              Основные сферы
-            </p>
-            <div className="flex flex-wrap gap-x-3 gap-y-2 text-base md:text-lg font-semibold text-foreground">
-              {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s, i, arr) => (
-                <div key={s} className="flex items-center gap-3">
-                  <span>{s}</span>
-                  {i < arr.length - 1 && <span className="text-accent">·</span>}
+        <section className="bg-foreground text-background py-16 md:py-24">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="grid md:grid-cols-12 gap-10 items-center">
+              <div className="md:col-span-5">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                  Кому помогаем
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                  Компании от 5 до 300 сотрудников
+                </h2>
+                <p className="text-base md:text-lg text-background/70">
+                  Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной
+                  штатной IT-команды, где цифровые изменения нужно внедрять поэтапно — с понятной
+                  пользой и без перегруза сотрудников.
+                </p>
+              </div>
+              <div className="md:col-span-7">
+                <div className="flex flex-wrap gap-3">
+                  {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s) => (
+                    <span
+                      key={s}
+                      className="text-lg md:text-2xl font-bold px-5 py-3 rounded-full border border-background/20 text-background hover:border-accent hover:text-accent transition-colors"
+                    >
+                      {s}
+                    </span>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-          <p className="text-sm md:text-base text-muted-foreground max-w-3xl">
-            Особенно полезна компаниям без сильной штатной IT-команды, где цифровые изменения
-            нужно внедрять поэтапно, с понятной пользой и без перегруза сотрудников.
-          </p>
         </section>
 
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
