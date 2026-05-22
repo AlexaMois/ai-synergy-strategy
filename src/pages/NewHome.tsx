@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote, Activity, AlertTriangle, ListChecks, TrendingUp } from "lucide-react";
+import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote, Activity, AlertTriangle, ListChecks, TrendingUp, Network, Settings, Target, PieChart, MoreHorizontal } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -175,114 +175,167 @@ const NewHome = () => {
             </div>
 
             {/* Right column — Digital map dashboard card */}
-            <div className="w-full lg:w-[44%] flex justify-center mt-10 lg:mt-0">
+            <div className="w-full lg:w-[46%] flex justify-center mt-10 lg:mt-0">
               <div
-                className="w-full max-w-[480px]"
+                className="w-full max-w-[520px]"
                 style={{
-                  background: "#FFFFFF",
-                  borderRadius: "28px",
-                  border: "1px solid rgba(73,190,216,0.35)",
-                  boxShadow: "0 24px 60px -20px rgba(17,24,39,0.18), 0 8px 20px -8px rgba(73,190,216,0.18)",
+                  background: "#F4F6F8",
+                  borderRadius: "32px",
+                  boxShadow: "0 30px 70px -25px rgba(17,24,39,0.18), 0 10px 24px -10px rgba(73,190,216,0.15)",
                   padding: "28px",
                 }}
               >
-                <div className="flex items-center justify-between" style={{ marginBottom: "20px" }}>
+                {/* Header */}
+                <div className="flex items-start justify-between" style={{ marginBottom: "22px" }}>
                   <div>
-                    <div style={{ fontSize: "12px", color: "#6B7280", fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                    <div style={{ fontSize: "11px", color: "#49BED8", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}>
                       Дашборд
                     </div>
-                    <div style={{ fontSize: "18px", color: "#111827", fontWeight: 700, marginTop: "4px" }} className="font-golos">
+                    <div style={{ fontSize: "26px", color: "#0F172A", fontWeight: 800, marginTop: "10px", lineHeight: 1.15 }} className="font-golos">
                       Цифровая карта компании
                     </div>
                   </div>
-                  <div
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      borderRadius: "9999px",
-                      background: "#49BED8",
-                      boxShadow: "0 0 0 4px rgba(73,190,216,0.18)",
-                    }}
-                  />
+                  {/* Dots decoration */}
+                  <div className="grid grid-cols-3" style={{ gap: "5px" }}>
+                    {Array.from({ length: 9 }).map((_, i) => (
+                      <span key={i} style={{ width: "5px", height: "5px", borderRadius: "9999px", background: "#BCE3EF", display: "block" }} />
+                    ))}
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-2" style={{ gap: "12px" }}>
+                {/* Metric cards 2x2 */}
+                <div className="grid grid-cols-2" style={{ gap: "14px" }}>
                   {[
-                    { icon: Activity, label: "Ручная нагрузка", value: "−42%", tone: "#49BED8" },
-                    { icon: AlertTriangle, label: "Точки потерь", value: "7", tone: "#111827" },
-                    { icon: ListChecks, label: "Приоритеты внедрения", value: "5", tone: "#49BED8" },
-                    { icon: TrendingUp, label: "ROI / окупаемость", value: "3 мес.", tone: "#111827" },
-                  ].map(({ icon: Icon, label, value, tone }) => (
+                    { icon: Activity, label: "Ручная нагрузка", value: "−42%", accent: true },
+                    { icon: AlertTriangle, label: "Точки потерь", value: "7", accent: false },
+                    { icon: ListChecks, label: "Приоритеты внедрения", value: "5", accent: false },
+                    { icon: TrendingUp, label: "ROI / окупаемость", value: "3 мес.", accent: true },
+                  ].map(({ icon: Icon, label, value, accent }) => (
                     <div
                       key={label}
                       style={{
-                        background: "#F4FAFD",
-                        border: "1px solid #D4EDFC",
-                        borderRadius: "16px",
-                        padding: "14px",
+                        position: "relative",
+                        overflow: "hidden",
+                        background: accent
+                          ? "linear-gradient(135deg, #49BED8 0%, #2C8FA8 100%)"
+                          : "#FFFFFF",
+                        border: accent ? "none" : "1px solid #E3ECF1",
+                        borderRadius: "20px",
+                        padding: "16px 14px",
+                        boxShadow: accent
+                          ? "0 12px 24px -10px rgba(73,190,216,0.45)"
+                          : "0 2px 6px rgba(17,24,39,0.04)",
+                        minHeight: "120px",
                       }}
                     >
-                      <div className="flex items-center" style={{ gap: "8px", color: "#6B7280" }}>
-                        <Icon className="h-4 w-4" style={{ color: "#49BED8" }} />
-                        <span style={{ fontSize: "12px", fontWeight: 500 }}>{label}</span>
+                      {/* Dot pattern decoration */}
+                      <div style={{
+                        position: "absolute", top: "12px", right: "12px",
+                        display: "grid", gridTemplateColumns: "repeat(3, 3px)", gap: "3px",
+                        opacity: accent ? 0.35 : 0.55,
+                      }}>
+                        {Array.from({ length: 9 }).map((_, i) => (
+                          <span key={i} style={{ width: "3px", height: "3px", borderRadius: "9999px", background: accent ? "#FFFFFF" : "#BCE3EF", display: "block" }} />
+                        ))}
                       </div>
-                      <div style={{ fontSize: "22px", fontWeight: 700, color: tone, marginTop: "8px" }} className="font-golos">
+                      <div className="flex items-center" style={{ gap: "10px" }}>
+                        <div style={{
+                          width: "30px", height: "30px", borderRadius: "9999px",
+                          background: "#FFFFFF",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          boxShadow: accent ? "0 4px 10px rgba(0,0,0,0.08)" : "0 2px 6px rgba(73,190,216,0.18)",
+                          flexShrink: 0,
+                        }}>
+                          <Icon className="h-4 w-4" style={{ color: accent ? "#2C8FA8" : "#49BED8" }} />
+                        </div>
+                        <span style={{
+                          fontSize: "12px", fontWeight: 500,
+                          color: accent ? "rgba(255,255,255,0.95)" : "#475569",
+                          lineHeight: 1.25,
+                        }}>{label}</span>
+                      </div>
+                      <div style={{
+                        fontSize: "28px", fontWeight: 800,
+                        color: accent ? "#FFFFFF" : "#0F172A",
+                        marginTop: "14px", letterSpacing: "-0.01em",
+                      }} className="font-golos">
                         {value}
                       </div>
                     </div>
                   ))}
                 </div>
 
+                {/* Схема внедрения */}
                 <div
                   style={{
                     marginTop: "18px",
-                    padding: "14px 16px",
-                    background: "#FFFFFF",
-                    border: "1px dashed #D4EDFC",
-                    borderRadius: "16px",
+                    padding: "16px",
+                    background: "transparent",
+                    border: "1.5px dashed #BCE3EF",
+                    borderRadius: "20px",
                   }}
                 >
-                  <div style={{ fontSize: "11px", color: "#6B7280", fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "10px" }}>
-                    Схема внедрения
+                  <div className="flex items-center justify-between" style={{ marginBottom: "12px" }}>
+                    <div className="flex items-center" style={{ gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", borderRadius: "9999px", background: "#49BED8" }} />
+                      <span style={{ fontSize: "10px", color: "#49BED8", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                        Схема внедрения
+                      </span>
+                      <span style={{ width: "20px", height: "1.5px", background: "#BCE3EF" }} />
+                    </div>
+                    <MoreHorizontal className="h-4 w-4" style={{ color: "#BCE3EF" }} />
                   </div>
-                  <div className="flex items-center" style={{ gap: "8px" }}>
-                    {["Процессы", "Инструменты", "Результат"].map((step, i) => (
-                      <div key={step} className="flex items-center" style={{ gap: "8px", flex: 1 }}>
+                  <div className="flex items-center" style={{ gap: "6px" }}>
+                    {[
+                      { label: "Процессы", icon: Network },
+                      { label: "Инструменты", icon: Settings },
+                      { label: "Результат", icon: Target },
+                    ].map((step, i, arr) => (
+                      <div key={step.label} className="flex items-center" style={{ gap: "6px", flex: 1 }}>
                         <div
+                          className="flex items-center justify-center"
                           style={{
-                            flex: 1,
-                            textAlign: "center",
-                            padding: "8px 6px",
-                            background: "#D4EDFC",
-                            color: "#0F3E4D",
-                            borderRadius: "10px",
+                            flex: 1, gap: "6px",
+                            padding: "10px 8px",
+                            background: "#FFFFFF",
+                            border: "1px solid #D4EDFC",
+                            color: "#0F172A",
+                            borderRadius: "12px",
                             fontSize: "12px",
                             fontWeight: 600,
                           }}
                         >
-                          {step}
+                          <step.icon className="h-3.5 w-3.5" style={{ color: "#49BED8", flexShrink: 0 }} />
+                          <span>{step.label}</span>
                         </div>
-                        {i < 2 && <ArrowRight className="h-3.5 w-3.5" style={{ color: "#49BED8", flexShrink: 0 }} />}
+                        {i < arr.length - 1 && <ArrowRight className="h-3.5 w-3.5" style={{ color: "#49BED8", flexShrink: 0 }} />}
                       </div>
                     ))}
                   </div>
                 </div>
 
+                {/* Средняя окупаемость */}
                 <div
                   style={{
                     marginTop: "16px",
-                    padding: "14px 16px",
-                    background: "#49BED8",
-                    borderRadius: "14px",
-                    color: "#0B2530",
+                    padding: "16px 20px",
+                    background: "linear-gradient(135deg, #2C8FA8 0%, #49BED8 100%)",
+                    borderRadius: "16px",
+                    color: "#FFFFFF",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    boxShadow: "0 10px 24px -10px rgba(73,190,216,0.55)",
+                    boxShadow: "0 14px 28px -12px rgba(44,143,168,0.55)",
                   }}
                 >
-                  <div style={{ fontSize: "13px", fontWeight: 600 }}>Средняя окупаемость</div>
-                  <div style={{ fontSize: "18px", fontWeight: 700 }} className="font-golos">3 месяца</div>
+                  <div className="flex items-center" style={{ gap: "12px" }}>
+                    <PieChart className="h-5 w-5" style={{ color: "#FFFFFF", opacity: 0.95 }} />
+                    <div style={{ fontSize: "14px", fontWeight: 500, opacity: 0.95 }}>Средняя окупаемость</div>
+                  </div>
+                  <div className="flex items-center" style={{ gap: "14px" }}>
+                    <span style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.35)" }} />
+                    <div style={{ fontSize: "20px", fontWeight: 800 }} className="font-golos">3 месяца</div>
+                  </div>
                 </div>
               </div>
             </div>
