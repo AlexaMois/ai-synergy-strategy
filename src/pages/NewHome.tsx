@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote } from "lucide-react";
+import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote, Activity, AlertTriangle, ListChecks, TrendingUp } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -10,7 +10,6 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import hero3dObject from "@/assets/hero-3d-object.png";
 
 const sections = [
   { to: "/start", label: "С чего начать", desc: "Выбор формата работы и короткий разбор", icon: Compass },
@@ -175,16 +174,117 @@ const NewHome = () => {
               </div>
             </div>
 
-            {/* Right column — 3D visual */}
-            <div className="w-full lg:w-[40%] flex justify-center lg:justify-center mt-10 lg:mt-0">
-              <img
-                src={hero3dObject}
-                alt="Цифровая архитектура — стеклянная сфера с модулями"
-                width={480}
-                height={480}
-                className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[440px] lg:h-[440px] object-contain select-none"
-                draggable={false}
-              />
+            {/* Right column — Digital map dashboard card */}
+            <div className="w-full lg:w-[44%] flex justify-center mt-10 lg:mt-0">
+              <div
+                className="w-full max-w-[480px]"
+                style={{
+                  background: "#FFFFFF",
+                  borderRadius: "28px",
+                  border: "1px solid rgba(73,190,216,0.35)",
+                  boxShadow: "0 24px 60px -20px rgba(17,24,39,0.18), 0 8px 20px -8px rgba(73,190,216,0.18)",
+                  padding: "28px",
+                }}
+              >
+                <div className="flex items-center justify-between" style={{ marginBottom: "20px" }}>
+                  <div>
+                    <div style={{ fontSize: "12px", color: "#6B7280", fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                      Дашборд
+                    </div>
+                    <div style={{ fontSize: "18px", color: "#111827", fontWeight: 700, marginTop: "4px" }} className="font-golos">
+                      Цифровая карта компании
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "9999px",
+                      background: "#49BED8",
+                      boxShadow: "0 0 0 4px rgba(73,190,216,0.18)",
+                    }}
+                  />
+                </div>
+
+                <div className="grid grid-cols-2" style={{ gap: "12px" }}>
+                  {[
+                    { icon: Activity, label: "Ручная нагрузка", value: "−42%", tone: "#49BED8" },
+                    { icon: AlertTriangle, label: "Точки потерь", value: "7", tone: "#111827" },
+                    { icon: ListChecks, label: "Приоритеты внедрения", value: "5", tone: "#49BED8" },
+                    { icon: TrendingUp, label: "ROI / окупаемость", value: "3 мес.", tone: "#111827" },
+                  ].map(({ icon: Icon, label, value, tone }) => (
+                    <div
+                      key={label}
+                      style={{
+                        background: "#F4FAFD",
+                        border: "1px solid #D4EDFC",
+                        borderRadius: "16px",
+                        padding: "14px",
+                      }}
+                    >
+                      <div className="flex items-center" style={{ gap: "8px", color: "#6B7280" }}>
+                        <Icon className="h-4 w-4" style={{ color: "#49BED8" }} />
+                        <span style={{ fontSize: "12px", fontWeight: 500 }}>{label}</span>
+                      </div>
+                      <div style={{ fontSize: "22px", fontWeight: 700, color: tone, marginTop: "8px" }} className="font-golos">
+                        {value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "18px",
+                    padding: "14px 16px",
+                    background: "#FFFFFF",
+                    border: "1px dashed #D4EDFC",
+                    borderRadius: "16px",
+                  }}
+                >
+                  <div style={{ fontSize: "11px", color: "#6B7280", fontWeight: 500, letterSpacing: "0.04em", textTransform: "uppercase", marginBottom: "10px" }}>
+                    Схема внедрения
+                  </div>
+                  <div className="flex items-center" style={{ gap: "8px" }}>
+                    {["Процессы", "Инструменты", "Результат"].map((step, i) => (
+                      <div key={step} className="flex items-center" style={{ gap: "8px", flex: 1 }}>
+                        <div
+                          style={{
+                            flex: 1,
+                            textAlign: "center",
+                            padding: "8px 6px",
+                            background: "#D4EDFC",
+                            color: "#0F3E4D",
+                            borderRadius: "10px",
+                            fontSize: "12px",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {step}
+                        </div>
+                        {i < 2 && <ArrowRight className="h-3.5 w-3.5" style={{ color: "#49BED8", flexShrink: 0 }} />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "16px",
+                    padding: "14px 16px",
+                    background: "#49BED8",
+                    borderRadius: "14px",
+                    color: "#0B2530",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    boxShadow: "0 10px 24px -10px rgba(73,190,216,0.55)",
+                  }}
+                >
+                  <div style={{ fontSize: "13px", fontWeight: 600 }}>Средняя окупаемость</div>
+                  <div style={{ fontSize: "18px", fontWeight: 700 }} className="font-golos">3 месяца</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
