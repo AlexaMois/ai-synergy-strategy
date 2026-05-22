@@ -128,12 +128,12 @@ const CasesPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Кейсы автоматизации бизнес‑процессов с ИИ — реальные цифры и результаты | Александра Моисеева</title>
-        <meta name="description" content="Реальные истории: как ИИ‑ассистенты, голосовые боты и RAG‑системы сократили ручной труд, ускорили обработку заявок и снизили брак на производстве." />
-        <meta name="keywords" content="примеры автоматизации бизнеса, кейсы автоматизации бизнес процессов, кейсы внедрения ИИ, результаты ИИ в бизнесе" />
+        <title>Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения</title>
+        <meta name="description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи. Александра Моисеева, агентство «НейроРешения»." />
+        <meta name="keywords" content="кейсы цифровизации бизнеса, кейсы внедрения ИИ, цифровые инструменты для бизнеса, автоматизация логистики, документооборот" />
         <link rel="canonical" href="https://aleksamois.ru/cases" />
-        <meta property="og:title" content="Кейсы автоматизации бизнес‑процессов с ИИ — реальные цифры и результаты | Александра Моисеева" />
-        <meta property="og:description" content="Реальные истории: как ИИ‑ассистенты, голосовые боты и RAG‑системы сократили ручной труд, ускорили обработку заявок и снизили брак на производстве." />
+        <meta property="og:title" content="Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения" />
+        <meta property="og:description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи." />
         <meta property="og:url" content="https://aleksamois.ru/cases" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -400,18 +400,19 @@ const CasesPage = () => {
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
               <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                  <div className="md:col-span-8">
+                <div className="grid md:grid-cols-12 gap-8 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
+                  <div className="md:col-span-7">
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
-                      Хотите такой же{" "}
-                      <span className="font-iriska font-normal italic text-accent">результат?</span>
+                      Разберём вашу{" "}
+                      <span className="font-iriska font-normal italic text-accent">задачу</span>
                     </h2>
                     <p className="text-base md:text-lg text-white/75 max-w-2xl">
-                      Начнём со стратегической встречи или подбора формата работы под вашу задачу.
+                      Если в компании есть ручные процессы, потеря заявок, сложный документооборот, слабая управляемость или желание внедрить цифровые инструменты поэтапно — начните с выбора подходящего формата.
                     </p>
                   </div>
-                  <div className="md:col-span-4 flex flex-wrap gap-3 md:justify-end">
-                    <PillButton to="/start" variant="turquoise">Подобрать формат</PillButton>
+                  <div className="md:col-span-5 flex flex-wrap gap-3 md:justify-end">
+                    <PillButton to="/start" variant="turquoise">Подобрать формат работы</PillButton>
+                    <PillButton to="/services" variant="light">Посмотреть услуги</PillButton>
                   </div>
                 </div>
               </div>
