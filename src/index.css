@@ -345,6 +345,13 @@
   .text-handwriting.animate-handwriting {
     animation: handwriting-reveal 1.5s ease-out forwards;
   }
+
+  /* Iriska reads smaller than Caveat — bump optical size for parity */
+  .font-iriska {
+    font-size: 1.25em;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
 }
 
 @layer utilities {
