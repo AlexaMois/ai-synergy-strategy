@@ -198,7 +198,7 @@ const ServicesPage = () => {
               </p>
             </div>
             {/* Иерархическая схема: 3 входа → СИСТЕМА → 2 выхода */}
-            <div className="rounded-[28px] bg-card ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
+            <div>
               {/* Уровень 1: три опоры на входе */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 {[0, 1, 2].map((i) => {
