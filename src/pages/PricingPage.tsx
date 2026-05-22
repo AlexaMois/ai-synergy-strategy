@@ -404,68 +404,55 @@ const PricingPage = () => {
             </div>
           </section>
 
-          {/* Реальный пример */}
+          {/* Реальный пример — без плашки, прямо на белом */}
           <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-            <div className="max-w-3xl mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                Реальный{" "}
-                <span className="font-iriska font-normal italic text-accent">пример</span>
-              </h2>
-            </div>
-            <div className="rounded-[32px] bg-surface-mint overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
-              <div className="grid md:grid-cols-12 gap-10 items-start">
-                <div className="md:col-span-7">
-                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-                    Грузовой Экспресс
-                  </p>
-                  <h3 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
-                    Бюджет проекта{" "}
-                    <span className="font-iriska font-normal italic text-accent">80 000 ₽</span>
-                  </h3>
-                  <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6 max-w-xl">
-                    Логистическая компания, 15 человек. Автоматизация через Telegram-бота —
-                    маленький бюджет, заметный результат за счёт правильной архитектуры.
-                  </p>
-                  <PillButton to="/cases/cargo-express" variant="dark">
-                    Смотреть разбор
-                  </PillButton>
-                </div>
-                <div className="md:col-span-5 md:pt-2">
-                  <ul className="space-y-5">
-                    {[
-                      "Экономия 3–4 часа в неделю",
-                      "99% точность маршрутов",
-                      "Окупаемость за 3 недели",
-                    ].map((t, i) => (
-                      <li key={i} className="flex items-start gap-3 text-base md:text-lg text-foreground/85">
-                        <span className="text-accent font-bold mt-0.5">•</span>
-                        <span>{t}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+              <div className="md:col-span-7">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                  Реальный пример · Грузовой Экспресс
+                </p>
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-6">
+                  Бюджет проекта{" "}
+                  <span className="font-iriska font-normal italic text-accent">80 000 ₽</span>
+                </h2>
+                <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-8 max-w-xl">
+                  Логистическая компания, 15 человек. Автоматизация через Telegram-бота —
+                  маленький бюджет, заметный результат за счёт правильной архитектуры.
+                </p>
+                <PillButton to="/cases/cargo-express" variant="dark">
+                  Смотреть разбор
+                </PillButton>
+              </div>
+              <div className="md:col-span-5 md:pt-4">
+                <ul className="space-y-5 border-l-2 border-accent pl-6">
+                  {[
+                    "Экономия 3–4 часа в неделю",
+                    "99% точность маршрутов",
+                    "Окупаемость за 3 недели",
+                  ].map((t, i) => (
+                    <li key={i} className="text-lg md:text-xl text-foreground/85">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </section>
 
-          {/* Узнайте точную стоимость */}
-          <section className="px-4 md:px-6 pb-16 md:pb-24">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5 max-w-3xl mx-auto">
-                  Узнайте точную стоимость для{" "}
-                  <span className="font-iriska font-normal italic text-accent">вашей компании</span>
-                </h2>
-                <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-2xl mx-auto">
-                  Запишитесь на бесплатную 30-минутную консультацию. Я оценю ваши процессы и назову
-                  конкретную цифру с объяснением, за что вы платите.
-                </p>
-                <div className="flex justify-center">
-                  <PillButton onClick={scrollToContact} variant="turquoise">
-                    Заказать звонок
-                  </PillButton>
-                </div>
-              </div>
+          {/* Узнайте точную стоимость — текст на белом, без плашки */}
+          <section className="container mx-auto max-w-4xl px-4 pb-16 md:pb-24 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+              Узнайте точную стоимость для{" "}
+              <span className="font-iriska font-normal italic text-accent">вашей компании</span>
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+              Запишитесь на бесплатную 30-минутную консультацию. Я оценю ваши процессы и назову
+              конкретную цифру с объяснением, за что вы платите.
+            </p>
+            <div className="flex justify-center">
+              <PillButton onClick={scrollToContact} variant="turquoise">
+                Заказать звонок
+              </PillButton>
             </div>
           </section>
 
