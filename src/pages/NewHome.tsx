@@ -191,10 +191,19 @@ const NewHome = () => {
           </div>
         </section>
 
-        <div className="pt-16 md:pt-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center container mx-auto max-w-6xl px-4">
-            С кем уже работали и для кого создавали решения
-          </h2>
+        <div className="pt-16 md:pt-24">
+          <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Партнёры и клиенты
+            </p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02]">
+              С кем уже{" "}
+              <span className="font-caveat font-normal italic text-accent">работали</span>
+              <br className="hidden md:block" />
+              и для кого создавали{" "}
+              <span className="font-caveat font-normal italic text-accent">решения</span>
+            </h2>
+          </div>
           <Partners />
         </div>
 
