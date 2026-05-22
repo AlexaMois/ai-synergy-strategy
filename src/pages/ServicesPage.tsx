@@ -4,6 +4,7 @@ import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
+import FAQTeaser from "@/components/FAQTeaser";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Target, Users, Cog, Database, Layers, Award, ShieldCheck } from "lucide-react";
