@@ -351,18 +351,13 @@ const PricingPage = () => {
                     Шесть факторов, которые задают итоговую цену проекта.
                   </p>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
                   {factors.map((f, i) => {
                     const Icon = f.icon;
                     return (
-                      <div
-                        key={i}
-                        className="flex items-start gap-4 rounded-2xl bg-background/5 border border-background/10 p-6"
-                      >
-                        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-accent/20 text-accent flex-shrink-0">
-                          <Icon className="w-5 h-5" strokeWidth={1.75} />
-                        </span>
-                        <p className="text-base text-background/90 leading-snug">{f.text}</p>
+                      <div key={i} className="flex items-start gap-4">
+                        <Icon className="w-7 h-7 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                        <p className="text-base md:text-lg text-background/90 leading-snug">{f.text}</p>
                       </div>
                     );
                   })}
