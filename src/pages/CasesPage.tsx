@@ -438,11 +438,11 @@ const FeaturedCaseCard = ({ caseItem, palette }: { caseItem: CaseItem; palette: 
       )}
     >
       {caseItem.image && (
-        <div className="w-full h-44 overflow-hidden">
+        <div className="w-full aspect-[4/3] bg-white overflow-hidden flex items-center justify-center">
           <img
             src={caseItem.image}
             alt={caseItem.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
         </div>
       )}
