@@ -10,6 +10,7 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
+import hero3dObject from "@/assets/hero-3d-object.png";
 
 const sections = [
   { to: "/start", label: "С чего начать", desc: "Выбор формата работы и короткий разбор", icon: Compass },
@@ -71,33 +72,126 @@ const NewHome = () => {
       </Helmet>
 
       <main>
-        <section className="container mx-auto max-w-6xl px-4 pt-28 md:pt-36 pb-16 md:pb-24">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground mb-4">
-              Александра Моисеева
-            </h1>
-            <p className="text-xl md:text-2xl text-foreground/80 mb-6">
-              Эксперт и архитектор цифрового развития бизнеса
-            </p>
-            <p className="text-base md:text-lg text-muted-foreground mb-8">
-              Основатель агентства «НейроРешения». Помогаю собственникам и руководителям понять,
-              какие процессы стоит перевести в цифровой формат первыми, как снизить ручную нагрузку
-              и как внедрять инструменты поэтапно.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/start">
-                  Подобрать формат работы <ArrowRight className="ml-2 h-4 w-4" />
+        <section
+          className="relative overflow-hidden"
+          style={{ backgroundColor: "#F8F9FB" }}
+        >
+          {/* soft turquoise gradient on the right */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
+            style={{
+              background:
+                "radial-gradient(60% 70% at 80% 50%, rgba(73,190,216,0.18) 0%, rgba(73,190,216,0.06) 45%, rgba(255,255,255,0) 75%)",
+            }}
+          />
+          <div
+            className="relative mx-auto flex flex-col lg:flex-row lg:items-center"
+            style={{
+              maxWidth: "1120px",
+              paddingLeft: "24px",
+              paddingRight: "24px",
+              paddingTop: "clamp(56px, 8vw, 96px)",
+              paddingBottom: "clamp(48px, 8vw, 96px)",
+              gap: "clamp(40px, 6vw, 72px)",
+              minHeight: "clamp(520px, 60vw, 620px)",
+            }}
+          >
+            {/* Left column */}
+            <div className="w-full lg:w-[52%] text-left">
+              <h1
+                className="font-golos font-bold"
+                style={{
+                  color: "#111827",
+                  fontSize: "clamp(34px, 5vw, 56px)",
+                  lineHeight: 1.08,
+                }}
+              >
+                Александра Моисеева
+              </h1>
+              <p
+                className="font-golos"
+                style={{
+                  color: "#111827",
+                  fontSize: "clamp(19px, 2.2vw, 26px)",
+                  lineHeight: 1.3,
+                  fontWeight: 500,
+                  marginTop: "18px",
+                }}
+              >
+                Эксперт и архитектор цифрового развития бизнеса
+              </p>
+              <p
+                className="font-raleway"
+                style={{
+                  color: "#374151",
+                  fontSize: "clamp(16px, 1.4vw, 18px)",
+                  lineHeight: 1.65,
+                  fontWeight: 400,
+                  maxWidth: "560px",
+                  marginTop: "24px",
+                }}
+              >
+                Основатель агентства «НейроРешения». Помогаю собственникам и руководителям понять,
+                какие процессы стоит перевести в цифровой формат первыми, как снизить ручную нагрузку
+                и как внедрять инструменты поэтапно.
+              </p>
+              <div
+                className="flex flex-col sm:flex-row"
+                style={{ gap: "16px", marginTop: "32px" }}
+              >
+                <Link
+                  to="/start"
+                  className="inline-flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto"
+                  style={{
+                    backgroundColor: "#49BED8",
+                    color: "#111827",
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    padding: "16px 28px",
+                    borderRadius: "14px",
+                    boxShadow: "0 12px 28px rgba(73, 190, 216, 0.28)",
+                  }}
+                >
+                  Подобрать формат работы
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/services">Посмотреть услуги</Link>
-              </Button>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto"
+                  style={{
+                    backgroundColor: "#FFFFFF",
+                    color: "#111827",
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    padding: "16px 28px",
+                    borderRadius: "14px",
+                    border: "1px solid #49BED8",
+                    boxShadow: "0 8px 18px rgba(17, 24, 39, 0.08)",
+                  }}
+                >
+                  Посмотреть услуги
+                </Link>
+              </div>
+            </div>
+
+            {/* Right column — 3D visual */}
+            <div className="w-full lg:w-[40%] flex justify-center lg:justify-center mt-10 lg:mt-0">
+              <img
+                src={hero3dObject}
+                alt="Цифровая архитектура — стеклянная сфера с модулями"
+                width={480}
+                height={480}
+                className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] lg:w-[440px] lg:h-[440px] object-contain select-none"
+                draggable={false}
+              />
             </div>
           </div>
         </section>
 
-        <TrustMarquee />
+        <div style={{ marginTop: "clamp(16px, 2vw, 24px)" }}>
+          <TrustMarquee />
+        </div>
 
         <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
