@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone } from "lucide-react";
+import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -28,6 +28,29 @@ const stats = [
   { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
   { value: 85, suffix: "%", label: "клиентов возвращаются" },
   { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
+];
+
+const externalViewCards = [
+  {
+    icon: Hand,
+    title: "Много ручной работы",
+    text: "Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды.",
+  },
+  {
+    icon: Eye,
+    title: "Руководитель держит контроль на себе",
+    text: "Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников.",
+  },
+  {
+    icon: Layers,
+    title: "Инструменты работают разрозненно",
+    text: "Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины.",
+  },
+  {
+    icon: CompassIcon,
+    title: "Нужно понять первый шаг",
+    text: "Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать.",
+  },
 ];
 
 const NewHome = () => {
