@@ -357,19 +357,18 @@ const NewHome = () => {
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
           <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Готовы обсудить проект?
+              Начните с понятного первого шага
             </h2>
-            <p className="text-muted-foreground mb-6">
-              Напишите в Telegram или закажите звонок — отвечу лично.
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Если пока не знаете, какой формат подойдёт, начните со страницы выбора. Она поможет
+              понять, что сейчас актуальнее: стратегическая встреча, стратегия, аудит, обучение,
+              внедрение или сопровождение.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
-                <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
-                  Написать в Telegram
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href="tel:+79950788837">+7 995 078 88 37</a>
+                <Link to="/start">
+                  Подобрать формат работы <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </div>
