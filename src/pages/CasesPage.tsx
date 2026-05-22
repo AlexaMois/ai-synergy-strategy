@@ -365,14 +365,14 @@ const CasesPage = () => {
                   <span className="text-sm font-mono text-muted-foreground mb-4">01</span>
                   <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-3">Сначала процесс</h3>
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.
+                    Каждый проект начинается с разбора текущей работы: кто участвует, какие действия повторяются, где используются данные и на каких этапах теряется время.
                   </p>
                 </div>
                 <div className="md:col-span-5 rounded-[28px] bg-surface-lavender p-7 md:p-9 shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col">
                   <span className="text-sm font-mono text-muted-foreground mb-4">02</span>
                   <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">Потом решение</h3>
                   <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.
+                    Инструмент подбирается под задачу компании. Это может быть готовое решение, low-code, база знаний, помощник, интеграция, обучение команды или разработка под конкретный процесс.
                   </p>
                 </div>
               </div>
@@ -383,14 +383,14 @@ const CasesPage = () => {
                     <span className="text-sm font-mono text-muted-foreground mb-3">03</span>
                     <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight mb-2">Затем внедрение</h3>
                     <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed">
-                      Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.
+                      Решение встраивается в ежедневную работу команды: роли, инструкции, статусы, обучение, контроль применения и сопровождение.
                     </p>
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-mono text-muted-foreground mb-3">04</span>
                     <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight mb-2">В финале результат</h3>
                     <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed">
-                      Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.
+                      Главный показатель — сохранённый бюджет, снижение ручной нагрузки, понятный контроль и инструмент, которым команда реально пользуется.
                     </p>
                   </div>
                 </div>
