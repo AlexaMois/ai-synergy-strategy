@@ -152,7 +152,7 @@ const NewHome = () => {
         </div>
 
         {/* ЦИФРЫ — асимметрия, гигантская акцентная цифра курсивом */}
-        <section className="bg-secondary py-16 md:py-24 mt-4">
+        <section className="bg-background py-16 md:py-24 mt-4">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
               <div className="md:col-span-5">
@@ -387,7 +387,7 @@ const NewHome = () => {
         </section>
 
         {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
-        <section className="bg-secondary py-16 md:py-24 mt-16 md:mt-24">
+        <section className="bg-background py-16 md:py-24 mt-16 md:mt-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
               <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
