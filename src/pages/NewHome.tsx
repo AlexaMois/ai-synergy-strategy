@@ -517,7 +517,7 @@ const NewHome = () => {
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Кому помогаем
                 </p>
-                <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-[1.05]">
+                <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-[1.05] text-slate-50">
                   Компании от 5 до{" "}
                   <span className="font-iriska font-normal italic text-accent">300 сотрудников</span>
                 </h2>
