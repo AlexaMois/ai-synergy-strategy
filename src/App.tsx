@@ -25,6 +25,7 @@ const ArchitecturePage = lazy(() => import("./pages/services/ArchitecturePage"))
 const SupportPage = lazy(() => import("./pages/services/SupportPage"));
 const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
+const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
@@ -99,6 +100,7 @@ const AppContent = () => {
           <Route path="/services/architecture" element={<ArchitecturePage />} />
           <Route path="/services/support" element={<SupportPage />} />
           <Route path="/services/add-ons" element={<AddOnsPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
           
           {/* Products */}
           <Route path="/products" element={<ProductsPage />} />

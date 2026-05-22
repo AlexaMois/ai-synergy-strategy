@@ -128,7 +128,17 @@ const Navigation = () => {
   }, {
     href: "/services",
     label: "Услуги",
-    isScroll: false
+    isScroll: false,
+    submenu: [
+      { href: "/services", label: "Все услуги" },
+      { href: "/services/owner-digital-session", label: "Стратегическая встреча" },
+      { href: "/services/digital-development-strategy", label: "Стратегия цифрового развития" },
+      { href: "/services/digital-audit", label: "Глубокий аудит" },
+      { href: "/services/digital-tools-program", label: "Авторская программа" },
+      { href: "/services/implementation-support", label: "Сопровождение внедрения" },
+      { href: "/services/digital-solution-design", label: "Разработка цифрового решения" },
+      { href: "/services/digital-tools-support", label: "Сопровождение инструментов" },
+    ]
   }, {
     href: "/cases",
     label: "Кейсы",
@@ -225,13 +235,13 @@ const Navigation = () => {
               {navLinks.map(link => {
                 if (link.submenu) {
                   return <div key={link.href} className="relative" onMouseEnter={() => handleMouseEnter(link.label, link.href)} onMouseLeave={handleMouseLeave}>
-                      <button className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${link.submenu.some(s => location.pathname === s.href) ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}>
+                      <DisabledLink to={link.href} onMouseEnter={() => handleLinkHover(link.href)} className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${location.pathname === link.href || link.submenu.some(s => location.pathname === s.href) ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}>
                         {link.label}
                         <ChevronDown size={16} className={`transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`} />
-                      </button>
+                      </DisabledLink>
                       
                       {/* Dropdown */}
-                      <div className={`absolute top-full left-0 mt-1 bg-card border border-border rounded-xl shadow-card py-2 min-w-[160px] transition-all duration-200 ${openSubmenu === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                      <div className={`absolute top-full left-0 mt-1 bg-card border border-border rounded-xl shadow-card py-2 min-w-[260px] transition-all duration-200 ${openSubmenu === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                         {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`} onClick={() => setOpenSubmenu(null)} onMouseEnter={() => handleLinkHover(subItem.href)}>
                             {subItem.label}
                           </DisabledLink>)}
