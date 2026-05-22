@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
-import { Sparkles, Compass, Map, Search, GraduationCap, Wrench, Layers, LifeBuoy, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
 import FAQTeaser from "@/components/FAQTeaser";
@@ -12,6 +12,12 @@ import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/ty
 import { trackCTAClick } from "@/utils/analytics";
 import compassSketch from "@/assets/sketches/compass-sketch.png";
 import chatSketch from "@/assets/sketches/chat-sketch.png";
+import routeSketch from "@/assets/sketches/route-sketch.png";
+import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
+import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
+import graduationSketch from "@/assets/sketches/graduation-sketch.png";
+import blueprintSketch from "@/assets/sketches/blueprint-sketch.png";
+import lifebuoySketch from "@/assets/sketches/lifebuoy-sketch.png";
 
 const PillButton = ({
   to,
@@ -83,43 +89,43 @@ const StartPage = () => {
 
   const formats = [
     {
-      icon: Compass,
+      sketch: chatSketch,
       situation: "Нужно быстро понять первый шаг",
       format: "Стратегическая встреча по цифровизации для собственника",
       to: "/services/owner-digital-session",
     },
     {
-      icon: Map,
+      sketch: routeSketch,
       situation: "Нужен план на 90 дней",
       format: "Разработка стратегии цифрового развития бизнеса",
       to: "/services/digital-development-strategy",
     },
     {
-      icon: Search,
+      sketch: magnifierSketch,
       situation: "Нужно подробно разобрать процессы, документы и инструменты",
       format: "Глубокий аудит компании для цифровизации",
       to: "/services/digital-audit",
     },
     {
-      icon: GraduationCap,
+      sketch: graduationSketch,
       situation: "Нужно обучить сотрудников",
       format: "Авторская программа «Цифровые инструменты для бизнеса»",
       to: "/services/digital-tools-program",
     },
     {
-      icon: Wrench,
+      sketch: handshakeSketch,
       situation: "Уже есть задача для внедрения",
       format: "Сопровождение цифрового внедрения",
       to: "/services/implementation-support",
     },
     {
-      icon: Layers,
+      sketch: blueprintSketch,
       situation: "Нужен конкретный цифровой инструмент",
       format: "Проектирование и разработка цифрового решения под бизнес-процесс",
       to: "/services/digital-solution-design",
     },
     {
-      icon: LifeBuoy,
+      sketch: lifebuoySketch,
       situation: "Уже есть инструменты, нужна поддержка",
       format: "Сопровождение цифровых инструментов компании",
       to: "/services/digital-tools-support",
@@ -149,33 +155,33 @@ const StartPage = () => {
         <PageBreadcrumbs currentPage="С чего начать" />
         
         <main>
-          {/* HERO — большая бирюзовая плашка */}
+          {/* HERO — большая розовая плашка (контраст с бирюзовой главной) */}
           <section className="pt-8 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
                   <div className="md:col-span-7">
-                    <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
+                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       С чего начать
                     </p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-background mb-6">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       Подберём{" "}
-                      <span className="font-iriska font-normal italic text-background/95">
+                      <span className="font-iriska font-normal italic text-accent">
                         формат работы
                       </span>{" "}
                       под вашу ситуацию
                     </h1>
-                    <p className="text-lg md:text-xl text-background/90 mb-10 max-w-xl leading-snug">
+                    <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl leading-snug">
                       Выберите формат под свою задачу. Если не уверены — пройдите короткий разбор,
                       и я подскажу, с чего начать.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <PillButton onClick={startDiagnostic} variant="light">
+                      <PillButton onClick={startDiagnostic} variant="dark">
                         Запустить разбор
                       </PillButton>
                       <Link
                         to="/services"
-                        className="inline-flex items-center text-background/90 hover:text-background underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
+                        className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                       >
                         Все форматы работы <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
@@ -209,7 +215,6 @@ const StartPage = () => {
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {formats.map((item, i) => {
-                const Icon = item.icon;
                 const palettes = [
                   { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70", iconBg: "bg-accent/15 text-accent" },
                   { bg: "bg-accent", text: "text-background", muted: "text-background/80", iconBg: "bg-background/20 text-background" },
@@ -224,16 +229,21 @@ const StartPage = () => {
                   <Link
                     key={i}
                     to={item.to}
-                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 min-h-[240px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 min-h-[280px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
                   >
-                    <div className={`w-11 h-11 rounded-xl ${p.iconBg} flex items-center justify-center mb-5`}>
-                      <Icon className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <p className={`text-sm ${p.muted} mb-2`}>{item.situation}</p>
-                    <h3 className={`text-lg md:text-xl font-bold ${p.text} leading-tight mb-6`}>
+                    <img
+                      src={item.sketch}
+                      alt=""
+                      width={512}
+                      height={512}
+                      loading="lazy"
+                      className="absolute -bottom-4 -right-4 w-36 md:w-40 h-auto object-contain opacity-90 pointer-events-none"
+                    />
+                    <p className={`text-sm ${p.muted} mb-2 relative max-w-[85%]`}>{item.situation}</p>
+                    <h3 className={`text-lg md:text-xl font-bold ${p.text} leading-tight mb-6 relative max-w-[85%]`}>
                       {item.format}
                     </h3>
-                    <div className="mt-auto flex items-center justify-between">
+                    <div className="mt-auto flex items-center justify-between relative">
                       <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
                       <ArrowRight className={`h-5 w-5 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
                     </div>
@@ -243,27 +253,27 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* AI-разбор — плашка с приглашением */}
+          {/* AI-разбор — бирюзовая плашка с приглашением */}
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate ring-1 ring-foreground/5">
+              <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <div className="md:col-span-7">
-                    <div className="inline-flex items-center gap-2 bg-accent/15 text-accent px-4 py-2 rounded-full mb-5">
+                    <div className="inline-flex items-center gap-2 bg-background/20 text-background px-4 py-2 rounded-full mb-5">
                       <Sparkles className="w-4 h-4" />
                       <span className="text-sm font-semibold">AI-разбор</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-5">
                       Не уверены, какой{" "}
-                      <span className="font-iriska font-normal italic text-accent">формат</span>{" "}
+                      <span className="font-iriska font-normal italic text-background/95">формат</span>{" "}
                       выбрать?
                     </h2>
-                    <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl">
+                    <p className="text-base md:text-lg text-background/85 mb-10 max-w-xl">
                       Пройдите короткий разбор — он займёт несколько минут. На выходе получите
                       рекомендацию по формату работы под вашу ситуацию.
                     </p>
                     {!diagnosticStarted && (
-                      <PillButton onClick={startDiagnostic} variant="dark">
+                      <PillButton onClick={startDiagnostic} variant="light">
                         Запустить разбор
                       </PillButton>
                     )}
