@@ -4,6 +4,7 @@ import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
 import ServicesDetailed from "@/components/ServicesDetailed";
 import AdditionalServices from "@/components/AdditionalServices";
+import FAQTeaser from "@/components/FAQTeaser";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Target, Users, Cog, Database, Layers, Award, ShieldCheck } from "lucide-react";
@@ -142,6 +143,14 @@ const ServicesPage = () => {
 
         <ServicesDetailed />
         <AdditionalServices />
+        <FAQTeaser
+          items={[
+            { question: "С чего начинается работа?", answer: "С диагностики: разбираем процессы, данные и ограничения, считаем экономику и только потом предлагаем архитектуру решения." },
+            { question: "Сколько длится внедрение?", answer: "От 4 до 6 недель на пилот. Дальше — масштабирование и сопровождение по согласованному плану." },
+            { question: "Что входит в сопровождение?", answer: "Мониторинг, обновления моделей, доработки под новые процессы, обучение команды и техническая поддержка." },
+            { question: "Можно ли заказать только одну услугу?", answer: "Да. Диагностика, архитектура, сопровождение и доп. решения работают как отдельные услуги или как единая система." },
+          ]}
+        />
         <Contact />
         <Partners />
         </main>
