@@ -259,7 +259,7 @@ const PricingPage = () => {
               {formats.map((f, i) => (
                 <div
                   key={i}
-                  className={`grid grid-cols-12 px-8 py-6 items-center gap-4 border-b border-foreground/5 last:border-b-0 ${i % 2 === 1 ? "bg-muted/30" : ""}`}
+                  className="grid grid-cols-12 px-8 py-6 items-center gap-4 border-b border-foreground/10 last:border-b-0"
                 >
                   <div className="col-span-5 flex items-center gap-4">
                     <img src={f.sketch} alt="" width={80} height={80} loading="lazy" className="w-14 h-14 object-contain flex-shrink-0" />
