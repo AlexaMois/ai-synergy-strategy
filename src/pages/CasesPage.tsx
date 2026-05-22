@@ -40,15 +40,15 @@ const INDUSTRIES = [
 const SOLUTION_TYPES = [
   { id: "all", label: "Все решения" },
   { id: "automation", label: "Автоматизация" },
-  { id: "assistant", label: "AI-ассистенты" },
+  { id: "assistant", label: "ИИ-ассистенты" },
   { id: "content", label: "Контент" },
   { id: "docs", label: "Документооборот" },
 ];
 
 const cases: CaseItem[] = [
-  { id: "kraypotrebsoyuz", title: "Вместо сервера за 1,5 млн ₽ — архитектура, которая окупилась", description: "Спроектировали ИИ-архитектуру для Крайпотребсоюза без дорогой инфраструктуры. Автоматизация договоров и отчётности.", metrics: [{ label: "Экономия", value: "1,3 млн ₽" }, { label: "Время", value: "−6 ч/нед" }], industry: "services", solutionType: "automation", link: "/cases/kraypotrebsoyuz", status: "ready", image: caseKraypotrebsoyuz },
-  { id: "doc-search", title: "QR-код на рабочем месте → ответ из документации за 3 секунды", description: "Интеллектуальный поиск по технической документации для производственной компании. Понимает текст, изображения и смешанные языки.", metrics: [{ label: "Экономия", value: "150–350 тыс ₽/мес" }, { label: "Время ответа", value: "3 сек" }], industry: "production", solutionType: "docs", link: "/products/doc-search", status: "ready", image: caseDocSearch },
-  { id: "cargo-express", title: "Заявки голосом → сразу в Google Sheets", description: "ИИ-система приёма заявок для транспортной компании. Голос и текст автоматически раскладываются в таблицы с аналитикой.", metrics: [{ label: "Экономия", value: "3–4 ч/нед" }, { label: "Потери", value: "0%" }], industry: "logistics", solutionType: "automation", link: "/cases/cargo-express", status: "ready", image: caseCargoExpress },
+  { id: "kraypotrebsoyuz", title: "Вместо разработки за 1,5 млн ₽ — архитектура, которая решила задачу дешевле", description: "Крайпотребсоюзу нужно было автоматизировать работу с тендерами и документами. Первоначальный путь предполагал дорогую разработку и инфраструктуру. Я начал с разбора задачи, процессов и реальной необходимости в инструментах. В результате подобрал более рациональную архитектуру без лишних затрат на серверы и сложную разработку.", metrics: [{ label: "Экономия", value: "1,3 млн ₽" }, { label: "Снижение ручной нагрузки", value: "−6 ч/нед" }], industry: "services", solutionType: "automation", link: "/cases/kraypotrebsoyuz", status: "ready", image: caseKraypotrebsoyuz },
+  { id: "doc-search", title: "QR-код на рабочем месте → ответ из документации за 3 секунды", description: "Для производственной компании создан интеллектуальный поиск по технической документации. Сотрудникам нужно было быстро находить ответы в материалах, где встречались текст, изображения и смешанные языки. Решение сократило время поиска и снизило зависимость сотрудников от ручного просмотра документов.", metrics: [{ label: "Экономия", value: "150–350 тыс ₽/мес" }, { label: "Время ответа", value: "3 сек" }], industry: "production", solutionType: "docs", link: "/products/doc-search", status: "ready", image: caseDocSearch },
+  { id: "cargo-express", title: "Заявки голосом и текстом → сразу в рабочую таблицу", description: "В транспортной компании заявки приходили из разных каналов, часть информации терялась, а руководителю было сложно быстро видеть общую картину. Я собрал систему приёма заявок: голос и текст автоматически превращаются в структурированные записи и попадают в таблицу с аналитикой.", metrics: [{ label: "Экономия времени", value: "3–4 ч/нед" }, { label: "Потери заявок", value: "0%" }], industry: "logistics", solutionType: "automation", link: "/cases/cargo-express", status: "ready", image: caseCargoExpress },
   { id: "ai-smm", title: "AI-SMM Агентство — автоматизация генерации контента", description: "AI-бот для SMM-команд: генерация постов, сторис, прогревов и контент-планов под разные платформы.", metrics: [{ label: "Время", value: "8 ч → 15 мин" }, { label: "Экономия", value: "80 тыс ₽/мес" }], industry: "services", solutionType: "content", link: "/cases/ai-smm", status: "placeholder" },
   { id: "school-assistant", title: "Умный AI-ассистент для родителей", description: "Telegram-бот для лицея: расписание, посещаемость, уведомления. Ответы за 5–10 секунд вместо 10–15 минут.", metrics: [{ label: "Экономия", value: "50 ч/мес" }, { label: "Ответ", value: "5–10 сек" }], industry: "education", solutionType: "assistant", link: "/cases/school-assistant", status: "placeholder" },
   { id: "neuro-tender", title: "НейроТендеролог — отбор релевантных тендеров", description: "Python-скрипт для автоматического анализа тендеров с Контура. LLM-оценка релевантности в 3 этапа.", metrics: [{ label: "Время", value: "3 ч → 15 мин" }, { label: "Точность", value: "85–90%" }], industry: "services", solutionType: "automation", link: "/cases/neuro-tender", status: "placeholder" },
@@ -158,12 +158,13 @@ const CasesPage = () => {
                   </h1>
                   <p className="text-lg md:text-xl text-foreground/85 mb-5 max-w-3xl leading-snug font-medium">
                     Реальные задачи компаний, где цифровые инструменты помогли снизить ручную
-                    нагрузку, сохранить бюджет, ускорить работу и усилить управляемость.
+                    нагрузку, сохранить бюджет, ускорить работу и сделать процессы понятнее
+                    для руководителя.
                   </p>
                   <p className="text-base md:text-lg text-foreground/70 mb-10 max-w-3xl leading-snug">
-                    В каждом проекте сначала разбираем процесс, данные, людей и текущие
-                    инструменты. После этого подбираем решение: стратегию, аудит, обучение,
-                    внедрение, разработку или сопровождение.
+                    В каждом проекте сначала разбираем, как устроена работа компании: процессы,
+                    данные, роли, документы и текущие инструменты. Только после этого подбираем
+                    решение: стратегию, аудит, обучение, внедрение, разработку или сопровождение.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">Подобрать формат работы</PillButton>
@@ -182,7 +183,7 @@ const CasesPage = () => {
                 <span className="font-iriska font-normal italic text-accent">в цифрах</span>
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Четыре показателя из последних проектов — коротко и по делу.
+                Коротко о результатах из последних проектов.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -215,7 +216,7 @@ const CasesPage = () => {
                 <span className="font-iriska font-normal italic text-accent">кейсы</span>
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Отфильтруйте по отрасли и типу решения — или ищите по ключевому слову.
+                Выберите отрасль или тип решения, чтобы найти близкий пример под свою задачу.
               </p>
             </div>
 
@@ -311,7 +312,8 @@ const CasesPage = () => {
                       <span className="font-iriska font-normal italic text-accent">проекты</span>
                     </h2>
                     <p className="text-base md:text-lg text-muted-foreground">
-                      Детали этих кейсов появятся постепенно — пока сводки и метрики.
+                      Детали этих кейсов будут добавляться постепенно. Сейчас доступны краткие
+                      сводки, задачи и ключевые метрики.
                     </p>
                   </div>
                   <button
