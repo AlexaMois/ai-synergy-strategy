@@ -374,6 +374,41 @@
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
   }
+
+  /* Brand gradient backgrounds */
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-deep    { background: var(--gradient-deep); }
+  .bg-gradient-soft    { background: var(--gradient-soft); }
+  .bg-gradient-section { background: var(--gradient-section); }
+  .bg-gradient-cta     { background: var(--gradient-cta); }
+
+  .shadow-accent { box-shadow: var(--shadow-accent); }
+  .shadow-button { box-shadow: var(--shadow-button); }
+
+  /* Premium accent card — turquoise gradient, white text, large metrics */
+  .card-accent {
+    background: var(--gradient-primary);
+    color: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: var(--shadow-accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-accent::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 45%);
+    pointer-events: none;
+  }
+
+  /* Soft inner panel inside cards */
+  .panel-soft {
+    background: #EAF8FD;
+    border: 1px solid #BFE8F5;
+    border-radius: 18px;
+    color: #111827;
+  }
   
   /* Hover-эффект "всплытия" с тенью */
   .hover-lift {
