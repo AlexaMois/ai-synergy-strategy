@@ -116,7 +116,7 @@ const NewHome = () => {
                 <div className="md:col-span-7 pb-10 md:pb-20">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-background mb-6">
                     Александра{" "}
-                    <span className="font-caveat font-normal italic text-background/95">
+                    <span className="font-iriska font-normal italic text-background/95">
                       Моисеева
                     </span>
                   </h1>
@@ -159,7 +159,7 @@ const NewHome = () => {
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Компания в цифрах
                 </p>
-                <div className="font-caveat font-bold text-accent leading-none mb-4 text-[7rem] md:text-[12rem]">
+                <div className="font-iriska font-bold text-accent leading-none mb-4 text-[7rem] md:text-[12rem]">
                   <AnimatedNumber value={360} suffix="" />
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
@@ -179,7 +179,7 @@ const NewHome = () => {
                   </div>
                 ))}
                 <div className="bg-accent text-background p-5 md:p-7 flex flex-col justify-center">
-                  <div className="font-caveat text-3xl md:text-5xl leading-none mb-2">
+                  <div className="font-iriska text-3xl md:text-5xl leading-none mb-2">
                     каждый клиент — надолго
                   </div>
                   <p className="text-xs md:text-sm text-background/80 leading-snug">
@@ -198,10 +198,10 @@ const NewHome = () => {
             </p>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02]">
               С кем уже{" "}
-              <span className="font-caveat font-normal italic text-accent">работали</span>
+              <span className="font-iriska font-normal italic text-accent">работали</span>
               <br className="hidden md:block" />
               и для кого создавали{" "}
-              <span className="font-caveat font-normal italic text-accent">решения</span>
+              <span className="font-iriska font-normal italic text-accent">решения</span>
             </h2>
           </div>
           <Partners />
@@ -214,7 +214,7 @@ const NewHome = () => {
               <div className="md:col-span-7">
                 <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
                   Когда нужен{" "}
-                  <span className="font-caveat font-normal italic text-foreground/80">
+                  <span className="font-iriska font-normal italic text-foreground/80">
                     внешний взгляд
                   </span>{" "}
                   на цифровое развитие
@@ -242,7 +242,7 @@ const NewHome = () => {
                 key={title}
                 className="grid md:grid-cols-12 gap-6 py-6 md:py-8 items-start"
               >
-                <div className="md:col-span-1 font-caveat text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
+                <div className="md:col-span-1 font-iriska text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
                   0{i + 1}
                 </div>
                 <div className="md:col-span-4 flex items-center gap-3">
@@ -264,7 +264,7 @@ const NewHome = () => {
           <div className="max-w-3xl mb-12">
             <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
               С чего можно{" "}
-              <span className="font-caveat font-normal italic text-accent">начать</span>
+              <span className="font-iriska font-normal italic text-accent">начать</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
               Формат зависит от того, насколько понятна текущая задача и насколько подробно нужно
@@ -401,7 +401,7 @@ const NewHome = () => {
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
               <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
                 Результаты{" "}
-                <span className="font-caveat font-normal italic text-accent">клиентов</span>
+                <span className="font-iriska font-normal italic text-accent">клиентов</span>
               </h2>
               <Link to="/cases" className="inline-flex items-center text-accent hover:underline font-medium">
                 Смотреть все кейсы <ArrowRight className="ml-2 h-4 w-4" />
@@ -478,7 +478,7 @@ const NewHome = () => {
         <section className="container mx-auto max-w-6xl px-4 py-20 md:py-28">
           <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6 text-center">
             О нас{" "}
-            <span className="font-caveat font-bold italic text-accent normal-case text-2xl">говорят</span>
+            <span className="font-iriska font-bold italic text-accent normal-case text-2xl">говорят</span>
           </p>
           <figure className="max-w-4xl mx-auto text-center mb-16">
             <Quote className="h-10 w-10 text-accent mx-auto mb-6" />
@@ -514,7 +514,7 @@ const NewHome = () => {
                 </p>
                 <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-[1.05]">
                   Компании от 5 до{" "}
-                  <span className="font-caveat font-normal italic text-accent">300 сотрудников</span>
+                  <span className="font-iriska font-normal italic text-accent">300 сотрудников</span>
                 </h2>
                 <p className="text-base md:text-lg text-background/70">
                   Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной
@@ -554,7 +554,7 @@ const NewHome = () => {
                 <div className="md:col-span-7">
                   <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02] mb-6">
                     Начните с понятного{" "}
-                    <span className="font-caveat font-normal italic text-accent">
+                    <span className="font-iriska font-normal italic text-accent">
                       первого шага
                     </span>
                   </h2>
