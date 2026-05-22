@@ -413,40 +413,36 @@ const PricingPage = () => {
               </h2>
             </div>
             <div className="rounded-[32px] bg-surface-mint overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
-              <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="grid md:grid-cols-12 gap-10 items-start">
                 <div className="md:col-span-7">
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Грузовой Экспресс</h3>
-                  <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6">
-                    Логистическая компания, 15 человек. Потратили всего 80 000 ₽ на автоматизацию
-                    через Telegram-бота.
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                    Грузовой Экспресс
                   </p>
-                  <ul className="space-y-3 mb-2">
+                  <h3 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
+                    Бюджет проекта{" "}
+                    <span className="font-iriska font-normal italic text-accent">80 000 ₽</span>
+                  </h3>
+                  <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6 max-w-xl">
+                    Логистическая компания, 15 человек. Автоматизация через Telegram-бота —
+                    маленький бюджет, заметный результат за счёт правильной архитектуры.
+                  </p>
+                  <PillButton to="/cases/cargo-express" variant="dark">
+                    Смотреть разбор
+                  </PillButton>
+                </div>
+                <div className="md:col-span-5 md:pt-2">
+                  <ul className="space-y-5">
                     {[
                       "Экономия 3–4 часа в неделю",
                       "99% точность маршрутов",
                       "Окупаемость за 3 недели",
                     ].map((t, i) => (
-                      <li key={i} className="flex items-start gap-3 text-base text-foreground/80">
+                      <li key={i} className="flex items-start gap-3 text-base md:text-lg text-foreground/85">
                         <span className="text-accent font-bold mt-0.5">•</span>
                         <span>{t}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="md:col-span-5">
-                  <div className="rounded-3xl bg-background p-8 shadow-card ring-1 ring-foreground/5">
-                    <p className="text-sm uppercase tracking-widest text-muted-foreground font-semibold mb-2">
-                      Бюджет проекта
-                    </p>
-                    <p className="text-5xl font-bold text-foreground mb-5">80 000 ₽</p>
-                    <p className="text-sm text-muted-foreground italic mb-6 leading-relaxed">
-                      «Мой самый маленький бюджет, но крутейший результат. Показывает, что не нужно
-                      тратить миллионы — важна правильная архитектура.»
-                    </p>
-                    <PillButton to="/cases/cargo-express" variant="dark" className="w-full justify-between">
-                      Смотреть разбор
-                    </PillButton>
-                  </div>
                 </div>
               </div>
             </div>
