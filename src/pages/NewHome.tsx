@@ -213,6 +213,32 @@ const NewHome = () => {
           </div>
         </section>
 
+        <section className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
+            Философия работы
+          </h2>
+          <div className="rounded-2xl border border-border bg-card p-8 md:p-12">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 mb-8 text-center">
+              {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
+                <div key={word} className="flex items-center gap-3 md:gap-5">
+                  <span className="text-xl md:text-3xl font-bold text-foreground">{word}</span>
+                  {i < arr.length - 1 && <ArrowRight className="h-5 w-5 md:h-7 md:w-7 text-accent" />}
+                </div>
+              ))}
+            </div>
+            <div className="max-w-3xl mx-auto space-y-4 text-center">
+              <p className="text-base md:text-lg text-foreground/80">
+                Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты.
+                Решение должно прижиться в ежедневной работе команды, а не остаться отдельной системой.
+              </p>
+              <p className="text-sm md:text-base text-muted-foreground">
+                Каждый инструмент должен работать в привычной среде компании, снижать ручную
+                нагрузку и помогать руководителю видеть ситуацию яснее.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <Testimonials />
 
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
