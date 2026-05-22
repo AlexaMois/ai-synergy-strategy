@@ -12,6 +12,8 @@ import delovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
 import focusGroup from '@/assets/partners/focus-group.png';
 import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
 import tsarskiyStol from '@/assets/partners/tsarskiy-stol.png';
+import aktransservice from '@/assets/partners/aktransservice.png';
+import yunarmiya from '@/assets/partners/yunarmiya.webp';
 
 interface PartnersProps {
   className?: string;
@@ -33,6 +35,8 @@ const Partners = ({ className }: PartnersProps) => {
     { id: 12, name: "Focus Group", logo: focusGroup },
     { id: 13, name: "Грузовой Экспресс", logo: gruzovoyExpress },
     { id: 14, name: "Царский Стол", logo: tsarskiyStol },
+    { id: 15, name: "АкТрансСервис", logo: aktransservice },
+    { id: 16, name: "Юнармия", logo: yunarmiya },
   ];
 
   return (
