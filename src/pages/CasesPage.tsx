@@ -356,23 +356,25 @@ const CasesPage = () => {
                 <span className="font-iriska font-normal italic text-accent">каждом кейсе</span>
               </h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 auto-rows-fr">
               {[
-                { n: "01", title: "Сначала процесс", text: "Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.", bg: "bg-surface-mint" },
-                { n: "02", title: "Потом решение", text: "Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.", bg: "bg-surface-lavender" },
-                { n: "03", title: "Затем внедрение", text: "Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.", bg: "bg-surface-blush" },
-                { n: "04", title: "В финале результат", text: "Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.", bg: "bg-surface-sand" },
+                { n: "01", title: "Сначала процесс", text: "Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.", bg: "bg-surface-mint", span: "lg:col-span-8", size: "lg", padding: "p-8 md:p-12", title_cls: "text-2xl md:text-4xl mb-5", text_cls: "text-base md:text-xl" },
+                { n: "02", title: "Потом решение", text: "Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.", bg: "bg-surface-lavender", span: "lg:col-span-4", size: "md", padding: "p-7 md:p-9", title_cls: "text-xl md:text-2xl mb-4", text_cls: "text-sm md:text-base" },
+                { n: "03", title: "Затем внедрение", text: "Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.", bg: "bg-surface-blush", span: "lg:col-span-6", size: "sm", padding: "p-6 md:p-7", title_cls: "text-lg md:text-xl mb-3", text_cls: "text-sm md:text-[0.95rem]" },
+                { n: "04", title: "В финале результат", text: "Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.", bg: "bg-surface-sand", span: "lg:col-span-6", size: "sm", padding: "p-6 md:p-7", title_cls: "text-lg md:text-xl mb-3", text_cls: "text-sm md:text-[0.95rem]" },
               ].map((card) => (
                 <div
                   key={card.n}
                   className={cn(
-                    "rounded-[28px] p-7 md:p-8 shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col",
-                    card.bg
+                    "rounded-[28px] shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col",
+                    card.bg,
+                    card.span,
+                    card.padding
                   )}
                 >
                   <span className="text-sm font-mono text-muted-foreground mb-4">{card.n}</span>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">{card.title}</h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{card.text}</p>
+                  <h3 className={cn("font-bold text-foreground leading-tight", card.title_cls)}>{card.title}</h3>
+                  <p className={cn("text-muted-foreground leading-relaxed", card.text_cls)}>{card.text}</p>
                 </div>
               ))}
             </div>
