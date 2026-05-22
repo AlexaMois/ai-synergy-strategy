@@ -228,13 +228,13 @@ const PricingPage = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end">
+                  <div className="md:col-span-5 flex justify-center md:justify-end md:translate-y-4 lg:translate-y-8 md:translate-x-4">
                     <img
                       src={brainHeartSketch}
                       alt=""
                       width={800}
                       height={800}
-                      className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                      className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl md:-rotate-3"
                     />
                   </div>
                 </div>
@@ -349,11 +349,13 @@ const PricingPage = () => {
                 Три понятных диапазона — от пробной встречи до полноценного внедрения.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-5">
-              {budgetTiers.map((t, i) => (
+            <div className="grid md:grid-cols-3 gap-5 md:items-start">
+              {budgetTiers.map((t, i) => {
+                const offsets = ["", "md:-translate-y-6 lg:-translate-y-10", "md:translate-y-4"];
+                return (
                 <div
                   key={i}
-                  className={`relative rounded-[28px] ${t.bg} p-8 overflow-hidden shadow-card ring-1 ring-foreground/5 min-h-[260px] flex flex-col`}
+                  className={`relative rounded-[28px] ${t.bg} ${offsets[i]} p-8 overflow-hidden shadow-card ring-1 ring-foreground/5 min-h-[260px] flex flex-col`}
                 >
                   <img
                     src={t.sketch}
@@ -370,7 +372,7 @@ const PricingPage = () => {
                     {t.label}
                   </p>
                 </div>
-              ))}
+              );})}
             </div>
           </section>
 
@@ -387,13 +389,13 @@ const PricingPage = () => {
                     Шесть факторов, которые задают итоговую цену проекта.
                   </p>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:items-start">
                   {factors.map((f, i) => {
                     const Icon = f.icon;
                     return (
                       <div
                         key={i}
-                        className="group flex items-start gap-4 cursor-default transition-transform duration-300 hover:-translate-y-1"
+                        className={`group flex items-start gap-4 cursor-default transition-transform duration-300 hover:-translate-y-1 ${i % 3 === 1 ? "lg:translate-y-6" : i % 3 === 2 ? "lg:translate-y-3" : ""}`}
                       >
                         <Icon
                           className="w-7 h-7 text-accent flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-4deg]"
@@ -448,10 +450,23 @@ const PricingPage = () => {
             </div>
           </section>
 
-          {/* Реальный пример — без плашки, прямо на белом */}
+          {/* Реальный пример — без плашки, прямо на белом (асимметрия: список слева, текст справа) */}
           <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
             <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-              <div className="md:col-span-7">
+              <div className="md:col-span-4 md:order-2 md:pt-6">
+                <ul className="space-y-5 border-l-2 border-accent pl-6">
+                  {[
+                    "Экономия 3–4 часа в неделю",
+                    "99% точность маршрутов",
+                    "Окупаемость за 3 недели",
+                  ].map((t, i) => (
+                    <li key={i} className="text-lg md:text-xl text-foreground/85">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="md:col-span-8 md:order-1 md:col-start-1">
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Реальный пример · Грузовой Экспресс
                 </p>
@@ -466,19 +481,6 @@ const PricingPage = () => {
                 <PillButton to="/cases/cargo-express" variant="dark">
                   Смотреть разбор
                 </PillButton>
-              </div>
-              <div className="md:col-span-5 md:pt-4">
-                <ul className="space-y-5 border-l-2 border-accent pl-6">
-                  {[
-                    "Экономия 3–4 часа в неделю",
-                    "99% точность маршрутов",
-                    "Окупаемость за 3 недели",
-                  ].map((t, i) => (
-                    <li key={i} className="text-lg md:text-xl text-foreground/85">
-                      {t}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </section>
