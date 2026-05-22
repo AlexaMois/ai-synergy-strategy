@@ -326,6 +326,34 @@ const NewHome = () => {
 
         <Testimonials />
 
+        <section className="container mx-auto max-w-5xl px-4 py-16 md:py-20">
+          <div className="max-w-3xl mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Кому помогаем
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground">
+              Работаю с собственниками и руководителями компаний от 5 до 300 сотрудников.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-6 md:p-8 mb-6">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
+              Основные сферы
+            </p>
+            <div className="flex flex-wrap gap-x-3 gap-y-2 text-base md:text-lg font-semibold text-foreground">
+              {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s, i, arr) => (
+                <div key={s} className="flex items-center gap-3">
+                  <span>{s}</span>
+                  {i < arr.length - 1 && <span className="text-accent">·</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-sm md:text-base text-muted-foreground max-w-3xl">
+            Особенно полезна компаниям без сильной штатной IT-команды, где цифровые изменения
+            нужно внедрять поэтапно, с понятной пользой и без перегруза сотрудников.
+          </p>
+        </section>
+
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
           <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
