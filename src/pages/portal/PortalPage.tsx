@@ -14,6 +14,7 @@ const PortalPage = () => {
       <Helmet>
         <title>Портал обновлений | Нейрорешения</title>
         <meta name="description" content="Следите за развитием продуктов, предлагайте идеи и узнавайте о новых обновлениях. Ваш голос важен для нас." />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <main className="min-h-screen bg-background pt-24 pb-16">

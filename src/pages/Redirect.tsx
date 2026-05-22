@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 // Whitelist of allowed redirect domains
 const ALLOWED_DOMAINS = [
@@ -84,6 +85,7 @@ const Redirect = () => {
   if (isValid === false) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
+        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
         <div className="text-center p-8">
           <p className="text-destructive font-medium mb-2">Недопустимый адрес перенаправления</p>
           <p className="text-foreground/70 text-sm">Перенаправление на главную страницу...</p>
@@ -94,6 +96,7 @@ const Redirect = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
+      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
       <p className="text-foreground/70">Переход...</p>
     </div>
   );
