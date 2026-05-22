@@ -141,8 +141,8 @@ const ServicesPage = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end">
-                    <div className="w-full max-w-md lg:max-w-lg rounded-[28px] bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-6 md:p-8">
+                  <div className="md:col-span-5 flex justify-center md:justify-end md:translate-y-6 lg:translate-y-10">
+                    <div className="w-full max-w-md lg:max-w-lg rounded-[28px] bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-6 md:p-8 md:-rotate-1">
                       <div className="w-full flex flex-col items-center gap-6 text-center">
                         {/* Уровень 1: Система */}
                         <div className="relative">
@@ -204,16 +204,18 @@ const ServicesPage = () => {
             </div>
             {/* Иерархическая схема: 3 входа → СИСТЕМА → 2 выхода */}
             <div>
-              {/* Уровень 1: три опоры на входе */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {/* Уровень 1: три опоры на входе — асимметричный ряд */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
                 {[0, 1, 2].map((i) => {
                   const el = systemElements[i];
                   const Icon = el.icon;
                   const palettes = ["bg-surface-mint", "bg-surface-lavender", "bg-surface-blush"];
+                  const spans = ["md:col-span-5", "md:col-span-3", "md:col-span-4"];
+                  const offsets = ["", "md:-translate-y-4 lg:-translate-y-6", "md:translate-y-3"];
                   return (
                     <div
                       key={el.label}
-                      className={`${palettes[i]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
+                      className={`${palettes[i]} ${spans[i]} ${offsets[i]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3 transition-transform`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
@@ -251,16 +253,17 @@ const ServicesPage = () => {
                 <div className="w-px h-8 md:h-10 bg-foreground/20" />
               </div>
 
-              {/* Уровень 3: два опорных слоя на выходе */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:px-[8.5%]">
+              {/* Уровень 3: два опорных слоя на выходе — со смещением */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
                 {[3, 4].map((i, idx) => {
                   const el = systemElements[i];
                   const Icon = el.icon;
                   const palettes = ["bg-card", "bg-surface-sand"];
+                  const spans = ["md:col-span-7 md:col-start-2", "md:col-span-4 md:translate-y-6"];
                   return (
                     <div
                       key={el.label}
-                      className={`${palettes[idx]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
+                      className={`${palettes[idx]} ${spans[idx]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
@@ -332,12 +335,12 @@ const ServicesPage = () => {
                     Любой выбранный формат проходит через четыре понятных шага.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:items-start">
                 {processSteps.map((step, index) => {
                     return (
                       <div
                         key={index}
-                        className="relative rounded-[24px] bg-background/5 ring-1 ring-background/10 p-6 md:p-7 hover:bg-background/10 transition-colors duration-300"
+                        className={`relative rounded-[24px] bg-background/5 ring-1 ring-background/10 p-6 md:p-7 hover:bg-background/10 transition-colors duration-300 ${index % 2 === 1 ? "lg:translate-y-6" : ""}`}
                       >
                         <div className="mb-5">
                           <span className="font-iriska italic text-5xl md:text-6xl text-accent leading-none">
