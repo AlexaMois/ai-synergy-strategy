@@ -147,7 +147,7 @@ const ServicesPage = () => {
                         {/* Уровень 1: Система */}
                         <div className="relative">
                           <div className="absolute inset-0 rounded-2xl bg-accent/40 blur-xl" aria-hidden="true" />
-                          <div className="relative px-7 py-3.5 rounded-2xl bg-accent text-foreground font-bold text-lg md:text-xl shadow-card ring-1 ring-accent/40 uppercase tracking-widest">
+                          <div className="relative px-7 py-3.5 rounded-2xl bg-accent text-white font-bold text-lg md:text-xl shadow-card ring-1 ring-accent/40 uppercase tracking-widest">
                             Система
                           </div>
                         </div>
@@ -236,11 +236,11 @@ const ServicesPage = () => {
 
               {/* Уровень 2: СИСТЕМА — ядро */}
               <div className="flex justify-center">
-                <div className="w-full md:w-3/4 lg:w-2/3 rounded-[24px] bg-accent text-foreground p-6 md:p-8 shadow-plate ring-1 ring-foreground/10 text-center">
-                  <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-foreground/75 font-semibold mb-2">
+                <div className="w-full md:w-3/4 lg:w-2/3 rounded-[24px] bg-accent text-white p-6 md:p-8 shadow-plate ring-1 ring-foreground/10 text-center">
+                  <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-white/85 font-semibold mb-2">
                     Система
                   </p>
-                  <p className="font-iriska italic text-2xl md:text-3xl leading-tight text-foreground">
+                  <p className="font-iriska italic text-2xl md:text-3xl leading-tight text-white">
                     компания как единое рабочее пространство
                   </p>
                 </div>
@@ -370,12 +370,12 @@ const ServicesPage = () => {
           {/* ФИНАЛЬНЫЙ CTA — бирюзовая плашка */}
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
                   Начните с{" "}
-                  <span className="font-iriska font-normal italic text-foreground">подходящего формата</span>
+                  <span className="font-iriska font-normal italic text-white">подходящего формата</span>
                 </h2>
-                <p className="text-base md:text-lg text-foreground/80 mb-10 max-w-2xl mx-auto">
+                <p className="text-base md:text-lg text-white/85 mb-10 max-w-2xl mx-auto">
                   Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
@@ -384,7 +384,7 @@ const ServicesPage = () => {
                   </PillButton>
                   <Link
                     to="/pricing"
-                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
+                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/85 hover:text-white transition-colors"
                   >
                     Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
