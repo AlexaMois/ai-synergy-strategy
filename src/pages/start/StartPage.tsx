@@ -189,7 +189,7 @@ const StartPage = () => {
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
                     <img
-                      src={compassSketch}
+                      src={brainHeartSketch}
                       alt=""
                       width={800}
                       height={800}
@@ -280,7 +280,7 @@ const StartPage = () => {
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
                     <img
-                      src={chatSketch}
+                      src={chatHeartSketch}
                       alt=""
                       width={800}
                       height={800}
