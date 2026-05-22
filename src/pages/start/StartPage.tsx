@@ -222,7 +222,7 @@ const StartPage = () => {
               {formats.map((item, i) => {
                 const palettes = [
                   { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-foreground", muted: "text-foreground/75" },
+                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
                   { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
