@@ -118,58 +118,29 @@ const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
   const navLinks: NavLink[] = [{
+    href: "/",
+    label: "Главная",
+    isScroll: false
+  }, {
     href: "/start",
     label: "С чего начать",
     isScroll: false
   }, {
     href: "/services",
     label: "Услуги",
-    isScroll: false,
-    submenu: [{
-      href: "/services/diagnostics",
-      label: "Диагностика"
-    }, {
-      href: "/services/architecture",
-      label: "Архитектура"
-    }, {
-      href: "/services/support",
-      label: "Сопровождение"
-    }, {
-      href: "/services/add-ons",
-      label: "Доп. решения"
-    }]
+    isScroll: false
   }, {
     href: "/cases",
     label: "Кейсы",
     isScroll: false
   }, {
-    href: "/products",
-    label: "Продукты",
-    isScroll: false,
-    submenu: [{
-      href: "/products/voice-bot",
-      label: "Голосовой бот"
-    }, {
-      href: "/products/doc-search",
-      label: "Поиск по документации"
-    }]
+    href: "/pricing",
+    label: "Цены",
+    isScroll: false
   }, {
-    href: "#",
-    label: "Экспертный подход",
-    isScroll: false,
-    submenu: [{
-      href: "/about",
-      label: "Обо мне"
-    }, {
-      href: "/materials/resources",
-      label: "Материалы"
-    }, {
-      href: "/materials/blog",
-      label: "Блог"
-    }, {
-      href: "/portal",
-      label: "Портал обновлений"
-    }]
+    href: "/about",
+    label: "Обо мне",
+    isScroll: false
   }];
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
