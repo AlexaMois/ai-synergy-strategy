@@ -152,29 +152,66 @@ const CasesPage = () => {
                 <div className="px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">Кейсы</p>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
-                    Что даёт автоматизация{" "}
-                    <span className="font-iriska font-normal italic text-accent">в цифрах</span>
+                    Кейсы цифрового развития{" "}
+                    <span className="font-iriska font-normal italic text-accent">бизнеса</span>
                   </h1>
-                  <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-3xl leading-snug">
-                    Проекты, где я убирала ручной ввод, наводила порядок в заявках, снижала брак или
-                    ускоряла подготовку документов. Не только технологии — какие процессы трогали,
-                    какие метрики измеряли и что получил собственник: в часах, рублях и нервных клетках.
+                  <p className="text-lg md:text-xl text-foreground/85 mb-5 max-w-3xl leading-snug font-medium">
+                    Реальные задачи компаний, где цифровые инструменты помогли снизить ручную
+                    нагрузку, сохранить бюджет, ускорить работу и усилить управляемость.
+                  </p>
+                  <p className="text-base md:text-lg text-foreground/70 mb-10 max-w-3xl leading-snug">
+                    В каждом проекте сначала разбираем процесс, данные, людей и текущие
+                    инструменты. После этого подбираем решение: стратегию, аудит, обучение,
+                    внедрение, разработку или сопровождение.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">Подобрать формат работы</PillButton>
-                    <PillButton to="/services" variant="light">Смотреть услуги</PillButton>
+                    <PillButton to="/services" variant="light">Посмотреть услуги</PillButton>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* ПОИСК И ФИЛЬТРЫ */}
+          {/* РЕЗУЛЬТАТЫ В ЦИФРАХ */}
           <section className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
             <div className="max-w-3xl mb-10">
               <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                Найдите свой{" "}
-                <span className="font-iriska font-normal italic text-accent">кейс</span>
+                Результаты{" "}
+                <span className="font-iriska font-normal italic text-accent">в цифрах</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Четыре показателя из последних проектов — коротко и по делу.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { value: "1,7 млн ₽", label: "сохранено за квартал в проекте АкТрансСервис", bg: "bg-surface-mint" },
+                { value: "1,3 млн ₽", label: "сохранено за квартал в проекте Крайпотребсоюз", bg: "bg-surface-lavender" },
+                { value: "0%", label: "потерь заявок после автоматизации в Грузовом Экспрессе", bg: "bg-surface-blush" },
+                { value: "3 сек", label: "вместо 25 минут на ответ по техническому запросу", bg: "bg-surface-sand" },
+              ].map((m, i) => (
+                <div
+                  key={i}
+                  className={`relative rounded-[24px] ${m.bg} p-7 shadow-card ring-1 ring-foreground/5 min-h-[180px] flex flex-col`}
+                >
+                  <p className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-3">
+                    {m.value}
+                  </p>
+                  <p className="text-sm md:text-base text-foreground/70 leading-snug mt-auto">
+                    {m.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ОСНОВНЫЕ КЕЙСЫ — заголовок + поиск/фильтры */}
+          <section className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
+            <div className="max-w-3xl mb-10">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Основные{" "}
+                <span className="font-iriska font-normal italic text-accent">кейсы</span>
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
                 Отфильтруйте по отрасли и типу решения — или ищите по ключевому слову.
