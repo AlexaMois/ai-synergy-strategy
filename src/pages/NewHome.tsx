@@ -124,8 +124,9 @@ const NewHome = () => {
                     Эксперт и архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-base md:text-lg text-background/80 mb-10 max-w-xl">
-                    Помогаю собственникам и руководителям понять, какие процессы стоит перевести в
-                    цифровой формат первыми и как внедрять инструменты поэтапно.
+                    Основатель агентства «НейроРешения». Помогаю собственникам и руководителям
+                    понять, какие процессы стоит перевести в цифровой формат первыми, как снизить
+                    ручную нагрузку и как внедрять инструменты поэтапно.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="light">
@@ -179,11 +180,12 @@ const NewHome = () => {
                   </div>
                 ))}
                 <div className="bg-accent text-background p-5 md:p-7 flex flex-col justify-center">
-                  <div className="font-iriska text-3xl md:text-5xl leading-none mb-2">
-                    каждый клиент — надолго
+                  <div className="font-iriska text-2xl md:text-4xl leading-tight mb-2">
+                    Клиенты возвращаются за следующим этапом
                   </div>
                   <p className="text-xs md:text-sm text-background/80 leading-snug">
-                    Большинство возвращаются за вторым и третьим этапом
+                    Большинство клиентов продолжают работу после первого проекта: стратегия,
+                    внедрение, сопровождение, новые цифровые инструменты.
                   </p>
                 </div>
               </div>
@@ -220,7 +222,7 @@ const NewHome = () => {
                   на цифровое развитие
                 </h2>
                 <p className="text-base md:text-lg text-foreground/70 max-w-2xl">
-                  Сначала нужно увидеть ручную нагрузку, точки потерь, дублирование и задачи,
+                  Сначала важно увидеть ручную нагрузку, точки потерь, дублирование и задачи,
                   которые мешают компании работать быстрее и спокойнее.
                 </p>
               </div>
@@ -440,7 +442,7 @@ const NewHome = () => {
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс
+                    Кейс · Закупки · Распределённая структура
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Крайпотребсоюз</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -448,7 +450,10 @@ const NewHome = () => {
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-2xl font-bold text-accent">1,3 млн ₽ / квартал</span>
+                  <div>
+                    <div className="text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
+                    <p className="text-xs text-muted-foreground mt-1">сохранено за квартал</p>
+                  </div>
                   <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
@@ -458,7 +463,7 @@ const NewHome = () => {
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс
+                    Кейс · Логистика · Заявки
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Грузовой Экспресс</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -559,8 +564,9 @@ const NewHome = () => {
                     </span>
                   </h2>
                   <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl">
-                    Если пока не знаете, какой формат подойдёт, начните со страницы выбора. Она
-                    поможет понять, что сейчас актуальнее.
+                    Начните с выбора формата работы. За несколько минут станет понятно, что сейчас
+                    актуальнее: стратегическая встреча, стратегия, аудит, обучение, внедрение или
+                    сопровождение.
                   </p>
                   <PillButton to="/start" variant="dark">
                     Подобрать формат работы
