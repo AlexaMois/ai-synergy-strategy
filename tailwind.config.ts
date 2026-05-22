@@ -94,6 +94,9 @@ export default {
       boxShadow: {
         'soft': 'var(--shadow-soft)',
         'card': 'var(--shadow-card)',
+        'elevated': 'var(--shadow-elevated)',
+        'plate': '0 2px 0 rgba(15,23,42,0.04), 0 18px 40px -12px rgba(15,23,42,0.25), 0 40px 80px -30px rgba(15,23,42,0.35)',
+        'plate-lg': '0 4px 0 rgba(15,23,42,0.05), 0 30px 60px -15px rgba(15,23,42,0.3), 0 60px 120px -40px rgba(15,23,42,0.4)',
       },
       borderRadius: {
         lg: "var(--radius)",

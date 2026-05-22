@@ -78,7 +78,7 @@ const PillButton = ({
   return (
     <Link
       to={to}
-      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg transition-colors ${styles} ${className}`}
+      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
     >
       <span>{children}</span>
       <span
@@ -111,7 +111,7 @@ const NewHome = () => {
         {/* HERO — большая бирюзовая плашка во всю ширину */}
         <section className="pt-24 md:pt-28 px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
                 <div className="md:col-span-7 pb-10 md:pb-20">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-background mb-6">
@@ -167,7 +167,7 @@ const NewHome = () => {
                   Ключевая метрика работы — сумма ненужных расходов, которых удалось избежать клиентам.
                 </p>
               </div>
-              <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">
+              <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {stats.slice(1).map(({ value, suffix, label, decimals }) => (
                   <div key={label} className="bg-card p-5 md:p-7">
                     <div className="text-2xl md:text-4xl font-bold text-foreground mb-1">
@@ -190,7 +190,7 @@ const NewHome = () => {
 
         {/* ВНЕШНИЙ ВЗГЛЯД — лавандовая плашка + табличный список */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-          <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden mb-10">
+          <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden mb-10 shadow-plate ring-1 ring-foreground/5">
             <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 py-10 md:py-14">
               <div className="md:col-span-7">
                 <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
@@ -293,7 +293,7 @@ const NewHome = () => {
             ].map((card) => (
               <div
                 key={card.title}
-                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[420px] overflow-hidden`}
+                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[420px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
               >
                 {card.showSketch && (
                   <img
@@ -335,7 +335,7 @@ const NewHome = () => {
         {/* ФИЛОСОФИЯ — большая бирюзовая плашка с гигантской формулой и компасом */}
         <section className="px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden">
+            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                 <div className="md:col-span-8">
                   <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
@@ -392,7 +392,7 @@ const NewHome = () => {
               {/* Featured large case */}
               <Link
                 to="/cases/aktransservice"
-                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-foreground text-background p-8 md:p-10 min-h-[320px] hover:bg-foreground/90 transition-colors"
+                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-foreground text-background p-8 md:p-10 min-h-[320px] shadow-plate hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
@@ -417,7 +417,7 @@ const NewHome = () => {
               {/* Two smaller stacked cases */}
               <Link
                 to="/cases/kraypotrebsoyuz"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] hover:border-accent transition-colors"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
@@ -435,7 +435,7 @@ const NewHome = () => {
               </Link>
               <Link
                 to="/cases/cargo-express"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] hover:border-accent transition-colors"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
@@ -530,7 +530,7 @@ const NewHome = () => {
         {/* ФИНАЛЬНЫЙ CTA — сиреневая плашка с пузырями переписки */}
         <section id="contact" className="px-4 md:px-6 py-16 md:py-24">
           <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden">
+            <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                 <div className="md:col-span-7">
                   <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02] mb-6">
