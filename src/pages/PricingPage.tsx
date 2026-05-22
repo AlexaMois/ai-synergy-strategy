@@ -275,8 +275,7 @@ const PricingPage = () => {
                           </span>
                         )}
                       </div>
-                      <div className="col-span-4 flex items-center gap-4">
-                        <img src={f.sketch} alt="" width={80} height={80} loading="lazy" className="w-14 h-14 object-contain flex-shrink-0" />
+                      <div className="col-span-4">
                         <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{f.name}</h3>
                       </div>
                       <div className="col-span-3 text-sm text-muted-foreground">{f.when}</div>
@@ -308,23 +307,15 @@ const PricingPage = () => {
                       return (
                 <div
                   key={i}
-                  className={`relative rounded-[24px] ${palettes[i % palettes.length]} p-6 overflow-hidden shadow-card ring-1 ring-foreground/5`}
+                  className={`relative rounded-[24px] ${palettes[i % palettes.length]} p-6 shadow-card ring-1 ring-foreground/5`}
                 >
-                  <img
-                    src={f.sketch}
-                    alt=""
-                    width={256}
-                    height={256}
-                    loading="lazy"
-                    className="absolute -bottom-3 -right-3 w-28 h-auto object-contain opacity-90 pointer-events-none"
-                  />
-                  <p className="text-xs uppercase tracking-widest text-foreground/60 font-semibold mb-2 max-w-[75%]">
+                  <p className="text-xs uppercase tracking-widest text-foreground/60 font-semibold mb-2">
                     {f.when}
                   </p>
-                  <h3 className="text-lg font-bold text-foreground leading-tight mb-3 max-w-[75%]">
+                  <h3 className="text-lg font-bold text-foreground leading-tight mb-3">
                     {f.name}
                   </h3>
-                  <p className="text-sm text-foreground/70 mb-4 max-w-[75%]">{f.result}</p>
+                  <p className="text-sm text-foreground/70 mb-4">{f.result}</p>
                   <p className="text-xl font-bold text-foreground relative">{f.price}</p>
                 </div>
                       );
