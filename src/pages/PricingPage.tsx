@@ -251,32 +251,61 @@ const PricingPage = () => {
             {/* Desktop — чистая таблица на белом, без плашки */}
             <div className="hidden lg:block">
               <div className="grid grid-cols-12 pb-5 border-b border-foreground/15">
-                <div className="col-span-5 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Формат</div>
+                <div className="col-span-1 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Этап</div>
+                <div className="col-span-4 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Формат</div>
                 <div className="col-span-3 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Когда подходит</div>
                 <div className="col-span-2 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Результат</div>
                 <div className="col-span-2 text-sm uppercase tracking-widest font-semibold text-muted-foreground text-right">Стоимость</div>
               </div>
-              {formats.map((f, i) => (
-                <div
-                  key={i}
-                  className="grid grid-cols-12 py-7 items-center gap-4 border-b border-foreground/10 last:border-b-0"
-                >
-                  <div className="col-span-5 flex items-center gap-4">
-                    <img src={f.sketch} alt="" width={80} height={80} loading="lazy" className="w-14 h-14 object-contain flex-shrink-0" />
-                    <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{f.name}</h3>
-                  </div>
-                  <div className="col-span-3 text-sm text-muted-foreground">{f.when}</div>
-                  <div className="col-span-2 text-sm text-muted-foreground">{f.result}</div>
-                  <div className="col-span-2 text-right">
-                    <span className="text-lg font-bold text-foreground">{f.price}</span>
-                  </div>
+              {[
+                { stage: "01", start: 0, end: 3 },
+                { stage: "02", start: 3, end: 5 },
+                { stage: "03", start: 5, end: 7 },
+              ].map((group) => (
+                <div key={group.stage} className="border-b-2 border-foreground/20 last:border-b-0">
+                  {formats.slice(group.start, group.end).map((f, idx) => (
+                    <div
+                      key={group.start + idx}
+                      className="grid grid-cols-12 py-7 items-center gap-4 border-b border-foreground/10 last:border-b-0"
+                    >
+                      <div className="col-span-1">
+                        {idx === 0 && (
+                          <span className="font-iriska italic text-3xl xl:text-4xl text-accent leading-none">
+                            {group.stage}
+                          </span>
+                        )}
+                      </div>
+                      <div className="col-span-4 flex items-center gap-4">
+                        <img src={f.sketch} alt="" width={80} height={80} loading="lazy" className="w-14 h-14 object-contain flex-shrink-0" />
+                        <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{f.name}</h3>
+                      </div>
+                      <div className="col-span-3 text-sm text-muted-foreground">{f.when}</div>
+                      <div className="col-span-2 text-sm text-muted-foreground">{f.result}</div>
+                      <div className="col-span-2 text-right">
+                        <span className="text-lg font-bold text-foreground">{f.price}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
 
-            {/* Mobile — плашки */}
-            <div className="grid gap-4 lg:hidden">
-              {formats.map((f, i) => (
+            {/* Mobile — плашки сгруппированы по этапам */}
+            <div className="lg:hidden space-y-8">
+              {[
+                { stage: "01", start: 0, end: 3 },
+                { stage: "02", start: 3, end: 5 },
+                { stage: "03", start: 5, end: 7 },
+              ].map((group) => (
+                <div key={group.stage}>
+                  <div className="flex items-center gap-3 mb-4 px-1">
+                    <span className="font-iriska italic text-3xl text-accent leading-none">{group.stage}</span>
+                    <span className="h-px flex-1 bg-foreground/15" />
+                  </div>
+                  <div className="grid gap-4">
+                    {formats.slice(group.start, group.end).map((f, idx) => {
+                      const i = group.start + idx;
+                      return (
                 <div
                   key={i}
                   className={`relative rounded-[24px] ${palettes[i % palettes.length]} p-6 overflow-hidden shadow-card ring-1 ring-foreground/5`}
@@ -297,6 +326,10 @@ const PricingPage = () => {
                   </h3>
                   <p className="text-sm text-foreground/70 mb-4 max-w-[75%]">{f.result}</p>
                   <p className="text-xl font-bold text-foreground relative">{f.price}</p>
+                </div>
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
