@@ -3,24 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { 
   Compass, 
-  Building2, 
   Handshake, 
-  Users, 
-  AlertTriangle, 
   Info, 
-  Cog, 
   Package, 
-  Lightbulb, 
   FileText, 
   TrendingUp,
-  Clock,
   GraduationCap,
   Wrench,
   LifeBuoy,
   Map
 } from "lucide-react";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "Что входит": Package,
@@ -237,21 +231,6 @@ const ServicesDetailed = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
   const [openItem, setOpenItem] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const scrollToContact = () => {
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  };
 
   return (
     <section ref={ref} className="py-16 md:py-24 bg-background">
