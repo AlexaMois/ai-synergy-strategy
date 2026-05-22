@@ -7,9 +7,10 @@ import AdditionalServices from "@/components/AdditionalServices";
 import FAQTeaser from "@/components/FAQTeaser";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Target, Users, Cog, Database, Layers, Award, ShieldCheck } from "lucide-react";
+import { Target, Users, Cog, Database, Layers, Award, ShieldCheck, Search, ListChecks, Rocket, ClipboardCheck } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const systemElements = [
   { icon: Target, label: "Смысл задачи" },
@@ -19,15 +20,39 @@ const systemElements = [
   { icon: Layers, label: "Архитектура" },
 ];
 
+const processSteps = [
+  {
+    icon: Search,
+    title: "Разбираем текущую ситуацию",
+    text: "Смотрим процессы, данные, документы, роли, текущие инструменты и ручную нагрузку."
+  },
+  {
+    icon: ListChecks,
+    title: "Определяем приоритеты",
+    text: "Выбираем задачи, которые дают понятный эффект по времени, деньгам и управляемости."
+  },
+  {
+    icon: Rocket,
+    title: "Запускаем выбранный формат",
+    text: "Проводим встречу, стратегию, аудит, обучение, внедрение, разработку или сопровождение."
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Фиксируем результат",
+    text: "Передаём план, рекомендации, инструкции, рабочие сценарии, цифровой инструмент или отчёт по сопровождению."
+  }
+];
+
 const ServicesPage = () => {
+  const navigate = useNavigate();
   return <PageTransition>
       <Helmet>
-        <title>Автоматизация бизнес-процессов с ИИ — под ключ</title>
-        <meta name="description" content="Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Пилот за 4–6 недель, ROI 3–6 мес." />
-        <meta name="keywords" content="услуги по автоматизации бизнес процессов, автоматизация процессов с помощью ИИ, ИИ консалтинг, внедрение AI в бизнес" />
+        <title>Услуги по цифровому развитию бизнеса — Александра Моисеева, НейроРешения</title>
+        <meta name="description" content="Стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для бизнеса." />
+        <meta name="keywords" content="цифровое развитие бизнеса, стратегия цифровизации, аудит цифровизации, внедрение цифровых инструментов, сопровождение, НейроРешения" />
         <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Автоматизация бизнес-процессов с ИИ — под ключ" />
-        <meta property="og:description" content="Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Пилот за 4–6 недель, ROI 3–6 мес." />
+        <meta property="og:title" content="Услуги по цифровому развитию бизнеса — Александра Моисеева, НейроРешения" />
+        <meta property="og:description" content="Стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -49,15 +74,25 @@ const ServicesPage = () => {
               {/* Left column - Text */}
               <div className="mb-0 mt-[20px] ml-[30px]">
                 <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
-                  Что именно мы <span className="font-semibold">автоматизируем в вашем бизнесе</span>
+                  Услуги по <span className="font-semibold">цифровому развитию бизнеса</span>
                 </h1>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-                  Вместо абстрактного «внедрим ИИ» мы работаем с конкретной болью: ручной ввод и проверка данных, бардак в документообороте, потерянные заявки, слабый контроль по производству и отчётам. Я помогаю выбрать процессы, которые реально тормозят деньги, спроектировать решение на основе ИИ и довести его до стабильной работы в вашей связке CRM/1С/порталов.
+                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-4">
+                  Стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для компаний, которые хотят снизить ручную нагрузку и усилить управляемость.
                 </p>
-                
-                {/* Three stages process */}
-                
-                
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
+                  Работаю с конкретными задачами бизнеса: ручной ввод и проверка данных, разрозненный документооборот, потерянные заявки, слабый контроль по производству, отчётам и рабочим процессам.
+                </p>
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
+                  Помогаю выбрать процессы, которые тормозят деньги, спроектировать решение и довести его до стабильной работы в вашей связке CRM, 1С, порталов, таблиц и внутренних сервисов.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button size="lg" onClick={() => navigate('/start')}>
+                    Подобрать формат работы →
+                  </Button>
+                  <Button size="lg" variant="outline" onClick={() => navigate('/pricing')}>
+                    Посмотреть цены →
+                  </Button>
+                </div>
               </div>
 
               {/* Right column - Infographic */}
@@ -143,14 +178,73 @@ const ServicesPage = () => {
 
         <ServicesDetailed />
         <AdditionalServices />
+
+        {/* How we work — process steps */}
+        <section className="py-10 md:py-16 lg:py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="section-title text-center leading-tight mb-10">
+                Как <span className="font-semibold">проходит работа</span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {processSteps.map((step, index) => {
+                  const Icon = step.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="relative p-6 rounded-2xl bg-card border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <div className="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-card">
+                        {index + 1}
+                      </div>
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                        <Icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-2 leading-tight">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-foreground leading-relaxed">
+                        {step.text}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <FAQTeaser
           items={[
-            { question: "С чего начинается работа?", answer: "С диагностики: разбираем процессы, данные и ограничения, считаем экономику и только потом предлагаем архитектуру решения." },
-            { question: "Сколько длится внедрение?", answer: "От 4 до 6 недель на пилот. Дальше — масштабирование и сопровождение по согласованному плану." },
-            { question: "Что входит в сопровождение?", answer: "Мониторинг, обновления моделей, доработки под новые процессы, обучение команды и техническая поддержка." },
-            { question: "Можно ли заказать только одну услугу?", answer: "Да. Диагностика, архитектура, сопровождение и доп. решения работают как отдельные услуги или как единая система." },
+            { question: "С чего начинается работа?", answer: "Работа начинается с выбора формата. Для быстрого первого шага подходит стратегическая встреча. Для плана на 90 дней подходит стратегия цифрового развития. Для подробного разбора компании подходит глубокий аудит." },
+            { question: "Можно заказать одну услугу?", answer: "Да. Можно начать с одной встречи, отдельного аудита, обучения, разработки или сопровождения. После первого этапа становится понятен следующий шаг." },
+            { question: "Сколько длится внедрение?", answer: "Срок зависит от задачи, количества процессов и готовности данных. Небольшие решения запускаются быстрее. Более сложные внедрения идут поэтапно: разбор, проектирование, запуск, обучение команды и сопровождение." },
+            { question: "Что входит в сопровождение?", answer: "В сопровождение входит контроль задач, донастройка процессов, разбор ошибок, консультации команды, обновление инструкций и развитие сценариев." },
           ]}
         />
+
+        {/* Final CTA */}
+        <section className="py-12 md:py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="section-title leading-tight mb-4">
+                Начните с <span className="font-semibold">подходящего формата</span>
+              </h2>
+              <p className="text-base sm:text-lg text-foreground leading-relaxed mb-8">
+                Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button size="lg" onClick={() => navigate('/start')}>
+                  Подобрать формат работы →
+                </Button>
+                <Button size="lg" variant="outline" onClick={() => navigate('/pricing')}>
+                  Посмотреть цены →
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <Contact />
         <Partners />
         </main>
