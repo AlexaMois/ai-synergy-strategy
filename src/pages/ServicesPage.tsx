@@ -17,11 +17,11 @@ import { Link } from "react-router-dom";
 import robotFlowerSketch from "@/assets/sketches/robot-flower-sketch.png";
 
 const systemElements = [
-  { icon: Target, label: "Смысл задачи" },
-  { icon: Users, label: "Люди" },
-  { icon: Cog, label: "Процессы" },
-  { icon: Database, label: "Данные" },
-  { icon: Layers, label: "Архитектура" },
+  { icon: Target, label: "Смысл задачи", desc: "Что именно нужно изменить и какой результат важен для бизнеса." },
+  { icon: Users, label: "Люди", desc: "Кто участвует в процессе, кто принимает решения и кто будет пользоваться инструментом." },
+  { icon: Cog, label: "Процессы", desc: "Как задача выполняется сейчас, где есть повторы, ручные действия и лишние согласования." },
+  { icon: Database, label: "Данные", desc: "Где хранятся документы, заявки, таблицы, отчёты и насколько они готовы к цифровизации." },
+  { icon: Layers, label: "Архитектура", desc: "Какие инструменты уже есть, что можно использовать, что нужно связать между собой и где требуется разработка." },
 ];
 
 const PillButton = ({
@@ -188,39 +188,51 @@ const ServicesPage = () => {
                 return (
                   <div
                     key={i}
-                    className={`${palettes[i]} rounded-[24px] p-5 md:p-6 min-h-[140px] flex flex-col justify-between shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                    className={`${palettes[i]} rounded-[24px] p-5 md:p-6 min-h-[180px] flex flex-col gap-4 shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
                   >
                     <div className="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
-                      {el.label}
-                    </p>
+                    <div>
+                      <p className="font-semibold text-foreground text-base md:text-lg leading-tight mb-2">
+                        {el.label}
+                      </p>
+                      <p className="text-sm text-foreground/70 leading-snug">
+                        {el.desc}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Доверительная полоса с квалификациями */}
-            <div className="mt-10 rounded-[24px] bg-card p-5 md:p-6 ring-1 ring-foreground/5 shadow-card flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-sm md:text-base font-medium text-foreground">
-                  Дипломированный специалист по ИИ
-                </span>
+            {/* Профессиональная основа */}
+            <div className="mt-10 rounded-[24px] bg-card p-6 md:p-8 ring-1 ring-foreground/5 shadow-card">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">
+                Профессиональная основа
+              </p>
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
+                Дипломированный специалист по искусственному интеллекту
+              </h3>
+              <p className="text-base text-muted-foreground mb-5 max-w-3xl">
+                Квалификация KAEO, уровень 5. Практический опыт внедрения цифровых решений в бизнес-процессы, обучение команд, проектирование цифровых инструментов и сопровождение внедрений.
+              </p>
+              <div className="flex items-center gap-5 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="text-sm font-medium text-foreground">Дипломированный специалист по ИИ</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="text-sm font-medium text-foreground">KAEO уровень 5</span>
+                </div>
+                <Link
+                  to="/about#qualifications"
+                  className="text-accent hover:text-accent/80 hover:underline text-sm font-medium transition-colors inline-flex items-center gap-1"
+                >
+                  Смотреть сертификаты <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-sm md:text-base font-medium text-foreground">
-                  Квалификация KAEO уровень 5
-                </span>
-              </div>
-              <Link
-                to="/about#qualifications"
-                className="text-accent hover:text-accent/80 hover:underline text-sm font-medium transition-colors inline-flex items-center gap-1"
-              >
-                Смотреть сертификаты <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </section>
 
