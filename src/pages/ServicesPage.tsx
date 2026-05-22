@@ -209,6 +209,12 @@ const ServicesPage = () => {
               })}
             </div>
 
+            {/* Итог */}
+            <p className="mt-6 text-base md:text-lg text-foreground/80">
+              <span className="font-semibold text-foreground">Итог:</span>{" "}
+              решение подбирается не ради технологии, а под реальную работу компании.
+            </p>
+
             {/* Профессиональная основа */}
             <div className="mt-10 rounded-[24px] bg-card p-6 md:p-8 ring-1 ring-foreground/5 shadow-card">
               <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">
