@@ -170,14 +170,25 @@ const NewHome = () => {
                 </p>
               </div>
               <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
-                {stats.slice(1).map(({ value, suffix, label, decimals }) => (
-                  <div key={label} className="bg-card p-5 md:p-7">
+                {stats.slice(1).map(({ value, suffix, label, decimals }, idx) => (
+                  <div
+                    key={label}
+                    className={`bg-card p-5 md:p-7 ${idx === stats.length - 2 ? "col-span-2" : ""}`}
+                  >
                     <div className="text-2xl md:text-4xl font-bold text-foreground mb-1">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
                     <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
                   </div>
                 ))}
+                <div className="bg-accent text-background p-5 md:p-7 flex flex-col justify-center">
+                  <div className="font-caveat text-3xl md:text-5xl leading-none mb-2">
+                    каждый клиент — надолго
+                  </div>
+                  <p className="text-xs md:text-sm text-background/80 leading-snug">
+                    Большинство возвращаются за вторым и третьим этапом
+                  </p>
+                </div>
               </div>
             </div>
           </div>
