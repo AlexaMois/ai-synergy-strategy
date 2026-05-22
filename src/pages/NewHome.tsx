@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone } from "lucide-react";
+import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -28,6 +28,29 @@ const stats = [
   { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
   { value: 85, suffix: "%", label: "клиентов возвращаются" },
   { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
+];
+
+const externalViewCards = [
+  {
+    icon: Hand,
+    title: "Много ручной работы",
+    text: "Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды.",
+  },
+  {
+    icon: Eye,
+    title: "Руководитель держит контроль на себе",
+    text: "Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников.",
+  },
+  {
+    icon: Layers,
+    title: "Инструменты работают разрозненно",
+    text: "Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины.",
+  },
+  {
+    icon: CompassIcon,
+    title: "Нужно понять первый шаг",
+    text: "Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать.",
+  },
 ];
 
 const NewHome = () => {
@@ -101,6 +124,29 @@ const NewHome = () => {
           </h2>
           <Partners />
         </div>
+
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Когда компании нужен внешний взгляд на цифровое развитие
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground">
+              К цифровому развитию стоит подходить не с покупки программы или выбора подрядчика,
+              а с понимания, какие процессы действительно требуют изменений. Сначала нужно увидеть
+              ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании работать
+              быстрее и спокойнее.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {externalViewCards.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-border bg-card p-6">
+                <Icon className="h-6 w-6 text-accent mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <MarqueeText />
         <Testimonials />
