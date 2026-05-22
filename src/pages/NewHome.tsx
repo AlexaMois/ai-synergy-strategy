@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone, Hand, Eye, Layers, Compass as CompassIcon, Quote } from "lucide-react";
+import { ArrowRight, Hand, Eye, Layers, Compass as CompassIcon, Quote } from "lucide-react";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -10,14 +10,12 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
-
-const sections = [
-  { to: "/start", label: "С чего начать", desc: "Выбор формата работы и короткий разбор", icon: Compass },
-  { to: "/services", label: "Услуги", desc: "Диагностика, архитектура, внедрение, сопровождение", icon: Briefcase },
-  { to: "/cases", label: "Кейсы", desc: "Реальные проекты и результаты", icon: FolderOpen },
-  { to: "/pricing", label: "Цены", desc: "Прозрачные форматы и стоимость", icon: Wallet },
-  { to: "/about", label: "Обо мне", desc: "Александра Моисеева — архитектор цифрового развития", icon: User },
-];
+import heroCharacter from "@/assets/sketches/hero-character.png";
+import compassSketch from "@/assets/sketches/compass-sketch.png";
+import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
+import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
+import routeSketch from "@/assets/sketches/route-sketch.png";
+import chatSketch from "@/assets/sketches/chat-sketch.png";
 
 const stats = [
   { value: 360, suffix: "", label: "диагностик" },
@@ -53,6 +51,45 @@ const externalViewCards = [
   },
 ];
 
+/**
+ * Pill-кнопка в стиле Точки: круглая, с иконкой-стрелкой в круге справа.
+ */
+const PillButton = ({
+  to,
+  children,
+  variant = "dark",
+  className = "",
+}: {
+  to: string;
+  children: React.ReactNode;
+  variant?: "dark" | "light" | "turquoise";
+  className?: string;
+}) => {
+  const styles = {
+    dark: "bg-foreground text-background hover:bg-foreground/90",
+    light: "bg-background text-foreground hover:bg-background/90",
+    turquoise: "bg-accent text-accent-foreground hover:bg-primary-dark",
+  }[variant];
+  const iconBg = {
+    dark: "bg-accent text-accent-foreground",
+    light: "bg-foreground text-background",
+    turquoise: "bg-background text-foreground",
+  }[variant];
+  return (
+    <Link
+      to={to}
+      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg transition-colors ${styles} ${className}`}
+    >
+      <span>{children}</span>
+      <span
+        className={`flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
+      >
+        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+      </span>
+    </Link>
+  );
+};
+
 const NewHome = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -71,45 +108,59 @@ const NewHome = () => {
       </Helmet>
 
       <main>
-        <section className="container mx-auto max-w-6xl px-4 pt-28 md:pt-36 pb-16 md:pb-24">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground mb-4">
-              Александра Моисеева
-            </h1>
-            <p className="text-xl md:text-2xl text-foreground/80 mb-6">
-              Эксперт и архитектор цифрового развития бизнеса
-            </p>
-            <p className="text-base md:text-lg text-muted-foreground mb-8">
-              Основатель агентства «НейроРешения». Помогаю собственникам и руководителям понять,
-              какие процессы стоит перевести в цифровой формат первыми, как снизить ручную нагрузку
-              и как внедрять инструменты поэтапно.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/start">
-                  Подобрать формат работы <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/services">Посмотреть услуги</Link>
-              </Button>
+        {/* HERO — большая бирюзовая плашка во всю ширину */}
+        <section className="pt-24 md:pt-28 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden">
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
+                <div className="md:col-span-7 pb-10 md:pb-20">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-background mb-6">
+                    Александра{" "}
+                    <span className="font-caveat font-normal italic text-background/95">
+                      Моисеева
+                    </span>
+                  </h1>
+                  <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">
+                    Эксперт и архитектор цифрового развития бизнеса
+                  </p>
+                  <p className="text-base md:text-lg text-background/80 mb-10 max-w-xl">
+                    Помогаю собственникам и руководителям понять, какие процессы стоит перевести в
+                    цифровой формат первыми и как внедрять инструменты поэтапно.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <PillButton to="/start" variant="light">
+                      Подобрать формат работы
+                    </PillButton>
+                  </div>
+                </div>
+                <div className="md:col-span-5 relative flex justify-center md:justify-end items-end self-end">
+                  <img
+                    src={heroCharacter}
+                    alt=""
+                    width={900}
+                    height={900}
+                    className="w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain drop-shadow-xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         <TrustMarquee />
 
-        <section className="bg-secondary py-16 md:py-24">
+        {/* ЦИФРЫ — асимметрия, гигантская акцентная цифра курсивом */}
+        <section className="bg-secondary py-16 md:py-24 mt-4">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
               <div className="md:col-span-5">
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Компания в цифрах
                 </p>
-                <div className="text-6xl md:text-8xl font-bold text-foreground leading-none mb-4">
+                <div className="font-caveat font-bold text-accent leading-none mb-4 text-[7rem] md:text-[12rem]">
                   <AnimatedNumber value={360} suffix="" />
                 </div>
-                <p className="text-lg md:text-xl text-foreground/80 mb-6">
+                <p className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
                   диагностик за 3,5 года практики
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md">
@@ -137,20 +188,33 @@ const NewHome = () => {
           <Partners />
         </div>
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
-          <div className="grid md:grid-cols-12 gap-10 mb-12">
-            <div className="md:col-span-5">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-                Когда компании нужен внешний взгляд на цифровое развитие
-              </h2>
-            </div>
-            <div className="md:col-span-7 md:pt-3">
-              <p className="text-base md:text-lg text-muted-foreground">
-                К цифровому развитию стоит подходить не с покупки программы или выбора подрядчика,
-                а с понимания, какие процессы действительно требуют изменений. Сначала нужно увидеть
-                ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании
-                работать быстрее и спокойнее.
-              </p>
+        {/* ВНЕШНИЙ ВЗГЛЯД — лавандовая плашка + табличный список */}
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden mb-10">
+            <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 py-10 md:py-14">
+              <div className="md:col-span-7">
+                <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+                  Когда нужен{" "}
+                  <span className="font-caveat font-normal italic text-foreground/80">
+                    внешний взгляд
+                  </span>{" "}
+                  на цифровое развитие
+                </h2>
+                <p className="text-base md:text-lg text-foreground/70 max-w-2xl">
+                  Сначала нужно увидеть ручную нагрузку, точки потерь, дублирование и задачи,
+                  которые мешают компании работать быстрее и спокойнее.
+                </p>
+              </div>
+              <div className="md:col-span-5 flex justify-center md:justify-end">
+                <img
+                  src={magnifierSketch}
+                  alt=""
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  className="w-56 md:w-72 lg:w-80 h-auto object-contain"
+                />
+              </div>
             </div>
           </div>
           <div className="divide-y divide-border border-y border-border">
@@ -159,7 +223,7 @@ const NewHome = () => {
                 key={title}
                 className="grid md:grid-cols-12 gap-6 py-6 md:py-8 items-start"
               >
-                <div className="md:col-span-1 text-3xl md:text-4xl font-bold text-accent/60 tabular-nums">
+                <div className="md:col-span-1 font-caveat text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
                   0{i + 1}
                 </div>
                 <div className="md:col-span-4 flex items-center gap-3">
@@ -176,100 +240,149 @@ const NewHome = () => {
 
         <MarqueeText />
 
-        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="max-w-3xl mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              С чего можно начать
+        {/* С ЧЕГО НАЧАТЬ — pastel-плашки с разными фонами, средняя featured */}
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-3xl mb-12">
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+              С чего можно{" "}
+              <span className="font-caveat font-normal italic text-accent">начать</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              Начинать можно с короткой стратегической встречи, разработки стратегии или глубокого
-              аудита. Формат зависит от того, насколько понятна текущая задача и насколько подробно
-              нужно разбирать компанию.
+              Формат зависит от того, насколько понятна текущая задача и насколько подробно нужно
+              разбирать компанию.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {[
               {
-                title: "Стратегическая встреча по цифровизации для собственника",
-                text: "Для собственника или руководителя, которому нужно быстро понять первый шаг: какие процессы требуют внимания, где есть ручная нагрузка и какой формат работы выбрать дальше.",
+                title: "Стратегическая встреча для собственника",
+                text: "Быстро понять первый шаг: какие процессы требуют внимания и какой формат работы выбрать дальше.",
                 price: "17 000 ₽",
-                result: "Первые приоритеты цифрового развития и понятный следующий шаг.",
+                result: "Первые приоритеты цифрового развития.",
                 to: "/services/owner-digital-session",
+                bg: "bg-surface-mint",
+                textColor: "text-foreground",
+                muted: "text-foreground/70",
+                btnVariant: "dark" as const,
+                showSketch: routeSketch,
               },
               {
-                title: "Разработка стратегии цифрового развития бизнеса",
-                text: "Для компании, которой нужен практический план цифрового развития на ближайшие 90 дней: что менять первым, какие инструменты рассматривать и как двигаться поэтапно.",
+                title: "Разработка стратегии цифрового развития",
+                text: "Практический план на 90 дней: что менять первым, какие инструменты рассматривать и как двигаться поэтапно.",
                 price: "78 000 ₽",
-                result: "Точка А, карта ручной нагрузки, приоритеты и план действий на 90 дней.",
+                result: "Карта ручной нагрузки, приоритеты и план действий.",
                 to: "/services/digital-development-strategy",
+                bg: "bg-accent",
+                textColor: "text-background",
+                muted: "text-background/80",
+                btnVariant: "light" as const,
+                showSketch: null,
               },
               {
                 title: "Глубокий аудит компании для цифровизации",
-                text: "Для компаний, где нужно подробно разобрать процессы, данные, документы, текущие инструменты и готовность к внедрению цифровых решений.",
+                text: "Подробно разбираем процессы, данные, документы и готовность к внедрению цифровых решений.",
                 price: "от 116 000 ₽",
-                result: "Карта процессов, риски, рекомендации, бюджетные ориентиры и дорожная карта внедрения.",
+                result: "Карта процессов, риски, дорожная карта внедрения.",
                 to: "/services/digital-audit",
+                bg: "bg-surface-sand",
+                textColor: "text-foreground",
+                muted: "text-foreground/70",
+                btnVariant: "dark" as const,
+                showSketch: compassSketch,
               },
             ].map((card) => (
-              <div key={card.title} className="flex flex-col rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3">{card.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{card.text}</p>
-                <div className="mt-auto space-y-3">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Цена</p>
-                    <p className="text-xl font-bold text-foreground">{card.price}</p>
+              <div
+                key={card.title}
+                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[420px] overflow-hidden`}
+              >
+                {card.showSketch && (
+                  <img
+                    src={card.showSketch}
+                    alt=""
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    className="absolute -bottom-4 -right-4 w-40 h-40 object-contain opacity-90 pointer-events-none"
+                  />
+                )}
+                <h3 className={`text-xl md:text-2xl font-bold ${card.textColor} mb-3 leading-tight relative`}>
+                  {card.title}
+                </h3>
+                <p className={`text-sm md:text-base ${card.muted} leading-relaxed mb-6 relative max-w-[85%]`}>
+                  {card.text}
+                </p>
+                <div className="mt-auto space-y-4 relative">
+                  <div className="flex items-end gap-3">
+                    <span className={`text-3xl md:text-4xl font-bold ${card.textColor} leading-none`}>
+                      {card.price}
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Результат</p>
-                    <p className="text-sm text-foreground/80">{card.result}</p>
-                  </div>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to={card.to}>
-                      Подробнее <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <p className={`text-xs ${card.muted} max-w-[85%]`}>{card.result}</p>
+                  <PillButton to={card.to} variant={card.btnVariant} className="text-sm">
+                    Подробнее
+                  </PillButton>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <Link to="/services" className="inline-flex items-center text-accent hover:underline font-medium">
-              Все форматы работы <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="mt-10 text-center">
+            <Link to="/services" className="inline-flex items-center text-accent hover:underline font-semibold text-lg">
+              Все форматы работы <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
         </section>
 
-        <section className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
-            Философия работы
-          </h2>
-          <div className="rounded-2xl border border-border bg-card p-8 md:p-12">
-            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 mb-8 text-center">
-              {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
-                <div key={word} className="flex items-center gap-3 md:gap-5">
-                  <span className="text-xl md:text-3xl font-bold text-foreground">{word}</span>
-                  {i < arr.length - 1 && <ArrowRight className="h-5 w-5 md:h-7 md:w-7 text-accent" />}
+        {/* ФИЛОСОФИЯ — большая бирюзовая плашка с гигантской формулой и компасом */}
+        <section className="px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden">
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
+                <div className="md:col-span-8">
+                  <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
+                    Философия работы
+                  </p>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8">
+                    {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
+                      <div key={word} className="flex items-center gap-3 md:gap-5">
+                        <span className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-none">
+                          {word}
+                        </span>
+                        {i < arr.length - 1 && (
+                          <ArrowRight className="h-6 w-6 md:h-9 md:w-9 text-background/70" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-lg md:text-xl text-background/90 mb-3 max-w-2xl leading-snug">
+                    Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты.
+                  </p>
+                  <p className="text-base md:text-lg text-background/75 max-w-2xl">
+                    Каждый инструмент должен работать в привычной среде компании, снижать ручную
+                    нагрузку и помогать руководителю видеть ситуацию яснее.
+                  </p>
                 </div>
-              ))}
-            </div>
-            <div className="max-w-3xl mx-auto space-y-4 text-center">
-              <p className="text-base md:text-lg text-foreground/80">
-                Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты.
-                Решение должно прижиться в ежедневной работе команды, а не остаться отдельной системой.
-              </p>
-              <p className="text-sm md:text-base text-muted-foreground">
-                Каждый инструмент должен работать в привычной среде компании, снижать ручную
-                нагрузку и помогать руководителю видеть ситуацию яснее.
-              </p>
+                <div className="md:col-span-4 flex justify-center md:justify-end">
+                  <img
+                    src={compassSketch}
+                    alt=""
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-secondary py-16 md:py-24">
+        {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
+        <section className="bg-secondary py-16 md:py-24 mt-16 md:mt-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-                Результаты клиентов
+              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+                Результаты{" "}
+                <span className="font-caveat font-normal italic text-accent">клиентов</span>
               </h2>
               <Link to="/cases" className="inline-flex items-center text-accent hover:underline font-medium">
                 Смотреть все кейсы <ArrowRight className="ml-2 h-4 w-4" />
@@ -342,9 +455,11 @@ const NewHome = () => {
           </div>
         </section>
 
+        {/* О НАС ГОВОРЯТ — одна гигантская цитата + одна со сдвигом */}
         <section className="container mx-auto max-w-6xl px-4 py-20 md:py-28">
           <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6 text-center">
-            О нас говорят
+            О нас{" "}
+            <span className="font-caveat font-bold italic text-accent normal-case text-2xl">говорят</span>
           </p>
           <figure className="max-w-4xl mx-auto text-center mb-16">
             <Quote className="h-10 w-10 text-accent mx-auto mb-6" />
@@ -370,54 +485,79 @@ const NewHome = () => {
 
         <Testimonials />
 
+        {/* КОМУ ПОМОГАЕМ — тёмная плашка + рукопожатие */}
         <section className="bg-foreground text-background py-16 md:py-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid md:grid-cols-12 gap-10 items-center">
-              <div className="md:col-span-5">
+              <div className="md:col-span-6">
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Кому помогаем
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                  Компании от 5 до 300 сотрудников
+                <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-[1.05]">
+                  Компании от 5 до{" "}
+                  <span className="font-caveat font-normal italic text-accent">300 сотрудников</span>
                 </h2>
                 <p className="text-base md:text-lg text-background/70">
                   Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной
                   штатной IT-команды, где цифровые изменения нужно внедрять поэтапно — с понятной
                   пользой и без перегруза сотрудников.
                 </p>
-              </div>
-              <div className="md:col-span-7">
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3 mt-8">
                   {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s) => (
                     <span
                       key={s}
-                      className="text-lg md:text-2xl font-bold px-5 py-3 rounded-full border border-background/20 text-background hover:border-accent hover:text-accent transition-colors"
+                      className="text-base md:text-lg font-semibold px-4 py-2 rounded-full border border-background/20 text-background hover:border-accent hover:text-accent transition-colors"
                     >
                       {s}
                     </span>
                   ))}
                 </div>
               </div>
+              <div className="md:col-span-6 flex justify-center md:justify-end">
+                <img
+                  src={handshakeSketch}
+                  alt=""
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  className="w-64 md:w-80 lg:w-96 h-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
-          <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Начните с понятного первого шага
-            </h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Если пока не знаете, какой формат подойдёт, начните со страницы выбора. Она поможет
-              понять, что сейчас актуальнее: стратегическая встреча, стратегия, аудит, обучение,
-              внедрение или сопровождение.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg">
-                <Link to="/start">
-                  Подобрать формат работы <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+        {/* ФИНАЛЬНЫЙ CTA — сиреневая плашка с пузырями переписки */}
+        <section id="contact" className="px-4 md:px-6 py-16 md:py-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden">
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
+                <div className="md:col-span-7">
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02] mb-6">
+                    Начните с понятного{" "}
+                    <span className="font-caveat font-normal italic text-accent">
+                      первого шага
+                    </span>
+                  </h2>
+                  <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl">
+                    Если пока не знаете, какой формат подойдёт, начните со страницы выбора. Она
+                    поможет понять, что сейчас актуальнее.
+                  </p>
+                  <PillButton to="/start" variant="dark">
+                    Подобрать формат работы
+                  </PillButton>
+                </div>
+                <div className="md:col-span-5 flex justify-center md:justify-end">
+                  <img
+                    src={chatSketch}
+                    alt=""
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    className="w-56 md:w-72 lg:w-80 h-auto object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
