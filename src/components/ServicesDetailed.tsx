@@ -8,7 +8,7 @@ const ServicesDetailed = () => {
 
   const palettes = [
     { bg: "bg-surface-mint",     text: "text-foreground", muted: "text-foreground/65", border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
-    { bg: "bg-accent",           text: "text-foreground", muted: "text-foreground/70", border: "border-foreground/15", innerBg: "bg-background/60",   pillDark: false },
+    { bg: "bg-accent",           text: "text-white",      muted: "text-white/85",       border: "border-white/20",     innerBg: "bg-white/15",         pillDark: false },
     { bg: "bg-surface-sand",     text: "text-foreground", muted: "text-foreground/65", border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
     { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/65", border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
     { bg: "bg-surface-blush",    text: "text-foreground", muted: "text-foreground/65", border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },

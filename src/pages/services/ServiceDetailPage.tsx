@@ -143,10 +143,10 @@ const ServiceDetailPage = () => {
             <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-20">
               <div className="rounded-[32px] md:rounded-[40px] bg-accent shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
                 <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-6 h-6 text-foreground" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">Результат</h2>
+                  <TrendingUp className="w-6 h-6 text-white" />
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">Результат</h2>
                 </div>
-                <p className="text-xl md:text-2xl text-foreground leading-snug max-w-3xl">
+                <p className="text-xl md:text-2xl text-white leading-snug max-w-3xl">
                   {result.content}
                 </p>
               </div>

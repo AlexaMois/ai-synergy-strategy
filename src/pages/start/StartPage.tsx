@@ -222,7 +222,7 @@ const StartPage = () => {
               {formats.map((item, i) => {
                 const palettes = [
                   { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-foreground", muted: "text-foreground/75" },
+                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
                   { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
@@ -289,16 +289,16 @@ const StartPage = () => {
               <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <div className="md:col-span-7">
-                    <div className="inline-flex items-center gap-2 bg-foreground/10 text-foreground px-4 py-2 rounded-full mb-5">
+                    <div className="inline-flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-full mb-5">
                       <Sparkles className="w-4 h-4" />
                       <span className="text-sm font-semibold">AI-разбор</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
                       Не уверены, какой{" "}
-                      <span className="font-iriska font-normal italic text-foreground">формат</span>{" "}
+                      <span className="font-iriska font-normal italic text-white">формат</span>{" "}
                       выбрать?
                     </h2>
-                    <p className="text-base md:text-lg text-foreground/80 mb-10 max-w-xl">
+                    <p className="text-base md:text-lg text-white/85 mb-10 max-w-xl">
                       Пройдите короткий разбор. Он займёт несколько минут и поможет понять,
                       что сейчас актуальнее: стратегическая встреча, стратегия цифрового
                       развития, глубокий аудит, обучение, внедрение, разработка или сопровождение.

@@ -416,11 +416,11 @@ const PricingPage = () => {
               <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <div className="md:col-span-7">
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
                       Начните с подходящего{" "}
-                      <span className="font-iriska font-normal italic text-foreground">формата</span>
+                      <span className="font-iriska font-normal italic text-white">формата</span>
                     </h2>
-                    <p className="text-base md:text-lg text-foreground/80 mb-10 max-w-xl">
+                    <p className="text-base md:text-lg text-white/85 mb-10 max-w-xl">
                       Если не уверены, какой бюджет закладывать, начните со страницы выбора формата —
                       она поможет сориентироваться за пару минут.
                     </p>
