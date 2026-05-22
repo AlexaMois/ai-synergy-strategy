@@ -149,6 +149,70 @@ const NewHome = () => {
         </section>
 
         <MarqueeText />
+
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              С чего можно начать
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground">
+              Начинать можно с короткой стратегической встречи, разработки стратегии или глубокого
+              аудита. Формат зависит от того, насколько понятна текущая задача и насколько подробно
+              нужно разбирать компанию.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Стратегическая встреча по цифровизации для собственника",
+                text: "Для собственника или руководителя, которому нужно быстро понять первый шаг: какие процессы требуют внимания, где есть ручная нагрузка и какой формат работы выбрать дальше.",
+                price: "17 000 ₽",
+                result: "Первые приоритеты цифрового развития и понятный следующий шаг.",
+                to: "/services/owner-digital-session",
+              },
+              {
+                title: "Разработка стратегии цифрового развития бизнеса",
+                text: "Для компании, которой нужен практический план цифрового развития на ближайшие 90 дней: что менять первым, какие инструменты рассматривать и как двигаться поэтапно.",
+                price: "78 000 ₽",
+                result: "Точка А, карта ручной нагрузки, приоритеты и план действий на 90 дней.",
+                to: "/services/digital-development-strategy",
+              },
+              {
+                title: "Глубокий аудит компании для цифровизации",
+                text: "Для компаний, где нужно подробно разобрать процессы, данные, документы, текущие инструменты и готовность к внедрению цифровых решений.",
+                price: "от 116 000 ₽",
+                result: "Карта процессов, риски, рекомендации, бюджетные ориентиры и дорожная карта внедрения.",
+                to: "/services/digital-audit",
+              },
+            ].map((card) => (
+              <div key={card.title} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">{card.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{card.text}</p>
+                <div className="mt-auto space-y-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Цена</p>
+                    <p className="text-xl font-bold text-foreground">{card.price}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Результат</p>
+                    <p className="text-sm text-foreground/80">{card.result}</p>
+                  </div>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to={card.to}>
+                      Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/services" className="inline-flex items-center text-accent hover:underline font-medium">
+              Все форматы работы <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
         <Testimonials />
 
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
