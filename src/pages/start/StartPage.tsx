@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Sparkles } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
+import FAQTeaser from "@/components/FAQTeaser";
 import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
 import { trackCTAClick } from "@/utils/analytics";
 
@@ -94,7 +95,15 @@ const StartPage = () => {
             </section>
           )}
         </main>
-        
+
+        <FAQTeaser
+          items={[
+            { question: "Сколько времени занимает диагностика?", answer: "Около 30 минут на онлайн-разговор и до недели на разбор материалов и подготовку выводов." },
+            { question: "Нужно ли готовить что-то заранее?", answer: "Нет. Достаточно общего описания процессов. Всё остальное разберём вместе на встрече." },
+            { question: "Это платно?", answer: "Первая 30-минутная консультация — бесплатно. Полная диагностика — оплачивается отдельно по фиксированной стоимости." },
+            { question: "Что я получу на выходе?", answer: "Карту процессов, перечень задач под автоматизацию, расчёт экономики и рекомендованный план внедрения." },
+          ]}
+        />
         <Footer />
       </div>
     </PageTransition>
