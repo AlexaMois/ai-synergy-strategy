@@ -40,9 +40,8 @@ const Partners = ({ className }: PartnersProps) => {
   ];
 
   return (
-    <section className={className || "py-10 md:py-14 lg:py-16 bg-background"}>
+    <section className={className || "pt-2 md:pt-4 pb-10 md:pb-14 lg:pb-16 bg-background"}>
       <div className="max-w-7xl mx-auto px-4">
-        <div className="border-t-2 border-foreground/20 mb-16"></div>
         <div className="marquee-container">
           <div className="marquee-content marquee-logos">
             {[...Array(3)].map((_, setIndex) => (
