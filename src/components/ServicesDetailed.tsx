@@ -292,7 +292,7 @@ const ServicesDetailed = () => {
                     <p className={`text-sm md:text-base ${p.muted} leading-relaxed mb-4 max-w-3xl`}>
                       {service.subtitle}
                     </p>
-                    <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${p.text}/90`}>
+                    <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${p.text}`}>
                       <span className="font-iriska italic text-accent text-lg">
                         {isOpen ? "свернуть" : "развернуть"}
                       </span>
@@ -318,12 +318,12 @@ const ServicesDetailed = () => {
                                     </h4>
                                   </div>
                                   {section.content && (
-                                    <p className={`${p.text}/90 leading-relaxed pl-7`}>{section.content}</p>
+                                    <p className={`${p.text} leading-relaxed pl-7`}>{section.content}</p>
                                   )}
                                   {section.list && (
                                     <ul className="space-y-2 pl-7">
                                       {section.list.map((item, iIndex) => (
-                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}/90`}>
+                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}`}>
                                           <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                                           <span>{item}</span>
                                         </li>
@@ -344,12 +344,12 @@ const ServicesDetailed = () => {
                                     </h4>
                                   </div>
                                   {section.content && (
-                                    <p className={`${p.text}/90 leading-relaxed pl-7`}>{section.content}</p>
+                                    <p className={`${p.text} leading-relaxed pl-7`}>{section.content}</p>
                                   )}
                                   {section.list && (
                                     <ul className="space-y-2 pl-7">
                                       {section.list.map((item, iIndex) => (
-                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}/90`}>
+                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}`}>
                                           <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                                           <span>{item}</span>
                                         </li>
