@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Building2, Search, Layers, Users, Clock, Shield, TrendingUp, DollarSign } from "lucide-react";
 import AnimatedMetric from "@/components/AnimatedMetric";
+import FAQTeaser from "@/components/FAQTeaser";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
@@ -477,6 +478,14 @@ const PricingPage = () => {
           </div>
         </section>
         
+        <FAQTeaser
+          items={[
+            { question: "От чего зависит итоговая цена?", answer: "От масштаба процессов, объёма данных, нужной интеграции и уровня сопровождения. После диагностики называю конкретную цифру с расшифровкой." },
+            { question: "Есть ли фиксированная стоимость?", answer: "Да. Диагностика и пилот фиксируются по объёму и срокам. Сопровождение — по выбранному тарифу." },
+            { question: "Можно ли оплачивать поэтапно?", answer: "Да. Работа разбита на этапы: диагностика, архитектура, пилот, масштабирование. Каждый этап оплачивается отдельно." },
+            { question: "Что если результата не будет?", answer: "Диагностика как раз для того, чтобы не браться за нерентабельные задачи. Если ИИ не даст эффекта — я скажу об этом до старта пилота." },
+          ]}
+        />
         <Contact />
         <Partners />
         </main>
