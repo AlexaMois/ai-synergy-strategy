@@ -7,10 +7,14 @@ import AdditionalServices from "@/components/AdditionalServices";
 import FAQTeaser from "@/components/FAQTeaser";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import { Target, Users, Cog, Database, Layers, Award, ShieldCheck, Search, ListChecks, Rocket, ClipboardCheck } from "lucide-react";
+import {
+  Target, Users, Cog, Database, Layers,
+  Award, ShieldCheck, Search, ListChecks, Rocket, ClipboardCheck,
+  ArrowRight,
+} from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import robotFlowerSketch from "@/assets/sketches/robot-flower-sketch.png";
 
 const systemElements = [
   { icon: Target, label: "Смысл задачи" },
@@ -19,6 +23,42 @@ const systemElements = [
   { icon: Database, label: "Данные" },
   { icon: Layers, label: "Архитектура" },
 ];
+
+const PillButton = ({
+  to,
+  children,
+  variant = "dark",
+  className = "",
+}: {
+  to: string;
+  children: React.ReactNode;
+  variant?: "dark" | "light" | "turquoise";
+  className?: string;
+}) => {
+  const styles = {
+    dark: "bg-foreground text-background hover:bg-foreground/90",
+    light: "bg-background text-foreground hover:bg-background/90",
+    turquoise: "bg-accent text-accent-foreground hover:bg-primary-dark",
+  }[variant];
+  const iconBg = {
+    dark: "bg-accent text-accent-foreground",
+    light: "bg-foreground text-background",
+    turquoise: "bg-background text-foreground",
+  }[variant];
+  return (
+    <Link
+      to={to}
+      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
+    >
+      <span>{children}</span>
+      <span
+        className={`flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
+      >
+        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+      </span>
+    </Link>
+  );
+};
 
 const processSteps = [
   {
@@ -44,7 +84,6 @@ const processSteps = [
 ];
 
 const ServicesPage = () => {
-  const navigate = useNavigate();
   return <PageTransition>
       <Helmet>
         <title>Услуги по цифровому развитию бизнеса — Александра Моисеева, НейроРешения</title>
@@ -62,193 +101,217 @@ const ServicesPage = () => {
           {JSON.stringify(getBreadcrumbs.services())}
         </script>
       </Helmet>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-background">
         <PageBreadcrumbs currentPage="Услуги" />
-      
+
         <main>
-        {/* Hero Section */}
-        <section className="pt-20 pb-0 bg-background">
-          <div className="container mx-auto px-4">
-            {/* Two column layout: Text left, Infographic right */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-0">
-              {/* Left column - Text */}
-              <div className="mb-0 mt-[20px] ml-[30px]">
-                <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-medium text-foreground mb-6 leading-tight">
-                  Услуги по <span className="font-semibold">цифровому развитию бизнеса</span>
-                </h1>
-                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-4">
-                  Стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для компаний, которые хотят снизить ручную нагрузку и усилить управляемость.
-                </p>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
-                  Работаю с конкретными задачами бизнеса: ручной ввод и проверка данных, разрозненный документооборот, потерянные заявки, слабый контроль по производству, отчётам и рабочим процессам.
-                </p>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-                  Помогаю выбрать процессы, которые тормозят деньги, спроектировать решение и довести его до стабильной работы в вашей связке CRM, 1С, порталов, таблиц и внутренних сервисов.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button size="lg" onClick={() => navigate('/start')}>
-                    Подобрать формат работы →
-                  </Button>
-                  <Button size="lg" variant="outline" onClick={() => navigate('/pricing')}>
-                    Посмотреть цены →
-                  </Button>
+          {/* HERO — большая песочная плашка (отличается от голубой главной и розовой /start) */}
+          <section className="pt-8 md:pt-12 px-4 md:px-6">
+            <div className="container mx-auto max-w-7xl">
+              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
+                  <div className="md:col-span-7">
+                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+                      Услуги · НейроРешения
+                    </p>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                      Услуги по{" "}
+                      <span className="font-iriska font-normal italic text-accent">
+                        цифровому развитию
+                      </span>{" "}
+                      бизнеса
+                    </h1>
+                    <p className="text-lg md:text-xl text-foreground/80 mb-5 max-w-2xl leading-snug">
+                      Стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для компаний, которые хотят снизить ручную нагрузку и усилить управляемость.
+                    </p>
+                    <p className="text-base md:text-lg text-foreground/70 mb-5 max-w-2xl leading-relaxed">
+                      Работаю с конкретными задачами бизнеса: ручной ввод и проверка данных, разрозненный документооборот, потерянные заявки, слабый контроль по производству, отчётам и рабочим процессам.
+                    </p>
+                    <p className="text-base md:text-lg text-foreground/70 mb-10 max-w-2xl leading-relaxed">
+                      Помогаю выбрать процессы, которые тормозят деньги, спроектировать решение и довести его до стабильной работы в вашей связке CRM, 1С, порталов, таблиц и внутренних сервисов.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <PillButton to="/start" variant="dark">
+                        Подобрать формат работы
+                      </PillButton>
+                      <Link
+                        to="/pricing"
+                        className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
+                      >
+                        Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="md:col-span-5 flex justify-center md:justify-end">
+                    <img
+                      src={robotFlowerSketch}
+                      alt=""
+                      width={800}
+                      height={800}
+                      className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                    />
+                  </div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              {/* Right column - Infographic */}
-              <div className="flex justify-center lg:flex lg:items-center lg:justify-center pt-10">
-                <div className="relative w-[380px] h-[380px] sm:w-[420px] sm:h-[420px]">
-                  {/* Connecting lines from center to elements */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 420 420">
-                    {systemElements.map((_, index) => {
-                      const angle = (index * 72 - 90) * (Math.PI / 180);
-                      const innerRadius = 60;
-                      const outerRadius = 130;
-                      const x1 = 210 + Math.cos(angle) * innerRadius;
-                      const y1 = 210 + Math.sin(angle) * innerRadius;
-                      const x2 = 210 + Math.cos(angle) * outerRadius;
-                      const y2 = 210 + Math.sin(angle) * outerRadius;
-                      return <line key={index} x1={x1} y1={y1} x2={x2} y2={y2} stroke="hsl(var(--border))" strokeWidth="1.5" strokeDasharray="6 4" />;
-                    })}
-                  </svg>
-                  
-                  {/* Center circle - turquoise filled */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center z-10 shadow-card ring-1 ring-primary/20">
-                    <span className="text-xs sm:text-sm font-semibold text-white text-center leading-tight px-2">Система<br />как целое</span>
+          {/* СИСТЕМА КАК ЦЕЛОЕ — горизонтальные цветные пиллы */}
+          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+            <div className="max-w-3xl mb-10">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-4">
+                Смотрю на компанию{" "}
+                <span className="font-iriska font-normal italic text-accent">как на систему</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Любая задача по цифровизации опирается на пять опор. Я держу их в фокусе одновременно — это даёт устойчивый результат, а не локальный «костыль».
+              </p>
+            </div>
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+              {/* центральный элемент — Система как целое */}
+              <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-2 rounded-[28px] bg-accent text-background p-6 md:p-7 flex flex-col justify-between shadow-plate ring-1 ring-foreground/5 min-h-[180px]">
+                <span className="text-sm uppercase tracking-widest text-background/80 font-semibold">Ядро</span>
+                <div>
+                  <p className="font-iriska italic text-3xl md:text-4xl leading-[1] text-background/95 mb-2">Система</p>
+                  <p className="text-xl md:text-2xl font-bold leading-tight">как целое</p>
+                </div>
+              </div>
+              {systemElements.map((el, i) => {
+                const palettes = [
+                  "bg-surface-mint",
+                  "bg-surface-lavender",
+                  "bg-surface-blush",
+                  "bg-card",
+                  "bg-surface-sand",
+                ];
+                const Icon = el.icon;
+                return (
+                  <div
+                    key={i}
+                    className={`${palettes[i]} rounded-[24px] p-5 md:p-6 min-h-[140px] flex flex-col justify-between shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
+                      {el.label}
+                    </p>
                   </div>
-                  
-                  {/* Elements around the circle */}
-                  {systemElements.map((element, index) => {
-                    const angle = (index * 72 - 90) * (Math.PI / 180);
-                    const radius = 160;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-                    const Icon = element.icon;
+                );
+              })}
+            </div>
+
+            {/* Доверительная полоса с квалификациями */}
+            <div className="mt-10 rounded-[24px] bg-card p-5 md:p-6 ring-1 ring-foreground/5 shadow-card flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-accent flex-shrink-0" />
+                <span className="text-sm md:text-base font-medium text-foreground">
+                  Дипломированный специалист по ИИ
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-accent flex-shrink-0" />
+                <span className="text-sm md:text-base font-medium text-foreground">
+                  Квалификация KAEO уровень 5
+                </span>
+              </div>
+              <Link
+                to="/about#qualifications"
+                className="text-accent hover:text-accent/80 hover:underline text-sm font-medium transition-colors inline-flex items-center gap-1"
+              >
+                Смотреть сертификаты <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </section>
+
+          <ServicesDetailed />
+          <AdditionalServices />
+
+          {/* КАК ПРОХОДИТ РАБОТА — тёмная плашка с шагами */}
+          <section className="px-4 md:px-6 py-16 md:py-24">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[32px] md:rounded-[40px] bg-foreground text-background overflow-hidden shadow-plate-lg ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
+                <div className="max-w-3xl mb-12">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
+                    Процесс
+                  </p>
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-4">
+                    Как{" "}
+                    <span className="font-iriska font-normal italic text-accent">проходит работа</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-background/70 max-w-2xl">
+                    Любой выбранный формат проходит через четыре понятных шага — без сюрпризов и без перегруза команды.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                  {processSteps.map((step, index) => {
+                    const Icon = step.icon;
                     return (
-                      <div 
-                        key={index} 
-                        className="absolute flex flex-col items-center justify-center gap-1 z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-card shadow-card ring-1 ring-border/50 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
-                        style={{
-                          left: `calc(50% + ${x}px)`,
-                          top: `calc(50% + ${y}px)`,
-                          transform: 'translate(-50%, -50%)',
-                        }}
+                      <div
+                        key={index}
+                        className="relative rounded-[24px] bg-background/5 ring-1 ring-background/10 p-6 md:p-7 hover:bg-background/10 transition-colors duration-300"
                       >
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                        <span className="text-[8px] sm:text-[9px] font-medium text-foreground text-center leading-tight px-1">
-                          {element.label}
-                        </span>
+                        <div className="flex items-center gap-3 mb-5">
+                          <span className="font-iriska italic text-4xl md:text-5xl text-accent leading-none">
+                            0{index + 1}
+                          </span>
+                          <div className="w-10 h-10 rounded-xl bg-accent/20 text-accent flex items-center justify-center">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                        </div>
+                        <h3 className="font-bold text-background text-lg md:text-xl mb-2 leading-tight">
+                          {step.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-background/70 leading-relaxed">
+                          {step.text}
+                        </p>
                       </div>
                     );
                   })}
                 </div>
               </div>
             </div>
+          </section>
 
-            {/* Full width description block */}
-            
-          </div>
-        </section>
+          <FAQTeaser
+            items={[
+              { question: "С чего начинается работа?", answer: "Работа начинается с выбора формата. Для быстрого первого шага подходит стратегическая встреча. Для плана на 90 дней подходит стратегия цифрового развития. Для подробного разбора компании подходит глубокий аудит." },
+              { question: "Можно заказать одну услугу?", answer: "Да. Можно начать с одной встречи, отдельного аудита, обучения, разработки или сопровождения. После первого этапа становится понятен следующий шаг." },
+              { question: "Сколько длится внедрение?", answer: "Срок зависит от задачи, количества процессов и готовности данных. Небольшие решения запускаются быстрее. Более сложные внедрения идут поэтапно: разбор, проектирование, запуск, обучение команды и сопровождение." },
+              { question: "Что входит в сопровождение?", answer: "В сопровождение входит контроль задач, донастройка процессов, разбор ошибок, консультации команды, обновление инструкций и развитие сценариев." },
+            ]}
+          />
 
-        {/* Trust Badge Section */}
-        <section className="py-6 bg-muted/50 border-y border-border">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-sm md:text-base font-medium text-foreground">
-                  Дипломированный специалист по ИИ
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-sm md:text-base font-medium text-foreground">
-                  Квалификация KAEO уровень 5
-                </span>
-              </div>
-              <Link 
-                to="/about#qualifications" 
-                className="text-primary hover:text-primary/80 hover:underline text-sm font-medium transition-colors"
-              >
-                Смотреть сертификаты →
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <ServicesDetailed />
-        <AdditionalServices />
-
-        {/* How we work — process steps */}
-        <section className="py-10 md:py-16 lg:py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="section-title text-center leading-tight mb-10">
-                Как <span className="font-semibold">проходит работа</span>
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {processSteps.map((step, index) => {
-                  const Icon = step.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="relative p-6 rounded-2xl bg-card border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
-                    >
-                      <div className="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-card">
-                        {index + 1}
-                      </div>
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                        <Icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-foreground mb-2 leading-tight">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-foreground leading-relaxed">
-                        {step.text}
-                      </p>
-                    </div>
-                  );
-                })}
+          {/* ФИНАЛЬНЫЙ CTA — бирюзовая плашка */}
+          <section className="px-4 md:px-6 pb-16 md:pb-24">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-background overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-5">
+                  Начните с{" "}
+                  <span className="font-iriska font-normal italic text-background/95">подходящего формата</span>
+                </h2>
+                <p className="text-base md:text-lg text-background/85 mb-10 max-w-2xl mx-auto">
+                  Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  <PillButton to="/start" variant="light">
+                    Подобрать формат работы
+                  </PillButton>
+                  <Link
+                    to="/pricing"
+                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-background/90 hover:text-background transition-colors"
+                  >
+                    Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <FAQTeaser
-          items={[
-            { question: "С чего начинается работа?", answer: "Работа начинается с выбора формата. Для быстрого первого шага подходит стратегическая встреча. Для плана на 90 дней подходит стратегия цифрового развития. Для подробного разбора компании подходит глубокий аудит." },
-            { question: "Можно заказать одну услугу?", answer: "Да. Можно начать с одной встречи, отдельного аудита, обучения, разработки или сопровождения. После первого этапа становится понятен следующий шаг." },
-            { question: "Сколько длится внедрение?", answer: "Срок зависит от задачи, количества процессов и готовности данных. Небольшие решения запускаются быстрее. Более сложные внедрения идут поэтапно: разбор, проектирование, запуск, обучение команды и сопровождение." },
-            { question: "Что входит в сопровождение?", answer: "В сопровождение входит контроль задач, донастройка процессов, разбор ошибок, консультации команды, обновление инструкций и развитие сценариев." },
-          ]}
-        />
-
-        {/* Final CTA */}
-        <section className="py-12 md:py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="section-title leading-tight mb-4">
-                Начните с <span className="font-semibold">подходящего формата</span>
-              </h2>
-              <p className="text-base sm:text-lg text-foreground leading-relaxed mb-8">
-                Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="lg" onClick={() => navigate('/start')}>
-                  Подобрать формат работы →
-                </Button>
-                <Button size="lg" variant="outline" onClick={() => navigate('/pricing')}>
-                  Посмотреть цены →
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Contact />
-        <Partners />
+          <Contact />
+          <Partners />
         </main>
-      
+
         <Footer />
       </div>
     </PageTransition>;

@@ -1,77 +1,89 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Button } from "@/components/ui/button";
-import { Compass, Map, FileText } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
 
 const formatCards = [
   {
-    icon: Compass,
+    sketch: chatHeartSketch,
     title: "Нужен первый шаг",
-    description: "Подходит стратегическая встреча по цифровизации для собственника. Формат помогает быстро определить текущую точку А и первый управленческий шаг."
+    description:
+      "Подходит стратегическая встреча по цифровизации для собственника. Формат помогает быстро определить текущую точку А и первый управленческий шаг.",
+    bg: "bg-surface-mint",
   },
   {
-    icon: Map,
+    sketch: routeWarmSketch,
     title: "Нужен план на 90 дней",
-    description: "Подходит разработка стратегии цифрового развития бизнеса. Формат помогает собрать приоритеты, этапы и последовательность действий."
+    description:
+      "Подходит разработка стратегии цифрового развития бизнеса. Формат помогает собрать приоритеты, этапы и последовательность действий.",
+    bg: "bg-surface-lavender",
   },
   {
-    icon: FileText,
+    sketch: auditCareSketch,
     title: "Нужен подробный разбор компании",
-    description: "Подходит глубокий аудит компании для цифровизации. Формат помогает разобрать процессы, данные, документы, инструменты и готовность к внедрению."
-  }
+    description:
+      "Подходит глубокий аудит компании для цифровизации. Формат помогает разобрать процессы, данные, документы, инструменты и готовность к внедрению.",
+    bg: "bg-surface-blush",
+  },
 ];
 
 const AdditionalServices = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.2 });
-  const navigate = useNavigate();
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 
-            className={`section-title text-center leading-tight mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-          >
-            Как <span className="font-semibold">выбрать формат</span>
-          </h2>
-          <div className="mb-12" />
+    <section ref={ref} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+      <div className={`max-w-3xl mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+          Как{" "}
+          <span className="font-iriska font-normal italic text-accent">выбрать формат</span>
+        </h2>
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl">
+          Если не уверены, с чего начать — посмотрите три типичные ситуации. Каждая ведёт к понятному формату работы.
+        </p>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {formatCards.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={index}
-                  className={`group p-6 rounded-2xl bg-card border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 ${
-                    isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                  }`}
-                  style={{ animationDelay: `${0.2 + index * 0.08}s` }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 shadow-xs group-hover:shadow-soft flex-shrink-0">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-foreground">
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div 
-            className={`text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.6s' }}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+        {formatCards.map((card, index) => (
+          <div
+            key={index}
+            className={`relative ${card.bg} rounded-[28px] p-7 md:p-8 min-h-[280px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 ${
+              isVisible ? "animate-fade-in-up" : "opacity-0"
+            }`}
+            style={{ animationDelay: `${0.15 + index * 0.08}s` }}
           >
-            <Button size="lg" onClick={() => navigate('/start')}>
-              Подобрать формат работы →
-            </Button>
+            <img
+              src={card.sketch}
+              alt=""
+              width={512}
+              height={512}
+              loading="lazy"
+              className="absolute -bottom-4 -right-4 w-32 md:w-40 h-auto object-contain opacity-90 pointer-events-none"
+            />
+            <span className="font-iriska italic text-accent text-3xl md:text-4xl leading-none block mb-4">
+              0{index + 1}
+            </span>
+            <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3 max-w-[85%]">
+              {card.title}
+            </h3>
+            <p className="text-sm md:text-base text-foreground/70 leading-relaxed max-w-[85%]">
+              {card.description}
+            </p>
           </div>
-        </div>
+        ))}
+      </div>
+
+      <div className={`${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.5s" }}>
+        <Link
+          to="/start"
+          className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg bg-foreground text-background hover:bg-foreground/90 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300"
+        >
+          <span>Подобрать формат работы</span>
+          <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-accent text-accent-foreground group-hover:translate-x-0.5 transition-transform">
+            <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+          </span>
+        </Link>
       </div>
     </section>
   );

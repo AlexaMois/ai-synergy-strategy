@@ -1,20 +1,15 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  Compass, 
-  Handshake, 
-  Info, 
-  Package, 
-  FileText, 
-  TrendingUp,
-  GraduationCap,
-  Wrench,
-  LifeBuoy,
-  Map
-} from "lucide-react";
+import { Info, Package, TrendingUp, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
+import bookAiSketch from "@/assets/sketches/book-ai-sketch.png";
+import handsChipSketch from "@/assets/sketches/hands-chip-sketch.png";
+import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.png";
+import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.png";
 
 const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "Что входит": Package,
@@ -23,7 +18,7 @@ const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> 
 
 type Service = {
   number: string;
-  icon: React.ComponentType<{ className?: string }>;
+  sketch: string;
   title: string;
   subtitle: string;
   sections: { heading: string; content?: string; list?: string[] }[];
@@ -35,7 +30,7 @@ type Service = {
 const services: Service[] = [
   {
     number: "01",
-    icon: Compass,
+    sketch: chatHeartSketch,
     title: "Стратегическая встреча по цифровизации для собственника",
     subtitle: "Быстрый управленческий разбор для собственника или руководителя, которому нужно понять первый шаг в цифровом развитии компании.",
     sections: [
@@ -60,7 +55,7 @@ const services: Service[] = [
   },
   {
     number: "02",
-    icon: Map,
+    sketch: routeWarmSketch,
     title: "Разработка стратегии цифрового развития бизнеса",
     subtitle: "Рабочий формат для компании, где нужен план цифрового развития на ближайшие 90 дней.",
     sections: [
@@ -88,7 +83,7 @@ const services: Service[] = [
   },
   {
     number: "03",
-    icon: FileText,
+    sketch: auditCareSketch,
     title: "Глубокий аудит компании для цифровизации",
     subtitle: "Подробный разбор процессов, данных, документов, текущих инструментов и готовности компании к цифровому развитию.",
     sections: [
@@ -116,7 +111,7 @@ const services: Service[] = [
   },
   {
     number: "04",
-    icon: GraduationCap,
+    sketch: bookAiSketch,
     title: "Авторская программа «Цифровые инструменты для бизнеса»",
     subtitle: "Практическое обучение команды применению цифровых инструментов в рабочих задачах.",
     sections: [
@@ -143,7 +138,7 @@ const services: Service[] = [
   },
   {
     number: "05",
-    icon: Handshake,
+    sketch: handsChipSketch,
     title: "Сопровождение цифрового внедрения",
     subtitle: "Ведение цифрового внедрения до рабочего результата: задачи, сроки, команда, подрядчики, контроль применения и корректировка решений.",
     sections: [
@@ -171,7 +166,7 @@ const services: Service[] = [
   },
   {
     number: "06",
-    icon: Wrench,
+    sketch: blueprintPlantSketch,
     title: "Проектирование и разработка цифрового решения под бизнес-процесс",
     subtitle: "Создание цифрового инструмента под конкретную задачу компании: заявки, документы, данные, отчёты, базы знаний, уведомления или внутренние помощники.",
     sections: [
@@ -199,7 +194,7 @@ const services: Service[] = [
   },
   {
     number: "07",
-    icon: LifeBuoy,
+    sketch: teaLaptopSketch,
     title: "Сопровождение цифровых инструментов компании",
     subtitle: "Регулярная поддержка, донастройка и развитие уже внедрённых цифровых инструментов.",
     sections: [
@@ -230,121 +225,106 @@ const services: Service[] = [
 const ServicesDetailed = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
   const [openItem, setOpenItem] = useState<string | undefined>(undefined);
-  const navigate = useNavigate();
+
+  // Палитры под фирменный стиль NewHome / StartPage
+  const palettes = [
+    { bg: "bg-surface-mint",     text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
+    { bg: "bg-accent",           text: "text-background", muted: "text-background/75", chipBg: "bg-background/20 text-background", border: "border-background/15", innerBg: "bg-background/10",   pillDark: false },
+    { bg: "bg-surface-sand",     text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
+    { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
+    { bg: "bg-surface-blush",    text: "text-foreground", muted: "text-foreground/65", chipBg: "bg-accent/15 text-accent",         border: "border-foreground/10", innerBg: "bg-background/60",   pillDark: false },
+    { bg: "bg-card",             text: "text-foreground", muted: "text-muted-foreground", chipBg: "bg-accent/15 text-accent",      border: "border-foreground/10", innerBg: "bg-muted/40",        pillDark: false },
+    { bg: "bg-foreground",       text: "text-background", muted: "text-background/65", chipBg: "bg-accent/20 text-accent",         border: "border-background/15", innerBg: "bg-background/10",   pillDark: true  },
+  ];
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className={`text-center mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="section-title text-center leading-tight mb-4">
-              Форматы <span className="font-semibold">работы</span>
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
-              Каждый формат закрывает конкретную управленческую задачу: от первого разбора до внедрения и регулярного сопровождения цифровых инструментов.
-            </p>
-          </div>
-          {/* Timeline container */}
-          <div className="relative">
-            {/* Vertical timeline line */}
-            <div className="absolute left-[23px] top-12 bottom-12 w-0.5 bg-primary/20 hidden md:block" />
-            
-            <Accordion 
-              type="single" 
-              collapsible 
-              className="space-y-6"
-              value={openItem}
-              onValueChange={setOpenItem}
+    <section ref={ref} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+      <div className={`max-w-3xl mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+          Форматы{" "}
+          <span className="font-iriska font-normal italic text-accent">работы</span>
+        </h2>
+        <p className="text-base md:text-lg text-muted-foreground">
+          Каждый формат закрывает конкретную управленческую задачу: от первого разбора до внедрения и регулярного сопровождения цифровых инструментов.
+        </p>
+      </div>
+
+      <Accordion
+        type="single"
+        collapsible
+        className="space-y-5"
+        value={openItem}
+        onValueChange={setOpenItem}
+      >
+        {services.map((service, index) => {
+          const isOpen = openItem === service.number;
+          const p = palettes[index % palettes.length];
+
+          return (
+            <AccordionItem
+              key={service.number}
+              value={service.number}
+              className={`relative ${p.bg} rounded-[28px] md:rounded-[32px] ring-1 ring-foreground/5 shadow-card hover:shadow-plate transition-all duration-300 overflow-hidden ${
+                isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${index * 0.06}s` }}
             >
-              {services.map((service, index) => {
-                const Icon = service.icon;
-                const isOpen = openItem === service.number;
-                
-                return (
-                  <AccordionItem
-                    key={service.number}
-                    value={service.number}
-                    className={`bg-card rounded-2xl border border-border ring-1 ring-border/30 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 overflow-hidden ${
-                      isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                    }`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <AccordionTrigger className="px-6 py-5 hover:no-underline group flex-col items-stretch" hideIndicator>
-                      <div className="flex items-center gap-4 w-full">
-                        {/* Timeline dot */}
-                        <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
-                          isOpen 
-                            ? 'bg-primary ring-4 ring-primary/20' 
-                            : 'bg-primary/20 group-hover:bg-primary/40'
-                        }`}>
-                          <span className={`text-sm font-bold transition-colors duration-300 ${
-                            isOpen ? 'text-primary-foreground' : 'text-primary'
-                          }`}>
-                            {service.number}
-                          </span>
-                        </div>
-                        
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
-                          isOpen ? 'bg-primary/10' : 'bg-muted'
-                        }`}>
-                          <Icon className={`w-6 h-6 transition-colors duration-300 ${
-                            isOpen ? 'text-primary' : 'text-muted-foreground'
-                          }`} />
-                        </div>
-                        
-                        <div className="flex-1 text-left min-w-0">
-                          <h3 className="text-foreground mb-1">
-                            {service.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            {service.subtitle}
-                          </p>
-                          {/* Handwritten expand text below subtitle */}
-                          <div className="mt-3 flex items-center gap-1.5">
-                            <span className={`text-handwriting text-primary transition-all duration-300 ${isOpen ? 'hidden' : 'inline-flex items-center gap-1'}`}>
-                              развернуть <span className="text-lg">↓</span>
-                            </span>
-                            <span className={`text-handwriting text-primary transition-all duration-300 ${isOpen ? 'inline-flex items-center gap-1' : 'hidden'}`}>
-                              свернуть <span className="text-lg">↑</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionTrigger>
-                    
-                    <AccordionContent className="px-6 pb-6">
-                      <div className="pt-4 space-y-6">
-                        {/* Sections in two columns on desktop with vertical divider */}
-                        <div className="flex flex-col md:flex-row md:gap-0">
-                          {/* Left column */}
-                          <div className="flex-1 space-y-4 md:pr-6 md:border-r md:border-border">
+              <AccordionTrigger className="px-6 md:px-9 py-7 md:py-9 hover:no-underline group flex-col items-stretch" hideIndicator>
+                <div className="flex items-start gap-5 md:gap-7 w-full relative">
+                  {/* Скетч в углу */}
+                  <img
+                    src={service.sketch}
+                    alt=""
+                    width={512}
+                    height={512}
+                    loading="lazy"
+                    className="hidden md:block absolute -bottom-6 -right-4 w-28 lg:w-36 h-auto object-contain opacity-90 pointer-events-none"
+                  />
+                  {/* Большой номер курсивом */}
+                  <span className={`font-iriska italic ${p.text} text-5xl md:text-6xl lg:text-7xl leading-none flex-shrink-0 min-w-[3rem]`}>
+                    {service.number}
+                  </span>
+
+                  <div className="flex-1 text-left min-w-0 md:pr-28 lg:pr-36">
+                    <h3 className={`${p.text} text-xl md:text-2xl lg:text-3xl font-bold leading-tight mb-2`}>
+                      {service.title}
+                    </h3>
+                    <p className={`text-sm md:text-base ${p.muted} leading-relaxed mb-4 max-w-3xl`}>
+                      {service.subtitle}
+                    </p>
+                    <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${p.text}`}>
+                      <span className="font-iriska italic text-accent text-lg">
+                        {isOpen ? "свернуть" : "развернуть"}
+                      </span>
+                      <span className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
+                        ↓
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </AccordionTrigger>
+
+              <AccordionContent className="px-6 md:px-9 pb-8 md:pb-9 relative">
+                <div className={`pt-2 space-y-6 border-t ${p.border} mt-2`}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 pt-6">
                             {service.sections.filter((_, i) => i % 2 === 0).map((section, sIndex) => {
                               const SectionIcon = sectionIcons[section.heading] || Info;
                               return (
-                                <div 
-                                  key={sIndex} 
-                                  className="animate-fade-in-up"
-                                  style={{ animationDelay: `${0.2 + sIndex * 0.1}s` }}
-                                >
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                                    <h4 className="font-semibold text-foreground">
+                                <div key={sIndex} className="animate-fade-in-up" style={{ animationDelay: `${0.1 + sIndex * 0.05}s` }}>
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <SectionIcon className={`w-5 h-5 ${p.pillDark ? "text-accent" : "text-accent"} flex-shrink-0`} />
+                                    <h4 className={`font-bold ${p.text} text-lg`}>
                                       {section.heading}
                                     </h4>
                                   </div>
                                   {section.content && (
-                                    <p className="text-foreground leading-relaxed pl-7">
-                                      {section.content}
-                                    </p>
+                                    <p className={`${p.text} leading-relaxed pl-7`}>{section.content}</p>
                                   )}
                                   {section.list && (
                                     <ul className="space-y-2 pl-7">
                                       {section.list.map((item, iIndex) => (
-                                        <li 
-                                          key={iIndex} 
-                                          className="flex items-start gap-2 text-foreground"
-                                        >
-                                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}`}>
+                                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                                           <span>{item}</span>
                                         </li>
                                       ))}
@@ -353,36 +333,24 @@ const ServicesDetailed = () => {
                                 </div>
                               );
                             })}
-                          </div>
-                          {/* Right column */}
-                          <div className="flex-1 space-y-4 md:pl-6 mt-4 md:mt-0">
                             {service.sections.filter((_, i) => i % 2 === 1).map((section, sIndex) => {
                               const SectionIcon = sectionIcons[section.heading] || Info;
                               return (
-                                <div 
-                                  key={sIndex} 
-                                  className="animate-fade-in-up"
-                                  style={{ animationDelay: `${0.25 + sIndex * 0.1}s` }}
-                                >
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <SectionIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                                    <h4 className="font-semibold text-foreground">
+                                <div key={sIndex} className="animate-fade-in-up" style={{ animationDelay: `${0.15 + sIndex * 0.05}s` }}>
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <SectionIcon className="w-5 h-5 text-accent flex-shrink-0" />
+                                    <h4 className={`font-bold ${p.text} text-lg`}>
                                       {section.heading}
                                     </h4>
                                   </div>
                                   {section.content && (
-                                    <p className="text-foreground leading-relaxed pl-7">
-                                      {section.content}
-                                    </p>
+                                    <p className={`${p.text} leading-relaxed pl-7`}>{section.content}</p>
                                   )}
                                   {section.list && (
                                     <ul className="space-y-2 pl-7">
                                       {section.list.map((item, iIndex) => (
-                                        <li 
-                                          key={iIndex} 
-                                          className="flex items-start gap-2 text-foreground"
-                                        >
-                                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                        <li key={iIndex} className={`flex items-start gap-2 ${p.text}`}>
+                                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
                                           <span>{item}</span>
                                         </li>
                                       ))}
@@ -391,33 +359,37 @@ const ServicesDetailed = () => {
                                 </div>
                               );
                             })}
-                          </div>
-                        </div>
+                  </div>
 
-                        {/* Pricing block */}
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-primary/5 rounded-xl shadow-soft ring-1 ring-primary/10 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
-                            <div>
-                              <div className="text-sm text-muted-foreground mb-1">Стоимость</div>
-                              <div className="text-2xl font-semibold text-primary">
-                                {service.price}
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate(service.href)}>
-                            {service.cta}
-                          </Button>
-                        </div>
+                  {/* Прайс + CTA */}
+                  <div className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 md:p-7 ${p.innerBg} rounded-[24px] ring-1 ${p.border} animate-fade-in-up`} style={{ animationDelay: "0.3s" }}>
+                    <div>
+                      <div className={`text-sm ${p.muted} mb-1`}>Стоимость</div>
+                      <div className={`text-2xl md:text-3xl font-bold ${p.text}`}>
+                        {service.price}
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                );
-              })}
-            </Accordion>
-          </div>
-        </div>
-      </div>
+                    </div>
+
+                    <Link
+                      to={service.href}
+                      className={`group/btn inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${
+                        p.pillDark
+                          ? "bg-background text-foreground hover:bg-background/90"
+                          : "bg-foreground text-background hover:bg-foreground/90"
+                      }`}
+                    >
+                      <span>Подробнее</span>
+                      <span className={`flex items-center justify-center w-10 h-10 rounded-full ${p.pillDark ? "bg-accent text-accent-foreground" : "bg-accent text-accent-foreground"} group-hover/btn:translate-x-0.5 transition-transform`}>
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
     </section>
   );
 };
