@@ -1,34 +1,7 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Info, Package, TrendingUp, ArrowRight, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
-import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
-import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
-import bookAiSketch from "@/assets/sketches/book-ai-sketch.png";
-import handsChipSketch from "@/assets/sketches/hands-chip-sketch.png";
-import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.png";
-import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.png";
-
-const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "Подходит, если": CheckCircle2,
-  "Что входит": Package,
-  "Результат": TrendingUp
-};
-
-type Service = {
-  number: string;
-  sketch: string;
-  title: string;
-  subtitle: string;
-  sections: { heading: string; content?: string; list?: string[] }[];
-  price: string;
-  cta: string;
-  href: string;
-};
-
-const services: Service[] = [
+import { services } from "@/data/services";
   {
     number: "01",
     sketch: chatHeartSketch,
