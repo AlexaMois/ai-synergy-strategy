@@ -179,8 +179,9 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                 Будем <span className="font-semibold">на связи</span>
               </h2>
               <p className="text-foreground text-lg">
-                Оставьте свои контакты, и я свяжусь с вами,
-                чтобы обсудить задачу и понять, где ИИ действительно даст эффект.
+                Оставьте свои контакты, и я свяжусь с вами, чтобы обсудить задачу
+                и понять, какой формат подойдёт: стратегическая встреча, стратегия
+                цифрового развития, аудит, обучение, внедрение или сопровождение.
               </p>
             </div>
 
@@ -246,7 +247,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                 <Input
                   id="phone"
                   type="tel"
-                  placeholder="+7 (___) ___-__-__"
+                  placeholder="+7"
                   value={phoneValue}
                   onChange={handlePhoneChange}
                   className={errors.phone ? "border-destructive" : ""}
