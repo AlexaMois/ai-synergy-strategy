@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { Link } from "react-router-dom";
-import robotFlowerSketch from "@/assets/sketches/robot-flower-sketch.png";
 
 const systemElements = [
   { icon: Target, label: "Смысл задачи", desc: "Что именно нужно изменить и какой результат важен для бизнеса." },
