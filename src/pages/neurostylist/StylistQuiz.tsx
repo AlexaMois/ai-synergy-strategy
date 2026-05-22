@@ -1008,10 +1008,21 @@ async function uploadFileToStorage(file: File, keyPrefix: string): Promise<strin
   };
   const contentType = file.type || extToMime[ext] || "application/octet-stream";
   const path = `${sessionId}/${keyPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const { error } = await supabase.storage
-    .from("stylist-uploads")
-    .upload(path, file, { contentType, upsert: false });
-  if (error) {
+  // Retry до 3 раз с экспоненциальной задержкой — мобильные сети часто рвут запросы.
+  let lastError: { message?: string } | null = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const { error } = await supabase.storage
+      .from("stylist-uploads")
+      .upload(path, file, { contentType, upsert: false });
+    if (!error) return path;
+    lastError = error as { message?: string };
+    const msg = lastError.message || "";
+    // Не ретраим, если проблема в формате/размере/дубликате — повтор не поможет.
+    if (/mime|format|size|large|exists|duplicate/i.test(msg)) break;
+    if (attempt < 2) await new Promise((r) => setTimeout(r, 600 * (attempt + 1)));
+  }
+  if (lastError) {
+    const error = lastError;
     console.error("Upload error:", error, { name: file.name, size: file.size, type: file.type, contentType });
     const msg = (error as { message?: string }).message || "";
     if (/mime|format/i.test(msg)) {
