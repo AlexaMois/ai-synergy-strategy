@@ -417,7 +417,7 @@ const NewHome = () => {
                   <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
                     Кейс · Транспорт · Нефтегаз
                   </p>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4">АкТрансСервис</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-background">АкТрансСервис</h3>
                   <p className="text-sm md:text-base text-background/70 leading-relaxed max-w-md">
                     В работе было 53 000 позиций. Вместо дорогого внешнего решения собрали другой
                     путь и внедрили инструменты под реальные задачи компании.
