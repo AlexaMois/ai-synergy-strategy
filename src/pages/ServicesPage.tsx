@@ -197,43 +197,79 @@ const ServicesPage = () => {
                 В каждом проекте держу в фокусе пять опор:
               </p>
             </div>
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-              {/* центральный элемент — Система как целое */}
-              <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-2 rounded-[28px] bg-accent text-foreground p-6 md:p-7 flex flex-col justify-between shadow-plate ring-1 ring-foreground/5 min-h-[180px]">
-                <span className="text-sm uppercase tracking-widest text-foreground/75 font-semibold">Ядро</span>
-                <div>
-                  <p className="font-iriska italic text-3xl md:text-4xl leading-[1] text-foreground mb-2">Система</p>
-                  <p className="text-xl md:text-2xl font-bold leading-tight text-foreground">как целое</p>
+            {/* Иерархическая схема: 3 входа → СИСТЕМА → 2 выхода */}
+            <div className="rounded-[28px] bg-card ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
+              {/* Уровень 1: три опоры на входе */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {[0, 1, 2].map((i) => {
+                  const el = systemElements[i];
+                  const Icon = el.icon;
+                  const palettes = ["bg-surface-mint", "bg-surface-lavender", "bg-surface-blush"];
+                  return (
+                    <div
+                      key={el.label}
+                      className={`${palettes[i]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
+                          {el.label}
+                        </p>
+                      </div>
+                      <p className="text-sm text-foreground/70 leading-snug">{el.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Соединитель сверху → центр */}
+              <div className="flex justify-center" aria-hidden="true">
+                <div className="w-px h-8 md:h-10 bg-foreground/20" />
+              </div>
+
+              {/* Уровень 2: СИСТЕМА — ядро */}
+              <div className="flex justify-center">
+                <div className="w-full md:w-3/4 lg:w-2/3 rounded-[24px] bg-accent text-foreground p-6 md:p-8 shadow-plate ring-1 ring-foreground/10 text-center">
+                  <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-foreground/75 font-semibold mb-2">
+                    Система
+                  </p>
+                  <p className="font-iriska italic text-2xl md:text-3xl leading-tight text-foreground">
+                    компания как единое рабочее пространство
+                  </p>
                 </div>
               </div>
-              {systemElements.map((el, i) => {
-                const palettes = [
-                  "bg-surface-mint",
-                  "bg-surface-lavender",
-                  "bg-surface-blush",
-                  "bg-card",
-                  "bg-surface-sand",
-                ];
-                const Icon = el.icon;
-                return (
-                  <div
-                    key={i}
-                    className={`${palettes[i]} rounded-[24px] p-5 md:p-6 min-h-[180px] flex flex-col gap-4 shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center">
-                      <Icon className="w-5 h-5" />
+
+              {/* Соединитель центр → низ */}
+              <div className="flex justify-center" aria-hidden="true">
+                <div className="w-px h-8 md:h-10 bg-foreground/20" />
+              </div>
+
+              {/* Уровень 3: два опорных слоя на выходе */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:px-[8.5%]">
+                {[3, 4].map((i, idx) => {
+                  const el = systemElements[i];
+                  const Icon = el.icon;
+                  const palettes = ["bg-card", "bg-surface-sand"];
+                  return (
+                    <div
+                      key={el.label}
+                      className={`${palettes[idx]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
+                          {el.label}
+                        </p>
+                      </div>
+                      <p className="text-sm text-foreground/70 leading-snug">{el.desc}</p>
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground text-base md:text-lg leading-tight mb-2">
-                        {el.label}
-                      </p>
-                      <p className="text-sm text-foreground/70 leading-snug">
-                        {el.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
 
             {/* Итог */}
