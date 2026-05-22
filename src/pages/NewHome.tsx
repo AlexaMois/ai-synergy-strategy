@@ -178,6 +178,14 @@ const NewHome = () => {
                     <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
                   </div>
                 ))}
+                <div className="bg-accent text-background p-5 md:p-7 flex flex-col justify-center">
+                  <div className="font-caveat text-3xl md:text-5xl leading-none mb-2">
+                    каждый клиент — надолго
+                  </div>
+                  <p className="text-xs md:text-sm text-background/80 leading-snug">
+                    Большинство возвращаются за вторым и третьим этапом
+                  </p>
+                </div>
               </div>
             </div>
           </div>
