@@ -38,15 +38,57 @@ const STATUS_OPTIONS = [
   { value: "shelved", label: "Лежит без дела" },
 ] as const;
 
+// Автосейв прогресса анкеты: чтобы при ошибке загрузки/закрытии вкладки
+// клиент не начинал заново.
+const DRAFT_KEY = "ns_quiz_draft_v1";
+const DRAFT_TTL_MS = 14 * 24 * 60 * 60 * 1000; // 14 дней
+
+type QuizDraft = {
+  step: number;
+  answers: Record<string, AnswerValue>;
+  photos: UploadedPhoto[];
+  reviewItems: ReviewItem[];
+  otherText: Record<string, string>;
+  website: string;
+  savedAt: number;
+};
+
+function loadDraft(): QuizDraft | null {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as QuizDraft;
+    if (!parsed || typeof parsed !== "object") return null;
+    if (Date.now() - (parsed.savedAt || 0) > DRAFT_TTL_MS) {
+      localStorage.removeItem(DRAFT_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function clearDraft() {
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
 const StylistQuiz = ({ onClose }: StylistQuizProps) => {
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
-  const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
-  const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
-  const [otherText, setOtherText] = useState<Record<string, string>>({});
-  const [website, setWebsite] = useState("");
+  // Поднимаем черновик из localStorage синхронно при инициализации стейта.
+  const draft = typeof window !== "undefined" ? loadDraft() : null;
+  const [step, setStep] = useState<number>(draft?.step ?? 0);
+  const [answers, setAnswers] = useState<Record<string, AnswerValue>>(draft?.answers ?? {});
+  const [photos, setPhotos] = useState<UploadedPhoto[]>(draft?.photos ?? []);
+  const [reviewItems, setReviewItems] = useState<ReviewItem[]>(draft?.reviewItems ?? []);
+  const [otherText, setOtherText] = useState<Record<string, string>>(draft?.otherText ?? {});
+  const [website, setWebsite] = useState<string>(draft?.website ?? "");
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [draftRestored] = useState<boolean>(!!draft);
 
   const testMode = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -73,6 +115,60 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       document.body.style.overflow = prev;
     };
   }, []);
+
+  // Уведомление о восстановлении черновика.
+  useEffect(() => {
+    if (draftRestored) {
+      toast.success("Восстановили ваши ответы — продолжайте с того же места", {
+        duration: 5000,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Сохраняем прогресс при каждом изменении (debounce через requestIdleCallback / setTimeout).
+  useEffect(() => {
+    if (done) return;
+    const handle = setTimeout(() => {
+      try {
+        const draft: QuizDraft = {
+          step,
+          answers,
+          photos,
+          reviewItems,
+          otherText,
+          website,
+          savedAt: Date.now(),
+        };
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+      } catch {
+        /* quota / private mode — ignore */
+      }
+    }, 300);
+    return () => clearTimeout(handle);
+  }, [step, answers, photos, reviewItems, otherText, website, done]);
+
+  // Очищаем черновик после успешной отправки.
+  useEffect(() => {
+    if (done) clearDraft();
+  }, [done]);
+
+  // Предупреждаем при попытке закрыть вкладку с незаконченной анкетой.
+  useEffect(() => {
+    if (done) return;
+    const hasProgress =
+      step > 0 ||
+      Object.keys(answers).length > 0 ||
+      photos.length > 0 ||
+      reviewItems.length > 0;
+    if (!hasProgress) return;
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [step, answers, photos, reviewItems, done]);
 
   const isAnswered = (q: Question): boolean => {
     const v = answers[q.id];
@@ -323,6 +419,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       }
 
       setDone(true);
+      clearDraft();
     } catch (e) {
       console.error(e);
       toast.error("Не удалось отправить, попробуйте ещё раз");
