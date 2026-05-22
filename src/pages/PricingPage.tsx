@@ -248,18 +248,18 @@ const PricingPage = () => {
               </p>
             </div>
 
-            {/* Desktop — таблица в стиле плашки */}
-            <div className="hidden lg:block rounded-[32px] bg-card overflow-hidden shadow-plate ring-1 ring-foreground/5">
-              <div className="grid grid-cols-12 px-8 py-5 border-b border-foreground/10 bg-foreground text-background">
-                <div className="col-span-5 text-sm uppercase tracking-widest font-semibold">Формат</div>
-                <div className="col-span-3 text-sm uppercase tracking-widest font-semibold">Когда подходит</div>
-                <div className="col-span-2 text-sm uppercase tracking-widest font-semibold">Результат</div>
-                <div className="col-span-2 text-sm uppercase tracking-widest font-semibold text-right">Стоимость</div>
+            {/* Desktop — чистая таблица на белом, без плашки */}
+            <div className="hidden lg:block">
+              <div className="grid grid-cols-12 pb-5 border-b border-foreground/15">
+                <div className="col-span-5 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Формат</div>
+                <div className="col-span-3 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Когда подходит</div>
+                <div className="col-span-2 text-sm uppercase tracking-widest font-semibold text-muted-foreground">Результат</div>
+                <div className="col-span-2 text-sm uppercase tracking-widest font-semibold text-muted-foreground text-right">Стоимость</div>
               </div>
               {formats.map((f, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-12 px-8 py-6 items-center gap-4 border-b border-foreground/10 last:border-b-0"
+                  className="grid grid-cols-12 py-7 items-center gap-4 border-b border-foreground/10 last:border-b-0"
                 >
                   <div className="col-span-5 flex items-center gap-4">
                     <img src={f.sketch} alt="" width={80} height={80} loading="lazy" className="w-14 h-14 object-contain flex-shrink-0" />
