@@ -17,7 +17,7 @@ import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { initScrollTracking, captureUTMParams, initEngagementTracking } from "@/utils/analytics";
 
-const Index = () => {
+const OldHome = () => {
   const location = useLocation();
   
   // Capture UTM params on load
@@ -166,6 +166,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
         <title>Автоматизация бизнеса с ИИ — убираем рутину и бардак в процессах | Александра Моисеева</title>
         <meta name="description" content="Помогаю директорам производства и торговли сократить ручной труд, потери и хаос в процессах за 4–6 недель с помощью ИИ и автоматизации. Красноярск, работа по всей России и СНГ." />
         <meta name="keywords" content="автоматизация бизнеса, автоматизация бизнес процессов, автоматизация бизнеса с помощью ИИ, ИИ для бизнеса Красноярск, нейросети для бизнеса" />
@@ -209,4 +210,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default OldHome;
