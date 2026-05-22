@@ -147,7 +147,9 @@ const NewHome = () => {
           </div>
         </section>
 
-        <TrustMarquee />
+        <div className="mt-12 md:mt-20">
+          <TrustMarquee />
+        </div>
 
         {/* ЦИФРЫ — асимметрия, гигантская акцентная цифра курсивом */}
         <section className="bg-secondary py-16 md:py-24 mt-4">
