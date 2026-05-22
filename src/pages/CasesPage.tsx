@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap } from "lucide-react";
+import { ArrowRight, Search, X, Factory, Building2, Truck, FileText, Briefcase, GraduationCap, ChevronDown } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
@@ -100,6 +100,7 @@ const FEATURED_PALETTES = ["bg-surface-mint", "bg-surface-lavender", "bg-surface
 
 const CasesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showMore, setShowMore] = useState(false);
   const [activeIndustry, setActiveIndustry] = useState("all");
   const [activeSolutionType, setActiveSolutionType] = useState("all");
 
@@ -303,21 +304,34 @@ const CasesPage = () => {
           {placeholderCases.length > 0 && (
             <section className="container mx-auto max-w-7xl px-4 pt-12 pb-16 md:pb-24">
               {readyCases.length > 0 && (
-                <div className="max-w-3xl mb-10">
-                  <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                    Ещё{" "}
-                    <span className="font-iriska font-normal italic text-accent">проекты</span>
-                  </h2>
-                  <p className="text-base md:text-lg text-muted-foreground">
-                    Детали этих кейсов появятся постепенно — пока сводки и метрики.
-                  </p>
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+                  <div className="max-w-3xl">
+                    <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                      Ещё{" "}
+                      <span className="font-iriska font-normal italic text-accent">проекты</span>
+                    </h2>
+                    <p className="text-base md:text-lg text-muted-foreground">
+                      Детали этих кейсов появятся постепенно — пока сводки и метрики.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowMore((v) => !v)}
+                    aria-expanded={showMore}
+                    className="self-start md:self-auto inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all whitespace-nowrap"
+                  >
+                    {showMore ? "Свернуть" : `Показать ещё (${placeholderCases.length})`}
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", showMore && "rotate-180")} />
+                  </button>
                 </div>
               )}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {placeholderCases.map((c) => (
-                  <PlaceholderCaseCard key={c.id} caseItem={c} />
-                ))}
-              </div>
+              {(showMore || readyCases.length === 0) && (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 animate-fade-in">
+                  {placeholderCases.map((c) => (
+                    <PlaceholderCaseCard key={c.id} caseItem={c} />
+                  ))}
+                </div>
+              )}
             </section>
           )}
 
