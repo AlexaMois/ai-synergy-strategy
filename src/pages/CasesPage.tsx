@@ -348,6 +348,36 @@ const CasesPage = () => {
             </section>
           )}
 
+          {/* HOW TO READ CASES */}
+          <section className="container mx-auto max-w-7xl px-4 pt-4 pb-16 md:pb-24">
+            <div className="max-w-3xl mb-10">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
+                Что важно в{" "}
+                <span className="font-iriska font-normal italic text-accent">каждом кейсе</span>
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { n: "01", title: "Сначала процесс", text: "Каждый проект начинается с разбора текущей работы: кто участвует, где возникают повторения, какие данные используются и где теряется время.", bg: "bg-surface-mint" },
+                { n: "02", title: "Потом решение", text: "Инструмент подбирается под задачу компании: готовое решение, low-code, база знаний, помощник, интеграция или разработка.", bg: "bg-surface-lavender" },
+                { n: "03", title: "Затем внедрение", text: "Решение встраивается в ежедневную работу команды: инструкции, роли, статусы, обучение и сопровождение.", bg: "bg-surface-blush" },
+                { n: "04", title: "В финале результат", text: "Главный показатель — сохранённый бюджет, сниженная ручная нагрузка, понятный контроль и рабочий инструмент, который применяют сотрудники.", bg: "bg-surface-sand" },
+              ].map((card) => (
+                <div
+                  key={card.n}
+                  className={cn(
+                    "rounded-[28px] p-7 md:p-8 shadow-plate ring-1 ring-foreground/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col",
+                    card.bg
+                  )}
+                >
+                  <span className="text-sm font-mono text-muted-foreground mb-4">{card.n}</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">{card.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{card.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* CTA — тёмная плашка */}
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
