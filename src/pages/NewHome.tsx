@@ -539,7 +539,7 @@ const NewHome = () => {
                   width={800}
                   height={800}
                   loading="lazy"
-                  className="w-64 md:w-80 lg:w-96 h-auto object-contain"
+                  className="w-[32rem] md:w-[40rem] lg:w-[48rem] h-auto object-contain"
                 />
               </div>
             </div>
