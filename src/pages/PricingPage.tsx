@@ -77,6 +77,7 @@ const PricingPage = () => {
 
   const formats = [
     {
+      slug: "owner-digital-session",
       sketch: chatHeartSketch,
       name: "Стратегическая встреча по цифровизации для собственника",
       when: "нужен первый шаг",
@@ -84,6 +85,7 @@ const PricingPage = () => {
       price: "17 000 ₽",
     },
     {
+      slug: "digital-development-strategy",
       sketch: routeWarmSketch,
       name: "Разработка стратегии цифрового развития бизнеса",
       when: "нужен план на 90 дней",
@@ -91,6 +93,7 @@ const PricingPage = () => {
       price: "78 000 ₽",
     },
     {
+      slug: "digital-audit",
       sketch: auditCareSketch,
       name: "Глубокий аудит компании для цифровизации",
       when: "нужен подробный разбор",
@@ -98,6 +101,7 @@ const PricingPage = () => {
       price: "от 116 000 ₽",
     },
     {
+      slug: "digital-tools-program",
       sketch: bookAiSketch,
       name: "Авторская программа «Цифровые инструменты для бизнеса»",
       when: "нужно обучить команду",
@@ -105,6 +109,7 @@ const PricingPage = () => {
       price: "68 000–152 000 ₽",
     },
     {
+      slug: "implementation-support",
       sketch: handsChipSketch,
       name: "Сопровождение цифрового внедрения",
       when: "нужно вести внедрение",
@@ -112,6 +117,7 @@ const PricingPage = () => {
       price: "89 000–170 000 ₽/мес",
     },
     {
+      slug: "digital-solution-design",
       sketch: blueprintPlantSketch,
       name: "Проектирование и разработка цифрового решения",
       when: "нужен инструмент под процесс",
@@ -119,6 +125,7 @@ const PricingPage = () => {
       price: "от 260 000 ₽",
     },
     {
+      slug: "digital-tools-support",
       sketch: teaLaptopSketch,
       name: "Сопровождение цифровых инструментов компании",
       when: "нужна поддержка после запуска",
@@ -276,7 +283,11 @@ const PricingPage = () => {
                         )}
                       </div>
                       <div className="col-span-4">
-                        <h3 className="text-base xl:text-lg font-semibold text-foreground leading-tight">{f.name}</h3>
+                        <h3 className="text-base xl:text-lg font-semibold leading-tight">
+                          <Link to={`/services/${f.slug}`} className="text-foreground hover:text-accent transition-colors">
+                            {f.name}
+                          </Link>
+                        </h3>
                       </div>
                       <div className="col-span-3 text-sm text-muted-foreground">{f.when}</div>
                       <div className="col-span-2 text-sm text-muted-foreground">{f.result}</div>
@@ -305,9 +316,10 @@ const PricingPage = () => {
                     {formats.slice(group.start, group.end).map((f, idx) => {
                       const i = group.start + idx;
                       return (
-                <div
+                <Link
                   key={i}
-                  className={`relative rounded-[24px] ${palettes[i % palettes.length]} p-6 shadow-card ring-1 ring-foreground/5`}
+                  to={`/services/${f.slug}`}
+                  className={`block relative rounded-[24px] ${palettes[i % palettes.length]} p-6 shadow-card hover:shadow-plate hover:-translate-y-0.5 transition-all ring-1 ring-foreground/5`}
                 >
                   <p className="text-xs uppercase tracking-widest text-foreground/60 font-semibold mb-2">
                     {f.when}
@@ -317,7 +329,7 @@ const PricingPage = () => {
                   </h3>
                   <p className="text-sm text-foreground/70 mb-4">{f.result}</p>
                   <p className="text-xl font-bold text-foreground relative">{f.price}</p>
-                </div>
+                </Link>
                       );
                     })}
                   </div>
