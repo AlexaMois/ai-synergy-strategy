@@ -323,7 +323,7 @@
   
   .text-handwriting {
     @apply font-iriska;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 400;
     color: hsl(var(--accent));
     line-height: 1.4;
@@ -332,13 +332,13 @@
   
   @media (min-width: 640px) {
     .text-handwriting {
-      font-size: 24px;
+      font-size: 32px;
     }
   }
   
   @media (min-width: 768px) {
     .text-handwriting {
-      font-size: 26px;
+      font-size: 36px;
     }
   }
   
