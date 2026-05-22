@@ -21,40 +21,39 @@
 
 @layer base {
   :root {
-    /* НейроРешения brand system
-       Brand turquoise: #49BED8  Deep: #037083  Light: #7DDDF2
-       Bg soft blue: #EAF8FD  Page: #F8F9FB  Graphite: #111827 */
-    --background: 220 17% 98%;        /* #F8F9FB */
-    --foreground: 220 39% 11%;        /* #111827 */
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 39% 11%;
-
+    /* Backgrounds */
+    --background: 220 14% 98%;        /* #F7F8FA - page background */
+    --foreground: 0 0% 13%;           /* #212121 - main text */
+    
+    --card: 0 0% 100%;                /* #FFFFFF - surface/cards */
+    --card-foreground: 0 0% 13%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 220 39% 11%;
-
-    /* Primary accent - brand turquoise #49BED8 */
-    --primary: 190 63% 57%;
+    --popover-foreground: 0 0% 13%;
+    
+    /* Primary accent - turquoise */
+    --primary: 192 63% 57%;           /* #4CBAD6 */
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 189 96% 26%;      /* #037083 */
-    --primary-light: 196 79% 95%;     /* #EAF8FD */
-
-    --secondary: 196 79% 95%;         /* #EAF8FD - soft blue rhythm */
-    --secondary-foreground: 220 39% 11%;
-
-    --muted: 196 79% 95%;             /* #EAF8FD */
-    --muted-foreground: 220 9% 46%;   /* #6B7280 */
-
-    --accent: 190 63% 57%;
+    --primary-dark: 192 70% 38%;      /* #1D89A4 - hover state */
+    --primary-light: 192 63% 92%;     /* #EAF8FC - light accent background */
+    
+    --secondary: 216 14% 96%;         /* #F5F6F8 - surface-2 */
+    --secondary-foreground: 0 0% 13%;
+    
+    /* Muted - for subtle backgrounds */
+    --muted: 216 14% 96%;             /* #F5F6F8 */
+    --muted-foreground: 0 0% 38%;     /* #616161 - нейтральный серый, контраст 5.6:1 */
+    
+    --accent: 192 63% 57%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 352 49% 57%;       /* #C7535E - приглушённый элегантный красный */
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders - soft turquoise tint */
-    --border: 194 71% 86%;            /* #BFE8F5 */
-    --input: 194 71% 86%;
-    --ring: 190 63% 57%;
+    /* Borders - neutral, low contrast */
+    --border: 216 14% 91%;            /* #DDE3EA */
+    --input: 216 14% 91%;
+    --ring: 192 63% 57%;
     
     /* Gray scale - контрастная шкала */
     --gray-50: 0 0% 97%;
@@ -64,45 +63,38 @@
     --gray-250: 0 0% 82%;
     --gray-300: 0 0% 78%;
     --gray-400: 0 0% 65%;
-    --soft-sand: 33 53% 94%;          /* #F7F1E8 */
-    --sand-accent: 37 66% 72%;        /* #E7C98B */
-
-    --radius: 1.5rem;                 /* 24px - premium rounded cards */
-
-    --dark-bg: 220 39% 11%;           /* #111827 */
+    --soft-sand: 44 38% 94%;
+    
+    --radius: 1rem;
+    
+    --dark-bg: 220 15% 10%;           /* #0D1E2C - глубокий тёмный для футера */
     --light-bg: 0 0% 100%;
-
-    /* Brand gradients */
-    --gradient-primary: linear-gradient(135deg, #49BED8 0%, #27B7DA 45%, #1599BD 100%);
-    --gradient-deep:    linear-gradient(135deg, #037083 0%, #1599BD 100%);
-    --gradient-soft:    linear-gradient(180deg, #FFFFFF 0%, #F8FDFF 55%, #EAF8FD 100%);
-    --gradient-section: linear-gradient(135deg, #F8F9FB 0%, #EAF8FD 100%);
-    --gradient-cta:     linear-gradient(135deg, #111827 0%, #037083 100%);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* Multi-layer soft shadows with brand turquoise tint */
-    --shadow-xs:
-      0 1px 2px rgba(15, 23, 42, 0.06),
-      0 2px 6px rgba(73, 190, 216, 0.05);
-
-    --shadow-soft:
-      0 16px 40px rgba(15, 23, 42, 0.08),
-      0 6px 18px rgba(73, 190, 216, 0.08);
-
-    --shadow-card:
-      0 24px 60px rgba(15, 23, 42, 0.10),
-      0 8px 24px rgba(73, 190, 216, 0.10);
-
-    --shadow-elevated:
-      0 24px 56px rgba(15, 23, 42, 0.12),
-      0 10px 28px rgba(73, 190, 216, 0.14);
-
-    --shadow-accent:
-      0 20px 48px rgba(3, 112, 131, 0.22);
-
-    --shadow-button:
-      0 12px 28px rgba(73, 190, 216, 0.28);
+    /* UI-kit shadows - УСИЛЕННЫЕ тени для контраста */
+    /* Уровень 1: Лёгкая тень для мелких элементов */
+    --shadow-xs: 
+      0 1px 2px rgba(15, 23, 42, 0.08),
+      0 2px 6px rgba(15, 23, 42, 0.06);
+    
+    /* Уровень 2: Мягкая тень для карточек */
+    --shadow-soft: 
+      0 1px 4px rgba(15, 23, 42, 0.08),
+      0 6px 16px rgba(15, 23, 42, 0.12),
+      0 12px 28px rgba(15, 23, 42, 0.08);
+    
+    /* Уровень 3: Выраженная тень для активных элементов */
+    --shadow-card: 
+      0 2px 6px rgba(15, 23, 42, 0.10),
+      0 12px 28px rgba(15, 23, 42, 0.16),
+      0 24px 48px rgba(15, 23, 42, 0.12);
+    
+    /* Уровень 4: Глубокая тень для модальных/floating элементов */
+    --shadow-elevated: 
+      0 4px 12px rgba(15, 23, 42, 0.12),
+      0 20px 40px rgba(15, 23, 42, 0.20),
+      0 40px 80px rgba(15, 23, 42, 0.14);
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -373,41 +365,6 @@
   
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
-  }
-
-  /* Brand gradient backgrounds */
-  .bg-gradient-primary { background: var(--gradient-primary); }
-  .bg-gradient-deep    { background: var(--gradient-deep); }
-  .bg-gradient-soft    { background: var(--gradient-soft); }
-  .bg-gradient-section { background: var(--gradient-section); }
-  .bg-gradient-cta     { background: var(--gradient-cta); }
-
-  .shadow-accent { box-shadow: var(--shadow-accent); }
-  .shadow-button { box-shadow: var(--shadow-button); }
-
-  /* Premium accent card — turquoise gradient, white text, large metrics */
-  .card-accent {
-    background: var(--gradient-primary);
-    color: #FFFFFF;
-    border-radius: 24px;
-    box-shadow: var(--shadow-accent);
-    position: relative;
-    overflow: hidden;
-  }
-  .card-accent::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 45%);
-    pointer-events: none;
-  }
-
-  /* Soft inner panel inside cards */
-  .panel-soft {
-    background: #EAF8FD;
-    border: 1px solid #BFE8F5;
-    border-radius: 18px;
-    color: #111827;
   }
   
   /* Hover-эффект "всплытия" с тенью */
