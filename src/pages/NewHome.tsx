@@ -5,6 +5,10 @@ import { ArrowRight, Compass, Briefcase, FolderOpen, Wallet, User, Phone } from 
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
+import TrustMarquee from "@/components/TrustMarquee";
+import MarqueeText from "@/components/MarqueeText";
+import Testimonials from "@/components/Testimonials";
+import Partners from "@/components/Partners";
 
 const sections = [
   { to: "/start", label: "С чего начать", desc: "Выбор формата работы и короткий разбор", icon: Compass },
@@ -57,6 +61,8 @@ const NewHome = () => {
           </div>
         </section>
 
+        <TrustMarquee />
+
         <section className="container mx-auto max-w-6xl px-4 pb-20">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {sections.map(({ to, label, desc, icon: Icon }) => (
@@ -89,6 +95,9 @@ const NewHome = () => {
           </div>
         </section>
 
+        <MarqueeText />
+        <Testimonials />
+
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
           <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
@@ -109,6 +118,8 @@ const NewHome = () => {
             </div>
           </div>
         </section>
+
+        <Partners />
       </main>
 
       <Footer />
