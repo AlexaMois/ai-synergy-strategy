@@ -239,6 +239,57 @@ const NewHome = () => {
           </div>
         </section>
 
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
+            Результаты клиентов
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Грузовой Экспресс",
+                text: "Перевозчик на север. Заявки приходили из разных каналов, терялись и дублировались. Вместо сложной CRM собрали рабочую схему: голос, Telegram и Excel.",
+                result: "Заявки стали попадать в единую рабочую систему, руководитель получил понятный контроль.",
+                to: "/cases/cargo-express",
+              },
+              {
+                title: "АкТрансСервис",
+                text: "Транспорт, вахта, нефтегаз. В работе было 53 000 позиций. Вместо дорогого внешнего решения собрали другой путь и внедрили инструменты под реальные задачи компании.",
+                result: "Сохранено 1,7 млн ₽ за квартал.",
+                to: "/cases/aktransservice",
+              },
+              {
+                title: "Крайпотребсоюз",
+                text: "51 организация и 300+ точек. Для компании был создан НейроТендеролог, которым больше года пользуются 8 компаний.",
+                result: "Сохранено 1,3 млн ₽ за квартал.",
+                to: "/cases/kraypotrebsoyuz",
+              },
+            ].map((c) => (
+              <div key={c.title} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{c.text}</p>
+                <div className="mt-auto space-y-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Результат</p>
+                    <p className="text-sm text-foreground/80">{c.result}</p>
+                  </div>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to={c.to}>
+                      Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Button asChild size="lg" variant="outline">
+              <Link to="/cases">
+                Смотреть все кейсы <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </section>
+
         <Testimonials />
 
         <section id="contact" className="container mx-auto max-w-3xl px-4 pb-24">
