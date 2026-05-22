@@ -208,7 +208,7 @@ const Testimonials = () => {
   // Если отзывов нет, показываем заглушку
   if (reviews.length === 0) {
     return (
-      <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+      <section className="py-16 md:py-24 bg-background" id="testimonials">
         <Helmet>
           <script type="application/ld+json">
             {JSON.stringify(reviewSchema)}
@@ -236,7 +236,7 @@ const Testimonials = () => {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-secondary" id="testimonials">
+    <section className="py-16 md:py-24 bg-background" id="testimonials">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(reviewSchema)}
