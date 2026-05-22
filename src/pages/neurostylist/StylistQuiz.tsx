@@ -885,8 +885,8 @@ const MultiFieldView = ({
 // ===== Typed photo uploader (with per-photo type) =====
 
 async function uploadFileToStorage(file: File, keyPrefix: string): Promise<string | null> {
-  if (file.size > 10 * 1024 * 1024) {
-    toast.error(`Файл «${file.name}» больше 10 МБ`);
+  if (file.size > 25 * 1024 * 1024) {
+    toast.error(`Файл «${file.name}» больше 25 МБ — сожмите фото и попробуйте снова`);
     return null;
   }
   const sessionId =
@@ -897,13 +897,33 @@ async function uploadFileToStorage(file: File, keyPrefix: string): Promise<strin
       return id;
     })();
   const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+  // Mobile Safari (особенно при share-sheet) иногда отдаёт пустой file.type —
+  // подставляем content-type по расширению, иначе Supabase Storage отклоняет файл по MIME.
+  const extToMime: Record<string, string> = {
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    webp: "image/webp",
+    heic: "image/heic",
+    heif: "image/heif",
+    avif: "image/avif",
+    gif: "image/gif",
+  };
+  const contentType = file.type || extToMime[ext] || "application/octet-stream";
   const path = `${sessionId}/${keyPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
   const { error } = await supabase.storage
     .from("stylist-uploads")
-    .upload(path, file, { contentType: file.type, upsert: false });
+    .upload(path, file, { contentType, upsert: false });
   if (error) {
-    console.error("Upload error:", error);
-    toast.error(`Не удалось загрузить «${file.name}»`);
+    console.error("Upload error:", error, { name: file.name, size: file.size, type: file.type, contentType });
+    const msg = (error as { message?: string }).message || "";
+    if (/mime|format/i.test(msg)) {
+      toast.error(`«${file.name}»: формат не поддерживается. Загрузите JPG, PNG, HEIC или WebP.`);
+    } else if (/size|large/i.test(msg)) {
+      toast.error(`«${file.name}»: файл слишком большой. Максимум 25 МБ.`);
+    } else {
+      toast.error(`Не удалось загрузить «${file.name}»: ${msg || "проверьте интернет и попробуйте снова"}`);
+    }
     return null;
   }
   return path;
