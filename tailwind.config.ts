@@ -22,6 +22,7 @@ export default {
         raleway: ['Raleway', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         golos: ['Golos Text', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif'],
         iriska: ['Iriska', 'cursive'],
+        caveat: ['Caveat', 'cursive'],
         sans: ['Golos Text', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       colors: {
@@ -82,6 +83,13 @@ export default {
         "soft-sand": "hsl(var(--soft-sand))",
         "dark-bg": "hsl(var(--dark-bg))",
         "light-bg": "hsl(var(--light-bg))",
+        surface: {
+          mint: "hsl(var(--surface-mint))",
+          sand: "hsl(var(--surface-sand))",
+          lavender: "hsl(var(--surface-lavender))",
+          blush: "hsl(var(--surface-blush))",
+          turquoise: "hsl(var(--surface-turquoise))",
+        },
       },
       boxShadow: {
         'soft': 'var(--shadow-soft)',

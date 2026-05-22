@@ -65,6 +65,13 @@
     --gray-400: 0 0% 65%;
     --soft-sand: 44 38% 94%;
     
+    /* Tochka-style pastel surface plates */
+    --surface-mint: 180 50% 92%;        /* #DCF1F1 — мятный, разбавленная бирюза */
+    --surface-sand: 38 60% 92%;         /* #F7ECDA — тёплый песочный */
+    --surface-lavender: 250 40% 93%;    /* #E5E2F4 — холодный сиреневый */
+    --surface-blush: 12 60% 93%;        /* #F7E4DD — пыльно-розовый */
+    --surface-turquoise: 192 63% 57%;   /* акцентная бирюза для герой-плашек */
+    
     --radius: 1rem;
     
     --dark-bg: 220 15% 10%;           /* #0D1E2C - глубокий тёмный для футера */
