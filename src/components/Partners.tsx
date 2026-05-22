@@ -40,7 +40,7 @@ const Partners = ({ className }: PartnersProps) => {
   ];
 
   return (
-    <section className={className || "py-10 md:py-14 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100"}>
+    <section className={className || "py-10 md:py-14 lg:py-16 bg-background"}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="border-t border-border mb-10"></div>
         <div className="marquee-container">
