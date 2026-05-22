@@ -95,6 +95,13 @@ const NewHome = () => {
           </p>
         </section>
 
+        <section className="py-16 md:py-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center container mx-auto max-w-6xl px-4">
+            С кем уже работали и для кого создавали решения
+          </h2>
+          <Partners />
+        </section>
+
         <MarqueeText />
         <Testimonials />
 
@@ -119,7 +126,6 @@ const NewHome = () => {
           </div>
         </section>
 
-        <Partners />
       </main>
 
       <Footer />
