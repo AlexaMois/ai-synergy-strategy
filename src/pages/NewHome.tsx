@@ -95,38 +95,6 @@ const NewHome = () => {
           </p>
         </section>
 
-        <section className="container mx-auto max-w-6xl px-4 pb-20">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {sections.map(({ to, label, desc, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
-                className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
-              >
-                <Icon className="h-6 w-6 text-accent mb-4" />
-                <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  {label}
-                </h2>
-                <p className="text-sm text-muted-foreground">{desc}</p>
-              </Link>
-            ))}
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group rounded-2xl border border-accent bg-accent/5 p-6 transition-all hover:shadow-lg"
-            >
-              <Phone className="h-6 w-6 text-accent mb-4" />
-              <h2 className="text-xl font-semibold text-foreground mb-2">Заказать звонок</h2>
-              <p className="text-sm text-muted-foreground">
-                Обсудим задачу и подберём формат за 15 минут.
-              </p>
-            </a>
-          </div>
-        </section>
-
         <MarqueeText />
         <Testimonials />
 
