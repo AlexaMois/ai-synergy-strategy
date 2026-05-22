@@ -170,11 +170,8 @@ const NewHome = () => {
                 </p>
               </div>
               <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
-                {stats.slice(1).map(({ value, suffix, label, decimals }, idx) => (
-                  <div
-                    key={label}
-                    className={`bg-card p-5 md:p-7 ${idx === stats.length - 2 ? "col-span-2" : ""}`}
-                  >
+                {stats.slice(1).map(({ value, suffix, label, decimals }) => (
+                  <div key={label} className="bg-card p-5 md:p-7">
                     <div className="text-2xl md:text-4xl font-bold text-foreground mb-1">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
