@@ -10,14 +10,14 @@ import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
 import FAQTeaser from "@/components/FAQTeaser";
 import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
 import { trackCTAClick } from "@/utils/analytics";
-import compassSketch from "@/assets/sketches/compass-sketch.png";
-import chatSketch from "@/assets/sketches/chat-sketch.png";
-import routeSketch from "@/assets/sketches/route-sketch.png";
-import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
-import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
-import graduationSketch from "@/assets/sketches/graduation-sketch.png";
-import blueprintSketch from "@/assets/sketches/blueprint-sketch.png";
-import lifebuoySketch from "@/assets/sketches/lifebuoy-sketch.png";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
+import bookAiSketch from "@/assets/sketches/book-ai-sketch.png";
+import handsChipSketch from "@/assets/sketches/hands-chip-sketch.png";
+import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.png";
+import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.png";
+import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.png";
 
 const PillButton = ({
   to,
@@ -89,43 +89,43 @@ const StartPage = () => {
 
   const formats = [
     {
-      sketch: chatSketch,
+      sketch: chatHeartSketch,
       situation: "Нужно быстро понять первый шаг",
       format: "Стратегическая встреча по цифровизации для собственника",
       to: "/services/owner-digital-session",
     },
     {
-      sketch: routeSketch,
+      sketch: routeWarmSketch,
       situation: "Нужен план на 90 дней",
       format: "Разработка стратегии цифрового развития бизнеса",
       to: "/services/digital-development-strategy",
     },
     {
-      sketch: magnifierSketch,
+      sketch: auditCareSketch,
       situation: "Нужно подробно разобрать процессы, документы и инструменты",
       format: "Глубокий аудит компании для цифровизации",
       to: "/services/digital-audit",
     },
     {
-      sketch: graduationSketch,
+      sketch: bookAiSketch,
       situation: "Нужно обучить сотрудников",
       format: "Авторская программа «Цифровые инструменты для бизнеса»",
       to: "/services/digital-tools-program",
     },
     {
-      sketch: handshakeSketch,
+      sketch: handsChipSketch,
       situation: "Уже есть задача для внедрения",
       format: "Сопровождение цифрового внедрения",
       to: "/services/implementation-support",
     },
     {
-      sketch: blueprintSketch,
+      sketch: blueprintPlantSketch,
       situation: "Нужен конкретный цифровой инструмент",
       format: "Проектирование и разработка цифрового решения под бизнес-процесс",
       to: "/services/digital-solution-design",
     },
     {
-      sketch: lifebuoySketch,
+      sketch: teaLaptopSketch,
       situation: "Уже есть инструменты, нужна поддержка",
       format: "Сопровождение цифровых инструментов компании",
       to: "/services/digital-tools-support",
@@ -189,7 +189,7 @@ const StartPage = () => {
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
                     <img
-                      src={compassSketch}
+                      src={brainHeartSketch}
                       alt=""
                       width={800}
                       height={800}
@@ -280,7 +280,7 @@ const StartPage = () => {
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
                     <img
-                      src={chatSketch}
+                      src={chatHeartSketch}
                       alt=""
                       width={800}
                       height={800}
