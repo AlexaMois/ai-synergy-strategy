@@ -236,7 +236,7 @@ const ServicesPage = () => {
                     Процесс
                   </p>
                   <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-4">
-                    Как{" "}
+                    <span className="text-background">Как</span>{" "}
                     <span className="font-iriska font-normal italic text-accent">проходит работа</span>
                   </h2>
                   <p className="text-base md:text-lg text-background/70 max-w-2xl">
@@ -244,20 +244,16 @@ const ServicesPage = () => {
                   </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                  {processSteps.map((step, index) => {
-                    const Icon = step.icon;
+                {processSteps.map((step, index) => {
                     return (
                       <div
                         key={index}
                         className="relative rounded-[24px] bg-background/5 ring-1 ring-background/10 p-6 md:p-7 hover:bg-background/10 transition-colors duration-300"
                       >
-                        <div className="flex items-center gap-3 mb-5">
-                          <span className="font-iriska italic text-4xl md:text-5xl text-accent leading-none">
+                        <div className="mb-5">
+                          <span className="font-iriska italic text-5xl md:text-6xl text-accent leading-none">
                             0{index + 1}
                           </span>
-                          <div className="w-10 h-10 rounded-xl bg-accent/20 text-accent flex items-center justify-center">
-                            <Icon className="w-5 h-5" />
-                          </div>
                         </div>
                         <h3 className="font-bold text-background text-lg md:text-xl mb-2 leading-tight">
                           {step.title}
