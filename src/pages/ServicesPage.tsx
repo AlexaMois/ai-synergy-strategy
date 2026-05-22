@@ -169,11 +169,11 @@ const ServicesPage = () => {
             </div>
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
               {/* центральный элемент — Система как целое */}
-              <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-2 rounded-[28px] bg-accent text-background p-6 md:p-7 flex flex-col justify-between shadow-plate ring-1 ring-foreground/5 min-h-[180px]">
-                <span className="text-sm uppercase tracking-widest text-background/80 font-semibold">Ядро</span>
+              <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-2 rounded-[28px] bg-accent text-foreground p-6 md:p-7 flex flex-col justify-between shadow-plate ring-1 ring-foreground/5 min-h-[180px]">
+                <span className="text-sm uppercase tracking-widest text-foreground/75 font-semibold">Ядро</span>
                 <div>
-                  <p className="font-iriska italic text-3xl md:text-4xl leading-[1] text-background/95 mb-2">Система</p>
-                  <p className="text-xl md:text-2xl font-bold leading-tight">как целое</p>
+                  <p className="font-iriska italic text-3xl md:text-4xl leading-[1] text-foreground mb-2">Система</p>
+                  <p className="text-xl md:text-2xl font-bold leading-tight text-foreground">как целое</p>
                 </div>
               </div>
               {systemElements.map((el, i) => {
@@ -281,12 +281,12 @@ const ServicesPage = () => {
           {/* ФИНАЛЬНЫЙ CTA — бирюзовая плашка */}
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-background overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-5">
+              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-5">
                   Начните с{" "}
-                  <span className="font-iriska font-normal italic text-background/95">подходящего формата</span>
+                  <span className="font-iriska font-normal italic text-foreground">подходящего формата</span>
                 </h2>
-                <p className="text-base md:text-lg text-background/85 mb-10 max-w-2xl mx-auto">
+                <p className="text-base md:text-lg text-foreground/80 mb-10 max-w-2xl mx-auto">
                   Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
@@ -295,7 +295,7 @@ const ServicesPage = () => {
                   </PillButton>
                   <Link
                     to="/pricing"
-                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-background/90 hover:text-background transition-colors"
+                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
