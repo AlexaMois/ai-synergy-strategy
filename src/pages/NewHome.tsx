@@ -9,6 +9,7 @@ import TrustMarquee from "@/components/TrustMarquee";
 import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
+import AnimatedNumber from "@/components/AnimatedNumber";
 
 const sections = [
   { to: "/start", label: "С чего начать", desc: "Выбор формата работы и короткий разбор", icon: Compass },
@@ -16,6 +17,17 @@ const sections = [
   { to: "/cases", label: "Кейсы", desc: "Реальные проекты и результаты", icon: FolderOpen },
   { to: "/pricing", label: "Цены", desc: "Прозрачные форматы и стоимость", icon: Wallet },
   { to: "/about", label: "Обо мне", desc: "Александра Моисеева — архитектор цифрового развития", icon: User },
+];
+
+const stats = [
+  { value: 360, suffix: "", label: "диагностик" },
+  { value: 40, suffix: "", label: "проектов в продакшн" },
+  { value: 7, suffix: "", label: "городов" },
+  { value: 10, suffix: "", label: "отраслей" },
+  { value: 3.5, suffix: "", label: "года практики", decimals: 1 },
+  { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
+  { value: 85, suffix: "%", label: "клиентов возвращаются" },
+  { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
 ];
 
 const NewHome = () => {
@@ -63,6 +75,25 @@ const NewHome = () => {
         </section>
 
         <TrustMarquee />
+
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">
+            Компания в цифрах
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {stats.map(({ value, suffix, label, decimals }) => (
+              <div key={label} className="rounded-2xl border border-border bg-card p-5 md:p-6 text-center">
+                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
+                  <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
+                </div>
+                <p className="text-sm text-muted-foreground leading-snug">{label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm md:text-base text-muted-foreground mt-8 max-w-2xl mx-auto">
+            Ключевая метрика работы — сумма ненужных расходов, которых удалось избежать клиентам.
+          </p>
+        </section>
 
         <section className="container mx-auto max-w-6xl px-4 pb-20">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
