@@ -125,6 +125,29 @@ const NewHome = () => {
           <Partners />
         </div>
 
+        <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Когда компании нужен внешний взгляд на цифровое развитие
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground">
+              К цифровому развитию стоит подходить не с покупки программы или выбора подрядчика,
+              а с понимания, какие процессы действительно требуют изменений. Сначала нужно увидеть
+              ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании работать
+              быстрее и спокойнее.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {externalViewCards.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-border bg-card p-6">
+                <Icon className="h-6 w-6 text-accent mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <MarqueeText />
         <Testimonials />
 
