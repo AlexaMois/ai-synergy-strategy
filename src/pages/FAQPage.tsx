@@ -152,7 +152,7 @@ const faqCategories: FAQCategory[] = [
 const allQuestions = faqCategories.flatMap(cat => cat.questions);
 
 const FAQPage = () => {
-  const [activeCategory, setActiveCategory] = useState("cost");
+  const [activeCategory, setActiveCategory] = useState("start");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -235,10 +235,10 @@ const FAQPage = () => {
           {/* Hero Section */}
           <section className="text-center mb-12 mt-8">
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-              Ответы на главные вопросы <span className="font-bold">об автоматизации с ИИ</span>
+              Ответы на главные вопросы <span className="font-bold">о цифровом развитии бизнеса</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Директора чаще всего боятся трёх вещей: что будет дорого, долго и «потом всё сломается, а людей переучивать». В этом разделе я честно разбираю, сколько на самом деле стоит автоматизация с ИИ, как считать окупаемость по конкретным процессам, какие риски есть и чего точно не стоит делать, чтобы не превратить проект в очередной дорогой эксперимент.
+              Подробно о форматах работы: стратегическая встреча, разработка стратегии цифрового развития, авторская программа обучения, глубокий аудит, сопровождение внедрения, разработка цифровых решений и сопровождение инструментов компании.
             </p>
           </section>
 
@@ -359,18 +359,28 @@ const FAQPage = () => {
           {/* CTA Section */}
           <section className="text-center py-12 bg-muted/30 rounded-2xl mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Не нашли ответ?
+              Остались вопросы?
             </h2>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Задайте вопрос напрямую — отвечу лично в течение дня
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+              Начните со страницы выбора формата. Она поможет понять, что сейчас подходит компании: стратегическая встреча, стратегия, аудит, обучение, внедрение, разработка или сопровождение.
             </p>
-            <Button 
-              size="lg" 
-              onClick={scrollToContact}
-              className="px-8"
-            >
-              Заказать звонок
-            </Button>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Button
+                size="lg"
+                onClick={() => navigate("/start")}
+                className="px-8"
+              >
+                Подобрать формат работы
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => navigate("/services")}
+                className="px-8"
+              >
+                Посмотреть услуги
+              </Button>
+            </div>
           </section>
         </div>
       </main>
