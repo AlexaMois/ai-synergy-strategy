@@ -777,82 +777,51 @@ const About = () => {
         <section ref={credentialsRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
-              Где мой профессионализм <span className="font-semibold">проверен фактами</span>
+              Профессиональная <span className="font-semibold">база</span>
             </h2>
             
             <div ref={statsRef as any} className="space-y-6">
               {/* Credentials Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {["Резидент IT Park Казани", "Резидент центра поддержки и развития инноваций Красноярска", "Победитель конкурса «Бизнес-Успех» (2025)", "Член Национального фонда искусственного интеллекта", "Сертификат SDS KAEO, уровень 5 (самый высокий)"].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
+                {[
+                  "Дипломированный специалист по искусственному интеллекту",
+                  "Квалификация KAEO, уровень 5",
+                  "Резидент КРИТБИ",
+                  "Резидент IT Park Казань",
+                  "Член ОПОРА России",
+                  "Участник NeuroTech Russia",
+                  "Участник федерального проекта «Бизнес Успех»",
+                  "Спикер и участник профильных мероприятий по цифровизации и ИИ",
+                  "Участник выставки «Антитеррор»",
+                  "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции",
+                ].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
                     {item}
                   </div>)}
-                
-                <div className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
-                  <strong>Выступающая на конференциях:</strong>
-                  <ul className="mt-2 text-xs space-y-1">
-                    <li>• ИИ-Саммит (2024)</li>
-                    <li>• Казанская неделя цифровизации (2024)</li>
-                    <li>• Неделя нейротехнологий России (2025)</li>
-                  </ul>
-                </div>
               </div>
 
-              {/* Projects Stats */}
+              {/* Short Resume */}
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
-                  Опыт в цифрах
+                  Краткое резюме
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={360} className="text-primary" />
+                <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                  {[
+                    { label: "Роль", value: "Инженер и архитектор цифрового развития бизнеса" },
+                    { label: "Компания", value: "Основатель агентства «НейроРешения»" },
+                    { label: "Практика", value: "3,5 года прикладных проектов в цифровизации и ИИ" },
+                    { label: "Проекты", value: "40 проектов в продакшн" },
+                    { label: "Диагностики", value: "360 разборов процессов и задач" },
+                    { label: "Отрасли", value: "10 отраслей" },
+                    { label: "География", value: "7 городов, online/offline по России" },
+                    { label: "Фокус", value: "Процессы, данные, управляемость, цифровые инструменты" },
+                    { label: "Ключевая метрика", value: "Сумма ненужных расходов, которых удалось избежать клиентам" },
+                  ].map((row) => (
+                    <div key={row.label} className="p-4 bg-muted rounded-xl">
+                      <dt className="text-xs font-medium text-primary uppercase tracking-wide mb-1">{row.label}</dt>
+                      <dd className="text-base text-foreground leading-relaxed">{row.value}</dd>
                     </div>
-                    <div className="text-sm text-foreground">диагностик</div>
-                  </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={40} className="text-primary" />
-                    </div>
-                    <div className="text-sm text-foreground">проектов в продакшн</div>
-                  </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={10} className="text-primary" />
-                    </div>
-                    <div className="text-sm text-foreground">отраслей</div>
-                  </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={3.5} decimals={1} className="text-primary" />
-                    </div>
-                    <div className="text-sm text-foreground">года практики</div>
-                  </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={80} suffix="%" className="text-primary" />
-                    </div>
-                    <div className="text-sm text-foreground">клиентов приходят по рекомендации</div>
-                  </div>
-                  <div className="text-center p-4 bg-muted rounded-xl">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      <AnimatedNumber value={85} suffix="%" className="text-primary" />
-                    </div>
-                    <div className="text-sm text-foreground">клиентов возвращаются</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* ROI Highlight */}
-              <div className="bg-primary/10 rounded-2xl p-8 text-center border border-primary/20">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-3">
-                  ROI ДОСТИГАЕТСЯ
-                </div>
-                <div className="text-lg md:text-xl font-semibold text-foreground mb-2">
-                  ЗА 3–6 МЕСЯЦЕВ
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  Подтверждено проектами и метриками клиентов
-                </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </div>
