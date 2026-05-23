@@ -591,11 +591,11 @@ const About = () => {
         
 
         {/* Quote Block */}
-        <section ref={quoteRef} className="py-14 md:py-20 bg-[#FAFBFC]">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <div className={`bg-gradient-to-br from-primary/5 to-primary/10 rounded-[24px] p-8 md:p-12 border-l-4 border-primary ${quoteAnimation('animate-fade-in-up')}`}>
+        <section ref={quoteRef} className="py-14 md:py-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-5xl">
+            <div className={`rounded-[32px] md:rounded-[40px] bg-foreground text-background px-6 md:px-12 lg:px-16 py-12 md:py-16 shadow-plate ring-1 ring-foreground/5 ${quoteAnimation('animate-fade-in-up')}`}>
               <blockquote>
-                <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed">
                   ИИ усиливает то, что уже есть в компании: порядок — усиливает порядок, перегруз — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
                 </p>
               </blockquote>
