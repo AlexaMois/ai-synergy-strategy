@@ -113,7 +113,7 @@ const ServicesPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       Услуги · НейроРешения
                     </p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       Услуги по{" "}
                       <span className="font-iriska font-normal italic text-accent">
                         цифровому развитию
@@ -315,7 +315,7 @@ const ServicesPage = () => {
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
                     Процесс
                   </p>
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-4">
+                  <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.05] mb-4">
                     <span className="text-background">Как</span>{" "}
                     <span className="font-iriska font-normal italic text-accent">проходит работа</span>
                   </h2>
@@ -362,7 +362,7 @@ const ServicesPage = () => {
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
               <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
+                <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
                   Начните с{" "}
                   <span className="font-iriska font-normal italic text-white">подходящего формата</span>
                 </h2>
