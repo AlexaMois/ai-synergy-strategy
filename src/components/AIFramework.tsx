@@ -71,7 +71,7 @@ const AIFramework = () => {
         }`}
       >
         <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Мой метод</p>
-        <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
           Четыре элемента{" "}
           <span className="font-iriska font-normal italic text-accent">рабочего внедрения</span>
         </h2>

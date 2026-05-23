@@ -224,7 +224,7 @@ const NewHome = () => {
           <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden mb-10 shadow-plate ring-1 ring-foreground/5">
             <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 py-10 md:py-14">
               <div className="md:col-span-7">
-                <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
                   Когда нужен{" "}
                   <span className="font-iriska font-normal italic text-foreground/80">
                     внешний взгляд
@@ -273,7 +273,7 @@ const NewHome = () => {
         {/* С ЧЕГО НАЧАТЬ — pastel-плашки с разными фонами, средняя featured */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
               С чего можно{" "}
               <span className="font-iriska font-normal italic text-accent">начать</span>
             </h2>
@@ -410,7 +410,7 @@ const NewHome = () => {
         <section className="bg-background py-16 md:py-24 mt-16 md:mt-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
-              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
                 Результаты{" "}
                 <span className="font-iriska font-normal italic text-accent">клиентов</span>
               </h2>
@@ -529,7 +529,7 @@ const NewHome = () => {
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Кому помогаем
                 </p>
-                <h2 className="text-4xl md:text-6xl font-bold mb-5 leading-[1.05] text-background">
+                <h2 className="text-3xl md:text-5xl font-bold mb-5 leading-[1.05] text-background">
                   Компании от 5 до{" "}
                   <span className="font-iriska font-normal italic text-accent">300 сотрудников</span>
                 </h2>

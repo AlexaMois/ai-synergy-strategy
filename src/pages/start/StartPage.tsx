@@ -209,7 +209,7 @@ const StartPage = () => {
           {/* Formats — сетка плашек в стиле главной */}
           <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
             <div className="max-w-3xl mb-12">
-              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
                 Выберите{" "}
                 <span className="font-iriska font-normal italic text-accent">формат</span>
               </h2>

@@ -261,7 +261,7 @@ const About = () => {
               <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                 Кто я
               </p>
-              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
                 Инженер{" "}
                 <span className="font-iriska font-normal italic text-accent">и архитектор</span>{" "}
                 цифрового развития
@@ -289,7 +289,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
               Моя главная задача
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] max-w-4xl">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] max-w-4xl">
               Перевести цифровизацию в{" "}
               <span className="font-iriska font-normal italic text-foreground/80">
                 управленческую систему
@@ -356,7 +356,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Мой путь
             </p>
-            <h2 className={`text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5 ${journeyAnimation('animate-fade-in-up')}`}>
+            <h2 className={`text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5 ${journeyAnimation('animate-fade-in-up')}`}>
               Опыт, который{" "}
               <span className="font-iriska font-normal italic text-accent">сформировал подход</span>
             </h2>
@@ -641,7 +641,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Мои принципы
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
               Что{" "}
               <span className="font-iriska font-normal italic text-accent">защищает бюджет</span>{" "}
               клиента
@@ -701,7 +701,7 @@ const About = () => {
                 <p className="text-sm uppercase tracking-widest text-white/90 font-semibold mb-5">
                   Агентство
                 </p>
-                <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-6">
                   Что такое{" "}
                   <span className="font-iriska font-normal italic text-white">
                     «НейроРешения»
@@ -765,7 +765,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Регалии и опыт
             </p>
-            <h2 className={`text-4xl md:text-6xl font-bold text-foreground leading-[1.05] ${credentialsAnimation('animate-fade-in-up')}`}>
+            <h2 className={`text-3xl md:text-5xl font-bold text-foreground leading-[1.05] ${credentialsAnimation('animate-fade-in-up')}`}>
               Профессиональная{" "}
               <span className="font-iriska font-normal italic text-accent">база</span>
             </h2>
@@ -903,7 +903,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Публичная деятельность
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
               Выступления{" "}
               <span className="font-iriska font-normal italic text-accent">и форумы</span>
             </h2>
@@ -934,7 +934,7 @@ const About = () => {
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Энергия и устойчивость
                 </p>
-                <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
                   Часть{" "}
                   <span className="font-iriska font-normal italic text-accent">профессиональной</span>{" "}
                   устойчивости
