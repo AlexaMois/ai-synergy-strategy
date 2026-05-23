@@ -217,9 +217,10 @@ const About = () => {
       
         <main>
         {/* Hero Section */}
-        <section ref={heroRef} className="pt-32 pb-10 md:pb-16 lg:pb-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <section ref={heroRef} className="pt-28 md:pt-32 pb-10 md:pb-16 lg:pb-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
                 <h1 className="mb-4 leading-tight">
                   Александра Моисеева
@@ -251,9 +252,10 @@ const About = () => {
                 </div>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
-                <div className="relative w-full max-w-md">
-                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[24px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
+                <div className="relative w-full max-w-md rounded-[28px] overflow-hidden bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-2 md:p-3">
+                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[22px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
                 </div>
+              </div>
               </div>
             </div>
           </div>
