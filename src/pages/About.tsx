@@ -200,7 +200,7 @@ const About = () => {
         <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
         <meta property="og:title" content="Александра Моисеева — инженер и архитектор цифрового развития бизнеса" />
-        <meta property="og:description" content="Александра Моисеева, основатель агентства «НейроРешения». Цифровое развитие бизнеса, стратегия, аудит, внедрение, архитектура процессов и цифровые инструменты." />
+        <meta property="og:description" content="Страница о подходе, опыте, профессиональной базе и принципах работы Александры Моисеевой." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
