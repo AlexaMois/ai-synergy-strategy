@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Hand, Eye, Layers, Compass as CompassIcon, Quote } from "lucide-react";
+import { ArrowRight, Hand, Eye, Layers, Compass as CompassIcon, Quote, Phone, Send } from "lucide-react";
+import { openCallbackModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -117,10 +118,7 @@ const NewHome = () => {
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
                 <div className="md:col-span-7 pb-10 md:pb-20">
                   <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-background mb-6">
-                    Александра{" "}
-                    <span className="font-iriska font-normal italic text-background/95">
-                      Моисеева
-                    </span>
+                    Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">
                     Эксперт и архитектор цифрового развития бизнеса
@@ -576,9 +574,32 @@ const NewHome = () => {
                     актуальнее: стратегическая встреча, стратегия, аудит, обучение, внедрение или
                     сопровождение.
                   </p>
-                  <PillButton to="/start" variant="dark">
-                    Подобрать формат работы
-                  </PillButton>
+                  <div className="flex flex-wrap gap-3">
+                    <PillButton to="/start" variant="dark">
+                      Подобрать формат работы
+                    </PillButton>
+                    <button
+                      type="button"
+                      onClick={() => openCallbackModal()}
+                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
+                    >
+                      <span>Заказать звонок</span>
+                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
+                        <Phone className="h-4 w-4 md:h-5 md:w-5" />
+                      </span>
+                    </button>
+                    <a
+                      href="https://t.me/aleksamois"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-transparent text-foreground border border-foreground/30 hover:bg-foreground/5"
+                    >
+                      <span>Написать в Telegram</span>
+                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-foreground text-background group-hover:translate-x-0.5 transition-transform">
+                        <Send className="h-4 w-4 md:h-5 md:w-5" />
+                      </span>
+                    </a>
+                  </div>
                 </div>
                 <div className="md:col-span-5 flex justify-center md:justify-end">
                   <img

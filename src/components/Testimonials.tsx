@@ -132,6 +132,19 @@ const Testimonials = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [shuffledReviews] = useState(() => shuffleReviewsByType(reviews));
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  useEffect(() => {
+    if (!api) return;
+    const update = () => setCurrentIndex(api.selectedScrollSnap() + 1);
+    update();
+    api.on("select", update);
+    api.on("reInit", update);
+    return () => {
+      api.off("select", update);
+      api.off("reInit", update);
+    };
+  }, [api]);
   
   const autoScrollPlugin = useRef(
     AutoScroll({
@@ -311,6 +324,10 @@ const Testimonials = () => {
               ))}
             </CarouselContent>
           </Carousel>
+        </div>
+
+        <div className="mt-6 text-center text-sm text-muted-foreground tabular-nums">
+          {currentIndex} из {shuffledReviews.length}
         </div>
       </div>
 
