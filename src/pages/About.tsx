@@ -16,12 +16,13 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState, useEffect } from "react";
-import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink } from "lucide-react";
+import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink, Send } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
+import { openCallbackModal } from "@/components/CallbackModal";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import awardDiploma from "@/assets/about/award-diploma.jpg";
 import speakingPodium from "@/assets/about/speaking-podium.jpg";
@@ -177,12 +178,12 @@ const About = () => {
   });
   return <PageTransition>
       <Helmet>
-        <title>Александра Моисеева — эксперт и архитектор цифрового развития бизнеса</title>
-        <meta name="description" content="Помогаю собственникам и руководителям выстраивать цифровое развитие бизнеса: разбирать процессы, находить ручную нагрузку, выбирать приоритеты, внедрять цифровые инструменты и сопровождать изменения до рабочего результата." />
+        <title>Александра Моисеева — инженер и архитектор цифрового развития бизнеса</title>
+        <meta name="description" content="Александра Моисеева, основатель агентства «НейроРешения». Цифровое развитие бизнеса, стратегия, аудит, внедрение, архитектура процессов и цифровые инструменты." />
         <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
-        <meta property="og:title" content="Александра Моисеева — эксперт и архитектор цифрового развития бизнеса" />
-        <meta property="og:description" content="Помогаю собственникам и руководителям выстраивать цифровое развитие бизнеса: разбирать процессы, находить ручную нагрузку, выбирать приоритеты, внедрять цифровые инструменты и сопровождать изменения до рабочего результата." />
+        <meta property="og:title" content="Александра Моисеева — инженер и архитектор цифрового развития бизнеса" />
+        <meta property="og:description" content="Александра Моисеева, основатель агентства «НейроРешения». Цифровое развитие бизнеса, стратегия, аудит, внедрение, архитектура процессов и цифровые инструменты." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -205,17 +206,33 @@ const About = () => {
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
                 <h1 className="mb-4 leading-tight">
-                  Александра Моисеева — эксперт и архитектор цифрового развития бизнеса
+                  Александра Моисеева
                 </h1>
                 <p className="text-xl md:text-2xl text-primary font-medium mb-6">
-                  Эксперт и архитектор цифрового развития бизнеса
+                  Инженер и архитектор цифрового развития бизнеса
                 </p>
-                <p className="text-lg text-foreground leading-relaxed mb-8">
-                  Я помогаю собственникам и руководителям выстраивать цифровое развитие бизнеса: разбирать процессы, находить ручную нагрузку, выбирать приоритеты, внедрять цифровые инструменты и сопровождать изменения до рабочего результата.
-                </p>
-                <Button size="lg" onClick={scrollToContact} className="w-full sm:w-auto">
-                  Заказать звонок
-                </Button>
+                <div className="text-lg text-foreground leading-relaxed mb-8 space-y-4">
+                  <p>
+                    Я помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
+                  </p>
+                  <p>
+                    Основатель агентства «НейроРешения». Работаю с компаниями, где есть ручная нагрузка, разрозненные процессы, документы, заявки, таблицы, отчёты и управленческие задачи, которые требуют цифрового порядка.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                  <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
+                    Подобрать формат работы
+                  </Button>
+                  <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+                    Посмотреть услуги
+                  </Button>
+                  <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+                    <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
+                      <Send className="w-4 h-4 mr-2" />
+                      Написать в Telegram
+                    </a>
+                  </Button>
+                </div>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
                 <div className="relative w-full max-w-md">
@@ -226,31 +243,38 @@ const About = () => {
           </div>
         </section>
 
-        {/* What is NeyroResheniya */}
+        {/* Кто я */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-4 max-w-5xl">
             <div className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-10">
               <h2 className="section-title mb-5">
-                Что такое <span className="font-semibold">«НейроРешения»</span>
+                <span className="font-semibold">Кто я</span>
               </h2>
-              <p className="text-lg text-foreground leading-relaxed mb-6">
-                «НейроРешения» — агентство Александры Моисеевой по цифровому развитию бизнеса. Это методология и система реализации проектов: от первого разбора процессов до стратегии, аудита, обучения, внедрения, разработки и сопровождения цифровых инструментов.
+              <div className="space-y-4 text-lg text-foreground leading-relaxed">
+                <p>
+                  Я — Александра Моисеева, инженер и архитектор цифрового развития бизнеса, основатель агентства «НейроРешения».
+                </p>
+                <p>
+                  Моя работа находится на стыке управления, процессов, данных и цифровых инструментов. Я помогаю собственникам видеть, какие процессы требуют внимания первыми, какой инструмент даст измеримую пользу, какой бюджет закладывать и как довести изменения до рабочего результата.
+                </p>
+                <p>
+                  Для меня цифровизация — это управленческая задача. Сначала важны смысл, экономика, люди, процессы и данные. Затем подключаются технологии.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Моя главная задача */}
+        <section className="py-6 md:py-10">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="bg-muted rounded-2xl border border-border p-6 md:p-10">
+              <h2 className="section-title mb-4">
+                Моя главная <span className="font-semibold">задача</span>
+              </h2>
+              <p className="text-lg text-foreground leading-relaxed">
+                Я помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
               </p>
-              <ul className="space-y-2 text-base md:text-lg text-foreground">
-                {[
-                  "стратегия цифрового развития",
-                  "глубокий аудит компании для цифровизации",
-                  "обучение команды работе с цифровыми инструментами",
-                  "сопровождение цифрового внедрения",
-                  "проектирование и разработка решений под бизнес-процессы",
-                  "поддержка и развитие цифровых инструментов компании",
-                ].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="text-primary flex-shrink-0">—</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
