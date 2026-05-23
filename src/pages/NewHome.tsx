@@ -19,11 +19,18 @@ import routeSketch from "@/assets/sketches/route-sketch.png";
 import chatSketch from "@/assets/sketches/chat-sketch.png";
 
 const stats = [
+const stats: Array<{
+  value: number;
+  suffix: string;
+  label: string;
+  sub?: string;
+  decimals?: number;
+}> = [
   { value: 360, suffix: "", label: "диагностик" },
-  { value: 40, suffix: "", label: "проектов в продакшн" },
-  { value: 7, suffix: "", label: "городов" },
+  { value: 40, suffix: "", label: "проектов в продакшн", sub: "решения, которые дошли до рабочего применения" },
+  { value: 7, suffix: "", label: "городов", sub: "работаю онлайн по России" },
   { value: 10, suffix: "", label: "отраслей" },
-  { value: 3.5, suffix: "", label: "года практики", decimals: 1 },
+  { value: 3.5, suffix: "", label: "года практики", decimals: 1, sub: "прикладные проекты в бизнесе" },
   { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
   { value: 85, suffix: "%", label: "клиентов возвращаются" },
   { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
@@ -166,20 +173,25 @@ const NewHome = () => {
                 <div className="font-iriska font-bold text-accent leading-none mb-4 text-[7rem] md:text-[12rem]">
                   <AnimatedNumber value={360} suffix="" />
                 </div>
-                <p className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                  диагностик за 3,5 года практики
+                <p className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
+                  диагностик
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md">
-                  Ключевая метрика работы — сумма ненужных расходов, которых удалось избежать клиентам.
+                  Разборы процессов, задач и точек потерь — за 3,5 года практики.
                 </p>
               </div>
               <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
-                {stats.slice(1).map(({ value, suffix, label, decimals }) => (
+                {stats.slice(1).map(({ value, suffix, label, decimals, sub }) => (
                   <div key={label} className="bg-card p-5 md:p-7">
                     <div className="text-2xl md:text-4xl font-bold text-foreground mb-1">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
                     <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
+                    {sub && (
+                      <p className="mt-1 text-[11px] md:text-xs text-muted-foreground/80 leading-snug">
+                        {sub}
+                      </p>
+                    )}
                   </div>
                 ))}
                 <div className="bg-accent text-white p-5 md:p-7 flex flex-col justify-center">
@@ -532,11 +544,11 @@ const NewHome = () => {
                   штатной IT-команды, где цифровые изменения нужно внедрять поэтапно — с понятной
                   пользой и без перегруза сотрудников.
                 </p>
-                <div className="flex flex-wrap gap-3 mt-8">
+                <div className="flex flex-wrap gap-2 md:gap-3 mt-8">
                   {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s) => (
                     <span
                       key={s}
-                      className="text-base md:text-lg font-semibold px-4 py-2 rounded-full border border-background/20 text-background hover:border-accent hover:text-accent transition-colors"
+                      className="inline-flex items-center text-sm md:text-base font-semibold px-3.5 py-1.5 md:px-4 md:py-2 rounded-full bg-background/10 border border-background/20 text-background whitespace-nowrap hover:bg-accent hover:border-accent hover:text-accent-foreground transition-colors"
                     >
                       {s}
                     </span>
