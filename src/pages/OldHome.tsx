@@ -87,7 +87,7 @@ const OldHome = () => {
     "founder": {
       "@type": "Person",
       "name": "Александра Моисеева",
-      "jobTitle": "Независимый стратег и инженер по ИИ",
+      "jobTitle": "Инженер и архитектор цифрового развития бизнеса",
       "knowsAbout": ["Искусственный интеллект", "Автоматизация бизнеса", "Machine Learning", "Нейросети"],
       "memberOf": [
         { "@type": "Organization", "name": "IT-Park" }
