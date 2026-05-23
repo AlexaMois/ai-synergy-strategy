@@ -859,7 +859,7 @@ const About = () => {
               Энергия <span className="font-semibold">и устойчивость</span>
             </h2>
             
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-[24px] p-6 md:p-8 text-center">
+            <div className="bg-surface-sand rounded-[28px] ring-1 ring-foreground/5 shadow-card p-8 md:p-12 text-center">
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
               <div className="space-y-4 text-base md:text-lg text-text-body leading-relaxed">
                 <p>
@@ -874,26 +874,28 @@ const About = () => {
         </section>
 
         {/* Final Transition CTA */}
-        <section className="py-14 md:py-20 bg-[#FAFBFC]">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h2 className="section-title mb-5">
+        <section className="py-14 md:py-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+            <h2 className="section-title mb-5 text-white">
               Начните с понятного <span className="font-semibold">формата работы</span>
             </h2>
-            <p className="text-base md:text-lg text-foreground leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
               Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
               <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
                 Подобрать формат работы
               </Button>
-              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
                 Посмотреть услуги
               </Button>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
                 <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
                   Написать в Telegram
                 </a>
               </Button>
+            </div>
             </div>
           </div>
         </section>
