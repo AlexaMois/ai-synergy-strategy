@@ -19,10 +19,13 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   // Services
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
   { path: '/services/automation', priority: '0.9', changefreq: 'monthly' },
-  { path: '/services/diagnostics', priority: '0.8', changefreq: 'monthly' },
-  { path: '/services/architecture', priority: '0.8', changefreq: 'monthly' },
-  { path: '/services/support', priority: '0.8', changefreq: 'monthly' },
-  { path: '/services/add-ons', priority: '0.7', changefreq: 'monthly' },
+  { path: '/services/owner-digital-session', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/digital-development-strategy', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/digital-audit', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/digital-tools-program', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/implementation-support', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/digital-solution-design', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/digital-tools-support', priority: '0.8', changefreq: 'monthly' },
 
   // Products
   { path: '/products', priority: '0.8', changefreq: 'monthly' },
@@ -31,6 +34,8 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
 
   // Cases
   { path: '/cases', priority: '0.8', changefreq: 'weekly' },
+  { path: '/cases/aktransservice', priority: '0.7', changefreq: 'monthly' },
+  { path: '/cases/production-doc-search', priority: '0.7', changefreq: 'monthly' },
   { path: '/cases/kraypotrebsoyuz', priority: '0.7', changefreq: 'monthly' },
   { path: '/cases/cargo-express', priority: '0.7', changefreq: 'monthly' },
 
