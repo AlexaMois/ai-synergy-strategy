@@ -471,8 +471,11 @@ const NewHome = () => {
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm font-semibold text-foreground/80">Единая система заявок</span>
-                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
+                  <div>
+                    <div className="text-2xl font-bold text-accent leading-none">0% потерь заявок</div>
+                    <p className="text-xs text-muted-foreground mt-1">9–12 часов в неделю экономии на обработке заявок</p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
                 </div>
               </Link>
             </div>
