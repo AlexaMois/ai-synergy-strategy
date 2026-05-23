@@ -4,153 +4,117 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 
 const TrustAndPosition = () => {
-  const {
-    ref,
-    getAnimationClass,
-    getStaggeredClass
-  } = useMobileAnimations({
-    threshold: 0.2
-  });
+  const { ref, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
+  const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
+  const count12 = useCountUp({ end: 12, duration: 1800, isVisible: counterVisible });
 
-  // Counter animation for ROI numbers
-  const {
-    ref: counterRef,
-    isVisible: counterVisible
-  } = useIntersectionObserver({
-    threshold: 0.5
-  });
-  const count200 = useCountUp({
-    end: 200,
-    duration: 1800,
-    isVisible: counterVisible
-  });
-  const count400 = useCountUp({
-    end: 400,
-    duration: 1800,
-    isVisible: counterVisible
-  });
-  const count12 = useCountUp({
-    end: 12,
-    duration: 1800,
-    isVisible: counterVisible
-  });
+  const trust = [
+    {
+      title: "Реальная польза",
+      text: "Показываю, где цифровые инструменты дают измеримый эффект, а где создают лишние расходы. Смотрю на задачу через деньги, время, процессы и управляемость.",
+    },
+    {
+      title: "Профессиональная база",
+      text: "Дипломированный специалист по искусственному интеллекту, член ОПОРА России, резидент IT Park Казань, резидент КРИТБИ.",
+    },
+    {
+      title: "Проверенная эффективность",
+      text: "Ключевая метрика моей работы — сумма ненужных расходов, которых удалось избежать клиентам.",
+    },
+  ];
+
+  const position = [
+    { Icon: Target, title: "ИИ — инструмент управления", text: "ИИ усиливает процессы, помогает быстрее работать с данными, документами и решениями, когда у компании есть понятная задача и ответственность за результат." },
+    { Icon: TrendingUp, title: "Инженерный подход", text: "Сначала задача, аудит, архитектура и экономика. Затем технологии, внедрение и конкретные решения под рабочие процессы компании." },
+    { Icon: MessageCircle, title: "Честность решения", text: "Я прямо показываю, где инструмент даст пользу, где нужна подготовка процессов, а где выгоднее начать с аудита, стратегии или обучения команды. Я инженер по внедрению, а не продавец технологий." },
+    { Icon: Search, title: "Индивидуальность решений", text: "Подбираю решения под контекст компании: отрасль, команду, процессы, данные, бюджет, сроки и реальную готовность к изменениям." },
+  ];
 
   return (
-    <section ref={ref} className="relative py-14 md:py-20 lg:py-24 overflow-hidden bg-background">
-      <div className="container mx-auto">
-        {/* Общий контейнер с тенью */}
-        <div className={`max-w-7xl mx-auto bg-card rounded-[32px] p-6 sm:p-8 md:p-12 lg:p-14 ring-1 ring-foreground/5 shadow-card ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12">
-            {/* Левая колонка: Почему мне доверяют */}
-            <div>
-              <div className="mb-8">
-                <h2 className="section-title mb-3">
-                  Почему мне доверяют: <span className="font-semibold">реальный опыт и честная позиция</span>
-                </h2>
-                <div className="w-full h-px bg-border"></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
-                {/* Карточка 1 */}
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(0)}`}>
-                  <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    Реальная польза
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Показываю, где цифровые инструменты дают измеримый эффект, а где создают лишние расходы. Смотрю на задачу через деньги, время, процессы и управляемость.
-                  </p>
-                </div>
-                
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(1)}`}>
-                  <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционной работе
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Понимаю ответственность руководителя, цену ошибки, работу команды, давление сроков и влияние решений на экономику компании.
-                  </p>
-                </div>
-                
-                {/* Карточка 3 */}
-                <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(2)}`}>
-                  <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    Профессиональная база
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Дипломированный специалист по искусственному интеллекту, член ОПОРА России, резидент IT Park Казань, резидент КРИТБИ.
-                  </p>
-                </div>
-                
-                {/* Карточка 4 */}
-                <div ref={counterRef as any} className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(3)}`}>
-                  <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    Проверенная эффективность
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Ключевая метрика моей работы — сумма ненужных расходов, которых удалось избежать клиентам.
-                  </p>
-                </div>
+    <section ref={ref} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+      <div
+        className={`grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 ${getAnimationClass(
+          "animate-fade-in-up",
+          "animate-mobile-slide-up"
+        )}`}
+      >
+        {/* ЛЕВАЯ ПЛАШКА — тёмная с гигантским 12+ */}
+        <div className="lg:col-span-7 rounded-[32px] md:rounded-[40px] bg-foreground text-background overflow-hidden shadow-plate ring-1 ring-foreground/5 p-8 md:p-12 lg:p-14 flex flex-col">
+          <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
+            Почему мне доверяют
+          </p>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-10">
+            Реальный опыт{" "}
+            <span className="font-iriska font-normal italic text-accent">и честная позиция</span>
+          </h2>
+
+          {/* Hero-metric */}
+          <div ref={counterRef as any} className="grid md:grid-cols-12 gap-6 items-end mb-10 pb-10 border-b border-background/15">
+            <div className="md:col-span-5">
+              <div className="font-iriska font-bold text-accent leading-none text-[7rem] md:text-[10rem]">
+                {count12}<span className="text-5xl md:text-7xl align-top">+</span>
               </div>
             </div>
-
-            {/* Правая колонка: Моя позиция */}
-            <div>
-              <div className="mb-8">
-                <h2 className="section-title mb-3">
-                  Моя позиция: <span className="font-semibold">честный подход</span>
-                </h2>
-                <div className="w-full h-px bg-border"></div>
-              </div>
-
-              <div className="space-y-4">
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(4)}`}>
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
-                    <Target className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      <span className="font-semibold">ИИ — инструмент управления</span><br />
-                      ИИ усиливает процессы, помогает быстрее работать с данными, документами и решениями, когда у компании есть понятная задача и ответственность за результат.
-                    </p>
-                  </div>
-                </div>
-
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(5)}`}>
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
-                    <TrendingUp className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      <span className="font-semibold">Инженерный подход</span><br />
-                      Сначала задача, аудит, архитектура и экономика. Затем технологии, внедрение и конкретные решения под рабочие процессы компании.
-                    </p>
-                  </div>
-                </div>
-
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(6)}`}>
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
-                    <MessageCircle className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      <span className="font-semibold">Честность решения</span><br />
-                      Я прямо показываю, где инструмент даст пользу, где нужна подготовка процессов, а где выгоднее начать с аудита, стратегии или обучения команды. Я инженер по внедрению, а не продавец технологий.
-                    </p>
-                  </div>
-                </div>
-
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(7)}`}>
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
-                    <Search className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      <span className="font-semibold">Индивидуальность решений</span><br />
-                      Подбираю решения под контекст компании: отрасль, команду, процессы, данные, бюджет, сроки и реальную готовность к изменениям.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="md:col-span-7">
+              <p className="text-xl md:text-2xl font-semibold text-background leading-snug mb-2">
+                лет в управлении и операционной работе
+              </p>
+              <p className="text-sm md:text-base text-background/70 leading-relaxed">
+                Понимаю ответственность руководителя, цену ошибки, работу команды, давление сроков и влияние решений на экономику компании.
+              </p>
             </div>
+          </div>
+
+          {/* Три мини-блока в столбик с разделителями */}
+          <div className="divide-y divide-background/15">
+            {trust.map((t, i) => (
+              <div key={t.title} className="grid md:grid-cols-12 gap-4 py-5 first:pt-0">
+                <div className="md:col-span-1 font-iriska text-3xl md:text-4xl font-bold text-accent tabular-nums leading-none">
+                  0{i + 2}
+                </div>
+                <div className="md:col-span-4">
+                  <p className="text-base md:text-lg font-semibold text-background leading-snug">
+                    {t.title}
+                  </p>
+                </div>
+                <div className="md:col-span-7">
+                  <p className="text-sm md:text-base text-background/75 leading-relaxed">{t.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ПРАВАЯ ПЛАШКА — светлая лавандовая, 4 принципа */}
+        <div className="lg:col-span-5 rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden shadow-plate ring-1 ring-foreground/5 p-8 md:p-12 flex flex-col">
+          <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
+            Моя позиция
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-8">
+            Честный{" "}
+            <span className="font-iriska font-normal italic text-accent">подход</span>
+          </h2>
+
+          <div className="space-y-3 flex-1">
+            {position.map((p, i) => (
+              <div
+                key={p.title}
+                className="group flex items-start gap-4 p-5 rounded-2xl bg-background/55 backdrop-blur-md ring-1 ring-foreground/5 hover:bg-background hover:shadow-card transition-all duration-300"
+              >
+                <div className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center bg-accent text-white shadow-sm">
+                  <p.Icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-base md:text-lg font-semibold text-foreground leading-snug mb-1">
+                    <span className="font-iriska italic font-normal text-accent text-sm mr-2 align-middle">0{i + 1}</span>
+                    {p.title}
+                  </p>
+                  <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
+                    {p.text}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
