@@ -38,7 +38,7 @@ const WhoIAm = () => {
           className={`rounded-2xl p-4 sm:p-6 flex items-center justify-center shadow-soft transition-all duration-700 delay-75 border border-border hover:shadow-card ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} bg-muted`}
         >
           <p className="text-lg leading-relaxed text-foreground font-normal">
-            Я инженер по внедрению ИИ, а не продавец технологий.<br/><br/>
+            Мой приоритет — польза для процессов компании.<br/><br/>
             15 лет — в управлении, финансах, операционке.<br/><br/>
             Знаю, как устроены процессы изнутри — не по презентациям.
           </p>
