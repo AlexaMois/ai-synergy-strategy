@@ -16,28 +16,28 @@ const AIFramework = () => {
       title: "Бизнес: цель и деньги на выходе",
       question: "Какая задача влияет на деньги, скорость, контроль или качество работы? Сколько стоит ошибка, задержка или ручное действие?",
       answer: "Считаю экономику проекта и фиксирую цель до выбора инструмента. Компания понимает, какой эффект ждёт и по каким метрикам его проверять.",
-      color: "#F6F3EB"
+      bg: "bg-surface-sand"
     },
     {
       number: "02",
       title: "Технологии: безопасность и архитектура",
       question: "Какие данные можно передавать во внешние сервисы, а какие требуют закрытого контура, российского хранения или отдельной схемы доступа?",
       answer: "Подбираю технологический стек под реальность компании: облако, российские сервисы, локальные решения, защищённые каналы, разграничение прав и интеграции.",
-      color: "#D4EDFC"
+      bg: "bg-surface-mint"
     },
     {
       number: "03",
       title: "Процессы: порядок перед внедрением",
       question: "Кто вводит данные, кто проверяет, кто утверждает, где хранятся документы и как сейчас проходит задача?",
       answer: "Выстраиваю логику процесса: роли, статусы, данные, сценарии, контрольные точки. После этого цифровой инструмент встраивается в рабочую систему компании.",
-      color: "#DFF0F0"
+      bg: "bg-surface-blush"
     },
     {
       number: "04",
       title: "Люди: союзники изменений",
       question: "Кто будет пользоваться инструментом каждый день? Кто влияет на принятие нового порядка работы?",
       answer: "Готовлю команду к внедрению: объясняю пользу, показываю сценарии, собираю обратную связь и помогаю закрепить новый способ работы.",
-      color: "#E8E0F5"
+      bg: "bg-surface-lavender"
     }
   ];
 
@@ -64,8 +64,7 @@ const AIFramework = () => {
           {sectors.map((sector, index) => (
             <div 
               key={index}
-              className="p-6 md:p-8 rounded-[24px] ring-1 ring-foreground/5 shadow-card hover:shadow-elevated transition-shadow duration-200"
-              style={{ backgroundColor: sector.color }}
+              className={`${sector.bg} p-6 md:p-8 rounded-[24px] ring-1 ring-foreground/5 shadow-card hover:shadow-elevated transition-shadow duration-200`}
             >
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-xl font-medium text-primary leading-none">
