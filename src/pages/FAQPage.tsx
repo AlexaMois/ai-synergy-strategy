@@ -243,15 +243,15 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>FAQ по автоматизации бизнеса с ИИ | Александра Моисеева</title>
+        <title>FAQ по цифровому развитию бизнеса — Александра Моисеева, НейроРешения</title>
         <meta 
           name="description" 
-          content="Отвечаю на главные вопросы директоров: сколько стоит автоматизация с ИИ, когда окупится, какие риски и чего точно не стоит делать." 
+          content="Ответы на частые вопросы о стратегии цифрового развития, аудите, обучении, внедрении, разработке и сопровождении цифровых инструментов для бизнеса." 
         />
-        <meta name="keywords" content="стоимость автоматизации бизнеса, риски автоматизации бизнес процессов, окупаемость ИИ, FAQ искусственный интеллект для бизнеса" />
+        <meta name="keywords" content="FAQ цифровое развитие бизнеса, стоимость цифровизации, сроки внедрения, безопасность данных, обучение цифровым инструментам, аудит компании" />
         <link rel="canonical" href="https://aleksamois.ru/faq" />
-        <meta property="og:title" content="FAQ по автоматизации бизнеса с ИИ | Александра Моисеева" />
-        <meta property="og:description" content="Отвечаю на главные вопросы директоров: сколько стоит автоматизация с ИИ, когда окупится, какие риски есть и чего точно не стоит делать." />
+        <meta property="og:title" content="FAQ по цифровому развитию бизнеса — Александра Моисеева, НейроРешения" />
+        <meta property="og:description" content="Ответы на частые вопросы о стратегии цифрового развития, аудите, обучении, внедрении, разработке и сопровождении цифровых инструментов для бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/faq" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -276,10 +276,10 @@ const FAQPage = () => {
           {/* Hero Section */}
           <section className="text-center mb-12 mt-8">
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-              Ответы на главные вопросы <span className="font-bold">о цифровом развитии бизнеса</span>
+              <span className="font-bold">Частые вопросы</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Подробно о форматах работы: стратегическая встреча, разработка стратегии цифрового развития, авторская программа обучения, глубокий аудит, сопровождение внедрения, разработка цифровых решений и сопровождение инструментов компании.
+              Ответы на частые вопросы о стратегии цифрового развития, аудите, обучении, внедрении, разработке и сопровождении цифровых инструментов для бизнеса.
             </p>
           </section>
 
@@ -365,7 +365,16 @@ const FAQPage = () => {
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground pb-5">
-                          {item.question.answer}
+                          <p>{item.question.answer}</p>
+                          {item.question.links && item.question.links.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-3">
+                              {item.question.links.map((l) => (
+                                <Link key={l.href} to={l.href} className="text-primary hover:underline font-medium">
+                                  {l.label} →
+                                </Link>
+                              ))}
+                            </div>
+                          )}
                         </AccordionContent>
                       </AccordionItem>
                     );
@@ -388,7 +397,16 @@ const FAQPage = () => {
                         </span>
                       </AccordionTrigger>
                       <AccordionContent className="text-muted-foreground pb-5">
-                        {item.answer}
+                        <p>{item.answer}</p>
+                        {item.links && item.links.length > 0 && (
+                          <div className="mt-3 flex flex-wrap gap-3">
+                            {item.links.map((l) => (
+                              <Link key={l.href} to={l.href} className="text-primary hover:underline font-medium">
+                                {l.label} →
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
