@@ -62,18 +62,20 @@ const PillButton = ({
 }: {
   to: string;
   children: React.ReactNode;
-  variant?: "dark" | "light" | "turquoise";
+  variant?: "dark" | "light" | "turquoise" | "ghost-light";
   className?: string;
 }) => {
   const styles = {
     dark: "bg-foreground text-background hover:bg-foreground/90",
     light: "bg-background text-foreground hover:bg-background/90",
     turquoise: "bg-accent text-accent-foreground hover:bg-primary-dark",
+    "ghost-light": "bg-transparent text-background border border-background/40 hover:bg-background/10",
   }[variant];
   const iconBg = {
     dark: "bg-accent text-accent-foreground",
     light: "bg-foreground text-background",
     turquoise: "bg-background text-foreground",
+    "ghost-light": "bg-background/10 text-background border border-background/40",
   }[variant];
   return (
     <Link
@@ -131,6 +133,9 @@ const NewHome = () => {
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="light">
                       Подобрать формат работы
+                    </PillButton>
+                    <PillButton to="/services" variant="ghost-light">
+                      Посмотреть услуги
                     </PillButton>
                   </div>
                 </div>

@@ -988,7 +988,9 @@ const About = () => {
 
         {/* Final CTA */}
         
-        <Contact />
+        <div id="contacts">
+          <Contact />
+        </div>
         <Partners />
         </main>
 
