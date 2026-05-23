@@ -772,23 +772,41 @@ const About = () => {
           </div>
 
           <div ref={statsRef as any} className="space-y-10">
-              {/* Credentials Grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  "Дипломированный специалист по искусственному интеллекту",
-                  "Квалификация KAEO, уровень 5",
-                  "Резидент КРИТБИ",
-                  "Резидент IT Park Казань",
-                  "Член ОПОРА России",
-                  "Участник NeuroTech Russia",
-                  "Участник федерального проекта «Бизнес Успех»",
-                  "Спикер и участник профильных мероприятий по цифровизации и ИИ",
-                  "Участник выставки «Антитеррор»",
-                  "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции",
-                ].map((item, index) => <div key={index} className="bg-card rounded-[20px] ring-1 ring-foreground/5 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200 p-5 text-center text-sm md:text-base text-foreground font-medium">
-                    {item}
-                  </div>)}
-              </div>
+              {/* Credentials — асимметричный bento */}
+              {(() => {
+                const items = [
+                  { text: "Дипломированный специалист по искусственному интеллекту", bg: "bg-accent", color: "text-white", muted: "text-white/85", size: "lg:col-span-5 lg:row-span-2", num: "01" },
+                  { text: "Квалификация KAEO, уровень 5", bg: "bg-surface-mint", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "02" },
+                  { text: "Резидент КРИТБИ", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-3", num: "03" },
+                  { text: "Резидент IT Park Казань", bg: "bg-surface-sand", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-3", num: "04" },
+                  { text: "Член ОПОРА России", bg: "bg-foreground", color: "text-background", muted: "text-background/75", size: "lg:col-span-4", num: "05" },
+                  { text: "Участник NeuroTech Russia", bg: "bg-surface-blush", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "06" },
+                  { text: "Участник федерального проекта «Бизнес Успех»", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "07" },
+                  { text: "Спикер и участник профильных мероприятий по цифровизации и ИИ", bg: "bg-surface-lavender", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-8", num: "08" },
+                  { text: "Участник выставки «Антитеррор»", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "09" },
+                  { text: "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции", bg: "bg-surface-mint", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-8", num: "10" },
+                ];
+                return (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-5 auto-rows-[minmax(140px,auto)]">
+                    {items.map((it, i) => {
+                      const isFeatured = i === 0;
+                      return (
+                        <div
+                          key={i}
+                          className={`relative flex flex-col rounded-[24px] ${it.bg} ${it.size} p-5 md:p-7 ring-1 ring-foreground/5 shadow-card hover:shadow-plate hover:-translate-y-0.5 transition-all duration-300 overflow-hidden`}
+                        >
+                          <span className={`font-iriska tabular-nums leading-none font-bold ${isFeatured ? "text-7xl md:text-8xl text-white/90" : "text-3xl md:text-4xl text-accent"} mb-3`}>
+                            {it.num}
+                          </span>
+                          <p className={`${isFeatured ? "text-xl md:text-2xl font-bold leading-tight" : "text-sm md:text-base font-medium leading-snug"} ${it.color} mt-auto`}>
+                            {it.text}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
 
               {/* Diplomas & Certificates (merged from Credentials block) */}
               <div className="grid sm:grid-cols-2 gap-6">
