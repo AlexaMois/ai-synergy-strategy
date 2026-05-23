@@ -417,7 +417,7 @@ const FAQPage = () => {
 
           {/* CTA Section */}
           <section className="text-center py-12 bg-muted/30 rounded-2xl mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-[1.05]">
               Остались вопросы?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">

@@ -20,7 +20,7 @@ const FAQTeaser = ({ items, title = "Частые вопросы" }: FAQTeaserPr
   return (
     <section className="py-10 md:py-16 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6 text-center">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-center leading-[1.05]">
           {title}
         </h2>
         <Accordion type="single" collapsible className="space-y-2">
