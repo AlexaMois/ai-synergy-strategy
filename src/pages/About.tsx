@@ -897,43 +897,48 @@ const About = () => {
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-3xl">
             <h2 className="section-title text-center mb-8">
-              Моя энергия <span className="font-semibold">и восстановление</span>
+              Энергия <span className="font-semibold">и устойчивость</span>
             </h2>
             
             <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 text-center">
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
-              <p className="text-base md:text-lg text-text-body leading-relaxed">
-                Когда проект закрыт — я ухожу в природу, просто выключаю телефон и даю мозгу тишину — в этот момент приходят новые идеи и возвращается ресурс.
-                <br /><br />
-                <span className="font-medium text-text-heading">
-                  Это мой способ восстанавливать энергию и тот самый баланс.
-                </span>
-              </p>
+              <div className="space-y-4 text-base md:text-lg text-text-body leading-relaxed">
+                <p>
+                  Проекты по цифровому развитию требуют глубокого внимания, выдержки и ясной головы. Я бережно отношусь к энергии: практикую йогу, медитацию и регулярное восстановление.
+                </p>
+                <p className="font-medium text-text-heading">
+                  Для меня это часть профессиональной устойчивости — держать фокус, видеть задачу целиком и принимать точные решения.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Resume */}
-        <section className="py-8 md:py-10 bg-[#FAFBFC]">
+        {/* Final Transition CTA */}
+        <section className="py-10 md:py-14 bg-[#FAFBFC]">
           <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h2 className="section-title mb-6">
-              Полное резюме
+            <h2 className="section-title mb-5">
+              Начните с понятного <span className="font-semibold">формата работы</span>
             </h2>
-            <p className="text-base text-text-body mb-6">
-              Моё официальное резюме доступно здесь
+            <p className="text-base md:text-lg text-foreground leading-relaxed mb-8">
+              Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
             </p>
-            <Button size="lg" onClick={() => window.open('https://hh.ru', '_blank')} className="gap-2">
-              Посмотреть полное резюме (PDF)
-              <ExternalLink className="w-4 h-4" />
-            </Button>
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+              <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
+                Подобрать формат работы
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+                Посмотреть услуги
+              </Button>
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+                <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
+                  Написать в Telegram
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
 
-        {/* Partners Marquee */}
-        
-
-        {/* Final CTA */}
-        
         <div id="contacts">
           <Contact />
         </div>
