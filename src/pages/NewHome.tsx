@@ -208,7 +208,7 @@ const NewHome = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Партнёры и клиенты
             </p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02]">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02]">
               С кем уже{" "}
               <span className="font-iriska font-normal italic text-accent">работали</span>
               <br className="hidden md:block" />
@@ -226,7 +226,7 @@ const NewHome = () => {
               <div className="md:col-span-7">
                 <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
                   Когда нужен{" "}
-                  <span className="font-iriska font-normal italic text-foreground/80">
+                  <span className="font-iriska font-normal italic text-accent">
                     внешний взгляд
                   </span>{" "}
                   на цифровое развитие
@@ -374,7 +374,7 @@ const NewHome = () => {
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8">
                     {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
                       <div key={word} className="flex items-center gap-3 md:gap-5">
-                        <span className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-none">
+                        <span className="text-3xl md:text-5xl font-bold text-background leading-none">
                           {word}
                         </span>
                         {i < arr.length - 1 && (
@@ -569,7 +569,7 @@ const NewHome = () => {
             <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                 <div className="md:col-span-7">
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.02] mb-6">
+                  <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02] mb-6">
                     Начните с понятного{" "}
                     <span className="font-iriska font-normal italic text-accent">
                       первого шага

@@ -154,7 +154,7 @@ const CasesPage = () => {
               <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
                 <div className="px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">Кейсы</p>
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
+                  <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
                     Кейсы цифрового развития{" "}
                     <span className="font-iriska font-normal italic text-accent">бизнеса</span>
                   </h1>
@@ -406,7 +406,7 @@ const CasesPage = () => {
               <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-8 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <div className="md:col-span-7">
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
                       Разберём вашу{" "}
                       <span className="font-iriska font-normal italic text-accent">задачу</span>
                     </h2>

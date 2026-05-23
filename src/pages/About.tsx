@@ -291,7 +291,7 @@ const About = () => {
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] max-w-4xl">
               Перевести цифровизацию в{" "}
-              <span className="font-iriska font-normal italic text-foreground/80">
+              <span className="font-iriska font-normal italic text-accent">
                 управленческую систему
               </span>
             </h2>
@@ -608,7 +608,7 @@ const About = () => {
               Принцип работы
             </p>
             <blockquote>
-              <p className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] max-w-5xl text-white">
+              <p className="text-3xl md:text-5xl font-bold leading-[1.1] max-w-5xl text-white">
                 ИИ усиливает то, что уже есть в компании:{" "}
                 <span className="font-iriska font-normal italic text-accent">порядок</span>{" "}
                 — усиливает порядок,{" "}
@@ -963,7 +963,7 @@ const About = () => {
             <p className="text-sm uppercase tracking-widest text-white/90 font-semibold mb-6">
               Следующий шаг
             </p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.02] mb-6 max-w-4xl">
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.02] mb-6 max-w-4xl">
               Начните с понятного{" "}
               <span className="font-iriska font-normal italic text-white">формата</span>{" "}
               работы

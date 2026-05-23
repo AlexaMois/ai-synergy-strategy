@@ -205,7 +205,7 @@ const PricingPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       Цены
                     </p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       Форматы работы{" "}
                       <span className="font-iriska font-normal italic text-accent">
                         и стоимость
@@ -419,7 +419,7 @@ const PricingPage = () => {
               <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <div className="md:col-span-7">
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
                       Начните с подходящего{" "}
                       <span className="font-iriska font-normal italic text-white">формата</span>
                     </h2>
@@ -471,7 +471,7 @@ const PricingPage = () => {
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Реальный пример · Грузовой Экспресс
                 </p>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
                   Бюджет проекта{" "}
                   <span className="font-iriska font-normal italic text-accent">80 000 ₽</span>
                 </h2>

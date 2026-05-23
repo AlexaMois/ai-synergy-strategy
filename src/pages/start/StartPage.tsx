@@ -164,7 +164,7 @@ const StartPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       С чего начать
                     </p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       С чего начать{" "}
                       <span className="font-iriska font-normal italic text-accent">
                         цифровое развитие
@@ -293,7 +293,7 @@ const StartPage = () => {
                       <Sparkles className="w-4 h-4" />
                       <span className="text-sm font-semibold">AI-разбор</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] mb-5">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
                       Не уверены, какой{" "}
                       <span className="font-iriska font-normal italic text-white">формат</span>{" "}
                       выбрать?

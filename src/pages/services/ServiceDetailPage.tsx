@@ -45,7 +45,7 @@ const ServiceDetailPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       Услуга · {service.number}
                     </p>
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
                       {service.title}
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl leading-snug">

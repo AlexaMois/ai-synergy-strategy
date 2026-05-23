@@ -43,7 +43,7 @@ const TrustAndPosition = () => {
           <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
             Почему мне доверяют
           </p>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.05] mb-10">
+          <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.05] mb-10">
             Реальный опыт{" "}
             <span className="font-iriska font-normal italic text-accent">и честная позиция</span>
           </h2>
