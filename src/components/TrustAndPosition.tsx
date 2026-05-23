@@ -45,7 +45,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="section-title mb-3">
-                  Почему мне доверяют, <span className="font-semibold">реальный опыт</span>
+                  Почему мне доверяют: <span className="font-semibold">реальный опыт и честная позиция</span>
                 </h2>
                 <div className="w-full h-px bg-border"></div>
               </div>
@@ -56,29 +56,27 @@ const TrustAndPosition = () => {
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
                     Реальная польза
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">Показываю, где ИИ дает измеримый эффект, 
-а где превращается в лишние затраты</p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Показываю, где цифровые инструменты дают измеримый эффект, а где создают лишние расходы. Смотрю на задачу через деньги, время, процессы и управляемость.
+                  </p>
                 </div>
                 
                 <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(1)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционке
+                    <span className="font-semibold text-primary">{count12}+</span> лет в управлении и операционной работе
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Понимаю процессы изнутри и оцениваю решения через экономику компании
+                    Понимаю ответственность руководителя, цену ошибки, работу команды, давление сроков и влияние решений на экономику компании.
                   </p>
                 </div>
                 
                 {/* Карточка 3 */}
                 <div className={`p-4 sm:p-6 rounded-xl flex flex-col justify-center h-full min-h-[160px] bg-muted shadow-xs gradient-border-hover hover-lift ${getStaggeredClass(2)}`}>
                   <p className="text-lg font-semibold text-foreground leading-relaxed mb-2">
-                    Профессиональное признание
+                    Профессиональная база
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">Дипломированный специалист по ИИ <br />
-                    Член ОПОРА РОССИИ<br />
-                    
-                    Резидент IT Парк Казань<br />
-                    Резидент КРИТБИ
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Дипломированный специалист по искусственному интеллекту, член ОПОРА России, резидент IT Park Казань, резидент КРИТБИ.
                   </p>
                 </div>
                 
@@ -88,7 +86,7 @@ const TrustAndPosition = () => {
                     Проверенная эффективность
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    ROI клиентов от <span className="font-semibold text-primary">{count200}</span> до <span className="font-semibold text-primary">{count400}</span> процентов в первые месяцы
+                    Ключевая метрика моей работы — сумма ненужных расходов, которых удалось избежать клиентам.
                   </p>
                 </div>
               </div>
@@ -98,7 +96,7 @@ const TrustAndPosition = () => {
             <div>
               <div className="mb-8">
                 <h2 className="section-title mb-3">
-                  Моя позиция, <span className="font-semibold">честный подход</span>
+                  Моя позиция: <span className="font-semibold">честный подход</span>
                 </h2>
                 <div className="w-full h-px bg-border"></div>
               </div>
@@ -110,8 +108,8 @@ const TrustAndPosition = () => {
                   </div>
                   <div className="flex-1">
                     <p className="text-lg text-muted-foreground leading-relaxed">
-                      <span className="font-semibold">ИИ инструмент управления</span><br />
-                      Он должен усиливать процессы и давать предсказуемый результат
+                      <span className="font-semibold">ИИ — инструмент управления</span><br />
+                      ИИ усиливает процессы, помогает быстрее работать с данными, документами и решениями, когда у компании есть понятная задача и ответственность за результат.
                     </p>
                   </div>
                 </div>
@@ -123,7 +121,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       <span className="font-semibold">Инженерный подход</span><br />
-                      Сначала аудит, анализ, архитектура и экономика, затем технологии и конкретные решения
+                      Сначала задача, аудит, архитектура и экономика. Затем технологии, внедрение и конкретные решения под рабочие процессы компании.
                     </p>
                   </div>
                 </div>
@@ -135,7 +133,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       <span className="font-semibold">Честность решения</span><br />
-                      Если ИИ не нужен, я скажу об этом сразу. Я инженер по внедрению, а не продавец технологий
+                      Я прямо показываю, где инструмент даст пользу, где нужна подготовка процессов, а где выгоднее начать с аудита, стратегии или обучения команды. Я инженер по внедрению, а не продавец технологий.
                     </p>
                   </div>
                 </div>
@@ -147,7 +145,7 @@ const TrustAndPosition = () => {
                   <div className="flex-1">
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       <span className="font-semibold">Индивидуальность решений</span><br />
-                      Подбираю решения под контекст компании: только то, что команда действительно будет использовать
+                      Подбираю решения под контекст компании: отрасль, команду, процессы, данные, бюджет, сроки и реальную готовность к изменениям.
                     </p>
                   </div>
                 </div>
