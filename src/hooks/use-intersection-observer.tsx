@@ -18,6 +18,12 @@ export const useIntersectionObserver = ({
     const element = ref.current;
     if (!element) return;
 
+    // Fallback: if IntersectionObserver is unavailable, immediately mark as visible
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
