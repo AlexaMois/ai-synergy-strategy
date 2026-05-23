@@ -389,7 +389,7 @@ const CaseDetailPage = () => {
           {/* Meta Info Section */}
           <section className="py-10 md:py-16 bg-muted">
             <div className="container mx-auto px-4 max-w-6xl">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className={`grid sm:grid-cols-2 ${caseData.price && caseData.price !== "—" ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-4`}>
                 <div className="bg-card rounded-2xl p-6 shadow-soft">
                   <Users className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
                   <p className="text-sm text-muted-foreground mb-1">Для кого</p>
@@ -400,11 +400,13 @@ const CaseDetailPage = () => {
                   <p className="text-sm text-muted-foreground mb-1">Отрасль</p>
                   <p className="text-foreground font-medium">{caseData.industry}</p>
                 </div>
-                <div className="bg-card rounded-2xl p-6 shadow-soft">
-                  <TrendingUp className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground mb-1">Стоимость</p>
-                  <p className="text-foreground font-medium">{caseData.price}</p>
-                </div>
+                {caseData.price && caseData.price !== "—" && (
+                  <div className="bg-card rounded-2xl p-6 shadow-soft">
+                    <TrendingUp className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
+                    <p className="text-sm text-muted-foreground mb-1">Стоимость</p>
+                    <p className="text-foreground font-medium">{caseData.price}</p>
+                  </div>
+                )}
                 <div className="bg-card rounded-2xl p-6 shadow-soft">
                   <Clock className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
                   <p className="text-sm text-muted-foreground mb-1">Статус</p>
