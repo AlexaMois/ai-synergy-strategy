@@ -1086,6 +1086,7 @@ const TypedPhotoUploadView = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{ done: number; total: number } | null>(null);
   const max = q.maxPhotos ?? 20;
   const types = q.photoTypes ?? PHOTO_TYPES;
   const hint = q.photoHint ?? [];
@@ -1107,19 +1108,32 @@ const TypedPhotoUploadView = ({
     }
     const toUpload = filesArr.slice(0, remaining);
     setUploading(true);
+    setUploadProgress({ done: 0, total: toUpload.length });
     try {
+      // Параллельная загрузка с лимитом 3 — заметно быстрее на мобильных,
+      // и одиночный «зависший» файл не блокирует остальные.
+      const CONCURRENCY = 3;
       const uploaded: UploadedPhoto[] = [];
-      for (const file of toUpload) {
-        const path = await uploadFileToStorage(file, "photo");
-        if (!path) continue;
-        uploaded.push({ type: "", path, name: file.name, size: file.size });
-      }
+      let completed = 0;
+      const queue = [...toUpload];
+      const workers = Array.from({ length: Math.min(CONCURRENCY, queue.length) }, async () => {
+        while (queue.length > 0) {
+          const file = queue.shift();
+          if (!file) break;
+          const path = await uploadFileToStorage(file, "photo");
+          completed++;
+          setUploadProgress({ done: completed, total: toUpload.length });
+          if (path) uploaded.push({ type: "", path, name: file.name, size: file.size });
+        }
+      });
+      await Promise.all(workers);
       if (uploaded.length > 0) {
         setPhotos((prev) => [...prev, ...uploaded]);
         toast.success(`Загружено: ${uploaded.length}. Выберите тип для каждого фото.`);
       }
     } finally {
       setUploading(false);
+      setUploadProgress(null);
       if (inputRef.current) inputRef.current.value = "";
     }
   };
@@ -1179,7 +1193,13 @@ const TypedPhotoUploadView = ({
           ) : (
             <ImagePlus className="w-4 h-4" />
           )}
-          {uploading ? "Загружаю…" : reachedMax ? "Лимит достигнут" : "Добавить фото"}
+          {uploading
+            ? uploadProgress
+              ? `Загружаю ${uploadProgress.done}/${uploadProgress.total}…`
+              : "Загружаю…"
+            : reachedMax
+              ? "Лимит достигнут"
+              : "Добавить фото"}
         </button>
         <input
           ref={inputRef}
@@ -1244,7 +1264,7 @@ const TypedPhotoUploadView = ({
       )}
 
       <p className="text-xs opacity-60">
-        До 10 МБ каждое (JPG, PNG, HEIC, WEBP). Фото не обязательны, но сильно помогают разбору.
+        До 25 МБ каждое (JPG, PNG, HEIC, WEBP). Если фото в iCloud — сначала откройте его в Фото, чтобы оно скачалось. Wi-Fi надёжнее мобильного интернета.
       </p>
     </div>
   );
