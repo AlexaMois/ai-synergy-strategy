@@ -17,7 +17,7 @@ const RelatedBlogPosts = ({ slugs, title = "Полезные статьи по �
   return (
     <section className="py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-8 text-center">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 text-center leading-[1.05]">
           {title}
         </h2>
         <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
