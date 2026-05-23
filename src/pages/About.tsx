@@ -226,6 +226,35 @@ const About = () => {
           </div>
         </section>
 
+        {/* What is NeyroResheniya */}
+        <section className="py-8 md:py-12">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-10">
+              <h2 className="section-title mb-5">
+                Что такое <span className="font-semibold">«НейроРешения»</span>
+              </h2>
+              <p className="text-lg text-foreground leading-relaxed mb-6">
+                «НейроРешения» — агентство Александры Моисеевой по цифровому развитию бизнеса. Это методология и система реализации проектов: от первого разбора процессов до стратегии, аудита, обучения, внедрения, разработки и сопровождения цифровых инструментов.
+              </p>
+              <ul className="space-y-2 text-base md:text-lg text-foreground">
+                {[
+                  "стратегия цифрового развития",
+                  "глубокий аудит компании для цифровизации",
+                  "обучение команды работе с цифровыми инструментами",
+                  "сопровождение цифрового внедрения",
+                  "проектирование и разработка решений под бизнес-процессы",
+                  "поддержка и развитие цифровых инструментов компании",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-primary flex-shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Photo: Business Success Award - Combined */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-4 max-w-6xl">
