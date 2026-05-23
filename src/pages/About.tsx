@@ -218,60 +218,57 @@ const About = () => {
       
         <main>
         {/* Hero Section */}
-        <section ref={heroRef} className="pt-28 md:pt-32 pb-10 md:pb-16 lg:pb-20 px-4 md:px-6">
+        <section ref={heroRef} className="pt-8 md:pt-12 px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20">
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div className={heroAnimation('animate-fade-in-up')}>
-                <h1 className="mb-4 leading-tight">
-                  Александра Моисеева
-                </h1>
-                <p className="text-xl md:text-2xl text-primary font-medium mb-6">
-                  Инженер и архитектор цифрового развития бизнеса
-                </p>
-                <div className="text-lg text-foreground leading-relaxed mb-8 space-y-4">
-                  <p>
-                    Я помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
+                <div className={`md:col-span-7 ${heroAnimation('animate-fade-in-up')}`}>
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+                    Обо мне
                   </p>
-                  <p>
-                    Основатель агентства «НейроРешения». Работаю с компаниями, где есть ручная нагрузка, разрозненные процессы, документы, заявки, таблицы, отчёты и управленческие задачи, которые требуют цифрового порядка.
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-foreground mb-6">
+                    Александра <span className="font-iriska font-normal italic text-accent">Моисеева</span>
+                  </h1>
+                  <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-8 max-w-2xl leading-snug">
+                    Инженер и архитектор цифрового развития бизнеса
                   </p>
+                  <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl leading-relaxed">
+                    Основатель агентства «НейроРешения». Помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <PillButton to="/start" variant="dark">
+                      Подобрать формат работы
+                    </PillButton>
+                    <PillButton to="/services" variant="outline-dark">
+                      Посмотреть услуги
+                    </PillButton>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  <PillButton to="/start" variant="dark">
-                    Подобрать формат работы
-                  </PillButton>
-                  <PillButton to="/services" variant="outline-dark">
-                    Посмотреть услуги
-                  </PillButton>
-                  <PillButton
-                    href="https://t.me/aleksamois"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="outline-dark"
-                  >
-                    Написать в Telegram
-                  </PillButton>
+                <div className={`md:col-span-5 flex justify-center md:justify-end ${heroAnimation('animate-fade-in-right')}`}>
+                  <div className="relative w-full max-w-sm md:max-w-md rounded-[28px] overflow-hidden bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-2 md:p-3">
+                    <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[22px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
+                  </div>
                 </div>
-              </div>
-              <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
-                <div className="relative w-full max-w-md rounded-[28px] overflow-hidden bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-2 md:p-3">
-                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[22px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
-                </div>
-              </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Кто я */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
-              <h2 className="section-title mb-5">
-                <span className="font-semibold">Кто я</span>
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <div className="md:col-span-5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                Кто я
+              </p>
+              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+                Инженер{" "}
+                <span className="font-iriska font-normal italic text-accent">и архитектор</span>{" "}
+                цифрового развития
               </h2>
-              <div className="space-y-4 text-lg text-foreground leading-relaxed">
+            </div>
+            <div className="md:col-span-7">
+              <div className="space-y-5 text-lg md:text-xl text-foreground/80 leading-relaxed">
                 <p>
                   Я — Александра Моисеева, инженер и архитектор цифрового развития бизнеса, основатель агентства «НейроРешения».
                 </p>
@@ -287,16 +284,20 @@ const About = () => {
         </section>
 
         {/* Моя главная задача */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-surface-sand rounded-[24px] ring-1 ring-foreground/5 p-6 md:p-10">
-              <h2 className="section-title mb-4">
-                Моя главная <span className="font-semibold">задача</span>
-              </h2>
-              <p className="text-lg text-foreground leading-relaxed">
-                Я помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
-              </p>
-            </div>
+        <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+          <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
+              Моя главная задача
+            </p>
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] max-w-4xl">
+              Перевести цифровизацию в{" "}
+              <span className="font-iriska font-normal italic text-foreground/80">
+                управленческую систему
+              </span>
+            </h2>
+            <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-3xl leading-relaxed">
+              Я помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
+            </p>
           </div>
         </section>
 
