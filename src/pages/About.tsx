@@ -677,142 +677,83 @@ const About = () => {
           </div>
         </section>
 
-        {/* Weak Sides - Collapsible */}
+        {/* My Principles */}
         <section className="py-8 md:py-10">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <Collapsible open={weakSidesOpen} onOpenChange={setWeakSidesOpen}>
-              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
-                <CollapsibleTrigger className="w-full">
-                  <div className="flex items-center justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium text-foreground text-left">
-                      Мои слабые стороны, <span className="font-semibold">и почему я про них говорю</span>
-                    </h2>
-                    <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${weakSidesOpen ? 'rotate-180' : ''}`} />
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <div className="mt-6 space-y-8 text-base text-muted-foreground leading-relaxed">
-                    {/* Weak Side 1 */}
-                    <div>
-                      
-                      
-                    </div>
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="section-title text-center mb-10">
+              Мои принципы: <span className="font-semibold">что защищает бюджет клиента</span>
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  number: "01",
+                  title: "Я работаю в темпе, который даёт результат",
+                  text: "Качественный проект требует времени на разбор, архитектуру и проверку. Обычно работа занимает 4–8 недель, потому что цифровое внедрение затрагивает людей, процессы, данные и управленческие решения. Такой темп снижает риск переделок и защищает бюджет клиента.",
+                },
+                {
+                  number: "02",
+                  title: "Я работаю с руководителями, которые участвуют в изменениях",
+                  text: "Цифровое развитие начинается с управленческого решения. Руководитель задаёт цель, помогает команде принять новый порядок работы и закрепляет ответственность. Когда руководство включено в проект, цифровой инструмент становится частью работы компании.",
+                },
+                {
+                  number: "03",
+                  title: "Сначала процессы, потом технология",
+                  text: "Перед внедрением я смотрю, как устроены процессы: где хранятся данные, кто принимает решения, где появляются повторы и какие действия держатся на ручном контроле. После этого технология даёт понятный эффект: меньше ручной нагрузки, больше прозрачности и выше управляемость.",
+                },
+                {
+                  number: "04",
+                  title: "Я говорю прямо о рисках",
+                  text: "Моя задача — сохранить клиенту деньги, время и управленческое внимание. Поэтому я заранее показываю, где инструмент даст пользу сразу, где нужна подготовка, а где лучше начать со стратегии, аудита или обучения команды. Для собственника это означает одно: решение принимается на фактах, цифрах и понимании последствий.",
+                },
+              ].map((p) => (
+                <div
+                  key={p.number}
+                  className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200"
+                >
+                  <span className="text-primary text-sm font-medium mb-3 block">{p.number}</span>
+                  <h3 className="text-lg md:text-xl font-medium text-foreground mb-3 leading-tight">{p.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{p.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                    {/* Weak Side 2 */}
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground mb-3">
-                        Я не люблю спешку (и требую 4–8 недель на хорошее решение)
-                      </h3>
-                      <div className="space-y-3">
-                        <p>
-                          <span className="font-medium text-foreground">Почему?</span><br />
-                          Спешка = 80% провалов внедрения. Я не рискну вашим бюджетом ради того, чтобы сказать «готово». Хорошее решение требует:
-                        </p>
-                        <ul className="ml-6 space-y-1">
-                          <li>• Разбора существующих процессов (2–3 недели)</li>
-                          <li>• Проектирования архитектуры (2–4 недели)</li>
-                          <li>• Тестирования на малой группе (1–2 недели)</li>
-                        </ul>
-                        <p className="font-medium text-foreground">
-                          Если нужно быстро = я не ваш консультант.
-                        </p>
-                        <p>
-                          <span className="font-medium text-primary">Что это значит?</span><br />
-                          Я не беру срочные проекты. Это раздражает клиентов, которые хотят результат «вчера», но это спасает от провалов тех, кто готов ждать.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Weak Side 3 */}
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground mb-3">
-                        Я не беру проекты, где руководство не готово к переменам
-                      </h3>
-                      <div className="space-y-3">
-                        <p>
-                          <span className="font-medium text-foreground">Почему?</span><br />
-                          ИИ — это не кнопка, которая нажимается и работает. Это изменение процессов. Если руководитель говорит «внедрите ИИ, но ничего не меняйте» → проект провалится.
-                        </p>
-                        <p>Мне нужно:</p>
-                        <ul className="ml-6 space-y-1">
-                          <li>• Руководство, которое готово менять процессы</li>
-                          <li>• Команда, которая согласна использовать новые инструменты</li>
-                          <li>• Понимание, что первый месяц будет медленнее (люди учатся)</li>
-                        </ul>
-                        <p className="font-medium text-foreground">
-                          Если «все должно остаться как было, но только с ИИ» = я отказываюсь от проекта.
-                        </p>
-                        <p>
-                          <span className="font-medium text-primary">Что это значит?</span><br />
-                          Я предварительно провожу диагностику готовности команды. Если готовности нет → я скажу «нет» и не возьму деньги. Это экономит вам бюджет.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Weak Side 4 */}
-                    <div>
-                      <h3 className="text-lg font-medium text-foreground mb-3">
-                        Я не буду внедрять ИИ, если в процессах беспорядок
-                      </h3>
-                      <div className="space-y-3">
-                        <p>
-                          <span className="font-medium text-foreground">Почему?</span><br />
-                          Ключевой принцип моей работы: если в компании порядок — ИИ усиливает порядок. Если беспорядок — ИИ усиливает беспорядок.
-                        </p>
-                        <p>Вот это буквально. Если ваши процессы сейчас не выстроены:</p>
-                        <ul className="ml-6 space-y-1">
-                          <li>• Нет документирования</li>
-                          <li>• Нет стандартов</li>
-                          <li>• Каждый делает «как он хочет»</li>
-                        </ul>
-                        <p>
-                          То ИИ просто усилит этот беспорядок. Вместо решения получите «красивый инструмент, который производит мусор».
-                        </p>
-                        <p className="font-medium text-foreground">
-                          Сначала нужно навести порядок, потом внедрять ИИ.
-                        </p>
-                        <p>
-                          <span className="font-medium text-primary">Что я делаю?</span><br />
-                          На диагностике я смотрю на ваши процессы. Если вижу беспорядок → я рекомендую сначала навести порядок (может быть, за 1–2 недели), потом уже ИИ. Это экономит деньги и даёт результат.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Summary */}
-                    <div className="pt-6 border-t-2 border-primary/20">
-                      <h3 className="text-xl font-bold text-text-heading mb-4">
-                        Итог: Почему эти «слабые стороны» — это ваше преимущество?
-                      </h3>
-                      <p className="mb-4 font-medium text-primary">
-                        Если я отказываю в проекте → это значит, я берегу ваш бюджет.
-                      </p>
-                      <p className="mb-3">Мой подход:</p>
-                      <ul className="ml-6 space-y-2">
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary flex-shrink-0">•</span>
-                          <span>Я скажу «нет», если проект обречён</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary flex-shrink-0">•</span>
-                          <span>Я потребую времени, даже если вы спешите</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary flex-shrink-0">•</span>
-                          <span>Я потребую воли к переменам, даже если это неудобно</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-primary flex-shrink-0">•</span>
-                          <span>Я потребую порядка в процессах, даже если это требует переделки</span>
-                        </li>
-                      </ul>
-                      <p className="mt-4 font-semibold">
-                        Зато когда мы начнём работать → я гарантирую результат.
-                      </p>
-                    </div>
-                  </div>
-                </CollapsibleContent>
+        {/* What is NeyroResheniya */}
+        <section className="py-8 md:py-12">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-10">
+              <h2 className="section-title mb-5">
+                Что такое <span className="font-semibold">«НейроРешения»</span>
+              </h2>
+              <div className="space-y-4 text-lg text-foreground leading-relaxed mb-6">
+                <p>
+                  «НейроРешения» — агентство цифрового развития бизнеса, которое выросло из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
+                </p>
+                <p>
+                  Это методология, продуктовая система и команда решений вокруг задач собственника: стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов.
+                </p>
               </div>
-            </Collapsible>
+              <p className="text-sm font-medium text-primary uppercase tracking-wide mb-3">Направления</p>
+              <ul className="space-y-2 text-base md:text-lg text-foreground mb-6">
+                {[
+                  "Стратегия цифрового развития",
+                  "Глубокий аудит компании для цифровизации",
+                  "Обучение команды работе с цифровыми инструментами",
+                  "Сопровождение цифрового внедрения",
+                  "Проектирование и разработка решений под бизнес-процессы",
+                  "Поддержка и развитие цифровых инструментов компании",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-primary flex-shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button size="lg" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+                Посмотреть услуги
+              </Button>
+            </div>
           </div>
         </section>
 
