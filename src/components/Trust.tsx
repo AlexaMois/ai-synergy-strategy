@@ -7,8 +7,8 @@ const Trust = () => {
   const roiMax = useCountUp({ end: 400, duration: 2000, isVisible });
   
   const facts = [
-    "36+ проектов",
-    "350+ консультаций",
+    "40 проектов",
+    "360 диагностик",
     `ROI клиентов ${roiMin}–${roiMax}%`,
     
     "Резидент IT-Парк Казань",

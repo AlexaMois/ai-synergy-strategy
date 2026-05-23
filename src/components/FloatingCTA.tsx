@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { trackCTAClick } from "@/utils/analytics";
+import { openCallbackModal } from "@/components/CallbackModal";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,24 +17,9 @@ const FloatingCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToContact = () => {
+  const handleClick = () => {
     trackCTAClick({ location: 'floating_cta' });
-    
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
+    openCallbackModal();
   };
 
   return (
@@ -47,7 +30,7 @@ const FloatingCTA = () => {
     >
       <Button
         className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl"
-        onClick={scrollToContact}
+        onClick={handleClick}
       >
         <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
         <span className="hidden sm:inline">Заказать звонок</span>
