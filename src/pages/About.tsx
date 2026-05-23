@@ -335,86 +335,56 @@ const About = () => {
               Мой путь: <span className="font-semibold">опыт, который сформировал подход</span>
             </h2>
             
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
-                    <h3 className="text-foreground">
-                      Когда честность важнее должности
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
+            <div className="space-y-4">
+              {[
+                {
+                  num: "01",
+                  title: "Когда честность важнее должности",
+                  body: [
+                    "В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств.",
+                    "Мы вернули доверие и большую часть вложений. Этот опыт сформировал мой стиль: взрослость, прямота, уважение к людям и к их деньгам.",
+                  ],
+                },
+                {
+                  num: "02",
+                  title: "Почему я ушла из банков: выбор ответственности",
+                  body: [
+                    "После кризисного управления я поняла: мне важна честность процессов и возможность влиять на результат. Я выбираю работу, где можно отвечать за решение, видеть последствия и менять систему, а не просто выполнять указания сверху.",
+                  ],
+                },
+                {
+                  num: "03",
+                  title: "От первых экспериментов с ИИ к инженерии цифрового развития",
+                  body: [
+                    "Весной 2023 года я начала работать с ChatGPT-3.5. Сначала это были первые фразы и эксперименты, затем — разбор механики, архитектуры, данных и сценариев применения в бизнесе.",
+                    "Я увидела в ИИ новый слой работы с информацией, процессами и управленческими решениями. Так я перешла в инженерный подход к цифровому развитию.",
+                  ],
+                },
+                {
+                  num: "04",
+                  title: "Вывод: зрелость важнее скорости",
+                  body: [
+                    "За два года я несколько раз пересобирала архитектуры проектов и команды. Это был тяжёлый, но важный опыт.",
+                    "В 2026 году я выбрала компактный формат работы: я, помощница и партнёры под конкретные задачи. Такой формат даёт больше качества, ответственности и фокуса на результате.",
+                  ],
+                },
+              ].map((item) => (
+                <article
+                  key={item.num}
+                  className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-8"
+                >
+                  <h3 className="text-lg md:text-xl font-medium text-foreground mb-4 leading-tight">
+                    <span className="text-primary font-bold mr-2">{item.num}.</span>
+                    {item.title}
+                  </h3>
                   <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств.
-                    </p>
-                    <p>
-                      Мы вернули доверие и большую часть вложений. Этот опыт сформировал мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
-                    </p>
+                    {item.body.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
-                    <h3 className="text-foreground">
-                      Почему я ушла из банков: выбор ответственности
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-foreground leading-relaxed">
-                    После кризисного управления я поняла: мне важна честность процессов и возможность влиять на результат. Я выбираю работу, где можно отвечать за решение, видеть последствия и менять систему, а не просто выполнять указания сверху.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
-                    <h3 className="text-foreground">
-                      От первых экспериментов с ИИ к инженерии цифрового развития
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      Весной 2023 года я начала работать с ChatGPT-3.5. Сначала это были первые фразы и эксперименты, затем — разбор механики, архитектуры, данных и сценариев применения в бизнесе.
-                    </p>
-                    <p>
-                      Я увидела в ИИ новый слой работы с информацией, процессами и управленческими решениями. Так я перешла в инженерный подход к цифровому развитию.
-                    </p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
-                    <h3 className="text-foreground">
-                      Вывод: зрелость важнее скорости
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      За два года я несколько раз пересобирала архитектуры проектов и команды. Это был тяжёлый, но важный опыт.
-                    </p>
-                    <p>
-                      В 2026 году я выбрала компактный формат работы: я, помощница и партнёры под конкретные задачи. Такой формат даёт больше качества, ответственности и фокуса на результате.
-                    </p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
