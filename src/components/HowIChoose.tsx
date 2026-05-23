@@ -62,7 +62,7 @@ const HowIChoose = () => {
         <div className="md:col-span-7">
           <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Как я выбираю</p>
           <h2
-            className={`text-4xl md:text-6xl font-bold text-foreground leading-[1.05] transition-all duration-700 ${
+            className={`text-3xl md:text-5xl font-bold text-foreground leading-[1.05] transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >

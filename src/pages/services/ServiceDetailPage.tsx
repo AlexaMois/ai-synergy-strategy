@@ -162,7 +162,7 @@ const ServiceDetailPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                       Стоимость
                     </p>
-                    <p className="text-4xl md:text-6xl font-bold text-background leading-none mb-4">
+                    <p className="text-3xl md:text-5xl font-bold text-background leading-none mb-4">
                       {service.price}
                     </p>
                     <p className="text-base md:text-lg text-background/70 max-w-xl">

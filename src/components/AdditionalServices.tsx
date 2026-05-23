@@ -35,7 +35,7 @@ const AdditionalServices = () => {
   return (
     <section ref={ref} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
       <div className={`max-w-3xl mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-        <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
           Как{" "}
           <span className="font-iriska font-normal italic text-accent">выбрать формат</span>
         </h2>
