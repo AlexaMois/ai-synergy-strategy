@@ -383,14 +383,6 @@ const CaseDetailPage = () => {
               <p className="text-xl text-muted-foreground mb-8">
                 {caseData.subtitle}
               </p>
-              
-              {/* Placeholder for hero image */}
-              <div className="bg-muted rounded-2xl p-12 mb-8 flex items-center justify-center border-2 border-dashed border-border">
-                <div className="text-center">
-                  <ImageIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" strokeWidth={1} />
-                  <p className="text-muted-foreground">Место для скриншота системы или фото</p>
-                </div>
-              </div>
             </div>
           </section>
 
