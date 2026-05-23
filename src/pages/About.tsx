@@ -328,52 +328,6 @@ const About = () => {
         {/* AI Framework */}
         <AIFramework />
 
-        {/* Brief About Me - Collapsible */}
-        <section className="py-8 md:py-10 bg-muted">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
-              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
-                <CollapsibleTrigger className="w-full">
-                  <div className="flex items-center justify-between gap-4">
-                    <h2 className="section-title text-left">
-                      Кто я, <span className="font-semibold">и почему мне доверяют</span>
-                    </h2>
-                    <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <div className="mt-6 space-y-6 text-foreground">
-                  <div>
-                      <p className="text-handwriting mb-2">Кто я</p>
-                      <p className="text-base leading-relaxed">
-                        стратег и инженер по внедрению ИИ. 14+ лет опыта в управлении и операциях. 4+ года специализации на ИИ-проектах. 40 проектов на основе искусственного интеллекта.
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-handwriting mb-2">Что делаю</p>
-                      <p className="text-base leading-relaxed">
-                        диагностирую, проектирую и сопровождаю ИИ-решения под реальные задачи бизнеса.
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-handwriting mb-2">Почему ко мне приходят</p>
-                      <p className="text-base leading-relaxed">
-                        я не продаю инструменты — я выбираю правильные решения для компании, без привязки к платформам.
-                      </p>
-                    </div>
-                  </div>
-                </CollapsibleContent>
-              </div>
-            </Collapsible>
-            
-            {!briefOpen && <div className="text-center mt-6">
-                <button onClick={() => setBriefOpen(true)} className="text-primary hover:text-primary/80 transition-colors font-medium">
-                  Подробнее обо мне →
-                </button>
-              </div>}
-          </div>
-        </section>
-
         {/* My Journey - Accordion */}
         <section ref={journeyRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
