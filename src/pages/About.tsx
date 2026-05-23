@@ -24,6 +24,9 @@ import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import { openCallbackModal } from "@/components/CallbackModal";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
+import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
+import kaeoImage from "@/assets/credentials/certificate-kaeo-level5.png";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import awardDiploma from "@/assets/about/award-diploma.jpg";
 import speakingPodium from "@/assets/about/speaking-podium.jpg";
 import awardCeremony from "@/assets/about/award-ceremony.jpg";
@@ -42,6 +45,23 @@ const About = () => {
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedCredential, setSelectedCredential] = useState<null | { image: string; title: string; subtitle: string; details: string; year: string }>(null);
+  const diplomaCredentials = [
+    {
+      image: diplomaImage,
+      title: 'Диплом о профессиональной переподготовке',
+      subtitle: 'Специалист по искусственному интеллекту',
+      details: 'Международный Университет Цифровой Экономики и Технологий',
+      year: '2025',
+    },
+    {
+      image: kaeoImage,
+      title: 'Квалификационный сертификат KAEO',
+      subtitle: 'Уровень 5 — максимальный',
+      details: 'Постановка целей на этапе обучения нейронных сетей',
+      year: '2025',
+    },
+  ];
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -723,6 +743,35 @@ const About = () => {
                   </div>)}
               </div>
 
+              {/* Diplomas & Certificates (merged from Credentials block) */}
+              <div className="grid sm:grid-cols-2 gap-6">
+                {diplomaCredentials.map((credential) => (
+                  <button
+                    key={credential.title}
+                    onClick={() => setSelectedCredential(credential)}
+                    className="group bg-card rounded-xl shadow-soft border border-border p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  >
+                    <div className="aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-muted">
+                      <img
+                        src={credential.image}
+                        alt={credential.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="font-medium text-foreground text-sm md:text-base mb-1">
+                      {credential.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-primary font-medium mb-1">
+                      {credential.subtitle}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {credential.year}
+                    </p>
+                  </button>
+                ))}
+              </div>
+
               {/* Short Resume */}
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
@@ -751,8 +800,34 @@ const About = () => {
           </div>
         </section>
 
-        {/* Qualifications - Diploma & Certificate */}
-        <Credentials />
+        {/* Modal for zoomed credential view */}
+        <Dialog open={!!selectedCredential} onOpenChange={(open) => !open && setSelectedCredential(null)}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border">
+            <DialogTitle className="sr-only">
+              {selectedCredential?.title}
+            </DialogTitle>
+            {selectedCredential && (
+              <div className="relative">
+                <img
+                  src={selectedCredential.image}
+                  alt={selectedCredential.title}
+                  className="w-full h-auto max-h-[85vh] object-contain"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-4 md:p-6">
+                  <h3 className="font-semibold text-foreground text-base md:text-lg">
+                    {selectedCredential.title}
+                  </h3>
+                  <p className="text-sm text-primary font-medium">
+                    {selectedCredential.subtitle}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {selectedCredential.details} • {selectedCredential.year}
+                  </p>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
 
         {/* Photo Gallery: Public Activity */}
         <section className="py-8 md:py-12">
