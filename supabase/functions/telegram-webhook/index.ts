@@ -141,6 +141,15 @@ serve(async (req) => {
   }
 
   try {
+    // Verify Telegram secret token to prevent forged webhook requests.
+    // Configure via setWebhook?secret_token=<TELEGRAM_WEBHOOK_SECRET>
+    const expectedSecret = Deno.env.get('TELEGRAM_WEBHOOK_SECRET') ?? '';
+    const providedSecret = req.headers.get('x-telegram-bot-api-secret-token') ?? '';
+    if (!expectedSecret || providedSecret !== expectedSecret) {
+      console.warn('Rejected webhook: invalid or missing secret token');
+      return new Response('Forbidden', { status: 403, headers: corsHeaders });
+    }
+
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
