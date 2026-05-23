@@ -12,6 +12,7 @@ import HowIChoose from "@/components/HowIChoose";
 import SixQuestions from "@/components/SixQuestions";
 import AIFramework from "@/components/AIFramework";
 import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import { useState, useEffect } from "react";
 import { Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink, Send } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
@@ -236,19 +237,21 @@ const About = () => {
                     Основатель агентства «НейроРешения». Работаю с компаниями, где есть ручная нагрузка, разрозненные процессы, документы, заявки, таблицы, отчёты и управленческие задачи, которые требуют цифрового порядка.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                  <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
+                <div className="flex flex-wrap gap-3">
+                  <PillButton to="/start" variant="dark">
                     Подобрать формат работы
-                  </Button>
-                  <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+                  </PillButton>
+                  <PillButton to="/services" variant="outline-dark">
                     Посмотреть услуги
-                  </Button>
-                  <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-                    <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
-                      <Send className="w-4 h-4 mr-2" />
-                      Написать в Telegram
-                    </a>
-                  </Button>
+                  </PillButton>
+                  <PillButton
+                    href="https://t.me/aleksamois"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outline-dark"
+                  >
+                    Написать в Telegram
+                  </PillButton>
                 </div>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
@@ -692,9 +695,9 @@ const About = () => {
                   </li>
                 ))}
               </ul>
-              <Button size="lg" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+              <PillButton to="/services" variant="dark">
                 Посмотреть услуги
-              </Button>
+              </PillButton>
             </div>
           </div>
         </section>
@@ -883,18 +886,21 @@ const About = () => {
             <p className="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
               Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-              <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
+            <div className="flex flex-wrap justify-center gap-3">
+              <PillButton to="/start" variant="light">
                 Подобрать формат работы
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
+              </PillButton>
+              <PillButton to="/services" variant="outline-light">
                 Посмотреть услуги
-              </Button>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
-                <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
-                  Написать в Telegram
-                </a>
-              </Button>
+              </PillButton>
+              <PillButton
+                href="https://t.me/aleksamois"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline-light"
+              >
+                Написать в Telegram
+              </PillButton>
             </div>
             </div>
           </div>
