@@ -65,14 +65,6 @@ const CaseStudyCargoExpress = () => {
             <p className="text-xl text-muted-foreground mb-8">
               Приём заявок голосом в Telegram → полная прозрачность без CRM
             </p>
-            
-            {/* Placeholder for hero image/screenshot */}
-            <div className="bg-muted rounded-2xl p-12 mb-8 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center">
-                <Image className="w-16 h-16 text-muted-foreground mx-auto mb-4" strokeWidth={1} />
-                <p className="text-muted-foreground">Место для скриншота системы или фото</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -275,14 +267,6 @@ const CaseStudyCargoExpress = () => {
                 Google Sheets становится единым источником данных.
               </p>
             </div>
-
-            {/* Placeholder for architecture diagram */}
-            <div className="bg-card rounded-2xl p-8 mt-8 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center">
-                <Image className="w-12 h-12 text-muted-foreground mx-auto mb-3" strokeWidth={1} />
-                <p className="text-muted-foreground text-sm">Место для схемы архитектуры системы</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -361,14 +345,6 @@ const CaseStudyCargoExpress = () => {
                 <li>– сколько новых / в работе / выполнено</li>
                 <li>– где возникают задержки</li>
               </ul>
-            </div>
-
-            {/* Placeholder for dashboard screenshot */}
-            <div className="bg-card rounded-2xl p-8 mt-8 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center">
-                <Image className="w-12 h-12 text-muted-foreground mx-auto mb-3" strokeWidth={1} />
-                <p className="text-muted-foreground text-sm">Место для скриншота дашборда или таблицы</p>
-              </div>
             </div>
           </div>
         </section>
