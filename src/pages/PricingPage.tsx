@@ -119,7 +119,7 @@ const PricingPage = () => {
     {
       slug: "digital-solution-design",
       sketch: blueprintPlantSketch,
-      name: "Проектирование и разработка цифрового решения",
+      name: "Проектирование и разработка цифрового решения под бизнес-процесс",
       when: "нужен инструмент под процесс",
       result: "рабочее цифровое решение",
       price: "от 260 000 ₽",
