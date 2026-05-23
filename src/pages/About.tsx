@@ -855,44 +855,6 @@ const About = () => {
         {/* Publications, Media & Speeches */}
         <PublicationsMarquee />
 
-        {/* Testimonials */}
-        <section className="py-8 md:py-10">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className="section-title text-center mb-12">
-              Отзывы <span className="font-semibold">клиентов</span>
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover">
-                <div className="mb-4 h-24 bg-gray-100 rounded-xl flex items-center justify-center">
-                  <UserCheck className="w-12 h-12 text-gray-400" />
-                </div>
-                <p className="text-base text-text-body italic leading-relaxed">
-                  «У Александры чёрный пояс по нейронкам — она показывает, как использовать ИИ инженерно, а не поверхностно.»
-                </p>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover">
-                <div className="mb-4 h-24 bg-gray-100 rounded-xl flex items-center justify-center">
-                  <UserCheck className="w-12 h-12 text-gray-400" />
-                </div>
-                <p className="text-base text-text-body italic leading-relaxed">
-                  «Спасибо за настойчивость — без твоего анализа мы бы не увидели реальные точки эффекта.»
-                </p>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-card p-6 gradient-border gradient-border-hover">
-                <div className="mb-4 h-24 bg-gray-100 rounded-xl flex items-center justify-center">
-                  <UserCheck className="w-12 h-12 text-gray-400" />
-                </div>
-                <p className="text-base text-text-body italic leading-relaxed">
-                  «Первый специалист, который показал реальные цифры и риски, а не красивую презентацию.»
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Energy & Recovery */}
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-3xl">
