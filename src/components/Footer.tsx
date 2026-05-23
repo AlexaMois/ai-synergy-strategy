@@ -28,7 +28,7 @@ const Footer = () => {
           <div>
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
             <p className="text-background/80 text-base leading-relaxed">
-              Инженер по ИИ и цифровой архитектуре<br />
+              Инженер и архитектор цифрового развития бизнеса<br />
               ​Гарантирую честную оценку, экономику и предсказуемый результат<br />
               ​
             </p>
