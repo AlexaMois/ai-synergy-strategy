@@ -18,8 +18,10 @@ const AnimatedNumber = ({
   decimals = 0,
   className = ''
 }: AnimatedNumberProps) => {
-  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
-  const [displayValue, setDisplayValue] = useState(0);
+  const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
+  // Fallback: render the real value immediately so the number is never stuck at 0
+  // if IntersectionObserver, JS animation, or the visibility trigger fails.
+  const [displayValue, setDisplayValue] = useState(value);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -27,6 +29,8 @@ const AnimatedNumber = ({
 
     setHasAnimated(true);
     const startTime = Date.now();
+    // Start animation from 0 up to the target value
+    setDisplayValue(0);
 
     const animate = () => {
       const now = Date.now();
