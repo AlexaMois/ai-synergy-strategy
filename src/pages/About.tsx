@@ -286,7 +286,7 @@ const About = () => {
         {/* Моя главная задача */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-muted rounded-[24px] ring-1 ring-foreground/5 p-6 md:p-10">
+            <div className="bg-surface-sand rounded-[24px] ring-1 ring-foreground/5 p-6 md:p-10">
               <h2 className="section-title mb-4">
                 Моя главная <span className="font-semibold">задача</span>
               </h2>

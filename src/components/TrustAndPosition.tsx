@@ -36,10 +36,10 @@ const TrustAndPosition = () => {
   });
 
   return (
-    <section ref={ref} className="relative py-14 md:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-gray-50/50 to-white">
+    <section ref={ref} className="relative py-14 md:py-20 lg:py-24 overflow-hidden bg-background">
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
-        <div className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-elevated ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
+        <div className={`max-w-7xl mx-auto bg-card rounded-[32px] p-6 sm:p-8 md:p-12 lg:p-14 ring-1 ring-foreground/5 shadow-card ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 xl:gap-12">
             {/* Левая колонка: Почему мне доверяют */}
             <div>
