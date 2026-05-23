@@ -168,18 +168,6 @@ const ServicesPage = () => {
                             </div>
                           ))}
                         </div>
-                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
-                        {/* Уровень 4: Форматы работы */}
-                        <div className="grid grid-cols-2 gap-3 w-full">
-                          {["Стратегия", "Аудит", "Внедрение", "Сопровождение"].map((t) => (
-                            <div
-                              key={t}
-                              className="px-4 py-3 rounded-xl bg-background text-foreground text-base font-semibold ring-1 ring-foreground/10 shadow-card hover:-translate-y-0.5 hover:shadow-plate transition-all duration-300"
-                            >
-                              {t}
-                            </div>
-                          ))}
-                        </div>
                       </div>
                     </div>
                   </div>

@@ -135,12 +135,12 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Диагностика автоматизации бизнес‑процессов — где ИИ окупится за 3–6 месяцев | Александра Моисеева</title>
-        <meta name="description" content="Онлайн‑диагностика: находим 3–5 процессов, где автоматизация с ИИ даёт быстрый ROI без переделки всей IT‑системы и найма армии интеграторов." />
+        <title>С чего начать цифровое развитие бизнеса — выбор формата работы</title>
+        <meta name="description" content="Выберите подходящий формат работы: стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка или сопровождение." />
         <meta name="keywords" content="диагностика бизнес процессов, аудит автоматизации, где внедрять ИИ, ROI автоматизации, экспресс аудит процессов" />
         <link rel="canonical" href="https://aleksamois.ru/start" />
-        <meta property="og:title" content="Диагностика автоматизации бизнес‑процессов — где ИИ окупится за 3–6 месяцев | Александра Моисеева" />
-        <meta property="og:description" content="Онлайн‑диагностика: находим 3–5 процессов, где автоматизация с ИИ даёт быстрый ROI без переделки всей IT‑системы и найма армии интеграторов." />
+        <meta property="og:title" content="С чего начать цифровое развитие бизнеса — выбор формата работы" />
+        <meta property="og:description" content="Выберите подходящий формат работы: стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка или сопровождение." />
         <meta property="og:url" content="https://aleksamois.ru/start" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -165,11 +165,11 @@ const StartPage = () => {
                       С чего начать
                     </p>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                      Подберём{" "}
+                      С чего начать{" "}
                       <span className="font-iriska font-normal italic text-accent">
-                        формат работы
+                        цифровое развитие
                       </span>{" "}
-                      под вашу ситуацию
+                      компании
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/75 mb-6 max-w-xl leading-snug">
                       Цифровое развитие компании лучше начинать с правильной точки входа.
