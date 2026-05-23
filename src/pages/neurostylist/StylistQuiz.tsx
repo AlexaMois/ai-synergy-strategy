@@ -982,6 +982,13 @@ const MultiFieldView = ({
 // ===== Typed photo uploader (with per-photo type) =====
 
 async function uploadFileToStorage(file: File, keyPrefix: string): Promise<string | null> {
+  // Пустой файл — iOS иногда отдаёт File с size=0, если фото ещё не выгрузилось из iCloud.
+  if (file.size === 0) {
+    toast.error(
+      `«${file.name || "Фото"}»: файл пустой. Если фото в iCloud — откройте его в Фото и попробуйте снова.`,
+    );
+    return null;
+  }
   if (file.size > 25 * 1024 * 1024) {
     toast.error(`Файл «${file.name}» больше 25 МБ — сожмите фото и попробуйте снова`);
     return null;
@@ -993,9 +1000,9 @@ async function uploadFileToStorage(file: File, keyPrefix: string): Promise<strin
       sessionStorage.setItem("ns_session", id);
       return id;
     })();
-  const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-  // Mobile Safari (особенно при share-sheet) иногда отдаёт пустой file.type —
-  // подставляем content-type по расширению, иначе Supabase Storage отклоняет файл по MIME.
+  // Mobile Safari (особенно при share-sheet) часто отдаёт пустой file.type ИЛИ имя без расширения
+  // (например, "image"). Тогда Supabase отклоняет файл по MIME. Восстанавливаем MIME и ext
+  // из всех доступных сигналов.
   const extToMime: Record<string, string> = {
     jpg: "image/jpeg",
     jpeg: "image/jpeg",
@@ -1006,17 +1013,46 @@ async function uploadFileToStorage(file: File, keyPrefix: string): Promise<strin
     avif: "image/avif",
     gif: "image/gif",
   };
-  const contentType = file.type || extToMime[ext] || "application/octet-stream";
+  const mimeToExt: Record<string, string> = {
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+    "image/heic": "heic",
+    "image/heif": "heif",
+    "image/avif": "avif",
+    "image/gif": "gif",
+  };
+  const rawName = file.name || "";
+  const lastDot = rawName.lastIndexOf(".");
+  const nameExt = lastDot > 0 ? rawName.slice(lastDot + 1).toLowerCase() : "";
+  const fileMime = (file.type || "").toLowerCase();
+  const ext = extToMime[nameExt] ? nameExt : mimeToExt[fileMime] || "jpg";
+  const contentType = fileMime || extToMime[ext] || "image/jpeg";
   const path = `${sessionId}/${keyPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
   // Retry до 3 раз с экспоненциальной задержкой — мобильные сети часто рвут запросы.
   let lastError: { message?: string } | null = null;
   for (let attempt = 0; attempt < 3; attempt++) {
-    const { error } = await supabase.storage
-      .from("stylist-uploads")
-      .upload(path, file, { contentType, upsert: false });
-    if (!error) return path;
-    lastError = error as { message?: string };
+    // Тайм-аут на одну попытку: 90 сек. Иначе на медленной мобильной сети
+    // запрос может «висеть» без ответа, и UI блокируется навсегда.
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const result = await Promise.race<{ error: { message?: string } | null }>([
+      supabase.storage
+        .from("stylist-uploads")
+        .upload(path, file, { contentType, upsert: false })
+        .then((r) => ({ error: r.error as { message?: string } | null })),
+      new Promise<{ error: { message?: string } }>((resolve) => {
+        timeoutId = setTimeout(
+          () => resolve({ error: { message: "timeout: загрузка заняла больше 90 секунд" } }),
+          90_000,
+        );
+      }),
+    ]);
+    if (timeoutId) clearTimeout(timeoutId);
+    if (!result.error) return path;
+    lastError = result.error;
     const msg = lastError.message || "";
+    console.warn("Upload attempt failed:", { attempt: attempt + 1, name: file.name, size: file.size, type: file.type, contentType, ext, msg });
     // Не ретраим, если проблема в формате/размере/дубликате — повтор не поможет.
     if (/mime|format|size|large|exists|duplicate/i.test(msg)) break;
     if (attempt < 2) await new Promise((r) => setTimeout(r, 600 * (attempt + 1)));
@@ -1029,6 +1065,8 @@ async function uploadFileToStorage(file: File, keyPrefix: string): Promise<strin
       toast.error(`«${file.name}»: формат не поддерживается. Загрузите JPG, PNG, HEIC или WebP.`);
     } else if (/size|large/i.test(msg)) {
       toast.error(`«${file.name}»: файл слишком большой. Максимум 25 МБ.`);
+    } else if (/timeout/i.test(msg)) {
+      toast.error(`«${file.name}»: слишком медленно. Подключитесь к Wi-Fi и попробуйте снова.`);
     } else {
       toast.error(`Не удалось загрузить «${file.name}»: ${msg || "проверьте интернет и попробуйте снова"}`);
     }
