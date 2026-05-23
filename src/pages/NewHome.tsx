@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Hand, Eye, Layers, Compass as CompassIcon, Quote, Phone, Send } from "lucide-react";
+import { ArrowRight, Quote, Phone, Send } from "lucide-react";
 import { openCallbackModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -37,22 +37,18 @@ const stats: Array<{
 
 const externalViewCards = [
   {
-    icon: Hand,
     title: "Много ручной работы",
     text: "Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды.",
   },
   {
-    icon: Eye,
     title: "Руководитель держит контроль на себе",
     text: "Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников.",
   },
   {
-    icon: Layers,
     title: "Инструменты работают разрозненно",
     text: "Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины.",
   },
   {
-    icon: CompassIcon,
     title: "Нужно понять первый шаг",
     text: "Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать.",
   },
@@ -253,7 +249,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="divide-y divide-border border-y border-border">
-            {externalViewCards.map(({ icon: Icon, title, text }, i) => (
+            {externalViewCards.map(({ title, text }, i) => (
               <div
                 key={title}
                 className="grid md:grid-cols-12 gap-6 py-6 md:py-8 items-start"
@@ -261,8 +257,7 @@ const NewHome = () => {
                 <div className="md:col-span-1 font-iriska text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
                   0{i + 1}
                 </div>
-                <div className="md:col-span-4 flex items-center gap-3">
-                  <Icon className="h-5 w-5 text-accent shrink-0" />
+                <div className="md:col-span-4">
                   <h3 className="text-lg md:text-xl font-semibold text-foreground">{title}</h3>
                 </div>
                 <div className="md:col-span-7">
