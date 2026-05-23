@@ -350,14 +350,18 @@ const About = () => {
         {/* AI Framework */}
         <AIFramework />
 
-        {/* My Journey - Accordion */}
-        <section ref={journeyRef} className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className={`section-title text-center mb-12 ${journeyAnimation('animate-fade-in-up')}`}>
-              Мой путь: <span className="font-semibold">опыт, который сформировал подход</span>
+        {/* My Journey - Table style like home */}
+        <section ref={journeyRef} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Мой путь
+            </p>
+            <h2 className={`text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-5 ${journeyAnimation('animate-fade-in-up')}`}>
+              Опыт, который{" "}
+              <span className="font-iriska font-normal italic text-accent">сформировал подход</span>
             </h2>
-            
-            <div className="space-y-4">
+          </div>
+          <div className="divide-y divide-border border-y border-border">
               {[
                 {
                   num: "01",
@@ -393,20 +397,23 @@ const About = () => {
               ].map((item) => (
                 <article
                   key={item.num}
-                  className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8"
+                  className="grid md:grid-cols-12 gap-6 py-8 md:py-10 items-start"
                 >
-                  <h3 className="text-lg md:text-xl font-medium text-foreground mb-4 leading-tight">
-                    <span className="text-primary font-bold mr-2">{item.num}.</span>
-                    {item.title}
-                  </h3>
-                  <div className="space-y-4 text-base text-foreground leading-relaxed">
+                  <div className="md:col-span-1 font-iriska text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
+                    {item.num}
+                  </div>
+                  <div className="md:col-span-4">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-7 space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
                     {item.body.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
                   </div>
                 </article>
               ))}
-            </div>
           </div>
         </section>
 
@@ -595,15 +602,20 @@ const About = () => {
         
 
         {/* Quote Block */}
-        <section ref={quoteRef} className="py-14 md:py-20 px-4 md:px-6">
-          <div className="container mx-auto max-w-5xl">
-            <div className={`rounded-[32px] md:rounded-[40px] bg-foreground text-background px-6 md:px-12 lg:px-16 py-12 md:py-16 shadow-plate ring-1 ring-foreground/5 ${quoteAnimation('animate-fade-in-up')}`}>
-              <blockquote>
-                <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed">
-                  ИИ усиливает то, что уже есть в компании: порядок — усиливает порядок, перегруз — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
-                </p>
-              </blockquote>
-            </div>
+        <section ref={quoteRef} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className={`rounded-[32px] md:rounded-[40px] bg-foreground text-background px-6 md:px-12 lg:px-16 py-14 md:py-20 shadow-plate ring-1 ring-foreground/5 ${quoteAnimation('animate-fade-in-up')}`}>
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+              Принцип работы
+            </p>
+            <blockquote>
+              <p className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] max-w-5xl">
+                ИИ усиливает то, что уже есть в компании:{" "}
+                <span className="font-iriska font-normal italic text-accent">порядок</span>{" "}
+                — усиливает порядок,{" "}
+                <span className="font-iriska font-normal italic text-accent">перегруз</span>{" "}
+                — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
+              </p>
+            </blockquote>
           </div>
         </section>
 
@@ -624,12 +636,18 @@ const About = () => {
         </section>
 
         {/* My Principles */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title text-center mb-10">
-              Мои принципы: <span className="font-semibold">что защищает бюджет клиента</span>
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Мои принципы
+            </p>
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+              Что{" "}
+              <span className="font-iriska font-normal italic text-accent">защищает бюджет</span>{" "}
+              клиента
             </h2>
-            <div className="grid sm:grid-cols-2 gap-6">
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
               {[
                 {
                   number: "01",
@@ -651,37 +669,56 @@ const About = () => {
                   title: "Я говорю прямо о рисках",
                   text: "Моя задача — сохранить клиенту деньги, время и управленческое внимание. Поэтому я заранее показываю, где инструмент даст пользу сразу, где нужна подготовка, а где лучше начать со стратегии, аудита или обучения команды. Для собственника это означает одно: решение принимается на фактах, цифрах и понимании последствий.",
                 },
-              ].map((p) => (
-                <div
-                  key={p.number}
-                  className="bg-card ring-1 ring-foreground/5 rounded-[24px] p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200"
-                >
-                  <span className="text-primary text-sm font-medium mb-3 block">{p.number}</span>
-                  <h3 className="text-lg md:text-xl font-medium text-foreground mb-3 leading-tight">{p.title}</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">{p.text}</p>
-                </div>
-              ))}
-            </div>
+              ].map((p, i) => {
+                const palettes = [
+                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70", num: "text-accent" },
+                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70", num: "text-accent" },
+                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70", num: "text-accent" },
+                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70", num: "text-accent" },
+                ];
+                const pal = palettes[i % palettes.length];
+                return (
+                  <div
+                    key={p.number}
+                    className={`relative flex flex-col rounded-[28px] ${pal.bg} p-7 md:p-9 min-h-[280px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                  >
+                    <span className={`font-iriska text-5xl md:text-6xl font-bold ${pal.num} tabular-nums leading-none mb-5`}>
+                      {p.number}
+                    </span>
+                    <h3 className={`text-xl md:text-2xl font-bold ${pal.text} mb-3 leading-tight`}>{p.title}</h3>
+                    <p className={`text-sm md:text-base ${pal.muted} leading-relaxed`}>{p.text}</p>
+                  </div>
+                );
+              })}
           </div>
         </section>
 
         {/* What is NeyroResheniya */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
-              <h2 className="section-title mb-5">
-                Что такое <span className="font-semibold">«НейроРешения»</span>
-              </h2>
-              <div className="space-y-4 text-lg text-foreground leading-relaxed mb-6">
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-20">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12">
+              <div className="md:col-span-5">
+                <p className="text-sm uppercase tracking-widest text-white/90 font-semibold mb-5">
+                  Агентство
+                </p>
+                <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] mb-6">
+                  Что такое{" "}
+                  <span className="font-iriska font-normal italic text-white">
+                    «НейроРешения»
+                  </span>
+                </h2>
+                <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed">
                 <p>
                   «НейроРешения» — агентство цифрового развития бизнеса, которое выросло из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
                 </p>
                 <p>
                   Это методология, продуктовая система и команда решений вокруг задач собственника: стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов.
                 </p>
+                </div>
               </div>
-              <p className="text-sm font-medium text-primary uppercase tracking-wide mb-3">Направления</p>
-              <ul className="space-y-2 text-base md:text-lg text-foreground mb-6">
+              <div className="md:col-span-7">
+                <p className="text-sm font-semibold text-white/90 uppercase tracking-widest mb-5">Направления</p>
+                <ul className="space-y-3 text-base md:text-lg text-white">
                 {[
                   "Стратегия цифрового развития",
                   "Глубокий аудит компании для цифровизации",
@@ -690,15 +727,18 @@ const About = () => {
                   "Проектирование и разработка решений под бизнес-процессы",
                   "Поддержка и развитие цифровых инструментов компании",
                 ].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="text-primary flex-shrink-0">—</span>
+                  <li key={item} className="flex gap-3 border-b border-white/15 pb-3">
+                    <span className="text-white/70 flex-shrink-0 font-iriska italic">—</span>
                     <span>{item}</span>
                   </li>
                 ))}
-              </ul>
-              <PillButton to="/services" variant="dark">
-                Посмотреть услуги
-              </PillButton>
+                </ul>
+                <div className="mt-8">
+                  <PillButton to="/services" variant="light">
+                    Посмотреть услуги
+                  </PillButton>
+                </div>
+              </div>
             </div>
           </div>
         </section>
