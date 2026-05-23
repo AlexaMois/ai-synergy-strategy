@@ -18,7 +18,6 @@ import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
 import routeSketch from "@/assets/sketches/route-sketch.png";
 import chatSketch from "@/assets/sketches/chat-sketch.png";
 
-const stats = [
 const stats: Array<{
   value: number;
   suffix: string;
