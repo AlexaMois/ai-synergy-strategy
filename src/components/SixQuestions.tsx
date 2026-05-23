@@ -59,7 +59,7 @@ const SixQuestions = () => {
           {questions.map((question, index) => (
             <div
               key={question.number}
-              className={`bg-muted rounded-2xl p-6 shadow-soft hover:shadow-card border border-border transition-all duration-300 hover:bg-primary/10 ${
+              className={`bg-muted rounded-[24px] p-6 shadow-card hover:shadow-elevated ring-1 ring-foreground/5 transition-all duration-300 hover:bg-primary/10 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{

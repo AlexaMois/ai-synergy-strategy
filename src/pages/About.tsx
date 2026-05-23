@@ -217,9 +217,10 @@ const About = () => {
       
         <main>
         {/* Hero Section */}
-        <section ref={heroRef} className="pt-32 pb-10 md:pb-16 lg:pb-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <section ref={heroRef} className="pt-28 md:pt-32 pb-10 md:pb-16 lg:pb-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className={heroAnimation('animate-fade-in-up')}>
                 <h1 className="mb-4 leading-tight">
                   Александра Моисеева
@@ -251,18 +252,19 @@ const About = () => {
                 </div>
               </div>
               <div className={`${heroAnimation('animate-fade-in-right')} flex justify-center`}>
-                <div className="relative w-full max-w-md">
-                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-2xl" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
+                <div className="relative w-full max-w-md rounded-[28px] overflow-hidden bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-2 md:p-3">
+                  <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[22px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
                 </div>
+              </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Кто я */}
-        <section className="py-8 md:py-12">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-10">
+            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
               <h2 className="section-title mb-5">
                 <span className="font-semibold">Кто я</span>
               </h2>
@@ -282,9 +284,9 @@ const About = () => {
         </section>
 
         {/* Моя главная задача */}
-        <section className="py-6 md:py-10">
+        <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-muted rounded-2xl border border-border p-6 md:p-10">
+            <div className="bg-surface-sand rounded-[24px] ring-1 ring-foreground/5 p-6 md:p-10">
               <h2 className="section-title mb-4">
                 Моя главная <span className="font-semibold">задача</span>
               </h2>
@@ -296,15 +298,15 @@ const About = () => {
         </section>
 
         {/* Photo: Business Success Award - Combined */}
-        <section className="py-8 md:py-12">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6 items-center">
-              <div className="overflow-hidden rounded-2xl shadow-soft">
+              <div className="overflow-hidden rounded-[24px] shadow-card">
                 <img src={awardDiploma} alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
               </div>
-              <div className="overflow-hidden rounded-2xl shadow-soft bg-muted">
+              <div className="overflow-hidden rounded-[24px] shadow-card bg-muted">
                 <img src={awardCeremony} alt="Церемония награждения на премии «Бизнес-Успех» 2025" className="w-full h-64 md:h-72 object-contain" loading="lazy" decoding="async" />
               </div>
               <div className="p-4 md:p-6">
@@ -323,13 +325,13 @@ const About = () => {
         <HowIChoose />
 
         {/* Photo: Speaking at Podium */}
-        <section className="py-6 md:py-10 bg-muted">
+        <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div className="p-4 md:p-6 order-2 md:order-1">
                 <p className="text-lg text-foreground leading-relaxed"><span className="text-primary font-semibold">Выступление</span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе.</p>
               </div>
-              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
+              <div className="overflow-hidden rounded-[24px] shadow-card order-1 md:order-2">
                 <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-72 md:h-80 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
@@ -345,7 +347,7 @@ const About = () => {
         <AIFramework />
 
         {/* My Journey - Accordion */}
-        <section ref={journeyRef} className="py-8 md:py-10">
+        <section ref={journeyRef} className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-12 ${journeyAnimation('animate-fade-in-up')}`}>
               Мой путь: <span className="font-semibold">опыт, который сформировал подход</span>
@@ -387,7 +389,7 @@ const About = () => {
               ].map((item) => (
                 <article
                   key={item.num}
-                  className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-8"
+                  className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8"
                 >
                   <h3 className="text-lg md:text-xl font-medium text-foreground mb-4 leading-tight">
                     <span className="text-primary font-bold mr-2">{item.num}.</span>
@@ -406,7 +408,7 @@ const About = () => {
 
 
         {/* Engineering Path - temporarily hidden */}
-        {false && <section ref={engineeringRef} className="py-10 md:py-16 lg:py-20 bg-muted">
+        {false && <section ref={engineeringRef} className="py-14 md:py-20 lg:py-24 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
               Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
@@ -418,7 +420,7 @@ const About = () => {
               За последние 3 года я вложила 2000+ часов в специализированное образование.
             </p>
             
-            <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
+            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
               <div className="space-y-8">
                 {/* Education Section */}
                 <div>
@@ -589,11 +591,11 @@ const About = () => {
         
 
         {/* Quote Block */}
-        <section ref={quoteRef} className="py-8 md:py-10 bg-[#FAFBFC]">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <div className={`bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 md:p-12 border-l-4 border-primary ${quoteAnimation('animate-fade-in-up')}`}>
+        <section ref={quoteRef} className="py-14 md:py-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-5xl">
+            <div className={`rounded-[32px] md:rounded-[40px] bg-foreground text-background px-6 md:px-12 lg:px-16 py-12 md:py-16 shadow-plate ring-1 ring-foreground/5 ${quoteAnimation('animate-fade-in-up')}`}>
               <blockquote>
-                <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed">
                   ИИ усиливает то, что уже есть в компании: порядок — усиливает порядок, перегруз — усиливает перегруз. Поэтому я начинаю с архитектуры, а не с инструментов.
                 </p>
               </blockquote>
@@ -602,7 +604,7 @@ const About = () => {
         </section>
 
         {/* Photo: Presenting to Audience */}
-        <section className="py-6 md:py-10">
+        <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div className="p-4 md:p-6 order-2 md:order-1">
@@ -610,7 +612,7 @@ const About = () => {
                   <span className="text-primary font-semibold">Презентация на бизнес-форуме</span> — практические инструменты для привлечения и удержания клиентов с помощью технологий.
                 </p>
               </div>
-              <div className="overflow-hidden rounded-2xl shadow-soft order-1 md:order-2">
+              <div className="overflow-hidden rounded-[24px] shadow-card order-1 md:order-2">
                 <img src={presentingAudience} alt="Презентация для аудитории на бизнес-форуме" className="w-full h-72 md:h-80 object-cover object-center" loading="lazy" decoding="async" />
               </div>
             </div>
@@ -618,7 +620,7 @@ const About = () => {
         </section>
 
         {/* My Principles */}
-        <section className="py-8 md:py-10">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title text-center mb-10">
               Мои принципы: <span className="font-semibold">что защищает бюджет клиента</span>
@@ -648,7 +650,7 @@ const About = () => {
               ].map((p) => (
                 <div
                   key={p.number}
-                  className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-200"
+                  className="bg-card ring-1 ring-foreground/5 rounded-[24px] p-6 md:p-8 shadow-card hover:shadow-elevated transition-shadow duration-200"
                 >
                   <span className="text-primary text-sm font-medium mb-3 block">{p.number}</span>
                   <h3 className="text-lg md:text-xl font-medium text-foreground mb-3 leading-tight">{p.title}</h3>
@@ -660,9 +662,9 @@ const About = () => {
         </section>
 
         {/* What is NeyroResheniya */}
-        <section className="py-8 md:py-12">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-10">
+            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-10">
               <h2 className="section-title mb-5">
                 Что такое <span className="font-semibold">«НейроРешения»</span>
               </h2>
@@ -698,10 +700,10 @@ const About = () => {
         </section>
 
         {/* Photo: Business Angels Event */}
-        <section className="py-6 md:py-10 bg-muted">
+        <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="overflow-hidden rounded-2xl shadow-soft">
+              <div className="overflow-hidden rounded-[24px] shadow-card">
                 <img src={businessAngels} alt="Мероприятие «Ангелы бизнеса»" className="w-full h-72 md:h-80 object-cover object-top" loading="lazy" decoding="async" />
               </div>
               <div className="p-4 md:p-6">
@@ -714,7 +716,7 @@ const About = () => {
         </section>
 
         {/* Credentials */}
-        <section ref={credentialsRef} className="py-8 md:py-10">
+        <section ref={credentialsRef} className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
               Профессиональная <span className="font-semibold">база</span>
@@ -734,7 +736,7 @@ const About = () => {
                   "Спикер и участник профильных мероприятий по цифровизации и ИИ",
                   "Участник выставки «Антитеррор»",
                   "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции",
-                ].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-soft p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
+                ].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-card p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
                     {item}
                   </div>)}
               </div>
@@ -745,7 +747,7 @@ const About = () => {
                   <button
                     key={credential.title}
                     onClick={() => setSelectedCredential(credential)}
-                    className="group bg-card rounded-xl shadow-soft border border-border p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="group bg-card rounded-xl shadow-card ring-1 ring-foreground/5 p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   >
                     <div className="aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-muted">
                       <img
@@ -769,7 +771,7 @@ const About = () => {
               </div>
 
               {/* Short Resume */}
-              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
+              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
                 <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
                   Краткое резюме
                 </h3>
@@ -826,7 +828,7 @@ const About = () => {
         </Dialog>
 
         {/* Photo Gallery: Public Activity */}
-        <section className="py-8 md:py-12">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="section-title text-center mb-8">
               Публичная <span className="font-semibold">деятельность</span>
@@ -834,7 +836,7 @@ const About = () => {
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-xl shadow-soft cursor-pointer group" onClick={() => openLightbox(index)}>
+              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-xl shadow-card cursor-pointer group" onClick={() => openLightbox(index)}>
                   <img src={image.src} alt={image.alt} className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" style={index === 2 ? {
                   objectPosition: 'center center'
                 } : undefined} loading="lazy" />
@@ -851,13 +853,13 @@ const About = () => {
         <PublicationsMarquee />
 
         {/* Energy & Recovery */}
-        <section className="py-8 md:py-10">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-3xl">
             <h2 className="section-title text-center mb-8">
               Энергия <span className="font-semibold">и устойчивость</span>
             </h2>
             
-            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8 text-center">
+            <div className="bg-surface-sand rounded-[28px] ring-1 ring-foreground/5 shadow-card p-8 md:p-12 text-center">
               <Home className="w-12 h-12 text-primary mx-auto mb-4" />
               <div className="space-y-4 text-base md:text-lg text-text-body leading-relaxed">
                 <p>
@@ -872,26 +874,28 @@ const About = () => {
         </section>
 
         {/* Final Transition CTA */}
-        <section className="py-10 md:py-14 bg-[#FAFBFC]">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h2 className="section-title mb-5">
+        <section className="py-14 md:py-20 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+            <h2 className="section-title mb-5 text-white">
               Начните с понятного <span className="font-semibold">формата работы</span>
             </h2>
-            <p className="text-base md:text-lg text-foreground leading-relaxed mb-8">
+            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
               Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
               <Button size="lg" onClick={() => navigate('/start')} className="w-full sm:w-auto">
                 Подобрать формат работы
               </Button>
-              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" onClick={() => navigate('/services')} className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
                 Посмотреть услуги
               </Button>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto bg-transparent border-white/40 text-white hover:bg-white hover:text-foreground">
                 <a href="https://t.me/aleksamois" target="_blank" rel="noopener noreferrer">
                   Написать в Telegram
                 </a>
               </Button>
+            </div>
             </div>
           </div>
         </section>
