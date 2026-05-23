@@ -608,7 +608,7 @@ const About = () => {
               Принцип работы
             </p>
             <blockquote>
-              <p className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] max-w-5xl">
+              <p className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] max-w-5xl text-white">
                 ИИ усиливает то, что уже есть в компании:{" "}
                 <span className="font-iriska font-normal italic text-accent">порядок</span>{" "}
                 — усиливает порядок,{" "}
