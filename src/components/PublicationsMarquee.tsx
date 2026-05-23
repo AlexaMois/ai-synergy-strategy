@@ -245,7 +245,13 @@ const MarqueeRow = ({ items, direction, speed = 120 }: MarqueeRowProps) => {
         >
           {/* 3 копии для бесшовного цикла */}
           {[...items, ...items, ...items].map((pub, index) => (
-            <PublicationCard key={`${pub.id}-${index}`} {...pub} />
+            <div
+              key={`${pub.id}-${index}`}
+              aria-hidden={index >= items.length ? "true" : undefined}
+              className="contents"
+            >
+              <PublicationCard {...pub} />
+            </div>
           ))}
         </div>
       </div>

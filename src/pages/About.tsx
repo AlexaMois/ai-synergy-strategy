@@ -11,12 +11,9 @@ import TrustAndPosition from "@/components/TrustAndPosition";
 import HowIChoose from "@/components/HowIChoose";
 import SixQuestions from "@/components/SixQuestions";
 import AIFramework from "@/components/AIFramework";
-import Credentials from "@/components/Credentials";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState, useEffect } from "react";
-import { ChevronDown, Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink, Send } from "lucide-react";
+import { Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink, Send } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
@@ -24,6 +21,9 @@ import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import { openCallbackModal } from "@/components/CallbackModal";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
+import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
+import kaeoImage from "@/assets/credentials/certificate-kaeo-level5.png";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import awardDiploma from "@/assets/about/award-diploma.jpg";
 import speakingPodium from "@/assets/about/speaking-podium.jpg";
 import awardCeremony from "@/assets/about/award-ceremony.jpg";
@@ -38,10 +38,26 @@ import coPresenting2 from "@/assets/about/co-presenting-2.jpg";
 import lectureTools from "@/assets/about/lecture-tools.jpg";
 import PhotoLightbox from "@/components/PhotoLightbox";
 const About = () => {
-  const [briefOpen, setBriefOpen] = useState(false);
   const [weakSidesOpen, setWeakSidesOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedCredential, setSelectedCredential] = useState<null | { image: string; title: string; subtitle: string; details: string; year: string }>(null);
+  const diplomaCredentials = [
+    {
+      image: diplomaImage,
+      title: 'Диплом о профессиональной переподготовке',
+      subtitle: 'Специалист по искусственному интеллекту',
+      details: 'Международный Университет Цифровой Экономики и Технологий',
+      year: '2025',
+    },
+    {
+      image: kaeoImage,
+      title: 'Квалификационный сертификат KAEO',
+      subtitle: 'Уровень 5 — максимальный',
+      details: 'Постановка целей на этапе обучения нейронных сетей',
+      year: '2025',
+    },
+  ];
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -328,52 +344,6 @@ const About = () => {
         {/* AI Framework */}
         <AIFramework />
 
-        {/* Brief About Me - Collapsible */}
-        <section className="py-8 md:py-10 bg-muted">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <Collapsible open={briefOpen} onOpenChange={setBriefOpen}>
-              <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border transition-all duration-300 hover:shadow-card">
-                <CollapsibleTrigger className="w-full">
-                  <div className="flex items-center justify-between gap-4">
-                    <h2 className="section-title text-left">
-                      Кто я, <span className="font-semibold">и почему мне доверяют</span>
-                    </h2>
-                    <ChevronDown className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${briefOpen ? 'rotate-180' : ''}`} />
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <div className="mt-6 space-y-6 text-foreground">
-                  <div>
-                      <p className="text-handwriting mb-2">Кто я</p>
-                      <p className="text-base leading-relaxed">
-                        стратег и инженер по внедрению ИИ. 14+ лет опыта в управлении и операциях. 4+ года специализации на ИИ-проектах. 40 проектов на основе искусственного интеллекта.
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-handwriting mb-2">Что делаю</p>
-                      <p className="text-base leading-relaxed">
-                        диагностирую, проектирую и сопровождаю ИИ-решения под реальные задачи бизнеса.
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-handwriting mb-2">Почему ко мне приходят</p>
-                      <p className="text-base leading-relaxed">
-                        я не продаю инструменты — я выбираю правильные решения для компании, без привязки к платформам.
-                      </p>
-                    </div>
-                  </div>
-                </CollapsibleContent>
-              </div>
-            </Collapsible>
-            
-            {!briefOpen && <div className="text-center mt-6">
-                <button onClick={() => setBriefOpen(true)} className="text-primary hover:text-primary/80 transition-colors font-medium">
-                  Подробнее обо мне →
-                </button>
-              </div>}
-          </div>
-        </section>
-
         {/* My Journey - Accordion */}
         <section ref={journeyRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
@@ -381,86 +351,56 @@ const About = () => {
               Мой путь: <span className="font-semibold">опыт, который сформировал подход</span>
             </h2>
             
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">01</span>
-                    <h3 className="text-foreground">
-                      Когда честность важнее должности
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
+            <div className="space-y-4">
+              {[
+                {
+                  num: "01",
+                  title: "Когда честность важнее должности",
+                  body: [
+                    "В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств.",
+                    "Мы вернули доверие и большую часть вложений. Этот опыт сформировал мой стиль: взрослость, прямота, уважение к людям и к их деньгам.",
+                  ],
+                },
+                {
+                  num: "02",
+                  title: "Почему я ушла из банков: выбор ответственности",
+                  body: [
+                    "После кризисного управления я поняла: мне важна честность процессов и возможность влиять на результат. Я выбираю работу, где можно отвечать за решение, видеть последствия и менять систему, а не просто выполнять указания сверху.",
+                  ],
+                },
+                {
+                  num: "03",
+                  title: "От первых экспериментов с ИИ к инженерии цифрового развития",
+                  body: [
+                    "Весной 2023 года я начала работать с ChatGPT-3.5. Сначала это были первые фразы и эксперименты, затем — разбор механики, архитектуры, данных и сценариев применения в бизнесе.",
+                    "Я увидела в ИИ новый слой работы с информацией, процессами и управленческими решениями. Так я перешла в инженерный подход к цифровому развитию.",
+                  ],
+                },
+                {
+                  num: "04",
+                  title: "Вывод: зрелость важнее скорости",
+                  body: [
+                    "За два года я несколько раз пересобирала архитектуры проектов и команды. Это был тяжёлый, но важный опыт.",
+                    "В 2026 году я выбрала компактный формат работы: я, помощница и партнёры под конкретные задачи. Такой формат даёт больше качества, ответственности и фокуса на результате.",
+                  ],
+                },
+              ].map((item) => (
+                <article
+                  key={item.num}
+                  className="bg-card rounded-2xl shadow-soft border border-border p-6 md:p-8"
+                >
+                  <h3 className="text-lg md:text-xl font-medium text-foreground mb-4 leading-tight">
+                    <span className="text-primary font-bold mr-2">{item.num}.</span>
+                    {item.title}
+                  </h3>
                   <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств.
-                    </p>
-                    <p>
-                      Мы вернули доверие и большую часть вложений. Этот опыт сформировал мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
-                    </p>
+                    {item.body.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">02</span>
-                    <h3 className="text-foreground">
-                      Почему я ушла из банков: выбор ответственности
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-foreground leading-relaxed">
-                    После кризисного управления я поняла: мне важна честность процессов и возможность влиять на результат. Я выбираю работу, где можно отвечать за решение, видеть последствия и менять систему, а не просто выполнять указания сверху.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
-                    <h3 className="text-foreground">
-                      От первых экспериментов с ИИ к инженерии цифрового развития
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      Весной 2023 года я начала работать с ChatGPT-3.5. Сначала это были первые фразы и эксперименты, затем — разбор механики, архитектуры, данных и сценариев применения в бизнесе.
-                    </p>
-                    <p>
-                      Я увидела в ИИ новый слой работы с информацией, процессами и управленческими решениями. Так я перешла в инженерный подход к цифровому развитию.
-                    </p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center gap-4 text-left">
-                    <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
-                    <h3 className="text-foreground">
-                      Вывод: зрелость важнее скорости
-                    </h3>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <div className="space-y-4 text-base text-foreground leading-relaxed">
-                    <p>
-                      За два года я несколько раз пересобирала архитектуры проектов и команды. Это был тяжёлый, но важный опыт.
-                    </p>
-                    <p>
-                      В 2026 году я выбрала компактный формат работы: я, помощница и партнёры под конкретные задачи. Такой формат даёт больше качества, ответственности и фокуса на результате.
-                    </p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -799,6 +739,35 @@ const About = () => {
                   </div>)}
               </div>
 
+              {/* Diplomas & Certificates (merged from Credentials block) */}
+              <div className="grid sm:grid-cols-2 gap-6">
+                {diplomaCredentials.map((credential) => (
+                  <button
+                    key={credential.title}
+                    onClick={() => setSelectedCredential(credential)}
+                    className="group bg-card rounded-xl shadow-soft border border-border p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  >
+                    <div className="aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-muted">
+                      <img
+                        src={credential.image}
+                        alt={credential.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="font-medium text-foreground text-sm md:text-base mb-1">
+                      {credential.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-primary font-medium mb-1">
+                      {credential.subtitle}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {credential.year}
+                    </p>
+                  </button>
+                ))}
+              </div>
+
               {/* Short Resume */}
               <div className="bg-card rounded-2xl shadow-soft p-6 md:p-8 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
@@ -827,8 +796,34 @@ const About = () => {
           </div>
         </section>
 
-        {/* Qualifications - Diploma & Certificate */}
-        <Credentials />
+        {/* Modal for zoomed credential view */}
+        <Dialog open={!!selectedCredential} onOpenChange={(open) => !open && setSelectedCredential(null)}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border">
+            <DialogTitle className="sr-only">
+              {selectedCredential?.title}
+            </DialogTitle>
+            {selectedCredential && (
+              <div className="relative">
+                <img
+                  src={selectedCredential.image}
+                  alt={selectedCredential.title}
+                  className="w-full h-auto max-h-[85vh] object-contain"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-4 md:p-6">
+                  <h3 className="font-semibold text-foreground text-base md:text-lg">
+                    {selectedCredential.title}
+                  </h3>
+                  <p className="text-sm text-primary font-medium">
+                    {selectedCredential.subtitle}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {selectedCredential.details} • {selectedCredential.year}
+                  </p>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
 
         {/* Photo Gallery: Public Activity */}
         <section className="py-8 md:py-12">
