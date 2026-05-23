@@ -34,7 +34,7 @@ const Credentials = () => {
   });
 
   return (
-    <section id="qualifications" ref={ref} className="py-10 md:py-16 lg:py-20">
+    <section id="qualifications" ref={ref} className="py-14 md:py-20 lg:py-24">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className={`section-title text-center mb-8 ${getStaggeredClass(0, 'animate-fade-in-up')}`}>
           Профессиональное <span className="font-semibold">подтверждение</span>
@@ -45,7 +45,7 @@ const Credentials = () => {
             <button
               key={credential.id}
               onClick={() => setSelectedCredential(credential)}
-              className={`group bg-card rounded-xl shadow-soft border border-border p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50 ${getStaggeredClass(index + 1, 'animate-fade-in-up')}`}
+              className={`group bg-card rounded-xl shadow-card ring-1 ring-foreground/5 p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50 ${getStaggeredClass(index + 1, 'animate-fade-in-up')}`}
             >
               <div className="aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-muted">
                 <img

@@ -36,7 +36,7 @@ const TrustAndPosition = () => {
   });
 
   return (
-    <section ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-gray-50/50 to-white">
+    <section ref={ref} className="relative py-14 md:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-gray-50/50 to-white">
       <div className="container mx-auto">
         {/* Общий контейнер с тенью */}
         <div className={`max-w-7xl mx-auto bg-background rounded-3xl p-6 sm:p-8 md:p-12 lg:p-14 shadow-elevated ${getAnimationClass('animate-fade-in-up', 'animate-mobile-slide-up')}`}>
@@ -102,7 +102,7 @@ const TrustAndPosition = () => {
               </div>
 
               <div className="space-y-4">
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(4)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(4)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <Target className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -114,7 +114,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(5)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(5)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <TrendingUp className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -126,7 +126,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(6)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(6)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <MessageCircle className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -138,7 +138,7 @@ const TrustAndPosition = () => {
                   </div>
                 </div>
 
-                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-full bg-card shadow-soft gradient-border-hover hover-lift ${getStaggeredClass(7)}`}>
+                <div className={`flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-5 rounded-[24px] sm:rounded-full bg-card shadow-card gradient-border-hover hover-lift ${getStaggeredClass(7)}`}>
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-primary">
                     <Search className="w-6 h-6 text-primary-foreground" />
                   </div>

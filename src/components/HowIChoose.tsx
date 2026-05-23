@@ -47,7 +47,7 @@ const HowIChoose = () => {
   ];
 
   return (
-    <section ref={ref} className="py-10 md:py-16 lg:py-20 bg-background">
+    <section ref={ref} className="py-14 md:py-20 lg:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-[1200px]">
         <h2
           className={`section-title text-center mb-10 md:mb-14 transition-all duration-700 ${
@@ -61,7 +61,7 @@ const HowIChoose = () => {
           {criteria.map((item, index) => (
             <div
               key={item.number}
-              className={`bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card transition-shadow duration-200 ${
+              className={`bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 hover:shadow-card transition-shadow duration-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
