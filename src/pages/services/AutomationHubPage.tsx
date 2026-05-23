@@ -229,7 +229,7 @@ const AutomationHubPage = () => {
               <span className="text-sm font-medium text-primary">Хаб-страница</span>
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 leading-tight">
-              Автоматизация бизнес-процессов с ИИ — под ключ, без хаоса и переделок
+              Автоматизация бизнес-процессов с ИИ — под ключ, без сбоев и переделок
             </h1>
             <p className="text-lg text-foreground/80 max-w-3xl mb-6">
               Я закрываю весь цикл — от диагностики процессов до пилота, который окупается за 3–6 месяцев. Работаю с производством, торговлей, логистикой и услугами. Без замены 1С и CRM, в вашем контуре, с прозрачной экономикой.
