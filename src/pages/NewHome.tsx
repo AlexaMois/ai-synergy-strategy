@@ -99,14 +99,14 @@ const NewHome = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Александра Моисеева — архитектор цифрового развития бизнеса</title>
+        <title>Александра Моисеева — инженер и архитектор цифрового развития бизнеса</title>
         <meta
           name="description"
-          content="Эксперт по цифровому развитию бизнеса. Агентство НейроРешения — методология и продуктовая система внедрения ИИ и автоматизации."
+          content="Инженер и архитектор цифрового развития бизнеса. Агентство НейроРешения — методология и продуктовая система внедрения ИИ и автоматизации."
         />
         <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Александра Моисеева — архитектор цифрового развития бизнеса" />
-        <meta property="og:description" content="Эксперт и архитектор цифрового развития бизнеса. Агентство НейроРешения — система реализации проектов." />
+        <meta property="og:title" content="Александра Моисеева — инженер и архитектор цифрового развития бизнеса" />
+        <meta property="og:description" content="Инженер и архитектор цифрового развития бизнеса. Агентство НейроРешения — система реализации проектов." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -123,7 +123,7 @@ const NewHome = () => {
                     Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">
-                    Эксперт и архитектор цифрового развития бизнеса
+                    Инженер и архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-base md:text-lg text-background/80 mb-10 max-w-xl">
                     Основатель агентства «НейроРешения». Помогаю собственникам и руководителям
