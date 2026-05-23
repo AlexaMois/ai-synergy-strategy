@@ -45,7 +45,11 @@ const Partners = ({ className }: PartnersProps) => {
         <div className="marquee-container">
           <div className="marquee-content marquee-logos">
             {[...Array(3)].map((_, setIndex) => (
-              <div key={setIndex} className="marquee-set">
+              <div
+                key={setIndex}
+                className="marquee-set"
+                aria-hidden={setIndex === 0 ? undefined : "true"}
+              >
                 {partners.map((partner) => (
                   <div 
                     key={`${setIndex}-${partner.id}`} 

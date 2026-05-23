@@ -77,13 +77,13 @@ const AIFramework = () => {
               </div>
               <div className="space-y-3">
                 <div>
-                  <span className="text-xs font-medium text-primary uppercase tracking-wide">Вопрос для вас</span>
+                  <span className="text-xs font-medium text-primary">Вопрос для вас</span>
                   <p className="text-sm md:text-base text-muted-foreground mt-1">
                     {sector.question}
                   </p>
                 </div>
                 <div>
-                  <span className="text-xs font-medium text-primary uppercase tracking-wide">Что я делаю</span>
+                  <span className="text-xs font-medium text-primary">Что я делаю</span>
                   <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">
                     {sector.answer}
                   </p>
