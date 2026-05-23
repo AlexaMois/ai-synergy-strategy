@@ -304,15 +304,15 @@ const About = () => {
         <section className="py-14 md:py-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6 items-center">
-              <div className="overflow-hidden rounded-[24px] shadow-card">
+              <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5">
                 <img src={awardDiploma} alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
               </div>
-              <div className="overflow-hidden rounded-[24px] shadow-card bg-muted">
+              <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 bg-surface-sand">
                 <img src={awardCeremony} alt="Церемония награждения на премии «Бизнес-Успех» 2025" className="w-full h-64 md:h-72 object-contain" loading="lazy" decoding="async" />
               </div>
-              <div className="p-4 md:p-6">
+              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Премия «Бизнес-Успех» 2025</span> — национальная предпринимательская премия для тех, кто строит бизнес на результатах, а не обещаниях.
                 </p>
@@ -328,13 +328,13 @@ const About = () => {
         <HowIChoose />
 
         {/* Photo: Speaking at Podium */}
-        <section className="py-12 md:py-16 bg-muted">
+        <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="p-4 md:p-6 order-2 md:order-1">
+              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8 order-2 md:order-1">
                 <p className="text-lg text-foreground leading-relaxed"><span className="text-primary font-semibold">Выступление</span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе.</p>
               </div>
-              <div className="overflow-hidden rounded-[24px] shadow-card order-1 md:order-2">
+              <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 order-1 md:order-2">
                 <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-72 md:h-80 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
@@ -610,12 +610,12 @@ const About = () => {
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="p-4 md:p-6 order-2 md:order-1">
+              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8 order-2 md:order-1">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Презентация на бизнес-форуме</span> — практические инструменты для привлечения и удержания клиентов с помощью технологий.
                 </p>
               </div>
-              <div className="overflow-hidden rounded-[24px] shadow-card order-1 md:order-2">
+              <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 order-1 md:order-2">
                 <img src={presentingAudience} alt="Презентация для аудитории на бизнес-форуме" className="w-full h-72 md:h-80 object-cover object-center" loading="lazy" decoding="async" />
               </div>
             </div>
@@ -703,13 +703,13 @@ const About = () => {
         </section>
 
         {/* Photo: Business Angels Event */}
-        <section className="py-12 md:py-16 bg-muted">
+        <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="overflow-hidden rounded-[24px] shadow-card">
+              <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5">
                 <img src={businessAngels} alt="Мероприятие «Ангелы бизнеса»" className="w-full h-72 md:h-80 object-cover object-top" loading="lazy" decoding="async" />
               </div>
-              <div className="p-4 md:p-6">
+              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Мероприятие «Ангелы бизнеса»</span> — нетворкинг с предпринимателями, которые строят бизнес на ценностях и результате.
                 </p>
@@ -739,7 +739,7 @@ const About = () => {
                   "Спикер и участник профильных мероприятий по цифровизации и ИИ",
                   "Участник выставки «Антитеррор»",
                   "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции",
-                ].map((item, index) => <div key={index} className="bg-card rounded-xl shadow-card p-4 text-center text-sm md:text-base text-foreground font-medium transition-all duration-300 hover:shadow-card">
+                ].map((item, index) => <div key={index} className="bg-card rounded-[20px] ring-1 ring-foreground/5 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200 p-5 text-center text-sm md:text-base text-foreground font-medium">
                     {item}
                   </div>)}
               </div>
@@ -750,9 +750,9 @@ const About = () => {
                   <button
                     key={credential.title}
                     onClick={() => setSelectedCredential(credential)}
-                    className="group bg-card rounded-xl shadow-card ring-1 ring-foreground/5 p-4 text-left transition-all duration-300 hover:shadow-card hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="group bg-card rounded-[20px] shadow-card ring-1 ring-foreground/5 p-5 text-left transition-all duration-200 hover:shadow-elevated hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   >
-                    <div className="aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-muted">
+                    <div className="aspect-[3/4] mb-4 rounded-[16px] overflow-hidden bg-surface-sand">
                       <img
                         src={credential.image}
                         alt={credential.title}
@@ -790,7 +790,7 @@ const About = () => {
                     { label: "Фокус", value: "Процессы, данные, управляемость, цифровые инструменты" },
                     { label: "Ключевая метрика", value: "Сумма ненужных расходов, которых удалось избежать клиентам" },
                   ].map((row) => (
-                    <div key={row.label} className="p-4 bg-muted rounded-xl">
+                    <div key={row.label} className="p-4 bg-surface-sand/60 ring-1 ring-foreground/5 rounded-[16px]">
                       <dt className="text-xs font-medium text-primary uppercase tracking-wide mb-1">{row.label}</dt>
                       <dd className="text-base text-foreground leading-relaxed">{row.value}</dd>
                     </div>
@@ -838,8 +838,8 @@ const About = () => {
             </h2>
             
             {/* 4-column grid gallery */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-xl shadow-card cursor-pointer group" onClick={() => openLightbox(index)}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-[20px] shadow-card ring-1 ring-foreground/5 hover:shadow-elevated transition-all duration-200 cursor-pointer group" onClick={() => openLightbox(index)}>
                   <img src={image.src} alt={image.alt} className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" style={index === 2 ? {
                   objectPosition: 'center center'
                 } : undefined} loading="lazy" />
