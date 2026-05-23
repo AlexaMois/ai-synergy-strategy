@@ -17,7 +17,9 @@ export const useCountUp = ({
   prefix = '',
   suffix = ''
 }: UseCountUpProps) => {
-  const [count, setCount] = useState(0);
+  // Fallback: render the final value immediately so the number is never stuck at 0
+  // if IntersectionObserver, JS animation, or the visibility trigger fails.
+  const [count, setCount] = useState(end);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,8 @@ export const useCountUp = ({
 
     setHasAnimated(true);
     const startTime = Date.now();
-    const endTime = startTime + duration;
+    // Start animation from 0 up to the target value
+    setCount(0);
 
     const animate = () => {
       const now = Date.now();
