@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
+import { openCallbackModal } from "@/components/CallbackModal";
 
 // Preload page on hover for instant navigation
 const preloadPage = (path: string) => {
@@ -155,20 +156,7 @@ const Navigation = () => {
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
+    openCallbackModal();
   };
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();

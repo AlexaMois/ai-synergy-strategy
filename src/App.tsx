@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
+import CallbackModal from "@/components/CallbackModal";
 
 import Index from "./pages/NewHome";
 const OldHome = lazy(() => import("./pages/OldHome"));
@@ -181,6 +182,7 @@ const App = () => (
           <ScrollToTop />
           <BackToHome />
           <AppContent />
+          <CallbackModal />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
