@@ -299,24 +299,33 @@
   }
 
   .section-title {
-    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 700 !important;
-    line-height: 1.05 !important;
-    color: hsl(var(--foreground)) !important;
+    font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: hsl(var(--foreground));
     margin-top: 0;
     margin-bottom: 2.5rem;
+  }
+
+  .section-title .font-semibold,
+  .section-title .font-bold,
+  .section-title strong {
+    font-family: 'Iriska', cursive;
+    font-weight: 400;
+    font-style: italic;
+    color: hsl(var(--accent));
   }
   
   @media (min-width: 640px) {
     .section-title {
-      font-size: 36px !important;
+      font-size: 36px;
     }
   }
   
   @media (min-width: 768px) {
     .section-title {
-      font-size: 48px !important;
+      font-size: 48px;
     }
   }
   
