@@ -760,13 +760,18 @@ const About = () => {
         </section>
 
         {/* Credentials */}
-        <section ref={credentialsRef} className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className={`section-title text-center mb-8 ${credentialsAnimation('animate-fade-in-up')}`}>
-              Профессиональная <span className="font-semibold">база</span>
+        <section ref={credentialsRef} className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Регалии и опыт
+            </p>
+            <h2 className={`text-4xl md:text-6xl font-bold text-foreground leading-[1.05] ${credentialsAnimation('animate-fade-in-up')}`}>
+              Профессиональная{" "}
+              <span className="font-iriska font-normal italic text-accent">база</span>
             </h2>
-            
-            <div ref={statsRef as any} className="space-y-6">
+          </div>
+
+          <div ref={statsRef as any} className="space-y-10">
               {/* Credentials Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
@@ -814,12 +819,16 @@ const About = () => {
                 ))}
               </div>
 
-              {/* Short Resume */}
-              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
-                <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
+              {/* Short Resume — home-style stats grid */}
+              <div>
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Краткое резюме
+                </p>
+                <h3 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-8 max-w-3xl">
+                  Что{" "}
+                  <span className="font-iriska font-normal italic text-accent">за цифрами</span>
                 </h3>
-                <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                   {[
                     { label: "Роль", value: "Инженер и архитектор цифрового развития бизнеса" },
                     { label: "Компания", value: "Основатель агентства «НейроРешения»" },
@@ -831,14 +840,13 @@ const About = () => {
                     { label: "Фокус", value: "Процессы, данные, управляемость, цифровые инструменты" },
                     { label: "Ключевая метрика", value: "Сумма ненужных расходов, которых удалось избежать клиентам" },
                   ].map((row) => (
-                    <div key={row.label} className="p-4 bg-surface-sand/60 ring-1 ring-foreground/5 rounded-[16px]">
-                      <dt className="text-xs font-medium text-primary uppercase tracking-wide mb-1">{row.label}</dt>
-                      <dd className="text-base text-foreground leading-relaxed">{row.value}</dd>
+                    <div key={row.label} className="bg-card p-5 md:p-7">
+                      <dt className="text-xs font-semibold text-accent uppercase tracking-widest mb-2">{row.label}</dt>
+                      <dd className="text-base md:text-lg text-foreground leading-snug">{row.value}</dd>
                     </div>
                   ))}
                 </dl>
               </div>
-            </div>
           </div>
         </section>
 
@@ -872,11 +880,16 @@ const About = () => {
         </Dialog>
 
         {/* Photo Gallery: Public Activity */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="section-title text-center mb-8">
-              Публичная <span className="font-semibold">деятельность</span>
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Публичная деятельность
+            </p>
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
+              Выступления{" "}
+              <span className="font-iriska font-normal italic text-accent">и форумы</span>
             </h2>
+          </div>
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -886,7 +899,6 @@ const About = () => {
                 } : undefined} loading="lazy" />
                 </div>)}
             </div>
-          </div>
         </section>
 
         {/* Lightbox */}
@@ -897,37 +909,51 @@ const About = () => {
         <PublicationsMarquee />
 
         {/* Energy & Recovery */}
-        <section className="py-14 md:py-20">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="section-title text-center mb-8">
-              Энергия <span className="font-semibold">и устойчивость</span>
-            </h2>
-            
-            <div className="bg-surface-sand rounded-[28px] ring-1 ring-foreground/5 shadow-card p-8 md:p-12 text-center">
-              <Home className="w-12 h-12 text-primary mx-auto mb-4" />
-              <div className="space-y-4 text-base md:text-lg text-text-body leading-relaxed">
-                <p>
-                  Проекты по цифровому развитию требуют глубокого внимания, выдержки и ясной головы. Я бережно отношусь к энергии: практикую йогу, медитацию и регулярное восстановление.
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+              <div className="md:col-span-7">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                  Энергия и устойчивость
                 </p>
-                <p className="font-medium text-text-heading">
-                  Для меня это часть профессиональной устойчивости — держать фокус, видеть задачу целиком и принимать точные решения.
-                </p>
+                <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] mb-6">
+                  Часть{" "}
+                  <span className="font-iriska font-normal italic text-accent">профессиональной</span>{" "}
+                  устойчивости
+                </h2>
+                <div className="space-y-4 text-base md:text-lg text-foreground/75 leading-relaxed">
+                  <p>
+                    Проекты по цифровому развитию требуют глубокого внимания, выдержки и ясной головы. Я бережно отношусь к энергии: практикую йогу, медитацию и регулярное восстановление.
+                  </p>
+                  <p className="font-medium text-foreground">
+                    Для меня это часть профессиональной устойчивости — держать фокус, видеть задачу целиком и принимать точные решения.
+                  </p>
+                </div>
+              </div>
+              <div className="md:col-span-5 flex justify-center md:justify-end">
+                <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 flex items-center justify-center shadow-plate">
+                  <Home className="w-16 h-16 md:w-24 md:h-24 text-accent" strokeWidth={1.5} />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Final Transition CTA */}
-        <section className="py-14 md:py-20 px-4 md:px-6">
-          <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-            <h2 className="section-title mb-5 text-white">
-              Начните с понятного <span className="font-semibold">формата работы</span>
+        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
+            <p className="text-sm uppercase tracking-widest text-white/90 font-semibold mb-6">
+              Следующий шаг
+            </p>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.02] mb-6 max-w-4xl">
+              Начните с понятного{" "}
+              <span className="font-iriska font-normal italic text-white">формата</span>{" "}
+              работы
             </h2>
-            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-10 max-w-2xl">
               Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap gap-3">
               <PillButton to="/start" variant="light">
                 Подобрать формат работы
               </PillButton>
@@ -942,7 +968,6 @@ const About = () => {
               >
                 Написать в Telegram
               </PillButton>
-            </div>
             </div>
           </div>
         </section>
