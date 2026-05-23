@@ -378,7 +378,7 @@ const About = () => {
         <section ref={journeyRef} className="py-8 md:py-10">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className={`section-title text-center mb-12 ${journeyAnimation('animate-fade-in-up')}`}>
-              Мой путь: <span className="font-semibold">взрослая история без романтизации</span>
+              Мой путь: <span className="font-semibold">опыт, который сформировал подход</span>
             </h2>
             
             <Accordion type="single" collapsible className="space-y-4">
@@ -392,9 +392,14 @@ const About = () => {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-foreground leading-relaxed">
-                    В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств. Мы вернули доверие и большую часть вложений. Это сформировало мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
-                  </p>
+                  <div className="space-y-4 text-base text-foreground leading-relaxed">
+                    <p>
+                      В 27 лет я возглавила кредитный кооператив, где 60 пайщиков потеряли деньги из-за решений прошлого руководства. Мне пришлось выйти к людям, честно объяснить ситуацию и выстроить план возврата средств.
+                    </p>
+                    <p>
+                      Мы вернули доверие и большую часть вложений. Этот опыт сформировал мой стиль: взрослость, прямота, уважение к людям и к их деньгам.
+                    </p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -409,8 +414,7 @@ const About = () => {
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
                   <p className="text-base text-foreground leading-relaxed">
-                    После кризисного управления я поняла: я не хочу работать там, где решения зависят от кого-то «сверху». 
-                    Мне важна честность процессов и возможность влиять на результат.
+                    После кризисного управления я поняла: мне важна честность процессов и возможность влиять на результат. Я выбираю работу, где можно отвечать за решение, видеть последствия и менять систему, а не просто выполнять указания сверху.
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -420,15 +424,19 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">03</span>
                     <h3 className="text-foreground">
-                      От маркетинга к инженерии ИИ: переход в глубину
+                      От первых экспериментов с ИИ к инженерии цифрового развития
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-foreground leading-relaxed">
-                    Весна 2023 года: ChatGPT-3.5, первые фразы, первые эксперименты. 
-                    Но вместо поверхностного «инструмента для контента» я увидела механику, внутреннюю архитектуру, структуру данных — и ушла в глубину.
-                  </p>
+                  <div className="space-y-4 text-base text-foreground leading-relaxed">
+                    <p>
+                      Весной 2023 года я начала работать с ChatGPT-3.5. Сначала это были первые фразы и эксперименты, затем — разбор механики, архитектуры, данных и сценариев применения в бизнесе.
+                    </p>
+                    <p>
+                      Я увидела в ИИ новый слой работы с информацией, процессами и управленческими решениями. Так я перешла в инженерный подход к цифровому развитию.
+                    </p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -437,15 +445,19 @@ const About = () => {
                   <div className="flex items-center gap-4 text-left">
                     <span className="text-3xl font-bold text-primary flex-shrink-0">04</span>
                     <h3 className="text-foreground">
-                      Выгорание и вывод: зрелость важнее скорости
+                      Вывод: зрелость важнее скорости
                     </h3>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <p className="text-base text-foreground leading-relaxed">
-                    Четыре раза за два года я теряла разработчиков и пересобирала архитектуры с нуля. Это было тяжело. 
-                    В 2026 году я выбрала честный путь: работать в компактном формате — я + помощница + партнёры. Качество выше масштаба.
-                  </p>
+                  <div className="space-y-4 text-base text-foreground leading-relaxed">
+                    <p>
+                      За два года я несколько раз пересобирала архитектуры проектов и команды. Это был тяжёлый, но важный опыт.
+                    </p>
+                    <p>
+                      В 2026 году я выбрала компактный формат работы: я, помощница и партнёры под конкретные задачи. Такой формат даёт больше качества, ответственности и фокуса на результате.
+                    </p>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
