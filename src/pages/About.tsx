@@ -276,7 +276,7 @@ const About = () => {
               </h2>
             </div>
             <div className="md:col-span-7">
-              <div className="space-y-5 text-lg md:text-xl text-foreground/80 leading-relaxed">
+              <div className="space-y-5 text-lg text-foreground/80 leading-relaxed md:text-lg">
                 <p>
                   Я работаю на стыке управления, процессов, данных и цифровых инструментов.
                 </p>
