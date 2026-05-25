@@ -431,7 +431,7 @@ const PricingPage = () => {
                       <PillButton to="/start" variant="light">
                         Подобрать формат работы
                       </PillButton>
-                      <PillButton onClick={scrollToContact} variant="dark">
+                      <PillButton onClick={() => openTaskModal()} variant="dark">
                         Обсудить задачу
                       </PillButton>
                     </div>
