@@ -46,12 +46,8 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/materials/checklist-30', priority: '0.7', changefreq: 'monthly' },
   { path: '/materials/plaud-guide', priority: '0.6', changefreq: 'monthly' },
 
-  // Legal
-  { path: '/legal', priority: '0.3', changefreq: 'yearly' },
-  { path: '/legal/consent', priority: '0.3', changefreq: 'yearly' },
-  { path: '/legal/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-  { path: '/legal/cookies', priority: '0.3', changefreq: 'yearly' },
-  { path: '/legal/terms', priority: '0.3', changefreq: 'yearly' },
+  // Neurostylist
+  { path: '/neurostylist', priority: '0.6', changefreq: 'monthly' },
 ];
 
 function extractBlogSlugs(): string[] {
