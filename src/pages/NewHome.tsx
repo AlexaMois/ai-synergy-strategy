@@ -130,7 +130,7 @@ const NewHome = () => {
                     понять, какие процессы стоит перевести в цифровой формат первыми, как снизить
                     ручную нагрузку и как внедрять инструменты поэтапно.
                   </p>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="relative z-10 flex flex-wrap gap-3">
                     <PillButton to="/start" variant="light">
                       Подобрать формат работы
                     </PillButton>
@@ -139,7 +139,7 @@ const NewHome = () => {
                     </PillButton>
                   </div>
                 </div>
-                <div className="md:col-span-5 relative flex justify-center md:justify-end items-end self-end">
+                <div className="md:col-span-5 relative flex justify-center md:justify-end items-end self-end pointer-events-none">
                   <img
                     src={heroCharacter}
                     alt=""
