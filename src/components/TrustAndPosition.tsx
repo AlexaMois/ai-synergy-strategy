@@ -96,7 +96,7 @@ const TrustAndPosition = () => {
           </h2>
 
           <div className="space-y-3 flex-1">
-            {position.map((p, i) => (
+            {position.map((p) => (
               <div
                 key={p.title}
                 className="group flex items-start gap-4 p-5 rounded-2xl bg-background/55 backdrop-blur-md ring-1 ring-foreground/5 hover:bg-background hover:shadow-card transition-all duration-300"
@@ -106,7 +106,6 @@ const TrustAndPosition = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-base md:text-lg font-semibold text-foreground leading-snug mb-1">
-                    <span className="font-iriska italic font-normal text-accent text-sm mr-2 align-middle">0{i + 1}</span>
                     {p.title}
                   </p>
                   <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
