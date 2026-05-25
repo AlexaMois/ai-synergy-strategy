@@ -497,8 +497,8 @@ const PricingPage = () => {
               конкретную цифру с объяснением, за что вы платите.
             </p>
             <div className="flex justify-center">
-              <PillButton onClick={scrollToContact} variant="turquoise">
-                Заказать звонок
+              <PillButton onClick={() => openTaskModal()} variant="turquoise">
+                Обсудить задачу
               </PillButton>
             </div>
           </section>
