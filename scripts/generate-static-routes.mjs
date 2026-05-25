@@ -24,7 +24,7 @@ if (fs.existsSync(sitemapPath)) {
 
 // Private / temporary routes — written so that direct hits get noindex meta,
 // but NOT in sitemap and NOT advertised to crawlers.
-const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/neurostylist', '/old-home'];
+const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/old-home'];
 for (const r of privateRoutes) routes.add(r);
 
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
