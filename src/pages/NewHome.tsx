@@ -78,7 +78,7 @@ const PillButton = ({
     dark: "bg-accent text-accent-foreground",
     light: "bg-foreground text-background",
     turquoise: "bg-background text-foreground",
-    "ghost-light": "bg-background/10 text-background border border-background/40",
+    "ghost-light": "bg-background text-foreground",
   }[variant];
   return (
     <Link
