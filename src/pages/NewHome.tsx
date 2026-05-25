@@ -119,7 +119,7 @@ const NewHome = () => {
             <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
                 <div className="md:col-span-7 pb-10 md:pb-20">
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-background mb-6">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-background mb-6">
                     Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">

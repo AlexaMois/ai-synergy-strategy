@@ -82,7 +82,7 @@ const AddOnsPage = () => {
           <section className="py-12 md:py-20">
             <div className="max-w-4xl">
               <span className="text-primary font-medium mb-4 block">Услуги</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
                 Дополнительные решения
               </h1>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl">
