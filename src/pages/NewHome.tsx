@@ -134,7 +134,7 @@ const NewHome = () => {
                     <PillButton to="/start" variant="light">
                       Подобрать формат работы
                     </PillButton>
-                    <PillButton to="/services" variant="outline-light">
+                    <PillButton to="/services" variant="ghost-light">
                       Посмотреть услуги
                     </PillButton>
                   </div>
