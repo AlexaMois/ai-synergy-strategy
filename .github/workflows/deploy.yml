@@ -26,11 +26,32 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Install Chrome system dependencies (for prerender)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxkbcommon0 \
+            libxcomposite1 libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 \
+            libcairo2 libasound2t64 libxshmfence1 fonts-liberation
+
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Chromium for Puppeteer
+        run: npx puppeteer browsers install chrome || echo "chrome install failed — prerender will fall back to SPA shell"
+
       - name: Build
         run: npm run build
+
+      - name: Inspect dist (debug)
+        run: |
+          echo "=== dist root ==="
+          ls -la dist | head -40
+          echo "=== sample rendered route sizes ==="
+          for r in about pricing services/digital-tools-program materials/blog/rag-dlya-biznesa; do
+            f="dist/$r/index.html"
+            [ -f "$f" ] && echo "$(wc -c < "$f") bytes  $f" || echo "MISSING $f"
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
