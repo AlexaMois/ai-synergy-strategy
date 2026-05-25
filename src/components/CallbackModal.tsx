@@ -40,15 +40,20 @@ type FormData = z.infer<typeof schema>;
 
 export const CALLBACK_MODAL_EVENT = "openCallbackModal";
 
-export const openCallbackModal = () => {
-  window.dispatchEvent(new Event(CALLBACK_MODAL_EVENT));
+export type CallbackVariant = "callback" | "task";
+
+export const openCallbackModal = (variant: CallbackVariant = "callback") => {
+  window.dispatchEvent(new CustomEvent(CALLBACK_MODAL_EVENT, { detail: { variant } }));
 };
+
+export const openTaskModal = () => openCallbackModal("task");
 
 const CallbackModal = () => {
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [variant, setVariant] = useState<CallbackVariant>("callback");
   const location = useLocation();
 
   const {
@@ -67,7 +72,9 @@ const CallbackModal = () => {
   const phoneValue = watch("phone");
 
   useEffect(() => {
-    const handler = () => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { variant?: CallbackVariant } | undefined;
+      setVariant(detail?.variant === "task" ? "task" : "callback");
       setIsSubmitted(false);
       reset({ name: "", phone: "+7", comment: "", consent: false });
       setOpen(true);
@@ -81,14 +88,16 @@ const CallbackModal = () => {
     try {
       const { error } = await supabase.functions.invoke("send-to-telegram", {
         body: {
-          formType: "callback",
+          formType: variant === "task" ? "task" : "callback",
           data: {
             name: data.name,
             company: "—",
             industry: "—",
             phone: data.phone,
             email: "callback@no-reply.local",
-            comment: data.comment || "Заказ обратного звонка",
+            comment:
+              data.comment ||
+              (variant === "task" ? "Запрос: обсудить задачу" : "Заказ обратного звонка"),
           },
           pageUrl: location.pathname,
           website: honeypot,
@@ -105,13 +114,20 @@ const CallbackModal = () => {
       }
       setIsSubmitting(false);
       setIsSubmitted(true);
-      trackFormSubmission("callback");
+      trackFormSubmission(variant === "task" ? "task" : "callback");
     } catch (e) {
       console.error("callback submit error", e);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
       setIsSubmitting(false);
     }
   };
+
+  const title = variant === "task" ? "Обсудить задачу" : "Заказать звонок";
+  const description =
+    variant === "task"
+      ? "Опишите задачу и оставьте контакт — свяжусь в ближайшее рабочее время."
+      : "Оставьте номер — я перезвоню в ближайшее рабочее время.";
+  const submitLabel = variant === "task" ? "Отправить" : "Заказать звонок";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -128,10 +144,8 @@ const CallbackModal = () => {
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle>Заказать звонок</DialogTitle>
-              <DialogDescription>
-                Оставьте номер — я перезвоню в ближайшее рабочее время.
-              </DialogDescription>
+              <DialogTitle>{title}</DialogTitle>
+              <DialogDescription>{description}</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-2">
               <div className="space-y-2">
@@ -191,7 +205,7 @@ const CallbackModal = () => {
               </div>
               {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
               <Button type="submit" className="w-full h-12" disabled={isSubmitting}>
-                {isSubmitting ? "Отправка..." : "Заказать звонок"}
+                {isSubmitting ? "Отправка..." : submitLabel}
               </Button>
             </form>
           </>

@@ -280,7 +280,7 @@ const ArchitecturePage = () => {
                   </div>
                 </div>
                 <Button size="lg" onClick={scrollToContact} className="gap-2">
-                  Заказать звонок
+                  Обсудить задачу
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>

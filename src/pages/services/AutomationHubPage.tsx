@@ -236,7 +236,7 @@ const AutomationHubPage = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" onClick={() => handleCTA("hero")} className="gap-2">
-                Заказать звонок
+                Обсудить задачу
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -425,7 +425,7 @@ const AutomationHubPage = () => {
                 </p>
               </div>
               <Button size="lg" onClick={() => handleCTA("footer")} className="gap-2 flex-shrink-0">
-                Заказать звонок
+                Обсудить задачу
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>

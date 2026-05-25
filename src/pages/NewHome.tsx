@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote, Phone, Send } from "lucide-react";
-import { openCallbackModal } from "@/components/CallbackModal";
+import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import CookieConsent from "@/components/CookieConsent";
@@ -586,10 +586,10 @@ const NewHome = () => {
                     </PillButton>
                     <button
                       type="button"
-                      onClick={() => openCallbackModal()}
+                      onClick={() => openTaskModal()}
                       className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
                     >
-                      <span>Заказать звонок</span>
+                      <span>Обсудить задачу</span>
                       <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
                         <Phone className="h-4 w-4 md:h-5 md:w-5" />
                       </span>

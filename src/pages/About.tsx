@@ -20,7 +20,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import { openCallbackModal } from "@/components/CallbackModal";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
 import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
 import kaeoImage from "@/assets/credentials/certificate-kaeo-level5.png";

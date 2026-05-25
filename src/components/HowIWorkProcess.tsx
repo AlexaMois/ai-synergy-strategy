@@ -3,6 +3,7 @@ import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { Search, LayoutDashboard, ShieldCheck } from "lucide-react";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
+import { openTaskModal } from "@/components/CallbackModal";
 
 const HowIWorkProcess = () => {
   const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -110,19 +111,8 @@ const HowIWorkProcess = () => {
               Узнать, что можно автоматизировать <span className="font-semibold">в вашей компании</span>
             </h3>
             <div className="flex flex-col gap-2 items-center">
-              <Button
-                size="lg"
-                onClick={() => {
-                  const element = document.querySelector('#contact');
-                  if (element) {
-                    const navHeight = 100;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                  }
-                }}
-              >
-                Заказать звонок
+              <Button size="lg" onClick={() => openTaskModal()}>
+                Обсудить задачу
               </Button>
               <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />
             </div>

@@ -121,7 +121,7 @@ const AddOnsPage = () => {
                 Обсудим вашу задачу и подберём оптимальный подход
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Заказать звонок
+                Обсудить задачу
               </Button>
             </div>
           </section>
