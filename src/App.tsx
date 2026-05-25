@@ -21,10 +21,6 @@ const BlogOldRedirect = () => {
 // Lazy load pages
 const StartPage = lazy(() => import("./pages/start/StartPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const DiagnosticsPage = lazy(() => import("./pages/services/DiagnosticsPage"));
-const ArchitecturePage = lazy(() => import("./pages/services/ArchitecturePage"));
-const SupportPage = lazy(() => import("./pages/services/SupportPage"));
-const AddOnsPage = lazy(() => import("./pages/services/AddOnsPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
 const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
@@ -97,10 +93,11 @@ const AppContent = () => {
           {/* Services */}
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/automation" element={<AutomationHubPage />} />
-          <Route path="/services/diagnostics" element={<DiagnosticsPage />} />
-          <Route path="/services/architecture" element={<ArchitecturePage />} />
-          <Route path="/services/support" element={<SupportPage />} />
-          <Route path="/services/add-ons" element={<AddOnsPage />} />
+          {/* Legacy slugs → 301-style redirects to current service pages */}
+          <Route path="/services/diagnostics" element={<Navigate to="/services/digital-audit" replace />} />
+          <Route path="/services/architecture" element={<Navigate to="/services/digital-solution-design" replace />} />
+          <Route path="/services/support" element={<Navigate to="/services/implementation-support" replace />} />
+          <Route path="/services/add-ons" element={<Navigate to="/services" replace />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           
           {/* Products */}

@@ -54,6 +54,46 @@ fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
 /**
+ * Legacy slug → current URL. We emit a static HTML stub with meta refresh
+ * and a canonical pointing at the new URL so crawlers treat it as a move.
+ */
+const legacyRedirects = {
+  '/services/diagnostics': '/services/digital-audit',
+  '/services/architecture': '/services/digital-solution-design',
+  '/services/support': '/services/implementation-support',
+  '/services/add-ons': '/services',
+};
+
+function writeRedirectStubs() {
+  for (const [from, to] of Object.entries(legacyRedirects)) {
+    const cleanRoute = from.replace(/^\/+/, '').replace(/\/$/, '');
+    if (!cleanRoute || cleanRoute.includes('..')) continue;
+    const routeDir = path.join(distDir, cleanRoute);
+    fs.mkdirSync(routeDir, { recursive: true });
+    const target = `https://aleksamois.ru${to}`;
+    const html = `<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Страница переехала</title>
+<link rel="canonical" href="${target}">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url=${to}">
+<script>window.location.replace(${JSON.stringify(to)});</script>
+</head>
+<body>
+<p>Страница переехала: <a href="${target}">${target}</a></p>
+</body>
+</html>`;
+    fs.writeFileSync(path.join(routeDir, 'index.html'), html);
+    // Remove from the prerender set so puppeteer doesn't overwrite the stub.
+    routes.delete(from);
+  }
+}
+writeRedirectStubs();
+console.log('[prerender] Legacy redirect stubs written.');
+
+/**
  * Fallback: copy the SPA shell to every route so that direct links resolve
  * (and our SPA router takes over client-side). This ALWAYS runs first so the
  * build never fails — prerender below is best-effort enhancement.
