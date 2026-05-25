@@ -11,7 +11,7 @@ import PageTransition from "@/components/PageTransition";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import alexandraPortrait from "@/assets/alexandra-portrait-nobg.png";
+import alexandraPortrait from "@/assets/alexandra-portrait-nobg.webp";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 
 const blocks = [

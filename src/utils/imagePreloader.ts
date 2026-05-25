@@ -1,4 +1,4 @@
-import alexandraHeadshot from '@/assets/alexandra-headshot.png';
+import alexandraHeadshot from '@/assets/alexandra-headshot.webp';
 
 /**
  * Preload critical images to improve LCP (Largest Contentful Paint)
