@@ -128,12 +128,13 @@ serve(async (req) => {
     // Create title from first 100 chars of idea
     const title = safeIdea.substring(0, 100) + (safeIdea.length > 100 ? '...' : '');
 
-    // Insert idea into database
+    // Insert idea into database — do NOT store submitter name/email in the
+    // publicly readable description. A DB trigger also strips PII as defense in depth.
     const { error: insertError } = await supabase
       .from('ideas')
       .insert({
         title,
-        description: `От: ${safeName} (${safeEmail})\n\n${safeIdea}`,
+        description: safeIdea,
         source: 'client_form',
         status: 'backlog',
         priority: 'medium',
