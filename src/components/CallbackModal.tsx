@@ -114,7 +114,7 @@ const CallbackModal = () => {
       }
       setIsSubmitting(false);
       setIsSubmitted(true);
-      trackFormSubmission(variant === "task" ? "task" : "callback");
+      trackFormSubmission((variant === "task" ? "task" : "callback") as any);
     } catch (e) {
       console.error("callback submit error", e);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");

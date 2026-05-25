@@ -100,7 +100,9 @@ export const trackCTAClick = ({ location, buttonText = 'Заказать зво�
   }
 };
 
-export const trackFormSubmission = (formType: 'contact' | 'diagnostic' | 'checklist' | 'callback' | 'task') => {
+export type FormType = 'contact' | 'diagnostic' | 'checklist' | 'callback' | 'task';
+
+export const trackFormSubmission = (formType: FormType) => {
   const utmData = getUTMData();
   
   if (typeof window !== 'undefined' && window.gtag) {
