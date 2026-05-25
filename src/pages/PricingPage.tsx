@@ -205,7 +205,7 @@ const PricingPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       Цены
                     </p>
-                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       Форматы работы{" "}
                       <span className="font-iriska font-normal italic text-accent">
                         и стоимость

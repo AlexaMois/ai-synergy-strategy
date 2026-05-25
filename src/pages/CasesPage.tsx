@@ -154,7 +154,7 @@ const CasesPage = () => {
               <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
                 <div className="px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">Кейсы</p>
-                  <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
                     Кейсы цифрового развития{" "}
                     <span className="font-iriska font-normal italic text-accent">бизнеса</span>
                   </h1>

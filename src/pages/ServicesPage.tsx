@@ -113,7 +113,7 @@ const ServicesPage = () => {
                     <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                       Услуги · НейроРешения
                     </p>
-                    <h1 className="text-3xl md:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                       Услуги по{" "}
                       <span className="font-iriska font-normal italic text-accent">
                         цифровому развитию

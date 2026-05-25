@@ -226,7 +226,7 @@ const About = () => {
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                     Обо мне
                   </p>
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight text-foreground mb-6">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                     Александра <span className="font-iriska font-normal italic text-accent">Моисеева</span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-8 max-w-2xl leading-snug">
