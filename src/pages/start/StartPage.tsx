@@ -179,7 +179,7 @@ const StartPage = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <PillButton onClick={startDiagnostic} variant="dark">
-                        Запустить разбор
+                        Запустить аудит
                       </PillButton>
                       <Link
                         to="/services"
