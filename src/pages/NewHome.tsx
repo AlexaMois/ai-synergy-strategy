@@ -11,7 +11,7 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import heroCharacter from "@/assets/alexandra-hero.png";
+import heroCharacter from "@/assets/alexandra-hero.webp";
 import compassSketch from "@/assets/sketches/compass-sketch.png";
 import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
 import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
