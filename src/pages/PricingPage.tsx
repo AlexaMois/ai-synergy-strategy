@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async";
 import { ArrowRight, Layers, Users, Database, Server, LifeBuoy, ShieldCheck } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
-import { openCallbackModal } from "@/components/CallbackModal";
+import { openCallbackModal, openTaskModal } from "@/components/CallbackModal";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.png";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
@@ -222,7 +222,7 @@ const PricingPage = () => {
                       </PillButton>
                       <button
                         type="button"
-                        onClick={openCallbackModal}
+                        onClick={() => openTaskModal()}
                         className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                       >
                         Обсудить задачу <ArrowRight className="ml-2 h-5 w-5" />
