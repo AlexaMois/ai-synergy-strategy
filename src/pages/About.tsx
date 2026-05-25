@@ -239,7 +239,7 @@ const About = () => {
                     <PillButton to="/start" variant="light">
                       Подобрать формат работы
                     </PillButton>
-                    <PillButton to="/services" variant="ghost-light">
+                    <PillButton to="/services" variant="outline-light">
                       Посмотреть услуги
                     </PillButton>
                   </div>
