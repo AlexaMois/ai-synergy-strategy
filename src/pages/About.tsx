@@ -21,6 +21,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useCountUp } from "@/hooks/use-count-up";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import alexandraHeadshot from "@/assets/alexandra-headshot.png";
+import alexandraAbout from "@/assets/alexandra-about.png";
 import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
 import kaeoImage from "@/assets/credentials/certificate-kaeo-level5.png";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -219,29 +220,42 @@ const About = () => {
         {/* Hero Section */}
         <section ref={heroRef} className="pt-8 md:pt-12 px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="px-6 md:px-12 lg:px-16 py-12 md:py-20">
-                <div className={heroAnimation('animate-fade-in-up')}>
-                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
+                <div className={`md:col-span-7 pb-10 md:pb-20 ${heroAnimation('animate-fade-in-up')}`}>
+                  <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
                     Обо мне
                   </p>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                    Александра <span className="font-iriska font-normal italic text-accent">Моисеева</span>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-background mb-6">
+                    Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
-                  <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-8 max-w-2xl leading-snug">
+                  <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">
                     Инженер и архитектор цифрового развития бизнеса
                   </p>
-                  <p className="text-base text-foreground/75 mb-10 max-w-xl leading-relaxed text-left md:text-lg">
+                  <p className="text-base md:text-lg text-background/80 mb-10 max-w-xl leading-relaxed">
                     Основатель агентства «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления бизнесом.
                   </p>
-                  <div className="flex flex-wrap gap-3">
-                    <PillButton to="/start" variant="dark">
+                  <div className="relative z-10 flex flex-wrap gap-3">
+                    <PillButton to="/start" variant="light">
                       Подобрать формат работы
                     </PillButton>
-                    <PillButton to="/services" variant="outline-dark">
+                    <PillButton to="/services" variant="outline-light">
                       Посмотреть услуги
                     </PillButton>
                   </div>
+                </div>
+                <div className={`md:col-span-5 relative flex justify-center md:justify-end items-end self-end pointer-events-none ${heroAnimation('animate-fade-in-right')}`}>
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-6 rounded-[50%] bg-black/30 blur-xl" aria-hidden="true" />
+                  <img
+                    src={alexandraAbout}
+                    alt="Александра Моисеева"
+                    width={900}
+                    height={900}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
+                  />
                 </div>
               </div>
             </div>
