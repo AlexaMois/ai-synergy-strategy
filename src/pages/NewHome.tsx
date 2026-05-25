@@ -138,12 +138,13 @@ const NewHome = () => {
                   </div>
                 </div>
                 <div className="md:col-span-5 relative flex justify-center md:justify-end items-end self-end pointer-events-none">
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-6 rounded-[50%] bg-black/30 blur-xl" aria-hidden="true" />
                   <img
                     src={heroCharacter}
                     alt="Александра Моисеева"
                     width={900}
                     height={900}
-                    className="w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain drop-shadow-xl"
+                    className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
                   />
                 </div>
               </div>
