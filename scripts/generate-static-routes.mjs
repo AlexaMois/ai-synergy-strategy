@@ -22,6 +22,11 @@ if (fs.existsSync(sitemapPath)) {
   }
 }
 
+// Private / temporary routes — written so that direct hits get noindex meta,
+// but NOT in sitemap and NOT advertised to crawlers.
+const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/neurostylist', '/old-home'];
+for (const r of privateRoutes) routes.add(r);
+
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
@@ -217,6 +222,30 @@ const staticMeta = {
     title: 'Условия использования сайта' + DEFAULT_TITLE_SUFFIX,
     description: 'Условия использования сайта aleksamois.ru.',
     robots: 'noindex,follow',
+  },
+  '/newyear': {
+    title: 'Новогоднее поздравление' + DEFAULT_TITLE_SUFFIX,
+    description: 'Новогоднее поздравление от агентства «НейроРешения».',
+    robots: 'noindex,nofollow',
+  },
+  '/portal': {
+    title: 'Клиентский портал' + DEFAULT_TITLE_SUFFIX,
+    description: 'Закрытый портал для клиентов.',
+    robots: 'noindex,nofollow',
+  },
+  '/portal/admin': {
+    title: 'Админ-панель портала' + DEFAULT_TITLE_SUFFIX,
+    description: 'Закрытая админ-панель.',
+    robots: 'noindex,nofollow',
+  },
+  '/neurostylist': {
+    title: 'НейроСтилист — персональный ИИ-консультант по стилю',
+    description: 'НейроСтилист подбирает капсульный гардероб по вашим параметрам, образу жизни и предпочтениям.',
+  },
+  '/old-home': {
+    title: 'Старая версия главной' + DEFAULT_TITLE_SUFFIX,
+    description: 'Архивная версия главной страницы.',
+    robots: 'noindex,nofollow',
   },
 };
 
