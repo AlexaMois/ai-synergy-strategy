@@ -26,19 +26,8 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install Chrome system dependencies (for prerender)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxkbcommon0 \
-            libxcomposite1 libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 \
-            libcairo2 libasound2t64 libxshmfence1 fonts-liberation
-
       - name: Install dependencies
         run: npm ci
-
-      - name: Install Chromium for Puppeteer
-        run: npx puppeteer browsers install chrome || echo "chrome install failed — prerender will fall back to SPA shell"
 
       - name: Build
         run: npm run build
@@ -47,10 +36,15 @@ jobs:
         run: |
           echo "=== dist root ==="
           ls -la dist | head -40
-          echo "=== sample rendered route sizes ==="
-          for r in about pricing services/digital-tools-program materials/blog/rag-dlya-biznesa; do
+          echo "=== sample rendered route head ==="
+          for r in about pricing services/digital-tools-program services/automation materials/blog/rag-dlya-biznesa; do
             f="dist/$r/index.html"
-            [ -f "$f" ] && echo "$(wc -c < "$f") bytes  $f" || echo "MISSING $f"
+            if [ -f "$f" ]; then
+              echo "--- $f ($(wc -c < "$f") bytes) ---"
+              grep -E "<title>|canonical|og:url" "$f" | head -5
+            else
+              echo "MISSING $f"
+            fi
           done
 
       - name: Upload artifact
