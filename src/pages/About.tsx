@@ -221,8 +221,8 @@ const About = () => {
         <section ref={heroRef} className="pt-8 md:pt-12 px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
-                <div className={`md:col-span-7 pb-10 md:pb-20 ${heroAnimation('animate-fade-in-up')}`}>
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-6 md:pt-10 pb-0 md:pb-0">
+                <div className={`md:col-span-7 pb-10 md:pb-16 ${heroAnimation('animate-fade-in-up')}`}>
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                     Обо мне
                   </p>
