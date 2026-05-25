@@ -11,7 +11,7 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import aleksandraHero from "@/assets/aleksandra-hero.png";
+import heroCharacter from "@/assets/sketches/hero-character.png";
 import compassSketch from "@/assets/sketches/compass-sketch.png";
 import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
 import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
@@ -139,8 +139,8 @@ const NewHome = () => {
                 </div>
                 <div className="md:col-span-5 relative flex justify-center md:justify-end items-end self-end pointer-events-none">
                   <img
-                    src={aleksandraHero}
-                    alt="Александра Моисеева"
+                    src={heroCharacter}
+                    alt=""
                     width={900}
                     height={900}
                     className="w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain drop-shadow-xl"
