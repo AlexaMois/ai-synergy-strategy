@@ -301,7 +301,7 @@ const StartPage = () => {
                     </p>
                     {!diagnosticStarted && (
                       <PillButton onClick={startDiagnostic} variant="light">
-                        Запустить разбор
+                        Запустить аудит
                       </PillButton>
                     )}
                   </div>
