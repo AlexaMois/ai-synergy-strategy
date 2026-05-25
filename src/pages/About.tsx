@@ -220,8 +220,8 @@ const About = () => {
         <section ref={heroRef} className="pt-8 md:pt-12 px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
-                <div className={`md:col-span-7 ${heroAnimation('animate-fade-in-up')}`}>
+              <div className="px-6 md:px-12 lg:px-16 py-12 md:py-20">
+                <div className={heroAnimation('animate-fade-in-up')}>
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                     Обо мне
                   </p>
@@ -241,11 +241,6 @@ const About = () => {
                     <PillButton to="/services" variant="outline-dark">
                       Посмотреть услуги
                     </PillButton>
-                  </div>
-                </div>
-                <div className={`md:col-span-5 flex justify-center md:justify-end ${heroAnimation('animate-fade-in-right')}`}>
-                  <div className="relative w-full max-w-sm md:max-w-md rounded-[28px] overflow-hidden bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-2 md:p-3">
-                    <img src={alexandraHeadshot} alt="Александра Моисеева" className="w-full h-auto object-contain rounded-[22px]" loading="eager" decoding="async" fetchPriority="high" width="400" height="400" />
                   </div>
                 </div>
               </div>
