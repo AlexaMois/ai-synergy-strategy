@@ -231,8 +231,8 @@ const About = () => {
                   <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-8 max-w-2xl leading-snug">
                     Инженер и архитектор цифрового развития бизнеса
                   </p>
-                  <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl leading-relaxed">
-                    Основатель агентства «НейроРешения». Помогаю собственникам переводить цифровизацию из набора идей и сервисов в понятную управленческую систему: с приоритетами, экономикой, ответственными и результатом.
+                  <p className="text-base text-foreground/75 mb-10 max-w-xl leading-relaxed text-left md:text-lg">
+                    Основатель агентства «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления бизнесом.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">
