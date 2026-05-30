@@ -195,12 +195,12 @@ const About = () => {
   });
   return <PageTransition>
       <Helmet>
-        <title>Александра Моисеева — инженер и архитектор цифрового развития бизнеса</title>
-        <meta name="description" content="Александра Моисеева, основатель агентства «НейроРешения». Цифровое развитие бизнеса, стратегия, аудит, внедрение, архитектура процессов и цифровые инструменты." />
+        <title>Александра Моисеева — инженер цифрового развития бизнеса</title>
+        <meta name="description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
         <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
         <link rel="canonical" href="https://aleksamois.ru/about" />
-        <meta property="og:title" content="Александра Моисеева — инженер и архитектор цифрового развития бизнеса" />
-        <meta property="og:description" content="Страница о подходе, опыте, профессиональной базе и принципах работы Александры Моисеевой." />
+        <meta property="og:title" content="Александра Моисеева — инженер цифрового развития бизнеса" />
+        <meta property="og:description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
