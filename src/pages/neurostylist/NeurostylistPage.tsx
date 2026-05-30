@@ -157,17 +157,17 @@ const NeurostylistPage = () => {
   return (
     <>
       <Helmet>
-        <title>НейроСтилист — собери образ, в котором узнаешь себя сильнее</title>
+        <title>НейроСтилист — персональный цифровой стилист</title>
         <meta
           name="description"
-          content="Стиль-диагностика собирает цвет, силуэт, макияж и детали в цельный образ под тебя."
+          content="НейроСтилист помогает собрать личную стилевую систему: гайд, капсулы, разбор вещей, список покупок и помощник для образов."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://aleksamois.ru/neurostylist" />
-        <meta property="og:title" content="НейроСтилист — собери образ, в котором узнаешь себя сильнее" />
+        <meta property="og:title" content="НейроСтилист — персональный цифровой стилист" />
         <meta
           property="og:description"
-          content="Стиль-диагностика собирает цвет, силуэт, макияж и детали в цельный образ под тебя."
+          content="НейроСтилист помогает собрать личную стилевую систему: гайд, капсулы, разбор вещей, список покупок и помощник для образов."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aleksamois.ru/neurostylist" />
