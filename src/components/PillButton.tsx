@@ -14,14 +14,14 @@ interface BaseProps {
 interface LinkProps extends BaseProps {
   to: string;
   href?: never;
-  onClick?: never;
+  onClick?: () => void;
   target?: never;
   rel?: never;
 }
 interface AnchorProps extends BaseProps {
   href: string;
   to?: never;
-  onClick?: never;
+  onClick?: () => void;
   target?: string;
   rel?: string;
 }
@@ -80,14 +80,14 @@ const PillButton = (props: Props) => {
 
   if ("to" in props && props.to) {
     return (
-      <Link to={props.to} className={cls}>
+      <Link to={props.to} onClick={props.onClick} className={cls}>
         {inner}
       </Link>
     );
   }
   if ("href" in props && props.href) {
     return (
-      <a href={props.href} target={props.target} rel={props.rel} className={cls}>
+      <a href={props.href} target={props.target} rel={props.rel} onClick={props.onClick} className={cls}>
         {inner}
       </a>
     );
