@@ -8,10 +8,13 @@ const Consent = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Согласие на обработку персональных данных | Александра Моисеева</title>
-        <meta name="description" content="Согласие на обработку персональных данных ИП Моисеева Александра Алексеевна. Цели обработки, перечень данных, права субъекта." />
+        <title>Согласие на обработку персональных данных — НейроРешения</title>
+        <meta name="description" content="Согласие на обработку персональных данных для посетителей сайта НейроРешений и клиентов, оставляющих заявки через формы." />
         <link rel="canonical" href="https://aleksamois.ru/legal/consent" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Согласие на обработку персональных данных — НейроРешения" />
+        <meta property="og:description" content="Согласие на обработку персональных данных для посетителей сайта НейроРешений и клиентов, оставляющих заявки через формы." />
+        <meta property="og:url" content="https://aleksamois.ru/legal/consent" />
+        <meta property="og:type" content="website" />
       </Helmet>
       
       
