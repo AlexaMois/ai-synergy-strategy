@@ -7,6 +7,7 @@ import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import FAQTeaser from "@/components/FAQTeaser";
 import RelatedBlogPosts from "@/components/RelatedBlogPosts";
+import PillButton from "@/components/PillButton";
 import { getPillarBySlug } from "@/data/pillarPages";
 
 const PillarPage = () => {
@@ -53,10 +54,10 @@ const PillarPage = () => {
         />
 
         <main>
-          {/* HERO */}
+          {/* HERO — большая пастельная плашка в стиле главной */}
           <section className="pt-8 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
                 <div className="px-6 md:px-12 lg:px-16 py-12 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
                     {data.hero.eyebrow}
@@ -64,17 +65,17 @@ const PillarPage = () => {
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6 max-w-4xl">
                     {data.seo.h1}
                   </h1>
-                  <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-3xl leading-snug">
+                  <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-3xl leading-snug">
                     {data.hero.subtitle}
                   </p>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-10 max-w-4xl">
+                  <div className="flex flex-wrap gap-2 mb-10 max-w-4xl">
                     {data.hero.miniBlocks.map((b, i) => {
                       const Icon = b.icon;
                       return (
                         <div
                           key={i}
-                          className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-background/70 ring-1 ring-foreground/10 backdrop-blur"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/80 ring-1 ring-foreground/10 backdrop-blur"
                         >
                           <Icon className="w-4 h-4 text-accent flex-shrink-0" />
                           <span className="text-sm font-medium text-foreground leading-tight">
@@ -86,18 +87,12 @@ const PillarPage = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <Link
-                      to={data.hero.primaryCta.to}
-                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-foreground text-background hover:bg-foreground/90"
-                    >
-                      <span>{data.hero.primaryCta.label}</span>
-                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-accent text-accent-foreground group-hover:translate-x-0.5 transition-transform">
-                        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-                      </span>
-                    </Link>
+                    <PillButton to={data.hero.primaryCta.to} variant="dark">
+                      {data.hero.primaryCta.label}
+                    </PillButton>
                     <Link
                       to={data.hero.secondaryCta.to}
-                      className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
+                      className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                     >
                       {data.hero.secondaryCta.label}
                       <ArrowRight className="ml-2 h-5 w-5" />
@@ -108,19 +103,25 @@ const PillarPage = () => {
             </div>
           </section>
 
-          {/* Метрики */}
+          {/* Метрики — в стиле «Компания в цифрах» */}
           {data.metricCards.length > 0 && (
-            <section className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
-              <div className="grid sm:grid-cols-3 gap-4">
+            <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+              <div className="max-w-3xl mb-10 md:mb-12">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                  Эффект автоматизации
+                </p>
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
+                  Что меняется{" "}
+                  <span className="font-iriska font-normal italic text-accent">на практике</span>
+                </h2>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {data.metricCards.map((m, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl bg-card ring-1 ring-foreground/5 p-6 shadow-card"
-                  >
-                    <p className="text-3xl md:text-4xl font-bold text-accent mb-2 leading-none">
+                  <div key={i} className="bg-card p-6 md:p-8">
+                    <div className="font-iriska font-bold text-accent leading-none mb-3 text-5xl md:text-6xl">
                       {m.value}
-                    </p>
-                    <p className="text-sm md:text-base text-foreground/75 leading-snug">
+                    </div>
+                    <p className="text-sm md:text-base text-muted-foreground leading-snug">
                       {m.label}
                     </p>
                   </div>
@@ -129,101 +130,154 @@ const PillarPage = () => {
             </section>
           )}
 
-          {/* Контентные блоки */}
-          <section className="container mx-auto max-w-4xl px-4 pb-12 md:pb-16">
-            <div className="space-y-10 md:space-y-14">
-              {data.sections.map((s, i) => (
-                <article key={i}>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                    {s.heading}
-                  </h2>
-                  {s.body && (
-                    <p className="text-base md:text-lg text-foreground/85 leading-relaxed">
-                      {s.body}
-                    </p>
-                  )}
-                  {s.list && (
-                    <ul className="space-y-3 mt-2">
-                      {s.list.map((item, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-3 text-base md:text-lg text-foreground/85"
-                        >
-                          <CheckCircle2 className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* Услуги */}
-          <section className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
-            <div className="flex items-center gap-2 mb-6">
-              <Briefcase className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Услуги по теме
-              </h2>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {data.relatedServices.map((s) => (
-                <Link
-                  key={s.href}
-                  to={s.href}
-                  className="group rounded-2xl bg-card ring-1 ring-foreground/5 p-5 hover:shadow-elevated hover:-translate-y-0.5 transition-all"
-                >
-                  <h3 className="text-base md:text-lg font-semibold text-foreground group-hover:text-accent transition-colors mb-2">
-                    {s.label}
-                  </h3>
-                  {s.description && (
-                    <p className="text-sm text-foreground/70 leading-snug">
-                      {s.description}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent">
-                    Подробнее <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {/* Кейсы */}
+          {/* Контентные блоки — чередующиеся пастельные плашки */}
           <section className="container mx-auto max-w-7xl px-4 pb-12 md:pb-16">
-            <div className="flex items-center gap-2 mb-6">
-              <FileText className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Релевантные кейсы
+            <div className="space-y-5 md:space-y-6">
+              {data.sections.map((s, i) => {
+                const palettes = [
+                  "bg-surface-sand",
+                  "bg-card",
+                  "bg-surface-lavender",
+                  "bg-card",
+                  "bg-surface-blush",
+                  "bg-card",
+                  "bg-surface-mint",
+                ];
+                const bg = palettes[i % palettes.length];
+                return (
+                  <article
+                    key={i}
+                    className={`rounded-[28px] md:rounded-[32px] ${bg} ring-1 ring-foreground/5 shadow-card px-6 md:px-10 lg:px-14 py-8 md:py-12`}
+                  >
+                    <div className="grid md:grid-cols-12 gap-6 md:gap-10 items-start">
+                      <div className="md:col-span-5">
+                        <div className="font-iriska italic text-accent text-3xl md:text-4xl leading-none mb-3">
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                          {s.heading}
+                        </h2>
+                      </div>
+                      <div className="md:col-span-7">
+                        {s.body && (
+                          <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                            {s.body}
+                          </p>
+                        )}
+                        {s.list && (
+                          <ul className="space-y-3">
+                            {s.list.map((item, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-3 text-base md:text-lg text-foreground/80"
+                              >
+                                <CheckCircle2 className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Услуги по теме */}
+          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <div className="flex items-center gap-2 mb-4">
+                <Briefcase className="w-5 h-5 text-accent" />
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold">
+                  Форматы работы
+                </p>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
+                Услуги{" "}
+                <span className="font-iriska font-normal italic text-accent">по теме</span>
               </h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {data.relatedCases.map((c) => (
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {data.relatedServices.map((s, i) => {
+                const palettes = [
+                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
+                ];
+                const p = palettes[i % palettes.length];
+                return (
+                  <Link
+                    key={s.href}
+                    to={s.href}
+                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[220px]`}
+                  >
+                    <h3 className={`text-xl md:text-2xl font-bold ${p.text} leading-tight mb-3`}>
+                      {s.label}
+                    </h3>
+                    {s.description && (
+                      <p className={`text-sm md:text-base ${p.muted} leading-snug`}>
+                        {s.description}
+                      </p>
+                    )}
+                    <div className="mt-auto pt-6 flex items-center justify-between">
+                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
+                      <ArrowRight className={`h-5 w-5 ${p.text} opacity-80 group-hover:translate-x-1 transition-transform`} />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Релевантные кейсы */}
+          <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="w-5 h-5 text-accent" />
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold">
+                  Кейсы клиентов
+                </p>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
+                Релевантные{" "}
+                <span className="font-iriska font-normal italic text-accent">кейсы</span>
+              </h2>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {data.relatedCases.map((c, i) => (
                 <Link
                   key={c.href}
                   to={c.href}
-                  className="group rounded-2xl bg-surface-sand ring-1 ring-foreground/5 p-5 hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+                  className="group relative flex flex-col rounded-[28px] bg-card ring-1 ring-foreground/5 p-7 md:p-8 shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 min-h-[200px]"
                 >
-                  <h3 className="text-base md:text-lg font-semibold text-foreground group-hover:text-accent transition-colors mb-2">
+                  <span className="font-iriska italic text-accent text-3xl md:text-4xl leading-none mb-3">
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">
                     {c.label}
                   </h3>
                   {c.description && (
-                    <p className="text-sm text-foreground/70 leading-snug">{c.description}</p>
+                    <p className="text-sm md:text-base text-foreground/70 leading-snug">
+                      {c.description}
+                    </p>
                   )}
-                  <span className="inline-flex items-center gap-1 mt-3 text-sm font-medium text-accent">
-                    Смотреть кейс <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
+                  <div className="mt-auto pt-5 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-foreground">Смотреть кейс</span>
+                    <ArrowRight className="h-5 w-5 text-foreground opacity-80 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </Link>
               ))}
             </div>
           </section>
 
-          {/* Финальный CTA */}
-          <section className="px-4 md:px-6 py-12 md:py-16">
+          {/* Финальный CTA — бирюзовая плашка */}
+          <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+              <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
                 <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5 max-w-3xl mx-auto">
                   {data.cta.title}
                 </h2>
@@ -231,18 +285,12 @@ const PillarPage = () => {
                   {data.cta.text}
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
-                  <Link
-                    to={data.cta.primary.to}
-                    className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-background text-foreground hover:bg-background/90"
-                  >
-                    <span>{data.cta.primary.label}</span>
-                    <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-foreground text-background group-hover:translate-x-0.5 transition-transform">
-                      <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-                    </span>
-                  </Link>
+                  <PillButton to={data.cta.primary.to} variant="light">
+                    {data.cta.primary.label}
+                  </PillButton>
                   <Link
                     to={data.cta.secondary.to}
-                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/85 hover:text-white transition-colors"
+                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/90 hover:text-white transition-colors"
                   >
                     {data.cta.secondary.label}
                     <ArrowRight className="ml-2 h-5 w-5" />
