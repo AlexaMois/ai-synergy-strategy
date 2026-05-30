@@ -130,12 +130,12 @@ const CasesPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения</title>
-        <meta name="description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи. Александра Моисеева, агентство «НейроРешения»." />
+        <title>Кейсы цифровизации и автоматизации бизнеса</title>
+        <meta name="description" content="Реальные кейсы НейроРешений: автоматизация заявок, документов, технических запросов и ручных процессов с экономией времени и бюджета." />
         <meta name="keywords" content="кейсы цифровизации бизнеса, кейсы внедрения ИИ, цифровые инструменты для бизнеса, автоматизация логистики, документооборот" />
         <link rel="canonical" href="https://aleksamois.ru/cases" />
-        <meta property="og:title" content="Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения" />
-        <meta property="og:description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи." />
+        <meta property="og:title" content="Кейсы цифровизации и автоматизации бизнеса" />
+        <meta property="og:description" content="Реальные кейсы НейроРешений: автоматизация заявок, документов, технических запросов и ручных процессов с экономией времени и бюджета." />
         <meta property="og:url" content="https://aleksamois.ru/cases" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
