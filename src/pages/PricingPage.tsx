@@ -178,12 +178,12 @@ const PricingPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Стоимость цифровизации бизнеса — форматы работы и цены | Александра Моисеева</title>
-        <meta name="description" content="Базовые ориентиры стоимости: стратегическая встреча, аудит, проектирование и сопровождение цифровых решений. Чтобы собственник сразу понимал порядок бюджета." />
+        <title>Цены на цифровизацию, аудит и внедрение ИИ</title>
+        <meta name="description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta name="keywords" content="стоимость цифровизации, цены автоматизации бизнеса, стратегия цифрового развития, аудит компании" />
         <link rel="canonical" href="https://aleksamois.ru/pricing" />
-        <meta property="og:title" content="Стоимость цифровизации бизнеса — форматы работы и цены | Александра Моисеева" />
-        <meta property="og:description" content="Базовые ориентиры стоимости форматов работы по цифровизации бизнеса." />
+        <meta property="og:title" content="Цены на цифровизацию, аудит и внедрение ИИ" />
+        <meta property="og:description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
