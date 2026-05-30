@@ -352,6 +352,9 @@ const CaseDetailPage = () => {
         <title>Кейс: {caseData.title} — Александра Моисеева</title>
         <meta name="description" content={`${caseData.subtitle}. ${caseData.task}`} />
         <link rel="canonical" href={`https://aleksamois.ru/cases/${caseData.slug}`} />
+        <meta property="og:title" content={`Кейс: ${caseData.title} — Александра Моисеева`} />
+        <meta property="og:description" content={`${caseData.subtitle}. ${caseData.task}`} />
+        <meta property="og:url" content={`https://aleksamois.ru/cases/${caseData.slug}`} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
