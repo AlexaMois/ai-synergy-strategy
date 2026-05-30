@@ -8,10 +8,13 @@ const Terms = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Договор-оферта | Александра Моисеева</title>
-        <meta name="description" content="Договор-оферта на оказание информационно-консультационных услуг ИП Моисеева Александра Алексеевна. Условия, порядок оплаты, гарантии." />
+        <title>Пользовательское соглашение — НейроРешения</title>
+        <meta name="description" content="Пользовательское соглашение сайта НейроРешений: правила использования материалов, форм заявок, сервисов и контактных данных." />
         <link rel="canonical" href="https://aleksamois.ru/legal/terms" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Пользовательское соглашение — НейроРешения" />
+        <meta property="og:description" content="Пользовательское соглашение сайта НейроРешений: правила использования материалов, форм заявок, сервисов и контактных данных." />
+        <meta property="og:url" content="https://aleksamois.ru/legal/terms" />
+        <meta property="og:type" content="website" />
       </Helmet>
       
       
