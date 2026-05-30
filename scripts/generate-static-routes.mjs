@@ -111,9 +111,24 @@ function parseServices() {
   return items;
 }
 
+// Parse src/data/pillarPages.ts → [{slug, title, description}]
+function parsePillarPages() {
+  const file = path.join(rootDir, 'src', 'data', 'pillarPages.ts');
+  if (!fs.existsSync(file)) return [];
+  const src = fs.readFileSync(file, 'utf8');
+  const items = [];
+  const re = /slug:\s*"([^"]+)",[\s\S]*?seo:\s*\{\s*\n\s*title:\s*"([^"]+)",\s*\n\s*description:\s*\n?\s*"([^"]+)"/g;
+  let m;
+  while ((m = re.exec(src))) {
+    items.push({ slug: m[1], title: m[2], description: m[3] });
+  }
+  return items;
+}
+
 const blogPosts = parseBlogPosts();
 const services = parseServices();
-console.log(`[prerender] Parsed ${blogPosts.length} blog posts, ${services.length} services.`);
+const pillarPages = parsePillarPages();
+console.log(`[prerender] Parsed ${blogPosts.length} blog posts, ${services.length} services, ${pillarPages.length} pillar pages.`);
 
 const DEFAULT_TITLE_SUFFIX = ' | Александра Моисеева';
 
@@ -242,6 +257,14 @@ for (const s of services) {
   staticMeta[`/services/${s.slug}`] = {
     title: s.title + DEFAULT_TITLE_SUFFIX,
     description: s.subtitle,
+  };
+}
+
+// Add pillar pages dynamically (keys without trailing slash to match sitemap normalization)
+for (const p of pillarPages) {
+  staticMeta[`/services/${p.slug}`] = {
+    title: p.title,
+    description: p.description,
   };
 }
 
