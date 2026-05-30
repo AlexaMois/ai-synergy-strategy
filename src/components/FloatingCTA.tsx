@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
-import { trackCTAClick } from "@/utils/analytics";
+import { trackCTAClick, trackZakazatZvonok } from "@/utils/analytics";
 import { openCallbackModal } from "@/components/CallbackModal";
 
 const FloatingCTA = () => {
@@ -19,6 +19,7 @@ const FloatingCTA = () => {
 
   const handleClick = () => {
     trackCTAClick({ location: 'floating_cta' });
+    trackZakazatZvonok();
     openCallbackModal();
   };
 

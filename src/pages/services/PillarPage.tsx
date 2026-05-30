@@ -9,6 +9,7 @@ import FAQTeaser from "@/components/FAQTeaser";
 import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 import PillButton from "@/components/PillButton";
 import { getPillarBySlug } from "@/data/pillarPages";
+import { trackCtaPillar, trackPillarToService } from "@/utils/analytics";
 
 const PillarPage = () => {
   const { pathname } = useLocation();
@@ -87,11 +88,12 @@ const PillarPage = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <PillButton to={data.hero.primaryCta.to} variant="dark">
+                    <PillButton to={data.hero.primaryCta.to} variant="dark" onClick={trackCtaPillar}>
                       {data.hero.primaryCta.label}
                     </PillButton>
                     <Link
                       to={data.hero.secondaryCta.to}
+                      onClick={trackCtaPillar}
                       className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                     >
                       {data.hero.secondaryCta.label}
@@ -213,6 +215,7 @@ const PillarPage = () => {
                   <Link
                     key={s.href}
                     to={s.href}
+                    onClick={trackPillarToService}
                     className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[220px]`}
                   >
                     <h3 className={`text-xl md:text-2xl font-bold ${p.text} leading-tight mb-3`}>
@@ -285,11 +288,12 @@ const PillarPage = () => {
                   {data.cta.text}
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
-                  <PillButton to={data.cta.primary.to} variant="light">
+                  <PillButton to={data.cta.primary.to} variant="light" onClick={trackCtaPillar}>
                     {data.cta.primary.label}
                   </PillButton>
                   <Link
                     to={data.cta.secondary.to}
+                    onClick={trackCtaPillar}
                     className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/90 hover:text-white transition-colors"
                   >
                     {data.cta.secondary.label}

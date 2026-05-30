@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { trackFormSubmission } from "@/utils/analytics";
+import { trackFormSubmission, trackZakazatZvonok } from "@/utils/analytics";
 
 const formatPhoneNumber = (value: string): string => {
   const digits = value.replace(/\D/g, "");
@@ -74,7 +74,11 @@ const CallbackModal = () => {
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail as { variant?: CallbackVariant } | undefined;
-      setVariant(detail?.variant === "task" ? "task" : "callback");
+      const nextVariant: CallbackVariant = detail?.variant === "task" ? "task" : "callback";
+      setVariant(nextVariant);
+      if (nextVariant === "callback") {
+        trackZakazatZvonok();
+      }
       setIsSubmitted(false);
       reset({ name: "", phone: "+7", comment: "", consent: false });
       setOpen(true);
