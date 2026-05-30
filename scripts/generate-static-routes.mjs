@@ -134,18 +134,6 @@ const staticMeta = {
     title: 'Автоматизация процессов и внедрение ИИ для бизнеса' + DEFAULT_TITLE_SUFFIX,
     description: 'Хаб услуг по автоматизации: что подходит производству и торговле, как выбрать формат и с чего начать без хаоса и переплат.',
   },
-  '/products': {
-    title: 'Готовые цифровые продукты для бизнеса' + DEFAULT_TITLE_SUFFIX,
-    description: 'Голосовой ИИ-ассистент и поиск по документам — готовые решения, которые внедряются под ваш процесс за недели, а не месяцы.',
-  },
-  '/products/voice-bot': {
-    title: 'Голосовой ИИ-бот для бизнеса — тарифы и внедрение' + DEFAULT_TITLE_SUFFIX,
-    description: 'Голосовой бот для колл-центра и обзвонов: сценарии, интеграция с телефонией и CRM, тарифы и сроки внедрения.',
-  },
-  '/products/doc-search': {
-    title: 'Поиск по документам компании на основе ИИ' + DEFAULT_TITLE_SUFFIX,
-    description: 'RAG-система для поиска по корпоративным документам: регламентам, договорам, инструкциям. Внедрение под безопасный контур.',
-  },
   '/cases': {
     title: 'Кейсы внедрения ИИ и автоматизации' + DEFAULT_TITLE_SUFFIX,
     description: 'Реальные проекты в производстве, логистике и торговле: задача, решение, что изменилось в процессе и в цифрах.',
@@ -287,11 +275,19 @@ function injectMeta(html, route, meta) {
 
   let out = html;
 
+  function upsert(regex, tag) {
+    if (regex.test(out)) {
+      out = out.replace(regex, tag);
+    } else {
+      out = out.replace('</head>', `  ${tag}\n</head>`);
+    }
+  }
+
   // <title>
   out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
 
-  // <meta name="description">
-  out = out.replace(
+  // <meta name="description"> (upsert — отсутствует в index.html по умолчанию)
+  upsert(
     /<meta\s+name="description"[^>]*>/i,
     `<meta name="description" content="${description}">`
   );
@@ -313,28 +309,13 @@ function injectMeta(html, route, meta) {
   );
 
   // og:url / og:title / og:description / og:type
-  out = out.replace(
-    /<meta\s+property="og:url"[^>]*>/i,
-    `<meta property="og:url" content="${canonical}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:title"[^>]*>/i,
-    `<meta property="og:title" content="${title}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:description"[^>]*>/i,
-    `<meta property="og:description" content="${description}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:type"[^>]*>/i,
-    `<meta property="og:type" content="${ogType}">`
-  );
+  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}">`);
+  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}">`);
+  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}">`);
+  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}">`);
 
   // twitter:url
-  out = out.replace(
-    /<meta\s+name="twitter:url"[^>]*>/i,
-    `<meta name="twitter:url" content="${canonical}">`
-  );
+  upsert(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${canonical}">`);
 
   return out;
 }
