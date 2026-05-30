@@ -109,7 +109,7 @@ const facts: { label: string; value: string }[] = [
   { label: "Рабочий мессенджер", value: "MAX" },
   { label: "Слой данных", value: "Bpium" },
   { label: "Документы в контуре", value: "68" },
-  { label: "RAG/RAC-тестирование", value: "4 раунда" },
+  { label: "RAG-тестирование", value: "4 раунда" },
   { label: "Статус", value: "Рабочий цифровой контур, развивается" },
 ];
 
