@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { Link } from "react-router-dom";
+import { pillarPages } from "@/data/pillarPages";
 
 const systemElements = [
   { icon: Target, label: "Смысл задачи", desc: "Что именно нужно изменить и какой результат важен для бизнеса." },
@@ -303,6 +304,41 @@ const ServicesPage = () => {
 
           <ServicesDetailed />
           <AdditionalServices />
+
+          {/* ПОПУЛЯРНЫЕ НАПРАВЛЕНИЯ — pillar SEO-страницы */}
+          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
+            <div className="max-w-3xl mb-8">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">
+                Популярные направления
+              </p>
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
+                С чего чаще всего{" "}
+                <span className="font-iriska font-normal italic text-accent">начинают</span>
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {pillarPages.map((p) => (
+                <Link
+                  key={p.slug}
+                  to={p.url}
+                  className="group rounded-[24px] bg-card ring-1 ring-foreground/5 p-6 md:p-7 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all flex flex-col"
+                >
+                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-3">
+                    Направление
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-accent transition-colors mb-3 leading-tight">
+                    {p.cardTitle}
+                  </h3>
+                  <p className="text-sm md:text-base text-foreground/75 leading-snug mb-5 flex-1">
+                    {p.cardDescription}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
+                    Подробнее <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* КАК ПРОХОДИТ РАБОТА — тёмная плашка с шагами */}
           <section className="px-4 md:px-6 py-16 md:py-24">
