@@ -24,7 +24,6 @@ export const ALLOWED_ROUTES = [
   '/cases/kraypotrebsoyuz',
   '/cases/cargo-express',
   '/cases/production-doc-search',
-  '/products',
   '/products/voice-bot',
   '/products/doc-search',
   '/about',

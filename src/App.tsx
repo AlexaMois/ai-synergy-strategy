@@ -24,7 +24,6 @@ const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
 const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
 const PillarPage = lazy(() => import("./pages/services/PillarPage"));
-const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
 const MaterialsPage = lazy(() => import("./pages/materials/MaterialsPage"));
@@ -109,7 +108,7 @@ const AppContent = () => {
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           
           {/* Products */}
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products" element={<Navigate to="/services" replace />} />
           <Route path="/products/voice-bot" element={<GolossokPricing />} />
           <Route path="/products/doc-search" element={<CaseStudyDocSearch />} />
           

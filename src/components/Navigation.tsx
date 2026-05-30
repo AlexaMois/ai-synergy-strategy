@@ -31,9 +31,6 @@ const preloadPage = (path: string) => {
     case '/cases':
       import('../pages/CasesPage');
       break;
-    case '/products':
-      import('../pages/products/ProductsPage');
-      break;
     case '/products/voice-bot':
       import('../pages/GolossokPricing');
       break;
