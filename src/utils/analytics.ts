@@ -8,6 +8,27 @@ declare global {
 }
 
 const YANDEX_COUNTER_ID = 99058653;
+const YANDEX_COUNTER_ID_2 = 106050098;
+
+// ─── Yandex.Metrika goals on secondary counter ──────────────────────────────
+
+const ymGoal = (counterId: number, goal: string) => {
+  if (typeof window !== 'undefined' && typeof window.ym === 'function') {
+    window.ym(counterId, 'reachGoal', goal);
+  }
+};
+
+export const trackZakazatZvonok = () => {
+  ymGoal(YANDEX_COUNTER_ID_2, 'click_zakazat_zvonok');
+};
+
+export const trackCtaPillar = () => {
+  ymGoal(YANDEX_COUNTER_ID_2, 'click_cta_pillar');
+};
+
+export const trackPillarToService = () => {
+  ymGoal(YANDEX_COUNTER_ID_2, 'click_pillar_to_service');
+};
 
 // ─── UTM Tracking ───────────────────────────────────────────────────────────
 
