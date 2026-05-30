@@ -13,12 +13,12 @@ const MaterialsPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Материалы — Ресурсы и блог | Александра Моисеева</title>
-        <meta name="description" content="Полезные материалы для самостоятельного изучения: чек-листы, гайды, статьи блога по внедрению ИИ в бизнес." />
+        <title>Материалы о цифровизации, ИИ и автоматизации</title>
+        <meta name="description" content="Практические материалы о цифровизации бизнеса, автоматизации процессов, внедрении ИИ, работе с данными и управлении изменениями." />
         <meta name="keywords" content="материалы ИИ, чек-листы AI, блог искусственный интеллект, ресурсы внедрение" />
         <link rel="canonical" href="https://aleksamois.ru/materials" />
-        <meta property="og:title" content="Материалы — Ресурсы и блог | Александра Моисеева" />
-        <meta property="og:description" content="Полезные материалы: чек-листы, гайды, статьи блога по внедрению ИИ в бизнес." />
+        <meta property="og:title" content="Материалы о цифровизации, ИИ и автоматизации" />
+        <meta property="og:description" content="Практические материалы о цифровизации бизнеса, автоматизации процессов, внедрении ИИ, работе с данными и управлении изменениями." />
         <meta property="og:url" content="https://aleksamois.ru/materials" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
