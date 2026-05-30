@@ -14,6 +14,45 @@ const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> 
   "Результат": TrendingUp,
 };
 
+// SEO overrides per service slug (Title, Description, H1)
+const serviceSeo: Record<string, { title: string; description: string; h1: string }> = {
+  "owner-digital-session": {
+    title: "Стратегическая встреча по цифровизации бизнеса",
+    description: "Рабочая встреча для собственника: находим ручные процессы, точки потерь и первый шаг цифровизации с понятным планом действий.",
+    h1: "Стратегическая встреча",
+  },
+  "digital-development-strategy": {
+    title: "Стратегия цифрового развития компании",
+    description: "Помогаю собрать стратегию цифрового развития: приоритеты, процессы, данные, инструменты, бюджет и дорожную карту внедрения.",
+    h1: "Стратегия цифрового развития",
+  },
+  "digital-audit": {
+    title: "Глубокий аудит бизнес-процессов",
+    description: "Глубокий аудит помогает найти ручную работу, потери времени, слабые места в процессах и задачи для автоматизации в первую очередь.",
+    h1: "Глубокий аудит бизнес-процессов",
+  },
+  "digital-tools-program": {
+    title: "Авторская программа по цифровым инструментам для команды",
+    description: "Практическая программа для сотрудников: применяем ИИ и цифровые инструменты в документах, отчётах, таблицах и ежедневных задачах.",
+    h1: "Авторская программа",
+  },
+  "implementation-support": {
+    title: "Сопровождение внедрения цифровых решений",
+    description: "Помогаю встроить цифровое решение в работу команды: процессы, ответственные, инструкции, контроль и доработки после запуска.",
+    h1: "Сопровождение внедрения",
+  },
+  "digital-solution-design": {
+    title: "Разработка цифровых решений для бизнеса",
+    description: "Создаём цифровые решения под конкретные процессы: заявки, документы, отчёты, базы знаний, голосовые сценарии и интеграции.",
+    h1: "Разработка цифрового решения",
+  },
+  "digital-tools-support": {
+    title: "Сопровождение цифровых инструментов и ИИ-систем",
+    description: "Поддерживаем запущенные цифровые инструменты: стабильность, исправление ошибок, доработка сценариев и помощь команде.",
+    h1: "Сопровождение инструментов",
+  },
+};
+
 const ServiceDetailPage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
@@ -23,13 +62,23 @@ const ServiceDetailPage = () => {
   const forWhom = service.sections.find((s) => s.heading === "Подходит, если");
   const includes = service.sections.find((s) => s.heading === "Что входит");
   const result = service.sections.find((s) => s.heading === "Результат");
+  const seo = serviceSeo[service.slug];
+  const pageTitle = seo?.title ?? `${service.title} · НейроРешения`;
+  const pageDescription = seo?.description ?? service.subtitle;
+  const pageH1 = seo?.h1 ?? service.title;
+  const canonicalUrl = `https://aleksamois.ru${service.href}`;
 
   return (
     <PageTransition>
       <Helmet>
-        <title>{`${service.title} · НейроРешения`}</title>
-        <meta name="description" content={service.subtitle} />
-        <link rel="canonical" href={`https://aleksamois.ru${service.href}`} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -46,7 +95,7 @@ const ServiceDetailPage = () => {
                       Услуга · {service.number}
                     </p>
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
-                      {service.title}
+                      {pageH1}
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl leading-snug">
                       {service.subtitle}
