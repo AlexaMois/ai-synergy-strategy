@@ -23,6 +23,7 @@ const StartPage = lazy(() => import("./pages/start/StartPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
 const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
+const PillarPage = lazy(() => import("./pages/services/PillarPage"));
 const ProductsPage = lazy(() => import("./pages/products/ProductsPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CaseDetailPage = lazy(() => import("./pages/cases/CaseDetailPage"));
@@ -98,6 +99,13 @@ const AppContent = () => {
           <Route path="/services/architecture" element={<Navigate to="/services/digital-solution-design" replace />} />
           <Route path="/services/support" element={<Navigate to="/services/implementation-support" replace />} />
           <Route path="/services/add-ons" element={<Navigate to="/services" replace />} />
+          {/* Pillar SEO pages (поддержка URL с/без trailing slash) */}
+          <Route path="/services/avtomatizaciya-biznes-processov" element={<PillarPage />} />
+          <Route path="/services/avtomatizaciya-biznes-processov/" element={<PillarPage />} />
+          <Route path="/services/cifrovizaciya-biznesa" element={<PillarPage />} />
+          <Route path="/services/cifrovizaciya-biznesa/" element={<PillarPage />} />
+          <Route path="/services/vnedrenie-ii-v-biznes" element={<PillarPage />} />
+          <Route path="/services/vnedrenie-ii-v-biznes/" element={<PillarPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           
           {/* Products */}
