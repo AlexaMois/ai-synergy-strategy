@@ -136,7 +136,7 @@ const nextSteps = [
 
 const metrics = [
   { value: "68", label: "документов в управляемом контуре" },
-  { value: "4", label: "раунда RAG/RAC-тестирования" },
+  { value: "4", label: "раунда RAG-тестирования" },
   { value: "6", label: "связанных контуров проекта" },
 ];
 
