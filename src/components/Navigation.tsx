@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 import { openCallbackModal } from "@/components/CallbackModal";
+import { trackZakazatZvonok } from "@/utils/analytics";
 
 // Preload page on hover for instant navigation
 const preloadPage = (path: string) => {
@@ -156,6 +157,7 @@ const Navigation = () => {
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    trackZakazatZvonok();
     openCallbackModal();
   };
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
