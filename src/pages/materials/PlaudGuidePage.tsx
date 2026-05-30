@@ -132,7 +132,7 @@ const PlaudGuidePage = () => {
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              PLAUD: инструкция на русском языке
+              PLAUD Note: инструкция на русском
             </h1>
             <p className="text-muted-foreground text-lg mb-4">
               Показываю, как выбрать модель, запустить запись, разобраться в приложении, понять работу облака и настроить всё без путаницы.
