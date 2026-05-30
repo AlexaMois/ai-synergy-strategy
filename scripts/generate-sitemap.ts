@@ -29,6 +29,9 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/services/implementation-support', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-solution-design', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-tools-support', priority: '0.8', changefreq: 'monthly' },
+  { path: '/services/avtomatizaciya-biznes-processov/', priority: '0.9', changefreq: 'monthly' },
+  { path: '/services/cifrovizaciya-biznesa/', priority: '0.9', changefreq: 'monthly' },
+  { path: '/services/vnedrenie-ii-v-biznes/', priority: '0.9', changefreq: 'monthly' },
 
   // Cases
   { path: '/cases', priority: '0.8', changefreq: 'weekly' },
