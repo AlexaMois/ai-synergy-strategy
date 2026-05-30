@@ -275,11 +275,19 @@ function injectMeta(html, route, meta) {
 
   let out = html;
 
+  function upsert(regex, tag) {
+    if (regex.test(out)) {
+      out = out.replace(regex, tag);
+    } else {
+      out = out.replace('</head>', `  ${tag}\n</head>`);
+    }
+  }
+
   // <title>
   out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
 
-  // <meta name="description">
-  out = out.replace(
+  // <meta name="description"> (upsert — отсутствует в index.html по умолчанию)
+  upsert(
     /<meta\s+name="description"[^>]*>/i,
     `<meta name="description" content="${description}">`
   );
@@ -301,28 +309,13 @@ function injectMeta(html, route, meta) {
   );
 
   // og:url / og:title / og:description / og:type
-  out = out.replace(
-    /<meta\s+property="og:url"[^>]*>/i,
-    `<meta property="og:url" content="${canonical}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:title"[^>]*>/i,
-    `<meta property="og:title" content="${title}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:description"[^>]*>/i,
-    `<meta property="og:description" content="${description}">`
-  );
-  out = out.replace(
-    /<meta\s+property="og:type"[^>]*>/i,
-    `<meta property="og:type" content="${ogType}">`
-  );
+  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}">`);
+  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}">`);
+  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}">`);
+  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}">`);
 
   // twitter:url
-  out = out.replace(
-    /<meta\s+name="twitter:url"[^>]*>/i,
-    `<meta name="twitter:url" content="${canonical}">`
-  );
+  upsert(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${canonical}">`);
 
   return out;
 }
