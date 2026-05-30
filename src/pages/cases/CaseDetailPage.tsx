@@ -8,6 +8,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
+import AkTransServiceContent from "./AkTransServiceContent";
 
 interface CaseData {
   slug: string;
