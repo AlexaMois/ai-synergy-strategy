@@ -8,10 +8,13 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Политика конфиденциальности | Александра Моисеева</title>
-        <meta name="description" content="Политика компании в отношении обработки персональных данных ИП Моисеева Александра Алексеевна. Условия хранения, права субъекта ПДн." />
+        <title>Политика обработки персональных данных — НейроРешения</title>
+        <meta name="description" content="Политика обработки персональных данных НейроРешений: порядок сбора, хранения, защиты и использования данных посетителей сайта." />
         <link rel="canonical" href="https://aleksamois.ru/legal/privacy-policy" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Политика обработки персональных данных — НейроРешения" />
+        <meta property="og:description" content="Политика обработки персональных данных НейроРешений: порядок сбора, хранения, защиты и использования данных посетителей сайта." />
+        <meta property="og:url" content="https://aleksamois.ru/legal/privacy-policy" />
+        <meta property="og:type" content="website" />
       </Helmet>
       
       
@@ -26,7 +29,7 @@ const PrivacyPolicy = () => {
 
         <article className="prose prose-lg max-w-none">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-8">
-            Политика компании в отношении обработки персональных данных
+            Политика обработки персональных данных
           </h1>
 
           <div className="text-right text-muted-foreground mb-8">

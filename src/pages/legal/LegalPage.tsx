@@ -34,10 +34,13 @@ const LegalPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Юридические документы — Александра Моисеева</title>
-        <meta name="description" content="Юридические документы: политика конфиденциальности, согласие на обработку данных, договор-оферта." />
+        <title>Юридическая информация — НейроРешения</title>
+        <meta name="description" content="Юридические документы НейроРешений: условия работы, политика обработки данных, согласия и контактная информация для клиентов." />
         <link rel="canonical" href="https://aleksamois.ru/legal" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Юридическая информация — НейроРешения" />
+        <meta property="og:description" content="Юридические документы НейроРешений: условия работы, политика обработки данных, согласия и контактная информация для клиентов." />
+        <meta property="og:url" content="https://aleksamois.ru/legal" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <div className="min-h-screen bg-background">
         
@@ -48,7 +51,7 @@ const LegalPage = () => {
           <section className="py-10 md:py-16 lg:py-20">
             <div className="container mx-auto px-4 max-w-5xl text-center">
               <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-6">
-                Юридические документы
+                Юридическая информация
               </h1>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Правовая информация для пользователей сайта и клиентов

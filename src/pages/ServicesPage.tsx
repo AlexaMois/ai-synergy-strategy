@@ -85,12 +85,12 @@ const processSteps = [
 const ServicesPage = () => {
   return <PageTransition>
       <Helmet>
-        <title>Услуги по цифровому развитию бизнеса — Александра Моисеева, НейроРешения</title>
-        <meta name="description" content="Стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для бизнеса." />
+        <title>Услуги по цифровизации и автоматизации бизнеса</title>
+        <meta name="description" content="Форматы работы для бизнеса: стратегическая встреча, стратегия цифрового развития, аудит, обучение, внедрение, разработка и сопровождение." />
         <meta name="keywords" content="цифровое развитие бизнеса, стратегия цифровизации, аудит цифровизации, внедрение цифровых инструментов, сопровождение, НейроРешения" />
         <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Услуги по цифровому развитию бизнеса — Александра Моисеева, НейроРешения" />
-        <meta property="og:description" content="Стратегическая встреча, стратегия цифрового развития, глубокий аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов для бизнеса." />
+        <meta property="og:title" content="Услуги по цифровизации и автоматизации бизнеса" />
+        <meta property="og:description" content="Форматы работы для бизнеса: стратегическая встреча, стратегия цифрового развития, аудит, обучение, внедрение, разработка и сопровождение." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />

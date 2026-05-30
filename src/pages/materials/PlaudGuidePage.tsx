@@ -107,8 +107,14 @@ const PlaudGuidePage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>PLAUD: инструкция на русском языке | Александра Мойс</title>
-        <meta name="description" content="Подробная инструкция по PLAUD AI: настройка, функции, облако, оплата, частые ошибки и FAQ." />
+        <title>PLAUD Note: инструкция и сценарии применения</title>
+        <meta name="description" content="Практическая инструкция по PLAUD Note: запись встреч, расшифровки, выводы, задачи и применение устройства в рабочем процессе." />
+        <link rel="canonical" href="https://aleksamois.ru/materials/plaud-guide" />
+        <meta property="og:title" content="PLAUD Note: инструкция и сценарии применения" />
+        <meta property="og:description" content="Практическая инструкция по PLAUD Note: запись встреч, расшифровки, выводы, задачи и применение устройства в рабочем процессе." />
+        <meta property="og:url" content="https://aleksamois.ru/materials/plaud-guide" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
       </Helmet>
 
@@ -126,7 +132,7 @@ const PlaudGuidePage = () => {
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              PLAUD: инструкция на русском языке
+              PLAUD Note: инструкция на русском
             </h1>
             <p className="text-muted-foreground text-lg mb-4">
               Показываю, как выбрать модель, запустить запись, разобраться в приложении, понять работу облака и настроить всё без путаницы.

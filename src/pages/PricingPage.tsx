@@ -178,12 +178,12 @@ const PricingPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Стоимость цифровизации бизнеса — форматы работы и цены | Александра Моисеева</title>
-        <meta name="description" content="Базовые ориентиры стоимости: стратегическая встреча, аудит, проектирование и сопровождение цифровых решений. Чтобы собственник сразу понимал порядок бюджета." />
+        <title>Цены на цифровизацию, аудит и внедрение ИИ</title>
+        <meta name="description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta name="keywords" content="стоимость цифровизации, цены автоматизации бизнеса, стратегия цифрового развития, аудит компании" />
         <link rel="canonical" href="https://aleksamois.ru/pricing" />
-        <meta property="og:title" content="Стоимость цифровизации бизнеса — форматы работы и цены | Александра Моисеева" />
-        <meta property="og:description" content="Базовые ориентиры стоимости форматов работы по цифровизации бизнеса." />
+        <meta property="og:title" content="Цены на цифровизацию, аудит и внедрение ИИ" />
+        <meta property="og:description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -206,9 +206,9 @@ const PricingPage = () => {
                       Цены
                     </p>
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                      Форматы работы{" "}
+                      Цены{" "}
                       <span className="font-iriska font-normal italic text-accent">
-                        и стоимость
+                        и форматы работы
                       </span>
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-2xl leading-snug">

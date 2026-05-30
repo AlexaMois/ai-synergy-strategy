@@ -130,12 +130,12 @@ const CasesPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения</title>
-        <meta name="description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи. Александра Моисеева, агентство «НейроРешения»." />
+        <title>Кейсы цифровизации и автоматизации бизнеса</title>
+        <meta name="description" content="Реальные кейсы НейроРешений: автоматизация заявок, документов, технических запросов и ручных процессов с экономией времени и бюджета." />
         <meta name="keywords" content="кейсы цифровизации бизнеса, кейсы внедрения ИИ, цифровые инструменты для бизнеса, автоматизация логистики, документооборот" />
         <link rel="canonical" href="https://aleksamois.ru/cases" />
-        <meta property="og:title" content="Кейсы цифрового развития бизнеса — Александра Моисеева, НейроРешения" />
-        <meta property="og:description" content="Кейсы внедрения цифровых инструментов для бизнеса: транспорт, закупки, логистика, производство, документы и продажи." />
+        <meta property="og:title" content="Кейсы цифровизации и автоматизации бизнеса" />
+        <meta property="og:description" content="Реальные кейсы НейроРешений: автоматизация заявок, документов, технических запросов и ручных процессов с экономией времени и бюджета." />
         <meta property="og:url" content="https://aleksamois.ru/cases" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -155,7 +155,7 @@ const CasesPage = () => {
                 <div className="px-6 md:px-12 lg:px-16 py-14 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">Кейсы</p>
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6 max-w-5xl">
-                    Кейсы цифрового развития{" "}
+                    Кейсы цифровизации{" "}
                     <span className="font-iriska font-normal italic text-accent">бизнеса</span>
                   </h1>
                   <p className="text-lg md:text-xl text-foreground/85 mb-5 max-w-3xl leading-snug font-medium">

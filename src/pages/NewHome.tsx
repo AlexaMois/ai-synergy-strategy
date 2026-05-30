@@ -99,14 +99,14 @@ const NewHome = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Александра Моисеева — инженер и архитектор цифрового развития бизнеса</title>
+        <title>Цифровизация и автоматизация бизнеса — Александра Моисеева</title>
         <meta
           name="description"
-          content="Инженер и архитектор цифрового развития бизнеса. Агентство НейроРешения — методология и продуктовая система внедрения ИИ и автоматизации."
+          content="Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять ИИ там, где он даёт понятную пользу бизнесу."
         />
         <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Александра Моисеева — инженер и архитектор цифрового развития бизнеса" />
-        <meta property="og:description" content="Инженер и архитектор цифрового развития бизнеса. Агентство НейроРешения — система реализации проектов." />
+        <meta property="og:title" content="Цифровизация и автоматизация бизнеса — Александра Моисеева" />
+        <meta property="og:description" content="Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять ИИ там, где он даёт понятную пользу бизнесу." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
