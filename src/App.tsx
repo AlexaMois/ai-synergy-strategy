@@ -142,6 +142,7 @@ const AppContent = () => {
           <Route path="/consent" element={<Navigate to="/legal/consent" replace />} />
           <Route path="/privacy-policy" element={<Navigate to="/legal/privacy-policy" replace />} />
           <Route path="/terms" element={<Navigate to="/legal/terms" replace />} />
+          <Route path="/case_portfolio" element={<Navigate to="/cases" replace />} />
           <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
           <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
           <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
