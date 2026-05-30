@@ -8,6 +8,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
+import AkTransServiceContent from "./AkTransServiceContent";
 
 interface CaseData {
   slug: string;
@@ -363,6 +364,15 @@ const CaseDetailPage = () => {
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 
         />
         
+        {slug === "aktransservice" ? (
+          <>
+            <AkTransServiceContent />
+            <Contact />
+            <Partners />
+            <Footer />
+          </>
+        ) : (
+        <>
         <main>
           {/* Hero Section */}
           <section className="pt-10 pb-10 md:pb-16 bg-background">
@@ -481,6 +491,8 @@ const CaseDetailPage = () => {
         <Contact />
         <Partners />
         <Footer />
+        </>
+        )}
       </div>
     </PageTransition>
   );
