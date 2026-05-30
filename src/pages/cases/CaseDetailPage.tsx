@@ -364,6 +364,15 @@ const CaseDetailPage = () => {
           parentPages={[{ label: "Кейсы", href: "/cases" }]} 
         />
         
+        {slug === "aktransservice" ? (
+          <>
+            <AkTransServiceContent />
+            <Contact />
+            <Partners />
+            <Footer />
+          </>
+        ) : (
+        <>
         <main>
           {/* Hero Section */}
           <section className="pt-10 pb-10 md:pb-16 bg-background">
@@ -482,6 +491,8 @@ const CaseDetailPage = () => {
         <Contact />
         <Partners />
         <Footer />
+        </>
+        )}
       </div>
     </PageTransition>
   );
