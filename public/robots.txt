@@ -6,6 +6,7 @@ Allow: /
 
 User-agent: Yandex
 Allow: /
+Clean-param: _ym_debug
 
 User-agent: Twitterbot
 Allow: /
