@@ -24,9 +24,6 @@
 - [Архитектура ИИ-решений](https://aleksamois.ru/services/architecture): проектирование AI-систем без привязки к вендорам.
 - [Сопровождение внедрения](https://aleksamois.ru/services/support): запуск пилота с гарантией результата.
 - [Дополнительные услуги](https://aleksamois.ru/services/add-ons): обучение команды и аудит существующих ИИ-решений.
-- [Продукты](https://aleksamois.ru/products): готовые ИИ-продукты для бизнеса.
-- [Голосовой ИИ-ассистент Golossok](https://aleksamois.ru/products/voice-bot): голосовой бот для приёма и обработки звонков.
-- [Поиск по документам DocSearch](https://aleksamois.ru/products/doc-search): семантический поиск по корпоративной базе знаний.
 - [Цены](https://aleksamois.ru/pricing): стоимость пилотов и сопровождения.
 - [Кейсы](https://aleksamois.ru/cases): реальные внедрения ИИ с метриками.
 - [Материалы](https://aleksamois.ru/materials): чек-листы, инструкции и статьи.
