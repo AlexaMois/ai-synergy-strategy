@@ -18,7 +18,6 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
 
   // Services
   { path: '/services', priority: '0.9', changefreq: 'monthly' },
-  { path: '/services/automation', priority: '0.9', changefreq: 'monthly' },
   { path: '/services/owner-digital-session', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-development-strategy', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-audit', priority: '0.8', changefreq: 'monthly' },
@@ -26,11 +25,6 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/services/implementation-support', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-solution-design', priority: '0.8', changefreq: 'monthly' },
   { path: '/services/digital-tools-support', priority: '0.8', changefreq: 'monthly' },
-
-  // Products
-  { path: '/products', priority: '0.8', changefreq: 'monthly' },
-  { path: '/products/doc-search', priority: '0.7', changefreq: 'monthly' },
-  { path: '/products/voice-bot', priority: '0.7', changefreq: 'monthly' },
 
   // Cases
   { path: '/cases', priority: '0.8', changefreq: 'weekly' },
@@ -48,6 +42,12 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
 
   // Neurostylist
   { path: '/neurostylist', priority: '0.6', changefreq: 'monthly' },
+
+  // Legal
+  { path: '/legal', priority: '0.4', changefreq: 'yearly' },
+  { path: '/legal/privacy-policy', priority: '0.4', changefreq: 'yearly' },
+  { path: '/legal/consent', priority: '0.4', changefreq: 'yearly' },
+  { path: '/legal/terms', priority: '0.4', changefreq: 'yearly' },
 ];
 
 function extractBlogSlugs(): string[] {
