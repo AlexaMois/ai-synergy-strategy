@@ -34,7 +34,7 @@ const MaterialsPage = () => {
           <section className="py-10 md:py-16 lg:py-20">
             <div className="container mx-auto px-4 max-w-5xl text-center">
               <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-6">
-                Материалы для изучения
+                Материалы
               </h1>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Чек-листы, гайды и статьи для самостоятельной оценки AI-готовности компании
