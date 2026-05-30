@@ -206,9 +206,9 @@ const PricingPage = () => {
                       Цены
                     </p>
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                      Форматы работы{" "}
+                      Цены{" "}
                       <span className="font-iriska font-normal italic text-accent">
-                        и стоимость
+                        и форматы работы
                       </span>
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-2xl leading-snug">
