@@ -5,6 +5,10 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const DOMAIN = 'https://aleksamois.ru';
 
@@ -92,9 +96,7 @@ ${urls}
 }
 
 // Run directly
-if (require.main === module) {
-  const xml = generateSitemapXml();
-  const outPath = path.resolve(__dirname, '../public/sitemap.xml');
-  fs.writeFileSync(outPath, xml, 'utf-8');
-  console.log(`✅ sitemap.xml generated with ${xml.split('<url>').length - 1} URLs`);
-}
+const xml = generateSitemapXml();
+const outPath = path.resolve(__dirname, '../public/sitemap.xml');
+fs.writeFileSync(outPath, xml, 'utf-8');
+console.log(`✅ sitemap.xml generated with ${xml.split('<url>').length - 1} URLs`);
