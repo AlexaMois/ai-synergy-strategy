@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { ArrowRight, CheckCircle2, BookOpen, Briefcase, FileText } from "lucide-react";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -10,7 +10,8 @@ import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 import { getPillarBySlug } from "@/data/pillarPages";
 
 const PillarPage = () => {
-  const { slug } = useParams();
+  const { pathname } = useLocation();
+  const slug = pathname.replace(/\/$/, "").split("/").pop();
   const data = getPillarBySlug(slug);
 
   if (!data) return <Navigate to="/services" replace />;
