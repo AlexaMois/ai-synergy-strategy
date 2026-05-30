@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
 
         <article className="prose prose-lg max-w-none">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-8">
-            Политика компании в отношении обработки персональных данных
+            Политика обработки персональных данных
           </h1>
 
           <div className="text-right text-muted-foreground mb-8">
