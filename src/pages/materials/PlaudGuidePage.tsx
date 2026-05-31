@@ -923,6 +923,184 @@ const PlaudGuidePage = () => {
           </div>
         </section>
 
+        {/* 10. Export */}
+        <section className="px-4 md:px-6 py-16 md:py-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                <span className="font-iriska font-normal italic text-accent">Export</span>: как сохранить и отправить результат
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug">
+                Export нужен, когда вы хотите забрать результат из PLAUD и использовать его дальше: отправить коллеге, сохранить в документ, приложить к отчёту или перенести в рабочую систему.
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-12 items-start">
+              <ol className="lg:col-span-7 space-y-4">
+                {exportSteps.map((s, i) => (
+                  <li key={i} className="rounded-2xl bg-background p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex gap-4">
+                    <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground text-lg mb-1 leading-snug">{s.title}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">{s.text}</p>
+                      {s.badges && (
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {s.badges.map((b) => (
+                            <EnBadge key={b}>{b}</EnBadge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <aside className="lg:col-span-5 space-y-5 lg:sticky lg:top-24">
+                <div className="rounded-[28px] bg-surface-blush p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Что лучше выгружать</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
+                    Выберите <span className="font-iriska font-normal italic text-accent">формат</span>
+                  </h3>
+                  <ul className="space-y-3">
+                    {exportOptions.map((o) => (
+                      <li key={o.en} className="flex items-start gap-3 rounded-2xl bg-background/80 px-4 py-3 ring-1 ring-foreground/5">
+                        <div className="flex-shrink-0"><EnBadge>{o.en}</EnBadge></div>
+                        <span className="text-base text-foreground/85 leading-snug">— {o.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-[24px] bg-surface-mint p-6 md:p-7 shadow-plate ring-1 ring-foreground/5">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-2">Подсказка</p>
+                  <p className="text-base md:text-lg text-foreground/85 leading-snug">
+                    Для работы чаще всего хватает <span className="font-semibold">Summary</span> и <span className="font-semibold">Transcript</span>. Summary удобно отправить руководителю или клиенту, а Transcript оставить себе как полную базу разговора.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        {/* 11. Ask PLAUD */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                <span className="font-iriska font-normal italic text-accent">Ask PLAUD</span>: как задавать вопросы по записи
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug mb-4">
+                Ask PLAUD помогает быстро найти нужную информацию внутри записи без повторного прослушивания всего разговора.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                После обработки записи можно задавать вопросы по её содержанию. Это удобно, если встреча была длинной, а вам нужно быстро понять решения, задачи, сроки, риски или позицию клиента.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {askGroups.map((g) => (
+                <div key={g.title} className="rounded-[24px] bg-background p-6 md:p-7 shadow-card ring-1 ring-foreground/5 flex flex-col">
+                  <div className="mb-3"><EnBadge>{g.en}</EnBadge></div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">{g.title}</h3>
+                  <ul className="space-y-2.5">
+                    {g.items.map((q) => (
+                      <li key={q} className="flex items-start gap-3 text-foreground/85">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                        <span className="text-base leading-snug">{q}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-[28px] bg-surface-mint p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Как задавать хороший вопрос</p>
+              <p className="text-lg md:text-xl text-foreground/90 leading-snug">
+                Лучше задавать конкретный вопрос, а не общий. Например, вместо «Что там было?» написать: «Какие задачи и сроки обсудили на встрече?» Так ответ будет точнее и полезнее.
+              </p>
+            </div>
+            <div className="mt-6 rounded-[28px] bg-background p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Готовые вопросы для копирования</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {readyPrompts.map((p) => (
+                  <div key={p} className="rounded-2xl bg-secondary/40 px-5 py-4 ring-1 ring-foreground/5 text-base text-foreground/85 leading-snug">
+                    {p}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 12. Минуты и оплата */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Минуты и оплата:{" "}
+                <span className="font-iriska font-normal italic text-accent">как не переплатить</span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug mb-4">
+                PLAUD использует минуты для расшифровки аудио в текст. Важно понимать разницу между записью аудио и обработкой записи.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                Запись аудио и расшифровка — это разные действия. PLAUD может записывать аудио даже тогда, когда минуты закончились. Но для получения Transcript и Summary нужны минуты на обработку.
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-12 items-start">
+              <div className="lg:col-span-7 rounded-[28px] bg-background p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Как работают минуты</p>
+                <ul className="space-y-3">
+                  {minutesRules.map((r) => (
+                    <li key={r} className="flex items-start gap-3 text-foreground/85">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                      <span className="text-base md:text-lg leading-snug">{r}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="lg:col-span-5 rounded-[28px] bg-surface-blush p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Перед оплатой</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
+                  Задайте себе{" "}
+                  <span className="font-iriska font-normal italic text-accent">3 вопроса</span>
+                </h3>
+                <ol className="space-y-3">
+                  {beforePayQuestions.map((q, i) => (
+                    <li key={q} className="flex items-start gap-3 text-foreground/85">
+                      <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-accent text-accent-foreground font-bold text-sm">{i + 1}</span>
+                      <span className="text-base md:text-lg leading-snug">{q}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <div className="mt-8 rounded-[32px] bg-background p-6 md:p-8 shadow-plate-lg ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">Что выбрать</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {planChoices.map((c) => (
+                  <div key={c.situation} className="rounded-2xl bg-secondary/40 p-5 md:p-6 ring-1 ring-foreground/5">
+                    <p className="font-bold text-foreground text-lg leading-snug mb-2">{c.situation}</p>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      <span className="font-semibold text-foreground">Рекомендация:</span> {c.advice}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-6 rounded-[28px] bg-accent text-white p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-white/80 font-semibold mb-3">Моя практическая рекомендация</p>
+              <p className="text-lg md:text-xl text-white/95 leading-snug">
+                Для большинства пользователей безопаснее начинать без дорогой подписки: сначала посмотреть, сколько минут реально уходит за месяц. Если записи идут нерегулярно, часто выгоднее докупать дополнительные минуты по мере необходимости. Подписка имеет смысл тогда, когда вы стабильно записываете много встреч каждую неделю и точно используете лимит.
+              </p>
+            </div>
+            <div className="mt-6 rounded-[28px] bg-surface-mint p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Важно про экономию</p>
+              <p className="text-lg md:text-xl text-foreground/90 leading-snug">
+                Ежемесячные минуты по тарифу обычно не переносятся на следующий месяц. Поэтому, если вы используете PLAUD нерегулярно, часть оплаченного лимита может просто сгореть. Докупленные дополнительные минуты удобнее для тех, кто записывает не каждый день, а периодами.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Облако */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
