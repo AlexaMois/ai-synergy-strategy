@@ -22,7 +22,6 @@ import {
   modelComparison,
   gettingStartedSteps,
   cloudInfo,
-  paymentInfo,
   mistakes,
   faqItems,
   conclusionSteps,
