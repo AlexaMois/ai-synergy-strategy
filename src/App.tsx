@@ -109,14 +109,14 @@ const AppContent = () => {
           
           {/* Products */}
           <Route path="/products" element={<Navigate to="/services" replace />} />
-          <Route path="/products/voice-bot" element={<GolossokPricing />} />
-          <Route path="/products/doc-search" element={<CaseStudyDocSearch />} />
+          <Route path="/products/voice-bot" element={<Navigate to="/services/digital-solution-design" replace />} />
+          <Route path="/products/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
           
           {/* Cases */}
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/cases/kraypotrebsoyuz" element={<CaseStudyKraypotrebsoyuz />} />
           <Route path="/cases/cargo-express" element={<CaseStudyCargoExpress />} />
-          <Route path="/cases/doc-search" element={<Navigate to="/products/doc-search" replace />} />
+          <Route path="/cases/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
           <Route path="/cases/:slug" element={<CaseDetailPage />} />
           
           {/* Materials */}
@@ -152,8 +152,8 @@ const AppContent = () => {
           <Route path="/case_portfolio" element={<Navigate to="/cases" replace />} />
           <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
           <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
-          <Route path="/case-studies/doc-search" element={<Navigate to="/products/doc-search" replace />} />
-          <Route path="/golossok-pricing" element={<Navigate to="/products/voice-bot" replace />} />
+          <Route path="/case-studies/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
+          <Route path="/golossok-pricing" element={<Navigate to="/services/digital-solution-design" replace />} />
           <Route path="/checklist" element={<Navigate to="/materials/checklist-30" replace />} />
           <Route path="/newyear" element={<NewYearGreeting />} />
           <Route path="/redirect" element={<Redirect />} />

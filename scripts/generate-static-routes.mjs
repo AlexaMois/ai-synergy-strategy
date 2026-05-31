@@ -41,6 +41,9 @@ const legacyRedirects = {
   '/privacy-policy': '/legal/privacy-policy',
   '/case_portfolio': '/cases',
   '/neurostylist': '/',
+  '/products': '/services',
+  '/products/doc-search': '/cases/production-doc-search',
+  '/products/voice-bot': '/services/digital-solution-design',
 };
 
 function writeRedirectStubs() {
