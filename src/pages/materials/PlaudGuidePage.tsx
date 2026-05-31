@@ -948,38 +948,6 @@ const PlaudGuidePage = () => {
           </div>
         </section>
 
-        {/* 8. Как оплачивать */}
-        <section className="py-12 md:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Как работает оплата</h2>
-            <div className="space-y-2 text-muted-foreground mb-6">
-              {paymentInfo.intro.map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-            </div>
-            <div className="space-y-5">
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Где посмотреть остаток</h3>
-                <p className="text-sm text-muted-foreground">{paymentInfo.whereToCheck}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Что происходит при окончании минут</h3>
-                <p className="text-sm text-muted-foreground">{paymentInfo.whenRunsOut}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-1">Как пополнить минуты</h3>
-                <p className="text-sm text-muted-foreground">{paymentInfo.howToBuyMore}</p>
-              </div>
-            </div>
-            <div className="mt-8">
-              <ScreenshotPlaceholder text="Веб-приложение PLAUD — список записей и шаблоны" imageSrc={plaudWebapp} />
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              Подробнее об условиях — на <PlaudLink>официальном сайте</PlaudLink>.
-            </p>
-          </div>
-        </section>
-
         {/* 9. Частые ошибки */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
