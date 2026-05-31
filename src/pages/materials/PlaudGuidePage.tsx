@@ -20,7 +20,6 @@ import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
-  cloudInfo,
   mistakes,
   faqItems,
   conclusionSteps,
