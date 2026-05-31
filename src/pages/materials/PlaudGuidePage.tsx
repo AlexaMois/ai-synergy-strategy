@@ -21,8 +21,6 @@ import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
-  usageItems,
-  features,
   cloudInfo,
   paymentInfo,
   mistakes,
@@ -146,6 +144,105 @@ const plaudModels = [
     bg: "bg-surface-blush",
   },
 ];
+
+const quickStartSteps = [
+  {
+    n: 1,
+    title: "Зарядите устройство",
+    text: "Подключите PLAUD к зарядке и дождитесь, пока устройство будет готово к работе. Для первой проверки достаточно короткой тестовой записи.",
+    badges: [] as string[],
+  },
+  {
+    n: 2,
+    title: "Установите приложение PLAUD",
+    text: "Установите приложение PLAUD AI на телефон и войдите в аккаунт. Если интерфейс на английском, не пугайтесь: основные кнопки разобраны ниже.",
+    badges: [],
+  },
+  {
+    n: 3,
+    title: "Подключите устройство",
+    text: "Включите Bluetooth, откройте приложение и подключите PLAUD. После подключения устройство появится в приложении.",
+    badges: [],
+  },
+  {
+    n: 4,
+    title: "Выберите режим записи",
+    text: "Для живой встречи используйте режим Meeting. Для телефонного разговора — режим Call. Правильный режим сильно влияет на качество записи.",
+    badges: ["Meeting", "Call"],
+  },
+  {
+    n: 5,
+    title: "Сделайте тестовую запись",
+    text: "Запишите 1–2 минуты обычной речи. Это поможет проверить звук, режим и синхронизацию до важной встречи.",
+    badges: [],
+  },
+  {
+    n: 6,
+    title: "Откройте запись в приложении",
+    text: "После завершения записи откройте файл в приложении. Обычно записи находятся в разделе All files.",
+    badges: ["All files"],
+  },
+  {
+    n: 7,
+    title: "Нажмите Generate",
+    text: "Кнопка Generate запускает обработку записи. После этого PLAUD формирует расшифровку и краткое содержание.",
+    badges: ["Generate"],
+  },
+  {
+    n: 8,
+    title: "Проверьте Transcript и Summary",
+    text: "Transcript — это полный текст записи. Summary — краткое содержание. Проверьте, насколько хорошо система распознала речь.",
+    badges: ["Transcript", "Summary"],
+  },
+];
+
+const dictionary = [
+  { en: "Record", ru: "Запись", desc: "запускает или обозначает запись разговора." },
+  { en: "Meeting", ru: "Встреча", desc: "режим для живого разговора, совещания, лекции или консультации." },
+  { en: "Call", ru: "Звонок", desc: "режим для записи телефонного разговора через устройство." },
+  { en: "All files", ru: "Все файлы", desc: "раздел, где находятся записи." },
+  { en: "Generate", ru: "Сгенерировать / обработать", desc: "запускает обработку записи, чтобы получить текст и краткое содержание." },
+  { en: "Generate now", ru: "Сгенерировать сейчас", desc: "подтверждает запуск обработки." },
+  { en: "Transcript", ru: "Расшифровка", desc: "показывает полный текст записи." },
+  { en: "Summary", ru: "Краткое содержание", desc: "показывает основные мысли, выводы и договорённости." },
+  { en: "Ask PLAUD", ru: "Спросить PLAUD", desc: "позволяет задавать вопросы по записи, например: «Какие задачи обсудили?» или «Что по срокам?»" },
+  { en: "Templates", ru: "Шаблоны", desc: "помогает выбрать формат обработки: встреча, интервью, конспект, задачи, протокол." },
+  { en: "Auto generation", ru: "Автоматическая генерация", desc: "PLAUD сам выбирает шаблон, модель и язык обработки." },
+  { en: "Custom generation", ru: "Ручная настройка генерации", desc: "пользователь сам выбирает шаблон, модель и язык." },
+  { en: "Export", ru: "Выгрузить", desc: "позволяет сохранить или отправить запись, расшифровку, саммари или майнд-карту." },
+  { en: "Search", ru: "Поиск", desc: "помогает найти нужную запись или фрагмент." },
+  { en: "Membership Center", ru: "Раздел тарифа и минут", desc: "показывает тариф, остаток минут и варианты пополнения." },
+  { en: "Private Cloud Sync", ru: "Облачная синхронизация", desc: "синхронизирует записи и результаты между устройствами." },
+  { en: "AutoFlow", ru: "Автоматический поток обработки", desc: "может автоматически создавать расшифровку и саммари после синхронизации или загрузки записи." },
+];
+
+const firstRecordingSteps = [
+  { title: "Откройте приложение PLAUD AI", text: "Убедитесь, что устройство подключено и видно в приложении." },
+  { title: "Выберите режим", text: "Meeting — для живого разговора. Call — для телефонного звонка.", badges: ["Meeting", "Call"] },
+  { title: "Запустите запись", text: "Нажмите кнопку записи в приложении или используйте кнопку на устройстве. Убедитесь, что запись началась." },
+  { title: "Положите устройство правильно", text: "Для встречи положите PLAUD ближе к говорящим. Для звонка используйте режим Call и расположите устройство так, как рекомендует приложение." },
+  { title: "Завершите запись", text: "Остановите запись после разговора. Устройство сохранит файл." },
+  { title: "Дождитесь синхронизации", text: "Откройте приложение и дождитесь, пока запись появится в списке файлов." },
+  { title: "Откройте файл и нажмите Generate", text: "После обработки появятся Transcript и Summary.", badges: ["Generate", "Transcript", "Summary"] },
+  { title: "Проверьте результат", text: "Посмотрите, правильно ли распозналась речь. Если запись тестовая, оцените качество звука и выбранный режим." },
+];
+
+const miniCheck = [
+  "устройство заряжено",
+  "приложение открывается",
+  "Bluetooth включён",
+  "устройство подключено",
+  "выбран правильный режим: Meeting или Call",
+  "сделана тестовая запись",
+  "хватает минут для расшифровки",
+  "понятно, куда потом нажать: All files → Generate",
+];
+
+const EnBadge = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex items-center rounded-full bg-accent/15 text-accent px-2.5 py-0.5 text-xs font-semibold ring-1 ring-accent/30">
+    {children}
+  </span>
+);
 
 const PlaudGuidePage = () => {
   return (
@@ -350,84 +447,135 @@ const PlaudGuidePage = () => {
           </div>
         </section>
 
-        {/* 4. Как начать */}
-        <section id="getting-started" className="py-12 md:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Как начать пользоваться PLAUD</h2>
-            <p className="text-muted-foreground mb-8">
-              Пользователь проходит последовательность действий и получает готовую запись с расшифровкой и саммари.
-            </p>
-            <div className="space-y-8">
-              {gettingStartedSteps.map((step) => (
-                <div key={step.number} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  <div className="rounded-xl border border-border/30 bg-background p-5 shadow-soft">
-                    <div className="flex items-start gap-4">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
-                        {step.number}
-                      </span>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
-                        <p className="text-sm text-muted-foreground">{step.desc}</p>
-                      </div>
+        {/* 4. Быстрый старт */}
+        <section id="getting-started" className="px-4 md:px-6 py-16 md:py-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Быстрый старт:{" "}
+                <span className="font-iriska font-normal italic text-accent">первая запись</span>{" "}
+                за 10 минут
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Этот блок нужен, чтобы быстро проверить устройство и приложение без долгого изучения настроек.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {quickStartSteps.map((s) => (
+                <div key={s.n} className="rounded-[24px] bg-background p-6 shadow-card ring-1 ring-foreground/5 flex flex-col">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-accent-foreground font-bold mb-4">
+                    {s.n}
+                  </span>
+                  <h3 className="font-semibold text-foreground text-lg mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3 flex-grow">{s.text}</p>
+                  {s.badges.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-auto">
+                      {s.badges.map((b) => (
+                        <EnBadge key={b}>{b}</EnBadge>
+                      ))}
                     </div>
-                  </div>
-                  <ScreenshotPlaceholder text={step.screenshot} imageSrc={stepImageMap[step.number]} />
+                  )}
                 </div>
               ))}
+            </div>
+            <div className="mt-8 rounded-[28px] bg-surface-mint p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-2">Подсказка</p>
+              <p className="text-lg md:text-xl text-foreground/85 leading-snug">
+                Сначала сделайте короткую тестовую запись. Так вы спокойно проверите звук, режим и обработку до настоящей встречи.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* 5. Как пользоваться */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Как пользоваться PLAUD</h2>
-            <p className="text-muted-foreground mb-8">
-              Пользователь управляет устройством через одну кнопку и выбирает режим записи в зависимости от ситуации.
-            </p>
-            <div className="space-y-8">
-              {usageItems.map((item, i) => (
-                <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground text-lg">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.what}</p>
-                    {item.detail && (
-                      <p className="text-sm text-muted-foreground whitespace-pre-line">{item.detail}</p>
-                    )}
+        {/* 5. Словарь кнопок */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Английский интерфейс PLAUD:{" "}
+                <span className="font-iriska font-normal italic text-accent">словарь кнопок</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Большинство сложностей возникает из-за английских названий в приложении. Ниже — перевод основных кнопок простым языком.
+              </p>
+            </div>
+            <div className="rounded-[32px] bg-background p-6 md:p-10 shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {dictionary.map((d) => (
+                  <div key={d.en} className="rounded-2xl bg-secondary/40 p-5 ring-1 ring-foreground/5">
+                    <EnBadge>{d.en}</EnBadge>
+                    <p className="font-bold text-foreground mt-3 mb-1">{d.ru}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
                   </div>
-                  <ScreenshotPlaceholder text={item.screenshot} imageSrc={usageImageMap[i]} />
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 rounded-[28px] bg-accent text-white p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-white/80 font-semibold mb-2">С чего достаточно начать</p>
+              <p className="text-lg md:text-xl text-white/95 leading-snug">
+                Главные кнопки для первого раза:{" "}
+                <span className="font-semibold">All files → Generate → Transcript → Summary → Export</span>.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* 6. Приложение */}
-        <section className="py-12 md:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Приложение PLAUD: основные функции</h2>
-            <p className="text-muted-foreground mb-8">
-              Приложение показывает записи, обрабатывает их и формирует результат в удобном виде. Скачать приложение можно на <PlaudLink>официальном сайте</PlaudLink>.
-            </p>
-            <div className="space-y-10">
-              {features.map((f, i) => {
-                const matchedImage = Object.entries(featureImageMap).find(([key]) => f.title.includes(key));
-                return (
-                  <div key={i}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                      <div>
-                        <h3 className="font-semibold text-foreground text-lg mb-2">{f.title}</h3>
-                        <p className="text-sm text-muted-foreground">{f.what}</p>
-                      </div>
-                      <ScreenshotPlaceholder
-                        text={f.screenshot}
-                        imageSrc={matchedImage?.[1]}
-                      />
+        {/* 6. Как сделать первую запись */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Как сделать{" "}
+                <span className="font-iriska font-normal italic text-accent">первую запись</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Для первой проверки выберите простую ситуацию: короткая заметка голосом или разговор на 1–2 минуты.
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-12 items-start">
+              <ol className="lg:col-span-7 space-y-4">
+                {firstRecordingSteps.map((s, i) => (
+                  <li key={i} className="rounded-2xl bg-background p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex gap-4">
+                    <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground text-lg mb-1 leading-snug">{s.title}</h3>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{s.text}</p>
+                      {s.badges && s.badges.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {s.badges.map((b) => (
+                            <EnBadge key={b}>{b}</EnBadge>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    {i < features.length - 1 && <div className="border-b border-border/30 mt-10" />}
-                  </div>
-                );
-              })}
+                  </li>
+                ))}
+              </ol>
+              <aside className="lg:col-span-5 lg:sticky lg:top-24">
+                <div className="rounded-[28px] bg-surface-blush p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Мини-чек</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
+                    Перед важной{" "}
+                    <span className="font-iriska font-normal italic text-accent">встречей</span>
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {miniCheck.map((c) => (
+                      <li key={c} className="flex items-start gap-3 text-foreground/85">
+                        <span className="mt-1.5 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                        <span className="text-sm md:text-base">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-5 rounded-[24px] bg-foreground text-background p-6 md:p-7 shadow-plate">
+                  <p className="text-sm uppercase tracking-widest text-background/70 font-semibold mb-2">Важно</p>
+                  <p className="text-base md:text-lg leading-snug text-background/95">
+                    Если минуты закончились, аудио всё равно можно записывать и хранить, но для расшифровки и саммари потребуется пополнить минуты или дождаться обновления лимита по тарифу.
+                  </p>
+                </div>
+              </aside>
             </div>
           </div>
         </section>
