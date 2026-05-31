@@ -351,7 +351,7 @@ const exportOptions: { en: string; text: string }[] = [
   { en: "Summary", text: "когда нужно быстро передать суть" },
   { en: "Audio", text: "когда важно сохранить исходную запись" },
   { en: "Mind map", text: "когда нужен визуальный обзор темы" },
-  { en: "Share link", text: "когда удобнее дать доступ по ссылке" },
+  { en: "DOCX / PDF", text: "когда нужно отправить результат коллегам или клиенту" },
 ];
 
 const askGroups: { title: string; en: string; items: string[] }[] = [
@@ -1085,7 +1085,7 @@ const PlaudGuidePage = () => {
             <div className="mt-6 rounded-[28px] bg-accent text-white p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
               <p className="text-sm uppercase tracking-widest text-white/80 font-semibold mb-3">Моя практическая рекомендация</p>
               <p className="text-lg md:text-xl text-white/95 leading-snug">
-                Начните с бесплатных 300 минут Starter в месяц. Если вы иногда выходите за этот лимит, выгоднее докупать минуты по необходимости. Так вы сначала используете бесплатный лимит, а докупленные минуты тратите только сверх него. Постоянную подписку имеет смысл подключать тогда, когда вы стабильно записываете много встреч каждую неделю.
+                Начните с бесплатных 300 минут Starter в месяц. Если иногда выходите за этот лимит, докупайте минуты по необходимости. Так сначала расходуется бесплатный лимит, а докупленные минуты становятся резервом сверх него. Постоянная подписка нужна тем, кто стабильно записывает много встреч каждую неделю.
               </p>
             </div>
             <div className="mt-6 rounded-[28px] bg-surface-mint p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
