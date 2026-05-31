@@ -239,7 +239,7 @@ const miniCheck = [
 ];
 
 const EnBadge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center rounded-full bg-accent/15 text-accent px-2.5 py-0.5 text-xs font-semibold ring-1 ring-accent/30">
+  <span className="inline-flex items-center rounded-full bg-accent/25 text-accent px-3 py-1 text-sm font-semibold ring-1 ring-accent/40">
     {children}
   </span>
 );
@@ -495,17 +495,17 @@ const PlaudGuidePage = () => {
                 Английский интерфейс PLAUD:{" "}
                 <span className="font-iriska font-normal italic text-accent">словарь кнопок</span>
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Большинство сложностей возникает из-за английских названий в приложении. Ниже — перевод основных кнопок простым языком.
               </p>
             </div>
             <div className="rounded-[32px] bg-background p-6 md:p-10 shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {dictionary.map((d) => (
-                  <div key={d.en} className="rounded-2xl bg-secondary/40 p-5 ring-1 ring-foreground/5">
+                  <div key={d.en} className="rounded-2xl bg-secondary/40 p-5 md:p-6 ring-1 ring-foreground/5">
                     <EnBadge>{d.en}</EnBadge>
-                    <p className="font-bold text-foreground mt-3 mb-1">{d.ru}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+                    <p className="font-bold text-foreground text-lg mt-3 mb-1">{d.ru}</p>
+                    <p className="text-base text-muted-foreground leading-relaxed">{d.desc}</p>
                   </div>
                 ))}
               </div>
