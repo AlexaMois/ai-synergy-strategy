@@ -239,7 +239,7 @@ const miniCheck = [
 ];
 
 const EnBadge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center rounded-full bg-accent/15 text-accent px-2.5 py-0.5 text-xs font-semibold ring-1 ring-accent/30">
+  <span className="inline-flex items-center rounded-full bg-accent/25 text-accent px-3 py-1 text-sm font-semibold ring-1 ring-accent/40">
     {children}
   </span>
 );
