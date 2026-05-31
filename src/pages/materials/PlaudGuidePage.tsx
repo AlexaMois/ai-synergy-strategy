@@ -20,7 +20,6 @@ import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
-  mistakes,
   faqItems,
   conclusionSteps,
 } from "./plaud-guide-sections";
@@ -1098,21 +1097,6 @@ const PlaudGuidePage = () => {
           </div>
         </section>
 
-
-        {/* 9. Частые ошибки */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Частые ошибки при работе с PLAUD</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {mistakes.map((m, i) => (
-                <div key={i} className="rounded-xl bg-secondary/30 p-5">
-                  <p className="font-semibold text-foreground mb-2">{m.error}</p>
-                  <p className="text-sm text-muted-foreground">{m.consequence}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* 10. FAQ */}
         <section className="py-12 md:py-16 bg-secondary/30">
