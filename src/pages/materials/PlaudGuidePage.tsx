@@ -684,6 +684,150 @@ const PlaudGuidePage = () => {
         </section>
 
         {/* 7. Облако */}
+        {/* 7. Приложение PLAUD: основные функции */}
+        <section className="px-4 md:px-6 py-16 md:py-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Приложение PLAUD:{" "}
+                <span className="font-iriska font-normal italic text-accent">что в нём главное</span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug">
+                После записи вся работа идёт в приложении: там вы открываете файл, запускаете обработку, смотрите текст, краткое содержание, задачи и выгружаете результат.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {appFeatures.map((f) => (
+                <div key={f.en} className="rounded-[24px] bg-background p-6 md:p-7 shadow-card ring-1 ring-foreground/5 flex flex-col">
+                  <div className="mb-3">
+                    <EnBadge>{f.en}</EnBadge>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-3">{f.ru}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{f.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-[28px] bg-surface-mint p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Главное для первого раза</p>
+              <p className="text-lg md:text-xl text-foreground/90 leading-snug">
+                Для старта достаточно освоить четыре действия: открыть запись, нажать <span className="font-semibold">Generate</span>, посмотреть <span className="font-semibold">Transcript</span> и <span className="font-semibold">Summary</span>, затем выгрузить результат через <span className="font-semibold">Export</span>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Как получить Transcript и Summary */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Как получить{" "}
+                <span className="font-iriska font-normal italic text-accent">Transcript и Summary</span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug">
+                Transcript — это полный текст записи. Summary — краткое содержание. Они появляются после обработки файла.
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-12 items-start">
+              <ol className="lg:col-span-7 space-y-4">
+                {generateSteps.map((s, i) => (
+                  <li key={i} className="rounded-2xl bg-background p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex gap-4">
+                    <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground text-lg mb-1 leading-snug">{s.title}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">{s.text}</p>
+                      {s.badges && (
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {s.badges.map((b) => (
+                            <EnBadge key={b}>{b}</EnBadge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <aside className="lg:col-span-5 space-y-5 lg:sticky lg:top-24">
+                <div className="rounded-[28px] bg-surface-mint p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                  <div className="mb-3"><EnBadge>Auto generation</EnBadge></div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">
+                    Когда выбирать <span className="font-iriska font-normal italic text-accent">Auto</span>
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {autoGenList.map((c) => (
+                      <li key={c} className="flex items-start gap-3 text-foreground/85">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                        <span className="text-base">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-[28px] bg-surface-blush p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                  <div className="mb-3"><EnBadge>Custom generation</EnBadge></div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">
+                    Когда выбирать <span className="font-iriska font-normal italic text-accent">Custom</span>
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {customGenList.map((c) => (
+                      <li key={c} className="flex items-start gap-3 text-foreground/85">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                        <span className="text-base">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Templates: какой шаблон выбрать */}
+        <section className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                <span className="font-iriska font-normal italic text-accent">Templates</span>: какой шаблон выбрать
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground leading-snug">
+                Шаблон влияет на то, каким получится итоговый материал. Одна и та же запись может превратиться в конспект, протокол, список задач или краткое резюме.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {templates.map((t) => (
+                <div key={t.en} className="rounded-[24px] bg-background p-6 md:p-7 shadow-card ring-1 ring-foreground/5 flex flex-col">
+                  <div className="mb-3"><EnBadge>{t.en}</EnBadge></div>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">{t.ru}</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-1">Когда выбрать</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{t.when}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-1">Что получите</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{t.result}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-[28px] bg-surface-mint p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Если не знаете, что выбрать</p>
+              <p className="text-lg md:text-xl text-foreground/90 leading-snug">
+                Начните с обычного <span className="font-semibold">Summary</span> или <span className="font-semibold">Meeting</span>. После этого можно повторно обработать запись в более подходящем формате — если нужен протокол, список задач или конспект.
+              </p>
+            </div>
+            <div className="mt-6 rounded-[28px] bg-accent text-white p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-white/80 font-semibold mb-3">Мой практический совет</p>
+              <p className="text-lg md:text-xl text-white/95 leading-snug">
+                Для рабочих встреч чаще всего полезны два результата: <span className="font-semibold">Summary</span> и <span className="font-semibold">Action items</span>. Summary помогает быстро понять суть, а Action items превращает разговор в задачи.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Облако */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-6">Как работает облако в PLAUD</h2>
