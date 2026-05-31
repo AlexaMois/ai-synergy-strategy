@@ -11,7 +11,6 @@ import plaudTranscriptView from "@/assets/plaud/plaud-transcript-view.png";
 import plaudButtonPress from "@/assets/plaud/plaud-button-press.png";
 import plaudNotePhone from "@/assets/plaud/plaud-note-phone.png";
 import plaudEcosystem from "@/assets/plaud/plaud-ecosystem.png";
-import plaudAutoflow from "@/assets/plaud/plaud-autoflow.png";
 import plaudExport from "@/assets/plaud/plaud-export.png";
 import plaudWebapp from "@/assets/plaud/plaud-webapp.png";
 import plaudSummary from "@/assets/plaud/plaud-summary.webp";
@@ -21,7 +20,6 @@ import plaudDemo from "@/assets/plaud/plaud-demo.webm";
 import {
   modelComparison,
   gettingStartedSteps,
-  cloudInfo,
   mistakes,
   faqItems,
   conclusionSteps,
@@ -1100,30 +1098,6 @@ const PlaudGuidePage = () => {
           </div>
         </section>
 
-        {/* Облако */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Как работает облако в PLAUD</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <div className="space-y-5">
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  {cloudInfo.intro.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Что хранится где</h3>
-                  <p className="text-sm text-muted-foreground whitespace-pre-line">{cloudInfo.storage}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Как отключить облако</h3>
-                  <p className="text-sm text-muted-foreground">{cloudInfo.disable}</p>
-                </div>
-              </div>
-              <ScreenshotPlaceholder text="AutoFlow — автоматическая обработка записей" imageSrc={plaudAutoflow} />
-            </div>
-          </div>
-        </section>
 
         {/* 9. Частые ошибки */}
         <section className="py-12 md:py-16">
