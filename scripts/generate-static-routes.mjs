@@ -247,10 +247,6 @@ const staticMeta = {
     description: 'Закрытая админ-панель.',
     robots: 'noindex,nofollow',
   },
-  '/neurostylist': {
-    title: 'НейроСтилист — персональный ИИ-консультант по стилю',
-    description: 'НейроСтилист подбирает капсульный гардероб по вашим параметрам, образу жизни и предпочтениям.',
-  },
   '/old-home': {
     title: 'Старая версия главной' + DEFAULT_TITLE_SUFFIX,
     description: 'Архивная версия главной страницы.',
