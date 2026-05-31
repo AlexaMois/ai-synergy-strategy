@@ -1118,8 +1118,8 @@ const PlaudGuidePage = () => {
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-4">Как использовать PLAUD эффективно</h2>
             <div className="space-y-3 text-muted-foreground mb-6">
-              <p>PLAUD фиксирует разговор, превращает речь в текст и помогает быстро получить результат.</p>
-              <p>Пользователь запускает запись, обрабатывает файл и использует готовую информацию в работе.</p>
+              <p>Начните с короткой тестовой записи. Проверьте звук, режим Meeting или Call, затем нажмите Generate и посмотрите Transcript и Summary.</p>
+              <p>Для рабочих встреч сохраняйте два результата: краткое содержание для быстрого просмотра и расшифровку как полную базу разговора. Если нужно передать итог коллегам или клиенту, выгрузите результат через Export.</p>
             </div>
             <div className="mb-6">
               <h3 className="font-semibold text-foreground mb-3">Что сделать сейчас:</h3>
