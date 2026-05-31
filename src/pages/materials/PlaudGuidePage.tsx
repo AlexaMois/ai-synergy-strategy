@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight, Mic, FileText, Sparkles, ListChecks } from "lucide-react";
 import plaudHeroDevice from "@/assets/plaud/plaud-hero-device.png";
 import plaudTranscriptView from "@/assets/plaud/plaud-transcript-view.png";
 import plaudButtonPress from "@/assets/plaud/plaud-button-press.png";
@@ -103,6 +104,49 @@ const PlaudLink = ({ children, className = "" }: { children?: React.ReactNode; c
   </a>
 );
 
+const heroBullets = [
+  "Разберёте английский интерфейс",
+  "Запустите первую запись",
+  "Получите текст и краткое содержание",
+  "Поймёте, как работают минуты",
+  "Выберете экономичный вариант оплаты",
+];
+
+const outputItems = [
+  { en: "Transcript", ru: "полный текст разговора" },
+  { en: "Summary", ru: "краткое содержание" },
+  { en: "Tasks", ru: "задачи и договорённости" },
+  { en: "Ask PLAUD", ru: "вопросы по записи" },
+  { en: "Export", ru: "выгрузка результата" },
+];
+
+const plaudModels = [
+  {
+    name: "PLAUD Note",
+    audience: "офиса, встреч, звонков, рабочих задач",
+    pick: "хотите универсальный вариант для телефона, переговоров и обычной работы",
+    bg: "bg-surface-mint",
+  },
+  {
+    name: "PLAUD Note Pro",
+    audience: "совещаний, переговорных, командных встреч",
+    pick: "часто записываете обсуждения в помещении и хотите более уверенный формат для рабочих встреч",
+    bg: "bg-surface-sand",
+  },
+  {
+    name: "PLAUD NotePin",
+    audience: "выездов, лекций, интервью, мероприятий",
+    pick: "часто перемещаетесь и хотите носить устройство на себе",
+    bg: "bg-surface-lavender",
+  },
+  {
+    name: "PLAUD NotePin S",
+    audience: "частых коротких записей в течение дня",
+    pick: "хотите быстро фиксировать мысли, разговоры и задачи на ходу",
+    bg: "bg-surface-blush",
+  },
+];
+
 const PlaudGuidePage = () => {
   return (
     <PageTransition>
@@ -128,83 +172,186 @@ const PlaudGuidePage = () => {
           />
         </div>
 
-        {/* 1. Header */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              PLAUD Note: инструкция на русском
-            </h1>
-            <p className="text-muted-foreground text-lg mb-4">
-              Показываю, как выбрать модель, запустить запись, разобраться в приложении, понять работу облака и настроить всё без путаницы.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Официальный сайт: <PlaudLink />
-            </p>
+        {/* 1. HERO */}
+        <section className="pt-4 md:pt-8 px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid md:grid-cols-12 gap-8 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
+                <div className="md:col-span-7">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+                    Инструкция PLAUD AI
+                  </p>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
+                    PLAUD Note на русском:{" "}
+                    <span className="font-iriska font-normal italic text-accent">
+                      понятная инструкция
+                    </span>{" "}
+                    без английской путаницы
+                  </h1>
+                  <p className="text-lg md:text-xl text-foreground/75 mb-8 max-w-2xl leading-snug">
+                    Показываю, что означают кнопки в приложении, как запустить запись, получить расшифровку и саммари, где смотреть минуты и как не переплатить за подписку.
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-2 mb-10 max-w-2xl">
+                    {heroBullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 rounded-2xl bg-background/70 px-4 py-3 ring-1 ring-foreground/5">
+                        <span className="mt-1 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                        <span className="text-sm md:text-base text-foreground/85">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <a
+                      href="#getting-started"
+                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-foreground text-background hover:bg-foreground/90"
+                    >
+                      <span>Перейти к инструкции</span>
+                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-accent text-accent-foreground group-hover:translate-x-0.5 transition-transform">
+                        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+                      </span>
+                    </a>
+                    <a
+                      href="#choose-model"
+                      className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
+                    >
+                      Сначала понять, какую модель выбрать <ArrowRight className="ml-2 h-5 w-5" />
+                    </a>
+                  </div>
+                </div>
+                <div className="md:col-span-5">
+                  <div className="rounded-[28px] bg-background p-6 md:p-7 shadow-plate ring-1 ring-foreground/5">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-5">
+                      Как это работает
+                    </p>
+                    <ol className="space-y-3">
+                      {[
+                        { icon: Mic, label: "Запись" },
+                        { icon: FileText, label: "Расшифровка" },
+                        { icon: Sparkles, label: "Саммари" },
+                        { icon: ListChecks, label: "Задачи" },
+                      ].map((s, i, arr) => {
+                        const Icon = s.icon;
+                        return (
+                          <li key={s.label} className="flex items-center gap-4">
+                            <span className="flex items-center justify-center w-11 h-11 rounded-full bg-accent text-accent-foreground flex-shrink-0">
+                              <Icon className="h-5 w-5" />
+                            </span>
+                            <span className="font-semibold text-foreground text-lg">{s.label}</span>
+                            {i < arr.length - 1 && (
+                              <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground" />
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </div>
+                  <p className="text-xs text-foreground/60 mt-4 text-center">
+                    Официальный сайт: <PlaudLink />
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* 2. Что такое PLAUD */}
-        <section className="py-12 md:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Что такое PLAUD — простыми словами</h2>
-            <div className="space-y-3 text-muted-foreground mb-4">
-              <p><a href={PLAUD_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2">PLAUD</a> записывает разговор, переводит речь в текст и формирует краткое содержание.</p>
-              <p>Пользователь запускает запись, открывает файл в приложении и запускает обработку. Система показывает расшифровку, саммари и выделяет ключевые мысли и договорённости.</p>
-              <p>PLAUD экономит время и избавляет от ручных конспектов.</p>
+        <section className="px-4 md:px-6 py-16 md:py-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-start">
+              <div className="md:col-span-7">
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
+                  Что такое{" "}
+                  <span className="font-iriska font-normal italic text-accent">PLAUD</span>{" "}
+                  — простыми словами
+                </h2>
+                <div className="space-y-4 text-base md:text-lg text-muted-foreground">
+                  <p>
+                    <PlaudLink>PLAUD</PlaudLink> — это устройство и приложение, которые помогают записывать встречи, звонки, лекции, консультации и голосовые заметки.
+                  </p>
+                  <p>
+                    Главная польза PLAUD не в самой записи, а в том, что после разговора вы получаете рабочий материал: полный текст, краткое содержание, ключевые мысли, задачи и договорённости.
+                  </p>
+                  <p>
+                    PLAUD особенно полезен тем, кто много общается по работе: собственникам, руководителям, консультантам, преподавателям, менеджерам, юристам, экспертам и специалистам, которые проводят встречи и хотят не держать всё в голове.
+                  </p>
+                </div>
+                <video
+                  src={plaudDemo}
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster={plaudHeroDevice}
+                  className="w-full rounded-2xl mt-8 shadow-card"
+                />
+              </div>
+              <div className="md:col-span-5">
+                <div className="rounded-[28px] bg-surface-blush p-7 md:p-8 shadow-plate ring-1 ring-foreground/5">
+                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+                    Что получается на выходе
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-6">
+                    Готовый рабочий{" "}
+                    <span className="font-iriska font-normal italic text-accent">материал</span>{" "}
+                    после разговора
+                  </h3>
+                  <ul className="space-y-3">
+                    {outputItems.map((o) => (
+                      <li key={o.en} className="flex items-baseline gap-3 rounded-2xl bg-background/80 px-4 py-3 ring-1 ring-foreground/5">
+                        <span className="font-bold text-foreground">{o.en}</span>
+                        <span className="text-muted-foreground">— {o.ru}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground mb-8">
-              PLAUD подходит для встреч, переговоров, звонков, лекций, интервью и личных заметок.
-            </p>
-            <video
-              src={plaudDemo}
-              controls
-              muted
-              playsInline
-              preload="metadata"
-              poster={plaudHeroDevice}
-              className="w-full rounded-xl"
-            />
           </div>
         </section>
 
         {/* 3. Какую модель выбрать */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Какую модель выбрать</h2>
-            <p className="text-muted-foreground mb-6">
-              Все модели PLAUD записывают звук, синхронизируются с приложением и формируют текст и саммари. Разница заключается в формате устройства и сценарии использования. Подробности — на <PlaudLink>официальном сайте</PlaudLink>.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Модель</TableHead>
-                      <TableHead>Кому подходит</TableHead>
-                      <TableHead>Когда использовать</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {modelComparison.map((m) => (
-                      <TableRow key={m.name}>
-                        <TableCell className="font-medium">{m.name}</TableCell>
-                        <TableCell>{m.audience}</TableCell>
-                        <TableCell>{m.useCase}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-              <ScreenshotPlaceholder text="PLAUD Note на телефоне" imageSrc={plaudNotePhone} />
+        <section id="choose-model" className="px-4 md:px-6 pb-16 md:pb-24">
+          <div className="container mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
+                Какую{" "}
+                <span className="font-iriska font-normal italic text-accent">модель</span>{" "}
+                PLAUD выбрать
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Все модели PLAUD записывают звук, синхронизируются с приложением и помогают получать расшифровку и саммари. Разница — в формате устройства и сценарии использования.
+              </p>
             </div>
-            <div className="bg-secondary/30 rounded-xl px-5 py-3 text-sm text-muted-foreground">
-              Пользователь выбирает модель по сценарию: офис и звонки — Note, перемещение и выезды — NotePin, переговорные — Note Pro.
+            <div className="grid gap-5 sm:grid-cols-2">
+              {plaudModels.map((m) => (
+                <div
+                  key={m.name}
+                  className={`rounded-[28px] ${m.bg} p-7 md:p-8 shadow-card ring-1 ring-foreground/5 flex flex-col`}
+                >
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-4">
+                    {m.name}
+                  </h3>
+                  <p className="text-foreground/80 mb-3">
+                    <span className="font-semibold text-foreground">Подходит для:</span> {m.audience}.
+                  </p>
+                  <p className="text-foreground/80">
+                    <span className="font-semibold text-foreground">Выбирайте, если:</span> {m.pick}.
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-[28px] bg-accent text-white p-7 md:p-10 shadow-plate ring-1 ring-foreground/5">
+              <p className="text-sm uppercase tracking-widest text-white/80 font-semibold mb-3">
+                Короткая рекомендация
+              </p>
+              <p className="text-lg md:text-xl leading-snug text-white/95">
+                Если выбираете первый PLAUD и хотите самый понятный старт, чаще всего достаточно начать с <span className="font-semibold">PLAUD Note</span>. Если у вас много выездов, интервью и живых встреч вне офиса — смотрите в сторону <span className="font-semibold">NotePin</span>. Если основная задача — переговорные и совещания, смотрите <span className="font-semibold">Note Pro</span>.
+              </p>
             </div>
           </div>
         </section>
 
         {/* 4. Как начать */}
-        <section className="py-12 md:py-16 bg-secondary/30">
+        <section id="getting-started" className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-4">Как начать пользоваться PLAUD</h2>
             <p className="text-muted-foreground mb-8">
