@@ -162,8 +162,9 @@ const AppContent = () => {
           <Route path="/portal" element={<PortalPage />} />
           <Route path="/portal/admin" element={<PortalAdminPage />} />
 
-          {/* Neurostylist — отключено, редирект на главную */}
-          <Route path="/neurostylist" element={<Navigate to="/" replace />} />
+          {/* Neurostylist — продуктовая страница */}
+          <Route path="/neurostylist" element={<NeurostylistPage />} />
+          <Route path="/neurostylist/" element={<NeurostylistPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

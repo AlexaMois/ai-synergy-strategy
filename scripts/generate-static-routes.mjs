@@ -40,7 +40,6 @@ const legacyRedirects = {
   '/services/add-ons': '/services',
   '/privacy-policy': '/legal/privacy-policy',
   '/case_portfolio': '/cases',
-  '/neurostylist': '/',
   '/products': '/services',
   '/products/doc-search': '/cases/production-doc-search',
   '/products/voice-bot': '/services/digital-solution-design',
@@ -251,6 +250,10 @@ const staticMeta = {
     title: 'Старая версия главной' + DEFAULT_TITLE_SUFFIX,
     description: 'Архивная версия главной страницы.',
     robots: 'noindex,nofollow',
+  },
+  '/neurostylist': {
+    title: 'Личный нейростилист — персональный стиль с ИИ | Александра Моисеева',
+    description: 'Личный нейростилист помогает собрать стиль, капсулы, список покупок и персональные рекомендации по образам, вещам, цветам и впечатлению.',
   },
 };
 

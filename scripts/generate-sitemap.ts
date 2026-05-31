@@ -48,7 +48,7 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/materials/plaud-guide', priority: '0.6', changefreq: 'monthly' },
 
   // Neurostylist
-  { path: '/neurostylist', priority: '0.6', changefreq: 'monthly' },
+  { path: '/neurostylist/', priority: '0.7', changefreq: 'monthly' },
 
   // Legal
   { path: '/legal', priority: '0.4', changefreq: 'yearly' },
