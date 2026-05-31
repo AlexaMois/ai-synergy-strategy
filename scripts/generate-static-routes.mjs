@@ -292,7 +292,7 @@ function escapeHtml(s) {
 }
 
 function injectMeta(html, route, meta) {
-  const canonical = `${BASE}${route === '/' ? '/' : route}`;
+  const canonical = `${BASE}${route === '/' ? '/' : route + '/'}`;
   const title = escapeHtml(meta.title);
   const description = escapeHtml(meta.description);
   const ogType = meta.ogType || 'website';
