@@ -69,6 +69,7 @@ const Navigation = () => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
   const submenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const location = useLocation();
   const navigate = useNavigate();
   const phoneNumber = "+7 995 078 88 37";
   const phoneLink = "tel:+79950788837";
