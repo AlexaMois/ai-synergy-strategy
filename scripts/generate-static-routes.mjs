@@ -38,11 +38,11 @@ const legacyRedirects = {
   '/services/architecture': '/services/digital-solution-design',
   '/services/support': '/services/implementation-support',
   '/services/add-ons': '/services',
-  '/privacy-policy': '/legal/privacy-policy',
-  '/case_portfolio': '/cases',
-  '/products': '/services',
-  '/products/doc-search': '/cases/production-doc-search',
-  '/products/voice-bot': '/services/digital-solution-design',
+  '/privacy-policy': '/legal/privacy-policy/',
+  '/case_portfolio': '/cases/',
+  '/products': '/services/',
+  '/products/doc-search': '/cases/production-doc-search/',
+  '/products/voice-bot': '/services/digital-solution-design/',
 };
 
 function writeRedirectStubs() {
