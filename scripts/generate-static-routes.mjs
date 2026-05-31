@@ -38,6 +38,9 @@ const legacyRedirects = {
   '/services/architecture': '/services/digital-solution-design',
   '/services/support': '/services/implementation-support',
   '/services/add-ons': '/services',
+  '/privacy-policy': '/legal/privacy-policy',
+  '/case_portfolio': '/cases',
+  '/neurostylist': '/',
 };
 
 function writeRedirectStubs() {
