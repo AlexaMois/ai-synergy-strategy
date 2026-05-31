@@ -11,7 +11,6 @@ import plaudTranscriptView from "@/assets/plaud/plaud-transcript-view.png";
 import plaudButtonPress from "@/assets/plaud/plaud-button-press.png";
 import plaudNotePhone from "@/assets/plaud/plaud-note-phone.png";
 import plaudEcosystem from "@/assets/plaud/plaud-ecosystem.png";
-import plaudAutoflow from "@/assets/plaud/plaud-autoflow.png";
 import plaudExport from "@/assets/plaud/plaud-export.png";
 import plaudWebapp from "@/assets/plaud/plaud-webapp.png";
 import plaudSummary from "@/assets/plaud/plaud-summary.webp";
