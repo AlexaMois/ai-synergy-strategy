@@ -138,10 +138,10 @@ const StartPage = () => {
         <title>С чего начать цифровизацию бизнеса</title>
         <meta name="description" content="Помогу выбрать первый шаг цифрового развития: стратегическую встречу, стратегию, аудит, обучение, внедрение или сопровождение." />
         <meta name="keywords" content="диагностика бизнес процессов, аудит автоматизации, где внедрять ИИ, ROI автоматизации, экспресс аудит процессов" />
-        <link rel="canonical" href="https://aleksamois.ru/start" />
+        <link rel="canonical" href="https://aleksamois.ru/start/" />
         <meta property="og:title" content="С чего начать цифровизацию бизнеса" />
         <meta property="og:description" content="Помогу выбрать первый шаг цифрового развития: стратегическую встречу, стратегию, аудит, обучение, внедрение или сопровождение." />
-        <meta property="og:url" content="https://aleksamois.ru/start" />
+        <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
