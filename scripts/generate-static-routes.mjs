@@ -43,6 +43,11 @@ const legacyRedirects = {
   '/products': '/services/',
   '/products/doc-search': '/cases/production-doc-search/',
   '/products/voice-bot': '/services/digital-solution-design/',
+  '/materials/instrukciya-plaud-ai': '/materials/plaud-guide/',
+  '/diagnostics': '/services/digital-audit/',
+  '/diagnostic': '/services/digital-audit/',
+  '/legal': '/legal/privacy-policy/',
+  '/golossok-pricing': '/pricing/',
 };
 
 function writeRedirectStubs() {
