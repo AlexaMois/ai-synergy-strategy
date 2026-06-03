@@ -27,7 +27,7 @@ const Consent = () => {
           Вернуться на главную
         </Link>
 
-        <article className="prose prose-lg max-w-none">
+        <article className="max-w-none">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-8">
             Согласие на обработку персональных данных
           </h1>
