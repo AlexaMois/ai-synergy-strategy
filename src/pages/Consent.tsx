@@ -38,7 +38,7 @@ const Consent = () => {
             </p>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">1. Цель обработки персональных данных:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">1. Цель обработки персональных данных:</h2>
               <ul className="list-none space-y-2">
                 <li>— предоставление консультаций;</li>
                 <li>— регистрация заявок на продукты и услуги, включая платформу «Нейро-Тендеролог»;</li>
@@ -49,7 +49,7 @@ const Consent = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">2. Персональные данные, на обработку которых дается согласие:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">2. Персональные данные, на обработку которых дается согласие:</h2>
               <ul className="list-none space-y-2">
                 <li>— фамилия, имя, отчество;</li>
                 <li>— контактный телефон;</li>
@@ -61,21 +61,21 @@ const Consent = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">3. Действия, совершаемые с персональными данными:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">3. Действия, совершаемые с персональными данными:</h2>
               <p>
                 Сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (в том числе третьим лицам в рамках выполнения обязательств), обезличивание, блокирование, удаление и уничтожение.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">4. Срок обработки персональных данных:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">4. Срок обработки персональных данных:</h2>
               <p>
                 Персональные данные обрабатываются до достижения целей обработки или отзыва настоящего согласия. Срок хранения данных — 3 года с момента отзыва согласия, если иное не предусмотрено законодательством.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">5. Прочие условия:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">5. Прочие условия:</h2>
               <p className="mb-4">
                 Настоящее согласие является осознанным, конкретным, предметным и однозначным выражением воли субъекта персональных данных. Оператор принимает необходимые правовые, организационные и технические меры по защите персональных данных.
               </p>
