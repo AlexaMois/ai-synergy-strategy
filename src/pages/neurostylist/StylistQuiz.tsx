@@ -174,12 +174,10 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     const v = answers[q.id];
     if (q.type === "welcome") return true;
     if (q.type === "photo") {
-      // каждый загруженный фото должен иметь тип
-      if (!photos.every((p) => p.type && p.type.length > 0)) return false;
-      // обязательно: минимум 1 фото лица и 1 фото в полный рост
-      const hasFace = photos.some((p) => p.type === "face");
-      const hasFull = photos.some((p) => p.type === "full");
-      return hasFace && hasFull;
+      // Фото не обязательны — можно отправить анкету и без них.
+      // Если фото загружены — у каждого должен быть выбран тип.
+      if (photos.length === 0) return true;
+      return photos.every((p) => p.type && p.type.length > 0);
     }
     if (q.type === "review_items") {
       // Любой набор валиден, но частично заполненные вещи требуют описание ИЛИ фото
@@ -225,12 +223,8 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
     if (!current) return;
     if (!isAnswered(current)) {
       if (current.type === "photo") {
-        const hasFace = photos.some((p) => p.type === "face");
-        const hasFull = photos.some((p) => p.type === "full");
         if (!photos.every((p) => p.type && p.type.length > 0)) {
           toast.error("У некоторых фото не выбран тип");
-        } else if (!hasFace || !hasFull) {
-          toast.error("Нужно минимум 1 фото лица и 1 фото в полный рост");
         }
       } else {
         toast.error("Это поле важно для подбора образа");
