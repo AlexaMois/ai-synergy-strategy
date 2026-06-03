@@ -40,7 +40,7 @@ const PrivacyPolicy = () => {
 
           <div className="text-muted-foreground leading-relaxed space-y-6">
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">1. Общие положения</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">1. Общие положения</h2>
               <p className="mb-3">
                 <strong>1.1.</strong> Настоящая Политика разработана в соответствии с Федеральным законом от 27.07.2006 №152-ФЗ "О персональных данных" (далее — ФЗ-152) и определяет порядок обработки и меры по обеспечению безопасности персональных данных (ПДн), осуществляемые индивидуальным предпринимателем Моисеевой Александрой Алексеевной, ИНН 245906802500, ОГРНИП 323246800027635 (далее — Оператор).
               </p>
@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">2. Термины и определения</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">2. Термины и определения</h2>
               <ul className="list-none space-y-2">
                 <li><strong>персональные данные (ПДн)</strong> — любая информация, относящаяся к прямо или косвенно определяемому физическому лицу;</li>
                 <li><strong>обработка ПДн</strong> — любые действия с ПДн, включая сбор, систематизацию, хранение, уточнение, использование, передачу, обезличивание, уничтожение и др.;</li>
@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">3. Цели обработки персональных данных</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">3. Цели обработки персональных данных</h2>
               <p className="mb-2">Оператор осуществляет обработку ПДн для:</p>
               <ul className="list-none space-y-2">
                 <li>регистрации и взаимодействия с пользователями сайта и сервисов;</li>
@@ -73,7 +73,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">4. Правовые основания обработки</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">4. Правовые основания обработки</h2>
               <ul className="list-none space-y-2">
                 <li>согласие субъекта ПДн (в форме, соответствующей требованиям закона);</li>
                 <li>заключение и исполнение договора с субъектом ПДн;</li>
@@ -82,7 +82,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">5. Перечень обрабатываемых персональных данных</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">5. Перечень обрабатываемых персональных данных</h2>
               <ul className="list-none space-y-2">
                 <li>фамилия, имя, отчество;</li>
                 <li>адрес электронной почты;</li>
@@ -94,7 +94,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">6. Условия обработки и хранения персональных данных</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">6. Условия обработки и хранения персональных данных</h2>
               <p className="mb-3">
                 <strong>6.1.</strong> Оператор осуществляет обработку ПДн как с использованием автоматизированных средств, так и без.
               </p>
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">7. Права субъекта персональных данных</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">7. Права субъекта персональных данных</h2>
               <p className="mb-2">Субъект имеет право:</p>
               <ul className="list-none space-y-2">
                 <li>на доступ к своим персональным данным;</li>
@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">8. Контактные данные Оператора</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">8. Контактные данные Оператора</h2>
               <p>ИП Моисеева Александра Алексеевна</p>
               <p>Email: ai@aleksamois.ru</p>
               <p>Телефон: +7 995 078 88 37</p>
@@ -129,7 +129,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">9. Использование файлов cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">9. Использование файлов cookies</h2>
               <p className="mb-3">
                 <strong>9.1.</strong> Сайт использует файлы cookies для обеспечения корректной работы, анализа посещаемости и улучшения пользовательского опыта.
               </p>
@@ -143,7 +143,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">10. Изменения в политике</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">10. Изменения в политике</h2>
               <p className="mb-3">
                 Оператор имеет право вносить изменения в настоящую Политику. Актуальная версия всегда доступна на официальном сайте Оператора. Новая редакция вступает в силу с момента размещения, если иное не предусмотрено.
               </p>

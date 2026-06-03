@@ -39,14 +39,14 @@ const Terms = () => {
 
           <div className="text-muted-foreground leading-relaxed space-y-6">
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">ДОГОВОР-ОФЕРТА НА ОКАЗАНИЕ УСЛУГ № 6</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">ДОГОВОР-ОФЕРТА НА ОКАЗАНИЕ УСЛУГ № 6</h2>
               <p>
                 Индивидуальный предприниматель Моисеева Александра Алексеевна, ИНН 245906802500, ОГРНИП 323246800027635, именуемая в дальнейшем "Исполнитель", настоящим предлагает любому дееспособному физическому или юридическому лицу, далее "Заказчик", заключить настоящий договор оказания услуг (далее — "Договор") на нижеследующих условиях.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">1. Предмет договора</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">1. Предмет договора</h2>
               <p className="mb-3">
                 <strong>1.1.</strong> Исполнитель оказывает информационно-консультационные услуги, включая:
               </p>
@@ -63,7 +63,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">2. Порядок заключения договора</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">2. Порядок заключения договора</h2>
               <p className="mb-3">
                 <strong>2.1.</strong> Настоящий договор является публичной офертой.
               </p>
@@ -83,7 +83,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">3. Стоимость услуг и порядок оплаты</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">3. Стоимость услуг и порядок оплаты</h2>
               <p className="mb-3">
                 <strong>3.1.</strong> Стоимость определяется индивидуально. Час консультационной работы — 8 690 рублей.
               </p>
@@ -102,7 +102,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">4. Приемка услуг</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">4. Приемка услуг</h2>
               <p className="mb-3">
                 <strong>4.1.</strong> По завершении услуг Исполнитель оформляет акт оказанных услуг.
               </p>
@@ -115,7 +115,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">5. Ответственность сторон</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">5. Ответственность сторон</h2>
               <p className="mb-3">
                 <strong>5.1.</strong> Стороны обязуются действовать добросовестно, своевременно исполнять обязательства.
               </p>
@@ -125,7 +125,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">6. Конфиденциальность и персональные данные</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">6. Конфиденциальность и персональные данные</h2>
               <p className="mb-3">
                 <strong>6.1.</strong> Информация, переданная в рамках оказания услуг, считается конфиденциальной.
               </p>
@@ -135,14 +135,14 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">7. Форс-мажор</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">7. Форс-мажор</h2>
               <p>
                 <strong>7.1.</strong> Стороны освобождаются от ответственности за неисполнение обязательств, вызванное форс-мажорными обстоятельствами (стихийные бедствия, сбои в работе интернета и хостинга, действия государственных органов и т.д.), при условии документального подтверждения.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">8. Интеллектуальная собственность</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">8. Интеллектуальная собственность</h2>
               <p className="mb-3">
                 <strong>8.1.</strong> Исключительные права на создаваемые Исполнителем материалы, скрипты, настройки, методики и иные результаты интеллектуальной деятельности принадлежат Исполнителю, если иное не согласовано сторонами.
               </p>
@@ -152,7 +152,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">9. Ограничение гарантий</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">9. Ограничение гарантий</h2>
               <p className="mb-3">
                 <strong>9.1.</strong> Услуги предоставляются "как есть". Исполнитель не гарантирует достижение конкретного результата, если он зависит от сторонних систем, действий Заказчика или третьих лиц.
               </p>
@@ -162,7 +162,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">10. Изменение условий и срок действия</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">10. Изменение условий и срок действия</h2>
               <p className="mb-3">
                 <strong>10.1.</strong> Исполнитель вправе изменять условия настоящей Оферты в одностороннем порядке.
               </p>
@@ -178,14 +178,14 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">11. Заключительные положения</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">11. Заключительные положения</h2>
               <p>
                 <strong>11.1.</strong> Все споры разрешаются путём переговоров, при недостижении соглашения — в суде по месту нахождения Исполнителя.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">Реквизиты Исполнителя:</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">Реквизиты Исполнителя:</h2>
               <p>ИП Моисеева Александра Алексеевна</p>
               <p>ИНН: 245906802500</p>
               <p>ОГРНИП: 323246800027635</p>

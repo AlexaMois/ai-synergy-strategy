@@ -37,7 +37,7 @@ const CookiesPolicy = () => {
 
           <div className="text-muted-foreground leading-relaxed space-y-6">
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">1. Что такое cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">1. Что такое cookies</h2>
               <p className="mb-3">
                 <strong>1.1.</strong> Cookies (куки) — это небольшие текстовые файлы, которые сохраняются на вашем устройстве (компьютере, смартфоне, планшете) при посещении веб-сайтов. Они позволяют сайту запоминать ваши предпочтения и действия.
               </p>
@@ -47,7 +47,7 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">2. Типы используемых cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">2. Типы используемых cookies</h2>
               
               <h3 className="text-xl font-medium text-foreground mb-2 mt-4">2.1. Строго необходимые cookies</h3>
               <p className="mb-3">
@@ -78,7 +78,7 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">3. Цели использования cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">3. Цели использования cookies</h2>
               <ul className="list-none space-y-2">
                 <li>— обеспечение корректной работы Сайта;</li>
                 <li>— анализ посещаемости и улучшение пользовательского опыта;</li>
@@ -89,7 +89,7 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">4. Сроки хранения cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">4. Сроки хранения cookies</h2>
               <ul className="list-none space-y-2">
                 <li><strong>Сессионные cookies</strong> — удаляются при закрытии браузера;</li>
                 <li><strong>Постоянные cookies</strong> — хранятся от 30 дней до 2 лет в зависимости от типа.</li>
@@ -97,7 +97,7 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">5. Управление cookies</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">5. Управление cookies</h2>
               <p className="mb-3">
                 <strong>5.1.</strong> Вы можете изменить настройки cookies в любое время:
               </p>
@@ -120,14 +120,14 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">6. Передача данных третьим лицам</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">6. Передача данных третьим лицам</h2>
               <p>
                 Данные, собранные с помощью cookies, могут передаваться сервисам аналитики и рекламы (Google, Яндекс) в обезличенном виде для целей, описанных в данной Политике.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">7. Контактные данные</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">7. Контактные данные</h2>
               <p>ИП Моисеева Александра Алексеевна</p>
               <p>Email: ai@aleksamois.ru</p>
               <p>Телефон: +7 995 078 88 37</p>
@@ -135,7 +135,7 @@ const CookiesPolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-foreground mb-3">8. Изменения в политике</h2>
+              <h2 className="!text-2xl sm:!text-3xl md:!text-4xl !font-semibold !leading-tight text-foreground mb-3">8. Изменения в политике</h2>
               <p className="mb-3">
                 Мы оставляем за собой право обновлять данную Политику. Актуальная версия всегда доступна на этой странице.
               </p>
