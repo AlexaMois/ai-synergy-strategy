@@ -216,12 +216,13 @@ const Navigation = () => {
         header.ns-dark-nav .border-border { border-color: rgba(247,237,227,0.12) !important; }
         header.ns-dark-nav .bg-muted { background-color: rgba(247,237,227,0.08) !important; }
         header.ns-dark-nav button.bg-primary,
-        header.ns-dark-nav a.bg-primary,
-        header.ns-dark-nav [class*="bg-primary"]:not(.after\\:bg-primary):not(.bg-primary\\/0):not(.bg-primary\\/10) {
+        header.ns-dark-nav a.bg-primary {
           background-color: #D4956A !important;
           color: #1f0d1a !important;
         }
-        header.ns-dark-nav [class*="bg-primary"]:hover { background-color: #C07040 !important; }
+        header.ns-dark-nav button.bg-primary:hover,
+        header.ns-dark-nav a.bg-primary:hover { background-color: #C07040 !important; }
+        header.ns-dark-nav .after\\:bg-primary::after { background-color: #D4956A !important; }
       `}</style>
     )}
     {/* Desktop Header */}
