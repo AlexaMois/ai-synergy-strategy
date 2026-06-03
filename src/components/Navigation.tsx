@@ -211,6 +211,17 @@ const Navigation = () => {
         header.ns-dark-nav .text-foreground { color: #F7EDE3 !important; }
         header.ns-dark-nav .hover\\:text-primary:hover { color: #D4956A !important; }
         header.ns-dark-nav .text-primary { color: #D4956A !important; }
+        header.ns-dark-nav img[alt="Нейрорешения"] { filter: brightness(0) invert(1); opacity: 0.95; }
+        header.ns-dark-nav .bg-card { background-color: #1f0d1a !important; }
+        header.ns-dark-nav .border-border { border-color: rgba(247,237,227,0.12) !important; }
+        header.ns-dark-nav .bg-muted { background-color: rgba(247,237,227,0.08) !important; }
+        header.ns-dark-nav button.bg-primary,
+        header.ns-dark-nav a.bg-primary,
+        header.ns-dark-nav [class*="bg-primary"]:not(.after\\:bg-primary):not(.bg-primary\\/0):not(.bg-primary\\/10) {
+          background-color: #D4956A !important;
+          color: #1f0d1a !important;
+        }
+        header.ns-dark-nav [class*="bg-primary"]:hover { background-color: #C07040 !important; }
       `}</style>
     )}
     {/* Desktop Header */}
