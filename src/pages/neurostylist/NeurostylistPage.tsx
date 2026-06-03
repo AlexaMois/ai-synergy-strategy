@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Palette, Shirt, Sparkles, Scissors, Gem, Heart } from "lucide-react";
 import StylistQuiz from "./StylistQuiz";
+import Footer from "@/components/Footer";
 import heroImg from "@/assets/neurostylist-hero.jpg";
 import cardColors from "@/assets/neurostylist/card-colors.jpg";
 import cardSilhouette from "@/assets/neurostylist/card-silhouette.jpg";
@@ -1041,22 +1042,10 @@ const NeurostylistPage = () => {
             </div>
           </section>
 
-          {/* Footer */}
-          <footer className="px-6 sm:px-10 lg:px-16 py-10 border-t" style={{ borderColor: "rgba(247,237,227,0.08)" }}>
-            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs" style={{ color: "rgba(247,237,227,0.5)" }}>
-              <div className="tracking-[0.15em]">© {new Date().getFullYear()} НейроСтилист</div>
-              <div className="flex items-center gap-6">
-                <Link to="/legal/privacy-policy" className="hover:opacity-100 transition-opacity">
-                  Политика конфиденциальности
-                </Link>
-                <Link to="/legal/consent" className="hover:opacity-100 transition-opacity">
-                  Согласие
-                </Link>
-              </div>
-            </div>
-          </footer>
         </div>
       </div>
+
+      <Footer />
 
       {quizOpen && <StylistQuiz onClose={() => setQuizOpen(false)} />}
     </>
