@@ -206,11 +206,18 @@ const Navigation = () => {
     setMobileOpenSubmenu(mobileOpenSubmenu === label ? null : label);
   };
   return <>
+    {isNeurostylist && (
+      <style>{`
+        header.ns-dark-nav .text-foreground { color: #F7EDE3 !important; }
+        header.ns-dark-nav .hover\\:text-primary:hover { color: #D4956A !important; }
+        header.ns-dark-nav .text-primary { color: #D4956A !important; }
+      `}</style>
+    )}
     {/* Desktop Header */}
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         isNeurostylist
-          ? "bg-[#1a0a16]/90 backdrop-blur-md border-white/10 text-[#F7EDE3]"
+          ? "ns-dark-nav bg-[#1a0a16]/90 backdrop-blur-md border-white/10 text-[#F7EDE3]"
           : "bg-card border-border"
       } ${isScrolled ? "shadow-soft" : ""}`}
     >
