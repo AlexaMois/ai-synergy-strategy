@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-const Consent = () => {{
+const Consent = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
