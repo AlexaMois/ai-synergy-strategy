@@ -16,10 +16,10 @@ const MaterialsPage = () => {
         <title>Материалы о цифровизации, ИИ и автоматизации</title>
         <meta name="description" content="Практические материалы о цифровизации бизнеса, автоматизации процессов, внедрении ИИ, работе с данными и управлении изменениями." />
         <meta name="keywords" content="материалы ИИ, чек-листы AI, блог искусственный интеллект, ресурсы внедрение" />
-        <link rel="canonical" href="https://aleksamois.ru/materials" />
+        <link rel="canonical" href="https://aleksamois.ru/materials/" />
         <meta property="og:title" content="Материалы о цифровизации, ИИ и автоматизации" />
         <meta property="og:description" content="Практические материалы о цифровизации бизнеса, автоматизации процессов, внедрении ИИ, работе с данными и управлении изменениями." />
-        <meta property="og:url" content="https://aleksamois.ru/materials" />
+        <meta property="og:url" content="https://aleksamois.ru/materials/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -47,7 +47,7 @@ const MaterialsPage = () => {
             <div className="container mx-auto px-4 max-w-4xl">
               <div className="grid md:grid-cols-2 gap-8">
                 <Link
-                  to="/materials/resources"
+                  to="/materials/checklist-30"
                   className="bg-card rounded-2xl p-8 shadow-soft border border-border hover:shadow-card hover:border-primary/20 transition-all group"
                 >
                   <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
@@ -57,10 +57,10 @@ const MaterialsPage = () => {
                     Ресурсы
                   </h2>
                   <p className="text-muted-foreground mb-6">
-                    Чек-листы, PDF-гайды, архитектуры кейсов, шаблоны ТЗ и калькуляторы ROI
+                    Чек-лист готовности бизнеса к цифровизации: 30 вопросов для самодиагностики
                   </p>
                   <div className="flex items-center text-primary font-medium">
-                    Перейти к ресурсам
+                    Открыть чек-лист
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </div>
                 </Link>
