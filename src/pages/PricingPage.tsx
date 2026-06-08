@@ -181,7 +181,7 @@ const PricingPage = () => {
         <title>Цены на цифровизацию, аудит и внедрение ИИ</title>
         <meta name="description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta name="keywords" content="стоимость цифровизации, цены автоматизации бизнеса, стратегия цифрового развития, аудит компании" />
-        <link rel="canonical" href="https://aleksamois.ru/pricing" />
+        <link rel="canonical" href="https://aleksamois.ru/pricing/" />
         <meta property="og:title" content="Цены на цифровизацию, аудит и внедрение ИИ" />
         <meta property="og:description" content="Стоимость стратегической встречи, аудита, обучения, сопровождения, разработки и поддержки цифровых решений для бизнеса." />
         <meta property="og:url" content="https://aleksamois.ru/pricing" />
