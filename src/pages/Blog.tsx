@@ -52,7 +52,7 @@ const Blog = () => {
           <title>Блог об автоматизации бизнеса и внедрении ИИ</title>
           <meta name="description" content="Экспертные статьи о цифровизации, автоматизации бизнес-процессов, ИИ-инструментах, аудите процессов, ROI и внедрении решений." />
           <meta name="keywords" content="блог об ИИ, внедрение искусственного интеллекта, методология AI, ROI от ИИ, автоматизация процессов, обучение команды ИИ, российские LLM, аналитика ИИ проектов" />
-          <link rel="canonical" href="https://aleksamois.ru/materials/blog" />
+          <link rel="canonical" href="https://aleksamois.ru/materials/blog/" />
           <meta property="og:title" content="Блог об автоматизации бизнеса и внедрении ИИ" />
           <meta property="og:description" content="Экспертные статьи о цифровизации, автоматизации бизнес-процессов, ИИ-инструментах, аудите процессов, ROI и внедрении решений." />
           <meta property="og:url" content="https://aleksamois.ru/materials/blog" />

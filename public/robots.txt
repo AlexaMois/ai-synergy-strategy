@@ -7,6 +7,8 @@ Allow: /
 User-agent: Yandex
 Allow: /
 Clean-param: _ym_debug
+Clean-param: cb
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
 
 User-agent: Twitterbot
 Allow: /

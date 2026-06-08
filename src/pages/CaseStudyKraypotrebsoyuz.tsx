@@ -68,7 +68,7 @@ const CaseStudyKraypotrebsoyuz = () => {
       <Helmet>
         <title>Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽ | Александра Моисеева</title>
         <meta name="description" content="Кейс: как совместно выстроили ИИ-архитектуру и сэкономили 1,3 млн ₽ на серверном оборудовании. Внедрение Bpium, автоматизация договоров." />
-        <link rel="canonical" href="https://aleksamois.ru/cases/kraypotrebsoyuz" />
+        <link rel="canonical" href="https://aleksamois.ru/cases/kraypotrebsoyuz/" />
         <meta property="og:title" content="Крайпотребсоюз: ИИ-архитектура вместо серверов за 1,5 млн ₽" />
         <meta property="og:description" content="Как региональное объединение кооперативов сэкономило 1,3 млн ₽ благодаря правильной архитектуре" />
         <meta property="og:url" content="https://aleksamois.ru/cases/kraypotrebsoyuz" />

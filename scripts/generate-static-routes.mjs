@@ -48,6 +48,12 @@ const legacyRedirects = {
   '/diagnostic': '/services/digital-audit/',
   '/legal': '/legal/privacy-policy/',
   '/golossok-pricing': '/pricing/',
+  '/demo': '/services/',
+  '/demo/voice-bot': '/services/digital-solution-design/',
+  '/materials/resources': '/materials/',
+  '/newyear': '/',
+  '/terms': '/legal/terms/',
+  '/cases/doc-search': '/cases/production-doc-search/',
 };
 
 function writeRedirectStubs() {

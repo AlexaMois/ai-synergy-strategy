@@ -99,6 +99,9 @@ const AppContent = () => {
           <Route path="/services/architecture" element={<Navigate to="/services/digital-solution-design" replace />} />
           <Route path="/services/support" element={<Navigate to="/services/implementation-support" replace />} />
           <Route path="/services/add-ons" element={<Navigate to="/services" replace />} />
+          {/* Demo legacy slugs */}
+          <Route path="/demo" element={<Navigate to="/services" replace />} />
+          <Route path="/demo/voice-bot" element={<Navigate to="/services/digital-solution-design" replace />} />
           {/* Pillar SEO pages (поддержка URL с/без trailing slash) */}
           <Route path="/services/avtomatizaciya-biznes-processov" element={<PillarPage />} />
           <Route path="/services/avtomatizaciya-biznes-processov/" element={<PillarPage />} />
@@ -122,7 +125,7 @@ const AppContent = () => {
           
           {/* Materials */}
           <Route path="/materials" element={<MaterialsPage />} />
-          <Route path="/materials/resources" element={<ResourcesPage />} />
+          <Route path="/materials/resources" element={<Navigate to="/materials" replace />} />
           <Route path="/materials/blog" element={<Blog />} />
           <Route path="/materials/blog/:slug" element={<BlogPost />} />
           <Route path="/materials/checklist-30" element={<Checklist30Page />} />
@@ -156,7 +159,8 @@ const AppContent = () => {
           <Route path="/case-studies/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
           <Route path="/golossok-pricing" element={<Navigate to="/services/digital-solution-design" replace />} />
           <Route path="/checklist" element={<Navigate to="/materials/checklist-30" replace />} />
-          <Route path="/newyear" element={<NewYearGreeting />} />
+          <Route path="/newyear" element={<Navigate to="/" replace />} />
+          <Route path="/newyear-greeting" element={<NewYearGreeting />} />
           <Route path="/redirect" element={<Redirect />} />
           
           {/* Portal */}

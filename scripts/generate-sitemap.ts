@@ -43,7 +43,6 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   // Materials
   { path: '/materials', priority: '0.8', changefreq: 'weekly' },
   { path: '/materials/blog', priority: '0.7', changefreq: 'weekly' },
-  { path: '/materials/resources', priority: '0.7', changefreq: 'monthly' },
   { path: '/materials/checklist-30', priority: '0.7', changefreq: 'monthly' },
   { path: '/materials/plaud-guide', priority: '0.6', changefreq: 'monthly' },
 

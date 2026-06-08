@@ -66,7 +66,7 @@ const ServiceDetailPage = () => {
   const pageTitle = seo?.title ?? `${service.title} · НейроРешения`;
   const pageDescription = seo?.description ?? service.subtitle;
   const pageH1 = seo?.h1 ?? service.title;
-  const canonicalUrl = `https://aleksamois.ru${service.href}`;
+  const canonicalUrl = `https://aleksamois.ru${service.href}${service.href.endsWith("/") ? "" : "/"}`;
 
   return (
     <PageTransition>

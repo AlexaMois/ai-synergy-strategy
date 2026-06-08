@@ -198,7 +198,7 @@ const About = () => {
         <title>Александра Моисеева — инженер цифрового развития бизнеса</title>
         <meta name="description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
         <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
-        <link rel="canonical" href="https://aleksamois.ru/about" />
+        <link rel="canonical" href="https://aleksamois.ru/about/" />
         <meta property="og:title" content="Александра Моисеева — инженер цифрового развития бизнеса" />
         <meta property="og:description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
