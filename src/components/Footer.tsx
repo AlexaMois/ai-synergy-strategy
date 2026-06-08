@@ -42,7 +42,7 @@ const Footer = () => {
               <DisabledLink to="/services" className="hover:text-primary transition-colors">Услуги</DisabledLink>
               <DisabledLink to="/cases" className="hover:text-primary transition-colors">Кейсы</DisabledLink>
               <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
-              <DisabledLink to="/materials/resources" className="hover:text-primary transition-colors">Материалы</DisabledLink>
+              <DisabledLink to="/materials" className="hover:text-primary transition-colors">Материалы</DisabledLink>
               <DisabledLink to="/materials/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
               <DisabledLink to="/pricing" className="hover:text-primary transition-colors">Цены</DisabledLink>
               <DisabledLink to="/faq" className="hover:text-primary transition-colors">FAQ</DisabledLink>
