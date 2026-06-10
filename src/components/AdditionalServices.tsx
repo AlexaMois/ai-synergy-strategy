@@ -1,9 +1,9 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
-import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
-import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
 
 const formatCards = [
   {

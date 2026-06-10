@@ -1,10 +1,10 @@
-import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.png";
-import routeWarmSketch from "@/assets/sketches/route-warm-sketch.png";
-import auditCareSketch from "@/assets/sketches/audit-care-sketch.png";
-import bookAiSketch from "@/assets/sketches/book-ai-sketch.png";
-import handsChipSketch from "@/assets/sketches/hands-chip-sketch.png";
-import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.png";
-import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.png";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
+import bookAiSketch from "@/assets/sketches/book-ai-sketch.webp";
+import handsChipSketch from "@/assets/sketches/hands-chip-sketch.webp";
+import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.webp";
+import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.webp";
 
 export type ServiceSection = { heading: string; content?: string; list?: string[] };
 

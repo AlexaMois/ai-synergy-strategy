@@ -5,17 +5,17 @@ import { useState, useRef, useCallback } from 'react';
 
 import logoOpora from '@/assets/partners/opora-rossii.png';
 import logoDelovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
-import logoKps from '@/assets/partners/kraypotrebsoyuz.png';
+import logoKps from '@/assets/partners/kraypotrebsoyuz.webp';
 import logoHrBazaar from '@/assets/partners/hr-bazaar.png';
 import logoBiteh from '@/assets/partners/biteh.png';
 import logoZarplata from '@/assets/partners/zarplata.png';
 import logoAbn from '@/assets/partners/abn.png';
-import logoBit from '@/assets/partners/bit-magazine.png';
+import logoBit from '@/assets/partners/bit-magazine.webp';
 import logoNewRetail from '@/assets/partners/new-retail-forum.png';
 import logoAiSummit from '@/assets/partners/ai-summit.png';
-import logo7nebo from '@/assets/partners/7nebo.png';
-import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.png';
-import logoDataFusion from '@/assets/partners/data-fusion.png';
+import logo7nebo from '@/assets/partners/7nebo.webp';
+import logoAngelyBiznesa from '@/assets/partners/angely-biznesa.webp';
+import logoDataFusion from '@/assets/partners/data-fusion.webp';
 import logoPanorama from '@/assets/partners/panorama.png';
 import logoSetKi from '@/assets/partners/set-ki.png';
 

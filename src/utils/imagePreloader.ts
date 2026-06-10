@@ -1,13 +1,13 @@
-import alexandraHeadshot from '@/assets/alexandra-headshot.webp';
+import alexandraHero from '@/assets/alexandra-hero.webp';
 
 /**
  * Preload critical images to improve LCP (Largest Contentful Paint)
  * Call this function early in the app lifecycle
  */
 export const preloadCriticalImages = () => {
-  // Critical above-the-fold images
+  // Critical above-the-fold images (LCP)
   const criticalImages = [
-    alexandraHeadshot,
+    alexandraHero,
   ];
 
   criticalImages.forEach((src) => {
