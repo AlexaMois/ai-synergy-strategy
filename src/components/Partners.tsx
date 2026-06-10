@@ -60,7 +60,7 @@ const Partners = ({ className }: PartnersProps) => {
                       src={partner.logo} 
                       alt={partner.name}
                       className="h-full w-auto object-contain"
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
                       width="220"
                       height="55"
