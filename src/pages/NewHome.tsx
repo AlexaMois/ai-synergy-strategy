@@ -83,13 +83,13 @@ const PillButton = ({
   return (
     <Link
       to={to}
-      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
+      className={`group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
     >
       <span>{children}</span>
       <span
-        className={`flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
+        className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
       >
-        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+        <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </span>
     </Link>
   );
@@ -114,21 +114,21 @@ const NewHome = () => {
 
       <main>
         {/* HERO — большая бирюзовая плашка во всю ширину */}
-        <section className="pt-24 md:pt-28 px-4 md:px-6">
+        <section className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-12 md:pt-20 pb-0 md:pb-0">
-                <div className="md:col-span-7 pb-10 md:pb-20">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-background mb-6">
+            <div className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-20 pb-0 md:pb-0">
+                <div className="md:col-span-7 pb-6 sm:pb-8 md:pb-20">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] md:leading-[1.02] tracking-tight text-background mb-4 md:mb-6">
                     Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
-                  <p className="text-xl md:text-2xl lg:text-3xl text-background/90 mb-8 max-w-2xl leading-snug">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-background/90 mb-4 md:mb-8 max-w-2xl leading-snug">
                     Инженер и архитектор цифрового развития бизнеса
                   </p>
-                  <p className="text-base md:text-lg text-background/80 mb-10 max-w-xl">
+                  <p className="text-sm sm:text-base md:text-lg text-background/80 mb-6 md:mb-10 max-w-xl">
                     Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять цифровые решения с понятной пользой для бизнеса
                   </p>
-                  <div className="relative z-10 flex flex-wrap gap-3">
+                  <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
                     <PillButton to="/start" variant="light">
                       Подобрать формат работы
                     </PillButton>
@@ -144,7 +144,9 @@ const NewHome = () => {
                     alt="Александра Моисеева"
                     width={900}
                     height={900}
-                    className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="relative w-3/4 max-w-[260px] sm:max-w-xs md:max-w-md lg:max-w-lg h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
                   />
                 </div>
               </div>
