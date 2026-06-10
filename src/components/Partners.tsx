@@ -5,13 +5,13 @@ import software from '@/assets/partners/software.svg';
 import kritbi from '@/assets/partners/kritbi.jpg';
 
 import centrSvarki from '@/assets/partners/centr-svarki.png';
-import kraypotrebsoyuz from '@/assets/partners/kraypotrebsoyuz.png';
+import kraypotrebsoyuz from '@/assets/partners/kraypotrebsoyuz.webp';
 import agentstvoPozharnoy from '@/assets/partners/agentstvo-pozharnoy.png';
 import sistemExpert from '@/assets/partners/sistem-expert.png';
 import delovoyKvartal from '@/assets/partners/delovoy-kvartal.png';
 import focusGroup from '@/assets/partners/focus-group.png';
 import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
-import tsarskiyStol from '@/assets/partners/tsarskiy-stol.png';
+import tsarskiyStol from '@/assets/partners/tsarskiy-stol.webp';
 import aktransservice from '@/assets/partners/aktransservice.png';
 import yunarmiya from '@/assets/partners/yunarmiya.webp';
 

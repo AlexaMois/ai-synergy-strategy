@@ -12,11 +12,11 @@ import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import heroCharacter from "@/assets/alexandra-hero.webp";
-import compassSketch from "@/assets/sketches/compass-sketch.png";
-import handshakeSketch from "@/assets/sketches/handshake-sketch.png";
-import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.png";
-import routeSketch from "@/assets/sketches/route-sketch.png";
-import chatSketch from "@/assets/sketches/chat-sketch.png";
+import compassSketch from "@/assets/sketches/compass-sketch.webp";
+import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
+import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.webp";
+import routeSketch from "@/assets/sketches/route-sketch.webp";
+import chatSketch from "@/assets/sketches/chat-sketch.webp";
 
 const stats: Array<{
   value: number;
