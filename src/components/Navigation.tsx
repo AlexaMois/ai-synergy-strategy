@@ -321,7 +321,7 @@ const Navigation = () => {
                   </button>
                   
                   {/* Mobile submenu */}
-                  <div className={`overflow-hidden transition-all duration-200 ${mobileOpenSubmenu === link.label ? 'max-h-40' : 'max-h-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ${mobileOpenSubmenu === link.label ? 'max-h-[600px]' : 'max-h-0'}`}>
                     <div className="pl-4 pt-1 space-y-1">
                       {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 ${location.pathname === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`}>
                           {subItem.label}
