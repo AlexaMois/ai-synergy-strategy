@@ -47,13 +47,13 @@ const ServicesDetailed = () => {
                   width={512}
                   height={512}
                   loading="lazy"
-                  className="hidden md:block absolute -bottom-6 -right-4 w-28 lg:w-36 h-auto object-contain opacity-90 pointer-events-none"
+                  className="absolute -bottom-4 -right-2 w-20 sm:w-24 md:w-28 lg:w-36 h-auto object-contain opacity-90 pointer-events-none"
                 />
                 <span className={`font-iriska italic ${p.text} text-5xl md:text-6xl lg:text-7xl leading-none flex-shrink-0 min-w-[3rem]`}>
                   {service.number}
                 </span>
 
-                <div className="flex-1 text-left min-w-0 md:pr-28 lg:pr-36">
+                <div className="flex-1 text-left min-w-0 pr-20 sm:pr-24 md:pr-28 lg:pr-36">
                   <h3 className={`${p.text} text-xl md:text-2xl lg:text-3xl font-bold leading-tight mb-2`}>
                     {service.title}
                   </h3>
@@ -62,9 +62,6 @@ const ServicesDetailed = () => {
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
-                    <span className={`text-base md:text-lg font-bold ${p.text}`}>
-                      {service.price}
-                    </span>
                     <span className={`inline-flex items-center gap-2 pl-4 pr-1 py-1 rounded-full font-semibold text-sm shadow-card group-hover:shadow-elevated group-hover:translate-x-0.5 transition-all ${
                       p.pillDark ? "bg-background text-foreground" : "bg-foreground text-background"
                     }`}>
