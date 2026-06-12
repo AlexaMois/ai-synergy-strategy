@@ -4,12 +4,13 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
 import FAQTeaser from "@/components/FAQTeaser";
 import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
 import { trackCTAClick } from "@/utils/analytics";
+import { openTaskModal } from "@/components/CallbackModal";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
 import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
@@ -136,11 +137,11 @@ const StartPage = () => {
     <PageTransition>
       <Helmet>
         <title>С чего начать цифровизацию бизнеса</title>
-        <meta name="description" content="Помогу выбрать первый шаг цифрового развития: стратегическую встречу, стратегию, аудит, обучение, внедрение или сопровождение." />
+        <meta name="description" content="Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации. Без лишней разработки на старте, с планом на 90 дней и расчётом эффекта." />
         <meta name="keywords" content="диагностика бизнес процессов, аудит автоматизации, где внедрять ИИ, ROI автоматизации, экспресс аудит процессов" />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
         <meta property="og:title" content="С чего начать цифровизацию бизнеса" />
-        <meta property="og:description" content="Помогу выбрать первый шаг цифрового развития: стратегическую встречу, стратегию, аудит, обучение, внедрение или сопровождение." />
+        <meta property="og:description" content="Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации." />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -156,46 +157,52 @@ const StartPage = () => {
         
         <main>
           {/* HERO — большая розовая плашка (контраст с бирюзовой главной) */}
-          <section className="pt-8 md:pt-12 px-4 md:px-6">
+          <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
+              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+                <div className="grid md:grid-cols-12 gap-6 items-center px-5 md:px-12 lg:px-16 py-8 md:py-20">
                   <div className="md:col-span-7">
-                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
+                    <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
                       С чего начать
                     </p>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                      С чего начать{" "}
-                      <span className="font-iriska font-normal italic text-accent">
-                        цифровое развитие
-                      </span>{" "}
-                      компании
+                    <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
+                      С чего начать цифровизацию бизнеса
                     </h1>
-                    <p className="text-lg md:text-xl text-foreground/75 mb-6 max-w-xl leading-snug">
-                      Помогу выбрать первый шаг: стратегическую встречу, аудит, обучение, внедрение, разработку или сопровождение
+                    <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-xl leading-snug">
+                      Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации.
                     </p>
-                    <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl leading-snug">
-                      Если пока не уверены, пройдите короткий аудит
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <PillButton onClick={startDiagnostic} variant="dark">
-                        Запустить аудит
+                    <ul className="space-y-2.5 mb-6 md:mb-8">
+                      {[
+                        "без лишней разработки на старте",
+                        "с планом действий на 90 дней",
+                        "с расчётом, где автоматизация даст эффект",
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/70">
+                          <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <PillButton onClick={openTaskModal} variant="turquoise" className="w-full sm:w-auto justify-center">
+                        Обсудить задачу
                       </PillButton>
                       <Link
                         to="/services"
-                        className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
+                        className="inline-flex items-center justify-center sm:justify-start text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-3 sm:py-2"
                       >
-                        Все форматы работы <ArrowRight className="ml-2 h-5 w-5" />
+                        Посмотреть услуги <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </div>
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end">
                     <img
                       src={brainHeartSketch}
-                      alt=""
+                      alt="Цифровизация бизнеса — выбор первого процесса для автоматизации"
                       width={800}
                       height={800}
-                      className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                      loading="lazy"
+                      className="w-40 sm:w-48 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
                     />
                   </div>
                 </div>
