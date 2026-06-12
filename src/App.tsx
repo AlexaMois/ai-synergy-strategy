@@ -146,6 +146,13 @@ const AppContent = () => {
           <Route path="/legal/terms" element={<Terms />} />
           
           {/* Redirects for old URLs */}
+          <Route path="/training" element={<Navigate to="/services/digital-tools-program/" replace />} />
+          <Route path="/automation" element={<Navigate to="/services/avtomatizaciya-biznes-processov/" replace />} />
+          <Route path="/digitalization" element={<Navigate to="/services/cifrovizaciya-biznesa/" replace />} />
+          <Route path="/ai" element={<Navigate to="/services/vnedrenie-ii-v-biznes/" replace />} />
+          <Route path="/ai-smm" element={<Navigate to="/services/" replace />} />
+          <Route path="/audit" element={<Navigate to="/start/" replace />} />
+          
           <Route path="/approach" element={<Navigate to="/about" replace />} />
           <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
           <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
