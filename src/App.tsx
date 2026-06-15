@@ -130,6 +130,7 @@ const AppContent = () => {
           <Route path="/materials/blog/:slug" element={<BlogPost />} />
           <Route path="/materials/checklist-30" element={<Checklist30Page />} />
           <Route path="/materials/plaud-guide" element={<PlaudGuidePage />} />
+          <Route path="/materials/instrukciya-plaud-ai" element={<Navigate to="/materials/plaud-guide/" replace />} />
           
           {/* About */}
           <Route path="/about" element={<About />} />
