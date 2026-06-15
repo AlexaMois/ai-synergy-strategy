@@ -130,6 +130,7 @@ const AppContent = () => {
           <Route path="/materials/blog/:slug" element={<BlogPost />} />
           <Route path="/materials/checklist-30" element={<Checklist30Page />} />
           <Route path="/materials/plaud-guide" element={<PlaudGuidePage />} />
+          <Route path="/materials/instrukciya-plaud-ai" element={<Navigate to="/materials/plaud-guide/" replace />} />
           
           {/* About */}
           <Route path="/about" element={<About />} />
@@ -139,7 +140,7 @@ const AppContent = () => {
           <Route path="/pricing" element={<PricingPage />} />
           
           {/* Legal */}
-          <Route path="/legal" element={<LegalPage />} />
+          <Route path="/legal" element={<Navigate to="/legal/privacy-policy/" replace />} />
           <Route path="/legal/consent" element={<Consent />} />
           <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/legal/cookies" element={<CookiesPolicy />} />
@@ -153,6 +154,8 @@ const AppContent = () => {
           <Route path="/ai-smm" element={<Navigate to="/services/" replace />} />
           <Route path="/audit" element={<Navigate to="/start/" replace />} />
           
+          <Route path="/diagnostics" element={<Navigate to="/services/digital-audit/" replace />} />
+          <Route path="/diagnostic" element={<Navigate to="/services/digital-audit/" replace />} />
           <Route path="/approach" element={<Navigate to="/about" replace />} />
           <Route path="/resources" element={<Navigate to="/materials/resources" replace />} />
           <Route path="/blog" element={<Navigate to="/materials/blog" replace />} />
@@ -164,7 +167,7 @@ const AppContent = () => {
           <Route path="/case-studies/kraypotrebsoyuz" element={<Navigate to="/cases/kraypotrebsoyuz" replace />} />
           <Route path="/case-studies/cargo-express" element={<Navigate to="/cases/cargo-express" replace />} />
           <Route path="/case-studies/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
-          <Route path="/golossok-pricing" element={<Navigate to="/services/digital-solution-design" replace />} />
+          <Route path="/golossok-pricing" element={<Navigate to="/pricing/" replace />} />
           <Route path="/checklist" element={<Navigate to="/materials/checklist-30" replace />} />
           <Route path="/newyear" element={<Navigate to="/" replace />} />
           <Route path="/newyear-greeting" element={<NewYearGreeting />} />
