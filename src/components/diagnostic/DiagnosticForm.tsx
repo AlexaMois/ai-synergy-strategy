@@ -378,8 +378,8 @@ const DiagnosticForm = () => {
             <SummaryRow title="Используемые системы">
               {labelsOf(systemOptions, form.systems).join(", ")}
               <span className="block mt-1.5 text-muted-foreground">
-                ИИ: {labelOf(aiUsageOptions, form.aiUsage).toLowerCase()} · данные:{" "}
-                {labelOf(dataStorageOptions, form.dataStorage).toLowerCase()}
+                ИИ: {labelOf(aiUsageOptions, form.aiUsage)} · данные:{" "}
+                {labelOf(dataStorageOptions, form.dataStorage)}
               </span>
             </SummaryRow>
             <SummaryRow title="Цель клиента">
