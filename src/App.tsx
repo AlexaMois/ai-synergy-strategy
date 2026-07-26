@@ -51,6 +51,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const PortalPage = lazy(() => import("./pages/portal/PortalPage"));
 const PortalAdminPage = lazy(() => import("./pages/portal/PortalAdminPage"));
 const NeurostylistPage = lazy(() => import("./pages/neurostylist/NeurostylistPage"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 const queryClient = new QueryClient();
 
@@ -180,6 +181,9 @@ const AppContent = () => {
           {/* Neurostylist — продуктовая страница */}
           <Route path="/neurostylist" element={<NeurostylistPage />} />
           <Route path="/neurostylist/" element={<NeurostylistPage />} />
+
+          {/* OAuth consent (managed Supabase OAuth server) */}
+          <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
