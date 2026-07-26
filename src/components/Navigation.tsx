@@ -153,7 +153,7 @@ const Navigation = () => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     trackZakazatZvonok();
-    openCallbackModal();
+    openCallbackModal("task");
   };
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -274,7 +274,7 @@ const Navigation = () => {
               {phoneNumber}
             </a>
             <Button size="sm" onClick={scrollToContact}>
-              Заказать звонок 
+              Обсудить задачу
             </Button>
           </div>
         </div>
@@ -349,7 +349,7 @@ const Navigation = () => {
             {phoneNumber}
           </a>
           <Button size="sm" className="w-full" onClick={scrollToContact}>
-            Заказать звонок
+            Обсудить задачу
           </Button>
         </div>
       </div>
