@@ -100,7 +100,7 @@ Deno.serve(async (req) => {
 
   const values: Record<string, unknown> = {
     // Тип обращения: Полная диагностика
-    '51': '2',
+    '51': ['2'],
     // 1. Контактные данные
     '2': d.name,
     '3': d.position,
@@ -158,15 +158,8 @@ Deno.serve(async (req) => {
     })
 
   try {
-    let res = await post(values)
-    let text = await res.text()
-    // Поле 51 «Тип обращения» может отсутствовать в каталоге — тогда повторяем без него
-    if (!res.ok && '51' in values) {
-      console.warn('bpium_retry_without_51', res.status, text)
-      const { ['51']: _omit, ...rest } = values
-      res = await post(rest)
-      text = await res.text()
-    }
+    const res = await post(values)
+    const text = await res.text()
     if (!res.ok) {
       console.error('bpium_error', res.status, text)
       return json({ error: 'Не удалось отправить анкету. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
