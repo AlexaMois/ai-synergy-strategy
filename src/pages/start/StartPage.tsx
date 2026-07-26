@@ -138,12 +138,12 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>С чего начать цифровизацию бизнеса</title>
-        <meta name="description" content="Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации. Без лишней разработки на старте, с планом на 90 дней и расчётом эффекта." />
+        <title>С чего начать оптимизацию бизнеса</title>
+        <meta name="description" content="Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль." />
         <meta name="keywords" content="диагностика бизнес процессов, аудит автоматизации, где внедрять ИИ, ROI автоматизации, экспресс аудит процессов" />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="С чего начать цифровизацию бизнеса" />
-        <meta property="og:description" content="Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации." />
+        <meta property="og:title" content="С чего начать оптимизацию бизнеса" />
+        <meta property="og:description" content="Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль." />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -168,16 +168,16 @@ const StartPage = () => {
                       С чего начать
                     </p>
                     <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
-                      С чего начать цифровизацию бизнеса
+                      С чего начать оптимизацию бизнеса
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-xl leading-snug">
-                      Разберём, где в компании теряются время, деньги и управляемость, и выберем первый процесс для автоматизации.
+                      Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль.
                     </p>
                     <ul className="space-y-2.5 mb-6 md:mb-8">
                       {[
-                        "без лишней разработки на старте",
-                        "с планом действий на 90 дней",
-                        "с расчётом, где автоматизация даст эффект",
+                        "определим главное узкое место",
+                        "выберем реалистичный первый шаг",
+                        "определим первый шаг и дальнейший маршрут",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/70">
                           <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
@@ -185,9 +185,12 @@ const StartPage = () => {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
                       <PillButton onClick={openTaskModal} variant="turquoise" className="w-full sm:w-auto justify-center">
                         Обсудить задачу
+                      </PillButton>
+                      <PillButton onClick={goToDiagnostic} variant="dark" className="w-full sm:w-auto justify-center">
+                        Пройти диагностику
                       </PillButton>
                       <Link
                         to="/services"
