@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
-import { Sparkles, ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
