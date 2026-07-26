@@ -193,31 +193,47 @@ export const emptyForm: DiagnosticForm = {
   consent: false,
 };
 
-// Предварительный уровень готовности — только качественная оценка, без расчётов ROI.
-export function readinessLevel(f: DiagnosticForm): { title: string; text: string } {
-  let score = 0;
-  if (["1", "2"].includes(f.frequency)) score += 2;
-  else if (f.frequency === "3") score += 1;
-  if (["1", "2"].includes(f.aiUsage)) score += 2;
-  else if (f.aiUsage === "5") score += 1;
-  if (["1", "2"].includes(f.dataStorage)) score += 2;
-  if (["1", "2"].includes(f.decisionMaker)) score += 2;
-  else if (["3", "4"].includes(f.decisionMaker)) score += 1;
-  if (["1", "2"].includes(f.readyForCall)) score += 1;
-  if (["1", "2"].includes(f.urgency)) score += 1;
+// Готовность к следующему шагу — детерминированный расчёт без случайности и без ROI.
+//
+// Правила (максимум 12 баллов):
+// 1. Частота процесса:      1 или 2 → 2 | 3 → 1 | 4 → 0
+// 2. Использование ИИ:      1 → 2 | 2 или 5 → 1 | 3 или 4 → 0
+// 3. Хранение данных:       1 → 2 | 2 → 1 | 3 или 4 → 0
+// 4. Кто принимает решение: 1 или 2 → 2 | 3 или 4 → 1 | 5 или 6 → 0
+// 5. Готовность к звонку:   1 → 2 | 2 → 1 | 3 или 4 → 0
+// 6. Срочность:             1 или 2 → 2 | 3 → 1 | 4 или 5 → 0
+//
+// Итог: 9–12 — высокая | 5–8 — средняя | 0–4 — низкая.
+const pick = (map: Record<string, number>, id: string) => map[id] ?? 0;
 
-  if (score >= 7)
+export function readinessScore(f: DiagnosticForm): number {
+  return (
+    pick({ "1": 2, "2": 2, "3": 1 }, f.frequency) +
+    pick({ "1": 2, "2": 1, "5": 1 }, f.aiUsage) +
+    pick({ "1": 2, "2": 1 }, f.dataStorage) +
+    pick({ "1": 2, "2": 2, "3": 1, "4": 1 }, f.decisionMaker) +
+    pick({ "1": 2, "2": 1 }, f.readyForCall) +
+    pick({ "1": 2, "2": 2, "3": 1 }, f.urgency)
+  );
+}
+
+export function readinessLevel(f: DiagnosticForm): { title: string; text: string; score: number } {
+  const score = readinessScore(f);
+  if (score >= 9)
     return {
+      score,
       title: "Высокая готовность",
-      text: "Процесс регулярный, данные структурированы, решение можно принимать быстро. Скорее всего, начать можно с точечного внедрения.",
+      text: "Есть основания обсудить пилотный проект. Формат решения подтвердим после анализа процесса, данных и ограничений.",
     };
-  if (score >= 4)
+  if (score >= 5)
     return {
+      score,
       title: "Средняя готовность",
-      text: "Задача понятна, но часть данных и процессов нужно привести в порядок до внедрения. Разумнее начать с разбора процесса.",
+      text: "Задача понятна, но часть данных и процессов стоит привести в порядок. Разумнее начать с разбора процесса.",
     };
   return {
-    title: "Начальный уровень",
-    text: "Пока стоит зафиксировать процесс и данные, а решение о инструментах принимать после разбора.",
+    score,
+    title: "Низкая готовность",
+    text: "Сначала стоит зафиксировать процесс и данные, а решение об инструментах принимать после разбора.",
   };
 }
