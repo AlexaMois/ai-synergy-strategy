@@ -216,55 +216,35 @@ const StartPage = () => {
           </section>
 
           {/* Предварительная диагностика — вводный блок */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-10 md:pt-16 pb-10 md:pb-16">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
-                  <div className="md:col-span-7">
-                    <div className="inline-flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-full mb-5">
-                      <Sparkles className="w-4 h-4" />
-                      <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest">
-                        Предварительная диагностика
-                      </span>
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
-                      Разберите один ключевой процесс
-                    </h2>
-                    <p className="text-base md:text-lg text-white/85 mb-6 max-w-xl">
-                      За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
-                      желаемый результат. Ответы помогут подготовить предметный разговор и
-                      определить следующий шаг.
-                    </p>
-                    <ul className="space-y-2.5 mb-8">
-                      {[
-                        "увидите масштаб ручной работы",
-                        "зафиксируете основные проблемы и риски",
-                        "подготовите данные для первого разговора",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-white/85">
-                          <Check className="w-4 h-4 mt-0.5 shrink-0 text-white" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {!diagnosticStarted && (
-                      <PillButton onClick={startDiagnostic} variant="light">
-                        Начать диагностику
-                      </PillButton>
-                    )}
-                  </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end">
-                    <img
-                      src={chatHeartSketch}
-                      alt=""
-                      width={800}
-                      height={800}
-                      loading="lazy"
-                      className="w-56 md:w-72 lg:w-80 h-auto object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-12 md:pt-20 pb-10 md:pb-16">
+            <div className="container mx-auto max-w-4xl text-center">
+              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-5">
+                Предварительная диагностика
+              </span>
+              <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.1] mb-6">
+                Разберите один{" "}
+                <span className="font-iriska font-normal italic text-accent">ключевой процесс</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+                За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
+                желаемый результат. Ответы помогут подготовить предметный разговор и
+                определить следующий шаг.
+              </p>
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-9">
+                {[
+                  "увидите масштаб ручной работы",
+                  "зафиксируете основные проблемы и риски",
+                  "подготовите данные для первого разговора",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
+                    <Check className="w-4 h-4 shrink-0 text-accent" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              {!diagnosticStarted && (
+                <PillButton onClick={startDiagnostic}>Начать диагностику</PillButton>
+              )}
             </div>
           </section>
 
