@@ -321,10 +321,7 @@ const StartPage = () => {
           {diagnosticStarted && (
             <section ref={diagnosticRef} className="py-10 md:py-16 bg-muted">
               <div className="container mx-auto px-4">
-                <AIDiagnostic 
-                  onComplete={handleDiagnosticComplete}
-                  onCTA={handleCTA}
-                />
+                <DiagnosticForm />
               </div>
             </section>
           )}
