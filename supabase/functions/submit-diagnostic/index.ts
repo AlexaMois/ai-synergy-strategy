@@ -25,6 +25,13 @@ function checkRate(ip: string) {
   return true
 }
 
+const normalizePhone = (raw: string) => {
+  let d = raw.replace(/\D/g, '')
+  if (d.length === 11 && d.startsWith('8')) d = '7' + d.slice(1)
+  if (d.length === 10) d = '7' + d
+  return d ? `+${d}` : ''
+}
+
 const str = (max: number) => z.string().trim().min(1).max(max)
 const ids = z.array(z.string().regex(/^\d{1,3}$/)).min(1).max(20)
 
@@ -104,7 +111,7 @@ Deno.serve(async (req) => {
     // 1. Контактные данные
     '2': d.name,
     '3': d.position,
-    '4': [{ contact: d.phone }],
+    '4': [{ contact: normalizePhone(d.phone) || d.phone }],
     '6': '3', // MAX
     // 2. О компании
     '8': d.companyName,
