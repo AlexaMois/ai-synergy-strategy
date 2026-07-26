@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -26,8 +26,19 @@ const TOTAL_STEPS = 8;
 
 /* ---------- поля ---------- */
 
-const Label = ({ children, required }: { children: React.ReactNode; required?: boolean }) => (
-  <label className="block text-sm md:text-base font-semibold text-foreground mb-2">
+const Label = ({
+  children,
+  required,
+  htmlFor,
+}: {
+  children: React.ReactNode;
+  required?: boolean;
+  htmlFor?: string;
+}) => (
+  <label
+    htmlFor={htmlFor}
+    className="block text-sm md:text-base font-semibold text-foreground mb-2"
+  >
     {children}
     {required && <span className="text-accent"> *</span>}
   </label>
@@ -52,10 +63,13 @@ const TextField = ({
   required?: boolean;
   type?: string;
   hint?: string;
-}) => (
+}) => {
+  const id = useId();
+  return (
   <div>
-    <Label required={required}>{label}</Label>
+    <Label required={required} htmlFor={id}>{label}</Label>
     <input
+      id={id}
       type={type}
       value={value}
       onChange={(e) => onChange(e.target.value)}
@@ -65,7 +79,8 @@ const TextField = ({
     />
     {hint && <p className="text-xs text-muted-foreground mt-1.5">{hint}</p>}
   </div>
-);
+  );
+};
 
 const AreaField = ({
   label,
@@ -81,10 +96,13 @@ const AreaField = ({
   placeholder?: string;
   required?: boolean;
   rows?: number;
-}) => (
+}) => {
+  const id = useId();
+  return (
   <div>
-    <Label required={required}>{label}</Label>
+    <Label required={required} htmlFor={id}>{label}</Label>
     <textarea
+      id={id}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
@@ -92,7 +110,8 @@ const AreaField = ({
       className={`${inputCls} resize-y leading-relaxed`}
     />
   </div>
-);
+  );
+};
 
 const RadioGroup = ({
   label,
