@@ -9,6 +9,13 @@ import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
+import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
+import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
+import bookAiSketch from "@/assets/sketches/book-ai-sketch.webp";
+import handsChipSketch from "@/assets/sketches/hands-chip-sketch.webp";
+import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.webp";
+import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.webp";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 
 const PillButton = ({
