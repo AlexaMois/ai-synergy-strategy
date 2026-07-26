@@ -91,48 +91,13 @@ const StartPage = () => {
   };
 
   const formats = [
-    {
-      sketch: chatHeartSketch,
-      situation: "Нужно быстро понять первый шаг",
-      format: "Стратегическая встреча по цифровизации для собственника",
-      to: "/services/owner-digital-session",
-    },
-    {
-      sketch: routeWarmSketch,
-      situation: "Нужен план на 90 дней",
-      format: "Разработка стратегии цифрового развития бизнеса",
-      to: "/services/digital-development-strategy",
-    },
-    {
-      sketch: auditCareSketch,
-      situation: "Нужно подробно разобрать процессы, документы и инструменты",
-      format: "Глубокий аудит компании для цифровизации",
-      to: "/services/digital-audit",
-    },
-    {
-      sketch: bookAiSketch,
-      situation: "Нужно обучить сотрудников",
-      format: "Авторская программа «Цифровые инструменты для бизнеса»",
-      to: "/services/digital-tools-program",
-    },
-    {
-      sketch: handsChipSketch,
-      situation: "Уже есть задача для внедрения",
-      format: "Сопровождение цифрового внедрения",
-      to: "/services/implementation-support",
-    },
-    {
-      sketch: blueprintPlantSketch,
-      situation: "Нужен конкретный цифровой инструмент",
-      format: "Проектирование и разработка цифрового решения под бизнес-процесс",
-      to: "/services/digital-solution-design",
-    },
-    {
-      sketch: teaLaptopSketch,
-      situation: "Уже есть инструменты, нужна поддержка",
-      format: "Сопровождение цифровых инструментов компании",
-      to: "/services/digital-tools-support",
-    },
+    { title: "Стратегическая встреча", note: "быстро определить первый шаг", to: "/services/owner-digital-session" },
+    { title: "Стратегия на 90 дней", note: "получить последовательный план изменений", to: "/services/digital-development-strategy" },
+    { title: "Глубокий аудит", note: "подробно разобрать процессы, данные и инструменты", to: "/services/digital-audit" },
+    { title: "Обучение", note: "подготовить сотрудников к работе с цифровыми инструментами", to: "/services/digital-tools-program" },
+    { title: "Сопровождение внедрения", note: "реализовать выбранную задачу", to: "/services/implementation-support" },
+    { title: "Разработка решения", note: "создать конкретный цифровой инструмент", to: "/services/digital-solution-design" },
+    { title: "Поддержка", note: "сопровождать действующую систему", to: "/services/digital-tools-support" },
   ];
 
   return (
