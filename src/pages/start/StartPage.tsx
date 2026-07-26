@@ -9,13 +9,6 @@ import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
-import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
-import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
-import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
-import bookAiSketch from "@/assets/sketches/book-ai-sketch.webp";
-import handsChipSketch from "@/assets/sketches/hands-chip-sketch.webp";
-import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.webp";
-import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.webp";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 
 const PillButton = ({
@@ -91,48 +84,13 @@ const StartPage = () => {
   };
 
   const formats = [
-    {
-      sketch: chatHeartSketch,
-      situation: "Нужно быстро понять первый шаг",
-      format: "Стратегическая встреча по цифровизации для собственника",
-      to: "/services/owner-digital-session",
-    },
-    {
-      sketch: routeWarmSketch,
-      situation: "Нужен план на 90 дней",
-      format: "Разработка стратегии цифрового развития бизнеса",
-      to: "/services/digital-development-strategy",
-    },
-    {
-      sketch: auditCareSketch,
-      situation: "Нужно подробно разобрать процессы, документы и инструменты",
-      format: "Глубокий аудит компании для цифровизации",
-      to: "/services/digital-audit",
-    },
-    {
-      sketch: bookAiSketch,
-      situation: "Нужно обучить сотрудников",
-      format: "Авторская программа «Цифровые инструменты для бизнеса»",
-      to: "/services/digital-tools-program",
-    },
-    {
-      sketch: handsChipSketch,
-      situation: "Уже есть задача для внедрения",
-      format: "Сопровождение цифрового внедрения",
-      to: "/services/implementation-support",
-    },
-    {
-      sketch: blueprintPlantSketch,
-      situation: "Нужен конкретный цифровой инструмент",
-      format: "Проектирование и разработка цифрового решения под бизнес-процесс",
-      to: "/services/digital-solution-design",
-    },
-    {
-      sketch: teaLaptopSketch,
-      situation: "Уже есть инструменты, нужна поддержка",
-      format: "Сопровождение цифровых инструментов компании",
-      to: "/services/digital-tools-support",
-    },
+    { title: "Стратегическая встреча", note: "быстро определить первый шаг", to: "/services/owner-digital-session" },
+    { title: "Стратегия на 90 дней", note: "получить последовательный план изменений", to: "/services/digital-development-strategy" },
+    { title: "Глубокий аудит", note: "подробно разобрать процессы, данные и инструменты", to: "/services/digital-audit" },
+    { title: "Обучение", note: "подготовить сотрудников к работе с цифровыми инструментами", to: "/services/digital-tools-program" },
+    { title: "Сопровождение внедрения", note: "реализовать выбранную задачу", to: "/services/implementation-support" },
+    { title: "Разработка решения", note: "создать конкретный цифровой инструмент", to: "/services/digital-solution-design" },
+    { title: "Поддержка", note: "сопровождать действующую систему", to: "/services/digital-tools-support" },
   ];
 
   return (
@@ -161,8 +119,8 @@ const StartPage = () => {
           {/* HERO — большая розовая плашка (контраст с бирюзовой главной) */}
           <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-5 md:px-12 lg:px-16 py-8 md:py-20">
+              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-card ring-1 ring-foreground/5">
+                <div className="grid md:grid-cols-12 gap-6 md:gap-4 items-center px-5 md:px-10 lg:px-14 py-7 md:py-14">
                   <div className="md:col-span-7">
                     <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
                       С чего начать
@@ -200,14 +158,14 @@ const StartPage = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end">
+                  <div className="md:col-span-5 flex justify-center md:justify-end md:pr-2">
                     <img
                       src={brainHeartSketch}
                       alt="Цифровизация бизнеса — выбор первого процесса для автоматизации"
                       width={800}
                       height={800}
                       loading="lazy"
-                      className="w-40 sm:w-48 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                      className="w-36 sm:w-44 md:w-60 lg:w-72 h-auto object-contain"
                     />
                   </div>
                 </div>
@@ -216,41 +174,30 @@ const StartPage = () => {
           </section>
 
           {/* Предварительная диагностика — вводный блок */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-12 md:pt-20 pb-10 md:pb-16">
-            <div className="container mx-auto max-w-4xl text-center">
-              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-5">
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-8 md:pt-12 pb-0">
+            <div className="container mx-auto max-w-3xl text-center">
+              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
                 Предварительная диагностика
               </span>
-              <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.1] mb-6">
-                Разберите один{" "}
-                <span className="font-iriska font-normal italic text-accent">ключевой процесс</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
+                Разберите один ключевой процесс
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                 За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
                 желаемый результат. Ответы помогут подготовить предметный разговор и
                 определить следующий шаг.
               </p>
-              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-9">
-                {[
-                  "увидите масштаб ручной работы",
-                  "зафиксируете основные проблемы и риски",
-                  "подготовите данные для первого разговора",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
-                    <Check className="w-4 h-4 shrink-0 text-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
               {!diagnosticStarted && (
-                <PillButton onClick={startDiagnostic}>Начать диагностику</PillButton>
+                <div className="mt-10 mb-2">
+                  <PillButton onClick={startDiagnostic}>Начать диагностику</PillButton>
+                </div>
               )}
             </div>
           </section>
 
           {/* Анкета из 8 шагов */}
           {diagnosticStarted && (
-            <section ref={diagnosticRef} className="py-10 md:py-16 bg-muted">
+            <section ref={diagnosticRef} className="pt-10 md:pt-14 pb-10 md:pb-14">
               <div className="container mx-auto px-4">
                 <DiagnosticForm />
               </div>
@@ -258,55 +205,32 @@ const StartPage = () => {
           )}
 
           {/* Возможные следующие шаги — форматы работы */}
-          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
-            <div className="max-w-3xl mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-4">
-                Возможные следующие{" "}
-                <span className="font-iriska font-normal italic text-accent">шаги</span>
+          <section className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
+            <div className="max-w-3xl mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-[1.12] mb-3">
+                Что может быть следующим шагом
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
-                Подходящий формат определим после предварительной диагностики или короткого разговора.
+              <p className="text-base text-muted-foreground">
+                Подходящий формат определим после диагностики или короткого разговора.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {formats.map((item, i) => {
-                const palettes = [
-                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
-                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
-                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
-                ];
-                const p = palettes[i % palettes.length];
-                return (
+            <ul className="divide-y divide-border rounded-2xl border border-border bg-card">
+              {formats.map((item) => (
+                <li key={item.to}>
                   <Link
-                    key={i}
                     to={item.to}
-                    className={`group relative flex flex-col rounded-[24px] ${p.bg} p-5 md:p-6 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[190px]`}
+                    className="group flex items-start justify-between gap-4 px-5 py-4 md:px-6 md:py-5 hover:bg-muted/50 transition-colors"
                   >
-                    <img
-                      src={item.sketch}
-                      alt=""
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      className="absolute -bottom-3 -right-3 w-24 md:w-28 h-auto object-contain opacity-90 pointer-events-none"
-                    />
-                    <p className={`text-xs ${p.muted} mb-1.5 relative max-w-[85%]`}>{item.situation}</p>
-                    <h3 className={`text-base md:text-lg font-bold ${p.text} leading-[1.15] mb-4 relative max-w-[85%]`}>
-                      {item.format}
-                    </h3>
-                    <div className="mt-auto flex items-center justify-between relative">
-                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
-                      <ArrowRight className={`h-4 w-4 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
-                    </div>
+                    <span className="text-sm md:text-base text-foreground">
+                      <span className="font-semibold">{item.title}</span>
+                      <span className="text-muted-foreground"> — {item.note}</span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 mt-1 shrink-0 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                   </Link>
-                );
-              })}
-            </div>
-            <div className="mt-8 flex justify-center">
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex justify-start">
               <PillButton to="/services" variant="dark">
                 Посмотреть все услуги
               </PillButton>
