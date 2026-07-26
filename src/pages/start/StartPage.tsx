@@ -12,10 +12,6 @@ import { openTaskModal } from "@/components/CallbackModal";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
 import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
-import bookAiSketch from "@/assets/sketches/book-ai-sketch.webp";
-import handsChipSketch from "@/assets/sketches/hands-chip-sketch.webp";
-import blueprintPlantSketch from "@/assets/sketches/blueprint-plant-sketch.webp";
-import teaLaptopSketch from "@/assets/sketches/tea-laptop-sketch.webp";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 
 const PillButton = ({
@@ -108,30 +104,6 @@ const StartPage = () => {
       situation: "Нужно подробно разобрать процессы, документы и инструменты",
       format: "Глубокий аудит компании для цифровизации",
       to: "/services/digital-audit",
-    },
-    {
-      sketch: bookAiSketch,
-      situation: "Нужно обучить сотрудников",
-      format: "Авторская программа «Цифровые инструменты для бизнеса»",
-      to: "/services/digital-tools-program",
-    },
-    {
-      sketch: handsChipSketch,
-      situation: "Уже есть задача для внедрения",
-      format: "Сопровождение цифрового внедрения",
-      to: "/services/implementation-support",
-    },
-    {
-      sketch: blueprintPlantSketch,
-      situation: "Нужен конкретный цифровой инструмент",
-      format: "Проектирование и разработка цифрового решения под бизнес-процесс",
-      to: "/services/digital-solution-design",
-    },
-    {
-      sketch: teaLaptopSketch,
-      situation: "Уже есть инструменты, нужна поддержка",
-      format: "Сопровождение цифровых инструментов компании",
-      to: "/services/digital-tools-support",
     },
   ];
 
