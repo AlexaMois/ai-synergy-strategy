@@ -62,6 +62,16 @@ Deno.serve(async (req) => {
       return json({ sentPayload: payload, bpium: r }, r.ok ? 200 : 502)
     }
 
+    if (action === 'patch') {
+      const id = url.searchParams.get('id')
+      const payload = await req.json()
+      const r = await bpium(`/api/v1/catalogs/81/records/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+      })
+      return json({ sentPayload: payload, bpium: r }, r.ok ? 200 : 502)
+    }
+
     return json({ error: 'unknown action' }, 400)
   } catch (e) {
     return json({ error: String(e) }, 500)
