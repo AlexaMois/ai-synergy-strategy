@@ -53,6 +53,36 @@ Deno.serve(async (req) => {
       return json(r, r.ok ? 200 : 502)
     }
 
+    if (action === 'diag') {
+      const r = await bpium(`/api/v1/catalogs/81?_=${Date.now()}`, {
+        headers: { 'Cache-Control': 'no-cache', Pragma: 'no-cache' },
+      })
+      const body = r.body as any
+      const fields = Array.isArray(body?.fields) ? body.fields : []
+      const f51 = fields.find((f: any) => String(f.id) === '51') ?? null
+      const cats = await bpium('/api/v1/catalogs')
+      const catList = Array.isArray((cats.body as any)) ? (cats.body as any) : []
+      return json({
+        domain: (() => { try { return new URL(BASE).host } catch { return 'invalid BASE URL' } })(),
+        catalogRequested: '81',
+        status: r.status,
+        catalogName: body?.name ?? null,
+        catalogPrivilegeCode: body?.privilegeCode ?? null,
+        fieldPrivilegeCodes: body?.fieldPrivilegeCodes ?? null,
+        fieldsCount: fields.length,
+        lastFieldIds: fields.slice(-12).map((f: any) => f.id),
+        allFieldIds: fields.map((f: any) => f.id),
+        field51: f51,
+        catalogsVisible: catList.map((c: any) => ({ id: c.id, name: c.name })),
+      }, r.ok ? 200 : 502)
+    }
+
+    if (action === 'delete') {
+      const id = url.searchParams.get('id')
+      const r = await bpium(`/api/v1/catalogs/81/records/${id}`, { method: 'DELETE' })
+      return json(r, r.ok ? 200 : 502)
+    }
+
     if (action === 'create') {
       const payload = await req.json()
       const r = await bpium('/api/v1/catalogs/81/records', {

@@ -25,6 +25,13 @@ function checkRate(ip: string) {
   return true
 }
 
+const normalizePhone = (raw: string) => {
+  let d = raw.replace(/\D/g, '')
+  if (d.length === 11 && d.startsWith('8')) d = '7' + d.slice(1)
+  if (d.length === 10) d = '7' + d
+  return d ? `+${d}` : ''
+}
+
 const str = (max: number) => z.string().trim().min(1).max(max)
 const ids = z.array(z.string().regex(/^\d{1,3}$/)).min(1).max(20)
 
@@ -100,11 +107,11 @@ Deno.serve(async (req) => {
 
   const values: Record<string, unknown> = {
     // Тип обращения: Полная диагностика
-    '51': '2',
+    '51': ['2'],
     // 1. Контактные данные
     '2': d.name,
     '3': d.position,
-    '4': [{ contact: d.phone }],
+    '4': [{ contact: normalizePhone(d.phone) || d.phone }],
     '6': '3', // MAX
     // 2. О компании
     '8': d.companyName,
@@ -158,15 +165,8 @@ Deno.serve(async (req) => {
     })
 
   try {
-    let res = await post(values)
-    let text = await res.text()
-    // Поле 51 «Тип обращения» может отсутствовать в каталоге — тогда повторяем без него
-    if (!res.ok && '51' in values) {
-      console.warn('bpium_retry_without_51', res.status, text)
-      const { ['51']: _omit, ...rest } = values
-      res = await post(rest)
-      text = await res.text()
-    }
+    const res = await post(values)
+    const text = await res.text()
     if (!res.ok) {
       console.error('bpium_error', res.status, text)
       return json({ error: 'Не удалось отправить анкету. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)

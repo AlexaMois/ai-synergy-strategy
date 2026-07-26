@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
   if (!phone) return json({ error: 'Некорректный номер телефона' }, 400)
 
   const values: Record<string, unknown> = {
-    '51': '1',        // тип обращения: Короткая заявка
+    '51': ['1'],        // тип обращения: Короткая заявка
     '2': d.name,
     '4': [{ contact: phone }],
     '6': '3',         // способ связи: MAX
@@ -91,15 +91,8 @@ Deno.serve(async (req) => {
     })
 
   try {
-    let res = await post(values)
-    let text = await res.text()
-    // Поле 51 «Тип обращения» может отсутствовать в каталоге — тогда повторяем без него
-    if (!res.ok && '51' in values) {
-      console.warn('bpium_retry_without_51', res.status, text)
-      const { ['51']: _omit, ...rest } = values
-      res = await post(rest)
-      text = await res.text()
-    }
+    const res = await post(values)
+    const text = await res.text()
     if (!res.ok) {
       console.error('bpium_error', res.status, text)
       return json({ error: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
