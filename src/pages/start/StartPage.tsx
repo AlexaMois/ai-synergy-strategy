@@ -215,105 +215,41 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* Formats — сетка плашек в стиле главной */}
-          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-            <div className="max-w-3xl mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                Выберите{" "}
-                <span className="font-iriska font-normal italic text-accent">формат</span>
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
-                Каждый формат закрывает конкретную управленческую задачу: от первого разбора
-                процессов до внедрения и регулярного сопровождения цифровых инструментов.
-              </p>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[260px] lg:grid-flow-dense">
-              {formats.map((item, i) => {
-                const palettes = [
-                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
-                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
-                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
-                ];
-                // Асимметричная masonry-сетка на 12 колонок.
-                // Карточка #1 (стратегия) — флагман: широкая и в две строки.
-                // Карточки #5 и #6 — широкие нижние полосы.
-                const layouts = [
-                  { span: "lg:col-span-4 lg:row-span-1", size: "sm" }, // 0 чат
-                  { span: "lg:col-span-5 lg:row-span-2", size: "xl" }, // 1 стратегия — флагман
-                  { span: "lg:col-span-3 lg:row-span-1", size: "sm" }, // 2 аудит
-                  { span: "lg:col-span-4 lg:row-span-1", size: "md" }, // 3 обучение
-                  { span: "lg:col-span-3 lg:row-span-1", size: "sm" }, // 4 внедрение
-                  { span: "lg:col-span-7 lg:row-span-1", size: "wide" },// 5 проектирование — широкая
-                  { span: "lg:col-span-5 lg:row-span-1", size: "wide" },// 6 поддержка — широкая тёмная
-                ];
-                const p = palettes[i % palettes.length];
-                const l = layouts[i];
-                const isFlagship = l.size === "xl";
-                const isWide = l.size === "wide";
-                const sketchCls = isFlagship
-                  ? "w-52 md:w-72 lg:w-80"
-                  : isWide
-                  ? "w-40 md:w-48"
-                  : "w-32 md:w-40";
-                const titleCls = isFlagship
-                  ? "text-2xl md:text-3xl lg:text-4xl"
-                  : isWide
-                  ? "text-xl md:text-2xl"
-                  : "text-lg md:text-xl";
-                return (
-                  <Link
-                    key={i}
-                    to={item.to}
-                    className={`group relative flex flex-col rounded-[28px] ${p.bg} p-7 md:p-8 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 ${l.span} min-h-[260px]`}
-                  >
-                    <img
-                      src={item.sketch}
-                      alt=""
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      className={`absolute -bottom-4 -right-4 ${sketchCls} h-auto object-contain opacity-90 pointer-events-none`}
-                    />
-                    <p className={`text-sm ${p.muted} mb-2 relative max-w-[80%]`}>{item.situation}</p>
-                    <h3 className={`${titleCls} font-bold ${p.text} leading-[1.05] mb-6 relative max-w-[80%]`}>
-                      {item.format}
-                    </h3>
-                    <div className="mt-auto flex items-center justify-between relative">
-                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
-                      <ArrowRight className={`h-5 w-5 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* AI-разбор — бирюзовая плашка с приглашением */}
-          <section className="px-4 md:px-6 pb-16 md:pb-24">
+          {/* Предварительная диагностика — вводный блок */}
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-10 md:pt-16 pb-10 md:pb-16">
             <div className="container mx-auto max-w-7xl">
               <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
+                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
                   <div className="md:col-span-7">
                     <div className="inline-flex items-center gap-2 bg-white/15 text-white px-4 py-2 rounded-full mb-5">
                       <Sparkles className="w-4 h-4" />
-                      <span className="text-sm font-semibold">AI-разбор</span>
+                      <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest">
+                        Предварительная диагностика
+                      </span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
-                      Не уверены, какой{" "}
-                      <span className="font-iriska font-normal italic text-white">формат</span>{" "}
-                      выбрать?
+                      Разберите один ключевой процесс
                     </h2>
-                    <p className="text-base md:text-lg text-white/85 mb-10 max-w-xl">
-                      Пройдите короткий аудит. Он займёт несколько минут и поможет понять,
-                      что сейчас актуальнее: стратегическая встреча, аудит, обучение, внедрение, разработка или сопровождение.
+                    <p className="text-base md:text-lg text-white/85 mb-6 max-w-xl">
+                      За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
+                      желаемый результат. Ответы помогут подготовить предметный разговор и
+                      определить следующий шаг.
                     </p>
+                    <ul className="space-y-2.5 mb-8">
+                      {[
+                        "увидите масштаб ручной работы",
+                        "зафиксируете основные проблемы и риски",
+                        "подготовите данные для первого разговора",
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-white/85">
+                          <Check className="w-4 h-4 mt-0.5 shrink-0 text-white" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                     {!diagnosticStarted && (
                       <PillButton onClick={startDiagnostic} variant="light">
-                        Запустить аудит
+                        Начать диагностику
                       </PillButton>
                     )}
                   </div>
@@ -332,7 +268,7 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* Diagnostic Section */}
+          {/* Анкета из 8 шагов */}
           {diagnosticStarted && (
             <section ref={diagnosticRef} className="py-10 md:py-16 bg-muted">
               <div className="container mx-auto px-4">
@@ -340,6 +276,62 @@ const StartPage = () => {
               </div>
             </section>
           )}
+
+          {/* Возможные следующие шаги — форматы работы */}
+          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+            <div className="max-w-3xl mb-8 md:mb-10">
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-4">
+                Возможные следующие{" "}
+                <span className="font-iriska font-normal italic text-accent">шаги</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Подходящий формат определим после предварительной диагностики или короткого разговора.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {formats.map((item, i) => {
+                const palettes = [
+                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
+                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
+                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
+                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
+                ];
+                const p = palettes[i % palettes.length];
+                return (
+                  <Link
+                    key={i}
+                    to={item.to}
+                    className={`group relative flex flex-col rounded-[24px] ${p.bg} p-5 md:p-6 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[190px]`}
+                  >
+                    <img
+                      src={item.sketch}
+                      alt=""
+                      width={512}
+                      height={512}
+                      loading="lazy"
+                      className="absolute -bottom-3 -right-3 w-24 md:w-28 h-auto object-contain opacity-90 pointer-events-none"
+                    />
+                    <p className={`text-xs ${p.muted} mb-1.5 relative max-w-[85%]`}>{item.situation}</p>
+                    <h3 className={`text-base md:text-lg font-bold ${p.text} leading-[1.15] mb-4 relative max-w-[85%]`}>
+                      {item.format}
+                    </h3>
+                    <div className="mt-auto flex items-center justify-between relative">
+                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
+                      <ArrowRight className={`h-4 w-4 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="mt-8 flex justify-center">
+              <PillButton to="/services" variant="dark">
+                Посмотреть все услуги
+              </PillButton>
+            </div>
+          </section>
         </main>
 
         <FAQTeaser
