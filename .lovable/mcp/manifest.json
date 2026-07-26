@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://nzjqcbuceizpcavrmgnv.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "aleksamois-mcp",
+      "version": "0.1.0",
+      "title": "Александра Моисеева — MCP"
+    },
+    "tools": [
+      {
+        "name": "list_ideas",
+        "title": "Список идей",
+        "description": "Возвращает идеи из клиентского портала (portal ideas): заголовок, описание, статус, приоритет, число голосов.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "backlog",
+                "planned",
+                "in_progress",
+                "done"
+              ],
+              "description": "Фильтр по статусу."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Сколько записей вернуть (по умолчанию 50)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_release_notes",
+        "title": "Список обновлений",
+        "description": "Возвращает release notes клиентского портала: версия, дата, статус, что нового.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "description": "Сколько записей вернуть (по умолчанию 20)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_roadmap",
+        "title": "Roadmap",
+        "description": "Возвращает элементы дорожной карты: заголовок, статус, квартал, описание.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "planned",
+                "in_progress",
+                "done"
+              ],
+              "description": "Фильтр по статусу."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_idea",
+        "title": "Отправить идею",
+        "description": "Создаёт новую идею в клиентском портале от имени вошедшего пользователя.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 3,
+              "description": "Короткий заголовок идеи."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 10,
+              "description": "Подробное описание."
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Приоритет."
+            }
+          },
+          "required": [
+            "title",
+            "description"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
