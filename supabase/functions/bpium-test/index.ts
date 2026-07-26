@@ -47,6 +47,12 @@ Deno.serve(async (req) => {
       return json(r, r.ok ? 200 : 502)
     }
 
+    if (action === 'get') {
+      const path = url.searchParams.get('path') ?? '/api/v1/catalogs/81'
+      const r = await bpium(path)
+      return json(r, r.ok ? 200 : 502)
+    }
+
     if (action === 'create') {
       const payload = await req.json()
       const r = await bpium('/api/v1/catalogs/81/records', {
