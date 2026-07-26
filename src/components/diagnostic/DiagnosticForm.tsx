@@ -58,6 +58,15 @@ const clearDraft = () => {
   }
 };
 
+/* есть ли незавершённый черновик — нужно, чтобы форма снова открылась после обновления страницы */
+export const hasDiagnosticDraft = () => {
+  try {
+    return !!sessionStorage.getItem(DRAFT_KEY);
+  } catch {
+    return false;
+  }
+};
+
 /* нормализация телефона: только цифры, 8XXXXXXXXXX → +7XXXXXXXXXX */
 export const normalizePhone = (raw: string) => {
   let d = raw.replace(/\D/g, "");
