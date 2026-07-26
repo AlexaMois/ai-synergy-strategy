@@ -2,6 +2,8 @@ import { createClient } from "@supabase/supabase-js";
 import { defineTool, type ToolContext } from "@lovable.dev/mcp-js";
 import { z } from "zod";
 
+declare const process: { env: Record<string, string | undefined> };
+
 export default defineTool({
   name: "submit_idea",
   title: "Отправить идею",
