@@ -161,8 +161,8 @@ const StartPage = () => {
           {/* HERO — большая розовая плашка (контраст с бирюзовой главной) */}
           <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-5 md:px-12 lg:px-16 py-8 md:py-20">
+              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-card ring-1 ring-foreground/5">
+                <div className="grid md:grid-cols-12 gap-6 md:gap-4 items-center px-5 md:px-10 lg:px-14 py-7 md:py-14">
                   <div className="md:col-span-7">
                     <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
                       С чего начать
@@ -200,14 +200,14 @@ const StartPage = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end">
+                  <div className="md:col-span-5 flex justify-center md:justify-end md:pr-2">
                     <img
                       src={brainHeartSketch}
                       alt="Цифровизация бизнеса — выбор первого процесса для автоматизации"
                       width={800}
                       height={800}
                       loading="lazy"
-                      className="w-40 sm:w-48 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
+                      className="w-36 sm:w-44 md:w-60 lg:w-72 h-auto object-contain"
                     />
                   </div>
                 </div>
@@ -216,41 +216,30 @@ const StartPage = () => {
           </section>
 
           {/* Предварительная диагностика — вводный блок */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-12 md:pt-20 pb-10 md:pb-16">
-            <div className="container mx-auto max-w-4xl text-center">
-              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-5">
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-8 md:pt-12 pb-0">
+            <div className="container mx-auto max-w-3xl text-center">
+              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
                 Предварительная диагностика
               </span>
-              <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-bold text-foreground leading-[1.1] mb-6">
-                Разберите один{" "}
-                <span className="font-iriska font-normal italic text-accent">ключевой процесс</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
+                Разберите один ключевой процесс
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                 За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
                 желаемый результат. Ответы помогут подготовить предметный разговор и
                 определить следующий шаг.
               </p>
-              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-9">
-                {[
-                  "увидите масштаб ручной работы",
-                  "зафиксируете основные проблемы и риски",
-                  "подготовите данные для первого разговора",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
-                    <Check className="w-4 h-4 shrink-0 text-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
               {!diagnosticStarted && (
-                <PillButton onClick={startDiagnostic}>Начать диагностику</PillButton>
+                <div className="mt-10 mb-2">
+                  <PillButton onClick={startDiagnostic}>Начать диагностику</PillButton>
+                </div>
               )}
             </div>
           </section>
 
           {/* Анкета из 8 шагов */}
           {diagnosticStarted && (
-            <section ref={diagnosticRef} className="py-10 md:py-16 bg-muted">
+            <section ref={diagnosticRef} className="pt-10 md:pt-14 pb-10 md:pb-14">
               <div className="container mx-auto px-4">
                 <DiagnosticForm />
               </div>
