@@ -99,6 +99,8 @@ Deno.serve(async (req) => {
   const d = parsed.data
 
   const values: Record<string, unknown> = {
+    // Тип обращения: Полная диагностика
+    '51': '2',
     // 1. Контактные данные
     '2': d.name,
     '3': d.position,
