@@ -6,7 +6,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
 import { Sparkles, ArrowRight, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
-import DiagnosticForm from "@/components/diagnostic/DiagnosticForm";
+import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
@@ -67,7 +67,7 @@ const PillButton = ({
 };
 
 const StartPage = () => {
-  const [diagnosticStarted, setDiagnosticStarted] = useState(false);
+  const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
   
   const diagnosticRef = useRef<HTMLDivElement>(null);
 
