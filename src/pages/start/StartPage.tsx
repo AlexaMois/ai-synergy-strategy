@@ -247,55 +247,32 @@ const StartPage = () => {
           )}
 
           {/* Возможные следующие шаги — форматы работы */}
-          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
-            <div className="max-w-3xl mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-4">
-                Возможные следующие{" "}
-                <span className="font-iriska font-normal italic text-accent">шаги</span>
+          <section className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
+            <div className="max-w-3xl mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-[1.12] mb-3">
+                Что может быть следующим шагом
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
-                Подходящий формат определим после предварительной диагностики или короткого разговора.
+              <p className="text-base text-muted-foreground">
+                Подходящий формат определим после диагностики или короткого разговора.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {formats.map((item, i) => {
-                const palettes = [
-                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
-                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
-                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
-                ];
-                const p = palettes[i % palettes.length];
-                return (
+            <ul className="divide-y divide-border rounded-2xl border border-border bg-card">
+              {formats.map((item) => (
+                <li key={item.to}>
                   <Link
-                    key={i}
                     to={item.to}
-                    className={`group relative flex flex-col rounded-[24px] ${p.bg} p-5 md:p-6 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[190px]`}
+                    className="group flex items-start justify-between gap-4 px-5 py-4 md:px-6 md:py-5 hover:bg-muted/50 transition-colors"
                   >
-                    <img
-                      src={item.sketch}
-                      alt=""
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      className="absolute -bottom-3 -right-3 w-24 md:w-28 h-auto object-contain opacity-90 pointer-events-none"
-                    />
-                    <p className={`text-xs ${p.muted} mb-1.5 relative max-w-[85%]`}>{item.situation}</p>
-                    <h3 className={`text-base md:text-lg font-bold ${p.text} leading-[1.15] mb-4 relative max-w-[85%]`}>
-                      {item.format}
-                    </h3>
-                    <div className="mt-auto flex items-center justify-between relative">
-                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
-                      <ArrowRight className={`h-4 w-4 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
-                    </div>
+                    <span className="text-sm md:text-base text-foreground">
+                      <span className="font-semibold">{item.title}</span>
+                      <span className="text-muted-foreground"> — {item.note}</span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 mt-1 shrink-0 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                   </Link>
-                );
-              })}
-            </div>
-            <div className="mt-8 flex justify-center">
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex justify-start">
               <PillButton to="/services" variant="dark">
                 Посмотреть все услуги
               </PillButton>
