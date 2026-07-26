@@ -14,3 +14,6 @@ verify_jwt = false
 
 [functions.save-stylist-lead]
 verify_jwt = false
+
+[functions.bpium-test]
+verify_jwt = false
