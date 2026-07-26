@@ -147,16 +147,26 @@ Deno.serve(async (req) => {
   if (d.companyOwner) values['30'] = d.companyOwner
   if (d.notes) values['28'] = d.notes
 
-  try {
-    const res = await fetch(`${BASE}/api/v1/catalogs/${CATALOG_ID}/records`, {
+  const post = (v: Record<string, unknown>) =>
+    fetch(`${BASE}/api/v1/catalogs/${CATALOG_ID}/records`, {
       method: 'POST',
       headers: {
         Authorization: 'Basic ' + btoa(`${LOGIN}:${PASSWORD}`),
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ values }),
+      body: JSON.stringify({ values: v }),
     })
-    const text = await res.text()
+
+  try {
+    let res = await post(values)
+    let text = await res.text()
+    // Поле 51 «Тип обращения» может отсутствовать в каталоге — тогда повторяем без него
+    if (!res.ok && '51' in values) {
+      console.warn('bpium_retry_without_51', res.status, text)
+      const { ['51']: _omit, ...rest } = values
+      res = await post(rest)
+      text = await res.text()
+    }
     if (!res.ok) {
       console.error('bpium_error', res.status, text)
       return json({ error: 'Не удалось отправить анкету. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
