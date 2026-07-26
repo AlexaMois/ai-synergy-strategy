@@ -130,16 +130,14 @@ const CallbackModal = () => {
       }
       const { error } = await supabase.functions.invoke("send-to-telegram", {
         body: {
-          formType: variant === "task" ? "task" : "callback",
+          formType: "callback",
           data: {
             name: data.name,
             company: "—",
             industry: "—",
             phone: data.phone,
             email: "callback@no-reply.local",
-            comment:
-              data.comment ||
-              (variant === "task" ? "Запрос: обсудить задачу" : "Заказ обратного звонка"),
+            comment: data.comment || "Заказ обратного звонка",
           },
           pageUrl: location.pathname,
           website: honeypot,
@@ -156,7 +154,7 @@ const CallbackModal = () => {
       }
       setIsSubmitting(false);
       setIsSubmitted(true);
-      trackFormSubmission((variant === "task" ? "task" : "callback") as any);
+      trackFormSubmission("callback" as any);
     } catch (e) {
       console.error("callback submit error", e);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
