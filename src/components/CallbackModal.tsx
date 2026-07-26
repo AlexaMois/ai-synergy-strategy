@@ -90,6 +90,44 @@ const CallbackModal = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
+      if (variant === "task") {
+        const { error: bpiumError } = await supabase.functions.invoke("submit-short-lead", {
+          body: {
+            name: data.name.trim(),
+            phone: data.phone,
+            task: data.comment?.trim() || "",
+            consent: true,
+            website: honeypot,
+          },
+        });
+        if (bpiumError) {
+          toast.error("Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru");
+          setIsSubmitting(false);
+          return;
+        }
+        // дублирование в Telegram — не блокирует успех
+        supabase.functions
+          .invoke("send-to-telegram", {
+            body: {
+              formType: "task",
+              data: {
+                name: data.name,
+                company: "—",
+                industry: "—",
+                phone: data.phone,
+                email: "callback@no-reply.local",
+                comment: data.comment || "Запрос: обсудить задачу",
+              },
+              pageUrl: location.pathname,
+              website: honeypot,
+            },
+          })
+          .catch(() => undefined);
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        trackFormSubmission("task" as any);
+        return;
+      }
       const { error } = await supabase.functions.invoke("send-to-telegram", {
         body: {
           formType: variant === "task" ? "task" : "callback",
@@ -129,9 +167,9 @@ const CallbackModal = () => {
   const title = variant === "task" ? "Обсудить задачу" : "Заказать звонок";
   const description =
     variant === "task"
-      ? "Опишите задачу и оставьте контакт — свяжусь в ближайшее рабочее время."
+      ? "Оставьте контакты. Я свяжусь с вами в MAX и уточню задачу за 15–20 минут."
       : "Оставьте номер — я перезвоню в ближайшее рабочее время.";
-  const submitLabel = variant === "task" ? "Отправить" : "Заказать звонок";
+  const submitLabel = variant === "task" ? "Отправить заявку" : "Заказать звонок";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -139,9 +177,11 @@ const CallbackModal = () => {
         {isSubmitted ? (
           <div className="py-6 text-center">
             <DialogHeader>
-              <DialogTitle className="text-2xl">Спасибо, заявка отправлена</DialogTitle>
+              <DialogTitle className="text-2xl">Спасибо. Заявка отправлена</DialogTitle>
               <DialogDescription className="text-base text-foreground pt-2">
-                Я свяжусь с вами в ближайшее рабочее время.
+                {variant === "task"
+                  ? "Я свяжусь с вами в MAX."
+                  : "Я свяжусь с вами в ближайшее рабочее время."}
               </DialogDescription>
             </DialogHeader>
           </div>
@@ -163,7 +203,10 @@ const CallbackModal = () => {
                 {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cb-phone">Телефон <span className="text-primary">*</span></Label>
+                <Label htmlFor="cb-phone">
+                  {variant === "task" ? "Телефон, привязанный к MAX" : "Телефон"}{" "}
+                  <span className="text-primary">*</span>
+                </Label>
                 <Input
                   id="cb-phone"
                   type="tel"
@@ -175,7 +218,9 @@ const CallbackModal = () => {
                 {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cb-comment">Комментарий</Label>
+                <Label htmlFor="cb-comment">
+                  {variant === "task" ? "Кратко опишите задачу" : "Комментарий"}
+                </Label>
                 <Textarea
                   id="cb-comment"
                   placeholder="Коротко о задаче (необязательно)"
