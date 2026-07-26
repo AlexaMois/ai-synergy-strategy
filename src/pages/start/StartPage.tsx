@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -6,10 +6,8 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
 import { Sparkles, ArrowRight, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
-import AIDiagnostic from "@/components/ai-calculator/AIDiagnostic";
+import DiagnosticForm from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
-import { DiagnosticData, CalculationResult } from "@/components/ai-calculator/types";
-import { trackCTAClick } from "@/utils/analytics";
 import { openTaskModal } from "@/components/CallbackModal";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
@@ -79,14 +77,6 @@ const StartPage = () => {
       diagnosticRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
-
-  const handleDiagnosticComplete = useCallback((data: DiagnosticData, result: CalculationResult) => {
-    // Results handled within AIDiagnostic component
-  }, []);
-
-  const handleCTA = useCallback(() => {
-    trackCTAClick({ location: 'other', buttonText: 'Start Page CTA' });
-  }, []);
 
   const formats = [
     {
