@@ -70,12 +70,24 @@ const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
   
   const diagnosticRef = useRef<HTMLDivElement>(null);
+  const diagnosticIntroRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
     setTimeout(() => {
       diagnosticRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
+  };
+
+  // Кнопка первого экрана: раскрыть анкету и сразу прокрутить к ней
+  const goToDiagnostic = () => {
+    setDiagnosticStarted(true);
+    setTimeout(() => {
+      (diagnosticRef.current ?? diagnosticIntroRef.current)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 120);
   };
 
   const formats = [
