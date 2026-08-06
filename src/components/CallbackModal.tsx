@@ -91,7 +91,7 @@ const CallbackModal = () => {
     setIsSubmitting(true);
     try {
       if (variant === "task") {
-        const { error: bpiumError } = await supabase.functions.invoke("submit-short-lead", {
+        const { data: bpiumData, error: bpiumError } = await supabase.functions.invoke("submit-short-lead", {
           body: {
             name: data.name.trim(),
             phone: data.phone,
@@ -105,19 +105,12 @@ const CallbackModal = () => {
           setIsSubmitting(false);
           return;
         }
-        // дублирование в Telegram — не блокирует успех
+        // Уведомление в Telegram: только номер записи, форма и время. Без персональных данных.
         supabase.functions
           .invoke("send-to-telegram", {
             body: {
-              formType: "task",
-              data: {
-                name: data.name,
-                company: "—",
-                industry: "—",
-                phone: data.phone,
-                email: "callback@no-reply.local",
-                comment: data.comment || "Запрос: обсудить задачу",
-              },
+              formName: "Обсудить задачу",
+              recordId: (bpiumData as { recordId?: string } | null)?.recordId,
               pageUrl: location.pathname,
               website: honeypot,
             },
@@ -128,18 +121,13 @@ const CallbackModal = () => {
         trackFormSubmission("task" as any);
         return;
       }
-      const { error } = await supabase.functions.invoke("send-to-telegram", {
+      // Заказ звонка: контакты уходят только в CRM (Bpium), в Telegram — номер записи.
+      const { data: callbackData, error } = await supabase.functions.invoke("submit-short-lead", {
         body: {
-          formType: "callback",
-          data: {
-            name: data.name,
-            company: "—",
-            industry: "—",
-            phone: data.phone,
-            email: "callback@no-reply.local",
-            comment: data.comment || "Заказ обратного звонка",
-          },
-          pageUrl: location.pathname,
+          name: data.name.trim(),
+          phone: data.phone,
+          task: data.comment?.trim() || "Заказ обратного звонка",
+          consent: true,
           website: honeypot,
         },
       });
@@ -152,6 +140,16 @@ const CallbackModal = () => {
         setIsSubmitting(false);
         return;
       }
+      supabase.functions
+        .invoke("send-to-telegram", {
+          body: {
+            formName: "Заказать звонок",
+            recordId: (callbackData as { recordId?: string } | null)?.recordId,
+            pageUrl: location.pathname,
+            website: honeypot,
+          },
+        })
+        .catch(() => undefined);
       setIsSubmitting(false);
       setIsSubmitted(true);
       trackFormSubmission("callback" as any);

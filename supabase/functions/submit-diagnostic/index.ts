@@ -80,6 +80,7 @@ const Schema = z.object({
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
+  const requestId = crypto.randomUUID()
   const json = (data: unknown, status = 200) =>
     new Response(JSON.stringify(data), {
       status,
@@ -100,7 +101,7 @@ Deno.serve(async (req) => {
     return json({ error: 'Некорректный запрос' }, 400)
   }
   if (!parsed.success) {
-    console.error('validation_error', JSON.stringify(parsed.error.flatten().fieldErrors))
+    console.error('validation_error', requestId, Object.keys(parsed.error.flatten().fieldErrors).join(','))
     return json({ error: 'Проверьте заполнение полей анкеты', fields: parsed.error.flatten().fieldErrors }, 400)
   }
   const d = parsed.data
@@ -168,19 +169,19 @@ Deno.serve(async (req) => {
     const res = await post(values)
     const text = await res.text()
     if (!res.ok) {
-      console.error('bpium_error', res.status, text)
+      console.error('bpium_error', requestId, res.status)
       return json({ error: 'Не удалось отправить анкету. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
     }
     let recordId: string | null = null
     try { recordId = JSON.parse(text)?.id ?? null } catch { /* ignore */ }
     if (!recordId) {
-      console.error('bpium_no_id', text)
+      console.error('bpium_no_id', requestId, res.status)
       return json({ error: 'Не удалось отправить анкету. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
     }
-    console.log('diagnostic_created', recordId)
+    console.log('diagnostic_created', requestId, recordId)
     return json({ ok: true, recordId })
   } catch (e) {
-    console.error('bpium_request_failed', String(e))
+    console.error('bpium_request_failed', requestId)
     return json({ error: 'Сервис временно недоступен. Попробуйте позже или напишите на ai@aleksamois.ru' }, 502)
   }
 })

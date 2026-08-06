@@ -228,7 +228,7 @@ serve(async (req) => {
     const rawBody = await req.json();
     const parsed = SaveStylistLeadSchema.safeParse(rawBody);
     if (!parsed.success) {
-      console.error("Validation failed:", parsed.error.flatten());
+      console.error("validation_error", Object.keys(parsed.error.flatten().fieldErrors).join(","));
       return new Response(
         JSON.stringify({ error: "Некорректные данные", details: parsed.error.flatten().fieldErrors }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
@@ -238,7 +238,7 @@ serve(async (req) => {
     const { name, contact, contact_type, answers, photos, items_count, max_photos, website, test_mode } = parsed.data;
 
     if (website && website.length > 0) {
-      console.warn("Honeypot triggered from", clientIP);
+      console.warn("honeypot_triggered");
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -262,95 +262,42 @@ serve(async (req) => {
       .single();
 
     if (insertError) {
-      console.error("Insert error:", insertError);
+      console.error("insert_error", insertError.code ?? "unknown");
       return new Response(JSON.stringify({ error: "Не удалось сохранить заявку" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    // Уведомление в Telegram без персональных данных: только номер анкеты, форма и время.
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
       try {
-        const text = formatTelegramMessage(
-          lead.lead_id,
-          name,
-          contact,
-          contact_type,
-          answers,
-          photos,
-          items_count,
-          max_photos,
-          test_mode,
-        );
-        // Telegram limits messages to 4096 chars; split if needed
-        const chunks: string[] = [];
-        const MAX = 3800;
-        if (text.length <= MAX) {
-          chunks.push(text);
-        } else {
-          let buf = "";
-          for (const line of text.split("\n")) {
-            if ((buf + line + "\n").length > MAX) {
-              chunks.push(buf);
-              buf = "";
-            }
-            buf += line + "\n";
-          }
-          if (buf) chunks.push(buf);
-        }
-        for (const chunk of chunks) {
-          const tgRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: chunk, parse_mode: "HTML" }),
-          });
-          if (!tgRes.ok) {
-            console.error("Telegram send failed:", tgRes.status, await tgRes.text());
-          }
-        }
-
-        for (const photo of photos) {
-          try {
-            const { data: signed, error: signErr } = await supabase.storage
-              .from("stylist-uploads")
-              .createSignedUrl(photo.path, 600);
-            if (signErr || !signed?.signedUrl) {
-              console.error("Sign URL failed for", photo.path, signErr);
-              continue;
-            }
-            const fileRes = await fetch(signed.signedUrl);
-            if (!fileRes.ok) {
-              console.error("Photo fetch failed:", photo.path, fileRes.status);
-              continue;
-            }
-            const blob = await fileRes.blob();
-            const form = new FormData();
-            form.append("chat_id", String(TELEGRAM_CHAT_ID));
-            form.append("caption", `${photo.slotLabel} · ${lead.lead_id}`);
-            form.append("photo", blob, photo.path.split("/").pop() || "photo.jpg");
-            const photoRes = await fetch(
-              `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`,
-              { method: "POST", body: form },
-            );
-            if (!photoRes.ok) {
-              const docForm = new FormData();
-              docForm.append("chat_id", String(TELEGRAM_CHAT_ID));
-              docForm.append("caption", `${photo.slotLabel} · ${lead.lead_id}`);
-              docForm.append("document", blob, photo.path.split("/").pop() || "photo.jpg");
-              await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
-                method: "POST",
-                body: docForm,
-              });
-            }
-          } catch (photoErr) {
-            console.error("Photo send exception:", photo.path, photoErr);
-          }
-        }
-      } catch (tgErr) {
-        console.error("Telegram exception:", tgErr);
+        const time = new Date().toLocaleString("ru-RU", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Asia/Krasnoyarsk",
+        });
+        const text =
+          `🔔 <b>Новая анкета НейроСтилист</b>\n\n` +
+          `📄 <b>Форма:</b> Анкета НейроСтилист (/neurostylist)\n` +
+          `🔢 <b>Номер анкеты:</b> ${lead.lead_id}${test_mode ? " (тест)" : ""}\n` +
+          `🕐 <b>Время:</b> ${time}\n\n` +
+          `Ответы, контакты и фото — только в закрытой панели. ` +
+          `В уведомлении персональные данные не передаются.`;
+        const tgRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: "HTML" }),
+        });
+        if (!tgRes.ok) console.error("telegram_error", tgRes.status);
+      } catch (_tgErr) {
+        console.error("telegram_request_failed");
       }
     } else {
-      console.warn("Telegram secrets missing — skipping notification");
+      console.warn("telegram_config_missing");
     }
 
     return new Response(
@@ -358,7 +305,7 @@ serve(async (req) => {
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   } catch (error) {
-    console.error("save-stylist-lead error:", error);
+    console.error("save_stylist_lead_failed");
     return new Response(JSON.stringify({ error: "Внутренняя ошибка" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

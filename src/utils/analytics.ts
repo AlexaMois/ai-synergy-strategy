@@ -1,4 +1,5 @@
-// Google Analytics & Yandex.Metrika event tracking utility
+// Yandex.Metrika event tracking utility.
+// Google Analytics 4 и Google Tag Manager отключены — события в Google не отправляются.
 
 declare global {
   interface Window {
@@ -8,9 +9,8 @@ declare global {
 }
 
 const YANDEX_COUNTER_ID = 99058653;
-const YANDEX_COUNTER_ID_2 = 106050098;
 
-// ─── Yandex.Metrika goals on secondary counter ──────────────────────────────
+// ─── Yandex.Metrika goals ───────────────────────────────────────────────────
 
 const ymGoal = (counterId: number, goal: string) => {
   if (typeof window !== 'undefined' && typeof window.ym === 'function') {
@@ -19,15 +19,15 @@ const ymGoal = (counterId: number, goal: string) => {
 };
 
 export const trackZakazatZvonok = () => {
-  ymGoal(YANDEX_COUNTER_ID_2, 'click_zakazat_zvonok');
+  ymGoal(YANDEX_COUNTER_ID, 'click_zakazat_zvonok');
 };
 
 export const trackCtaPillar = () => {
-  ymGoal(YANDEX_COUNTER_ID_2, 'click_cta_pillar');
+  ymGoal(YANDEX_COUNTER_ID, 'click_cta_pillar');
 };
 
 export const trackPillarToService = () => {
-  ymGoal(YANDEX_COUNTER_ID_2, 'click_pillar_to_service');
+  ymGoal(YANDEX_COUNTER_ID, 'click_pillar_to_service');
 };
 
 // ─── UTM Tracking ───────────────────────────────────────────────────────────
@@ -100,17 +100,7 @@ interface TrackCTAClickParams {
 
 export const trackCTAClick = ({ location, buttonText = 'Заказать звонок', pageUrl }: TrackCTAClickParams) => {
   const utmData = getUTMData();
-  
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'cta_click', {
-      event_category: 'engagement',
-      event_label: location,
-      button_text: buttonText,
-      page_url: pageUrl || window.location.pathname,
-      ...utmData,
-    });
-  }
-  
+
   // Yandex.Metrika goal
   if (typeof window !== 'undefined' && window.ym) {
     window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'cta_click', {
@@ -125,16 +115,7 @@ export type FormType = 'contact' | 'diagnostic' | 'checklist' | 'callback' | 'ta
 
 export const trackFormSubmission = (formType: FormType) => {
   const utmData = getUTMData();
-  
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'form_submission', {
-      event_category: 'conversion',
-      event_label: formType,
-      page_url: window.location.pathname,
-      ...utmData,
-    });
-  }
-  
+
   // Yandex.Metrika goal
   if (typeof window !== 'undefined' && window.ym) {
     window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'form_submit', {
@@ -146,16 +127,7 @@ export const trackFormSubmission = (formType: FormType) => {
 
 export const trackDownload = (documentName: string) => {
   const utmData = getUTMData();
-  
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'download', {
-      event_category: 'engagement',
-      event_label: documentName,
-      page_url: window.location.pathname,
-      ...utmData,
-    });
-  }
-  
+
   // Yandex.Metrika goal
   if (typeof window !== 'undefined' && window.ym) {
     window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'download', {
@@ -178,17 +150,6 @@ const trackScrollDepth = (depth: number) => {
   // Send to Yandex.Metrika
   if (typeof window !== 'undefined' && window.ym) {
     window.ym(YANDEX_COUNTER_ID, 'reachGoal', `scroll_${depth}`, utmData);
-  }
-  
-  // Also send to Google Analytics
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'scroll_depth', {
-      event_category: 'engagement',
-      event_label: `${depth}%`,
-      value: depth,
-      page_url: window.location.pathname,
-      ...utmData,
-    });
   }
 };
 
@@ -232,16 +193,7 @@ export const initEngagementTracking = () => {
   
   const engagementTimer = setTimeout(() => {
     const utmData = getUTMData();
-    
-    if (window.gtag) {
-      window.gtag('event', 'engaged_visit', {
-        event_category: 'engagement',
-        event_label: '30s',
-        page_url: window.location.pathname,
-        ...utmData,
-      });
-    }
-    
+
     if (window.ym) {
       window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'engaged_visit', {
         duration: '30s',
