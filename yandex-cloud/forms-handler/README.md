@@ -39,25 +39,66 @@ Supabase Edge Functions в маршруте ПДн не участвуют. Фр
 yc logging group update --name forms-logs --retention-period 168h
 ```
 
-## Сервисная учётная запись (минимальные права)
+## Три раздельные учётные записи
 
-Пароль личной учётной записи и роль владельца каталога не используются.
+Пароль личной учётной записи, роль владельца каталога и постоянные ключи основного
+аккаунта не используются. Доступ на развёртывание — временный, отзывается после приёмки.
+
+| Учётная запись | Назначение | Роли |
+| --- | --- | --- |
+| `forms-deployer-sa` | только развёртывание (временный доступ) | `functions.admin`, `api-gateway.editor`, `lockbox.editor` |
+| `forms-gateway-sa` | вызов функции из API Gateway | `functions.functionInvoker` |
+| `forms-handler-sa` | рабочая учётная запись функции | `logging.writer`, `lockbox.payloadViewer`, `storage.uploader` |
 
 ```bash
+yc iam service-account create --name forms-deployer-sa
+yc iam service-account create --name forms-gateway-sa
 yc iam service-account create --name forms-handler-sa
 
-yc resource-manager folder add-access-binding <folder-id> \
-  --service-account-name forms-handler-sa --role functions.functionInvoker
-yc resource-manager folder add-access-binding <folder-id> \
-  --service-account-name forms-handler-sa --role logging.writer
-yc resource-manager folder add-access-binding <folder-id> \
-  --service-account-name forms-handler-sa --role lockbox.payloadViewer
-yc resource-manager folder add-access-binding <folder-id> \
-  --service-account-name forms-handler-sa --role storage.uploader
+FOLDER=<folder-id>
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-deployer-sa --role functions.admin
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-deployer-sa --role api-gateway.editor
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-deployer-sa --role lockbox.editor
+
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-gateway-sa --role functions.functionInvoker
+
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-handler-sa --role logging.writer
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-handler-sa --role lockbox.payloadViewer
+yc resource-manager folder add-access-binding $FOLDER --service-account-name forms-handler-sa --role storage.uploader
 ```
 
-Для развёртывания из CI — отдельная учётная запись с `functions.admin` и
-`api-gateway.editor`, без доступа к содержимому заявок.
+`forms-deployer-sa` не имеет `lockbox.payloadViewer` — развёртывание не даёт доступа к
+значениям секретов и к содержимому заявок. Ключ развёртывания удаляется после приёмки:
+
+```bash
+yc iam access-key delete <key-id>
+yc iam key delete <key-id>
+```
+
+## Закрытый бакет для фотографий
+
+```bash
+yc storage bucket create --name <bucket> \
+  --default-storage-class standard --max-size 10737418240
+
+# публичное чтение и листинг запрещены
+yc storage bucket update --name <bucket> --public-read=false --public-list=false --public-config-read=false
+
+# автоудаление объектов через 90 дней
+yc storage bucket update --name <bucket> \
+  --lifecycle-rule id=expire-90d,enabled=true,days-to-expiration=90
+```
+
+Доступ к объектам — только по приватным подписанным ссылкам через `forms-handler-sa`
+(роль `storage.uploader`, без `storage.viewer`).
+
+Ограничения подписанных ссылок на загрузку (`POST /upload-url`):
+
+- срок действия — 5 минут;
+- допустимые типы — `image/jpeg`, `image/png`, `image/webp`, `image/heic`;
+- размер — до 15 МБ, подписывается точный `Content-Length` (иной размер отклоняется);
+- ключ объекта генерируется сервером (`ГГГГ-ММ-ДД/UUID.ext`), имя файла клиента не используется;
+- частота — не более 60 ссылок в час на один хешированный IP.
 
 ## Секреты (Yandex Lockbox)
 
@@ -104,17 +145,32 @@ DNS у регистратора: `CNAME forms → <gateway-id>.apigw.yandexcloud
 
 ## Переключение фронтенда
 
-После проверки эндпоинтов задать переменную сборки:
+Обязательная переменная сборки:
 
 ```
 VITE_FORMS_BASE_URL=https://forms.aleksamois.ru
 ```
 
-Пока переменная не задана, формы работают по прежнему маршруту — переключение обратимо.
+Автоматического возврата к прежним функциям Lovable больше нет. Если переменная не задана,
+любая отправка формы завершается безопасной ошибкой («Отправка форм временно недоступна»),
+данные при этом не покидают браузер.
+
+## Проверка после развёртывания (пять форм)
+
+1. «Обсудить задачу» (/start) → `POST /short-lead`
+2. «Заказать звонок» (шапка, FloatingCTA) → `POST /short-lead`
+3. Форма обратной связи (главная) → `POST /short-lead`
+4. Первичная диагностика процессов (/start) → `POST /diagnostic`
+5. Анкета НейроСтилист (/neurostylist) → `POST /upload-url` + `POST /stylist-lead`
+
+Критерии приёмки: запись создана в Bpium (каталог 81), в Telegram пришёл только номер
+записи, в логах отсутствуют значения полей и IP, фото доступны только по приватной ссылке.
 
 ## Отключение старых функций
 
-После успешной миграции: `save-lead` (не вызывается фронтендом) удаляется первой,
-затем `submit-short-lead`, `submit-diagnostic`, `save-stylist-lead`, `send-to-telegram`.
-Таблицы `leads`, `stylist_leads` и бакет `stylist-uploads` не удаляются до отдельного
-подтверждения и акта технической проверки.
+Фронтенд больше не вызывает ни одну из старых функций. После приёмки они удаляются
+в порядке: `save-lead`, `submit-short-lead`, `submit-diagnostic`, `save-stylist-lead`,
+`send-to-telegram`.
+
+Таблицы `leads`, `stylist_leads` и бакет `stylist-uploads` НЕ удаляются до отдельного
+письменного подтверждения и акта технической проверки.
