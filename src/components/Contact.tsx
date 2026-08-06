@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { supabase } from "@/integrations/supabase/client";
+import { submitForm, notifyForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 
@@ -111,41 +111,25 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В Telegram — номер записи без ПДн.
-      const { data: response, error } = await supabase.functions.invoke('submit-short-lead', {
-        body: {
-          name: data.name,
-          phone: data.phone,
-          email: data.email,
-          company: data.company,
-          industry: data.industry,
-          task: data.comment || '',
-          consent: true,
-          website: honeypot, // Honeypot field
-        },
+      const result = await submitForm('short-lead', {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        company: data.company,
+        industry: data.industry,
+        task: data.comment || '',
+        formName: 'Форма обратной связи',
+        consent: true,
+        website: honeypot, // Honeypot field
       });
 
-      if (error) {
-        console.error("Error submitting lead");
-        // Handle rate limit error
-        if (error.message?.includes("429") || error.message?.includes("rate")) {
-          toast.error("Слишком много запросов. Пожалуйста, попробуйте позже.");
-        } else {
-          toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
-        }
+      if (!result.ok) {
+        toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
         setIsSubmitting(false);
         return;
       }
 
-      supabase.functions
-        .invoke('send-to-telegram', {
-          body: {
-            formName: 'Форма обратной связи',
-            recordId: (response as { recordId?: string } | null)?.recordId,
-            pageUrl: location.pathname,
-            website: honeypot,
-          },
-        })
-        .catch(() => undefined);
+      void notifyForm('Форма обратной связи', result.recordId, location.pathname);
 
       setIsSubmitting(false);
       setIsSubmitted(true);

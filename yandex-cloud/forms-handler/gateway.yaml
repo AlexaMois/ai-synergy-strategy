@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: aleksamois-forms
+  version: 1.0.0
+paths:
+  /{path+}:
+    x-yc-apigateway-any-method:
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: FUNCTION_ID
+        service_account_id: SERVICE_ACCOUNT_ID

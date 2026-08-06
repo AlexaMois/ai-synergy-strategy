@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { submitForm } from "@/lib/formsClient";
 import {
   DiagnosticForm as FormData,
   emptyForm,
@@ -424,9 +424,8 @@ const DiagnosticForm = () => {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const { data, error } = await supabase.functions.invoke("submit-diagnostic", {
-        body: {
-          process: form.process.trim(),
+      const result = await submitForm("diagnostic", {
+        process: form.process.trim(),
           manualActions: form.manualActions,
           processDescription: form.processDescription.trim(),
           participants: Math.trunc(Number(form.participants)),
@@ -456,13 +455,13 @@ const DiagnosticForm = () => {
           notes: form.notes.trim(),
           wantsDraft: form.wantsDraft,
           consent: true,
-        },
       });
-      const id = (data as { recordId?: string } | null)?.recordId;
-      if (error || !id) {
+      const id = result.recordId;
+      if (!result.ok || !id) {
         submittedRef.current = false;
         setSubmitError(
-          "Не удалось отправить анкету. Проверьте соединение и попробуйте ещё раз или напишите на ai@aleksamois.ru"
+          result.error ||
+            "Не удалось отправить анкету. Проверьте соединение и попробуйте ещё раз или напишите на ai@aleksamois.ru"
         );
         return;
       }

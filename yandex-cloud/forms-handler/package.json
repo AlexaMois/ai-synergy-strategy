@@ -1,0 +1,13 @@
+{
+  "name": "aleksamois-forms-handler",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Обработчик форм сайта aleksamois.ru. Yandex Cloud Function (ru-central1) → Bpium → Telegram (только номер записи).",
+  "main": "index.mjs",
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.699.0",
+    "@aws-sdk/s3-request-presigner": "3.699.0",
+    "zod": "3.23.8"
+  }
+}

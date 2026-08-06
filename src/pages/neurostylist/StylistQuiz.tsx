@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { submitForm } from "@/lib/formsClient";
 import {
   QUIZ_QUESTIONS,
   SECTIONS,
@@ -358,34 +359,19 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
         });
       });
 
-      const { data, error } = await supabase.functions.invoke("save-stylist-lead", {
-        body: {
-          name,
-          contact: contactRaw,
-          contact_type,
-          answers: payload,
-          photos: photoPayload,
-          items_count: filledReviewItems.length,
-          max_photos: 20,
-          website,
-          test_mode: testMode,
-        },
+      const result = await submitForm("stylist-lead", {
+        name,
+        contact: contactRaw,
+        contact_type,
+        answers: payload,
+        photos: photoPayload,
+        items_count: filledReviewItems.length,
+        max_photos: 20,
+        website,
+        test_mode: testMode,
       });
 
-      let errBody: { error?: string; details?: Record<string, string[]> } | null = null;
-      if (error && typeof (error as { context?: Response }).context?.json === "function") {
-        try {
-          errBody = await (error as { context: Response }).context.clone().json();
-        } catch {
-          /* ignore */
-        }
-      }
-      const dataErr = data && (data as { error?: string }).error
-        ? (data as { error?: string; details?: Record<string, string[]> })
-        : null;
-      const failure = errBody || dataErr;
-
-      if (error || failure) {
+      if (!result.ok) {
         const fieldLabels: Record<string, string> = {
           name: "Имя",
           contact: "Контакт",
@@ -394,20 +380,19 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
           photos: "Фото",
           website: "Скрытое поле",
         };
-        const details = failure?.details;
+        const details = result.fields;
         if (details && typeof details === "object") {
           const lines = Object.entries(details)
             .map(([field, msgs]) => `• ${fieldLabels[field] || field}: ${(msgs as string[]).join(", ")}`)
             .join("\n");
-          toast.error(failure?.error || "Проверь данные анкеты", {
+          toast.error(result.error || "Проверь данные анкеты", {
             description: lines || undefined,
             duration: 8000,
           });
         } else {
-          const msg = failure?.error || error?.message || "Не удалось отправить, попробуй ещё раз";
-          toast.error(msg);
+          toast.error(result.error || "Не удалось отправить, попробуй ещё раз");
         }
-        console.error("save-stylist-lead failed:", { error, failure });
+        console.error("stylist-lead submit failed");
         setSubmitting(false);
         return;
       }
