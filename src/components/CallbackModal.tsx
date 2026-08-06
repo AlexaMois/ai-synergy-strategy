@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { submitForm, notifyForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission, trackZakazatZvonok } from "@/utils/analytics";
