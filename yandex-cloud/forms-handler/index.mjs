@@ -284,12 +284,28 @@ async function issueUploadUrl(d) {
       secretAccessKey: process.env.STORAGE_SECRET_ACCESS_KEY ?? '',
     },
   })
-  const ext = (d.fileName.match(/\.[a-zA-Z0-9]{1,5}$/)?.[0] ?? '.jpg').toLowerCase()
+  // Расширение берётся только из допустимого типа, имя файла клиента не используется в ключе.
+  const extByType = {
+    'image/jpeg': '.jpg',
+    'image/png': '.png',
+    'image/webp': '.webp',
+    'image/heic': '.heic',
+  }
+  const ext = extByType[d.contentType]
+  if (!ext) return null
   const key = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}${ext}`
+  // Ссылка одноразовая по назначению: жёстко зафиксированы ключ, тип и точный размер,
+  // срок действия — 5 минут. Приватный бакет: публичное чтение и листинг запрещены.
   const url = await getSignedUrl(
     s3,
-    new PutObjectCommand({ Bucket: UPLOADS_BUCKET, Key: key, ContentType: d.contentType }),
-    { expiresIn: 600 },
+    new PutObjectCommand({
+      Bucket: UPLOADS_BUCKET,
+      Key: key,
+      ContentType: d.contentType,
+      ContentLength: d.size,
+      ACL: 'private',
+    }),
+    { expiresIn: 300, signableHeaders: new Set(['content-type', 'content-length']) },
   )
   return { url, key }
 }

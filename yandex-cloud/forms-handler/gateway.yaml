@@ -14,4 +14,6 @@ paths:
       x-yc-apigateway-integration:
         type: cloud_functions
         function_id: FUNCTION_ID
+        # forms-gateway-sa — только functions.functionInvoker,
+        # без доступа к Lockbox и Object Storage
         service_account_id: SERVICE_ACCOUNT_ID
