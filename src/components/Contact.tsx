@@ -110,24 +110,22 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     setIsSubmitting(true);
     
     try {
-      const { data: response, error } = await supabase.functions.invoke('send-to-telegram', {
+      // Персональные данные уходят только в CRM (Bpium). В Telegram — номер записи без ПДн.
+      const { data: response, error } = await supabase.functions.invoke('submit-short-lead', {
         body: {
-          formType: 'contact',
-          data: {
-            name: data.name,
-            company: data.company,
-            industry: data.industry,
-            phone: data.phone,
-            email: data.email,
-            comment: data.comment || '',
-          },
-          pageUrl: location.pathname,
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          company: data.company,
+          industry: data.industry,
+          task: data.comment || '',
+          consent: true,
           website: honeypot, // Honeypot field
         },
       });
 
       if (error) {
-        console.error("Error sending to Telegram:", error);
+        console.error("Error submitting lead");
         // Handle rate limit error
         if (error.message?.includes("429") || error.message?.includes("rate")) {
           toast.error("Слишком много запросов. Пожалуйста, попробуйте позже.");
@@ -137,6 +135,17 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
         setIsSubmitting(false);
         return;
       }
+
+      supabase.functions
+        .invoke('send-to-telegram', {
+          body: {
+            formName: 'Форма обратной связи',
+            recordId: (response as { recordId?: string } | null)?.recordId,
+            pageUrl: location.pathname,
+            website: honeypot,
+          },
+        })
+        .catch(() => undefined);
 
       setIsSubmitting(false);
       setIsSubmitted(true);

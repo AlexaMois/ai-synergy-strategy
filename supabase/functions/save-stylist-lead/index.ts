@@ -228,7 +228,7 @@ serve(async (req) => {
     const rawBody = await req.json();
     const parsed = SaveStylistLeadSchema.safeParse(rawBody);
     if (!parsed.success) {
-      console.error("Validation failed:", parsed.error.flatten());
+      console.error("validation_error", Object.keys(parsed.error.flatten().fieldErrors).join(","));
       return new Response(
         JSON.stringify({ error: "Некорректные данные", details: parsed.error.flatten().fieldErrors }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
@@ -238,7 +238,7 @@ serve(async (req) => {
     const { name, contact, contact_type, answers, photos, items_count, max_photos, website, test_mode } = parsed.data;
 
     if (website && website.length > 0) {
-      console.warn("Honeypot triggered from", clientIP);
+      console.warn("honeypot_triggered");
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
