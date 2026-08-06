@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { supabase } from "@/integrations/supabase/client";
+import { submitForm, notifyForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 

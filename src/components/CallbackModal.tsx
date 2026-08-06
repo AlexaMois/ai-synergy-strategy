@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { submitForm, notifyForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission, trackZakazatZvonok } from "@/utils/analytics";
 
@@ -91,65 +92,43 @@ const CallbackModal = () => {
     setIsSubmitting(true);
     try {
       if (variant === "task") {
-        const { data: bpiumData, error: bpiumError } = await supabase.functions.invoke("submit-short-lead", {
-          body: {
-            name: data.name.trim(),
-            phone: data.phone,
-            task: data.comment?.trim() || "",
-            consent: true,
-            website: honeypot,
-          },
+        const taskResult = await submitForm("short-lead", {
+          name: data.name.trim(),
+          phone: data.phone,
+          task: data.comment?.trim() || "",
+          formName: "Обсудить задачу",
+          consent: true,
+          website: honeypot,
         });
-        if (bpiumError) {
-          toast.error("Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru");
+        if (!taskResult.ok) {
+          toast.error(
+            taskResult.error || "Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru",
+          );
           setIsSubmitting(false);
           return;
         }
         // Уведомление в Telegram: только номер записи, форма и время. Без персональных данных.
-        supabase.functions
-          .invoke("send-to-telegram", {
-            body: {
-              formName: "Обсудить задачу",
-              recordId: (bpiumData as { recordId?: string } | null)?.recordId,
-              pageUrl: location.pathname,
-              website: honeypot,
-            },
-          })
-          .catch(() => undefined);
+        void notifyForm("Обсудить задачу", taskResult.recordId, location.pathname);
         setIsSubmitting(false);
         setIsSubmitted(true);
         trackFormSubmission("task" as any);
         return;
       }
       // Заказ звонка: контакты уходят только в CRM (Bpium), в Telegram — номер записи.
-      const { data: callbackData, error } = await supabase.functions.invoke("submit-short-lead", {
-        body: {
-          name: data.name.trim(),
-          phone: data.phone,
-          task: data.comment?.trim() || "Заказ обратного звонка",
-          consent: true,
-          website: honeypot,
-        },
+      const callbackResult = await submitForm("short-lead", {
+        name: data.name.trim(),
+        phone: data.phone,
+        task: data.comment?.trim() || "Заказ обратного звонка",
+        formName: "Заказать звонок",
+        consent: true,
+        website: honeypot,
       });
-      if (error) {
-        if (error.message?.includes("429") || error.message?.includes("rate")) {
-          toast.error("Слишком много запросов. Пожалуйста, попробуйте позже.");
-        } else {
-          toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
-        }
+      if (!callbackResult.ok) {
+        toast.error(callbackResult.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
         setIsSubmitting(false);
         return;
       }
-      supabase.functions
-        .invoke("send-to-telegram", {
-          body: {
-            formName: "Заказать звонок",
-            recordId: (callbackData as { recordId?: string } | null)?.recordId,
-            pageUrl: location.pathname,
-            website: honeypot,
-          },
-        })
-        .catch(() => undefined);
+      void notifyForm("Заказать звонок", callbackResult.recordId, location.pathname);
       setIsSubmitting(false);
       setIsSubmitted(true);
       trackFormSubmission("callback" as any);
