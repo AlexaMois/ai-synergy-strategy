@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { X, ArrowLeft, ArrowRight, Check, Loader2, Upload, ImagePlus, Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
-import { submitForm } from "@/lib/formsClient";
+import { submitForm, uploadFormFile } from "@/lib/formsClient";
 import {
   QUIZ_QUESTIONS,
   SECTIONS,
@@ -1082,7 +1081,6 @@ const TypedPhotoUploadView = ({
 
   const removePhoto = (path: string) => {
     setPhotos((prev) => prev.filter((p) => p.path !== path));
-    void supabase.storage.from("stylist-uploads").remove([path]).catch(() => {});
   };
 
   const updateType = (path: string, type: string) => {
@@ -1245,7 +1243,6 @@ const ReviewItemsView = ({
     setItems((prev) => {
       const target = prev.find((x) => x.id === id);
       if (target?.photoPath) {
-        void supabase.storage.from("stylist-uploads").remove([target.photoPath]).catch(() => {});
       }
       return prev.filter((x) => x.id !== id);
     });
@@ -1332,7 +1329,6 @@ const ReviewItemCard = ({
         const oldPath = item.photoPath;
         onChange({ photoPath: path, photoName: file.name });
         if (oldPath) {
-          void supabase.storage.from("stylist-uploads").remove([oldPath]).catch(() => {});
         }
       }
     } finally {
