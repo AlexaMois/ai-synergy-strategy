@@ -34,12 +34,16 @@ const Schema = z.object({
   name: z.string().trim().min(1).max(150),
   phone: z.string().trim().min(6).max(30),
   task: z.string().trim().max(2000).optional().default(''),
+  email: z.string().trim().email().max(200).optional().or(z.literal('')),
+  company: z.string().trim().max(200).optional().default(''),
+  industry: z.string().trim().max(200).optional().default(''),
   consent: z.literal(true),
   website: z.string().max(0).optional(),
 })
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
+  const requestId = crypto.randomUUID()
   const json = (data: unknown, status = 200) =>
     new Response(JSON.stringify(data), {
       status,
@@ -58,7 +62,7 @@ Deno.serve(async (req) => {
     return json({ error: 'Некорректный запрос' }, 400)
   }
   if (!parsed.success) {
-    console.error('validation_error', JSON.stringify(parsed.error.flatten().fieldErrors))
+    console.error('validation_error', requestId, Object.keys(parsed.error.flatten().fieldErrors).join(','))
     return json({ error: 'Проверьте заполнение полей', fields: parsed.error.flatten().fieldErrors }, 400)
   }
   const d = parsed.data
@@ -79,6 +83,9 @@ Deno.serve(async (req) => {
     '47': 'Связаться с клиентом в MAX',
   }
   if (d.task) values['14'] = d.task
+  if (d.email) values['5'] = [{ contact: d.email }]
+  if (d.company) values['8'] = d.company
+  if (d.industry) values['9'] = d.industry
 
   const post = (v: Record<string, unknown>) =>
     fetch(`${BASE}/api/v1/catalogs/${CATALOG_ID}/records`, {
@@ -94,19 +101,19 @@ Deno.serve(async (req) => {
     const res = await post(values)
     const text = await res.text()
     if (!res.ok) {
-      console.error('bpium_error', res.status, text)
+      console.error('bpium_error', requestId, res.status)
       return json({ error: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
     }
     let recordId: string | null = null
     try { recordId = JSON.parse(text)?.id ?? null } catch { /* ignore */ }
     if (!recordId) {
-      console.error('bpium_no_id', text)
+      console.error('bpium_no_id', requestId, res.status)
       return json({ error: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
     }
-    console.log('short_lead_created', recordId)
+    console.log('short_lead_created', requestId, recordId)
     return json({ ok: true, recordId })
   } catch (e) {
-    console.error('bpium_request_failed', String(e))
+    console.error('bpium_request_failed', requestId)
     return json({ error: 'Сервис временно недоступен. Попробуйте позже или напишите на ai@aleksamois.ru' }, 502)
   }
 })

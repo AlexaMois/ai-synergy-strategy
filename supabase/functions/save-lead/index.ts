@@ -54,12 +54,16 @@ function checkRateLimit(key: string, maxRequests: number): { allowed: boolean; r
   return { allowed: true, remaining: maxRequests - entry.count, resetAt: entry.resetAt };
 }
 
-// Get client IP from request headers
-function getClientIP(req: Request): string {
-  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+// IP используется только in-memory для ограничения частоты запросов и никогда не логируется.
+async function getRateLimitKey(req: Request): Promise<string> {
+  const raw = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
          req.headers.get('x-real-ip') ||
          req.headers.get('cf-connecting-ip') ||
          'unknown';
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+  return Array.from(new Uint8Array(digest).slice(0, 8))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 serve(async (req) => {
@@ -69,12 +73,11 @@ serve(async (req) => {
   }
 
   try {
-    // Rate limiting check
-    const clientIP = getClientIP(req);
-    const rateLimit = checkRateLimit(`ip:${clientIP}`, MAX_REQUESTS_PER_IP);
+    // Rate limiting check (по хэшу IP, без логирования адреса)
+    const rateLimit = checkRateLimit(`ip:${await getRateLimitKey(req)}`, MAX_REQUESTS_PER_IP);
     
     if (!rateLimit.allowed) {
-      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      console.warn('rate_limit_exceeded');
       const retryAfter = Math.ceil((rateLimit.resetAt - Date.now()) / 1000);
       return new Response(
         JSON.stringify({ error: 'Too many requests. Please try again later.' }),
@@ -95,13 +98,13 @@ serve(async (req) => {
     );
 
     const body = await req.json();
-    console.log('Received lead data from IP:', clientIP);
+    console.log('lead_request_received');
 
     // Validate input with Zod
     const validationResult = SaveLeadSchema.safeParse(body);
     
     if (!validationResult.success) {
-      console.error('Validation error:', validationResult.error.flatten());
+      console.error('validation_error', Object.keys(validationResult.error.flatten().fieldErrors).join(','));
       return new Response(
         JSON.stringify({ error: 'Invalid input data', details: validationResult.error.flatten().fieldErrors }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
