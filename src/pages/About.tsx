@@ -140,12 +140,6 @@ const About = () => {
     threshold: 0.1
   });
   const {
-    ref: engineeringRef,
-    getAnimationClass: engineeringAnimation
-  } = useMobileAnimations({
-    threshold: 0.1
-  });
-  const {
     ref: positionRef,
     getAnimationClass: positionAnimation
   } = useMobileAnimations({
@@ -428,185 +422,6 @@ const About = () => {
         </section>
 
 
-        {/* Engineering Path - temporarily hidden */}
-        {false && <section ref={engineeringRef} className="py-14 md:py-20 lg:py-24 bg-muted">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className={`section-title text-center mb-8 ${engineeringAnimation('animate-fade-in-up')}`}>
-              Мой инженерный путь, <span className="font-semibold">в глубину ИИ</span>
-            </h2>
-            <p className={`text-lg text-foreground text-center mb-12 ${engineeringAnimation('animate-fade-in-up')}`} style={{
-              animationDelay: '0.1s'
-            }}>
-              Я не «освоила» ИИ. Я его изучила глубоко, как инженер.<br />
-              За последние 3 года я вложила 2000+ часов в специализированное образование.
-            </p>
-            
-            <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
-              <div className="space-y-8">
-                {/* Education Section */}
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-6">Образование (последние 3 года, 2000+ часов)</h3>
-                  <div className="space-y-4 ml-8">
-                    <div>
-                      <p className="font-medium text-foreground mb-2">Сколково — Программа руководства проектами на основе ИИ</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• Управление компаниями, которые используют ИИ</li>
-                        <li>• Руководство проектами внедрения</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <p className="font-medium text-foreground mb-2">SDS KAEO — уровень 5 (максимальный)</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• Это не просто сертификат, это квалификация специалиста высшей категории</li>
-                        <li>• Включает: архитектуру, безопасность, управление проектами</li>
-                        <li>• Переаттестация каждый год (нужно доказывать, что я в теме)</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <p className="font-medium text-foreground mb-2">Диплом на тему «Управление ИИ в малом бизнесе»</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• На основе реального проекта Крайпотребсоюза</li>
-                        <li>• Исследование: как ИИ меняет управление малым предприятием</li>
-                        <li>• Практический результат: ROI 278% (подтверждено)</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <p className="font-medium text-foreground mb-2">Специализированные курсы (последние 12 месяцев):</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• Инженерия подсказок: продвинутый уровень (от OpenAI и Anthropic)</li>
-                        <li>• Продвинутые архитектуры поиска и генерации (Coursera)</li>
-                        <li>• Multi-Agent Systems (учебная сеть)</li>
-                        <li>• Локализация языковых моделей для русского языка (Глубокое обучение.ИИ)</li>
-                      </ul>
-                    </div>
-
-                    <div className="mt-4 p-4 bg-primary/10 rounded-lg">
-                      <p className="font-medium mb-2">Почему это важно?</p>
-                      <p className="text-sm text-foreground">
-                        Образование — это не «я прошла курс». Это постоянное совершенствование.
-                        Каждый новый инструмент, каждая функция от OpenAI — я изучаю.
-                        Это значит, что мой совет всегда свежий, не из 2023 года.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Practical Experience Section */}
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-6">Практический опыт</h3>
-                  <ul className="space-y-3 text-base text-foreground ml-8">
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary flex-shrink-0 mt-1">•</span>
-                      <span>Собственный код (Python, Node.js, интерфейсы) → управляю разработчиками на уровне архитектуры</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary flex-shrink-0 mt-1">•</span>
-                      <div>
-                        <strong>3 активных проекта в сфере ИИ</strong> (развиваются на собственные средства):
-                        <ul className="mt-2 space-y-1 ml-4 text-sm">
-                          <li>- GolossOK (голосовой помощник) — 8 месяцев на рынке</li>
-                          <li>- Платформа исследований ИИ — используется 20+ компаниями</li>
-                          <li>- Парсер для документов на основе ИИ — готовится к масштабированию</li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Partnerships Section */}
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-6">Партнёрства (постоянные, не разовые)</h3>
-                  <div className="space-y-4 ml-8">
-                    <div>
-                      <p className="font-medium text-foreground mb-2">TT Consulting</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• Полное партнёрское соглашение</li>
-                        <li>• Привлекаю для крупных проектов: разработка + объединение систем</li>
-                        <li>• Я проверяю архитектуру и результат лично</li>
-                        <li>• Готовность: ответ в течение 48 часов, качество гарантировано</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <p className="font-medium text-foreground mb-2">Combox Technology</p>
-                      <ul className="space-y-1 text-sm text-foreground ml-4">
-                        <li>• Партнёр для интерфейсов и объединения систем</li>
-                        <li>• Постоянная техническая поддержка</li>
-                        <li>• Независимая проверка качества (не допускаю ошибок на стороне клиента)</li>
-                        <li>• Привлекаю для: объединение с CRM, платёжные системы, логистические интерфейсы</li>
-                      </ul>
-                    </div>
-
-                    <div className="mt-4 p-4 bg-primary/10 rounded-lg">
-                      <p className="font-medium mb-2">Моя роль: я не просто «нашла подрядчиков». Я контролирую:</p>
-                      <ul className="space-y-1 text-sm text-muted-foreground">
-                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Архитектуру (правильный ли подход?)</li>
-                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Сроки (вовремя ли?)</li>
-                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Качество (работает ли как надо?)</li>
-                        <li className="flex items-start gap-2"><span className="text-primary font-semibold">•</span> Результат (достигли ли целей?)</li>
-                      </ul>
-                      <p className="text-sm text-muted-foreground mt-2 italic">
-                        Если подрядчик не справляется → я беру на себя или ищу другого. Финальный результат — на мне.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Focus Section */}
-                <div>
-                  <h3 className="text-xl font-medium text-foreground mb-6">Мой фокус (это не пустые слова — примеры из реальных проектов)</h3>
-                  <div className="space-y-4">
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Архитектура</h4>
-                      <p className="text-muted-foreground text-sm mb-2">Крайпотребсоюз: спроектировала рабочий процесс на Bpium</p>
-                      <p className="text-sm text-primary font-medium">Результат: экономия 92% времени, 8 человек → половина полной занятости, ROI 278%</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Логика процессов</h4>
-                      <p className="text-muted-foreground text-sm mb-2">Грузовой Экспресс: спроектировала бот Telegram с разносом в таблицы</p>
-                      <p className="text-sm text-primary font-medium">Результат: экономия 4 часов/неделю, точность 99%, окупаемость 3 недели</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Объединение систем (интеграции)</h4>
-                      <p className="text-muted-foreground text-sm mb-2">GolossOK: голосовой помощник, объединённый с CRM, Telegram, таблицами</p>
-                      <p className="text-sm text-primary font-medium">Результат: ×5 скорость обработки заявок, точность распознавания 99%</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Защищённые контуры (данные не в облаке)</h4>
-                      <p className="text-muted-foreground text-sm mb-2">Используем локальные модели (LLaMA, Mistral) + закрытые интерфейсы</p>
-                      <p className="text-sm font-medium text-muted-foreground">Ваши данные остаются на вашем сервере</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Multi-Agent Systems (многоагентные системы)</h4>
-                      <p className="text-muted-foreground text-sm mb-2">Когда одного ИИ недостаточно → координирую несколько самостоятельных систем</p>
-                      <p className="text-sm font-medium text-muted-foreground">Пример: система проверки договоров + согласований + архива (Крайпотребсоюз)</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">RAG (система поиска и генерации)</h4>
-                      <p className="text-muted-foreground text-sm mb-2">ИИ ищет информацию в вашей базе, не фантазирует</p>
-                      <p className="text-sm font-medium text-muted-foreground">Пример: поиск по 5000+ договорам Крайпотребсоюза (точность 99%)</p>
-                    </div>
-
-                    <div className="bg-primary/10 rounded-xl p-5">
-                      <h4 className="font-medium text-foreground mb-2">Локальные модели</h4>
-                      <p className="text-muted-foreground text-sm mb-2">Для России: Яндекс.ГПТ, собственные модели</p>
-                      <p className="text-muted-foreground text-sm mb-2">Для других стран: Mistral, LLaMA</p>
-                      <p className="text-muted-foreground text-sm font-medium">Главное: ваши данные не на серверах OpenAI</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>}
 
         {/* My Position */}
         
@@ -861,10 +676,10 @@ const About = () => {
                     { label: "Роль", value: "Инженер и архитектор цифрового развития бизнеса" },
                     { label: "Компания", value: "Основатель агентства «НейроРешения»" },
                     { label: "Практика", value: "4+ года прикладных проектов в цифровизации и ИИ" },
-                    { label: "Проекты", value: "40 проектов в продакшн" },
-                    { label: "Разборы", value: "360 разборов процессов и задач" },
+                    { label: "Проекты", value: "40 внедрённых проектов" },
+                    { label: "Разборы", value: "360 разборов бизнес-процессов" },
                     { label: "Отрасли", value: "10 отраслей" },
-                    { label: "География", value: "7 городов, online/offline по России" },
+                    { label: "География", value: "7 городов, очно и дистанционно по России" },
                     { label: "Фокус", value: "Процессы, данные, управляемость, цифровые инструменты" },
                     { label: "Ключевая метрика", value: "Сумма ненужных расходов, которых удалось избежать клиентам" },
                   ].map((row) => (

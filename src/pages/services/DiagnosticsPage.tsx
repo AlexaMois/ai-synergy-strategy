@@ -59,7 +59,7 @@ const DiagnosticsPage = () => {
 
   const whyImportant = [
     { metric: "70%", text: "ИИ-проектов не достигают целей без разбора процессов" },
-    { metric: "3-6 мес", text: "среднее время на исправление ошибок внедрения" },
+    { metric: "3 мес", text: "средняя окупаемость решений после внедрения" },
     { metric: "×5-10", text: "стоимость переделки выше первоначального внедрения" }
   ];
 
@@ -67,11 +67,11 @@ const DiagnosticsPage = () => {
     <PageTransition>
       <Helmet>
         <title>Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева</title>
-        <meta name="description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
+        <meta name="description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект." />
         <meta name="keywords" content="аудит бизнес процессов, анализ автоматизации бизнес процессов, аудит автоматизации, анализ ИИ‑готовности" />
         <link rel="canonical" href="https://aleksamois.ru/services/diagnostics" />
         <meta property="og:title" content="Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева" />
-        <meta property="og:description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
+        <meta property="og:description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект." />
         <meta property="og:url" content="https://aleksamois.ru/services/diagnostics" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
@@ -81,13 +81,13 @@ const DiagnosticsPage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Аудит и разбор бизнес-процессов",
-            "description": "Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев.",
+            "name": "Глубокий аудит компании для цифровизации",
+            "description": "Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект.",
             "provider": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
             "areaServed": { "@type": "Country", "name": "Россия" },
             "serviceType": "AI Consulting",
             "url": "https://aleksamois.ru/services/diagnostics",
-            "offers": { "@type": "Offer", "priceCurrency": "RUB", "price": "6000", "description": "от 6 000 ₽" }
+            "offers": { "@type": "Offer", "priceCurrency": "RUB", "price": "116000", "description": "от 116 000 ₽" }
           })}
         </script>
         <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
@@ -269,7 +269,7 @@ const DiagnosticsPage = () => {
                 <div className="flex flex-wrap items-center gap-6 md:gap-10">
                   <div>
                     <div className="text-xs text-foreground/60 uppercase tracking-wide mb-1">Стоимость</div>
-                    <div className="text-2xl md:text-3xl font-bold text-primary">от 15 000 ₽</div>
+                    <div className="text-2xl md:text-3xl font-bold text-primary">от 116 000 ₽</div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-foreground/60" />
