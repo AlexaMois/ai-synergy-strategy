@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Cookie, X, Settings } from "lucide-react";
+import { Cookie } from "lucide-react";
 
 type ConsentState = {
   necessary: boolean;
@@ -9,7 +9,7 @@ type ConsentState = {
 };
 
 const CONSENT_STORAGE_KEY = "cookie_consent";
-const CONSENT_VERSION = "v2";
+const CONSENT_VERSION = "v3";
 export const COOKIE_SETTINGS_EVENT = "open-cookie-settings";
 
 // Яндекс.Метрика загружается только после согласия на аналитические cookies
@@ -26,7 +26,7 @@ const updateYandexConsent = (consent: ConsentState) => {
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
+  const [isReopened, setIsReopened] = useState(false);
   const [consent, setConsent] = useState<ConsentState>({
     necessary: true,
     analytics: false,
@@ -46,10 +46,8 @@ const CookieConsent = () => {
         // Invalid stored consent, show banner
       }
     }
-    
-    // Show banner after a short delay
-    const timer = setTimeout(() => setIsVisible(true), 1500);
-    return () => clearTimeout(timer);
+    // Первый показ — без задержки, выбор обязателен
+    setIsVisible(true);
   }, []);
 
   // Allow reopening settings from anywhere (e.g. Footer link)
@@ -64,25 +62,22 @@ const CookieConsent = () => {
           // ignore
         }
       }
-      setShowSettings(true);
+      setIsReopened(true);
       setIsVisible(true);
     };
     window.addEventListener(COOKIE_SETTINGS_EVENT, open);
     return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
   }, []);
 
-  // Auto-close after 15 seconds (accept only necessary cookies)
+  // Блокировка прокрутки, пока выбор не сделан
   useEffect(() => {
-    if (!isVisible || showSettings) return;
-    
-    const autoCloseTimer = setTimeout(() => {
-      const minConsent = { necessary: true, analytics: false };
-      setConsent(minConsent);
-      saveConsent(minConsent);
-    }, 15000);
-    
-    return () => clearTimeout(autoCloseTimer);
-  }, [isVisible, showSettings]);
+    if (!isVisible) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isVisible]);
 
   const saveConsent = (newConsent: ConsentState) => {
     localStorage.setItem(
@@ -91,20 +86,16 @@ const CookieConsent = () => {
     );
     updateYandexConsent(newConsent);
     setIsVisible(false);
-    setShowSettings(false);
+    setIsReopened(false);
   };
 
-  const acceptAll = () => {
+  const allowAnalytics = () => {
     const allConsent = { necessary: true, analytics: true };
     setConsent(allConsent);
     saveConsent(allConsent);
   };
 
-  const acceptSelected = () => {
-    saveConsent(consent);
-  };
-
-  const rejectAll = () => {
+  const declineAnalytics = () => {
     const minConsent = { necessary: true, analytics: false };
     setConsent(minConsent);
     saveConsent(minConsent);
@@ -113,76 +104,43 @@ const CookieConsent = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 z-[9999] max-w-[320px] animate-in slide-in-from-left-4 fade-in duration-300">
-      <div className="bg-background border border-border rounded-lg shadow-lg overflow-hidden">
-        <div className="p-3">
-          <div className="flex items-start gap-2">
-            <Cookie className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-            
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-foreground leading-relaxed mb-2">
-                Мы используем cookies для улучшения работы сайта.{" "}
-                <Link to="/legal/cookies" className="text-primary hover:underline">
-                  Подробнее
-                </Link>
-              </p>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-consent-title"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-foreground/50 backdrop-blur-sm animate-in fade-in duration-200"
+    >
+      <div className="w-full max-w-md rounded-2xl bg-background border border-border shadow-elevated p-6 animate-in zoom-in-95 duration-200">
+        <div className="flex items-center gap-2 mb-3">
+          <Cookie className="w-5 h-5 text-primary" />
+          <h2 id="cookie-consent-title" className="text-lg md:text-xl font-bold text-foreground">
+            Помогите сделать сайт полезнее
+          </h2>
+        </div>
 
-              {/* Compact Settings Panel */}
-              {showSettings && (
-                <div className="mb-2 p-2 bg-muted/50 rounded space-y-1.5 text-xs">
-                  <label className="flex items-center justify-between opacity-70">
-                    <span className="text-foreground">Необходимые</span>
-                    <input type="checkbox" checked disabled className="w-3.5 h-3.5 accent-primary" />
-                  </label>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <span className="text-foreground">Аналитика</span>
-                    <input
-                      type="checkbox"
-                      checked={consent.analytics}
-                      onChange={(e) => setConsent({ ...consent, analytics: e.target.checked })}
-                      className="w-3.5 h-3.5 accent-primary cursor-pointer"
-                    />
-                  </label>
-                </div>
-              )}
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+          Яндекс.Метрика помогает понять, какие страницы и материалы действительно полезны.
+          Рекламные и маркетинговые cookies на сайте не используются.
+        </p>
 
-              {/* Compact Buttons */}
-              <div className="flex flex-wrap gap-1.5">
-                <Button onClick={acceptAll} size="sm" className="h-7 text-xs px-2.5">
-                  Принять
-                </Button>
-                
-                {showSettings ? (
-                  <Button onClick={acceptSelected} variant="outline" size="sm" className="h-7 text-xs px-2.5">
-                    Сохранить
-                  </Button>
-                ) : (
-                  <Button 
-                    onClick={() => setShowSettings(true)} 
-                    variant="outline"
-                    size="sm"
-                    className="h-7 text-xs px-2.5"
-                  >
-                    <Settings className="w-3 h-3 mr-1" />
-                    Настроить
-                  </Button>
-                )}
-                
-                <Button onClick={rejectAll} variant="ghost" size="sm" className="h-7 text-xs px-2 text-muted-foreground">
-                  Отклонить
-                </Button>
-              </div>
-            </div>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <Button onClick={allowAnalytics} className="flex-1">
+            Разрешить аналитику
+          </Button>
+          <Button onClick={declineAnalytics} variant="outline" className="flex-1">
+            Продолжить без аналитики
+          </Button>
+        </div>
 
-            {/* Close button */}
-            <button
-              onClick={rejectAll}
-              className="p-0.5 hover:bg-muted rounded transition-colors flex-shrink-0"
-              aria-label="Закрыть"
-            >
-              <X className="w-3.5 h-3.5 text-muted-foreground" />
-            </button>
-          </div>
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <Link to="/legal/cookies" className="text-xs text-primary hover:underline">
+            Подробнее о cookies
+          </Link>
+          {isReopened && (
+            <span className="text-xs text-muted-foreground">
+              Текущий выбор: {consent.analytics ? "аналитика разрешена" : "без аналитики"}
+            </span>
+          )}
         </div>
       </div>
     </div>
