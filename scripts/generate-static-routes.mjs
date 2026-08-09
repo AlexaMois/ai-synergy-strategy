@@ -24,7 +24,7 @@ if (fs.existsSync(sitemapPath)) {
 
 // Private / temporary routes — written so that direct hits get noindex meta,
 // but NOT in sitemap and NOT advertised to crawlers.
-const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/old-home'];
+const privateRoutes = ['/newyear', '/portal', '/portal/admin'];
 for (const r of privateRoutes) routes.add(r);
 
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
@@ -255,11 +255,6 @@ const staticMeta = {
   '/portal/admin': {
     title: 'Админ-панель портала' + DEFAULT_TITLE_SUFFIX,
     description: 'Закрытая админ-панель.',
-    robots: 'noindex,nofollow',
-  },
-  '/old-home': {
-    title: 'Старая версия главной' + DEFAULT_TITLE_SUFFIX,
-    description: 'Архивная версия главной страницы.',
     robots: 'noindex,nofollow',
   },
   '/neurostylist': {
