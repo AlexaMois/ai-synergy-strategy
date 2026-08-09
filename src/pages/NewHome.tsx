@@ -25,11 +25,11 @@ const stats: Array<{
   sub?: string;
   decimals?: number;
 }> = [
-  { value: 360, suffix: "", label: "разборов процессов" },
+  { value: 360, suffix: "", label: "разборов бизнес-процессов" },
   { value: 40, suffix: "", label: "проектов в продакшн", sub: "решения, которые дошли до рабочего применения" },
   { value: 7, suffix: "", label: "городов", sub: "работаю онлайн по России" },
   { value: 10, suffix: "", label: "отраслей" },
-  { value: 3.5, suffix: "", label: "года практики", decimals: 1, sub: "прикладные проекты в бизнесе" },
+  { value: 4, suffix: "+", label: "года практики в ИИ", sub: "прикладные проекты в бизнесе" },
   { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
   { value: 85, suffix: "%", label: "клиентов возвращаются" },
   { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
@@ -170,7 +170,7 @@ const NewHome = () => {
                   <AnimatedNumber value={360} suffix="" />
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
-                  разборов процессов
+                  разборов бизнес-процессов
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md">
                   Разборы процессов, задач и точек потерь — за 4+ года практики в ИИ.

@@ -6,7 +6,7 @@ import { Target, TrendingUp, MessageCircle, Search } from "lucide-react";
 const TrustAndPosition = () => {
   const { ref, getAnimationClass } = useMobileAnimations({ threshold: 0.2 });
   const { ref: counterRef, isVisible: counterVisible } = useIntersectionObserver({ threshold: 0.5 });
-  const count12 = useCountUp({ end: 12, duration: 1800, isVisible: counterVisible });
+  const countYears = useCountUp({ end: 4, duration: 1800, isVisible: counterVisible });
 
   const trust = [
     {
@@ -52,15 +52,15 @@ const TrustAndPosition = () => {
           <div ref={counterRef as any} className="grid md:grid-cols-12 gap-6 items-end mb-10 pb-10 border-b border-background/15">
             <div className="md:col-span-5">
               <div className="font-iriska font-bold text-accent leading-none text-[7rem] md:text-[10rem]">
-                {count12}<span className="text-5xl md:text-7xl align-top">+</span>
+                {countYears}<span className="text-5xl md:text-7xl align-top">+</span>
               </div>
             </div>
             <div className="md:col-span-7">
               <p className="text-xl md:text-2xl font-semibold text-background leading-snug mb-2">
-                лет в управлении и операционной работе
+                года практики в ИИ
               </p>
               <p className="text-sm md:text-base text-background/70 leading-relaxed">
-                Понимаю ответственность руководителя, цену ошибки, работу команды, давление сроков и влияние решений на экономику компании.
+                Прикладные проекты в цифровизации и ИИ: процессы, данные, экономика решений и ответственность за результат.
               </p>
             </div>
           </div>
