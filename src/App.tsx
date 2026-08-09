@@ -12,7 +12,6 @@ import CallbackModal from "@/components/CallbackModal";
 import CookieConsent from "@/components/CookieConsent";
 
 import Index from "./pages/NewHome";
-const OldHome = lazy(() => import("./pages/OldHome"));
 
 const BlogOldRedirect = () => {
   const { slug } = useParams();
