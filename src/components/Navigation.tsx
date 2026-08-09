@@ -28,9 +28,6 @@ const preloadPage = (path: string) => {
     case '/products/voice-bot':
       import('../pages/GolossokPricing');
       break;
-    case '/products/doc-search':
-      import('../pages/CaseStudyDocSearch');
-      break;
     case '/about':
       import('../pages/About');
       break;
