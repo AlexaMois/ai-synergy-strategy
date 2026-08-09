@@ -346,7 +346,7 @@ const AutomationHubPage = () => {
                 <Compass className="w-5 h-5 text-primary mb-3" />
                 <h3 className="font-semibold text-foreground mb-2">Сначала экономика</h3>
                 <p className="text-sm text-foreground/75">
-                  Считаем экономику до старта работ. Если автоматизация не окупается в среднем за 3 месяца — честно говорю «не нужно».
+                  Считаем экономику до старта работ. Если расчётный срок окупаемости превышает 6 месяцев — честно говорю, что проект стоит пересмотреть.
                 </p>
               </div>
               <div className="bg-card border border-border rounded-xl p-5">

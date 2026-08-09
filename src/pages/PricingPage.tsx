@@ -457,9 +457,9 @@ const PricingPage = () => {
               <div className="md:col-span-4 md:order-2 md:pt-6">
                 <ul className="space-y-5 border-l-2 border-accent pl-6">
                   {[
-                    "Экономия 9–12 часов в неделю",
-                    "99% точность маршрутов",
-                    "Окупаемость за 3 недели",
+                    "Экономия 9–12 часов в неделю на обработке заявок",
+                    "Команда из 3 человек освобождена от ручного переноса",
+                    "Заявки фиксируются без потерь",
                   ].map((t, i) => (
                     <li key={i} className="text-lg md:text-xl text-foreground/85">
                       {t}
