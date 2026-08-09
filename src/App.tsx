@@ -12,7 +12,6 @@ import CallbackModal from "@/components/CallbackModal";
 import CookieConsent from "@/components/CookieConsent";
 
 import Index from "./pages/NewHome";
-const OldHome = lazy(() => import("./pages/OldHome"));
 
 const BlogOldRedirect = () => {
   const { slug } = useParams();
@@ -85,7 +84,7 @@ const AppContent = () => {
           {/* Main */}
           <Route path="/" element={<Index />} />
           <Route path="/faq" element={<FAQPage />} />
-          <Route path="/old-home" element={<OldHome />} />
+          <Route path="/old-home" element={<Navigate to="/" replace />} />
           
           {/* Start */}
           <Route path="/start" element={<StartPage />} />

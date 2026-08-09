@@ -155,12 +155,6 @@ const PricingPage = () => {
       sketch: chatHeartSketch,
     },
     {
-      cap: "до 120 000 ₽",
-      label: "Стратегия или аудит",
-      bg: "bg-surface-lavender",
-      sketch: routeWarmSketch,
-    },
-    {
       cap: "от 260 000 ₽",
       label: "Проектирование и разработка цифрового решения",
       bg: "bg-surface-blush",

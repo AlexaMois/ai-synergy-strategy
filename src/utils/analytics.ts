@@ -3,7 +3,6 @@
 
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
     ym?: (counterId: number, action: string, goalName?: string, params?: object) => void;
   }
 }

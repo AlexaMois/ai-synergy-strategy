@@ -40,6 +40,23 @@
       }
       window.loadAnalytics = loadAnalytics;
 
+      // Немедленный отзыв согласия: Метрика прекращает работу в текущей сессии
+      function disableAnalytics() {
+        try {
+          window['disableYaCounter99058653'] = true;
+          window.ym = function () {};
+          document.cookie.split(';').forEach(function (c) {
+            var name = c.split('=')[0].trim();
+            if (name.indexOf('_ym') === 0 || name.indexOf('yandex') === 0) {
+              document.cookie = name + '=; Max-Age=0; path=/';
+              document.cookie = name + '=; Max-Age=0; path=/; domain=.' + location.hostname;
+            }
+          });
+        } catch (e) {}
+        window.__analyticsLoaded = true; // не загружать повторно до перезагрузки страницы
+      }
+      window.disableAnalytics = disableAnalytics;
+
       // Аналитика запускается только при наличии сохранённого согласия
       function hasAnalyticsConsent() {
         try {

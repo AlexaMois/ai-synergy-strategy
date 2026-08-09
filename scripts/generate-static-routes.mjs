@@ -24,7 +24,7 @@ if (fs.existsSync(sitemapPath)) {
 
 // Private / temporary routes — written so that direct hits get noindex meta,
 // but NOT in sitemap and NOT advertised to crawlers.
-const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/old-home'];
+const privateRoutes = ['/newyear', '/portal', '/portal/admin'];
 for (const r of privateRoutes) routes.add(r);
 
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
@@ -174,7 +174,7 @@ const staticMeta = {
     description: '53 000 позиций · 5 внедрённых цифровых инструментов · 2 месяца · 1,7 млн ₽ сохранено за квартал.',
   },
   '/cases/kraypotrebsoyuz': {
-    title: 'Кейс «Крайпотребсоюз»: цифровизация торговой сети' + DEFAULT_TITLE_SUFFIX,
+    title: 'Кейс «Крайпотребсоюз»: архитектура вместо серверов за 1,5 млн ₽' + DEFAULT_TITLE_SUFFIX,
     description: 'Планировалась покупка серверного оборудования примерно за 1,5 млн ₽. Архитектура позволила отказаться от покупки: 1,3 млн ₽ разовой экономии капитальных затрат.',
   },
   '/cases/cargo-express': {
@@ -255,11 +255,6 @@ const staticMeta = {
   '/portal/admin': {
     title: 'Админ-панель портала' + DEFAULT_TITLE_SUFFIX,
     description: 'Закрытая админ-панель.',
-    robots: 'noindex,nofollow',
-  },
-  '/old-home': {
-    title: 'Старая версия главной' + DEFAULT_TITLE_SUFFIX,
-    description: 'Архивная версия главной страницы.',
     robots: 'noindex,nofollow',
   },
   '/neurostylist': {
@@ -381,25 +376,5 @@ for (const route of routes) {
 }
 
 console.log(`[prerender] Wrote ${written} routes (${missingMeta} without explicit meta).`);
-
-// -----------------------------------------------------------------------------
-// 4. Regenerate sitemap with <lastmod> = today.
-// -----------------------------------------------------------------------------
-if (fs.existsSync(sitemapPath)) {
-  const today = new Date().toISOString().slice(0, 10);
-  const original = fs.readFileSync(sitemapPath, 'utf8');
-  let updated = original;
-  // For each <url> block, ensure <lastmod>today</lastmod> is present (insert after <loc>)
-  updated = updated.replace(
-    /(<url>\s*<loc>[^<]+<\/loc>)(\s*)(<lastmod>[^<]+<\/lastmod>)?/g,
-    (_, locBlock, ws) => `${locBlock}${ws}<lastmod>${today}</lastmod>`
-  );
-  if (updated !== original) {
-    fs.writeFileSync(sitemapPath, updated);
-    // Also copy to dist so it ships fresh
-    fs.writeFileSync(path.join(distDir, 'sitemap.xml'), updated);
-    console.log(`[prerender] sitemap.xml refreshed with lastmod=${today}`);
-  }
-}
 
 process.exit(0);

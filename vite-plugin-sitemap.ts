@@ -41,7 +41,6 @@ function russianDateToISO(dateStr: string): string {
 
 function buildSitemapXml(root: string): string {
   const DOMAIN = 'https://aleksamois.ru';
-  const today = new Date().toISOString().split('T')[0];
 
   const staticRoutes = [
     { path: '/', priority: '1.0', changefreq: 'weekly' },
@@ -50,6 +49,7 @@ function buildSitemapXml(root: string): string {
     { path: '/faq', priority: '0.7', changefreq: 'monthly' },
     { path: '/pricing', priority: '0.8', changefreq: 'monthly' },
     { path: '/services', priority: '0.9', changefreq: 'monthly' },
+    { path: '/services/automation', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/owner-digital-session', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/digital-development-strategy', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/digital-audit', priority: '0.8', changefreq: 'monthly' },
@@ -80,7 +80,7 @@ function buildSitemapXml(root: string): string {
   const blogEntries = extractBlogEntries(root);
 
   const allRoutes = [
-    ...staticRoutes.map(r => ({ ...r, lastmod: today })),
+    ...staticRoutes.map(r => ({ ...r, lastmod: undefined as string | undefined })),
     ...blogEntries.map(entry => ({
       path: `/materials/blog/${entry.slug}`,
       priority: '0.6',
@@ -90,7 +90,14 @@ function buildSitemapXml(root: string): string {
   ];
 
   const urls = allRoutes
-    .map(r => `  <url>\n    <loc>${DOMAIN}${r.path}</loc>\n    <lastmod>${r.lastmod}</lastmod>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`)
+    .map(r => [
+      `  <url>`,
+      `    <loc>${DOMAIN}${r.path}</loc>`,
+      r.lastmod ? `    <lastmod>${r.lastmod}</lastmod>` : null,
+      `    <changefreq>${r.changefreq}</changefreq>`,
+      `    <priority>${r.priority}</priority>`,
+      `  </url>`,
+    ].filter(Boolean).join('\n'))
     .join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -102,8 +109,9 @@ export default function sitemapPlugin(): Plugin {
     closeBundle() {
       const root = process.cwd();
       const xml = buildSitemapXml(root);
-      const outPath = path.resolve(root, 'dist/sitemap.xml');
-      fs.writeFileSync(outPath, xml, 'utf-8');
+      for (const out of ['dist/sitemap.xml', 'public/sitemap.xml']) {
+        fs.writeFileSync(path.resolve(root, out), xml, 'utf-8');
+      }
       console.log(`✅ sitemap.xml generated (${xml.split('<url>').length - 1} URLs)`);
     },
   };

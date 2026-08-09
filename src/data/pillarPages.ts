@@ -309,7 +309,7 @@ export const pillarPages: PillarPageData[] = [
     ],
     relatedCases: [
       { href: "/cases/cargo-express", label: "Cargo Express", description: "Автоматизация обработки заявок и документов." },
-      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "Цифровизация процессов в распределённой сети." },
+      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "Отказ от покупки серверов: 1,3 млн ₽ разовой экономии капитальных затрат." },
       { href: "/cases/production-doc-search", label: "Производственный поиск документов", description: "3 секунды вместо 25 минут на поиск." },
     ],
     relatedBlogSlugs: [
@@ -519,7 +519,7 @@ export const pillarPages: PillarPageData[] = [
       { href: "/services/digital-tools-program", label: "Авторская программа для команды", description: "Цифровые инструменты в ежедневной работе." },
     ],
     relatedCases: [
-      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "Цифровизация распределённой сети." },
+      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "Отказ от покупки серверов: 1,3 млн ₽ разовой экономии капитальных затрат." },
       { href: "/cases/cargo-express", label: "Cargo Express", description: "От ручных заявок к управляемой системе." },
       { href: "/cases/aktransservice", label: "АкТрансСервис", description: "Порядок в процессах и данных." },
     ],
@@ -740,7 +740,7 @@ export const pillarPages: PillarPageData[] = [
     relatedCases: [
       { href: "/cases/production-doc-search", label: "Производственный поиск документов", description: "Поиск за 3 секунды вместо 25 минут." },
       { href: "/cases/cargo-express", label: "Cargo Express", description: "Автоматизация обработки заявок." },
-      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "ИИ в распределённой сети." },
+      { href: "/cases/kraypotrebsoyuz", label: "КрайПотребСоюз", description: "Отказ от покупки серверов: 1,3 млн ₽ разовой экономии капитальных затрат." },
     ],
     relatedBlogSlugs: [
       "why-ai-projects-fail",
