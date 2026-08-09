@@ -1,6 +1,6 @@
 // SEO Configuration
 export const SEO = {
-  siteName: "Автоматизация бизнеса с ИИ — убираем рутину и бардак в процессах | Александра Моисеева",
+  siteName: "НейроРешения — агентство цифрового развития бизнеса | Александра Моисеева",
   siteUrl: "https://aleksamois.ru",
   
   // Default OG image for all pages (1200x630)

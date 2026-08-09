@@ -1,6 +1,8 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Phone, Mail, MapPin, GraduationCap } from "lucide-react";
-import MaxIcon from "@/components/icons/MaxIcon";
+const MaxIcon = ({ className }: { className?: string }) => (
+  <img src="/max-icon.svg" alt="" aria-hidden="true" width={16} height={16} className={className} loading="lazy" />
+);
 import DisabledLink from "@/components/DisabledLink";
 const Footer = () => {
   const navigate = useNavigate();

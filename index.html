@@ -63,7 +63,14 @@
           var raw = localStorage.getItem('cookie_consent');
           if (!raw) { return false; }
           var parsed = JSON.parse(raw);
-          return !!(parsed && parsed.consent && parsed.consent.analytics);
+          if (!parsed || parsed.version !== 'v3') { return false; }
+          if (!parsed.consent || parsed.consent.analytics !== true) { return false; }
+          // Согласие действует 12 месяцев
+          if (parsed.savedAt) {
+            var age = Date.now() - new Date(parsed.savedAt).getTime();
+            if (!(age >= 0) || age > 365 * 24 * 60 * 60 * 1000) { return false; }
+          }
+          return true;
         } catch (e) { return false; }
       }
 
@@ -156,14 +163,14 @@
           "name": "НейроРешения",
           "alternateName": "НейроРешения — агентство цифрового развития бизнеса",
           "url": "https://aleksamois.ru/",
-          "logo": "https://aleksamois.ru/og-image.png",
+          "logo": "https://aleksamois.ru/logo-neuroresheniya.png",
           "description": "Агентство цифрового развития бизнеса.",
           "email": "ai@aleksamois.ru",
           "telephone": "+7 995 078 88 37",
           "sameAs": [
             "https://t.me/neiroreshenia",
             "https://t.me/aleksamois",
-            "https://aleksamois.ru/max"
+            "https://max.ru/id245906802500_biz"
           ],
           "founder": {
             "@id": "https://aleksamois.ru/#person"
@@ -187,7 +194,7 @@
           "telephone": "+7 995 078 88 37",
           "sameAs": [
             "https://t.me/aleksamois",
-            "https://aleksamois.ru/max"
+            "https://max.ru/id245906802500_biz"
           ],
           "knowsAbout": [
             "Искусственный интеллект",
