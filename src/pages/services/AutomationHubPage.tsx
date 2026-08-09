@@ -31,7 +31,7 @@ import { trackCTAClick } from "@/utils/analytics";
 const TITLE = "Автоматизация бизнес-процессов с ИИ для бизнеса";
 const DESCRIPTION =
   "Автоматизация бизнес-процессов с ИИ: документооборот, продажи, контроль качества, отчётность. Аудит процессов, проектирование решения, сопровождение внедрения. Средний срок окупаемости решений — 3 месяца.";
-const URL = "https://aleksamois.ru/services/automation";
+const URL = "https://aleksamois.ru/services/automation/";
 
 const processBlocks: { title: string; summary: string; bullets: string[] }[] = [
   {

@@ -50,6 +50,7 @@ function buildSitemapXml(root: string): string {
     { path: '/faq', priority: '0.7', changefreq: 'monthly' },
     { path: '/pricing', priority: '0.8', changefreq: 'monthly' },
     { path: '/services', priority: '0.9', changefreq: 'monthly' },
+    { path: '/services/automation', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/owner-digital-session', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/digital-development-strategy', priority: '0.8', changefreq: 'monthly' },
     { path: '/services/digital-audit', priority: '0.8', changefreq: 'monthly' },
