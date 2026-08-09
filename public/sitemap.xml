@@ -121,11 +121,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/materials/resources</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://aleksamois.ru/materials/checklist-30</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -141,7 +136,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/legal</loc>
+    <loc>https://aleksamois.ru/legal/cookies</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
