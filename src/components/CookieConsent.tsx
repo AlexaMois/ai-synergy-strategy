@@ -9,6 +9,7 @@ type ConsentState = {
 
 const CONSENT_STORAGE_KEY = "cookie_consent";
 const CONSENT_VERSION = "v3";
+const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000; // 12 месяцев
 export const COOKIE_SETTINGS_EVENT = "open-cookie-settings";
 
 // Яндекс.Метрика загружается только после согласия на аналитические cookies
@@ -36,9 +37,12 @@ const CookieConsent = () => {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        if (parsed.version === CONSENT_VERSION) {
-          setConsent({ necessary: true, analytics: !!parsed.consent?.analytics });
-          updateYandexConsent(parsed.consent);
+        const savedAt = parsed.savedAt ? new Date(parsed.savedAt).getTime() : NaN;
+        const isFresh = Number.isFinite(savedAt) && Date.now() - savedAt <= CONSENT_TTL_MS;
+        if (parsed.version === CONSENT_VERSION && isFresh) {
+          const analytics = parsed.consent?.analytics === true;
+          setConsent({ necessary: true, analytics });
+          updateYandexConsent({ necessary: true, analytics });
           return;
         }
       } catch (e) {
@@ -81,7 +85,12 @@ const CookieConsent = () => {
   const saveConsent = (newConsent: ConsentState) => {
     localStorage.setItem(
       CONSENT_STORAGE_KEY,
-      JSON.stringify({ version: CONSENT_VERSION, consent: newConsent })
+      JSON.stringify({
+        version: CONSENT_VERSION,
+        consent: newConsent,
+        savedAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + CONSENT_TTL_MS).toISOString(),
+      })
     );
     updateYandexConsent(newConsent);
     setIsVisible(false);
@@ -127,7 +136,7 @@ const CookieConsent = () => {
             onClick={allowAnalytics}
             variant="turquoise"
             size="lg"
-            className="w-full sm:w-auto sm:basis-[62%] sm:flex-none justify-between font-bold"
+            className="w-full sm:flex-[2_1_0%] sm:min-w-0 justify-between font-bold"
           >
             Разрешить аналитику
           </PillButton>
@@ -135,16 +144,21 @@ const CookieConsent = () => {
             onClick={declineAnalytics}
             variant="outline-dark"
             size="md"
-            className="w-full sm:w-auto sm:basis-[38%] sm:flex-none justify-between font-medium"
+            className="w-full sm:flex-[1_1_0%] sm:min-w-0 justify-between font-medium"
           >
             Продолжить без аналитики
           </PillButton>
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-          <Link to="/legal/cookies" className="text-sm text-primary hover:underline">
+          <a
+            href="/legal/cookies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary hover:underline"
+          >
             Подробнее о cookies
-          </Link>
+          </a>
           {isReopened && (
             <span className="text-sm text-muted-foreground">
               Текущий выбор: {consent.analytics ? "аналитика разрешена" : "без аналитики"}
