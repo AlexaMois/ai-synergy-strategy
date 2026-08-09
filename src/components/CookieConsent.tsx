@@ -125,14 +125,14 @@ const CookieConsent = () => {
         <div className="flex flex-col sm:flex-row gap-3">
           <Button
             onClick={allowAnalytics}
-            className="flex-1 h-auto min-h-12 rounded-full px-6 py-3 text-base font-semibold whitespace-normal text-center shadow-md hover:shadow-lg"
+            className="flex-1 h-auto min-h-12 rounded-full px-5 py-3 text-base font-semibold whitespace-normal text-center shadow-md hover:shadow-lg"
           >
             Разрешить аналитику
           </Button>
           <Button
             onClick={declineAnalytics}
             variant="outline"
-            className="flex-1 h-auto min-h-12 rounded-full px-6 py-3 text-base font-medium whitespace-normal text-center bg-muted/40 hover:bg-muted shadow-sm"
+            className="flex-1 h-auto min-h-12 rounded-full px-5 py-3 text-base font-medium whitespace-normal text-center bg-muted/40 hover:bg-muted shadow-sm"
           >
             Продолжить без аналитики
           </Button>
