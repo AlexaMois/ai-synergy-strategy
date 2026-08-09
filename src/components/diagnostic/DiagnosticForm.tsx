@@ -490,7 +490,7 @@ const DiagnosticForm = () => {
             <span className="text-sm font-semibold">Анкета отправлена</span>
           </div>
           <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-4">
-            Спасибо. Предварительная диагностика завершена.
+            Спасибо. Предварительный разбор процессов завершён.
           </h3>
           <p className="text-base md:text-lg text-foreground/75 mb-8">
             Мы изучим ответы и свяжемся с вами в MAX для короткого разговора на 15–20 минут.

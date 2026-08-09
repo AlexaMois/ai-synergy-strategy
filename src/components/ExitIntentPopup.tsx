@@ -78,7 +78,7 @@ const ExitIntentPopup = () => {
   }, [hasShown]);
 
   const handleCTA = () => {
-    trackCTAClick({ location: 'exit_intent', buttonText: 'Пройти бесплатную диагностику' });
+    trackCTAClick({ location: 'exit_intent', buttonText: 'Пройти бесплатный разбор задачи' });
     setIsOpen(false);
     navigate("/start");
   };
@@ -114,7 +114,7 @@ const ExitIntentPopup = () => {
             className="w-full py-3 text-sm sm:text-base min-h-[48px] mb-4 gap-2"
             onClick={handleCTA}
           >
-            Пройти бесплатную диагностику
+            Пройти бесплатный разбор задачи
             <ArrowRight className="w-4 h-4" />
           </Button>
 

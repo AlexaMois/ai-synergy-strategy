@@ -113,7 +113,7 @@ const OldHome = () => {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Диагностика ИИ",
+            "name": "Разбор бизнес-процессов",
             "description": "Экспресс-аудит готовности бизнеса к ИИ"
           }
         },

@@ -75,7 +75,7 @@ const MyStory = () => {
               </div>
               <div className="flex-1">
                 <p className="text-lg text-text-body leading-relaxed">
-                  Диагностика — фильтр, без которого нельзя начинать.
+                  Разбор процессов — фильтр, без которого нельзя начинать.
                 </p>
               </div>
             </div>

@@ -608,7 +608,7 @@ const NeurostylistPage = () => {
                     lineHeight: 1.65,
                   }}
                 >
-                  Стиль-диагностика собирает цвет, силуэт, макияж и детали в цельный образ под&nbsp;тебя.
+                  Стиль-разбор собирает цвет, силуэт, макияж и детали в цельный образ под&nbsp;тебя.
                 </p>
 
                 <div className="ns-fade-up ns-delay-3 mt-9 sm:mt-11 flex flex-col items-start gap-3.5">
