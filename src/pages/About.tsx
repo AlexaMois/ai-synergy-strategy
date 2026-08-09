@@ -18,8 +18,6 @@ import { Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, Ext
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useCountUp } from "@/hooks/use-count-up";
-import AnimatedNumber from "@/components/AnimatedNumber";
 import alexandraHeadshot from "@/assets/alexandra-headshot.webp";
 import alexandraAbout from "@/assets/alexandra-about.webp";
 import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
