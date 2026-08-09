@@ -504,8 +504,7 @@ const PricingPage = () => {
               <span className="font-iriska font-normal italic text-accent">вашей компании</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Запишитесь на бесплатную 30-минутную консультацию. Я оценю ваши процессы и назову
-              конкретную цифру с объяснением, за что вы платите.
+              Опишите задачу — определим подходящий формат работы и следующий шаг.
             </p>
             <div className="flex justify-center">
               <PillButton onClick={() => openTaskModal()} variant="turquoise">

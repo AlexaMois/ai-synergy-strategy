@@ -369,7 +369,7 @@ const AutomationHubPage = () => {
               <Link to="/cases/kraypotrebsoyuz" className="bg-card border border-border rounded-xl p-5 hover:shadow-elevated transition-all group">
                 <Layers className="w-5 h-5 text-primary mb-3" />
                 <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">Крайпотребсоюз</h3>
-                <p className="text-sm text-foreground/70">Автоматизация документооборота и отчётности в торговой сети.</p>
+                <p className="text-sm text-foreground/70">Планировалась покупка серверного оборудования примерно за 1,5 млн ₽ — архитектура позволила отказаться от покупки: 1,3 млн ₽ разовой экономии капитальных затрат.</p>
               </Link>
               <Link to="/cases/cargo-express" className="bg-card border border-border rounded-xl p-5 hover:shadow-elevated transition-all group">
                 <TrendingUp className="w-5 h-5 text-primary mb-3" />
