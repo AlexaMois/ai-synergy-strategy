@@ -67,6 +67,8 @@ const ServiceDetailPage = () => {
   const pageDescription = seo?.description ?? service.subtitle;
   const pageH1 = seo?.h1 ?? service.title;
   const canonicalUrl = `https://aleksamois.ru${service.href}${service.href.endsWith("/") ? "" : "/"}`;
+  // Фиксированная стоимость — только цены без «от» и без диапазона (17 000 ₽ и 78 000 ₽)
+  const isFixedPrice = !/(от|–|-|\/мес)/.test(service.price);
 
   return (
     <PageTransition>
