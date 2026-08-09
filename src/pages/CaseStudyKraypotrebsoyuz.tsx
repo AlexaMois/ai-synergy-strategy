@@ -256,7 +256,6 @@ const CaseStudyKraypotrebsoyuz = () => {
               <p className="text-base font-medium text-foreground mb-4">В качестве основы выбрали:</p>
               <div className="bg-muted rounded-xl p-4 mb-4">
                 <p className="text-lg font-semibold text-primary">Bpium — российская low-code платформа</p>
-                <p className="text-sm text-muted-foreground">российская low-code платформа.</p>
               </div>
               
               <p className="text-base font-medium text-foreground mb-3">Решение включало:</p>
