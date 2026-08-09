@@ -25,7 +25,7 @@ const stats: Array<{
   sub?: string;
   decimals?: number;
 }> = [
-  { value: 360, suffix: "", label: "диагностик" },
+  { value: 360, suffix: "", label: "разборов процессов" },
   { value: 40, suffix: "", label: "проектов в продакшн", sub: "решения, которые дошли до рабочего применения" },
   { value: 7, suffix: "", label: "городов", sub: "работаю онлайн по России" },
   { value: 10, suffix: "", label: "отраслей" },
@@ -170,10 +170,10 @@ const NewHome = () => {
                   <AnimatedNumber value={360} suffix="" />
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
-                  диагностик
+                  разборов процессов
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md">
-                  Разборы процессов, задач и точек потерь — за 3,5 года практики.
+                  Разборы процессов, задач и точек потерь — за 4+ года практики в ИИ.
                 </p>
               </div>
               <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">

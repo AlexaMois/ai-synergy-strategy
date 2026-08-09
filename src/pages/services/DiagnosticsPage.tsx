@@ -24,7 +24,7 @@ import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 
 const DiagnosticsPage = () => {
   const scrollToContact = () => {
-    trackCTAClick({ location: 'services', buttonText: 'Диагностика CTA' });
+    trackCTAClick({ location: 'services', buttonText: 'Разбор процессов CTA' });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -58,7 +58,7 @@ const DiagnosticsPage = () => {
   ];
 
   const whyImportant = [
-    { metric: "70%", text: "ИИ-проектов не достигают целей без диагностики" },
+    { metric: "70%", text: "ИИ-проектов не достигают целей без разбора процессов" },
     { metric: "3-6 мес", text: "среднее время на исправление ошибок внедрения" },
     { metric: "×5-10", text: "стоимость переделки выше первоначального внедрения" }
   ];
@@ -68,7 +68,7 @@ const DiagnosticsPage = () => {
       <Helmet>
         <title>Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева</title>
         <meta name="description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
-        <meta name="keywords" content="аудит бизнес процессов, анализ автоматизации бизнес процессов, диагностика автоматизации, анализ ИИ‑готовности" />
+        <meta name="keywords" content="аудит бизнес процессов, анализ автоматизации бизнес процессов, аудит автоматизации, анализ ИИ‑готовности" />
         <link rel="canonical" href="https://aleksamois.ru/services/diagnostics" />
         <meta property="og:title" content="Аудит бизнес‑процессов и автоматизации — карта потерь и точек роста | Александра Моисеева" />
         <meta property="og:description" content="Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев." />
@@ -81,7 +81,7 @@ const DiagnosticsPage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Аудит и диагностика бизнес-процессов",
+            "name": "Аудит и разбор бизнес-процессов",
             "description": "Разбираем текущие процессы, считаем потери времени и денег, показываем, где автоматизация и ИИ дадут максимальный эффект в течение 3–6 месяцев.",
             "provider": { "@type": "Person", "name": "Александра Моисеева", "url": "https://aleksamois.ru/about" },
             "areaServed": { "@type": "Country", "name": "Россия" },
@@ -100,7 +100,7 @@ const DiagnosticsPage = () => {
       <main className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <PageBreadcrumbs 
-            currentPage="Диагностика" 
+            currentPage="Разбор процессов" 
             parentPages={[{ label: "Услуги", href: "/services" }]}
           />
 
@@ -241,7 +241,7 @@ const DiagnosticsPage = () => {
               <FileText className="w-5 h-5 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2 text-sm">Реальный пример</h3>
               <p className="text-sm text-foreground/70">
-                Логистическая компания хотела внедрить «умного бота». После диагностики выяснилось: 80% обращений — типовые вопросы. Вместо дорогого ИИ внедрили простую базу знаний. Экономия: <span className="text-primary font-semibold">400 000 ₽</span> в год.
+                Логистическая компания хотела внедрить «умного бота». После разбора процессов выяснилось: 80% обращений — типовые вопросы. Вместо дорогого ИИ внедрили простую базу знаний. Экономия: <span className="text-primary font-semibold">400 000 ₽</span> в год.
               </p>
             </div>
           </section>

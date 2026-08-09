@@ -197,7 +197,7 @@ const CaseStudyKraypotrebsoyuz = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">1</div>
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и диагностика</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Совместный аудит и разбор процессов</h2>
             </div>
             
             <div className="grid md:grid-cols-2 gap-6">

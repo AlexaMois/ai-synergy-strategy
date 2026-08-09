@@ -57,7 +57,7 @@ const MaterialsPage = () => {
                     Ресурсы
                   </h2>
                   <p className="text-muted-foreground mb-6">
-                    Чек-лист готовности бизнеса к цифровизации: 30 вопросов для самодиагностики
+                    Чек-лист готовности бизнеса к цифровизации: 30 вопросов для самопроверки
                   </p>
                   <div className="flex items-center text-primary font-medium">
                     Открыть чек-лист

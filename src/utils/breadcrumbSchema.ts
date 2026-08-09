@@ -30,7 +30,7 @@ export const getBreadcrumbs = {
   servicesDiagnostics: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
     { name: "Услуги", path: "/services" },
-    { name: "Диагностика", path: "/services/diagnostics" }
+    { name: "Разбор процессов", path: "/services/diagnostics" }
   ]),
   
   servicesArchitecture: () => generateBreadcrumbSchema([
