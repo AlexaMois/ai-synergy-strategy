@@ -214,9 +214,15 @@ const ServiceDetailPage = () => {
                     <p className="text-3xl md:text-5xl font-bold text-background leading-none mb-4">
                       {service.price}
                     </p>
-                    <p className="text-base md:text-lg text-background/70 max-w-xl">
-                      Финальная стоимость зависит от масштаба компании, количества процессов и глубины задачи. Уточняется до старта.
-                    </p>
+                    {/(от|–|-)/.test(service.price) ? (
+                      <p className="text-base md:text-lg text-background/70 max-w-xl">
+                        Финальная стоимость зависит от масштаба компании, количества процессов и глубины задачи. Уточняется до старта.
+                      </p>
+                    ) : (
+                      <p className="text-base md:text-lg text-background/70 max-w-xl">
+                        Фиксированная стоимость.
+                      </p>
+                    )}
                   </div>
                   <div className="md:col-span-5 flex flex-col gap-3 md:items-end">
                     <Link
