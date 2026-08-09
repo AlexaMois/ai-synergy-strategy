@@ -162,7 +162,7 @@ const Testimonials = () => {
     "name": "Александра Моисеева — Независимый инженер по ИИ",
     "description": "Консалтинг и внедрение ИИ-решений для бизнеса",
     "url": "https://aleksamois.ru",
-    "image": "https://aleksamois.ru/og-image.png",
+    "image": "https://aleksamois.ru/og-aleksa-2026-v1.png",
     "telephone": "+7 995 078 88 37",
     "email": "ai@aleksamois.ru",
     "address": {

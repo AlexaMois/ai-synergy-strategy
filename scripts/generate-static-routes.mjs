@@ -6,7 +6,7 @@ const distDir = path.join(rootDir, 'dist');
 const indexPath = path.join(distDir, 'index.html');
 const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml');
 const BASE = 'https://aleksamois.ru';
-const DEFAULT_OG = `${BASE}/og-image.png`;
+const DEFAULT_OG = `${BASE}/og-aleksa-2026-v1.png`;
 
 if (!fs.existsSync(indexPath)) {
   throw new Error('dist/index.html not found. Run this script after vite build.');
@@ -154,8 +154,8 @@ const staticMeta = {
     description: 'Инженер и архитектор цифрового развития бизнеса. Агентство «НейроРешения» — методология и продуктовая система внедрения ИИ и автоматизации.',
   },
   '/start': {
-    title: 'С чего начать цифровое развитие бизнеса' + DEFAULT_TITLE_SUFFIX,
-    description: 'Подберите формат работы под задачу: стратегическая встреча, аудит, программа цифровых инструментов или разработка решения под процесс.',
+    title: 'С чего начать цифровое развитие бизнеса | Александра Моисеева',
+    description: 'Выберите первый шаг: стратегическая встреча, стратегия цифрового развития или глубокий аудит компании.',
   },
   '/services': {
     title: 'Услуги по цифровому развитию бизнеса' + DEFAULT_TITLE_SUFFIX,
