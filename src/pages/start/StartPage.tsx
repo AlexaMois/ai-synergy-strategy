@@ -10,7 +10,6 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
-import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 import compassSketch from "@/assets/sketches/compass-sketch.webp";
 import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
 
@@ -142,15 +141,15 @@ const StartPage = () => {
           <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
               <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-card ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 md:gap-4 items-center px-5 md:px-10 lg:px-14 py-7 md:py-14">
-                  <div className="md:col-span-7">
+                <div className="px-5 md:px-10 lg:px-14 py-7 md:py-14">
+                  <div className="max-w-4xl">
                     <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
                       Первый шаг
                     </p>
                     <h1 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
                       Разбор задачи с собственником
                     </h1>
-                    <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-xl leading-snug">
+                    <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-3xl leading-snug">
                       За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект.
                     </p>
 
@@ -159,7 +158,7 @@ const StartPage = () => {
                       <span className="text-sm md:text-base text-muted-foreground">· фиксированная стоимость</span>
                     </div>
 
-                    <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-xl space-y-1">
+                    <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-2xl space-y-1">
                       <p>
                         Александра Моисеева, основатель «НейроРешений», проводит разбор лично.
                       </p>
@@ -172,7 +171,7 @@ const StartPage = () => {
                         variant="turquoise"
                         className="w-full sm:w-auto justify-center"
                       >
-                        Записаться на разбор — 17 000 ₽
+                        Записаться на разбор
                       </PillButton>
                       <button
                         type="button"
@@ -182,16 +181,6 @@ const StartPage = () => {
                         Что получите после разбора <ArrowDown className="ml-2 h-5 w-5" />
                       </button>
                     </div>
-                  </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end md:pr-2">
-                    <img
-                      src={brainHeartSketch}
-                      alt="Разбор цифровых задач для собственника — выбор первого приоритета"
-                      width={800}
-                      height={800}
-                      loading="eager"
-                      className="w-36 sm:w-44 md:w-60 lg:w-72 h-auto object-contain"
-                    />
                   </div>
                 </div>
               </div>
