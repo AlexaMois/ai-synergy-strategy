@@ -10,8 +10,8 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
-import compassSketch from "@/assets/sketches/compass-sketch.webp";
 import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
+import alexandraPortrait from "@/assets/about/portrait-formal-new.jpg";
 
 const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
@@ -57,52 +57,6 @@ const StartPage = () => {
     "понятный следующий шаг",
   ];
 
-  const route = [
-    {
-      title: "Разбор цифровых задач для собственника · 17 000 ₽",
-      text: "Определяем первый приоритет.",
-      bg: "bg-surface-mint",
-    },
-    {
-      title: "Стратегия цифрового развития · 78 000 ₽",
-      text: "Формируем план цифрового развития на 90 дней.",
-      bg: "bg-surface-lavender",
-    },
-    {
-      title: "Глубокий аудит · от 116 000 ₽",
-      text: "Разбираем несколько процессов, данные, документы и работу команды.",
-      bg: "bg-surface-sand",
-    },
-    {
-      title: "Внедрение и сопровождение",
-      text: "Запускаем изменения и доводим решение до рабочего результата.",
-      bg: "bg-surface-blush",
-    },
-  ];
-
-  const cases = [
-    {
-      client: "АкТрансСервис · логистика",
-      change: "5 цифровых инструментов за 2 месяца для работы с 53 000 позиций.",
-      metric: "1,7 млн ₽ сохранено за квартал",
-      to: "/cases/aktransservice",
-      bg: "bg-surface-mint",
-    },
-    {
-      client: "Крайпотребсоюз · межрегиональная структура",
-      change: "Архитектура позволила отказаться от покупки серверного оборудования.",
-      metric: "1,3 млн ₽ разовой экономии капитальных затрат",
-      to: "/cases/kraypotrebsoyuz",
-      bg: "bg-surface-lavender",
-    },
-    {
-      client: "Производственная компания · техническая документация",
-      change: "Поиск по технической документации сократился с 25 минут до 3 секунд.",
-      metric: "3 секунды вместо 25 минут ручного поиска",
-      to: "/cases/production-doc-search",
-      bg: "bg-surface-sand",
-    },
-  ];
 
   return (
     <PageTransition>
