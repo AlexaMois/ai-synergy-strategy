@@ -10,8 +10,6 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
-import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
-import alexandraPortrait from "@/assets/about/portrait-formal-new.jpg";
 
 const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
@@ -211,193 +209,22 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* 4. После разбора — асимметричная продуктовая композиция */}
+          {/* 4. После разбора */}
           <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6 md:mb-8">
               После{" "}
               <span className="font-iriska font-normal italic text-accent">разбора</span>
             </h2>
-            <div className="grid md:grid-cols-12 gap-4 md:gap-6">
-              <div className="md:col-span-7 rounded-[24px] md:rounded-[32px] bg-surface-mint p-7 md:p-12 shadow-card ring-1 ring-foreground/5 flex flex-col justify-between min-h-[260px] md:min-h-[340px]">
-                <div>
-                  <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-2">
-                    Стратегия цифрового развития
-                  </h3>
-                  <p className="text-xl md:text-2xl font-bold text-accent">78 000 ₽</p>
-                </div>
-                <p className="mt-8 text-base md:text-xl text-foreground/75 leading-snug max-w-md">
-                  Формируем план цифрового развития на 90 дней.
-                </p>
-              </div>
-
-              <div className="md:col-span-5 grid gap-4 md:gap-6 content-stretch">
-                <div className="rounded-[24px] md:rounded-[32px] bg-surface-sand p-6 md:p-8 shadow-card ring-1 ring-foreground/5">
-                  <h3 className="text-lg md:text-2xl font-bold text-foreground leading-[1.1] mb-1">
-                    Глубокий аудит
-                  </h3>
-                  <p className="text-base md:text-lg font-bold text-accent mb-3">от 116 000 ₽</p>
-                  <p className="text-sm md:text-base text-foreground/70 leading-snug">
-                    Разбираем несколько процессов, данные, документы и работу команды.
-                  </p>
-                </div>
-                <div className="rounded-[24px] md:rounded-[32px] bg-card border-t-2 border-accent/40 p-6 md:p-8">
-                  <h3 className="text-lg md:text-2xl font-bold text-foreground leading-[1.1] mb-3">
-                    Внедрение и сопровождение
-                  </h3>
-                  <p className="text-sm md:text-base text-foreground/70 leading-snug">
-                    Запускаем изменения и доводим решение до рабочего результата.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8">
+            <p className="text-base md:text-xl text-foreground/75 leading-snug max-w-3xl">
+              Следующий этап определяется по результатам разбора: стратегия на 90 дней, глубокий аудит или переход к внедрению.
+            </p>
+            <div className="mt-6 md:mt-8">
               <Link
                 to="/services"
                 className="inline-flex items-center text-accent hover:underline font-medium"
               >
-                Посмотреть все услуги <ArrowRight className="ml-2 h-4 w-4" />
+                Посмотреть услуги <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </div>
-          </section>
-
-          {/* 5. От решения до рабочего внедрения — фото + текст */}
-          <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-28">
-            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-              <div className="md:col-span-5">
-                <img
-                  src={alexandraPortrait}
-                  alt="Александра Моисеева"
-                  width={900}
-                  height={1200}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full max-w-sm md:max-w-none aspect-[3/4] object-cover rounded-[24px] md:rounded-[32px] shadow-plate"
-                />
-              </div>
-              <div className="md:col-span-7 md:pl-8 py-4 md:py-10">
-                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-8 md:mb-10">
-                  От решения до рабочего внедрения
-                </h2>
-                <div className="space-y-6 md:space-y-8 text-base md:text-xl text-foreground/75 leading-snug max-w-2xl">
-                  <p>
-                    Александра Моисеева лично отвечает за разбор, архитектуру и ключевые решения. Команда «НейроРешения» подключается к внедрению и сопровождению.
-                  </p>
-                  <p>
-                    Цель каждого проекта: измеримый результат, экономия времени, снижение потерь и рост управляемости.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 6. Подтверждённые результаты — bento */}
-          <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-10 md:mb-14">
-              Подтверждённые{" "}
-              <span className="font-iriska font-normal italic text-accent">результаты</span>
-            </h2>
-            <div className="grid md:grid-cols-12 gap-4">
-              <Link
-                to="/cases/aktransservice"
-                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-foreground text-background p-8 md:p-10 min-h-[320px] shadow-plate hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
-                    Кейс · Логистика
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-background">
-                    АкТрансСервис
-                  </h3>
-                  <p className="text-sm md:text-base text-background/70 leading-relaxed max-w-md">
-                    5 цифровых инструментов за 2 месяца для работы с 53 000 позиций.
-                  </p>
-                </div>
-                <div className="mt-8 flex items-end justify-between gap-4">
-                  <div>
-                    <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
-                      1,7 млн ₽
-                    </div>
-                    <p className="text-xs text-background/60">сохранено за квартал</p>
-                  </div>
-                  <ArrowRight className="h-6 w-6 text-accent group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-
-              <Link
-                to="/cases/kraypotrebsoyuz"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс · Межрегиональная структура
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
-                    Крайпотребсоюз
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Архитектура позволила отказаться от покупки серверного оборудования.
-                  </p>
-                </div>
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <div>
-                    <div className="text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      разовой экономии капитальных затрат
-                    </p>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0" />
-                </div>
-              </Link>
-
-              <Link
-                to="/cases/production-doc-search"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс · Техническая документация
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
-                    Производственная компания
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Поиск по технической документации сократился с 25 минут до 3 секунд.
-                  </p>
-                </div>
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <div>
-                    <div className="text-2xl font-bold text-accent leading-none">3 секунды</div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      вместо 25 минут ручного поиска
-                    </p>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0" />
-                </div>
-              </Link>
-            </div>
-          </section>
-
-          {/* 7. По всей России */}
-          <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-            <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
-              <div className="md:col-span-5">
-                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
-                  <span className="font-iriska font-normal italic text-accent">По всей России</span>
-                </h2>
-              </div>
-              <div className="md:col-span-7 flex items-center gap-6">
-                <p className="text-base md:text-xl text-foreground/75 leading-snug">
-                  Разбор и стратегия проходят дистанционно по всей России. Для глубокого аудита и отдельных проектов подключается очный этап.
-                </p>
-                <img
-                  src={handshakeSketch}
-                  alt=""
-                  width={512}
-                  height={512}
-                  loading="lazy"
-                  className="hidden sm:block w-20 md:w-28 h-auto object-contain opacity-70 shrink-0"
-                />
-              </div>
             </div>
           </section>
 
