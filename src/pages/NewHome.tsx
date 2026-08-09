@@ -5,7 +5,6 @@ import { ArrowRight, Quote, Phone, Send } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import CookieConsent from "@/components/CookieConsent";
 import TrustMarquee from "@/components/TrustMarquee";
 import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
@@ -627,7 +626,6 @@ const NewHome = () => {
 
       <Footer />
       <FloatingCTA />
-      <CookieConsent />
     </div>
   );
 };
