@@ -164,29 +164,6 @@ const About = () => {
     threshold: 0.2
   });
 
-  // Animated counters for key metrics
-  const projectsCount = useCountUp({
-    end: 36,
-    duration: 1800,
-    isVisible: statsVisible,
-    suffix: '+'
-  });
-  const auditsCount = useCountUp({
-    end: 350,
-    duration: 1800,
-    isVisible: statsVisible,
-    suffix: '+'
-  });
-  const roiMinCount = useCountUp({
-    end: 200,
-    duration: 1800,
-    isVisible: statsVisible
-  });
-  const roiMaxCount = useCountUp({
-    end: 400,
-    duration: 1800,
-    isVisible: statsVisible
-  });
   return <PageTransition>
       <Helmet>
         <title>Александра Моисеева — инженер цифрового развития бизнеса</title>
