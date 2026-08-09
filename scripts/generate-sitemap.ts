@@ -50,7 +50,8 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: '/neurostylist/', priority: '0.7', changefreq: 'monthly' },
 
   // Legal
-  { path: '/legal/privacy-policy', priority: '0.4', changefreq: 'yearly' },
+  { path: '/legal/cookies', priority: '0.4', changefreq: 'yearly' },
+    { path: '/legal/privacy-policy', priority: '0.4', changefreq: 'yearly' },
   { path: '/legal/consent', priority: '0.4', changefreq: 'yearly' },
   { path: '/legal/terms', priority: '0.4', changefreq: 'yearly' },
 ];
