@@ -293,7 +293,7 @@ const StartPage = () => {
             <ol className="relative pl-10 md:pl-14 space-y-4">
               <span
                 aria-hidden="true"
-                className="absolute left-[17px] md:left-[23px] top-3 bottom-3 w-px bg-accent/40"
+                className="absolute left-[17px] top-3 bottom-3 w-px bg-accent/40"
               />
               {route.map((step, i) => (
                 <li key={i} className="relative">
