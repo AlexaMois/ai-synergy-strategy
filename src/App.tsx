@@ -38,8 +38,6 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const CaseStudyKraypotrebsoyuz = lazy(() => import("./pages/CaseStudyKraypotrebsoyuz"));
 const CaseStudyCargoExpress = lazy(() => import("./pages/CaseStudyCargoExpress"));
-const CaseStudyDocSearch = lazy(() => import("./pages/CaseStudyDocSearch"));
-const GolossokPricing = lazy(() => import("./pages/GolossokPricing"));
 const Consent = lazy(() => import("./pages/Consent"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiesPolicy = lazy(() => import("./pages/CookiesPolicy"));
