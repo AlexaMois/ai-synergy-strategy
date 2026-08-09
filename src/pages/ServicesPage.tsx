@@ -94,9 +94,12 @@ const ServicesPage = () => {
         <meta property="og:description" content="Форматы работы для бизнеса: стратегическая встреча, стратегия цифрового развития, аудит, обучение, внедрение, разработка и сопровождение." />
         <meta property="og:url" content="https://aleksamois.ru/services" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://aleksamois.ru/og-image.png" />
+        <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://aleksamois.ru/og-image.png" />
+        <meta name="twitter:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
         <script type="application/ld+json">
           {JSON.stringify(getBreadcrumbs.services())}
         </script>

@@ -6,7 +6,7 @@ const distDir = path.join(rootDir, 'dist');
 const indexPath = path.join(distDir, 'index.html');
 const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml');
 const BASE = 'https://aleksamois.ru';
-const DEFAULT_OG = `${BASE}/og-image.png`;
+const DEFAULT_OG = `${BASE}/og-aleksa-2026-v1.png`;
 
 if (!fs.existsSync(indexPath)) {
   throw new Error('dist/index.html not found. Run this script after vite build.');

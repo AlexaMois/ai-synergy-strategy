@@ -66,7 +66,7 @@ const BlogPost = () => {
       .join(' ').split(/\s+/).length;
     const articleImage = post.content.introImage?.src
       ? (post.content.introImage.src.startsWith('http') ? post.content.introImage.src : `https://aleksamois.ru${post.content.introImage.src}`)
-      : "https://aleksamois.ru/og-image.png";
+      : "https://aleksamois.ru/og-aleksa-2026-v1.png";
 
     const structuredData = {
       "@context": "https://schema.org",
@@ -127,6 +127,9 @@ const BlogPost = () => {
           <meta property="og:url" content={seoData.canonicalUrl} />
           <meta property="og:type" content="article" />
           <meta property="og:image" content={seoData.articleImage} />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content={seoData.articleImage} />
           <script type="application/ld+json">

@@ -4,7 +4,7 @@ export const SEO = {
   siteUrl: "https://aleksamois.ru",
   
   // Default OG image for all pages (1200x630)
-  ogImage: "https://aleksamois.ru/og-image.png",
+  ogImage: "https://aleksamois.ru/og-aleksa-2026-v1.png",
   
   // Twitter/X
   twitterCard: "summary_large_image",
