@@ -168,24 +168,24 @@ const StartPage = () => {
             className="bg-background container mx-auto max-w-7xl px-4 pb-16 md:pb-24 scroll-mt-24"
           >
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-              <div className="md:col-span-5">
-                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
+              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-white px-6 md:px-8 py-8 md:py-10 shadow-card">
+                <h2 className="text-2xl md:text-4xl font-bold text-white leading-[1.08] mb-6 md:mb-8">
                   Что происходит на встрече
                 </h2>
-                <div className="border-t border-border mb-6 md:mb-8">
+                <div className="border-t border-white/15 mb-6 md:mb-8">
                   {flow.map((step, i) => (
                     <div
                       key={step}
-                      className="flex items-baseline gap-4 border-b border-border py-3.5"
+                      className="flex items-baseline gap-4 border-b border-white/15 py-3.5"
                     >
                       <span className="text-base md:text-lg font-bold text-accent tabular-nums">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-base md:text-lg text-foreground/80">{step}</span>
+                      <span className="text-base md:text-lg text-white/85">{step}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-base md:text-lg text-foreground/70 leading-snug">
+                <p className="text-base md:text-lg text-white/70 leading-snug">
                   Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
                 </p>
               </div>
