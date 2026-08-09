@@ -135,15 +135,15 @@ const CookieConsent = () => {
             onClick={allowAnalytics}
             variant="turquoise"
             size="lg"
-            className="w-full sm:flex-[2_1_0%] sm:min-w-0 justify-between font-bold"
+            className="w-full sm:flex-1 sm:min-w-0 justify-between font-bold"
           >
             Разрешить аналитику
           </PillButton>
           <PillButton
             onClick={declineAnalytics}
             variant="outline-dark"
-            size="md"
-            className="w-full sm:flex-[1_1_0%] sm:min-w-0 justify-between font-medium"
+            size="sm"
+            className="w-full sm:w-auto sm:flex-none justify-between sm:justify-center font-medium whitespace-nowrap"
           >
             Продолжить без аналитики
           </PillButton>

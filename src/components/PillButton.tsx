@@ -8,7 +8,7 @@ interface BaseProps {
   children: React.ReactNode;
   variant?: Variant;
   className?: string;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
 }
 
 interface LinkProps extends BaseProps {
@@ -59,13 +59,23 @@ const PillButton = (props: Props) => {
   const sizing =
     size === "lg"
       ? "pl-6 pr-2 py-2 text-base md:text-lg"
-      : "pl-5 pr-1.5 py-1.5 text-sm md:text-base";
+      : size === "md"
+        ? "pl-5 pr-1.5 py-1.5 text-sm md:text-base"
+        : "h-10 pl-4 pr-1.5 text-[14px] leading-none";
   const iconSize =
-    size === "lg" ? "w-10 h-10 md:w-11 md:h-11" : "w-8 h-8 md:w-9 md:h-9";
+    size === "lg"
+      ? "w-10 h-10 md:w-11 md:h-11"
+      : size === "md"
+        ? "w-8 h-8 md:w-9 md:h-9"
+        : "w-7 h-7";
   const arrow =
-    size === "lg" ? "h-4 w-4 md:h-5 md:w-5" : "h-3.5 w-3.5 md:h-4 md:w-4";
+    size === "lg"
+      ? "h-4 w-4 md:h-5 md:w-5"
+      : size === "md"
+        ? "h-3.5 w-3.5 md:h-4 md:w-4"
+        : "h-3.5 w-3.5";
 
-  const cls = `group inline-flex items-center gap-3 ${sizing} rounded-full font-semibold shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles[variant]} ${className}`;
+  const cls = `group inline-flex items-center ${size === "sm" ? "gap-2" : "gap-3"} ${sizing} rounded-full font-semibold shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles[variant]} ${className}`;
 
   const inner = (
     <>
