@@ -303,7 +303,7 @@ const CaseStudyCargoExpress = () => {
               <ul className="space-y-2">
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                  <span className="text-foreground">экономия <strong>3–4 часа в неделю</strong> на одного менеджера</span>
+                  <span className="text-foreground">экономия <strong>9–12 часов в неделю</strong> на обработке заявок</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <TrendingUp className="w-5 h-5 text-primary" strokeWidth={1.5} />
@@ -410,8 +410,8 @@ const CaseStudyCargoExpress = () => {
             <div className="grid sm:grid-cols-3 gap-6 mb-8">
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <Clock className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-3xl font-bold text-primary mb-2">3–4 часа</p>
-                <p className="text-sm text-muted-foreground">экономия в неделю<br />на менеджера</p>
+                <p className="text-3xl font-bold text-primary mb-2">9–12 часов</p>
+                <p className="text-sm text-muted-foreground">экономия в неделю<br />на обработке заявок</p>
               </div>
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <TrendingUp className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
