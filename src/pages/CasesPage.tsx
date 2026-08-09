@@ -191,7 +191,7 @@ const CasesPage = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { value: "1,7 млн ₽", label: "сохранено за квартал в проекте АкТрансСервис", bg: "bg-surface-mint" },
-                { value: "1,3 млн ₽", label: "сохранено за квартал в проекте Крайпотребсоюз", bg: "bg-surface-lavender" },
+                { value: "1,3 млн ₽", label: "разовая экономия капитальных затрат в проекте Крайпотребсоюз", bg: "bg-surface-lavender" },
                 { value: "0%", label: "потерь заявок после автоматизации в Грузовом Экспрессе", bg: "bg-surface-blush" },
                 { value: "3 сек", label: "вместо 25 минут на ответ по техническому запросу", bg: "bg-surface-sand" },
               ].map((m, i) => (

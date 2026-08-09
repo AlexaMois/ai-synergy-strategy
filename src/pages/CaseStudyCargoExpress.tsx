@@ -303,11 +303,7 @@ const CaseStudyCargoExpress = () => {
               <ul className="space-y-2">
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                  <span className="text-foreground">экономия <strong>9–12 часов в неделю</strong> на обработке заявок</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <TrendingUp className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                  <span className="text-foreground"><strong>9–12 часов в неделю</strong> на команду из 3 человек</span>
+                  <span className="text-foreground">экономия <strong>9–12 часов в неделю</strong> на обработке заявок для команды из 3 человек</span>
                 </li>
               </ul>
             </div>
