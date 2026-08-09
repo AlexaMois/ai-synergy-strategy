@@ -270,7 +270,7 @@ const AutomationHubPage = () => {
                 В отличие от классической RPA, ИИ умеет работать с неструктурированными данными — голосом, текстом, сканами, фотографиями. Это делает возможными сценарии, которые раньше требовали человека: распознать счёт со сканированного PDF, понять смысл звонка клиента, найти ответ в 500 договоров за секунды.
               </p>
               <p>
-                Я строю такие системы под ключ: <Link to="/services/diagnostics" className="text-primary underline">разбор процессов</Link> процессов и расчёт экономики, <Link to="/services/architecture" className="text-primary underline">архитектура</Link> решения под ваш стек, разработка пилота за 4–6 недель, <Link to="/services/support" className="text-primary underline">сопровождение</Link> и развитие системы.
+                Я строю такие системы под ключ: <Link to="/services/diagnostics" className="text-primary underline">разбор процессов</Link> и расчёт экономики, <Link to="/services/architecture" className="text-primary underline">архитектура</Link> решения под ваш стек, разработка пилота за 4–6 недель, <Link to="/services/support" className="text-primary underline">сопровождение</Link> и развитие системы.
               </p>
             </div>
           </section>
