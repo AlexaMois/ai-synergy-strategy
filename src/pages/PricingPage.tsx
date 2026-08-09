@@ -84,6 +84,7 @@ const PricingPage = () => {
       when: "нужен первый шаг",
       result: "приоритеты и следующий шаг",
       price: "17 000 ₽",
+      fixed: true,
     },
     {
       slug: "digital-development-strategy",
@@ -92,6 +93,7 @@ const PricingPage = () => {
       when: "нужен план на 90 дней",
       result: "точка А, приоритеты, план",
       price: "78 000 ₽",
+      fixed: true,
     },
     {
       slug: "digital-audit",
@@ -160,7 +162,7 @@ const PricingPage = () => {
     },
     {
       cap: "от 260 000 ₽",
-      label: "Разработка решения или внедрение",
+      label: "Проектирование и разработка цифрового решения",
       bg: "bg-surface-blush",
       sketch: blueprintPlantSketch,
     },
@@ -212,9 +214,9 @@ const PricingPage = () => {
                       </span>
                     </h1>
                     <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-2xl leading-snug">
-                      Стоимость зависит от масштаба компании, количества процессов и глубины
-                      участия. Ниже — базовые ориентиры, чтобы собственник сразу понимал порядок
-                      бюджета и мог выбрать подходящий формат.
+                      Первые два формата стоят фиксированную сумму. Для остальных стоимость зависит от
+                      масштаба компании, количества процессов и глубины участия. Ниже — ориентиры, чтобы
+                      собственник сразу понимал порядок бюджета и мог выбрать подходящий формат.
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <PillButton to="/start" variant="dark">
@@ -251,8 +253,9 @@ const PricingPage = () => {
                 <span className="font-iriska font-normal italic text-accent">ориентиры</span>
               </h2>
               <p className="text-base md:text-lg text-muted-foreground">
-                Семь форматов работы — от первой встречи до сопровождения после запуска. Цена даёт
-                порядок бюджета; финальная стоимость уточняется по вашей задаче.
+                Семь форматов работы — от первой встречи до сопровождения после запуска. Стратегическая
+                встреча и разработка стратегии стоят фиксированную сумму. Для остальных форматов цена
+                указана как «от» или диапазон и уточняется по вашей задаче.
               </p>
             </div>
 
@@ -294,6 +297,11 @@ const PricingPage = () => {
                       <div className="col-span-2 text-sm text-muted-foreground">{f.result}</div>
                       <div className="col-span-2 text-right">
                         <span className="text-lg font-bold text-foreground">{f.price}</span>
+                        {f.fixed && (
+                          <span className="block text-xs text-muted-foreground mt-1">
+                            Фиксированная стоимость
+                          </span>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -330,6 +338,9 @@ const PricingPage = () => {
                   </h3>
                   <p className="text-sm text-foreground/70 mb-4">{f.result}</p>
                   <p className="text-xl font-bold text-foreground relative">{f.price}</p>
+                  {f.fixed && (
+                    <p className="text-xs text-foreground/60 mt-1 relative">Фиксированная стоимость</p>
+                  )}
                 </Link>
                       );
                     })}
