@@ -19,7 +19,8 @@ const TrustMarquee = () => {
   return (
     <div className="bg-dark-bg text-background py-1 md:py-2 lg:py-3 overflow-hidden">
       <div className="marquee-container">
-        <div className="marquee-content">
+        {/* Duration tuned so scroll speed (px/s) matches the lower marquee */}
+        <div className="marquee-content" style={{ animationDuration: "99s" }}>
           {[...Array(3)].map((_, setIndex) => (
             <div key={setIndex} className="marquee-set">
               {facts.map((fact, index) => (
