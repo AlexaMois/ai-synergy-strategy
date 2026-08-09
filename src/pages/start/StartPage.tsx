@@ -148,10 +148,10 @@ const StartPage = () => {
                       Первый шаг
                     </p>
                     <h1 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
-                      Разбор цифровых задач для собственника
+                      Разбор задачи с собственником
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-xl leading-snug">
-                      Разберём, где компания сейчас теряет время и деньги, что имеет смысл автоматизировать первым и какие задачи разумно оставить на следующий этап.
+                      За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект.
                     </p>
 
                     <div className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-2xl bg-background/80 px-4 py-3 mb-5 shadow-card ring-1 ring-foreground/5">
@@ -161,9 +161,9 @@ const StartPage = () => {
 
                     <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-xl space-y-1">
                       <p>
-                        Разбор проводит лично Александра Моисеева — основатель и архитектор решений «НейроРешений».
+                        Александра Моисеева, основатель «НейроРешений», проводит разбор лично.
                       </p>
-                      <p>Онлайн по всей России.</p>
+                      <p>Дистанционно по всей России.</p>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
@@ -239,7 +239,7 @@ const StartPage = () => {
                   ))}
                 </div>
                 <p className="text-base md:text-lg text-foreground/75 max-w-3xl leading-snug">
-                  Начинаем с задачи бизнеса. Смотрим текущий процесс, ручную нагрузку, ошибки, задержки, потери и ограничения. Затем определяем наиболее разумный следующий шаг и формат решения.
+                  Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
                 </p>
               </div>
             </div>
@@ -274,7 +274,7 @@ const StartPage = () => {
                   ))}
                 </ul>
                 <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-white leading-snug">
-                  17 000 ₽ — самостоятельный законченный продукт. Решение о продолжении работы с «НейроРешениями» клиент принимает отдельно после разбора.
+                  Разбор — самостоятельный продукт. После встречи Вы сами решаете, двигаться дальше с «НейроРешениями» или использовать рекомендации внутри компании.
                 </p>
               </div>
             </div>
@@ -327,24 +327,11 @@ const StartPage = () => {
                 <div className="grid md:grid-cols-12 gap-6 md:gap-10 items-start">
                   <div className="md:col-span-7 space-y-4 text-base md:text-lg text-foreground/75 leading-snug">
                     <p>
-                      Александра Моисеева — основатель и архитектор решений «НейроРешений». Ключевые решения по проекту принимает лично. Для внедрения и сопровождения подключается команда под конкретную задачу.
+                      Александра Моисеева лично отвечает за разбор, архитектуру и ключевые решения. Команда «НейроРешений» подключается к внедрению и сопровождению.
                     </p>
                     <p>
-                      Цель работы — измеримый результат для бизнеса: экономия времени, снижение потерь, более управляемые процессы и понятная экономика изменений.
+                      Цель каждого проекта — измеримый результат: экономия времени, снижение потерь и рост управляемости.
                     </p>
-                  </div>
-                  <div className="md:col-span-5 space-y-2">
-                    <div className="rounded-2xl bg-background p-4 shadow-card">
-                      <p className="text-sm font-bold text-foreground mb-0.5">Александра Моисеева</p>
-                      <p className="text-sm text-muted-foreground">архитектура и ключевые решения</p>
-                    </div>
-                    <div className="flex justify-center">
-                      <ArrowDown className="h-5 w-5 text-accent" />
-                    </div>
-                    <div className="rounded-2xl bg-background p-4 shadow-card">
-                      <p className="text-sm font-bold text-foreground mb-0.5">«НейроРешения»</p>
-                      <p className="text-sm text-muted-foreground">внедрение и сопровождение</p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -385,7 +372,7 @@ const StartPage = () => {
                     Работаю с компаниями по всей России
                   </h2>
                   <p className="text-base md:text-lg text-foreground/75 leading-snug">
-                    Разбор задачи и разработка стратегии проходят дистанционно. Для глубокого аудита и отдельных проектов при необходимости подключается очный этап.
+                    Разбор и стратегия проходят дистанционно по всей России. Для глубокого аудита и отдельных проектов подключается очный этап.
                   </p>
                 </div>
                 <div className="md:col-span-4 flex justify-center md:justify-end">
@@ -406,13 +393,13 @@ const StartPage = () => {
           <section ref={diagnosticIntroRef} className="px-4 md:px-6 pb-4">
             <div className="container mx-auto max-w-3xl text-center">
               <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
-                Короткий первый шаг
+                Опишите задачу самостоятельно
               </span>
               <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
                 Кратко опишите задачу
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                За 7–10 минут опишите один процесс или управленческую задачу. Ответы помогут подготовить предметный разговор и понять возможный следующий шаг.
+                За 7–10 минут опишите один процесс. Ответы помогут подготовиться к предметному разговору.
               </p>
               {!diagnosticStarted && (
                 <div className="mt-8 mb-2 flex justify-center">
@@ -437,10 +424,10 @@ const StartPage = () => {
             <div className="container mx-auto max-w-7xl">
               <div className="rounded-[24px] md:rounded-[40px] bg-surface-blush px-5 md:px-10 lg:px-14 py-10 md:py-16 shadow-card ring-1 ring-foreground/5 text-center">
                 <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.1] mb-4 max-w-3xl mx-auto">
-                  Нужно понять, с чего начинать именно Вашей компании?
+                  Определим первый шаг для Вашей компании
                 </h2>
                 <p className="text-base md:text-lg text-foreground/75 max-w-2xl mx-auto mb-7">
-                  Начнём с одной управленческой задачи, разберём её экономический смысл и определим следующий шаг.
+                  Разберём одну ключевую задачу, оценим её экономический смысл и зафиксируем следующий шаг.
                 </p>
                 <div className="flex justify-center">
                   <PillButton onClick={openTaskModal} variant="turquoise">
