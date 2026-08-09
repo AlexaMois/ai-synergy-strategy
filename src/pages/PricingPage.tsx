@@ -457,7 +457,7 @@ const PricingPage = () => {
               <div className="md:col-span-4 md:order-2 md:pt-6">
                 <ul className="space-y-5 border-l-2 border-accent pl-6">
                   {[
-                    "Экономия 3–4 часа в неделю",
+                    "Экономия 9–12 часов в неделю",
                     "99% точность маршрутов",
                     "Окупаемость за 3 недели",
                   ].map((t, i) => (

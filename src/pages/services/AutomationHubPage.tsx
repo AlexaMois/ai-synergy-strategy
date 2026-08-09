@@ -30,7 +30,7 @@ import { trackCTAClick } from "@/utils/analytics";
 
 const TITLE = "Автоматизация бизнес-процессов с ИИ — пилот за 4–6 недель";
 const DESCRIPTION =
-  "Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Диагностика, архитектура, пилот за 4–6 недель, ROI 3–6 месяцев.";
+  "Автоматизация бизнес-процессов с ИИ под ключ: документооборот, продажи, контроль качества, отчётность. Диагностика, архитектура, пилот за 4–6 недель, обычно срок окупаемости составляет 3–6 месяцев.";
 const URL = "https://aleksamois.ru/services/automation";
 
 const processBlocks: { title: string; summary: string; bullets: string[] }[] = [
@@ -346,7 +346,7 @@ const AutomationHubPage = () => {
                 <Compass className="w-5 h-5 text-primary mb-3" />
                 <h3 className="font-semibold text-foreground mb-2">Сначала экономика</h3>
                 <p className="text-sm text-foreground/75">
-                  Считаем ROI до старта работ. Если автоматизация не окупается за 3–6 месяцев — честно говорю «не нужно».
+                  Считаем экономику до старта работ. Если автоматизация не окупается за 3–6 месяцев — честно говорю «не нужно».
                 </p>
               </div>
               <div className="bg-card border border-border rounded-xl p-5">
