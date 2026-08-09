@@ -39,7 +39,7 @@ const processBlocks: { title: string; summary: string; bullets: string[] }[] = [
     summary:
       "Распознавание счетов, актов, договоров, ТТН и УПД. Автоматическая сверка с 1С/CRM, маршрутизация согласований, ответы по типовым запросам в почте и Telegram.",
     bullets: [
-      "Снижение ручной обработки документов в 3–10 раз",
+      "Меньше ручной обработки документов и повторного ввода данных",
       "Сверка реквизитов, сумм, НДС, дат и контрагентов",
       "Интеграции с 1С, Контур, Диадок, СБИС, Bitrix24",
     ],
@@ -49,7 +49,7 @@ const processBlocks: { title: string; summary: string; bullets: string[] }[] = [
     summary:
       "Голосовые и текстовые ассистенты на входящие звонки и заявки, квалификация лида, передача в CRM, напоминания и контроль воронки.",
     bullets: [
-      "Голосовой бот GolossOK на типовые звонки и пропущенные",
+      "Голосовой ассистент на типовые и пропущенные звонки",
       "Скоринг и тегирование лидов по контексту разговора",
       "Автонапоминания, повторные касания, отчёты руководителю",
     ],
@@ -109,7 +109,7 @@ const whatYouGet: string[] = [
 ];
 
 const whyMatters: { metric: string; text: string }[] = [
-  { metric: "20–60%", text: "снижение потерь времени на ручных операциях" },
+  { metric: "9–12 ч", text: "экономии в неделю на приёме и обработке заявок (кейс «Грузовой Экспресс»)" },
   { metric: "4–6 нед", text: "до запуска первого пилота с метриками" },
   { metric: "3 мес", text: "средняя окупаемость решений по нашим проектам" },
 ];
@@ -121,7 +121,7 @@ const faq: { q: string; a: string }[] = [
   },
   {
     q: "Какие процессы автоматизируются в первую очередь?",
-    a: "Чаще всего это документооборот и первичка, обработка звонков и заявок, поиск по корпоративной базе знаний, контроль качества звонков и отчётность. Конкретный список выбираем на разборе процессов — по объёму ручных операций, потерям и потенциалу окупаемости.",
+    a: "Чаще всего это документооборот и первичка, приём и обработка заявок, поиск по корпоративной базе знаний и отчётность. Конкретный список выбираем на разборе процессов — по объёму ручных операций, потерям и потенциалу окупаемости.",
   },
   {
     q: "Сколько стоит автоматизация бизнес-процессов с ИИ?",
@@ -175,12 +175,6 @@ const AutomationHubPage = () => {
     areaServed: { "@type": "Country", name: "Россия" },
     serviceType: "AI Business Process Automation",
     url: URL,
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "RUB",
-      price: "200000",
-      description: "Пилот одного процесса от 200 000 ₽",
-    },
   };
 
   const faqSchema = {
@@ -240,7 +234,7 @@ const AutomationHubPage = () => {
                 <ArrowRight className="w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/pricing">Тарифы и пилоты</Link>
+                <Link to="/pricing">Посмотреть цены</Link>
               </Button>
             </div>
           </section>
@@ -270,7 +264,7 @@ const AutomationHubPage = () => {
                 В отличие от классической RPA, ИИ умеет работать с неструктурированными данными — голосом, текстом, сканами, фотографиями. Это делает возможными сценарии, которые раньше требовали человека: распознать счёт со сканированного PDF, понять смысл звонка клиента, найти ответ в 500 договоров за секунды.
               </p>
               <p>
-                Я строю такие системы под ключ: <Link to="/services/diagnostics" className="text-primary underline">разбор процессов</Link> и расчёт экономики, <Link to="/services/architecture" className="text-primary underline">архитектура</Link> решения под ваш стек, разработка пилота за 4–6 недель, <Link to="/services/support" className="text-primary underline">сопровождение</Link> и развитие системы.
+                Я строю такие системы под ключ: <Link to="/services/digital-audit" className="text-primary underline">разбор процессов и аудит</Link> с расчётом экономики, <Link to="/services/digital-solution-design" className="text-primary underline">проектирование и разработка решения</Link> под ваш стек за 4–6 недель, <Link to="/services/implementation-support" className="text-primary underline">сопровождение внедрения</Link> и развитие системы.
               </p>
             </div>
           </section>
@@ -380,7 +374,7 @@ const AutomationHubPage = () => {
               <Link to="/cases/cargo-express" className="bg-card border border-border rounded-xl p-5 hover:shadow-elevated transition-all group">
                 <TrendingUp className="w-5 h-5 text-primary mb-3" />
                 <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">Грузовой Экспресс</h3>
-                <p className="text-sm text-foreground/70">ИИ-обработка заявок и контроль качества звонков менеджеров.</p>
+                <p className="text-sm text-foreground/70">Приём, обработка и фиксация заявок: 9–12 часов экономии в неделю, потери заявок сведены к нулю.</p>
               </Link>
               <Link to="/products/doc-search" className="bg-card border border-border rounded-xl p-5 hover:shadow-elevated transition-all group">
                 <FileText className="w-5 h-5 text-primary mb-3" />
