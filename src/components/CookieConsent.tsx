@@ -109,7 +109,7 @@ const CookieConsent = () => {
       aria-labelledby="cookie-consent-title"
       className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6 sm:px-6 bg-foreground/50 backdrop-blur-sm animate-in fade-in duration-200"
     >
-      <div className="w-full max-w-[600px] rounded-3xl bg-background border border-border shadow-elevated p-6 sm:p-9 animate-in zoom-in-95 duration-200">
+      <div className="w-full max-w-[600px] rounded-3xl bg-background border border-border shadow-elevated p-6 sm:p-9 font-golos animate-in zoom-in-95 duration-200">
         <h2
           id="cookie-consent-title"
           className="!text-2xl sm:!text-3xl !leading-snug font-bold text-foreground !mb-4"
