@@ -18,8 +18,6 @@ import { Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, Ext
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useCountUp } from "@/hooks/use-count-up";
-import AnimatedNumber from "@/components/AnimatedNumber";
 import alexandraHeadshot from "@/assets/alexandra-headshot.webp";
 import alexandraAbout from "@/assets/alexandra-about.webp";
 import diplomaImage from "@/assets/credentials/diploma-ai-2025.jpg";
@@ -164,29 +162,6 @@ const About = () => {
     threshold: 0.2
   });
 
-  // Animated counters for key metrics
-  const projectsCount = useCountUp({
-    end: 36,
-    duration: 1800,
-    isVisible: statsVisible,
-    suffix: '+'
-  });
-  const auditsCount = useCountUp({
-    end: 350,
-    duration: 1800,
-    isVisible: statsVisible,
-    suffix: '+'
-  });
-  const roiMinCount = useCountUp({
-    end: 200,
-    duration: 1800,
-    isVisible: statsVisible
-  });
-  const roiMaxCount = useCountUp({
-    end: 400,
-    duration: 1800,
-    isVisible: statsVisible
-  });
   return <PageTransition>
       <Helmet>
         <title>Александра Моисеева — инженер цифрового развития бизнеса</title>

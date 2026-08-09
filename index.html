@@ -18,9 +18,11 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Deferred Analytics Loading — только Яндекс.Метрика (Google Analytics и GTM отключены) -->
+    <!-- Deferred Analytics Loading — только Яндекс.Метрика, запуск строго после согласия на аналитические cookies -->
     <script>
       function loadAnalytics() {
+        if (window.__analyticsLoaded) { return; }
+        window.__analyticsLoaded = true;
         // Yandex.Metrika counter 99058653 (единственный действующий счётчик)
         // Вебвизор отключён: запись форм и полей не ведётся.
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -36,12 +38,24 @@
           trackHash:true
         });
       }
+      window.loadAnalytics = loadAnalytics;
 
-      // Load analytics after page finishes rendering
-      if (window.requestIdleCallback) {
-        requestIdleCallback(loadAnalytics, { timeout: 3000 });
-      } else {
-        window.addEventListener('load', loadAnalytics);
+      // Аналитика запускается только при наличии сохранённого согласия
+      function hasAnalyticsConsent() {
+        try {
+          var raw = localStorage.getItem('cookie_consent');
+          if (!raw) { return false; }
+          var parsed = JSON.parse(raw);
+          return !!(parsed && parsed.consent && parsed.consent.analytics);
+        } catch (e) { return false; }
+      }
+
+      if (hasAnalyticsConsent()) {
+        if (window.requestIdleCallback) {
+          requestIdleCallback(loadAnalytics, { timeout: 3000 });
+        } else {
+          window.addEventListener('load', loadAnalytics);
+        }
       }
     </script>
     
@@ -209,13 +223,13 @@
         {
           "@type": "ProfessionalService",
           "@id": "https://aleksamois.ru/#service",
-          "name": "Внедрение искусственного интеллекта для бизнеса",
+          "name": "Услуги по цифровому развитию бизнеса",
           "provider": { "@id": "https://aleksamois.ru/#organization" },
-          "serviceType": "AI Consulting",
+          "serviceType": "Цифровое развитие и автоматизация бизнес-процессов",
           "areaServed": "Россия",
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Услуги по внедрению ИИ",
+            "name": "Форматы работы по цифровому развитию бизнеса",
             "itemListElement": [
               {
                 "@type": "Offer",
@@ -347,7 +361,6 @@
 </head>
   <body>
     <!-- Yandex.Metrika (noscript) -->
-    <noscript><div><img src="https://mc.yandex.ru/watch/99058653" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

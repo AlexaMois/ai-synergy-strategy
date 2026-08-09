@@ -24,13 +24,12 @@ const updateGoogleConsent = (consent: ConsentState) => {
   }
 };
 
-// Update Yandex Metrika consent
+// Яндекс.Метрика загружается только после согласия на аналитические cookies
 const updateYandexConsent = (consent: ConsentState) => {
-  if (typeof window !== "undefined" && (window as any).ym) {
-    if (!consent.analytics) {
-      // Disable Yandex Metrika tracking
-      (window as any).ym(99058653, "notBounce");
-    }
+  if (typeof window === "undefined") return;
+  const loader = (window as any).loadAnalytics;
+  if (consent.analytics && typeof loader === "function") {
+    loader();
   }
 };
 

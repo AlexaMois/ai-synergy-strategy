@@ -314,7 +314,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                     <Link to="/legal/consent" className="text-primary hover:underline">
                       условиями обработки персональных данных
                     </Link>
-                    . Сайт не передаёт информацию третьим лицам.
+                    . Данные обрабатываются в соответствии с политикой обработки персональных данных.
                   </Label>
                 </div>
                 {errors.consent && (
