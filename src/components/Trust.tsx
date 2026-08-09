@@ -1,18 +1,15 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { useCountUp } from "@/hooks/use-count-up";
 
 const Trust = () => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.3 });
-  const roiMin = useCountUp({ end: 200, duration: 2000, isVisible });
-  const roiMax = useCountUp({ end: 400, duration: 2000, isVisible });
-  
   const facts = [
     "360 разборов бизнес-процессов",
     "40 внедрённых проектов",
     "7 городов",
     "10 отраслей",
     "4+ года практики в ИИ",
-    `ROI клиентов ${roiMin}–${roiMax}%`,
+    "80% клиентов приходят по рекомендации",
+    "85% клиентов возвращаются",
     
     "Резидент IT-Парк Казань",
     "Резидент КРИТБИ",

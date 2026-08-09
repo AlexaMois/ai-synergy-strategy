@@ -38,7 +38,7 @@ const WhyItWorks = () => {
               }}
             >
               <p className="text-base text-text-body leading-[1.7] text-center">
-                4+ года практики в ИИ, управлении и технологиях
+                4+ года практики в ИИ
               </p>
             </div>
             
