@@ -70,7 +70,7 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={1.5} />
                 <span>
                   Красноярск, ул. Красной Гвардии, 24, офис 224<br />
-                  <span className="text-background/50">(работаю online/offline по России)</span>
+                  <span className="text-background/50">(работаю очно и дистанционно по России)</span>
                 </span>
               </a>
             </div>
