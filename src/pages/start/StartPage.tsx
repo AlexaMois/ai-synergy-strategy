@@ -110,12 +110,12 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>С чего начать оптимизацию бизнеса</title>
-        <meta name="description" content="Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль." />
-        <meta name="keywords" content="разбор бизнес-процессов, аудит автоматизации, где внедрять ИИ, ROI автоматизации, экспресс аудит процессов" />
+        <title>С чего начать цифровое развитие бизнеса | Александра Моисеева</title>
+        <meta name="description" content="Выберите первый шаг: стратегическая встреча, стратегия цифрового развития или глубокий аудит компании." />
+        <meta name="keywords" content="разбор бизнес-процессов, аудит компании, где внедрять ИИ, стратегия цифрового развития" />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="С чего начать оптимизацию бизнеса" />
-        <meta property="og:description" content="Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль." />
+        <meta property="og:title" content="С чего начать цифровое развитие бизнеса | Александра Моисеева" />
+        <meta property="og:description" content="Выберите первый шаг: стратегическая встреча, стратегия цифрового развития или глубокий аудит компании." />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
