@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Image, Phone, MessageSquare, Mic } from "lucide-react";
+import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Phone, MessageSquare, Mic } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { trackCTAClick } from "@/utils/analytics";
 

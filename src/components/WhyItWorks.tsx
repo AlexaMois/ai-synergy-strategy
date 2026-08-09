@@ -50,7 +50,7 @@ const WhyItWorks = () => {
               }}
             >
               <p className="text-base text-text-body leading-[1.7] text-center">
-                Победитель Национальной премии "Бизнес-Успех", 2025
+                Победитель регионального этапа премии «Бизнес-Успех», 2025
               </p>
             </div>
             
