@@ -215,17 +215,32 @@ const StartPage = () => {
                 <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
                   Что происходит на встрече
                 </h2>
-                <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                  {flow.map((step, i) => (
-                    <span key={step} className="flex items-center gap-2 md:gap-3">
-                      <span className="rounded-full bg-background px-4 py-2 text-sm md:text-base font-semibold text-foreground shadow-card">
+                <div className="mb-6 md:mb-8">
+                  {/* mobile: vertical route with thin accent line on the left */}
+                  <div className="md:hidden border-l-2 border-accent/40 pl-4 space-y-2">
+                    {flow.map((step) => (
+                      <span
+                        key={step}
+                        className="block rounded-full bg-background px-4 py-2 text-sm font-semibold text-foreground shadow-card"
+                      >
                         {step}
                       </span>
-                      {i < flow.length - 1 && (
-                        <ArrowRight className="h-4 w-4 text-accent shrink-0" />
-                      )}
-                    </span>
-                  ))}
+                    ))}
+                  </div>
+                  {/* desktop: single row united by one thin accent line */}
+                  <div className="hidden md:block">
+                    <div className="flex flex-wrap items-center gap-3 pb-4">
+                      {flow.map((step) => (
+                        <span
+                          key={step}
+                          className="rounded-full bg-background px-4 py-2 text-base font-semibold text-foreground shadow-card"
+                        >
+                          {step}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="h-px w-full bg-accent/40" />
+                  </div>
                 </div>
                 <p className="text-base md:text-lg text-foreground/75 max-w-3xl leading-snug">
                   Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
@@ -275,27 +290,24 @@ const StartPage = () => {
               Что может быть{" "}
               <span className="font-iriska font-normal italic text-accent">дальше</span>
             </h2>
-            <ol className="space-y-3">
+            <ol className="relative pl-10 md:pl-14 space-y-4">
+              <span
+                aria-hidden="true"
+                className="absolute left-[17px] md:left-[23px] top-3 bottom-3 w-px bg-accent/40"
+              />
               {route.map((step, i) => (
-                <li key={i}>
+                <li key={i} className="relative">
+                  <span className="absolute -left-10 md:-left-14 top-5 md:top-6 flex items-center justify-center w-9 h-9 rounded-full bg-background font-bold text-foreground shadow-card ring-1 ring-accent/30">
+                    {i + 1}
+                  </span>
                   <div
-                    className={`rounded-[24px] ${step.bg} p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex items-start gap-4`}
+                    className={`rounded-[24px] ${step.bg} p-5 md:p-6 shadow-card ring-1 ring-foreground/5`}
                   >
-                    <span className="flex items-center justify-center w-9 h-9 shrink-0 rounded-full bg-background font-bold text-foreground shadow-card">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-base md:text-lg font-bold text-foreground leading-[1.2] mb-1">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-foreground/70">{step.text}</p>
-                    </div>
+                    <h3 className="text-base md:text-lg font-bold text-foreground leading-[1.2] mb-1">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-foreground/70">{step.text}</p>
                   </div>
-                  {i < route.length - 1 && (
-                    <div className="flex justify-center py-1.5">
-                      <ArrowDown className="h-5 w-5 text-accent" />
-                    </div>
-                  )}
                 </li>
               ))}
             </ol>
