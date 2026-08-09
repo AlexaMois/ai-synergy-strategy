@@ -15,7 +15,7 @@ const Foundation = () => {
       description: "Анализируем процессы, говорим честно: где окупится, а где — лишние расходы.",
       pricing: "от 15 000 ₽",
       result: "Дорожная карта с расчётом ROI. Средняя экономия клиентов — от 150 000 ₽/мес.",
-      link: "/services/diagnostics",
+      link: "/services/digital-audit",
       linkText: "Подробнее о разборе процессов"
     },
     {
@@ -25,7 +25,7 @@ const Foundation = () => {
       description: "Проектируем AI-решение под ваши задачи. Вы получаете ТЗ и BPMN-схемы — документы, с которыми работает любая команда.",
       pricing: "от 150 000 ₽",
       result: "Готовая архитектура и план интеграции.",
-      link: "/services/architecture",
+      link: "/services/digital-solution-design",
       linkText: "Подробнее об архитектуре"
     },
     {
@@ -35,7 +35,7 @@ const Foundation = () => {
       description: "Запускаем, обучаем команду, настраиваем под задачи. Еженедельно контролируем результаты.",
       pricing: "от 60 000 ₽/мес",
       result: "Скорость обработки задач растёт на 20–50% за месяц.",
-      link: "/services/support",
+      link: "/services/implementation-support",
       linkText: "Подробнее о сопровождении"
     }
   ];
