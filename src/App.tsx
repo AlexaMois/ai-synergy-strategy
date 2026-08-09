@@ -84,7 +84,7 @@ const AppContent = () => {
           {/* Main */}
           <Route path="/" element={<Index />} />
           <Route path="/faq" element={<FAQPage />} />
-          <Route path="/old-home" element={<OldHome />} />
+          <Route path="/old-home" element={<Navigate to="/" replace />} />
           
           {/* Start */}
           <Route path="/start" element={<StartPage />} />
