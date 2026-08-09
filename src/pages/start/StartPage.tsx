@@ -4,118 +4,126 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
-import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
-import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
-import auditCareSketch from "@/assets/sketches/audit-care-sketch.webp";
+import PillButton from "@/components/PillButton";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
-
-const PillButton = ({
-  to,
-  onClick,
-  children,
-  variant = "dark",
-  className = "",
-}: {
-  to?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-  variant?: "dark" | "light" | "turquoise";
-  className?: string;
-}) => {
-  const styles = {
-    dark: "bg-foreground text-background hover:bg-foreground/90",
-    light: "bg-background text-foreground hover:bg-background/90",
-    turquoise: "bg-accent text-accent-foreground hover:bg-primary-dark",
-  }[variant];
-  const iconBg = {
-    dark: "bg-accent text-accent-foreground",
-    light: "bg-foreground text-background",
-    turquoise: "bg-background text-foreground",
-  }[variant];
-  const cls = `group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`;
-  const inner = (
-    <>
-      <span>{children}</span>
-      <span
-        className={`flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
-      >
-        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-      </span>
-    </>
-  );
-  if (to) {
-    return (
-      <Link to={to} className={cls}>
-        {inner}
-      </Link>
-    );
-  }
-  return (
-    <button type="button" onClick={onClick} className={cls}>
-      {inner}
-    </button>
-  );
-};
+import compassSketch from "@/assets/sketches/compass-sketch.webp";
+import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
 
 const StartPage = () => {
   const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
-  
+
   const diagnosticRef = useRef<HTMLDivElement>(null);
   const diagnosticIntroRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
     setTimeout(() => {
-      diagnosticRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  };
-
-  // Кнопка первого экрана: раскрыть анкету и сразу прокрутить к ней
-  const goToDiagnostic = () => {
-    setDiagnosticStarted(true);
-    setTimeout(() => {
       (diagnosticRef.current ?? diagnosticIntroRef.current)?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+        behavior: "smooth",
+        block: "start",
       });
     }, 120);
   };
 
-  const formats = [
+  const scrollToResult = () => {
+    document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const situations = [
+    "В компании много ручной работы, а первый приоритет пока требует определения.",
+    "Есть конкретная задача и требуется оценить смысл вложений в её решение.",
+    "Сотрудники предлагают разные сервисы и инструменты, а собственнику нужна целостная картина.",
+    "Компания уже запускала автоматизацию, а результат требует переоценки.",
+    "Перед разработкой и внедрением требуется определить приоритеты и экономический смысл изменений.",
+  ];
+
+  const flow = [
+    "Задача бизнеса",
+    "Текущий процесс",
+    "Потери времени и денег",
+    "Ограничения",
+    "Варианты решения",
+    "Первый приоритет",
+  ];
+
+  const results = [
+    "понимание первой приоритетной задачи",
+    "список задач для последующих этапов",
+    "подходящий формат решения",
+    "основные ограничения и риски",
+    "понятный следующий шаг",
+  ];
+
+  const route = [
     {
-      sketch: chatHeartSketch,
-      situation: "Нужно быстро понять первый шаг",
-      format: "Стратегическая встреча по цифровизации для собственника",
-      to: "/services/owner-digital-session",
+      title: "Разбор цифровых задач для собственника — 17 000 ₽",
+      text: "Определяем первый приоритет и следующий шаг.",
+      bg: "bg-surface-mint",
     },
     {
-      sketch: routeWarmSketch,
-      situation: "Нужен план на 90 дней",
-      format: "Разработка стратегии цифрового развития бизнеса",
-      to: "/services/digital-development-strategy",
+      title: "Стратегия цифрового развития — 78 000 ₽",
+      text: "Определяем несколько приоритетов и формируем план действий на 90 дней.",
+      bg: "bg-surface-lavender",
     },
     {
-      sketch: auditCareSketch,
-      situation: "Нужно подробно разобрать процессы, документы и инструменты",
-      format: "Глубокий аудит компании для цифровизации",
-      to: "/services/digital-audit",
+      title: "Глубокий аудит — от 116 000 ₽",
+      text: "Подробно разбираем несколько процессов, работу сотрудников, документы, данные и текущие системы.",
+      bg: "bg-surface-sand",
+    },
+    {
+      title: "Внедрение и сопровождение",
+      text: "Запускаем выбранные изменения и доводим решения до рабочего применения.",
+      bg: "bg-surface-blush",
+    },
+  ];
+
+  const cases = [
+    {
+      client: "АкТрансСервис · логистика",
+      change: "53 000 позиций и ручные процессы с данными и документами перевели на 5 цифровых инструментов за 2 месяца.",
+      metric: "1,7 млн ₽ сохранено за квартал",
+      to: "/cases/aktransservice",
+      bg: "bg-surface-mint",
+    },
+    {
+      client: "Крайпотребсоюз · межрегиональная структура",
+      change: "Планировалась покупка серверного оборудования — архитектура решения позволила от неё отказаться.",
+      metric: "1,3 млн ₽ разовой экономии капитальных затрат",
+      to: "/cases/kraypotrebsoyuz",
+      bg: "bg-surface-lavender",
+    },
+    {
+      client: "Производственная компания · техническая документация",
+      change: "Поиск по технической документации заменил ручной просмотр материалов: QR-код на рабочем месте — ответ сразу.",
+      metric: "150–350 тыс ₽ в месяц, ответ за 3 секунды",
+      to: "/cases/production-doc-search",
+      bg: "bg-surface-sand",
     },
   ];
 
   return (
     <PageTransition>
       <Helmet>
-        <title>С чего начать цифровое развитие бизнеса | Александра Моисеева</title>
-        <meta name="description" content="Выберите первый шаг: стратегическая встреча, стратегия цифрового развития или глубокий аудит компании." />
-        <meta name="keywords" content="разбор бизнес-процессов, аудит компании, где внедрять ИИ, стратегия цифрового развития" />
+        <title>Разбор цифровых задач для собственника — 17 000 ₽ | Александра Моисеева</title>
+        <meta
+          name="description"
+          content="Разбор цифровых задач для собственника за 17 000 ₽: где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
+        />
+        <meta
+          name="keywords"
+          content="разбор цифровых задач, автоматизация процессов, с чего начать автоматизацию, стратегия цифрового развития, аудит процессов"
+        />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="С чего начать цифровое развитие бизнеса | Александра Моисеева" />
-        <meta property="og:description" content="Выберите первый шаг: стратегическая встреча, стратегия цифрового развития или глубокий аудит компании." />
+        <meta property="og:title" content="Разбор цифровых задач для собственника — 17 000 ₽ | Александра Моисеева" />
+        <meta
+          property="og:description"
+          content="Разберём, где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
+        />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -124,64 +132,65 @@ const StartPage = () => {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
-        <script type="application/ld+json">
-          {JSON.stringify(getBreadcrumbs.start())}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(getBreadcrumbs.start())}</script>
       </Helmet>
-      
+
       <div className="min-h-screen bg-background">
         <PageBreadcrumbs currentPage="С чего начать" />
-        
+
         <main>
-          {/* HERO — большая розовая плашка (контраст с бирюзовой главной) */}
+          {/* 1. HERO */}
           <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-card ring-1 ring-foreground/5">
+              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-card ring-1 ring-foreground/5">
                 <div className="grid md:grid-cols-12 gap-6 md:gap-4 items-center px-5 md:px-10 lg:px-14 py-7 md:py-14">
                   <div className="md:col-span-7">
                     <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
-                      С чего начать
+                      Первый шаг
                     </p>
-                    <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
-                      С чего начать оптимизацию бизнеса
+                    <h1 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
+                      Разбор цифровых задач для собственника
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-xl leading-snug">
-                      Найдём один процесс, где автоматизация быстрее всего сэкономит время, снизит количество ошибок и вернёт руководителю контроль.
+                      Разберём, где компания сейчас теряет время и деньги, что имеет смысл автоматизировать первым и какие задачи разумно оставить на следующий этап.
                     </p>
-                    <ul className="space-y-2.5 mb-6 md:mb-8">
-                      {[
-                        "определим главное узкое место",
-                        "выберем реалистичный первый шаг",
-                        "определим первый шаг и дальнейший маршрут",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/70">
-                          <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+
+                    <div className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-2xl bg-background/80 px-4 py-3 mb-5 shadow-card ring-1 ring-foreground/5">
+                      <span className="text-2xl md:text-3xl font-bold text-foreground">17 000 ₽</span>
+                      <span className="text-sm md:text-base text-muted-foreground">· фиксированная стоимость</span>
+                    </div>
+
+                    <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-xl space-y-1">
+                      <p>
+                        Разбор проводит лично Александра Моисеева — основатель и архитектор решений «НейроРешений».
+                      </p>
+                      <p>Онлайн по всей России.</p>
+                    </div>
+
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-                      <PillButton onClick={openTaskModal} variant="turquoise" className="w-full sm:w-auto justify-center">
-                        Обсудить задачу
+                      <PillButton
+                        onClick={openTaskModal}
+                        variant="turquoise"
+                        className="w-full sm:w-auto justify-center"
+                      >
+                        Записаться на разбор — 17 000 ₽
                       </PillButton>
-                      <PillButton onClick={goToDiagnostic} variant="dark" className="w-full sm:w-auto justify-center">
-                        Пройти разбор
-                      </PillButton>
-                      <Link
-                        to="/services"
+                      <button
+                        type="button"
+                        onClick={scrollToResult}
                         className="inline-flex items-center justify-center sm:justify-start text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-3 sm:py-2"
                       >
-                        Посмотреть услуги <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
+                        Что получите после разбора <ArrowDown className="ml-2 h-5 w-5" />
+                      </button>
                     </div>
                   </div>
                   <div className="md:col-span-5 flex justify-center md:justify-end md:pr-2">
                     <img
                       src={brainHeartSketch}
-                      alt="Цифровизация бизнеса — выбор первого процесса для автоматизации"
+                      alt="Разбор цифровых задач для собственника — выбор первого приоритета"
                       width={800}
                       height={800}
-                      loading="lazy"
+                      loading="eager"
                       className="w-36 sm:w-44 md:w-60 lg:w-72 h-auto object-contain"
                     />
                   </div>
@@ -190,100 +199,269 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* Предварительный разбор процессов — вводный блок */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-8 md:pt-12 pb-0">
-            <div className="container mx-auto max-w-3xl text-center">
-              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
-                Предварительный разбор процессов
-              </span>
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
-                Разберите один ключевой процесс
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                За 7–10 минут вы опишете один процесс, его масштаб, основные проблемы и
-                желаемый результат. Ответы помогут подготовить предметный разговор и
-                определить следующий шаг.
-              </p>
-              {!diagnosticStarted && (
-                <div className="mt-10 mb-2">
-                  <PillButton onClick={startDiagnostic}>Начать разбор</PillButton>
+          {/* 2. Когда стоит начать с разбора */}
+          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-8 md:mb-10 max-w-3xl">
+              Когда стоит начать с{" "}
+              <span className="font-iriska font-normal italic text-accent">разбора</span>
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {situations.map((s, i) => (
+                <div
+                  key={i}
+                  className="rounded-[24px] bg-card p-5 md:p-6 shadow-card ring-1 ring-foreground/5"
+                >
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent font-bold text-sm mb-3">
+                    {i + 1}
+                  </span>
+                  <p className="text-sm md:text-base text-foreground/80 leading-snug">{s}</p>
                 </div>
-              )}
+              ))}
             </div>
           </section>
 
-          {/* Анкета из 8 шагов */}
-          {diagnosticStarted && (
-            <section ref={diagnosticRef} className="pt-10 md:pt-14 pb-10 md:pb-14">
-              <div className="container mx-auto px-4">
-                <DiagnosticForm />
+          {/* 3. Что происходит на встрече */}
+          <section className="px-4 md:px-6 pb-14 md:pb-20">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[24px] md:rounded-[40px] bg-secondary px-5 md:px-10 lg:px-14 py-8 md:py-14 shadow-card ring-1 ring-foreground/5">
+                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
+                  Что происходит на встрече
+                </h2>
+                <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                  {flow.map((step, i) => (
+                    <span key={step} className="flex items-center gap-2 md:gap-3">
+                      <span className="rounded-full bg-background px-4 py-2 text-sm md:text-base font-semibold text-foreground shadow-card">
+                        {step}
+                      </span>
+                      {i < flow.length - 1 && (
+                        <ArrowRight className="h-4 w-4 text-accent shrink-0" />
+                      )}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-base md:text-lg text-foreground/75 max-w-3xl leading-snug">
+                  Начинаем с задачи бизнеса. Смотрим текущий процесс, ручную нагрузку, ошибки, задержки, потери и ограничения. Затем определяем наиболее разумный следующий шаг и формат решения.
+                </p>
               </div>
-            </section>
-          )}
+            </div>
+          </section>
 
-          {/* Возможные следующие шаги — форматы работы */}
-          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
-            <div className="max-w-3xl mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-4">
-                Возможные следующие{" "}
-                <span className="font-iriska font-normal italic text-accent">шаги</span>
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
-                Подходящий формат определим после предварительного разбора процессов или короткого разговора.
-              </p>
+          {/* 4. Результат */}
+          <section id="result" className="container mx-auto max-w-7xl px-4 pb-14 md:pb-20 scroll-mt-24">
+            <div className="grid md:grid-cols-12 gap-6">
+              <div className="md:col-span-5">
+                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-4">
+                  Что Вы получите после разбора
+                </h2>
+                <img
+                  src={compassSketch}
+                  alt=""
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  className="hidden md:block w-40 h-auto object-contain mt-6"
+                />
+              </div>
+              <div className="md:col-span-7">
+                <ul className="space-y-3 mb-6">
+                  {results.map((r) => (
+                    <li
+                      key={r}
+                      className="flex items-start gap-3 rounded-2xl bg-card p-4 shadow-card ring-1 ring-foreground/5"
+                    >
+                      <Check className="w-5 h-5 text-accent mt-0.5 shrink-0" />
+                      <span className="text-sm md:text-base text-foreground/80">{r}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-white leading-snug">
+                  17 000 ₽ — самостоятельный законченный продукт. Решение о продолжении работы с «НейроРешениями» клиент принимает отдельно после разбора.
+                </p>
+              </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {formats.map((item, i) => {
-                const palettes = [
-                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
-                  { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-card", text: "text-foreground", muted: "text-muted-foreground" },
-                  { bg: "bg-foreground", text: "text-background", muted: "text-background/70" },
-                ];
-                const p = palettes[i % palettes.length];
-                return (
-                  <Link
-                    key={i}
-                    to={item.to}
-                    className={`group relative flex flex-col rounded-[24px] ${p.bg} p-5 md:p-6 overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5 min-h-[190px]`}
+          </section>
+
+          {/* 5. Продуктовый маршрут */}
+          <section className="container mx-auto max-w-7xl px-4 pb-14 md:pb-20">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-8 md:mb-10">
+              Что может быть{" "}
+              <span className="font-iriska font-normal italic text-accent">дальше</span>
+            </h2>
+            <ol className="space-y-3">
+              {route.map((step, i) => (
+                <li key={i}>
+                  <div
+                    className={`rounded-[24px] ${step.bg} p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex items-start gap-4`}
                   >
-                    <img
-                      src={item.sketch}
-                      alt=""
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      className="absolute -bottom-3 -right-3 w-24 md:w-28 h-auto object-contain opacity-90 pointer-events-none"
-                    />
-                    <p className={`text-xs ${p.muted} mb-1.5 relative max-w-[85%]`}>{item.situation}</p>
-                    <h3 className={`text-base md:text-lg font-bold ${p.text} leading-[1.15] mb-4 relative max-w-[85%]`}>
-                      {item.format}
-                    </h3>
-                    <div className="mt-auto flex items-center justify-between relative">
-                      <span className={`text-sm font-semibold ${p.text}`}>Подробнее</span>
-                      <ArrowRight className={`h-4 w-4 ${p.text} opacity-70 group-hover:translate-x-1 transition-transform`} />
+                    <span className="flex items-center justify-center w-9 h-9 shrink-0 rounded-full bg-background font-bold text-foreground shadow-card">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-foreground leading-[1.2] mb-1">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm md:text-base text-foreground/70">{step.text}</p>
                     </div>
-                  </Link>
-                );
-              })}
-            </div>
+                  </div>
+                  {i < route.length - 1 && (
+                    <div className="flex justify-center py-1.5">
+                      <ArrowDown className="h-5 w-5 text-accent" />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ol>
             <div className="mt-8 flex justify-center">
               <PillButton to="/services" variant="dark">
                 Посмотреть все услуги
               </PillButton>
             </div>
           </section>
+
+          {/* 6. О «НейроРешениях» */}
+          <section className="px-4 md:px-6 pb-14 md:pb-20">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[24px] md:rounded-[40px] bg-surface-lavender px-5 md:px-10 lg:px-14 py-8 md:py-14 shadow-card ring-1 ring-foreground/5">
+                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6">
+                  От решения до рабочего внедрения
+                </h2>
+                <div className="grid md:grid-cols-12 gap-6 md:gap-10 items-start">
+                  <div className="md:col-span-7 space-y-4 text-base md:text-lg text-foreground/75 leading-snug">
+                    <p>
+                      Александра Моисеева — основатель и архитектор решений «НейроРешений». Ключевые решения по проекту принимает лично. Для внедрения и сопровождения подключается команда под конкретную задачу.
+                    </p>
+                    <p>
+                      Цель работы — измеримый результат для бизнеса: экономия времени, снижение потерь, более управляемые процессы и понятная экономика изменений.
+                    </p>
+                  </div>
+                  <div className="md:col-span-5 space-y-2">
+                    <div className="rounded-2xl bg-background p-4 shadow-card">
+                      <p className="text-sm font-bold text-foreground mb-0.5">Александра Моисеева</p>
+                      <p className="text-sm text-muted-foreground">архитектура и ключевые решения</p>
+                    </div>
+                    <div className="flex justify-center">
+                      <ArrowDown className="h-5 w-5 text-accent" />
+                    </div>
+                    <div className="rounded-2xl bg-background p-4 shadow-card">
+                      <p className="text-sm font-bold text-foreground mb-0.5">«НейроРешения»</p>
+                      <p className="text-sm text-muted-foreground">внедрение и сопровождение</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 7. Кейсы */}
+          <section className="container mx-auto max-w-7xl px-4 pb-14 md:pb-20">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-8 md:mb-10">
+              Подтверждённые{" "}
+              <span className="font-iriska font-normal italic text-accent">результаты</span>
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {cases.map((c) => (
+                <Link
+                  key={c.client}
+                  to={c.to}
+                  className={`group flex flex-col rounded-[24px] ${c.bg} p-5 md:p-6 shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                >
+                  <p className="text-xs text-foreground/60 mb-2">{c.client}</p>
+                  <p className="text-sm md:text-base text-foreground/80 mb-4 leading-snug">{c.change}</p>
+                  <p className="text-base md:text-lg font-bold text-foreground mt-auto">{c.metric}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-foreground">
+                    Подробнее
+                    <ArrowRight className="h-4 w-4 opacity-70 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* 8. Работа по России */}
+          <section className="px-4 md:px-6 pb-14 md:pb-20">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[24px] md:rounded-[40px] bg-surface-sand px-5 md:px-10 lg:px-14 py-8 md:py-12 shadow-card ring-1 ring-foreground/5 grid md:grid-cols-12 gap-6 items-center">
+                <div className="md:col-span-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-[1.1] mb-3">
+                    Работаю с компаниями по всей России
+                  </h2>
+                  <p className="text-base md:text-lg text-foreground/75 leading-snug">
+                    Разбор задачи и разработка стратегии проходят дистанционно. Для глубокого аудита и отдельных проектов при необходимости подключается очный этап.
+                  </p>
+                </div>
+                <div className="md:col-span-4 flex justify-center md:justify-end">
+                  <img
+                    src={handshakeSketch}
+                    alt=""
+                    width={512}
+                    height={512}
+                    loading="lazy"
+                    className="w-28 md:w-40 h-auto object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 9. Короткое описание задачи */}
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pb-4">
+            <div className="container mx-auto max-w-3xl text-center">
+              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+                Короткий первый шаг
+              </span>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
+                Кратко опишите задачу
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+                За 7–10 минут опишите один процесс или управленческую задачу. Ответы помогут подготовить предметный разговор и понять возможный следующий шаг.
+              </p>
+              {!diagnosticStarted && (
+                <div className="mt-8 mb-2 flex justify-center">
+                  <PillButton onClick={startDiagnostic} variant="dark">
+                    Описать задачу
+                  </PillButton>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {diagnosticStarted && (
+            <section ref={diagnosticRef} className="pt-10 md:pt-14 pb-4">
+              <div className="container mx-auto px-4">
+                <DiagnosticForm />
+              </div>
+            </section>
+          )}
+
+          {/* 10. Финальный CTA */}
+          <section className="px-4 md:px-6 py-14 md:py-20">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[24px] md:rounded-[40px] bg-surface-blush px-5 md:px-10 lg:px-14 py-10 md:py-16 shadow-card ring-1 ring-foreground/5 text-center">
+                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.1] mb-4 max-w-3xl mx-auto">
+                  Нужно понять, с чего начинать именно Вашей компании?
+                </h2>
+                <p className="text-base md:text-lg text-foreground/75 max-w-2xl mx-auto mb-7">
+                  Начнём с одной управленческой задачи, разберём её экономический смысл и определим следующий шаг.
+                </p>
+                <div className="flex justify-center">
+                  <PillButton onClick={openTaskModal} variant="turquoise">
+                    Записаться на разбор — 17 000 ₽
+                  </PillButton>
+                </div>
+                <p className="mt-4 text-sm text-foreground/60">
+                  Александра Моисеева · лично · онлайн по всей России
+                </p>
+              </div>
+            </div>
+          </section>
         </main>
 
         <FAQTeaser
           items={[
-            { question: "Как понять, какой формат мне подходит?", answer: "Начните с текущей задачи. Если нужен первый шаг — подойдёт стратегическая встреча. Если нужен план на 90 дней — стратегия цифрового развития. Если требуется подробный разбор процессов, данных и инструментов — глубокий аудит." },
-            { question: "Можно начать с короткого разбора?", answer: "Да. Короткий разбор помогает быстро определить, какая задача сейчас главная: стратегия, аудит, обучение, внедрение, разработка или сопровождение." },
-            { question: "Что нужно подготовить перед первым обращением?", answer: "Достаточно кратко описать компанию, текущую задачу и процессы, которые забирают больше всего времени. Документы, таблицы и примеры можно подключить уже на следующем этапе." },
-            { question: "Что произойдёт после разбора процессов или первого разговора?", answer: "Вы получите понятный следующий шаг: какой формат подходит, какие процессы стоит разобрать первыми и как двигаться дальше без лишних действий." },
+            { question: "Что такое разбор цифровых задач для собственника?", answer: "Это отдельная встреча за 17 000 ₽, на которой мы разбираем задачу бизнеса, текущий процесс, ручную нагрузку и потери, а затем определяем первый приоритет и подходящий формат решения." },
+            { question: "Нужно ли продолжать работу после разбора?", answer: "Нет. Разбор — самостоятельный законченный продукт. Решение о продолжении работы с «НейроРешениями» Вы принимаете отдельно." },
+            { question: "Что подготовить к разбору?", answer: "Достаточно кратко описать компанию, текущую задачу и процессы, которые забирают больше всего времени. Документы и примеры можно подключить на следующем этапе." },
+            { question: "Как проходит работа с компаниями из других регионов?", answer: "Разбор задачи и разработка стратегии проходят дистанционно. Для глубокого аудита при необходимости подключается очный этап." },
           ]}
         />
         <Footer />
