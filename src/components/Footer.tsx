@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Phone, Mail, Send, MapPin, GraduationCap } from "lucide-react";
+import { Phone, Mail, MapPin, GraduationCap } from "lucide-react";
+import MaxIcon from "@/components/icons/MaxIcon";
 import DisabledLink from "@/components/DisabledLink";
 const Footer = () => {
   const navigate = useNavigate();
@@ -62,12 +63,12 @@ const Footer = () => {
                 <Mail className="w-4 h-4 text-primary" strokeWidth={1.5} />
                 ai@aleksamois.ru
               </a>
-              <a href="https://aleksamois.ru/max" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                MAX-канал
-              </a>
               <a href="https://max.ru/id245906802500_biz" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                <MaxIcon className="w-4 h-4 flex-shrink-0" />
+                Канал в MAX
+              </a>
+              <a href="https://aleksamois.ru/max" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                <MaxIcon className="w-4 h-4 flex-shrink-0" />
                 Написать в MAX
               </a>
               <a href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-primary transition-colors">
