@@ -65,11 +65,14 @@
           var parsed = JSON.parse(raw);
           if (!parsed || parsed.version !== 'v3') { return false; }
           if (!parsed.consent || parsed.consent.analytics !== true) { return false; }
-          // Согласие действует 12 месяцев
-          if (parsed.savedAt) {
-            var age = Date.now() - new Date(parsed.savedAt).getTime();
-            if (!(age >= 0) || age > 365 * 24 * 60 * 60 * 1000) { return false; }
-          }
+          // Согласие действует 12 месяцев; без валидного срока — не запускаем
+          var TTL = 365 * 24 * 60 * 60 * 1000;
+          var savedAt = parsed.savedAt ? new Date(parsed.savedAt).getTime() : NaN;
+          var expiresAt = parsed.expiresAt ? new Date(parsed.expiresAt).getTime() : NaN;
+          var now = Date.now();
+          var savedOk = isFinite(savedAt) && now - savedAt >= 0 && now - savedAt <= TTL;
+          var expiresOk = isFinite(expiresAt) && expiresAt > now;
+          if (!savedOk && !expiresOk) { return false; }
           return true;
         } catch (e) { return false; }
       }
