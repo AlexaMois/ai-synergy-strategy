@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Image, Phone, MessageSquare, Mic } from "lucide-react";
+import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Phone, MessageSquare, Mic } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { trackCTAClick } from "@/utils/analytics";
 
@@ -105,13 +105,6 @@ const CaseStudyCargoExpress = () => {
               </div>
             </div>
 
-            {/* Placeholder for company photo */}
-            <div className="bg-card rounded-2xl p-8 flex items-center justify-center border-2 border-dashed border-border">
-              <div className="text-center">
-                <Image className="w-12 h-12 text-muted-foreground mx-auto mb-3" strokeWidth={1} />
-                <p className="text-muted-foreground text-sm">Место для фото компании или команды</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -411,8 +404,8 @@ const CaseStudyCargoExpress = () => {
               </div>
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <TrendingUp className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-3xl font-bold text-primary mb-2">до 15%</p>
-                <p className="text-sm text-muted-foreground">снижение потерь<br />заявок</p>
+                <p className="text-3xl font-bold text-primary mb-2">0</p>
+                <p className="text-sm text-muted-foreground">потери заявок<br />сведены к нулю</p>
               </div>
               <div className="bg-card rounded-2xl p-6 shadow-soft text-center">
                 <BarChart3 className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />

@@ -5,7 +5,6 @@ import { ArrowRight, Quote, Phone, Send } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import CookieConsent from "@/components/CookieConsent";
 import TrustMarquee from "@/components/TrustMarquee";
 import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
@@ -456,7 +455,7 @@ const NewHome = () => {
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Крайпотребсоюз</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    51 организация и 300+ точек. НейроТендеролог используют 3 клиента на постоянной основе, один — более года.
+                    51 организация и 300+ точек. Планировалась покупка серверного оборудования примерно за 1,5 млн ₽ — архитектура позволила отказаться от покупки.
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
@@ -627,7 +626,6 @@ const NewHome = () => {
 
       <Footer />
       <FloatingCTA />
-      <CookieConsent />
     </div>
   );
 };

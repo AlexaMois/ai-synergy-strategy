@@ -285,7 +285,7 @@ const About = () => {
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6 items-center">
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5">
-                <img src={awardDiploma} alt="Александра Моисеева — диплом финалиста премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
+                <img src={awardDiploma} alt="Александра Моисеева — диплом победителя регионального этапа премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
               </div>
@@ -581,7 +581,7 @@ const About = () => {
                   { text: "Резидент IT Park Казань", bg: "bg-surface-sand", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-3", num: "04" },
                   { text: "Член ОПОРА России", bg: "bg-foreground", color: "text-background", muted: "text-background/75", size: "lg:col-span-4", num: "05" },
                   { text: "Участник NeuroTech Russia", bg: "bg-surface-blush", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "06" },
-                  { text: "Участник федерального проекта «Бизнес Успех»", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "07" },
+                  { text: "Победитель регионального этапа премии «Бизнес-Успех», 2025", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "07" },
                   { text: "Спикер и участник профильных мероприятий по цифровизации и ИИ", bg: "bg-surface-lavender", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-8", num: "08" },
                   { text: "Участник выставки «Антитеррор»", bg: "bg-card", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-4", num: "09" },
                   { text: "Профильные программы по искусственному интеллекту, стратегии, трансформации и авторской позиции", bg: "bg-surface-mint", color: "text-foreground", muted: "text-foreground/70", size: "lg:col-span-8", num: "10" },

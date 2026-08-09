@@ -30,19 +30,19 @@ export const getBreadcrumbs = {
   servicesDiagnostics: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
     { name: "Услуги", path: "/services" },
-    { name: "Разбор процессов", path: "/services/diagnostics" }
+    { name: "Разбор процессов", path: "/services/digital-audit" }
   ]),
   
   servicesArchitecture: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
     { name: "Услуги", path: "/services" },
-    { name: "Архитектура", path: "/services/architecture" }
+    { name: "Архитектура", path: "/services/digital-solution-design" }
   ]),
   
   servicesSupport: () => generateBreadcrumbSchema([
     { name: "Главная", path: "/" },
     { name: "Услуги", path: "/services" },
-    { name: "Сопровождение", path: "/services/support" }
+    { name: "Сопровождение", path: "/services/implementation-support" }
   ]),
   
   servicesAddOns: () => generateBreadcrumbSchema([

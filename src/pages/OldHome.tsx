@@ -13,7 +13,6 @@ import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import FloatingCTA from "@/components/FloatingCTA";
-import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { initScrollTracking, captureUTMParams, initEngagementTracking } from "@/utils/analytics";
 
@@ -204,7 +203,6 @@ const OldHome = () => {
       </main>
       <Footer />
       <FloatingCTA />
-      <CookieConsent />
       <ExitIntentPopup />
     </div>
   );

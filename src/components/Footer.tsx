@@ -102,6 +102,13 @@ const Footer = () => {
                 <Link to="/legal/terms" className="hover:text-primary transition-colors">
                   Договор-оферта
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
+                  className="text-left hover:text-primary transition-colors"
+                >
+                  Настройки cookies
+                </button>
               </div>
               <p className="mt-3 text-background/50 text-xs">
                 ИП Моисеева А.А. / ИНН 245906802500 / ОГРНИП 323246800027635
