@@ -21,6 +21,8 @@
     <!-- Deferred Analytics Loading — только Яндекс.Метрика, запуск строго после согласия на аналитические cookies -->
     <script>
       function loadAnalytics() {
+        // Согласие получено — счётчик снова активен
+        window['disableYaCounter99058653'] = false;
         if (window.__analyticsLoaded) { return; }
         window.__analyticsLoaded = true;
         // Yandex.Metrika counter 99058653 (единственный действующий счётчик)
@@ -44,7 +46,6 @@
       function disableAnalytics() {
         try {
           window['disableYaCounter99058653'] = true;
-          window.ym = function () {};
           document.cookie.split(';').forEach(function (c) {
             var name = c.split('=')[0].trim();
             if (name.indexOf('_ym') === 0 || name.indexOf('yandex') === 0) {
@@ -53,7 +54,6 @@
             }
           });
         } catch (e) {}
-        window.__analyticsLoaded = true; // не загружать повторно до перезагрузки страницы
       }
       window.disableAnalytics = disableAnalytics;
 
