@@ -8,7 +8,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { trackCTAClick } from "@/utils/analytics";
 
 // Photos
@@ -52,7 +52,6 @@ const CaseStudyKraypotrebsoyuz = () => {
           "url": "https://aleksamois.ru/"
         },
         "publisher": { "@id": "https://aleksamois.ru/#organization" },
-        "datePublished": "2024-06-15",
         "dateModified": "2025-12-26",
         "mainEntityOfPage": "https://aleksamois.ru/cases/kraypotrebsoyuz",
         "about": {
@@ -277,7 +276,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <p className="text-base font-medium text-foreground mb-4">В качестве основы выбрали:</p>
               <div className="bg-muted rounded-xl p-4 mb-4">
                 <p className="text-lg font-semibold text-primary">Bpium — российская low-code платформа</p>
-                <p className="text-sm text-muted-foreground">на 100% соответствующая требованиям законодательства РФ.</p>
+                <p className="text-sm text-muted-foreground">российская low-code платформа.</p>
               </div>
               
               <p className="text-base font-medium text-foreground mb-3">Решение включало:</p>
@@ -539,8 +538,8 @@ const CaseStudyKraypotrebsoyuz = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Хотите получить похожий результат для вашей компании?
             </h2>
-            <Button size="lg" onClick={scrollToContact}>
-              Пройти экспресс-аудит процессов
+            <Button size="lg" asChild>
+              <Link to="/start">Подобрать формат работы</Link>
             </Button>
           </div>
         </section>
