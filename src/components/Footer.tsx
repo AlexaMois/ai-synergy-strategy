@@ -62,10 +62,6 @@ const Footer = () => {
                 <Mail className="w-4 h-4 text-primary" strokeWidth={1.5} />
                 ai@aleksamois.ru
               </a>
-              <p className="flex items-center gap-2 text-sm">
-                <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
-                MAX: +7 995 078 88 37
-              </p>
               <a href="https://aleksamois.ru/max" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
                 <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
                 MAX-канал
