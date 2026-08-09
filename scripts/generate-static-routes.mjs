@@ -377,24 +377,4 @@ for (const route of routes) {
 
 console.log(`[prerender] Wrote ${written} routes (${missingMeta} without explicit meta).`);
 
-// -----------------------------------------------------------------------------
-// 4. Regenerate sitemap with <lastmod> = today.
-// -----------------------------------------------------------------------------
-if (fs.existsSync(sitemapPath)) {
-  const today = new Date().toISOString().slice(0, 10);
-  const original = fs.readFileSync(sitemapPath, 'utf8');
-  let updated = original;
-  // For each <url> block, ensure <lastmod>today</lastmod> is present (insert after <loc>)
-  updated = updated.replace(
-    /(<url>\s*<loc>[^<]+<\/loc>)(\s*)(<lastmod>[^<]+<\/lastmod>)?/g,
-    (_, locBlock, ws) => `${locBlock}${ws}<lastmod>${today}</lastmod>`
-  );
-  if (updated !== original) {
-    fs.writeFileSync(sitemapPath, updated);
-    // Also copy to dist so it ships fresh
-    fs.writeFileSync(path.join(distDir, 'sitemap.xml'), updated);
-    console.log(`[prerender] sitemap.xml refreshed with lastmod=${today}`);
-  }
-}
-
 process.exit(0);
