@@ -16,14 +16,8 @@ const preloadPage = (path: string) => {
     case '/services':
       import('../pages/ServicesPage');
       break;
-    case '/services/diagnostics':
-      import('../pages/services/DiagnosticsPage');
-      break;
     case '/services/architecture':
       import('../pages/services/ArchitecturePage');
-      break;
-    case '/services/support':
-      import('../pages/services/SupportPage');
       break;
     case '/services/add-ons':
       import('../pages/services/AddOnsPage');
