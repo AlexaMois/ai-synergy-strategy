@@ -66,6 +66,14 @@ const Footer = () => {
                 <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
                 MAX: +7 995 078 88 37
               </p>
+              <a href="https://aleksamois.ru/max" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                MAX-канал
+              </a>
+              <a href="https://max.ru/id245906802500_biz" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                <Send className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                Написать в MAX
+              </a>
               <a href="https://yandex.ru/maps/org/neyroresheniya/57044710830/reviews/?ll=92.837947%2C56.021930&z=16" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/60 text-sm pt-2 hover:text-primary transition-colors">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={1.5} />
                 <span>
