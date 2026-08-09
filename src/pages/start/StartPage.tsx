@@ -402,7 +402,7 @@ const StartPage = () => {
           </section>
 
           {/* 9. Короткое описание задачи */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pb-4">
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-4 pb-10 md:pt-8 md:pb-16">
             <div className="container mx-auto max-w-3xl text-center">
               <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
                 Опишите задачу самостоятельно
