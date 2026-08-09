@@ -107,39 +107,43 @@ const CookieConsent = () => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="cookie-consent-title"
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-foreground/50 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6 sm:px-6 bg-foreground/50 backdrop-blur-sm animate-in fade-in duration-200"
     >
-      <div className="w-full max-w-md rounded-2xl bg-background border border-border shadow-elevated p-6 animate-in zoom-in-95 duration-200">
-        <div className="flex items-start gap-2 mb-3">
-          <Cookie className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-          <h2
-            id="cookie-consent-title"
-            className="!text-xl !leading-snug font-bold text-foreground !mb-0"
-          >
-            Помогите сделать сайт полезнее
-          </h2>
-        </div>
+      <div className="w-full max-w-[600px] rounded-3xl bg-background border border-border shadow-elevated p-6 sm:p-9 animate-in zoom-in-95 duration-200">
+        <h2
+          id="cookie-consent-title"
+          className="!text-2xl sm:!text-3xl !leading-snug font-bold text-foreground !mb-4"
+        >
+          Помогите сделать сайт полезнее
+        </h2>
 
-        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+        <p className="text-base text-muted-foreground leading-relaxed mb-7">
           Яндекс.Метрика помогает понять, какие страницы и материалы действительно полезны.
           Рекламные и маркетинговые cookies на сайте не используются.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-2">
-          <Button onClick={allowAnalytics} className="flex-1">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button
+            onClick={allowAnalytics}
+            className="flex-1 h-auto min-h-12 rounded-full px-6 py-3 text-base font-semibold whitespace-normal text-center shadow-md hover:shadow-lg"
+          >
             Разрешить аналитику
           </Button>
-          <Button onClick={declineAnalytics} variant="outline" className="flex-1">
+          <Button
+            onClick={declineAnalytics}
+            variant="outline"
+            className="flex-1 h-auto min-h-12 rounded-full px-6 py-3 text-base font-medium whitespace-normal text-center bg-muted/40 hover:bg-muted shadow-sm"
+          >
             Продолжить без аналитики
           </Button>
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <Link to="/legal/cookies" className="text-xs text-primary hover:underline">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <Link to="/legal/cookies" className="text-sm text-primary hover:underline">
             Подробнее о cookies
           </Link>
           {isReopened && (
-            <span className="text-xs text-muted-foreground">
+            <span className="text-sm text-muted-foreground">
               Текущий выбор: {consent.analytics ? "аналитика разрешена" : "без аналитики"}
             </span>
           )}
