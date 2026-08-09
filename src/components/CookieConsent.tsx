@@ -111,9 +111,12 @@ const CookieConsent = () => {
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-foreground/50 backdrop-blur-sm animate-in fade-in duration-200"
     >
       <div className="w-full max-w-md rounded-2xl bg-background border border-border shadow-elevated p-6 animate-in zoom-in-95 duration-200">
-        <div className="flex items-center gap-2 mb-3">
-          <Cookie className="w-5 h-5 text-primary" />
-          <h2 id="cookie-consent-title" className="text-lg md:text-xl font-bold text-foreground">
+        <div className="flex items-start gap-2 mb-3">
+          <Cookie className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+          <h2
+            id="cookie-consent-title"
+            className="!text-xl !leading-snug font-bold text-foreground !mb-0"
+          >
             Помогите сделать сайт полезнее
           </h2>
         </div>
