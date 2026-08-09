@@ -26,7 +26,7 @@ const stats: Array<{
   decimals?: number;
 }> = [
   { value: 360, suffix: "", label: "разборов бизнес-процессов" },
-  { value: 40, suffix: "", label: "проектов в продакшн", sub: "решения, которые дошли до рабочего применения" },
+  { value: 40, suffix: "", label: "внедрённых проектов", sub: "решения, которые дошли до рабочего применения" },
   { value: 7, suffix: "", label: "городов", sub: "работаю онлайн по России" },
   { value: 10, suffix: "", label: "отраслей" },
   { value: 4, suffix: "+", label: "года практики в ИИ", sub: "прикладные проекты в бизнесе" },
@@ -456,13 +456,13 @@ const NewHome = () => {
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Крайпотребсоюз</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    51 организация и 300+ точек. Создан НейроТендеролог, которым больше года пользуются 8 компаний.
+                    51 организация и 300+ точек. НейроТендеролог используют 3 клиента на постоянной основе, один — более года.
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
                     <div className="text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
-                    <p className="text-xs text-muted-foreground mt-1">сохранено за квартал</p>
+                    <p className="text-xs text-muted-foreground mt-1">разовой экономии капитальных затрат — за счёт отказа от покупки серверного оборудования</p>
                   </div>
                   <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
                 </div>
