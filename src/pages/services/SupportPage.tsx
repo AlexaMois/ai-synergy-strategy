@@ -109,7 +109,7 @@ const SupportPage = () => {
                   <div className="flex items-start gap-3">
                     <Shield className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-foreground">Гарантия результата</p>
+                      <p className="text-sm font-medium text-foreground">Критерии результата фиксируем до старта</p>
                       <p className="text-xs text-muted-foreground">Если метрики не достигнуты за первый месяц — возвращаю стоимость</p>
                     </div>
                   </div>
