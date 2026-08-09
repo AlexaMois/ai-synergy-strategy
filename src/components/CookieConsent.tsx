@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 
 type ConsentState = {
   necessary: boolean;
@@ -122,20 +122,23 @@ const CookieConsent = () => {
           Рекламные и маркетинговые cookies на сайте не используются.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+          <PillButton
             onClick={allowAnalytics}
-            className="w-full sm:w-auto h-auto min-h-12 rounded-full px-7 py-3 text-base font-semibold whitespace-normal text-center shadow-md hover:shadow-lg"
+            variant="turquoise"
+            size="lg"
+            className="w-full sm:w-auto sm:basis-[62%] sm:flex-none justify-between font-bold"
           >
             Разрешить аналитику
-          </Button>
-          <Button
+          </PillButton>
+          <PillButton
             onClick={declineAnalytics}
-            variant="outline"
-            className="w-full sm:w-auto h-auto min-h-12 rounded-full px-7 py-3 text-base font-medium whitespace-normal text-center bg-muted/40 hover:bg-muted shadow-sm"
+            variant="outline-dark"
+            size="md"
+            className="w-full sm:w-auto sm:basis-[38%] sm:flex-none justify-between font-medium"
           >
             Продолжить без аналитики
-          </Button>
+          </PillButton>
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
