@@ -8,8 +8,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import { trackCTAClick } from "@/utils/analytics";
+import { Link } from "react-router-dom";
 
 // Photos
 import heroImage from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-hero.jpg";
@@ -19,25 +18,6 @@ import meetingImage2 from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-meetin
 import meetingImage3 from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-meeting-3.jpg";
 
 const CaseStudyKraypotrebsoyuz = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const scrollToContact = () => {
-    trackCTAClick({ location: 'cases', buttonText: 'Kraypotrebsoyuz CTA' });
-    
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  };
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
