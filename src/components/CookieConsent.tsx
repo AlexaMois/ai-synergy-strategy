@@ -6,23 +6,11 @@ import { Cookie, X, Settings } from "lucide-react";
 type ConsentState = {
   necessary: boolean;
   analytics: boolean;
-  marketing: boolean;
 };
 
 const CONSENT_STORAGE_KEY = "cookie_consent";
-const CONSENT_VERSION = "v1";
-
-// Update Google Consent Mode
-const updateGoogleConsent = (consent: ConsentState) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("consent", "update", {
-      analytics_storage: consent.analytics ? "granted" : "denied",
-      ad_storage: consent.marketing ? "granted" : "denied",
-      ad_user_data: consent.marketing ? "granted" : "denied",
-      ad_personalization: consent.marketing ? "granted" : "denied",
-    });
-  }
-};
+const CONSENT_VERSION = "v2";
+export const COOKIE_SETTINGS_EVENT = "open-cookie-settings";
 
 // Яндекс.Метрика загружается только после согласия на аналитические cookies
 const updateYandexConsent = (consent: ConsentState) => {
@@ -39,7 +27,6 @@ const CookieConsent = () => {
   const [consent, setConsent] = useState<ConsentState>({
     necessary: true,
     analytics: false,
-    marketing: false,
   });
 
   useEffect(() => {
@@ -48,8 +35,7 @@ const CookieConsent = () => {
       try {
         const parsed = JSON.parse(stored);
         if (parsed.version === CONSENT_VERSION) {
-          setConsent(parsed.consent);
-          updateGoogleConsent(parsed.consent);
+          setConsent({ necessary: true, analytics: !!parsed.consent?.analytics });
           updateYandexConsent(parsed.consent);
           return;
         }
@@ -63,31 +49,50 @@ const CookieConsent = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Allow reopening settings from anywhere (e.g. Footer link)
+  useEffect(() => {
+    const open = () => {
+      const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          setConsent({ necessary: true, analytics: !!parsed.consent?.analytics });
+        } catch (e) {
+          // ignore
+        }
+      }
+      setShowSettings(true);
+      setIsVisible(true);
+    };
+    window.addEventListener(COOKIE_SETTINGS_EVENT, open);
+    return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
+  }, []);
+
   // Auto-close after 15 seconds (accept only necessary cookies)
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || showSettings) return;
     
     const autoCloseTimer = setTimeout(() => {
-      const minConsent = { necessary: true, analytics: false, marketing: false };
+      const minConsent = { necessary: true, analytics: false };
       setConsent(minConsent);
       saveConsent(minConsent);
     }, 15000);
     
     return () => clearTimeout(autoCloseTimer);
-  }, [isVisible]);
+  }, [isVisible, showSettings]);
 
   const saveConsent = (newConsent: ConsentState) => {
     localStorage.setItem(
       CONSENT_STORAGE_KEY,
       JSON.stringify({ version: CONSENT_VERSION, consent: newConsent })
     );
-    updateGoogleConsent(newConsent);
     updateYandexConsent(newConsent);
     setIsVisible(false);
+    setShowSettings(false);
   };
 
   const acceptAll = () => {
-    const allConsent = { necessary: true, analytics: true, marketing: true };
+    const allConsent = { necessary: true, analytics: true };
     setConsent(allConsent);
     saveConsent(allConsent);
   };
@@ -97,7 +102,7 @@ const CookieConsent = () => {
   };
 
   const rejectAll = () => {
-    const minConsent = { necessary: true, analytics: false, marketing: false };
+    const minConsent = { necessary: true, analytics: false };
     setConsent(minConsent);
     saveConsent(minConsent);
   };
@@ -132,15 +137,6 @@ const CookieConsent = () => {
                       type="checkbox"
                       checked={consent.analytics}
                       onChange={(e) => setConsent({ ...consent, analytics: e.target.checked })}
-                      className="w-3.5 h-3.5 accent-primary cursor-pointer"
-                    />
-                  </label>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <span className="text-foreground">Маркетинг</span>
-                    <input
-                      type="checkbox"
-                      checked={consent.marketing}
-                      onChange={(e) => setConsent({ ...consent, marketing: e.target.checked })}
                       className="w-3.5 h-3.5 accent-primary cursor-pointer"
                     />
                   </label>

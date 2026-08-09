@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
 import CallbackModal from "@/components/CallbackModal";
+import CookieConsent from "@/components/CookieConsent";
 
 import Index from "./pages/NewHome";
 const OldHome = lazy(() => import("./pages/OldHome"));
@@ -206,6 +207,7 @@ const App = () => (
           <BackToHome />
           <AppContent />
           <CallbackModal />
+          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
