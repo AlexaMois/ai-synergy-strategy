@@ -59,17 +59,17 @@ const StartPage = () => {
 
   const route = [
     {
-      title: "Разбор цифровых задач для собственника — 17 000 ₽",
+      title: "Разбор цифровых задач для собственника · 17 000 ₽",
       text: "Определяем первый приоритет.",
       bg: "bg-surface-mint",
     },
     {
-      title: "Стратегия цифрового развития — 78 000 ₽",
+      title: "Стратегия цифрового развития · 78 000 ₽",
       text: "Формируем план цифрового развития на 90 дней.",
       bg: "bg-surface-lavender",
     },
     {
-      title: "Глубокий аудит — от 116 000 ₽",
+      title: "Глубокий аудит · от 116 000 ₽",
       text: "Разбираем несколько процессов, данные, документы и работу команды.",
       bg: "bg-surface-sand",
     },
@@ -107,7 +107,7 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Разбор цифровых задач для собственника — 17 000 ₽ | Александра Моисеева</title>
+        <title>Разбор цифровых задач для собственника · 17 000 ₽ | Александра Моисеева</title>
         <meta
           name="description"
           content="Разбор цифровых задач для собственника за 17 000 ₽: где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
@@ -117,7 +117,7 @@ const StartPage = () => {
           content="разбор цифровых задач, автоматизация процессов, с чего начать автоматизацию, стратегия цифрового развития, аудит процессов"
         />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="Разбор цифровых задач для собственника — 17 000 ₽ | Александра Моисеева" />
+        <meta property="og:title" content="Разбор цифровых задач для собственника · 17 000 ₽ | Александра Моисеева" />
         <meta
           property="og:description"
           content="Разберём, где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
@@ -215,17 +215,32 @@ const StartPage = () => {
                 <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
                   Что происходит на встрече
                 </h2>
-                <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                  {flow.map((step, i) => (
-                    <span key={step} className="flex items-center gap-2 md:gap-3">
-                      <span className="rounded-full bg-background px-4 py-2 text-sm md:text-base font-semibold text-foreground shadow-card">
+                <div className="mb-6 md:mb-8">
+                  {/* mobile: vertical route with thin accent line on the left */}
+                  <div className="md:hidden border-l-2 border-accent/40 pl-4 space-y-2">
+                    {flow.map((step) => (
+                      <span
+                        key={step}
+                        className="block rounded-full bg-background px-4 py-2 text-sm font-semibold text-foreground shadow-card"
+                      >
                         {step}
                       </span>
-                      {i < flow.length - 1 && (
-                        <ArrowRight className="h-4 w-4 text-accent shrink-0" />
-                      )}
-                    </span>
-                  ))}
+                    ))}
+                  </div>
+                  {/* desktop: single row united by one thin accent line */}
+                  <div className="hidden md:block">
+                    <div className="flex flex-wrap items-center gap-3 pb-4">
+                      {flow.map((step) => (
+                        <span
+                          key={step}
+                          className="rounded-full bg-background px-4 py-2 text-base font-semibold text-foreground shadow-card"
+                        >
+                          {step}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="h-px w-full bg-accent/40" />
+                  </div>
                 </div>
                 <p className="text-base md:text-lg text-foreground/75 max-w-3xl leading-snug">
                   Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
@@ -263,7 +278,7 @@ const StartPage = () => {
                   ))}
                 </ul>
                 <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-white leading-snug">
-                  Разбор — самостоятельный продукт. После встречи Вы сами решаете, двигаться дальше с «НейроРешениями» или использовать рекомендации внутри компании.
+                  Разбор является самостоятельным продуктом. После встречи Вы сами решаете, двигаться дальше с «НейроРешениями» или использовать рекомендации внутри компании.
                 </p>
               </div>
             </div>
@@ -275,27 +290,24 @@ const StartPage = () => {
               Что может быть{" "}
               <span className="font-iriska font-normal italic text-accent">дальше</span>
             </h2>
-            <ol className="space-y-3">
+            <ol className="relative pl-10 md:pl-14 space-y-4">
+              <span
+                aria-hidden="true"
+                className="absolute left-[17px] top-3 bottom-3 w-px bg-accent/40"
+              />
               {route.map((step, i) => (
-                <li key={i}>
+                <li key={i} className="relative">
+                  <span className="absolute -left-10 md:-left-14 top-5 md:top-6 flex items-center justify-center w-9 h-9 rounded-full bg-background font-bold text-foreground shadow-card ring-1 ring-accent/30">
+                    {i + 1}
+                  </span>
                   <div
-                    className={`rounded-[24px] ${step.bg} p-5 md:p-6 shadow-card ring-1 ring-foreground/5 flex items-start gap-4`}
+                    className={`rounded-[24px] ${step.bg} p-5 md:p-6 shadow-card ring-1 ring-foreground/5`}
                   >
-                    <span className="flex items-center justify-center w-9 h-9 shrink-0 rounded-full bg-background font-bold text-foreground shadow-card">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-base md:text-lg font-bold text-foreground leading-[1.2] mb-1">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-foreground/70">{step.text}</p>
-                    </div>
+                    <h3 className="text-base md:text-lg font-bold text-foreground leading-[1.2] mb-1">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-foreground/70">{step.text}</p>
                   </div>
-                  {i < route.length - 1 && (
-                    <div className="flex justify-center py-1.5">
-                      <ArrowDown className="h-5 w-5 text-accent" />
-                    </div>
-                  )}
                 </li>
               ))}
             </ol>
@@ -319,7 +331,7 @@ const StartPage = () => {
                       Александра Моисеева лично отвечает за разбор, архитектуру и ключевые решения. Команда «НейроРешений» подключается к внедрению и сопровождению.
                     </p>
                     <p>
-                      Цель каждого проекта — измеримый результат: экономия времени, снижение потерь и рост управляемости.
+                      Цель каждого проекта: измеримый результат, экономия времени, снижение потерь и рост управляемости.
                     </p>
                   </div>
                 </div>
@@ -420,7 +432,7 @@ const StartPage = () => {
                 </p>
                 <div className="flex justify-center">
                   <PillButton onClick={openTaskModal} variant="turquoise">
-                    Записаться на разбор — 17 000 ₽
+                    Записаться на разбор
                   </PillButton>
                 </div>
                 <p className="mt-4 text-sm text-foreground/60">
@@ -434,7 +446,7 @@ const StartPage = () => {
         <FAQTeaser
           items={[
             { question: "Что такое разбор цифровых задач для собственника?", answer: "Это отдельная встреча за 17 000 ₽, на которой мы разбираем задачу бизнеса, текущий процесс, ручную нагрузку и потери, а затем определяем первый приоритет и подходящий формат решения." },
-            { question: "Нужно ли продолжать работу после разбора?", answer: "Нет. Разбор — самостоятельный законченный продукт. Решение о продолжении работы с «НейроРешениями» Вы принимаете отдельно." },
+            { question: "Нужно ли продолжать работу после разбора?", answer: "Нет. Разбор является самостоятельным законченным продуктом. Решение о продолжении работы с «НейроРешениями» Вы принимаете отдельно." },
             { question: "Что подготовить к разбору?", answer: "Достаточно кратко описать компанию, текущую задачу и процессы, которые забирают больше всего времени. Документы и примеры можно подключить на следующем этапе." },
             { question: "Как проходит работа с компаниями из других регионов?", answer: "Разбор задачи и разработка стратегии проходят дистанционно. Для глубокого аудита при необходимости подключается очный этап." },
           ]}
