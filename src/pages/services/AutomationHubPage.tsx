@@ -108,6 +108,16 @@ const whatYouGet: string[] = [
   "Прозрачная экономика и расчёт срока окупаемости",
 ];
 
+const workFormats: { title: string; price: string; href: string }[] = [
+  { title: "Стратегическая встреча по цифровизации для собственника", price: "17 000 ₽", href: "/services/owner-digital-session" },
+  { title: "Разработка стратегии цифрового развития бизнеса", price: "78 000 ₽", href: "/services/digital-development-strategy" },
+  { title: "Глубокий аудит компании для цифровизации", price: "от 116 000 ₽", href: "/services/digital-audit" },
+  { title: "Авторская программа «Цифровые инструменты для бизнеса»", price: "68 000–152 000 ₽", href: "/services/digital-tools-program" },
+  { title: "Проектирование и разработка цифрового решения под бизнес-процесс", price: "от 260 000 ₽", href: "/services/digital-solution-design" },
+  { title: "Сопровождение цифрового внедрения", price: "89 000–170 000 ₽/мес", href: "/services/implementation-support" },
+  { title: "Сопровождение цифровых инструментов компании", price: "35 000–89 000 ₽/мес", href: "/services/digital-tools-support" },
+];
+
 const whyMatters: { metric: string; text: string }[] = [
   { metric: "9–12 ч", text: "экономии в неделю на приёме и обработке заявок (кейс «Грузовой Экспресс»)" },
   { metric: "7", text: "форматов работы — от стратегической встречи до сопровождения" },
@@ -327,6 +337,33 @@ const AutomationHubPage = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </section>
+
+          {/* H2: Форматы работы */}
+          <section className="py-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
+              7 форматов работы
+            </h2>
+            <div className="grid md:grid-cols-2 gap-3">
+              {workFormats.map((f) => (
+                <Link
+                  key={f.href}
+                  to={f.href}
+                  className="flex items-start justify-between gap-3 bg-card border border-border rounded-xl p-5 hover:shadow-elevated transition-all group"
+                >
+                  <div>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{f.title}</h3>
+                    <p className="text-sm text-foreground/70 mt-1">{f.price}</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                </Link>
+              ))}
+            </div>
+            <div className="mt-4">
+              <Button variant="outline" asChild>
+                <Link to="/pricing">Посмотреть цены</Link>
+              </Button>
             </div>
           </section>
 
