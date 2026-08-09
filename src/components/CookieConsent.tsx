@@ -130,12 +130,12 @@ const CookieConsent = () => {
           Рекламные и маркетинговые cookies на сайте не используются.
         </p>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-3">
           <PillButton
             onClick={allowAnalytics}
             variant="turquoise"
             size="lg"
-            className="w-full sm:flex-1 sm:min-w-0 justify-between font-bold"
+            className="w-full sm:w-auto sm:flex-none justify-between font-bold whitespace-nowrap"
           >
             Разрешить аналитику
           </PillButton>
