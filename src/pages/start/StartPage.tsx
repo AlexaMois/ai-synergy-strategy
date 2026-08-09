@@ -168,24 +168,24 @@ const StartPage = () => {
             className="bg-background container mx-auto max-w-7xl px-4 pb-16 md:pb-24 scroll-mt-24"
           >
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-              <div className="md:col-span-5">
-                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
+              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-white px-6 md:px-8 py-8 md:py-10 shadow-card">
+                <h2 className="text-2xl md:text-4xl font-bold text-white leading-[1.08] mb-6 md:mb-8">
                   Что происходит на встрече
                 </h2>
-                <div className="border-t border-border mb-6 md:mb-8">
+                <div className="border-t border-white/15 mb-6 md:mb-8">
                   {flow.map((step, i) => (
                     <div
                       key={step}
-                      className="flex items-baseline gap-4 border-b border-border py-3.5"
+                      className="flex items-baseline gap-4 border-b border-white/15 py-3.5"
                     >
                       <span className="text-base md:text-lg font-bold text-accent tabular-nums">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-base md:text-lg text-foreground/80">{step}</span>
+                      <span className="text-base md:text-lg text-white/85">{step}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-base md:text-lg text-foreground/70 leading-snug">
+                <p className="text-base md:text-lg text-white/70 leading-snug">
                   Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
                 </p>
               </div>
@@ -228,25 +228,35 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* 9. Короткое описание задачи */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 pt-4 pb-10 md:pt-8 md:pb-16">
-            <div className="container mx-auto max-w-3xl text-center">
-              <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
-                Опишите задачу самостоятельно
-              </span>
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.12] mb-4">
-                Кратко опишите задачу
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                За 7–10 минут опишите один процесс. Ответы помогут подготовиться к предметному разговору.
-              </p>
-              {!diagnosticStarted && (
-                <div className="mt-8 mb-2 flex justify-center">
-                  <PillButton onClick={startDiagnostic} variant="dark">
-                    Описать задачу
-                  </PillButton>
+          {/* 9. Самостоятельный старт */}
+          <section ref={diagnosticIntroRef} className="px-4 md:px-6 py-14 md:py-20">
+            <div className="container mx-auto max-w-7xl">
+              <div className="rounded-[24px] md:rounded-[40px] bg-accent px-5 md:px-10 lg:px-14 py-10 md:py-16 shadow-card">
+                <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                  <div className="md:col-span-8">
+                    <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white/80 mb-4">
+                      Самостоятельный старт
+                    </span>
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.08] mb-5 max-w-2xl">
+                      Сначала опишите задачу сами
+                    </h2>
+                    <p className="text-base md:text-lg text-white/85 leading-snug max-w-2xl mb-8">
+                      За 7–10 минут зафиксируйте один процесс, ручные действия и основную проблему. Ответы помогут структурировать задачу и подготовиться к предметному разговору.
+                    </p>
+                    {!diagnosticStarted && (
+                      <PillButton onClick={startDiagnostic} variant="light">
+                        Описать задачу
+                      </PillButton>
+                    )}
+                  </div>
+                  <div className="md:col-span-4 md:text-right">
+                    <p className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tight">
+                      7–10 минут
+                    </p>
+                    <p className="mt-3 text-base md:text-xl text-white/80">один процесс</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           </section>
 
@@ -257,28 +267,6 @@ const StartPage = () => {
               </div>
             </section>
           )}
-
-          {/* 10. Финальный CTA */}
-          <section className="px-4 md:px-6 py-14 md:py-20">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[24px] md:rounded-[40px] bg-surface-blush px-5 md:px-10 lg:px-14 py-10 md:py-16 shadow-card ring-1 ring-foreground/5 text-center">
-                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.1] mb-4 max-w-3xl mx-auto">
-                  Определим первый шаг для Вашей компании
-                </h2>
-                <p className="text-base md:text-lg text-foreground/75 max-w-2xl mx-auto mb-7">
-                  Разберём одну ключевую задачу, оценим её экономический смысл и зафиксируем следующий шаг.
-                </p>
-                <div className="flex justify-center">
-                  <PillButton onClick={openTaskModal} variant="turquoise">
-                    Записаться на разбор
-                  </PillButton>
-                </div>
-                <p className="mt-4 text-sm text-foreground/60">
-                  Александра Моисеева · лично · онлайн по всей России
-                </p>
-              </div>
-            </div>
-          </section>
         </main>
 
         <FAQTeaser
