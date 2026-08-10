@@ -34,6 +34,10 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ??
 const log = (requestId, form, code, event) =>
   console.log(JSON.stringify({ requestId, ts: new Date().toISOString(), form, code, event }))
 
+// Лог уведомлений: только record_id, номер попытки, HTTP-код и технический статус.
+const notifyLog = (recordId, attempt, code, status) =>
+  console.log(JSON.stringify({ record_id: String(recordId), attempt, code, status }))
+
 const corsHeaders = (origin) => ({
   'Access-Control-Allow-Origin': ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
   'Access-Control-Allow-Headers': 'content-type',
