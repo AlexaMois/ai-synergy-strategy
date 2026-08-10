@@ -7,7 +7,7 @@
   → https://forms.aleksamois.ru            (API Gateway, ru-central1)
   → Cloud Function forms-handler           (ru-central1)
   → Bpium (каталог 81)                     — единственное хранилище содержимого заявок
-  → Telegram                               — только имя формы, номер записи, время
+  → MAX, бот «НейроСекретарь»               — только тип заявки, номер записи, страница, время
 ```
 
 Supabase Edge Functions в маршруте ПДн не участвуют. Фронтенд переключается одной
@@ -102,7 +102,7 @@ yc storage bucket update --name <bucket> \
 
 ## Секреты (Yandex Lockbox)
 
-`BPIUM_BASE_URL`, `BPIUM_LOGIN`, `BPIUM_PASSWORD`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
+`BPIUM_BASE_URL`, `BPIUM_LOGIN`, `BPIUM_PASSWORD`, `MAX_BOT_TOKEN`, `MAX_CHAT_ID`,
 `STORAGE_ACCESS_KEY_ID`, `STORAGE_SECRET_ACCESS_KEY`.
 
 Нечувствительные переменные: `BPIUM_CATALOG_ID=81`, `UPLOADS_BUCKET`,
@@ -127,8 +127,8 @@ yc serverless function version create \
   --secret name=BPIUM_BASE_URL,id=<lockbox-id>,version-id=<ver>,key=BPIUM_BASE_URL \
   --secret name=BPIUM_LOGIN,id=<lockbox-id>,version-id=<ver>,key=BPIUM_LOGIN \
   --secret name=BPIUM_PASSWORD,id=<lockbox-id>,version-id=<ver>,key=BPIUM_PASSWORD \
-  --secret name=TELEGRAM_BOT_TOKEN,id=<lockbox-id>,version-id=<ver>,key=TELEGRAM_BOT_TOKEN \
-  --secret name=TELEGRAM_CHAT_ID,id=<lockbox-id>,version-id=<ver>,key=TELEGRAM_CHAT_ID
+  --secret name=MAX_BOT_TOKEN,id=<lockbox-id>,version-id=<ver>,key=MAX_BOT_TOKEN \
+  --secret name=MAX_CHAT_ID,id=<lockbox-id>,version-id=<ver>,key=MAX_CHAT_ID
 ```
 
 ## API Gateway и TLS
@@ -163,14 +163,33 @@ VITE_FORMS_BASE_URL=https://forms.aleksamois.ru
 4. Первичная диагностика процессов (/start) → `POST /diagnostic`
 5. Анкета НейроСтилист (/neurostylist) → `POST /upload-url` + `POST /stylist-lead`
 
-Критерии приёмки: запись создана в Bpium (каталог 81), в Telegram пришёл только номер
-записи, в логах отсутствуют значения полей и IP, фото доступны только по приватной ссылке.
+Критерии приёмки по каждой форме отдельно:
+
+1. запись фактически создана в Bpium (каталог 81);
+2. ответ обработчика содержит `recordId` (успехом считается только он);
+3. уведомление пришло в MAX от бота «НейроСекретарь» (`@id245906802500_2_bot`)
+   в формате: «Новая заявка с сайта / Тип заявки / Запись Bpium / Страница / Дата и время».
+
+Дополнительно: в логах отсутствуют значения полей и IP, фото доступны только по приватной ссылке.
+
+## Уведомления в MAX
+
+Бот: «НейроСекретарь», `@id245906802500_2_bot`, https://max.ru/id245906802500_2_bot
+
+Переменные: `MAX_BOT_TOKEN` (токен бота из MasterBot), `MAX_CHAT_ID` (идентификатор диалога
+с получателем), необязательно `MAX_API_BASE` (по умолчанию `https://botapi.max.ru`).
+
+Вызов: `POST {MAX_API_BASE}/messages?access_token=…&chat_id=…` с телом `{ "text": "…" }`.
+
+Telegram из маршрута заявок сайта выведён полностью: функции `send-to-telegram`,
+`telegram-webhook` и `save-lead` удалены, переменные `TELEGRAM_*` обработчику не нужны.
 
 ## Отключение старых функций
 
 Фронтенд больше не вызывает ни одну из старых функций. После приёмки они удаляются
-в порядке: `save-lead`, `submit-short-lead`, `submit-diagnostic`, `save-stylist-lead`,
-`send-to-telegram`.
+Уже удалены: `save-lead`, `send-to-telegram`, `telegram-webhook`.
+Остались неиспользуемыми и удаляются после приёмки: `submit-short-lead`,
+`submit-diagnostic`, `save-stylist-lead`.
 
 Таблицы `leads`, `stylist_leads` и бакет `stylist-uploads` НЕ удаляются до отдельного
 письменного подтверждения и акта технической проверки.
