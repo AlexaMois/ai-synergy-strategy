@@ -9,6 +9,7 @@
 import { z } from 'zod'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs'
 
 const BPIUM_BASE = (process.env.BPIUM_BASE_URL || 'https://neiroresheniya.bpium.ru').replace(/\/+$/, '')
 const BPIUM_LOGIN = process.env.BPIUM_LOGIN ?? ''
@@ -19,8 +20,11 @@ const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 const NOTIFY_URL =
   process.env.NEUROSECRETARY_NOTIFY_URL || 'https://bot.atslogistik.ru/vasya/internal/site-lead'
 const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
-const NOTIFY_ATTEMPTS = 3
-const NOTIFY_RETRY_DELAY_MS = 60 * 1000
+// Первая попытка выполняется внутри пользовательского запроса и жёстко ограничена по времени.
+// Повторы выполняются вне HTTP-запроса формы — через очередь Yandex Message Queue.
+const NOTIFY_TIMEOUT_MS = 3000
+const NOTIFY_QUEUE_URL = process.env.NOTIFY_QUEUE_URL ?? ''
+const NOTIFY_RETRY_DELAY_SECONDS = 60
 
 // Object Storage (ru-central1) для фото анкеты нейростилиста
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
@@ -115,6 +119,9 @@ const isoWithOffset = (date = new Date()) => {
 }
 
 async function postNotification(payload) {
+  const ac = new AbortController()
+  const timer = setTimeout(() => ac.abort(), NOTIFY_TIMEOUT_MS)
+  try {
   const res = await fetch(NOTIFY_URL, {
     method: 'POST',
     headers: {
@@ -122,6 +129,7 @@ async function postNotification(payload) {
       Authorization: `Bearer ${NOTIFY_SECRET}`,
     },
     body: JSON.stringify(payload),
+      signal: ac.signal,
   })
   let ok = false
   try {
@@ -130,40 +138,76 @@ async function postNotification(payload) {
     ok = false
   }
   return { status: res.status, ok }
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
+// Очередь повторов: Yandex Message Queue (SQS-совместимая).
+// Пользовательский HTTP-запрос сюда только кладёт сообщение — ожидания нет.
+let sqs
+const getSqs = () =>
+  (sqs ??= new SQSClient({
+    region: 'ru-central1',
+    endpoint: 'https://message-queue.api.cloud.yandex.net',
+    credentials: {
+      accessKeyId: process.env.YMQ_ACCESS_KEY_ID ?? '',
+      secretAccessKey: process.env.YMQ_SECRET_ACCESS_KEY ?? '',
+    },
+  }))
+
+export async function enqueueNotifyRetry(payload) {
+  if (!NOTIFY_QUEUE_URL) {
+    notifyLog(payload.record_id, 1, 0, 'notify_retry_queue_not_configured')
+    return false
+  }
+  try {
+    await getSqs().send(
+      new SendMessageCommand({
+        QueueUrl: NOTIFY_QUEUE_URL,
+        MessageBody: JSON.stringify(payload),
+        DelaySeconds: NOTIFY_RETRY_DELAY_SECONDS,
+      }),
+    )
+    notifyLog(payload.record_id, 1, 0, 'notify_retry_enqueued')
+    return true
+  } catch {
+    notifyLog(payload.record_id, 1, 0, 'notify_retry_enqueue_failed')
+    return false
+  }
+}
+
+export const buildNotifyPayload = (recordId, formType, pageUrl) => ({
+  record_id: String(recordId),
+  form_type: formType,
+  page_url: pageUrl || '',
+  created_at: isoWithOffset(),
+})
+
 // Запись Bpium уже создана: ошибка уведомления не откатывает её и не влияет на ответ формы.
-// До 3 попыток с интервалом 60 секунд, после успеха повторы прекращаются.
-// В лог попадают только record_id, номер попытки, HTTP-код и технический статус.
+// Внутри пользовательского запроса выполняется ровно одна попытка (таймаут 5 с).
+// При ошибке сообщение уходит в очередь повторов и обрабатывается вне HTTP-запроса формы.
 async function notifyNeurosecretary(recordId, formType, pageUrl) {
   if (!NOTIFY_SECRET) {
     notifyLog(recordId, 1, 0, 'notify_not_configured')
     return
   }
-  const payload = {
-    record_id: String(recordId),
-    form_type: formType,
-    page_url: pageUrl || '',
-    created_at: isoWithOffset(),
+  const payload = buildNotifyPayload(recordId, formType, pageUrl)
+  let status = 0
+  let ok = false
+  try {
+    const result = await postNotification(payload)
+    status = result.status
+    ok = result.ok
+  } catch {
+    status = 0
   }
-  for (let attempt = 1; attempt <= NOTIFY_ATTEMPTS; attempt += 1) {
-    let status = 0
-    let ok = false
-    try {
-      const result = await postNotification(payload)
-      status = result.status
-      ok = result.ok
-    } catch {
-      status = 0
-    }
-    if (ok) {
-      notifyLog(recordId, attempt, status, 'notify_sent')
-      return
-    }
-    notifyLog(recordId, attempt, status, 'notify_failed_attempt')
-    if (attempt < NOTIFY_ATTEMPTS) await new Promise((r) => setTimeout(r, NOTIFY_RETRY_DELAY_MS))
+  if (ok) {
+    notifyLog(recordId, 1, status, 'notify_sent')
+    return
   }
-  notifyLog(recordId, NOTIFY_ATTEMPTS, 0, 'notify_failed_final')
+  notifyLog(recordId, 1, status, 'notify_failed_attempt')
+  await enqueueNotifyRetry(payload)
 }
 
 // ─── Схемы ──────────────────────────────────────────────────────────────────

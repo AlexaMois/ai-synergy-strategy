@@ -135,7 +135,8 @@ yc serverless function version create \
   --secret name=NEUROSECRETARY_NOTIFY_SECRET,id=<lockbox-id>,version-id=<ver>,key=NEUROSECRETARY_NOTIFY_SECRET
 ```
 
-Таймаут увеличен: повторы уведомления идут с интервалом 60 секунд (до 3 попыток).
+Таймаут функции формы можно вернуть к `30s`: ожиданий по 60 секунд внутри запроса больше нет
+(одна попытка уведомления с таймаутом 3 с, повторы — в отдельной функции `notify-retry`).
 
 ## API Gateway и TLS
 
@@ -195,9 +196,50 @@ Authorization: Bearer ${NEUROSECRETARY_NOTIFY_SECRET}
 }
 ```
 
-Успех — только `200 {"ok": true}`. При ошибке: до 3 попыток с интервалом 60 секунд,
-после успеха повторы прекращаются. Запись Bpium сохраняется в любом случае.
+Успех — только `200 {"ok": true}`.
+
+Внутри пользовательского HTTP-запроса формы выполняется **ровно одна попытка** с таймаутом
+3 секунды. Ответ формы не удерживается ожиданием уведомления: правило
+«Bpium recordId = успешная отправка формы» сохраняется, запись Bpium остаётся в любом случае.
 ПДн клиента остаются только в Bpium.
+
+### Механизм повторов (вне пользовательского запроса)
+
+При неуспехе первой попытки сообщение кладётся в очередь Yandex Message Queue
+(`NOTIFY_QUEUE_URL`, `DelaySeconds=60`). Очередь по триггеру вызывает отдельную функцию
+`notify-retry` (`yandex-cloud/notify-retry`), которая повторяет доставку:
+
+```text
+forms-handler → 1 попытка (3 с) → неуспех → YMQ notify-retry (delay 60 c)
+                                          → триггер → функция notify-retry
+                                          → успех: сообщение удаляется
+                                          → неуспех: возврат в очередь (visibility timeout)
+                                          → после 6 приёмов → DLQ notify-retry-dlq
+```
+
+```bash
+yc message-queue queue create --name notify-retry-dlq
+yc message-queue queue create --name notify-retry \
+  --visibility-timeout 120 \
+  --redrive-policy-target <dlq-arn> --redrive-policy-max-receive-count 6
+
+yc serverless function version create --function-name notify-retry \
+  --runtime nodejs18 --entrypoint index.handler \
+  --memory 128m --execution-timeout 60s \
+  --service-account-id <forms-handler-sa-id> \
+  --source-path ../notify-retry.zip \
+  --environment NEUROSECRETARY_NOTIFY_URL=https://bot.atslogistik.ru/vasya/internal/site-lead,NOTIFY_MAX_ATTEMPTS=6 \
+  --secret name=NEUROSECRETARY_NOTIFY_SECRET,id=<lockbox-id>,version-id=<ver>,key=NEUROSECRETARY_NOTIFY_SECRET
+
+yc serverless trigger create message-queue --name notify-retry-trigger \
+  --queue <queue-arn> --queue-service-account-id <ymq-sa-id> \
+  --invoke-function-name notify-retry --invoke-function-service-account-id <forms-handler-sa-id> \
+  --batch-size 1 --batch-cutoff 0s
+```
+
+Переменные `forms-handler` для очереди: `NOTIFY_QUEUE_URL`, `YMQ_ACCESS_KEY_ID`,
+`YMQ_SECRET_ACCESS_KEY` (статический ключ сервисного аккаунта с ролью `ymq.writer`,
+секретная часть — в Lockbox).
 
 Формат лога уведомлений (ничего кроме этих полей):
 
@@ -206,7 +248,8 @@ Authorization: Bearer ${NEUROSECRETARY_NOTIFY_SECRET}
 ```
 
 Статусы: `notify_sent`, `notify_failed_attempt`, `notify_failed_final`,
-`notify_not_configured`.
+`notify_not_configured`, `notify_retry_enqueued`, `notify_retry_enqueue_failed`,
+`notify_retry_queue_not_configured`, `notify_retry_bad_message`.
 
 Telegram из маршрута заявок сайта выведён полностью: функции `send-to-telegram`,
 `telegram-webhook` и `save-lead` удалены, переменные `TELEGRAM_*` обработчику не нужны.
