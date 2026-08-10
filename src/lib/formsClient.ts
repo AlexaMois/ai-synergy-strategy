@@ -1,7 +1,7 @@
 // Единая точка отправки всех форм сайта.
 //
 // Этап 2 (постоянная схема): все формы уходят только на обработчик в Yandex Cloud
-// (ru-central1, https://forms.aleksamois.ru) → Bpium → Telegram (только номер записи).
+// (ru-central1, https://forms.aleksamois.ru) → Bpium → MAX (бот «НейроСекретарь», только номер записи).
 // Автоматического возврата к иностранному маршруту нет: если VITE_FORMS_BASE_URL не задан,
 // отправка завершается безопасной ошибкой и данные никуда не уходят.
 
@@ -31,10 +31,15 @@ export async function submitForm(
 ): Promise<FormsResult> {
   if (!BASE) return { ok: false, error: NOT_CONFIGURED_ERROR };
   try {
+    // Страница отправки — единственное дополнительное поле для уведомления в MAX (без ПДн).
+    const pageUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}${window.location.pathname}`
+        : "";
     const res = await fetch(`${BASE}/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ pageUrl, ...body }),
     });
     const payload = (await res.json().catch(() => null)) as FormsResult | null;
     if (!res.ok || !payload?.ok) {
@@ -44,14 +49,6 @@ export async function submitForm(
   } catch {
     return { ok: false, error: "Сервис временно недоступен. Попробуйте позже." };
   }
-}
-
-/**
- * Уведомление в Telegram без ПДн отправляет сам обработчик в ru-central1.
- * Функция сохранена для совместимости вызовов и ничего не отправляет с браузера.
- */
-export function notifyForm(_formName: string, _recordId?: string, _pageUrl?: string) {
-  /* no-op: уведомление формирует обработчик форм в ru-central1 */
 }
 
 export interface UploadResult {
