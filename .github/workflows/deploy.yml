@@ -33,6 +33,13 @@ jobs:
         run: npm run build
         env:
           VITE_FORMS_BASE_URL: ${{ vars.VITE_FORMS_BASE_URL || 'https://forms.aleksamois.ru' }}
+          # Раньше эти значения приезжали из файла .env в репозитории. Файл убран,
+          # поэтому их обязан подставлять CI: без них сборка тихо соберётся, но
+          # портал, админка и MCP на боевом сайте перестанут работать.
+          # Задаются в Settings → Secrets and variables → Actions → Variables.
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_PROJECT_ID: ${{ vars.VITE_SUPABASE_PROJECT_ID }}
 
       - name: Inspect dist (debug)
         run: |
