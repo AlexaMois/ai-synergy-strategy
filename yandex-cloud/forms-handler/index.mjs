@@ -137,7 +137,7 @@ async function postNotification(payload) {
 // В лог попадают только record_id, номер попытки, HTTP-код и технический статус.
 async function notifyNeurosecretary(recordId, formType, pageUrl) {
   if (!NOTIFY_SECRET) {
-    log(recordId, 1, 0, 'notify_not_configured')
+    notifyLog(recordId, 1, 0, 'notify_not_configured')
     return
   }
   const payload = {
@@ -157,13 +157,13 @@ async function notifyNeurosecretary(recordId, formType, pageUrl) {
       status = 0
     }
     if (ok) {
-      log(recordId, attempt, status, 'notify_sent')
+      notifyLog(recordId, attempt, status, 'notify_sent')
       return
     }
-    log(recordId, attempt, status, 'notify_failed_attempt')
+    notifyLog(recordId, attempt, status, 'notify_failed_attempt')
     if (attempt < NOTIFY_ATTEMPTS) await new Promise((r) => setTimeout(r, NOTIFY_RETRY_DELAY_MS))
   }
-  log(recordId, NOTIFY_ATTEMPTS, 0, 'notify_failed_final')
+  notifyLog(recordId, NOTIFY_ATTEMPTS, 0, 'notify_failed_final')
 }
 
 // ─── Схемы ──────────────────────────────────────────────────────────────────
@@ -464,7 +464,7 @@ export const handler = async (event) => {
   }
 
   log(requestId, route.form, 200, 'record_created')
-  await notifyMax(route.formName(d), recordId, d.pageUrl, requestId)
+  await notifyNeurosecretary(recordId, route.formName(d), d.pageUrl)
 
   return reply({ ok: true, recordId })
 }
