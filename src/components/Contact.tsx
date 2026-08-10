@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { submitForm, notifyForm } from "@/lib/formsClient";
+import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 
@@ -110,7 +110,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     setIsSubmitting(true);
     
     try {
-      // Персональные данные уходят только в CRM (Bpium). В Telegram — номер записи без ПДн.
+      // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
       const result = await submitForm('short-lead', {
         name: data.name,
         phone: data.phone,
@@ -129,7 +129,6 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
         return;
       }
 
-      void notifyForm('Форма обратной связи', result.recordId, location.pathname);
 
       setIsSubmitting(false);
       setIsSubmitted(true);

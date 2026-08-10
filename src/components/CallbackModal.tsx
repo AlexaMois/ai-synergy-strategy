@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useLocation } from "react-router-dom";
-import { submitForm, notifyForm } from "@/lib/formsClient";
+import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission, trackZakazatZvonok } from "@/utils/analytics";
 
@@ -106,14 +106,12 @@ const CallbackModal = () => {
           setIsSubmitting(false);
           return;
         }
-        // Уведомление в Telegram: только номер записи, форма и время. Без персональных данных.
-        void notifyForm("Обсудить задачу", taskResult.recordId, location.pathname);
         setIsSubmitting(false);
         setIsSubmitted(true);
         trackFormSubmission("task" as any);
         return;
       }
-      // Заказ звонка: контакты уходят только в CRM (Bpium), в Telegram — номер записи.
+      // Заказ звонка: контакты уходят только в CRM (Bpium), в MAX — только номер записи.
       const callbackResult = await submitForm("short-lead", {
         name: data.name.trim(),
         phone: data.phone,
@@ -127,7 +125,6 @@ const CallbackModal = () => {
         setIsSubmitting(false);
         return;
       }
-      void notifyForm("Заказать звонок", callbackResult.recordId, location.pathname);
       setIsSubmitting(false);
       setIsSubmitted(true);
       trackFormSubmission("callback" as any);
