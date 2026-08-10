@@ -1,7 +1,9 @@
 // Обработчик всех форм сайта aleksamois.ru.
-// Площадка: Yandex Cloud Function, регион ru-central1. Вызов через API Gateway на forms.aleksamois.ru.
-// Маршрут ПДн: браузер → forms.aleksamois.ru → эта функция → Bpium. Уведомление уходит в API
-// НейроСекретаря: только номер записи Bpium, тип заявки, страница и время. ПДн остаются в Bpium.
+// Площадка: сервер Timeweb, служба forms-handler слушает 127.0.0.1:8090, наружу её
+// публикует nginx на forms.aleksamois.ru. HTTP-обёртка — в server.mjs.
+// Маршрут ПДн: браузер → forms.aleksamois.ru → этот обработчик → Bpium. Уведомление уходит
+// в API НейроСекретаря: только номер записи Bpium, тип заявки, страница и время.
+// ПДн остаются в Bpium и на диске сервера не хранятся.
 //
 // Журналирование: requestId, время (ISO), имя формы, технический код результата.
 // Никогда не логируются: значения полей, ответы Bpium, IP, токены, секреты.
@@ -9,9 +11,10 @@
 import { z } from 'zod'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs'
+import { enqueueNotifyRetry } from './notify-queue.mjs'
 
-const BPIUM_BASE = (process.env.BPIUM_BASE_URL || 'https://neiroresheniya.bpium.ru').replace(/\/+$/, '')
+// Домен Bpium только из окружения: рабочий стенд один, но зашивать его в код нельзя.
+const BPIUM_BASE = (process.env.BPIUM_BASE_URL || 'https://neiroresheniyasandra.bpium.ru').replace(/\/+$/, '')
 const BPIUM_LOGIN = process.env.BPIUM_LOGIN ?? ''
 const BPIUM_PASSWORD = process.env.BPIUM_PASSWORD ?? ''
 const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
@@ -20,15 +23,15 @@ const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 const NOTIFY_URL =
   process.env.NEUROSECRETARY_NOTIFY_URL || 'https://bot.atslogistik.ru/vasya/internal/site-lead'
 const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
-// Первая попытка выполняется внутри пользовательского запроса и жёстко ограничена по времени.
-// Повторы выполняются вне HTTP-запроса формы — через очередь Yandex Message Queue.
+// Первая попытка выполняется внутри пользовательского запроса и жёстко ограничена по
+// времени: форма не должна ждать бота. Повторы идут вне запроса, см. notify-queue.mjs.
 const NOTIFY_TIMEOUT_MS = 3000
-const NOTIFY_QUEUE_URL = process.env.NOTIFY_QUEUE_URL ?? ''
-const NOTIFY_RETRY_DELAY_SECONDS = 60
 
-// Object Storage (ru-central1) для фото анкеты нейростилиста
+// S3-совместимое хранилище Timeweb для фото анкеты нейростилиста.
+// Адрес и регион — из окружения: провайдера меняли уже один раз.
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
-const STORAGE_ENDPOINT = 'https://storage.yandexcloud.net'
+const STORAGE_ENDPOINT = process.env.STORAGE_ENDPOINT || 'https://s3.timeweb.cloud'
+const STORAGE_REGION = process.env.STORAGE_REGION || 'ru-1'
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ??
   'https://aleksamois.ru,https://www.aleksamois.ru').split(',').map((s) => s.trim())
@@ -108,9 +111,11 @@ async function createBpiumRecord(values, requestId, form) {
 
 // ─── Уведомление НейроСекретарю: только record_id, тип, страница, время ──────
 
-// ISO 8601 с часовым поясом (Europe/Moscow, +03:00).
+// ISO 8601 с явным часовым поясом Красноярска (+07:00).
+// Пояс указываем всегда: время без пояса бот трактует как московское, и заявка
+// в сообщении уехала бы на четыре часа назад.
 const isoWithOffset = (date = new Date()) => {
-  const offsetMinutes = 180
+  const offsetMinutes = 420
   const shifted = new Date(date.getTime() + offsetMinutes * 60 * 1000)
   const sign = offsetMinutes >= 0 ? '+' : '-'
   const abs = Math.abs(offsetMinutes)
@@ -143,45 +148,14 @@ async function postNotification(payload) {
   }
 }
 
-// Очередь повторов: Yandex Message Queue (SQS-совместимая).
-// Пользовательский HTTP-запрос сюда только кладёт сообщение — ожидания нет.
-let sqs
-const getSqs = () =>
-  (sqs ??= new SQSClient({
-    region: 'ru-central1',
-    endpoint: 'https://message-queue.api.cloud.yandex.net',
-    credentials: {
-      accessKeyId: process.env.YMQ_ACCESS_KEY_ID ?? '',
-      secretAccessKey: process.env.YMQ_SECRET_ACCESS_KEY ?? '',
-    },
-  }))
-
-export async function enqueueNotifyRetry(payload) {
-  if (!NOTIFY_QUEUE_URL) {
-    notifyLog(payload.record_id, 1, 0, 'notify_retry_queue_not_configured')
-    return false
-  }
-  try {
-    await getSqs().send(
-      new SendMessageCommand({
-        QueueUrl: NOTIFY_QUEUE_URL,
-        MessageBody: JSON.stringify(payload),
-        DelaySeconds: NOTIFY_RETRY_DELAY_SECONDS,
-      }),
-    )
-    notifyLog(payload.record_id, 1, 0, 'notify_retry_enqueued')
-    return true
-  } catch {
-    notifyLog(payload.record_id, 1, 0, 'notify_retry_enqueue_failed')
-    return false
-  }
-}
-
+// Контракт уведомления проверен в бою и на стороне бота не меняется:
+// именно recordId / formName / pageUrl / createdAt. Snake_case бот отвергает
+// с ответом 400 «recordId required».
 export const buildNotifyPayload = (recordId, formType, pageUrl) => ({
-  record_id: String(recordId),
-  form_type: formType,
-  page_url: pageUrl || '',
-  created_at: isoWithOffset(),
+  recordId: String(recordId),
+  formName: formType,
+  pageUrl: pageUrl || '',
+  createdAt: isoWithOffset(),
 })
 
 // Запись Bpium уже создана: ошибка уведомления не откатывает её и не влияет на ответ формы.
@@ -207,6 +181,8 @@ async function notifyNeurosecretary(recordId, formType, pageUrl) {
     return
   }
   notifyLog(recordId, 1, status, 'notify_failed_attempt')
+  // Заявка в Bpium уже создана. Повтор идёт вне пользовательского запроса,
+  // состояние очереди лежит на диске и переживает перезапуск службы.
   await enqueueNotifyRetry(payload)
 }
 
@@ -374,8 +350,9 @@ function stylistLeadValues(d) {
 async function issueUploadUrl(d) {
   if (!UPLOADS_BUCKET) return null
   const s3 = new S3Client({
-    region: 'ru-central1',
+    region: STORAGE_REGION,
     endpoint: STORAGE_ENDPOINT,
+    forcePathStyle: true,
     credentials: {
       accessKeyId: process.env.STORAGE_ACCESS_KEY_ID ?? '',
       secretAccessKey: process.env.STORAGE_SECRET_ACCESS_KEY ?? '',
@@ -433,31 +410,37 @@ const ROUTES = {
   },
 }
 
-export const handler = async (event) => {
+// Точка входа обработчика. На вход — уже разобранный запрос от server.mjs:
+// method, path, сырое тело и заголовки. На выход — статус, заголовки и тело.
+// Раньше здесь была сигнатура Yandex Cloud Function (event с httpMethod,
+// isBase64Encoded и путём внутри requestContext.apiGateway); заменена только она,
+// маршруты, схемы и маппинг Bpium ниже не менялись.
+export const handleRequest = async ({ method = 'POST', path = '', rawBody = '', headers: reqHeaders = {} }) => {
   const requestId = crypto.randomUUID()
-  const origin = event?.headers?.origin ?? event?.headers?.Origin ?? ''
+  const header = (name) => reqHeaders[name] ?? reqHeaders[name.toLowerCase()] ?? ''
+  const origin = header('origin')
   const headers = { ...corsHeaders(origin), 'Content-Type': 'application/json' }
   const reply = (body, statusCode = 200) => ({ statusCode, headers, body: JSON.stringify(body) })
 
-  const method = event?.httpMethod ?? 'POST'
   if (method === 'OPTIONS') return { statusCode: 204, headers: corsHeaders(origin), body: '' }
   if (method !== 'POST') return reply({ error: 'Method not allowed' }, 405)
 
-  const path = (event?.requestContext?.apiGateway?.operationContext?.path ?? event?.path ?? '').replace(/\/+$/, '')
-  const route = ROUTES[path]
-  const isUploadUrl = path === '/upload-url'
+  const cleanPath = String(path).replace(/\/+$/, '')
+  const route = ROUTES[cleanPath]
+  const isUploadUrl = cleanPath === '/upload-url'
   if (!route && !isUploadUrl) return reply({ error: 'Not found' }, 404)
 
   let body
   try {
-    const raw = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body
-    body = JSON.parse(raw || '{}')
+    body = JSON.parse(rawBody || '{}')
   } catch {
-    log(requestId, path, 400, 'bad_json')
+    log(requestId, cleanPath, 400, 'bad_json')
     return reply({ error: 'Некорректный запрос' }, 400)
   }
 
-  const ip = event?.headers?.['X-Forwarded-For']?.split(',')[0]?.trim() ?? 'unknown'
+  // IP приходит от nginx в X-Forwarded-For. Сам адрес не хранится и не логируется:
+  // для ограничения частоты используется только его хеш.
+  const ip = String(header('x-forwarded-for')).split(',')[0]?.trim() || 'unknown'
   const rateKey = await hashKey(ip)
 
   if (isUploadUrl) {
@@ -476,7 +459,7 @@ export const handler = async (event) => {
     return reply({ ok: true, ...issued })
   }
 
-  if (!checkRate(`${path}:${rateKey}`, route.max)) {
+  if (!checkRate(`${cleanPath}:${rateKey}`, route.max)) {
     log(requestId, route.form, 429, 'rate_limited')
     return reply({ error: 'Слишком много отправок. Попробуйте позже.' }, 429)
   }

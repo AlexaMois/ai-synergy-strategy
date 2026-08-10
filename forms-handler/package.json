@@ -1,0 +1,19 @@
+{
+  "name": "aleksamois-forms-handler",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Обработчик форм сайта aleksamois.ru: сервер Timeweb (127.0.0.1:8090) → Bpium 81 → уведомление НейроСекретарю (только номер записи).",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.699.0",
+    "@aws-sdk/s3-request-presigner": "3.699.0",
+    "zod": "3.23.8"
+  }
+}
