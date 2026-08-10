@@ -1,7 +1,7 @@
 // Обработчик всех форм сайта aleksamois.ru.
 // Площадка: Yandex Cloud Function, регион ru-central1. Вызов через API Gateway на forms.aleksamois.ru.
-// Маршрут ПДн: браузер → forms.aleksamois.ru → эта функция → Bpium. В MAX уходит только
-// внутренний номер записи Bpium, тип заявки, страница и время. Персональные данные за пределы РФ не передаются.
+// Маршрут ПДн: браузер → forms.aleksamois.ru → эта функция → Bpium. Уведомление уходит в API
+// НейроСекретаря: только номер записи Bpium, тип заявки, страница и время. ПДн остаются в Bpium.
 //
 // Журналирование: requestId, время (ISO), имя формы, технический код результата.
 // Никогда не логируются: значения полей, ответы Bpium, IP, токены, секреты.
@@ -15,11 +15,12 @@ const BPIUM_LOGIN = process.env.BPIUM_LOGIN ?? ''
 const BPIUM_PASSWORD = process.env.BPIUM_PASSWORD ?? ''
 const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 
-// Уведомления: бот «НейроСекретарь» в MAX (@id245906802500_2_bot).
-const MAX_BOT_TOKEN = process.env.MAX_BOT_TOKEN ?? ''
-const MAX_CHAT_ID = process.env.MAX_CHAT_ID ?? ''
-// MAX Bot API: строго platform-api2.max.ru, токен только в заголовке Authorization.
-const MAX_API_BASE = 'https://platform-api2.max.ru'
+// Уведомления: готовый API НейроСекретаря (он сам доставляет сообщение в MAX).
+const NOTIFY_URL =
+  process.env.NEUROSECRETARY_NOTIFY_URL || 'https://bot.atslogistik.ru/vasya/internal/site-lead'
+const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
+const NOTIFY_ATTEMPTS = 3
+const NOTIFY_RETRY_DELAY_MS = 60 * 1000
 
 // Object Storage (ru-central1) для фото анкеты нейростилиста
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
