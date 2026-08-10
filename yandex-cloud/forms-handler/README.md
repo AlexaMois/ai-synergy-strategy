@@ -177,9 +177,20 @@ VITE_FORMS_BASE_URL=https://forms.aleksamois.ru
 Бот: «НейроСекретарь», `@id245906802500_2_bot`, https://max.ru/id245906802500_2_bot
 
 Переменные: `MAX_BOT_TOKEN` (токен бота из MasterBot), `MAX_CHAT_ID` (идентификатор диалога
-с получателем), необязательно `MAX_API_BASE` (по умолчанию `https://botapi.max.ru`).
+с получателем). Хост зафиксирован в коде: `https://platform-api2.max.ru`.
 
-Вызов: `POST {MAX_API_BASE}/messages?access_token=…&chat_id=…` с телом `{ "text": "…" }`.
+Вызов: `POST https://platform-api2.max.ru/messages?chat_id=${MAX_CHAT_ID}`
+с заголовком `Authorization: ${MAX_BOT_TOKEN}` и телом `{ "text": "…" }`.
+Токен в URL не передаётся, `botapi.max.ru` не используется.
+
+Как получить `MAX_CHAT_ID`: открыть диалог с ботом, отправить `/start` (событие
+`bot_started`), затем `GET https://platform-api2.max.ru/updates` с заголовком
+`Authorization: ${MAX_BOT_TOKEN}` и взять `chat_id` из события. Значение сохранить
+в Lockbox как ключ `MAX_CHAT_ID` и смонтировать в функцию (см. раздел развёртывания).
+
+Ошибки MAX: запись Bpium уже создана и не откатывается; уведомление повторяется
+ещё один раз через 1 секунду. Каждая неудача пишется в лог как
+`notify_failed_attempt_N`, окончательная — `notify_failed_final`.
 
 Telegram из маршрута заявок сайта выведён полностью: функции `send-to-telegram`,
 `telegram-webhook` и `save-lead` удалены, переменные `TELEGRAM_*` обработчику не нужны.

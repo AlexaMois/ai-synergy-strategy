@@ -10,7 +10,7 @@ import { z } from 'zod'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
-const BPIUM_BASE = (process.env.BPIUM_BASE_URL ?? '').replace(/\/+$/, '')
+const BPIUM_BASE = (process.env.BPIUM_BASE_URL || 'https://neiroresheniya.bpium.ru').replace(/\/+$/, '')
 const BPIUM_LOGIN = process.env.BPIUM_LOGIN ?? ''
 const BPIUM_PASSWORD = process.env.BPIUM_PASSWORD ?? ''
 const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
@@ -18,7 +18,8 @@ const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 // Уведомления: бот «НейроСекретарь» в MAX (@id245906802500_2_bot).
 const MAX_BOT_TOKEN = process.env.MAX_BOT_TOKEN ?? ''
 const MAX_CHAT_ID = process.env.MAX_CHAT_ID ?? ''
-const MAX_API_BASE = (process.env.MAX_API_BASE ?? 'https://botapi.max.ru').replace(/\/+$/, '')
+// MAX Bot API: строго platform-api2.max.ru, токен только в заголовке Authorization.
+const MAX_API_BASE = 'https://platform-api2.max.ru'
 
 // Object Storage (ru-central1) для фото анкеты нейростилиста
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
@@ -98,6 +99,19 @@ async function createBpiumRecord(values, requestId, form) {
 
 // ─── MAX: только тип заявки, номер записи, страница и время ─────────────────
 
+async function sendMaxMessage(text) {
+  const url = `${MAX_API_BASE}/messages?chat_id=${encodeURIComponent(MAX_CHAT_ID)}`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: MAX_BOT_TOKEN,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ text }),
+  })
+  return res
+}
+
 async function notifyMax(formName, recordId, pageUrl, requestId) {
   if (!MAX_BOT_TOKEN || !MAX_CHAT_ID) {
     log(requestId, formName, 0, 'notify_not_configured')
@@ -109,17 +123,23 @@ async function notifyMax(formName, recordId, pageUrl, requestId) {
     `Запись Bpium: ${recordId}\n` +
     `Страница: ${pageUrl || 'не указана'}\n` +
     `Дата и время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })} (МСК)`
-  try {
-    const url = `${MAX_API_BASE}/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&chat_id=${encodeURIComponent(MAX_CHAT_ID)}`
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
-    })
-    log(requestId, formName, res.status, res.ok ? 'notify_sent' : 'notify_failed')
-  } catch {
-    log(requestId, formName, 0, 'notify_failed')
+  // Запись Bpium уже создана: ошибка MAX не влияет на ответ формы.
+  // Две попытки с паузой, каждая неудача фиксируется в логе.
+  const attempts = 2
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const res = await sendMaxMessage(text)
+      if (res.ok) {
+        log(requestId, formName, res.status, attempt === 1 ? 'notify_sent' : 'notify_sent_retry')
+        return
+      }
+      log(requestId, formName, res.status, `notify_failed_attempt_${attempt}`)
+    } catch {
+      log(requestId, formName, 0, `notify_failed_attempt_${attempt}`)
+    }
+    if (attempt < attempts) await new Promise((r) => setTimeout(r, 1000))
   }
+  log(requestId, formName, 0, 'notify_failed_final')
 }
 
 // ─── Схемы ──────────────────────────────────────────────────────────────────
