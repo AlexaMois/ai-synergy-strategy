@@ -7,7 +7,8 @@
   → https://forms.aleksamois.ru            (API Gateway, ru-central1)
   → Cloud Function forms-handler           (ru-central1)
   → Bpium (каталог 81)                     — единственное хранилище содержимого заявок
-  → MAX, бот «НейроСекретарь»               — только тип заявки, номер записи, страница, время
+  → API НейроСекретаря (bot.atslogistik.ru) — только record_id, form_type, page_url, created_at
+  → MAX (доставку сообщения выполняет сам НейроСекретарь)
 ```
 
 Supabase Edge Functions в маршруте ПДн не участвуют. Фронтенд переключается одной
@@ -102,11 +103,15 @@ yc storage bucket update --name <bucket> \
 
 ## Секреты (Yandex Lockbox)
 
-`BPIUM_BASE_URL`, `BPIUM_LOGIN`, `BPIUM_PASSWORD`, `MAX_BOT_TOKEN`, `MAX_CHAT_ID`,
+`BPIUM_BASE_URL`, `BPIUM_LOGIN`, `BPIUM_PASSWORD`, `NEUROSECRETARY_NOTIFY_SECRET`,
 `STORAGE_ACCESS_KEY_ID`, `STORAGE_SECRET_ACCESS_KEY`.
 
 Нечувствительные переменные: `BPIUM_CATALOG_ID=81`, `UPLOADS_BUCKET`,
+`NEUROSECRETARY_NOTIFY_URL=https://bot.atslogistik.ru/vasya/internal/site-lead`,
 `ALLOWED_ORIGINS=https://aleksamois.ru,https://www.aleksamois.ru`.
+
+`MAX_BOT_TOKEN` и `MAX_CHAT_ID` обработчику больше не нужны — удалите их из окружения
+функции (прямой вызов MAX API из forms-handler убран).
 
 ## Развёртывание
 
@@ -120,16 +125,17 @@ yc serverless function version create \
   --function-name forms-handler \
   --runtime nodejs18 \
   --entrypoint index.handler \
-  --memory 256m --execution-timeout 30s \
+  --memory 256m --execution-timeout 300s \
   --service-account-id <forms-handler-sa-id> \
   --source-path ../forms-handler.zip \
-  --environment BPIUM_CATALOG_ID=81,UPLOADS_BUCKET=<bucket> \
+  --environment BPIUM_CATALOG_ID=81,UPLOADS_BUCKET=<bucket>,NEUROSECRETARY_NOTIFY_URL=https://bot.atslogistik.ru/vasya/internal/site-lead \
   --secret name=BPIUM_BASE_URL,id=<lockbox-id>,version-id=<ver>,key=BPIUM_BASE_URL \
   --secret name=BPIUM_LOGIN,id=<lockbox-id>,version-id=<ver>,key=BPIUM_LOGIN \
   --secret name=BPIUM_PASSWORD,id=<lockbox-id>,version-id=<ver>,key=BPIUM_PASSWORD \
-  --secret name=MAX_BOT_TOKEN,id=<lockbox-id>,version-id=<ver>,key=MAX_BOT_TOKEN \
-  --secret name=MAX_CHAT_ID,id=<lockbox-id>,version-id=<ver>,key=MAX_CHAT_ID
+  --secret name=NEUROSECRETARY_NOTIFY_SECRET,id=<lockbox-id>,version-id=<ver>,key=NEUROSECRETARY_NOTIFY_SECRET
 ```
+
+Таймаут увеличен: повторы уведомления идут с интервалом 60 секунд (до 3 попыток).
 
 ## API Gateway и TLS
 
@@ -167,30 +173,40 @@ VITE_FORMS_BASE_URL=https://forms.aleksamois.ru
 
 1. запись фактически создана в Bpium (каталог 81);
 2. ответ обработчика содержит `recordId` (успехом считается только он);
-3. уведомление пришло в MAX от бота «НейроСекретарь» (`@id245906802500_2_bot`)
-   в формате: «Новая заявка с сайта / Тип заявки / Запись Bpium / Страница / Дата и время».
+3. `POST` на `NEUROSECRETARY_NOTIFY_URL` вернул `200 {"ok": true}`, и сообщение
+   пришло Александре в MAX от бота «НейроСекретарь».
 
 Дополнительно: в логах отсутствуют значения полей и IP, фото доступны только по приватной ссылке.
 
-## Уведомления в MAX
+## Уведомления через API НейроСекретаря
 
-Бот: «НейроСекретарь», `@id245906802500_2_bot`, https://max.ru/id245906802500_2_bot
+Прямой вызов MAX API из обработчика удалён. После создания записи в Bpium выполняется:
 
-Переменные: `MAX_BOT_TOKEN` (токен бота из MasterBot), `MAX_CHAT_ID` (идентификатор диалога
-с получателем). Хост зафиксирован в коде: `https://platform-api2.max.ru`.
+```http
+POST https://bot.atslogistik.ru/vasya/internal/site-lead
+Content-Type: application/json
+Authorization: Bearer ${NEUROSECRETARY_NOTIFY_SECRET}
 
-Вызов: `POST https://platform-api2.max.ru/messages?chat_id=${MAX_CHAT_ID}`
-с заголовком `Authorization: ${MAX_BOT_TOKEN}` и телом `{ "text": "…" }`.
-Токен в URL не передаётся, `botapi.max.ru` не используется.
+{
+  "record_id": "6",
+  "form_type": "Первичная диагностика",
+  "page_url": "https://aleksamois.ru/start",
+  "created_at": "2026-08-10T19:40:00+07:00"
+}
+```
 
-Как получить `MAX_CHAT_ID`: открыть диалог с ботом, отправить `/start` (событие
-`bot_started`), затем `GET https://platform-api2.max.ru/updates` с заголовком
-`Authorization: ${MAX_BOT_TOKEN}` и взять `chat_id` из события. Значение сохранить
-в Lockbox как ключ `MAX_CHAT_ID` и смонтировать в функцию (см. раздел развёртывания).
+Успех — только `200 {"ok": true}`. При ошибке: до 3 попыток с интервалом 60 секунд,
+после успеха повторы прекращаются. Запись Bpium сохраняется в любом случае.
+ПДн клиента остаются только в Bpium.
 
-Ошибки MAX: запись Bpium уже создана и не откатывается; уведомление повторяется
-ещё один раз через 1 секунду. Каждая неудача пишется в лог как
-`notify_failed_attempt_N`, окончательная — `notify_failed_final`.
+Формат лога уведомлений (ничего кроме этих полей):
+
+```json
+{"record_id":"6","attempt":1,"code":200,"status":"notify_sent"}
+```
+
+Статусы: `notify_sent`, `notify_failed_attempt`, `notify_failed_final`,
+`notify_not_configured`.
 
 Telegram из маршрута заявок сайта выведён полностью: функции `send-to-telegram`,
 `telegram-webhook` и `save-lead` удалены, переменные `TELEGRAM_*` обработчику не нужны.
