@@ -207,28 +207,30 @@ Authorization: Bearer ${NEUROSECRETARY_NOTIFY_SECRET}
 
 При неуспехе первой попытки сообщение кладётся в очередь Yandex Message Queue
 (`NOTIFY_QUEUE_URL`, `DelaySeconds=60`). Очередь по триггеру вызывает отдельную функцию
-`notify-retry` (`yandex-cloud/notify-retry`), которая повторяет доставку:
+`notify-retry` (`yandex-cloud/notify-retry`), которая повторяет доставку.
+Число повторов задаётся ТОЛЬКО redrive policy очереди (`maxReceiveCount = 2`):
+всего 3 отправки — 1 основная попытка + 2 повтора, дальше DLQ.
 
 ```text
-forms-handler → 1 попытка (3 с) → неуспех → YMQ notify-retry (delay 60 c)
-                                          → триггер → функция notify-retry
-                                          → успех: сообщение удаляется
-                                          → неуспех: возврат в очередь (visibility timeout)
-                                          → после 6 приёмов → DLQ notify-retry-dlq
+forms-handler → попытка 1 (таймаут 3 с) → неуспех → YMQ notify-retry (DelaySeconds=60)
+  → триггер → notify-retry: попытка 2 → успех: сообщение удаляется
+                                      → неуспех: throw → возврат в очередь
+  → триггер → notify-retry: попытка 3 → успех: сообщение удаляется
+                                      → неуспех: throw → DLQ notify-retry-dlq
 ```
 
 ```bash
 yc message-queue queue create --name notify-retry-dlq
 yc message-queue queue create --name notify-retry \
   --visibility-timeout 120 \
-  --redrive-policy-target <dlq-arn> --redrive-policy-max-receive-count 6
+  --redrive-policy-target <dlq-arn> --redrive-policy-max-receive-count 2
 
 yc serverless function version create --function-name notify-retry \
   --runtime nodejs18 --entrypoint index.handler \
   --memory 128m --execution-timeout 60s \
   --service-account-id <forms-handler-sa-id> \
   --source-path ../notify-retry.zip \
-  --environment NEUROSECRETARY_NOTIFY_URL=https://bot.atslogistik.ru/vasya/internal/site-lead,NOTIFY_MAX_ATTEMPTS=6 \
+  --environment NEUROSECRETARY_NOTIFY_URL=https://bot.atslogistik.ru/vasya/internal/site-lead \
   --secret name=NEUROSECRETARY_NOTIFY_SECRET,id=<lockbox-id>,version-id=<ver>,key=NEUROSECRETARY_NOTIFY_SECRET
 
 yc serverless trigger create message-queue --name notify-retry-trigger \
@@ -247,7 +249,10 @@ yc serverless trigger create message-queue --name notify-retry-trigger \
 {"record_id":"6","attempt":1,"code":200,"status":"notify_sent"}
 ```
 
-Статусы: `notify_sent`, `notify_failed_attempt`, `notify_failed_final`,
+В `notify-retry` `attempt = 1 + ApproximateReceiveCount` (атрибут сообщения YMQ),
+то есть фактический номер отправки: 2 или 3.
+
+Статусы: `notify_sent`, `notify_failed_attempt`,
 `notify_not_configured`, `notify_retry_enqueued`, `notify_retry_enqueue_failed`,
 `notify_retry_queue_not_configured`, `notify_retry_bad_message`.
 
