@@ -1,7 +1,7 @@
 // Обработчик всех форм сайта aleksamois.ru.
 // Площадка: Yandex Cloud Function, регион ru-central1. Вызов через API Gateway на forms.aleksamois.ru.
 // Маршрут ПДн: браузер → forms.aleksamois.ru → эта функция → Bpium. В Telegram уходит только
-// внутренний номер записи Bpium, имя формы и время. Персональные данные за пределы РФ не передаются.
+// внутренний номер записи Bpium, тип заявки, страница и время. Персональные данные за пределы РФ не передаются.
 //
 // Журналирование: requestId, время (ISO), имя формы, технический код результата.
 // Никогда не логируются: значения полей, ответы Bpium, IP, токены, секреты.
@@ -15,8 +15,10 @@ const BPIUM_LOGIN = process.env.BPIUM_LOGIN ?? ''
 const BPIUM_PASSWORD = process.env.BPIUM_PASSWORD ?? ''
 const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN ?? ''
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID ?? ''
+// Уведомления: бот «НейроСекретарь» в MAX (@id245906802500_2_bot).
+const MAX_BOT_TOKEN = process.env.MAX_BOT_TOKEN ?? ''
+const MAX_CHAT_ID = process.env.MAX_CHAT_ID ?? ''
+const MAX_API_BASE = (process.env.MAX_API_BASE ?? 'https://botapi.max.ru').replace(/\/+$/, '')
 
 // Object Storage (ru-central1) для фото анкеты нейростилиста
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
@@ -94,21 +96,25 @@ async function createBpiumRecord(values, requestId, form) {
   return String(recordId)
 }
 
-// ─── Telegram: только номер записи, имя формы и время ───────────────────────
+// ─── MAX: только тип заявки, номер записи, страница и время ─────────────────
 
-async function notifyTelegram(formName, recordId, requestId) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return
+async function notifyMax(formName, recordId, pageUrl, requestId) {
+  if (!MAX_BOT_TOKEN || !MAX_CHAT_ID) {
+    log(requestId, formName, 0, 'notify_not_configured')
+    return
+  }
   const text =
-    `Новая заявка\n` +
-    `Форма: ${formName}\n` +
-    `Номер записи: ${recordId}\n` +
-    `Время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })} (МСК)\n\n` +
-    `Содержимое заявки — в CRM.`
+    `Новая заявка с сайта\n` +
+    `Тип заявки: ${formName}\n` +
+    `Запись Bpium: ${recordId}\n` +
+    `Страница: ${pageUrl || 'не указана'}\n` +
+    `Дата и время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })} (МСК)`
   try {
-    const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const url = `${MAX_API_BASE}/messages?access_token=${encodeURIComponent(MAX_BOT_TOKEN)}&chat_id=${encodeURIComponent(MAX_CHAT_ID)}`
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text }),
+      body: JSON.stringify({ text }),
     })
     log(requestId, formName, res.status, res.ok ? 'notify_sent' : 'notify_failed')
   } catch {
@@ -131,6 +137,7 @@ const ShortLeadSchema = z.object({
   task: z.string().trim().max(2000).optional().default(''),
   formName: z.string().trim().max(120).optional().default('Короткая заявка'),
   consent: z.literal(true),
+  pageUrl: z.string().trim().max(300).optional().default(''),
   website: z.string().max(0).optional(),
 })
 
@@ -165,6 +172,7 @@ const DiagnosticSchema = z.object({
   notes: z.string().trim().max(3000).optional().default(''),
   wantsDraft: optId,
   consent: z.literal(true),
+  pageUrl: z.string().trim().max(300).optional().default(''),
   company_extra: z.string().max(0).optional(),
 })
 
@@ -180,6 +188,7 @@ const StylistLeadSchema = z.object({
     .max(30)
     .default([]),
   items_count: z.number().int().min(0).max(20).optional().default(0),
+  pageUrl: z.string().trim().max(300).optional().default(''),
   website: z.string().max(0).optional(),
   test_mode: z.boolean().optional().default(false),
 })
@@ -411,7 +420,7 @@ export const handler = async (event) => {
   }
 
   log(requestId, route.form, 200, 'record_created')
-  await notifyTelegram(route.formName(d), recordId, requestId)
+  await notifyMax(route.formName(d), recordId, d.pageUrl, requestId)
 
   return reply({ ok: true, recordId })
 }
