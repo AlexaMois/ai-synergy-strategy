@@ -2,13 +2,14 @@
 // Триггер: Yandex Message Queue (очередь notify-retry) → эта Cloud Function.
 // Повторы выполняются ВНЕ пользовательского HTTP-запроса формы.
 // Запись в Bpium уже создана — здесь только уведомление.
+// Количество повторов контролирует ТОЛЬКО redrive policy очереди
+// (maxReceiveCount = 2 → всего 1 попытка из forms-handler + 2 повтора → DLQ).
 // Логи: record_id, номер попытки, HTTP-код, технический статус. ПДн не передаются.
 
 const NOTIFY_URL =
   process.env.NEUROSECRETARY_NOTIFY_URL || 'https://bot.atslogistik.ru/vasya/internal/site-lead'
 const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
 const NOTIFY_TIMEOUT_MS = 10000
-const MAX_ATTEMPTS = Number(process.env.NOTIFY_MAX_ATTEMPTS ?? 6)
 
 const notifyLog = (recordId, attempt, code, status) =>
   console.log(JSON.stringify({ record_id: String(recordId), attempt, code, status }))
@@ -38,10 +39,14 @@ async function postNotification(payload) {
   }
 }
 
+// Фактический номер попытки: 1 (из forms-handler) + число приёмов сообщения очередью.
+const attemptNumber = (message) =>
+  1 + Number(message?.message_attributes?.ApproximateReceiveCount ?? message?.ApproximateReceiveCount ?? 1)
+
 // Одно сообщение очереди = одна заявка. Успех — только 200 {"ok": true}.
-// Неуспех: бросаем ошибку, чтобы YMQ вернул сообщение в очередь
-// (повтор по visibility timeout, далее — DLQ по redrive policy).
-async function processMessage(raw) {
+// Любая ошибка → throw: YMQ вернёт сообщение в очередь, после maxReceiveCount → DLQ.
+async function processMessage(message) {
+  const raw = message?.body ?? ''
   let payload
   try {
     payload = JSON.parse(raw)
@@ -49,7 +54,7 @@ async function processMessage(raw) {
     notifyLog('unknown', 0, 0, 'notify_retry_bad_message')
     return
   }
-  const attempt = Number(payload.attempt ?? 2)
+  const attempt = attemptNumber(message)
   let status = 0
   let ok = false
   try {
@@ -68,10 +73,6 @@ async function processMessage(raw) {
     notifyLog(payload.record_id, attempt, status, 'notify_sent')
     return
   }
-  if (attempt >= MAX_ATTEMPTS) {
-    notifyLog(payload.record_id, attempt, status, 'notify_failed_final')
-    return
-  }
   notifyLog(payload.record_id, attempt, status, 'notify_failed_attempt')
   throw new Error('notify_retry')
 }
@@ -79,7 +80,7 @@ async function processMessage(raw) {
 export const handler = async (event) => {
   const messages = event?.messages ?? []
   for (const m of messages) {
-    await processMessage(m?.details?.message?.body ?? '')
+    await processMessage(m?.details?.message ?? {})
   }
   return { statusCode: 200 }
 }
