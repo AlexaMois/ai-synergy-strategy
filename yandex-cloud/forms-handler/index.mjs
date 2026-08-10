@@ -98,49 +98,68 @@ async function createBpiumRecord(values, requestId, form) {
   return String(recordId)
 }
 
-// ─── MAX: только тип заявки, номер записи, страница и время ─────────────────
+// ─── Уведомление НейроСекретарю: только record_id, тип, страница, время ──────
 
-async function sendMaxMessage(text) {
-  const url = `${MAX_API_BASE}/messages?chat_id=${encodeURIComponent(MAX_CHAT_ID)}`
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Authorization: MAX_BOT_TOKEN,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ text }),
-  })
-  return res
+// ISO 8601 с часовым поясом (Europe/Moscow, +03:00).
+const isoWithOffset = (date = new Date()) => {
+  const offsetMinutes = 180
+  const shifted = new Date(date.getTime() + offsetMinutes * 60 * 1000)
+  const sign = offsetMinutes >= 0 ? '+' : '-'
+  const abs = Math.abs(offsetMinutes)
+  const pad = (n) => String(n).padStart(2, '0')
+  return `${shifted.toISOString().slice(0, 19)}${sign}${pad(Math.floor(abs / 60))}:${pad(abs % 60)}`
 }
 
-async function notifyMax(formName, recordId, pageUrl, requestId) {
-  if (!MAX_BOT_TOKEN || !MAX_CHAT_ID) {
-    log(requestId, formName, 0, 'notify_not_configured')
+async function postNotification(payload) {
+  const res = await fetch(NOTIFY_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${NOTIFY_SECRET}`,
+    },
+    body: JSON.stringify(payload),
+  })
+  let ok = false
+  try {
+    ok = res.ok && (await res.json())?.ok === true
+  } catch {
+    ok = false
+  }
+  return { status: res.status, ok }
+}
+
+// Запись Bpium уже создана: ошибка уведомления не откатывает её и не влияет на ответ формы.
+// До 3 попыток с интервалом 60 секунд, после успеха повторы прекращаются.
+// В лог попадают только record_id, номер попытки, HTTP-код и технический статус.
+async function notifyNeurosecretary(recordId, formType, pageUrl) {
+  if (!NOTIFY_SECRET) {
+    log(recordId, 1, 0, 'notify_not_configured')
     return
   }
-  const text =
-    `Новая заявка с сайта\n` +
-    `Тип заявки: ${formName}\n` +
-    `Запись Bpium: ${recordId}\n` +
-    `Страница: ${pageUrl || 'не указана'}\n` +
-    `Дата и время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })} (МСК)`
-  // Запись Bpium уже создана: ошибка MAX не влияет на ответ формы.
-  // Две попытки с паузой, каждая неудача фиксируется в логе.
-  const attempts = 2
-  for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    try {
-      const res = await sendMaxMessage(text)
-      if (res.ok) {
-        log(requestId, formName, res.status, attempt === 1 ? 'notify_sent' : 'notify_sent_retry')
-        return
-      }
-      log(requestId, formName, res.status, `notify_failed_attempt_${attempt}`)
-    } catch {
-      log(requestId, formName, 0, `notify_failed_attempt_${attempt}`)
-    }
-    if (attempt < attempts) await new Promise((r) => setTimeout(r, 1000))
+  const payload = {
+    record_id: String(recordId),
+    form_type: formType,
+    page_url: pageUrl || '',
+    created_at: isoWithOffset(),
   }
-  log(requestId, formName, 0, 'notify_failed_final')
+  for (let attempt = 1; attempt <= NOTIFY_ATTEMPTS; attempt += 1) {
+    let status = 0
+    let ok = false
+    try {
+      const result = await postNotification(payload)
+      status = result.status
+      ok = result.ok
+    } catch {
+      status = 0
+    }
+    if (ok) {
+      log(recordId, attempt, status, 'notify_sent')
+      return
+    }
+    log(recordId, attempt, status, 'notify_failed_attempt')
+    if (attempt < NOTIFY_ATTEMPTS) await new Promise((r) => setTimeout(r, NOTIFY_RETRY_DELAY_MS))
+  }
+  log(recordId, NOTIFY_ATTEMPTS, 0, 'notify_failed_final')
 }
 
 // ─── Схемы ──────────────────────────────────────────────────────────────────
