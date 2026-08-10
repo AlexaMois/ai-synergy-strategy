@@ -102,17 +102,17 @@ const StartPage = () => {
                       Разбор задачи с собственником
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-3xl leading-snug">
-                      За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект.
+                      За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект
                     </p>
 
                     <div className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-2xl bg-background/80 px-4 py-3 mb-5 shadow-card ring-1 ring-foreground/5">
                       <span className="text-2xl md:text-3xl font-bold text-foreground">17 000 ₽</span>
-                      <span className="text-sm md:text-base text-muted-foreground">· фиксированная стоимость</span>
+                      <span className="text-sm md:text-base text-muted-foreground">фиксированная стоимость</span>
                     </div>
 
                     <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-2xl space-y-1">
                       <p>
-                        Александра Моисеева, основатель «НейроРешений», проводит разбор лично.
+                        Александра Моисеева, основатель «НейроРешений» проводит разбор лично.
                       </p>
                       <p>Дистанционно по всей России.</p>
                     </div>
