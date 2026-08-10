@@ -19,8 +19,11 @@ const CATALOG_ID = process.env.BPIUM_CATALOG_ID ?? '81'
 const NOTIFY_URL =
   process.env.NEUROSECRETARY_NOTIFY_URL || 'https://bot.atslogistik.ru/vasya/internal/site-lead'
 const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
-const NOTIFY_ATTEMPTS = 3
-const NOTIFY_RETRY_DELAY_MS = 60 * 1000
+// Первая попытка выполняется внутри пользовательского запроса и жёстко ограничена по времени.
+// Повторы выполняются вне HTTP-запроса формы — через очередь Yandex Message Queue.
+const NOTIFY_TIMEOUT_MS = 5000
+const NOTIFY_QUEUE_URL = process.env.NOTIFY_QUEUE_URL ?? ''
+const NOTIFY_RETRY_DELAY_SECONDS = 60
 
 // Object Storage (ru-central1) для фото анкеты нейростилиста
 const UPLOADS_BUCKET = process.env.UPLOADS_BUCKET ?? ''
