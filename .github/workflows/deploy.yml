@@ -31,6 +31,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_FORMS_BASE_URL: ${{ vars.VITE_FORMS_BASE_URL || 'https://forms.aleksamois.ru' }}
 
       - name: Inspect dist (debug)
         run: |

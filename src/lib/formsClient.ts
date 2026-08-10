@@ -23,7 +23,7 @@ const GENERIC_ERROR =
   "Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru";
 
 const NOT_CONFIGURED_ERROR =
-  "Отправка форм временно недоступна. Напишите на ai@aleksamois.ru или в Telegram.";
+  "Отправка форм временно недоступна. Напишите на ai@aleksamois.ru или в MAX.";
 
 export async function submitForm(
   endpoint: FormsEndpoint,

@@ -110,7 +110,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     setIsSubmitting(true);
     
     try {
-      // Персональные данные уходят только в CRM (Bpium). В Telegram — номер записи без ПДн.
+      // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
       const result = await submitForm('short-lead', {
         name: data.name,
         phone: data.phone,
