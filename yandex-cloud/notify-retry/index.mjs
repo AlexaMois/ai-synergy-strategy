@@ -41,7 +41,7 @@ async function postNotification(payload) {
 
 // Фактический номер попытки: 1 (из forms-handler) + число приёмов сообщения очередью.
 const attemptNumber = (message) =>
-  1 + Number(message?.message_attributes?.ApproximateReceiveCount ?? message?.ApproximateReceiveCount ?? 1)
+  1 + Number(message?.attributes?.ApproximateReceiveCount ?? 1)
 
 // Одно сообщение очереди = одна заявка. Успех — только 200 {"ok": true}.
 // Любая ошибка → throw: YMQ вернёт сообщение в очередь, после maxReceiveCount → DLQ.
