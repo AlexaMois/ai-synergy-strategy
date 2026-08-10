@@ -22,7 +22,7 @@ const NOTIFY_URL =
 const NOTIFY_SECRET = process.env.NEUROSECRETARY_NOTIFY_SECRET ?? ''
 // Первая попытка выполняется внутри пользовательского запроса и жёстко ограничена по времени.
 // Повторы выполняются вне HTTP-запроса формы — через очередь Yandex Message Queue.
-const NOTIFY_TIMEOUT_MS = 5000
+const NOTIFY_TIMEOUT_MS = 3000
 const NOTIFY_QUEUE_URL = process.env.NOTIFY_QUEUE_URL ?? ''
 const NOTIFY_RETRY_DELAY_SECONDS = 60
 
