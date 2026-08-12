@@ -720,6 +720,10 @@
     .dot-soft-pulse {
       animation: none;
     }
+    .group:hover .group-hover\:translate-x-0\.5,
+    .hover\:-translate-y-0\.5:hover {
+      transform: none;
+    }
   }
   
   .animate-fade-slide-up {
