@@ -150,15 +150,10 @@ const CasesPage = () => {
                     Кейсы цифровизации{" "}
                     <span className="font-iriska font-normal italic text-accent">бизнеса</span>
                   </h1>
-                  <p className="text-lg md:text-xl text-foreground/85 mb-5 max-w-3xl leading-snug font-medium">
+                  <p className="text-lg md:text-xl text-foreground/85 mb-10 max-w-3xl leading-snug font-medium">
                     Реальные задачи компаний, где цифровые инструменты помогли снизить ручную
                     нагрузку, сохранить бюджет, ускорить работу и сделать процессы понятнее
                     для руководителя.
-                  </p>
-                  <p className="text-base md:text-lg text-foreground/70 mb-10 max-w-3xl leading-snug">
-                    В каждом проекте сначала разбираем, как устроена работа компании: процессы,
-                    данные, роли, документы и текущие инструменты. Только после этого подбираем
-                    решение: стратегию, аудит, обучение, внедрение, разработку или сопровождение.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">Подобрать формат работы</PillButton>
