@@ -690,25 +690,22 @@
 
   /* Светящаяся точка с очень мягкой пульсацией */
   .dot-soft-pulse {
+    position: relative;
     display: inline-block;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 9999px;
     background-color: currentColor;
-    box-shadow: 0 0 0 3px hsl(0 0% 100% / 0.25);
-    animation: dotSoftPulse 2.8s ease-in-out infinite;
+    flex: none;
+    animation: dotCore 2.4s ease-in-out infinite;
   }
-
-  @keyframes dotSoftPulse {
-    0%,
-    100% {
-      opacity: 0.75;
-      box-shadow: 0 0 0 3px hsl(0 0% 100% / 0.18);
-    }
-    50% {
-      opacity: 1;
-      box-shadow: 0 0 0 6px hsl(0 0% 100% / 0.28);
-    }
+  .dot-soft-pulse::after {
+    content: "";
+    position: absolute;
+    inset: -0.125rem;
+    border-radius: 9999px;
+    border: 1.5px solid currentColor;
+    animation: dotRing 2.4s ease-out infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -719,6 +716,10 @@
     }
     .dot-soft-pulse {
       animation: none;
+    }
+    .dot-soft-pulse::after {
+      animation: none;
+      opacity: 0.35;
     }
     .group:hover .group-hover\:translate-x-0\.5,
     .hover\:-translate-y-0\.5:hover {
