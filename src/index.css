@@ -689,6 +689,11 @@
   }
 
   /* Светящаяся точка с очень мягкой пульсацией */
+  /* Мягкая пульсация всего бирюзового блока */
+  .block-soft-pulse {
+    animation: blockPulse 3.6s ease-in-out infinite;
+  }
+
   .dot-soft-pulse {
     position: relative;
     display: inline-block;
@@ -720,6 +725,9 @@
     .dot-soft-pulse::after {
       animation: none;
       opacity: 0.35;
+    }
+    .block-soft-pulse {
+      animation: none;
     }
     .group:hover .group-hover\:translate-x-0\.5,
     .hover\:-translate-y-0\.5:hover {
@@ -1324,5 +1332,18 @@
   100% {
     opacity: 0;
     transform: scale(2.6);
+  }
+}
+
+/* Мягкое «дыхание» бирюзового блока */
+@keyframes blockPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0.28), 0 18px 40px -24px hsl(var(--accent) / 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 14px hsl(var(--accent) / 0), 0 26px 60px -22px hsl(var(--accent) / 0.65);
+    transform: scale(1.008);
   }
 }

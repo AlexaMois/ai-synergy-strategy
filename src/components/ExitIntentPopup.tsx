@@ -121,30 +121,55 @@ const ExitIntentPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[520px] p-0 overflow-hidden rounded-[24px] shadow-elevated border-0 mx-auto [&>button]:hidden">
-        <div className="h-1 w-full bg-accent" />
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[560px] p-0 overflow-hidden rounded-[28px] shadow-elevated border-0 mx-auto [&>button]:hidden">
+        <div className="relative px-6 sm:px-10 pt-8 sm:pt-10 pb-7 sm:pb-9">
+          {/* мягкое бирюзовое свечение в углу */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-accent/20 blur-3xl"
+          />
 
-        <div className="px-6 sm:px-9 py-7 sm:py-9">
-          <DialogHeader className="mb-6 space-y-3">
-            <DialogTitle className="text-2xl sm:text-3xl font-bold text-foreground leading-[1.1] text-left">
-              Не уходите с задачей в голове
-            </DialogTitle>
-            <DialogDescription className="text-base sm:text-lg text-foreground/75 leading-snug text-left">
-              Опишите один процесс за 7–10 минут. Вопросы помогут разложить задачу по фактам и подготовиться к предметному разговору.
-            </DialogDescription>
-          </DialogHeader>
+          <div className="relative">
+            <span className="inline-flex items-center gap-2.5 rounded-full bg-accent/10 text-accent px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] mb-6">
+              <span className="dot-soft-pulse" />
+              Анкета · 7–10 минут
+            </span>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <PillButton onClick={handleCTA} variant="turquoise">
-              Описать задачу
-            </PillButton>
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="text-sm sm:text-base font-semibold text-foreground/60 hover:text-foreground transition-colors px-2 py-2"
-            >
-              Не сейчас
-            </button>
+            <DialogHeader className="mb-5 space-y-3">
+              <DialogTitle className="text-[26px] sm:text-4xl font-bold text-foreground leading-[1.05] text-left">
+                Не уходите с задачей{" "}
+                <span className="font-iriska font-normal italic text-accent">в голове</span>
+              </DialogTitle>
+              <DialogDescription className="text-base sm:text-lg text-foreground/70 leading-relaxed text-left">
+                Опишите один процесс за 7–10 минут. Вопросы помогут разложить задачу по фактам и подготовиться к предметному разговору.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="border-t border-border mb-6">
+              {["Выберите один процесс", "Зафиксируйте ручные действия", "Опишите главную проблему"].map(
+                (step, i) => (
+                  <div key={step} className="flex items-baseline gap-3.5 border-b border-border py-3">
+                    <span className="text-xs sm:text-sm font-bold text-accent tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm sm:text-base text-foreground/85 leading-snug">{step}</span>
+                  </div>
+                )
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <PillButton onClick={handleCTA} variant="turquoise">
+                Описать задачу
+              </PillButton>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="text-sm sm:text-base font-semibold text-foreground/50 hover:text-foreground transition-colors px-2 py-2 text-left sm:text-center"
+              >
+                Не сейчас
+              </button>
+            </div>
           </div>
         </div>
       </DialogContent>
