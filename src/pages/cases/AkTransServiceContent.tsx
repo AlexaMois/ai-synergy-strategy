@@ -478,63 +478,34 @@ const AkTransServiceContent = () => {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Маленькой задаче — точное решение */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 border-t border-foreground/10 pt-10">
-          <div className="lg:col-span-5">
-            <Eyebrow>Маленькой задаче — точное решение</Eyebrow>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
-              Перенос рабочих сообщений из WhatsApp в MAX за один день
-            </h2>
-          </div>
-          <div className="lg:col-span-7 space-y-4 text-base md:text-lg text-foreground/75 leading-relaxed">
-            <p>
-              При переходе компании на MAX появилась отдельная практическая задача: перенести историю рабочих сообщений из WhatsApp. Для неё сделали компактный скрипт и выполнили перенос за один рабочий день.
-            </p>
-            <p>Этот эпизод хорошо показывает принцип проекта: размер решения соответствует размеру задачи. Для одной задачи достаточно скрипта. Для другой требуется портал. Для третьей — корпоративный поиск. Для четвёртой — автоматический контроль на сервере.</p>
-            <p>Технология выбирается после анализа процесса и ожидаемого результата.</p>
-          </div>
+        <div className="border-t border-foreground/10 pt-10 mt-12 max-w-3xl">
+          <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">Точечное решение</p>
+          <p className="text-base md:text-lg text-foreground/75 leading-relaxed">
+            При переходе на MAX историю рабочих сообщений из WhatsApp перенесли компактным скриптом за один день. Размер решения соответствует размеру задачи: где-то достаточно скрипта, где-то — портала, корпоративного поиска или автоматизации на сервере.
+          </p>
         </div>
       </section>
 
-      {/* Почему кейс важен */}
+      {/* Почему кейс важен и как выбирается технология */}
       <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 border-t border-foreground/10 pt-10">
-          <div>
-            <Eyebrow>Почему этот кейс важен</Eyebrow>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">
-              Цифровизация реальной компании начинается с того, что уже есть
-            </h3>
-            <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-3">
-              В бизнесе уже есть 1С. Есть Excel. Есть документы. Есть MAX. Есть сотрудники со своими привычками. Есть процессы, которые работают каждый день.
+        <div className="max-w-3xl border-t border-foreground/10 pt-10">
+          <Eyebrow>Почему этот кейс важен</Eyebrow>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
+            Цифровизация реальной компании начинается с того, что уже есть
+          </h2>
+          <div className="space-y-4 text-base md:text-lg text-foreground/75 leading-relaxed mb-8">
+            <p>
+              В бизнесе уже есть 1С, Excel, документы, MAX, сотрудники со своими привычками и процессы, которые работают каждый день. Мы строим цифровую систему вокруг этой реальной работы и поэтапно превращаем разрозненные процессы в управляемую систему, сохраняя всё ценное.
             </p>
-            <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-3">
-              Поэтому мы строим цифровую систему вокруг реальной работы компании.
-            </p>
-            <p className="text-base md:text-lg text-foreground/75 leading-relaxed">
-              Берём живую компанию со сложной инфраструктурой и поэтапно превращаем разрозненные процессы в управляемую систему, сохраняя всё ценное, что уже работает.
+            <p>
+              Технология выбирается под задачу, а не наоборот. Главный критерий — результат для бизнеса, скорость внедрения и реальная применимость для сотрудников.
             </p>
           </div>
-          <div>
-            <Eyebrow>Как выбирается технология</Eyebrow>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight mb-4">
-              Решение под задачу, а не наоборот
-            </h3>
-            <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-3">
-              Где-то для этого нужен портал. Где-то — поиск по корпоративным знаниям. Где-то — Jarvis. Где-то — автоматическая проверка Excel. Где-то — обработка выгрузки из 1С. Где-то — скрипт на один день.
+          <div className="border-l-2 border-accent pl-6 space-y-3 text-base md:text-lg text-foreground/75 leading-relaxed">
+            <p>АкТрансСервис — действующий проект цифрового развития.</p>
+            <p>
+              Созданные решения становятся фундаментом для следующих этапов: развития базы знаний, новых сценариев Jarvis, дальнейшей автоматизации и цифровых ознакомлений сотрудников.
             </p>
-            <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6">
-              Главный критерий выбора технологии — результат для бизнеса, скорость внедрения и реальная применимость для сотрудников.
-            </p>
-            <div className="border-l-2 border-accent pl-6 space-y-3 text-base md:text-lg text-foreground/75 leading-relaxed">
-              <p>АкТрансСервис — действующий проект цифрового развития.</p>
-              <p>
-                Созданные решения становятся основой для следующих этапов: развития корпоративной базы знаний, новых сценариев Jarvis, дальнейшей автоматизации внутренних процессов и цифровых ознакомлений сотрудников с документами.
-              </p>
-              <p>Каждый следующий этап развивается на уже созданном цифровом фундаменте. Так компания последовательно получает связанную систему вместо набора отдельных инициатив.</p>
-            </div>
           </div>
         </div>
       </section>
