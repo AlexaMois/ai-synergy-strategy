@@ -169,39 +169,6 @@ const CasesPage = () => {
             </div>
           </section>
 
-          {/* РЕЗУЛЬТАТЫ В ЦИФРАХ */}
-          <section className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
-            <div className="max-w-3xl mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                Результаты{" "}
-                <span className="font-iriska font-normal italic text-accent">в цифрах</span>
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
-                Коротко о результатах из последних проектов.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {[
-                { value: "1,7 млн ₽", label: "сохранено за квартал в проекте АкТрансСервис", bg: "bg-surface-mint" },
-                { value: "1,3 млн ₽", label: "разовая экономия капитальных затрат в проекте Крайпотребсоюз", bg: "bg-surface-lavender" },
-                { value: "0%", label: "потерь заявок после автоматизации в Грузовом Экспрессе", bg: "bg-surface-blush" },
-                { value: "3 сек", label: "вместо 25 минут на ответ по техническому запросу", bg: "bg-surface-sand" },
-              ].map((m, i) => (
-                <div
-                  key={i}
-                  className={`relative rounded-[24px] ${m.bg} p-7 shadow-card ring-1 ring-foreground/5 min-h-[180px] flex flex-col`}
-                >
-                  <p className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-3">
-                    {m.value}
-                  </p>
-                  <p className="text-sm md:text-base text-foreground/70 leading-snug mt-auto">
-                    {m.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
           {/* ОСНОВНЫЕ КЕЙСЫ — заголовок + поиск/фильтры */}
           <section className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
             <div className="max-w-3xl mb-10">
