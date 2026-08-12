@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -10,22 +10,39 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import {
+  consumeDiagnosticAutostart,
+  isDiagnosticStarted,
+  markDiagnosticStarted,
+} from "@/lib/diagnosticState";
 
 const StartPage = () => {
-  const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
+  const [diagnosticStarted, setDiagnosticStarted] = useState(
+    () => hasDiagnosticDraft() || isDiagnosticStarted()
+  );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
   const diagnosticIntroRef = useRef<HTMLDivElement>(null);
+  const { ref: revealRef, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
+    markDiagnosticStarted();
     setTimeout(() => {
-      (diagnosticRef.current ?? diagnosticIntroRef.current)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const target = diagnosticRef.current ?? diagnosticIntroRef.current;
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const field = diagnosticRef.current?.querySelector<HTMLElement>(
+        "input, textarea, select, button"
+      );
+      field?.focus({ preventScroll: true });
     }, 120);
   };
+
+  useEffect(() => {
+    if (consumeDiagnosticAutostart()) startDiagnostic();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const scrollToResult = () => {
     document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
