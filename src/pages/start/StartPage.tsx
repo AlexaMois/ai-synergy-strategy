@@ -280,14 +280,14 @@ const StartPage = () => {
                   </span>
                 </div>
               ) : (
-                <div className="rounded-[28px] md:rounded-[48px] bg-accent px-6 md:px-14 lg:px-20 py-14 md:py-20 lg:py-24 shadow-card">
-                  <div className="grid md:grid-cols-12 gap-12 md:gap-16 lg:gap-20 items-center">
+                <div className="block-soft-pulse rounded-[28px] md:rounded-[40px] bg-accent px-6 md:px-12 py-10 md:py-14">
+                  <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-center">
                     <div className="md:col-span-8">
-                      <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-10 md:mb-12">
+                      <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-7 md:mb-8">
                         <span className="dot-soft-pulse" />
                         Анкета · 7–10 минут
                       </span>
-                      <div className="border-t border-white/25 mb-12 md:mb-14">
+                      <div className="border-t border-white/25 mb-8 md:mb-10">
                         {[
                           "Выберите один процесс",
                           "Зафиксируйте ручные действия",
@@ -295,12 +295,12 @@ const StartPage = () => {
                         ].map((step, i) => (
                           <div
                             key={step}
-                            className="flex items-baseline gap-5 border-b border-white/25 py-5 md:py-6"
+                            className="flex items-baseline gap-4 border-b border-white/25 py-4"
                           >
                             <span className="text-sm md:text-base font-bold text-white/60 tabular-nums">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="text-lg md:text-xl text-white leading-snug">{step}</span>
+                            <span className="text-base md:text-lg text-white leading-snug">{step}</span>
                           </div>
                         ))}
                       </div>
@@ -308,11 +308,11 @@ const StartPage = () => {
                         Описать задачу
                       </PillButton>
                     </div>
-                    <div className="md:col-span-4 md:text-right md:border-l md:border-white/20 md:pl-10 lg:pl-14">
-                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none tracking-tight">
+                    <div className="md:col-span-4 md:text-right">
+                      <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tight">
                         7–10 минут
                       </p>
-                      <p className="mt-4 md:mt-5 text-base md:text-xl text-white/80">один процесс</p>
+                      <p className="mt-3 text-base md:text-lg text-white/80">один процесс</p>
                     </div>
                   </div>
                 </div>
