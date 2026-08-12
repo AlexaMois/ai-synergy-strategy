@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PillButton from "@/components/PillButton";
-import portalShot from "@/assets/cases/aktrans/portal.png.asset.json";
-import docFormShot from "@/assets/cases/aktrans/doc-form.png.asset.json";
-import dashboardShot from "@/assets/cases/aktrans/dashboard.png.asset.json";
-import jarvisMenuShot from "@/assets/cases/aktrans/jarvis-menu.png.asset.json";
-import jarvisAnswerShot from "@/assets/cases/aktrans/jarvis-answer.png.asset.json";
+import portalShot from "@/assets/cases/aktrans/portal.webp";
+import docFormShot from "@/assets/cases/aktrans/doc-form.webp";
+import dashboardShot from "@/assets/cases/aktrans/dashboard.webp";
+import jarvisMenuShot from "@/assets/cases/aktrans/jarvis-menu.webp";
+import jarvisAnswerShot from "@/assets/cases/aktrans/jarvis-answer.webp";
 
 const heroTags = [
   "Портал знаний",
@@ -236,7 +236,7 @@ const AkTransServiceContent = () => {
         </div>
 
         <Shot
-          src={portalShot.url}
+          src={portalShot}
           alt="Корпоративный портал знаний АкТрансСервис: список документов, источники, роли и направления"
           caption="Портал знаний: документы, источники, роли, направления и поиск в одном интерфейсе."
         />
@@ -244,7 +244,7 @@ const AkTransServiceContent = () => {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start mt-14 md:mt-20">
           <div className="lg:col-span-5">
             <Shot
-              src={docFormShot.url}
+              src={docFormShot}
               alt="Форма добавления документа в портал с обязательными полями и тегами"
               caption="Форма добавления документа: контекст фиксируется сразу при загрузке."
               narrow
@@ -313,7 +313,7 @@ const AkTransServiceContent = () => {
         </div>
 
         <Shot
-          src={dashboardShot.url}
+          src={dashboardShot}
           alt="Управленческий дашборд портала: сроки, статусы, группы доступа и динамика документов"
           caption="Управленческий дашборд: что требует действия прямо сейчас."
         />
@@ -340,7 +340,7 @@ const AkTransServiceContent = () => {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
             <Shot
-              src={jarvisMenuShot.url}
+              src={jarvisMenuShot}
               alt="Меню бота Jarvis в MAX: планёрки, командировки, календарь, спросить Джарвиса, портал"
               caption="Меню Jarvis в MAX: рабочие сценарии в привычном мессенджере."
               narrow
@@ -384,7 +384,7 @@ const AkTransServiceContent = () => {
           </div>
           <div className="lg:col-span-5 order-1 lg:order-2">
             <Shot
-              src={jarvisAnswerShot.url}
+              src={jarvisAnswerShot}
               alt="Ответ Jarvis в MAX на вопрос о документах по охране труда со ссылками на регламенты"
               caption="Ответ Jarvis по корпоративным документам и оценка качества ответа."
               narrow
