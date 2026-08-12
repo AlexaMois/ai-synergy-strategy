@@ -16,8 +16,6 @@ import {
   markExitPopupShown,
   requestDiagnosticAutostart,
 } from "@/lib/diagnosticState";
-import { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
-
 /* Служебные и специальные разделы — попап не показываем */
 const BLOCKED_PREFIXES = [
   "/legal",
@@ -38,8 +36,7 @@ const canShow = (pathname: string) =>
   isAllowedRoute(pathname) &&
   !isExitPopupShown() &&
   !isDiagnosticSubmitted() &&
-  !isDiagnosticStarted() &&
-  !hasDiagnosticDraft();
+  !isDiagnosticStarted();
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
