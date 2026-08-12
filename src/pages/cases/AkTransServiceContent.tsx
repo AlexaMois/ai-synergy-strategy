@@ -403,7 +403,7 @@ const AkTransServiceContent = () => {
             <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-6 max-w-3xl">
               Автоматический контроль поверх привычных таблиц
             </h2>
-            <div className="space-y-4 text-base md:text-lg text-background/90 leading-relaxed max-w-3xl mb-10">
+            <div className="space-y-4 text-base md:text-lg text-background leading-relaxed max-w-3xl mb-10">
               <p>
                 В компании есть Excel-таблицы, с которыми подразделения работают постоянно. В них уже накоплены данные, сотрудники знают правила заполнения и используют их в ежедневной работе.
               </p>
@@ -420,12 +420,12 @@ const AkTransServiceContent = () => {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="md:col-span-4 text-base md:text-lg font-semibold">{a.title}</span>
-                  <span className="md:col-span-7 text-base text-background/90 leading-relaxed">{a.text}</span>
+                  <span className="md:col-span-7 text-base text-background leading-relaxed">{a.text}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="text-base md:text-lg text-background/90 leading-relaxed mt-8 max-w-3xl">
+            <p className="text-base md:text-lg text-background leading-relaxed mt-8 max-w-3xl">
               Из таких ежедневных операций складывается значительная часть ручной нагрузки сотрудников. Автоматизация берёт на себя повторяющуюся проверку, а человек получает готовый результат для принятия решения.
             </p>
           </div>
