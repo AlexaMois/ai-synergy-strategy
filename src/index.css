@@ -676,6 +676,51 @@
   .animate-fade-in-up {
     animation: fadeInUp 0.35s ease-out forwards;
   }
+
+  /* Мягкое появление секции снизу вверх (однократно) */
+  .reveal-soft {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .reveal-soft.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Светящаяся точка с очень мягкой пульсацией */
+  .dot-soft-pulse {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: currentColor;
+    box-shadow: 0 0 0 3px hsl(0 0% 100% / 0.25);
+    animation: dotSoftPulse 2.8s ease-in-out infinite;
+  }
+
+  @keyframes dotSoftPulse {
+    0%,
+    100% {
+      opacity: 0.75;
+      box-shadow: 0 0 0 3px hsl(0 0% 100% / 0.18);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 0 6px hsl(0 0% 100% / 0.28);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-soft {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .dot-soft-pulse {
+      animation: none;
+    }
+  }
   
   .animate-fade-slide-up {
     animation: fadeSlideUp 0.6s ease-out forwards;
