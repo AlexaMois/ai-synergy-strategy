@@ -689,6 +689,11 @@
   }
 
   /* Светящаяся точка с очень мягкой пульсацией */
+  /* Мягкая пульсация всего бирюзового блока */
+  .block-soft-pulse {
+    animation: blockPulse 3.6s ease-in-out infinite;
+  }
+
   .dot-soft-pulse {
     position: relative;
     display: inline-block;
@@ -720,6 +725,9 @@
     .dot-soft-pulse::after {
       animation: none;
       opacity: 0.35;
+    }
+    .block-soft-pulse {
+      animation: none;
     }
     .group:hover .group-hover\:translate-x-0\.5,
     .hover\:-translate-y-0\.5:hover {
