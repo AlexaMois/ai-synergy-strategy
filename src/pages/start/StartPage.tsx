@@ -252,7 +252,7 @@ const StartPage = () => {
           <section
             ref={diagnosticIntroRef}
             id="self-start"
-            className="px-4 md:px-6 py-20 md:py-32 scroll-mt-24"
+            className="px-4 md:px-6 py-16 md:py-24 scroll-mt-24"
           >
             <div
               ref={revealRef as React.RefObject<HTMLDivElement>}
