@@ -400,15 +400,15 @@ const AkTransServiceContent = () => {
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               05 · Excel остался. Ручная проверка ушла.
             </p>
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-6 max-w-3xl">
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-6 max-w-3xl text-background">
               Автоматический контроль поверх привычных таблиц
             </h2>
             <div className="space-y-4 text-base md:text-lg text-background leading-relaxed max-w-3xl mb-10">
-              <p>
+              <p className="!text-background">
                 В компании есть Excel-таблицы, с которыми подразделения работают постоянно. В них уже накоплены данные, сотрудники знают правила заполнения и используют их в ежедневной работе.
               </p>
-              <p>Мы сохранили этот привычный слой и автоматизировали контроль поверх него.</p>
-              <p>
+              <p className="!text-background">Мы сохранили этот привычный слой и автоматизировали контроль поверх него.</p>
+              <p className="!text-background">
                 Сценарии работают на локальном сервере компании: читают рабочие Excel-файлы и выгрузки, проверяют условия, собирают нужную информацию и отправляют результат сотрудникам в MAX.
               </p>
             </div>
