@@ -10,6 +10,7 @@ import BackToHome from "@/components/BackToHome";
 import Navigation from "@/components/Navigation";
 import CallbackModal from "@/components/CallbackModal";
 import CookieConsent from "@/components/CookieConsent";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 import Index from "./pages/NewHome";
 
@@ -186,6 +187,7 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <ExitIntentPopup />
     </>
   );
 };
