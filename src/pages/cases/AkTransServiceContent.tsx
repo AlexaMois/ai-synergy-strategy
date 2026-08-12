@@ -455,9 +455,13 @@ const AkTransServiceContent = () => {
 
         <div className="border-t border-foreground/10 pt-10 mt-12">
           <h3 className="text-xl md:text-2xl font-bold text-foreground mb-5">Что работает сейчас</h3>
-          <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-4xl mb-4">
-            {nowWorking.join(" · ")}
-          </p>
+          <ul className="grid md:grid-cols-2 gap-x-10 gap-y-3 max-w-4xl mb-5">
+            {nowWorking.map((t, i) => (
+              <li key={i} className="text-base md:text-lg text-foreground/75 leading-relaxed pl-5 relative before:content-['·'] before:absolute before:left-0 before:text-accent">
+                {t}
+              </li>
+            ))}
+          </ul>
           <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl">
             Проект развивается поэтапно. Каждый следующий сценарий подключается к общей архитектуре и использует уже созданные компоненты.
           </p>
