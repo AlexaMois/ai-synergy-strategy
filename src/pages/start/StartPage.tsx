@@ -41,6 +41,9 @@ const StartPage = () => {
 
   useEffect(() => {
     if (consumeDiagnosticAutostart()) startDiagnostic();
+    const onOpen = () => startDiagnostic();
+    window.addEventListener("self-start:open", onOpen);
+    return () => window.removeEventListener("self-start:open", onOpen);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
