@@ -295,12 +295,12 @@ const StartPage = () => {
                         ].map((step, i) => (
                           <div
                             key={step}
-                            className="flex items-baseline gap-4 border-b border-white/20 py-3.5"
+                            className="flex items-baseline gap-5 border-b border-white/25 py-5 md:py-6"
                           >
-                            <span className="text-base md:text-lg font-bold text-white/70 tabular-nums">
+                            <span className="text-sm md:text-base font-bold text-white/60 tabular-nums">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="text-base md:text-lg text-white">{step}</span>
+                            <span className="text-lg md:text-xl text-white leading-snug">{step}</span>
                           </div>
                         ))}
                       </div>
@@ -308,11 +308,11 @@ const StartPage = () => {
                         Описать задачу
                       </PillButton>
                     </div>
-                    <div className="md:col-span-4 md:text-right">
-                      <p className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tight">
+                    <div className="md:col-span-4 md:text-right md:border-l md:border-white/20 md:pl-10 lg:pl-14">
+                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none tracking-tight">
                         7–10 минут
                       </p>
-                      <p className="mt-3 text-base md:text-xl text-white/80">один процесс</p>
+                      <p className="mt-4 md:mt-5 text-base md:text-xl text-white/80">один процесс</p>
                     </div>
                   </div>
                 </div>
