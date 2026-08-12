@@ -131,7 +131,6 @@ const CaseDetailPage = () => {
         {slug === "aktransservice" ? (
           <>
             <AkTransServiceContent />
-            <Contact />
             <Partners />
             <Footer />
           </>
