@@ -252,25 +252,25 @@ const StartPage = () => {
           <section
             ref={diagnosticIntroRef}
             id="self-start"
-            className="px-4 md:px-6 py-14 md:py-20 scroll-mt-24"
+            className="px-4 md:px-6 py-20 md:py-32 scroll-mt-24"
           >
             <div
               ref={revealRef as React.RefObject<HTMLDivElement>}
               className={`container mx-auto max-w-7xl reveal-soft ${isVisible ? "is-visible" : ""}`}
             >
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-5 md:mb-6">
                 Самостоятельный старт
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5 md:mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6 md:mb-8">
                 Опишите задачу{" "}
                 <span className="font-iriska font-normal italic text-accent">сами</span>
               </h2>
-              <p className="text-base md:text-xl text-foreground/75 leading-snug max-w-3xl mb-8 md:mb-10">
+              <p className="text-base md:text-xl text-foreground/75 leading-relaxed max-w-2xl mb-12 md:mb-16">
                 Анкета на 7–10 минут. Возьмите один процесс, который забирает время, деньги или требует слишком много ручной работы.
               </p>
 
               {diagnosticStarted ? (
-                <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-accent px-5 py-4 md:px-6 md:py-5 shadow-card animate-fade-in">
+                <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-accent px-6 py-5 md:px-8 md:py-6 shadow-card animate-fade-in">
                   <span className="inline-flex items-center gap-2.5 text-sm md:text-base font-semibold text-white">
                     <span className="dot-soft-pulse" />
                     Самостоятельный старт · анкета открыта
@@ -280,14 +280,14 @@ const StartPage = () => {
                   </span>
                 </div>
               ) : (
-                <div className="rounded-[24px] md:rounded-[40px] bg-accent px-5 md:px-10 lg:px-14 py-10 md:py-14 shadow-card">
-                  <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                <div className="rounded-[28px] md:rounded-[48px] bg-accent px-6 md:px-14 lg:px-20 py-14 md:py-20 lg:py-24 shadow-card">
+                  <div className="grid md:grid-cols-12 gap-12 md:gap-16 lg:gap-20 items-center">
                     <div className="md:col-span-8">
-                      <span className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-6">
+                      <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-10 md:mb-12">
                         <span className="dot-soft-pulse" />
                         Анкета · 7–10 минут
                       </span>
-                      <div className="border-t border-white/20 mb-8">
+                      <div className="border-t border-white/25 mb-12 md:mb-14">
                         {[
                           "Выберите один процесс",
                           "Зафиксируйте ручные действия",
@@ -295,12 +295,12 @@ const StartPage = () => {
                         ].map((step, i) => (
                           <div
                             key={step}
-                            className="flex items-baseline gap-4 border-b border-white/20 py-3.5"
+                            className="flex items-baseline gap-5 border-b border-white/25 py-5 md:py-6"
                           >
-                            <span className="text-base md:text-lg font-bold text-white/70 tabular-nums">
+                            <span className="text-sm md:text-base font-bold text-white/60 tabular-nums">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="text-base md:text-lg text-white">{step}</span>
+                            <span className="text-lg md:text-xl text-white leading-snug">{step}</span>
                           </div>
                         ))}
                       </div>
@@ -308,11 +308,11 @@ const StartPage = () => {
                         Описать задачу
                       </PillButton>
                     </div>
-                    <div className="md:col-span-4 md:text-right">
-                      <p className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tight">
+                    <div className="md:col-span-4 md:text-right md:border-l md:border-white/20 md:pl-10 lg:pl-14">
+                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none tracking-tight">
                         7–10 минут
                       </p>
-                      <p className="mt-3 text-base md:text-xl text-white/80">один процесс</p>
+                      <p className="mt-4 md:mt-5 text-base md:text-xl text-white/80">один процесс</p>
                     </div>
                   </div>
                 </div>
