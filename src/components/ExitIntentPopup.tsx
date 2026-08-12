@@ -6,124 +6,149 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { trackCTAClick } from "@/utils/analytics";
-import { Sparkles, ArrowRight } from "lucide-react";
+import PillButton from "@/components/PillButton";
+import {
+  isDiagnosticStarted,
+  isDiagnosticSubmitted,
+  isExitPopupShown,
+  markExitPopupShown,
+  requestDiagnosticAutostart,
+} from "@/lib/diagnosticState";
+import { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
+
+/* Служебные и специальные разделы — попап не показываем */
+const BLOCKED_PREFIXES = [
+  "/legal",
+  "/portal",
+  "/neurostylist",
+  "/.lovable",
+  "/consent",
+  "/privacy-policy",
+  "/terms",
+  "/newyear",
+  "/redirect",
+];
+
+const isAllowedRoute = (pathname: string) =>
+  !BLOCKED_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/") || pathname.startsWith(p));
+
+const canShow = (pathname: string) =>
+  isAllowedRoute(pathname) &&
+  !isExitPopupShown() &&
+  !isDiagnosticSubmitted() &&
+  !isDiagnosticStarted() &&
+  !hasDiagnosticDraft();
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
-  const mobileTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const mobileScrollReady = useRef(false);
-  const mobileTimeReady = useRef(false);
+  const pathnameRef = useRef(location.pathname);
+  pathnameRef.current = location.pathname;
 
   useEffect(() => {
-    const wasShown = sessionStorage.getItem("exitIntentShown");
-    if (wasShown) {
-      setHasShown(true);
-      return;
-    }
+    if (!canShow(location.pathname)) return;
+
+    const show = () => {
+      if (!canShow(pathnameRef.current)) return;
+      markExitPopupShown();
+      setIsOpen(true);
+    };
 
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
     if (isMobile) {
-      // Mobile: show after 45s AND 40% scroll depth
-      const tryShowMobile = () => {
-        if (mobileTimeReady.current && mobileScrollReady.current && !hasShown) {
-          setIsOpen(true);
-          setHasShown(true);
-          sessionStorage.setItem("exitIntentShown", "true");
+      // Mobile: 45 секунд на странице И минимум 40% просмотра
+      let timeReady = false;
+      let scrollReady = false;
+      const tryShow = () => {
+        if (timeReady && scrollReady) {
+          cleanup();
+          show();
         }
       };
 
-      mobileTimerRef.current = setTimeout(() => {
-        mobileTimeReady.current = true;
-        tryShowMobile();
+      const timer = setTimeout(() => {
+        timeReady = true;
+        tryShow();
       }, 45000);
 
-      const handleMobileScroll = () => {
+      const handleScroll = () => {
         const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
         if (scrollHeight <= 0) return;
-        const scrollPercent = (window.scrollY / scrollHeight) * 100;
-        if (scrollPercent >= 40) {
-          mobileScrollReady.current = true;
-          tryShowMobile();
+        const percent = (window.scrollY / scrollHeight) * 100;
+        if (percent >= 40) {
+          scrollReady = true;
+          tryShow();
         }
       };
 
-      window.addEventListener("scroll", handleMobileScroll, { passive: true });
-
-      return () => {
-        if (mobileTimerRef.current) clearTimeout(mobileTimerRef.current);
-        window.removeEventListener("scroll", handleMobileScroll);
-      };
-    } else {
-      // Desktop: mouseleave trigger
-      const handleMouseLeave = (e: MouseEvent) => {
-        if (e.clientY <= 0 && !hasShown) {
-          setIsOpen(true);
-          setHasShown(true);
-          sessionStorage.setItem("exitIntentShown", "true");
-        }
+      const cleanup = () => {
+        clearTimeout(timer);
+        window.removeEventListener("scroll", handleScroll);
       };
 
-      document.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
 
-      return () => {
-        document.removeEventListener("mouseleave", handleMouseLeave);
-      };
+      return cleanup;
     }
-  }, [hasShown]);
+
+    // Desktop: курсор уходит за верхнюю границу окна
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        document.removeEventListener("mouseleave", handleMouseLeave);
+        show();
+      }
+    };
+
+    document.addEventListener("mouseleave", handleMouseLeave);
+    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+  }, [location.pathname]);
 
   const handleCTA = () => {
-    trackCTAClick({ location: 'exit_intent', buttonText: 'Пройти бесплатный разбор задачи' });
+    trackCTAClick({ location: "exit_intent", buttonText: "Описать задачу" });
     setIsOpen(false);
-    navigate("/start");
+    requestDiagnosticAutostart();
+    if (location.pathname.replace(/\/$/, "") === "/start") {
+      window.dispatchEvent(new Event("self-start:open"));
+      navigate("/start", { replace: true });
+      // страница уже открыта — запуск через autostart-событие ниже
+      setTimeout(() => window.dispatchEvent(new Event("self-start:open")), 60);
+    } else {
+      navigate("/start#self-start");
+    }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[520px] p-0 overflow-hidden rounded-xl shadow-elevated border-0 animate-in fade-in-0 zoom-in-95 duration-500 ease-out mx-auto [&>button]:hidden">
-        {/* Accent gradient bar */}
-        <div className="h-1 w-full bg-gradient-to-r from-primary to-primary-dark" />
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[520px] p-0 overflow-hidden rounded-[24px] shadow-elevated border-0 mx-auto [&>button]:hidden">
+        <div className="h-1 w-full bg-accent" />
 
-        <div className="px-8 sm:px-10 py-6 sm:py-8">
-          {/* Icon */}
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-primary" />
-            </div>
-          </div>
-
-          <DialogHeader className="mb-5 sm:mb-6 space-y-3">
-            <DialogTitle className="text-2xl sm:text-[1.65rem] font-golos font-semibold text-center text-foreground">
-              Уходите? <br />Последний вопрос:
+        <div className="px-6 sm:px-9 py-7 sm:py-9">
+          <DialogHeader className="mb-6 space-y-3">
+            <DialogTitle className="text-2xl sm:text-3xl font-bold text-foreground leading-[1.1] text-left">
+              Не уходите с задачей в голове
             </DialogTitle>
-            <p className="text-base sm:text-lg font-golos font-medium text-center text-foreground/90">
-              Есть процесс, который отнимает время каждый день — но руки не доходят разобраться?
-            </p>
-            <DialogDescription className="text-sm sm:text-base font-raleway text-center text-foreground/70 leading-relaxed">
-              Пройдите короткий тест — за 3 минуты поймёте, где ИИ даст результат именно Вам.
+            <DialogDescription className="text-base sm:text-lg text-foreground/75 leading-snug text-left">
+              Опишите один процесс за 7–10 минут. Вопросы помогут разложить задачу по фактам и подготовиться к предметному разговору.
             </DialogDescription>
           </DialogHeader>
 
-          <Button
-            size="lg"
-            className="w-full py-3 text-sm sm:text-base min-h-[48px] mb-4 gap-2"
-            onClick={handleCTA}
-          >
-            Пройти бесплатный разбор задачи
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-
-          <button
-            onClick={() => setIsOpen(false)}
-            className="w-full text-center text-sm font-raleway text-foreground/60 hover:text-foreground/80 transition-colors"
-          >
-            Нет, спасибо
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <PillButton onClick={handleCTA} variant="turquoise">
+              Описать задачу
+            </PillButton>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="text-sm sm:text-base font-semibold text-foreground/60 hover:text-foreground transition-colors px-2 py-2"
+            >
+              Не сейчас
+            </button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
