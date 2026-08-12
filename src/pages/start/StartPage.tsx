@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -10,22 +10,42 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import {
+  consumeDiagnosticAutostart,
+  isDiagnosticStarted,
+  markDiagnosticStarted,
+} from "@/lib/diagnosticState";
 
 const StartPage = () => {
-  const [diagnosticStarted, setDiagnosticStarted] = useState(() => hasDiagnosticDraft());
+  const [diagnosticStarted, setDiagnosticStarted] = useState(
+    () => hasDiagnosticDraft() || isDiagnosticStarted()
+  );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
   const diagnosticIntroRef = useRef<HTMLDivElement>(null);
+  const { ref: revealRef, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
+    markDiagnosticStarted();
     setTimeout(() => {
-      (diagnosticRef.current ?? diagnosticIntroRef.current)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const target = diagnosticRef.current ?? diagnosticIntroRef.current;
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const field = diagnosticRef.current?.querySelector<HTMLElement>(
+        "input, textarea, select, button"
+      );
+      field?.focus({ preventScroll: true });
     }, 120);
   };
+
+  useEffect(() => {
+    if (consumeDiagnosticAutostart()) startDiagnostic();
+    const onOpen = () => startDiagnostic();
+    window.addEventListener("self-start:open", onOpen);
+    return () => window.removeEventListener("self-start:open", onOpen);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const scrollToResult = () => {
     document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -229,34 +249,74 @@ const StartPage = () => {
           </section>
 
           {/* 9. Самостоятельный старт */}
-          <section ref={diagnosticIntroRef} className="px-4 md:px-6 py-14 md:py-20">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[24px] md:rounded-[40px] bg-accent px-5 md:px-10 lg:px-14 py-10 md:py-16 shadow-card">
-                <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-                  <div className="md:col-span-8">
-                    <span className="block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white/80 mb-4">
-                      Самостоятельный старт
-                    </span>
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.08] mb-5 max-w-2xl">
-                      Сначала опишите задачу сами
-                    </h2>
-                    <p className="text-base md:text-lg text-white/85 leading-snug max-w-2xl mb-8">
-                      За 7–10 минут зафиксируйте один процесс, ручные действия и основную проблему. Ответы помогут структурировать задачу и подготовиться к предметному разговору.
-                    </p>
-                    {!diagnosticStarted && (
+          <section
+            ref={diagnosticIntroRef}
+            id="self-start"
+            className="px-4 md:px-6 py-14 md:py-20 scroll-mt-24"
+          >
+            <div
+              ref={revealRef as React.RefObject<HTMLDivElement>}
+              className={`container mx-auto max-w-7xl reveal-soft ${isVisible ? "is-visible" : ""}`}
+            >
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+                Самостоятельный старт
+              </p>
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5 md:mb-6">
+                Опишите задачу{" "}
+                <span className="font-iriska font-normal italic text-accent">сами</span>
+              </h2>
+              <p className="text-base md:text-xl text-foreground/75 leading-snug max-w-3xl mb-8 md:mb-10">
+                Анкета на 7–10 минут. Возьмите один процесс, который забирает время, деньги или требует слишком много ручной работы.
+              </p>
+
+              {diagnosticStarted ? (
+                <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-accent px-5 py-4 md:px-6 md:py-5 shadow-card animate-fade-in">
+                  <span className="inline-flex items-center gap-2.5 text-sm md:text-base font-semibold text-white">
+                    <span className="dot-soft-pulse" />
+                    Самостоятельный старт · анкета открыта
+                  </span>
+                  <span className="text-sm md:text-base text-white/80">
+                    7–10 минут · один процесс
+                  </span>
+                </div>
+              ) : (
+                <div className="rounded-[24px] md:rounded-[40px] bg-accent px-5 md:px-10 lg:px-14 py-10 md:py-14 shadow-card">
+                  <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                    <div className="md:col-span-8">
+                      <span className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-6">
+                        <span className="dot-soft-pulse" />
+                        Анкета · 7–10 минут
+                      </span>
+                      <div className="border-t border-white/20 mb-8">
+                        {[
+                          "Выберите один процесс",
+                          "Зафиксируйте ручные действия",
+                          "Опишите главную проблему",
+                        ].map((step, i) => (
+                          <div
+                            key={step}
+                            className="flex items-baseline gap-4 border-b border-white/20 py-3.5"
+                          >
+                            <span className="text-base md:text-lg font-bold text-white/70 tabular-nums">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span className="text-base md:text-lg text-white">{step}</span>
+                          </div>
+                        ))}
+                      </div>
                       <PillButton onClick={startDiagnostic} variant="light">
                         Описать задачу
                       </PillButton>
-                    )}
-                  </div>
-                  <div className="md:col-span-4 md:text-right">
-                    <p className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tight">
-                      7–10 минут
-                    </p>
-                    <p className="mt-3 text-base md:text-xl text-white/80">один процесс</p>
+                    </div>
+                    <div className="md:col-span-4 md:text-right">
+                      <p className="text-4xl md:text-6xl font-bold text-white leading-none tracking-tight">
+                        7–10 минут
+                      </p>
+                      <p className="mt-3 text-base md:text-xl text-white/80">один процесс</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
 

@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
 import { submitForm } from "@/lib/formsClient";
+import { markDiagnosticStarted, markDiagnosticSubmitted } from "@/lib/diagnosticState";
 import {
   DiagnosticForm as FormData,
   emptyForm,
@@ -45,6 +46,7 @@ const loadDraft = (): { step: number; form: FormData } | null => {
 const saveDraft = (step: number, form: FormData) => {
   try {
     sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form }));
+    markDiagnosticStarted();
   } catch {
     /* приватный режим — просто не сохраняем */
   }
@@ -466,6 +468,7 @@ const DiagnosticForm = () => {
         return;
       }
       clearDraft();
+      markDiagnosticSubmitted();
       setRecordId(id);
       scrollTop();
     } catch {
