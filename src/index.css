@@ -1334,3 +1334,16 @@
     transform: scale(2.6);
   }
 }
+
+/* Мягкое «дыхание» бирюзового блока */
+@keyframes blockPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--accent) / 0.28), 0 18px 40px -24px hsl(var(--accent) / 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 14px hsl(var(--accent) / 0), 0 26px 60px -22px hsl(var(--accent) / 0.65);
+    transform: scale(1.008);
+  }
+}
