@@ -111,14 +111,11 @@ const ExitIntentPopup = () => {
   const handleCTA = () => {
     trackCTAClick({ location: "exit_intent", buttonText: "Описать задачу" });
     setIsOpen(false);
-    requestDiagnosticAutostart();
     if (location.pathname.replace(/\/$/, "") === "/start") {
       window.dispatchEvent(new Event("self-start:open"));
-      navigate("/start", { replace: true });
-      // страница уже открыта — запуск через autostart-событие ниже
-      setTimeout(() => window.dispatchEvent(new Event("self-start:open")), 60);
     } else {
-      navigate("/start#self-start");
+      requestDiagnosticAutostart();
+      navigate("/start");
     }
   };
 
