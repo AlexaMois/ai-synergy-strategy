@@ -266,7 +266,7 @@ const StartPage = () => {
                 <span className="font-iriska font-normal italic text-accent">сами</span>
               </h2>
               <p className="text-base md:text-xl text-foreground/75 leading-relaxed max-w-2xl mb-12 md:mb-16">
-                Анкета на 7–10 минут. Возьмите один процесс, который забирает время, деньги или требует слишком много ручной работы.
+                Возьмите один процесс который забирает время, деньги или требует слишком много ручной работы.
               </p>
 
               {diagnosticStarted ? (
