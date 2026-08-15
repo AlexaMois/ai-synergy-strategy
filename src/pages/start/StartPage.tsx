@@ -312,7 +312,7 @@ const StartPage = () => {
                       <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tight">
                         7–10 минут
                       </p>
-                      <p className="mt-3 text-base md:text-lg text-white/80">один процесс</p>
+                      <p className="mt-3 text-base md:text-lg text-white/80">{"\n"}</p>
                     </div>
                   </div>
                 </div>
