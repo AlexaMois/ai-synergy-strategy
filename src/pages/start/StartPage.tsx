@@ -285,7 +285,7 @@ const StartPage = () => {
                     <div className="md:col-span-8">
                       <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-7 md:mb-8">
                         <span className="dot-soft-pulse" />
-                        Анкета · 7–10 минут
+                        АНКЕТА БИЗНЕС-ПРОЦЕССА
                       </span>
                       <div className="border-t border-white/25 mb-8 md:mb-10">
                         {[
