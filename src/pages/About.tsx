@@ -200,10 +200,10 @@ const About = () => {
                     Александра <span className="font-iriska font-normal italic text-accent">Моисеева</span>
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-8 max-w-2xl leading-snug">
-                    Инженер и архитектор цифрового развития бизнеса
+                    Независимый инженер и архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl leading-relaxed">
-                    Основатель агентства «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления бизнесом.
+                    Основатель агентства «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления процессами
                   </p>
                   <div className="relative z-10 flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">
@@ -240,7 +240,7 @@ const About = () => {
                 Кто я
               </p>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
-                Инженер{" "}
+                Независимый инженер{" "}
                 <span className="font-iriska font-normal italic text-accent">и архитектор</span>{" "}
                 цифрового развития
               </h2>
@@ -270,7 +270,7 @@ const About = () => {
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] max-w-4xl">
               Перевести цифровизацию в{" "}
               <span className="font-iriska font-normal italic text-accent">
-                управленческую систему
+                управляемую систему
               </span>
             </h2>
             <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-3xl leading-relaxed">
