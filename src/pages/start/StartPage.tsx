@@ -52,10 +52,10 @@ const StartPage = () => {
   };
 
   const situations = [
-    "В компании много ручной работы, и нужно выбрать первый процесс для изменений.",
-    "Есть конкретная задача, и нужно понять, окупятся ли вложения в её решение.",
+    "В компании много ручной работы и нужно выбрать первый процесс для изменений.",
+    "Есть конкретная задача и нужно понять, окупятся ли вложения в её решение.",
     "Команда предлагает разные сервисы, а собственнику нужен единый план действий.",
-    "Автоматизация уже запускалась, и результат оказался слабее ожиданий.",
+    "Автоматизация уже запускалась и результат оказался слабее ожиданий.",
     "Перед разработкой нужно определить приоритет, эффект и следующий шаг.",
   ];
 
@@ -266,7 +266,7 @@ const StartPage = () => {
                 <span className="font-iriska font-normal italic text-accent">сами</span>
               </h2>
               <p className="text-base md:text-xl text-foreground/75 leading-relaxed max-w-2xl mb-12 md:mb-16">
-                Анкета на 7–10 минут. Возьмите один процесс, который забирает время, деньги или требует слишком много ручной работы.
+                Возьмите один процесс который забирает время, деньги или требует слишком много ручной работы.
               </p>
 
               {diagnosticStarted ? (
@@ -285,7 +285,7 @@ const StartPage = () => {
                     <div className="md:col-span-8">
                       <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-7 md:mb-8">
                         <span className="dot-soft-pulse" />
-                        Анкета · 7–10 минут
+                        АНКЕТА БИЗНЕС-ПРОЦЕССА
                       </span>
                       <div className="border-t border-white/25 mb-8 md:mb-10">
                         {[
@@ -312,7 +312,7 @@ const StartPage = () => {
                       <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tight">
                         7–10 минут
                       </p>
-                      <p className="mt-3 text-base md:text-lg text-white/80">один процесс</p>
+                      <p className="mt-3 text-base md:text-lg text-white/80">{"\n"}</p>
                     </div>
                   </div>
                 </div>
