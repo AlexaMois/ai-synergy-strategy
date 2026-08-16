@@ -51,13 +51,6 @@ const StartPage = () => {
     document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const situations = [
-    "В компании много ручной работы и нужно выбрать первый процесс для изменений.",
-    "Есть конкретная задача и нужно понять, окупятся ли вложения в её решение.",
-    "Команда предлагает разные сервисы, а собственнику нужен единый план действий.",
-    "Автоматизация уже запускалась и результат оказался слабее ожиданий.",
-    "Перед разработкой нужно определить приоритет, эффект и следующий шаг.",
-  ];
 
   const flow = [
     "Задача бизнеса",
@@ -166,19 +159,36 @@ const StartPage = () => {
               <span className="font-iriska font-normal italic text-accent">разбора</span>
             </h2>
             <div className="border-t border-border">
-              {situations.map((s, i) => (
-                <div
-                  key={i}
-                  className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7"
-                >
-                  <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                    {s}
-                  </p>
-                </div>
-              ))}
+              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
+                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">01</div>
+                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
+                  Сначала важно увидеть ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании работать быстрее
+                </p>
+              </div>
+              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
+                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">02</div>
+                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
+                  Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды
+                </p>
+              </div>
+              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
+                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">03</div>
+                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
+                  Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников
+                </p>
+              </div>
+              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
+                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">04</div>
+                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
+                  Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины
+                </p>
+              </div>
+              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
+                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">05</div>
+                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
+                  Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать
+                </p>
+              </div>
             </div>
           </section>
 
@@ -206,7 +216,7 @@ const StartPage = () => {
                   ))}
                 </div>
                 <p className="text-base md:text-lg text-white/70 leading-snug">
-                  Разбираем задачу, текущий процесс, потери и ограничения. Затем выбираем первый приоритет и следующий шаг.
+                  Каждый инструмент должен работать в привычной среде компании, снижать ручную нагрузку и помогать руководителю видеть ситуацию яснее
                 </p>
               </div>
 
@@ -232,13 +242,14 @@ const StartPage = () => {
           {/* 4. После разбора */}
           <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6 md:mb-8">
-              После{" "}
-              <span className="font-iriska font-normal italic text-accent">разбора</span>
+              Компаниям от 3 до 300 сотрудников
             </h2>
             <p className="text-base md:text-xl text-foreground/75 leading-snug max-w-3xl">
-              Следующий этап определяется по результатам разбора: стратегия на 90 дней, глубокий аудит или переход к внедрению.
+              Формат зависит от того, насколько понятна текущая задача и насколько подробно нужно разбирать компанию
             </p>
-            <div className="mt-6 md:mt-8">
+            <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-2xl leading-relaxed">
+              Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной штатной IT-команды
+            </p>
               <Link
                 to="/services"
                 className="inline-flex items-center text-accent hover:underline font-medium"
