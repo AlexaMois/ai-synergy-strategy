@@ -250,6 +250,7 @@ const StartPage = () => {
             <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-2xl leading-relaxed">
               Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной штатной IT-команды
             </p>
+            <div className="mt-6 md:mt-8">
               <Link
                 to="/services"
                 className="inline-flex items-center text-accent hover:underline font-medium"
