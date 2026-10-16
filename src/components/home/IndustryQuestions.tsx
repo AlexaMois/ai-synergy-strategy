@@ -448,11 +448,11 @@ const IndustryQuestions = () => {
                 <p className="font-semibold text-background text-lg mb-5">{openItem.q}</p>
                 <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" ? "Ситуация" : "Что решим"}</p>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" || activeId === "transport" ? "Ситуация" : "Что решим"}</p>
                     <p className="text-base text-background/70 leading-relaxed">{openItem.problem}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" ? "Что можем сделать" : "Что изменится"}</p>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" ? "Что можем сделать" : activeId === "transport" ? "Что можем предложить" : "Что изменится"}</p>
                     <p className="text-base text-background leading-relaxed">{openItem.change}</p>
                   </div>
                 </div>
