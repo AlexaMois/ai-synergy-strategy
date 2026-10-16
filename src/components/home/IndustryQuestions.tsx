@@ -249,49 +249,52 @@ const industries: Industry[] = [
   },
 ];
 
-// Короткие формулировки для «пузырей» чата и иконки — по порядку вопросов.
-const bubbles: Record<string, { short: string; icon: LucideIcon }[]> = {
+// Короткие формулировки для «пузырей» чата: иконка, сторона иконки и подсветка по умолчанию.
+type BubbleCfg = { short: string; icon: LucideIcon; side: "l" | "r"; deco?: boolean };
+
+const bubbles: Record<string, BubbleCfg[]> = {
   production: [
-    { short: "Статус заказа уточняете вручную?", icon: FileClock },
-    { short: "Документы и инструкции ищутся слишком долго?", icon: Users },
-    { short: "Смены и задачи ведёте в таблицах?", icon: Table },
-    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3 },
-    { short: "Знания сильных сотрудников нигде не зафиксированы?", icon: Users },
-    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle },
+    { short: "Статус заказа уточняете вручную?", icon: FileClock, side: "l" },
+    { short: "Документы и инструкции ищутся слишком долго?", icon: Users, side: "r", deco: true },
+    { short: "Смены и задачи ведёте в таблицах?", icon: Table, side: "l" },
+    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3, side: "l" },
+    { short: "Знания сильных сотрудников нигде не зафиксированы?", icon: Users, side: "l", deco: true },
+    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, side: "l" },
   ],
   transport: [
-    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox },
-    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck },
-    { short: "Командировки оформляются в переписке?", icon: MessageSquare },
-    { short: "Документы по рейсам теряются при передаче?", icon: FileClock },
-    { short: "Статус для клиента собираете у трёх сотрудников?", icon: Users },
-    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3 },
+    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox, side: "l" },
+    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, side: "r", deco: true },
+    { short: "Командировки оформляются в переписке?", icon: MessageSquare, side: "l" },
+    { short: "Документы по рейсам теряются при передаче?", icon: FileClock, side: "l" },
+    { short: "Статус для клиента собираете у трёх сотрудников?", icon: Users, side: "l", deco: true },
+    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, side: "l" },
   ],
   construction: [
-    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat },
-    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle },
-    { short: "Материалы списаны, а по факту не сходится?", icon: Package },
-    { short: "Нужную версию документа не найти?", icon: FileClock },
-    { short: "Подрядчики отчитываются кто как может?", icon: Users },
-    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock },
+    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat, side: "l" },
+    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, side: "r", deco: true },
+    { short: "Материалы списаны, а по факту не сходится?", icon: Package, side: "l" },
+    { short: "Нужную версию документа не найти?", icon: FileClock, side: "l" },
+    { short: "Подрядчики отчитываются кто как может?", icon: Users, side: "l", deco: true },
+    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, side: "l" },
   ],
   services: [
-    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users },
-    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare },
-    { short: "Расписание держится в голове администратора?", icon: CalendarClock },
-    { short: "Повторные клиенты теряются?", icon: Inbox },
-    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3 },
-    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet },
+    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users, side: "l" },
+    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare, side: "r", deco: true },
+    { short: "Расписание держится в голове администратора?", icon: CalendarClock, side: "l" },
+    { short: "Повторные клиенты теряются?", icon: Inbox, side: "l" },
+    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3, side: "l", deco: true },
+    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet, side: "l" },
   ],
 };
 
-const times = ["10:24", "10:26", "10:28", "10:31", "10:32"];
-// Лёгкий «хаотичный» сдвиг пузырей по горизонтали
-const offsets = ["md:ml-0", "md:ml-10", "md:ml-6", "md:ml-0", "md:ml-8", "md:ml-4"];
+const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
+// Лёгкий «живой» сдвиг пузырей по горизонтали
+const offsets = ["", "md:ml-8", "", "md:ml-6", "", "md:ml-10"];
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [touched, setTouched] = useState(false);
 
   const industry = industries.find((i) => i.id === activeId) ?? industries[0];
   const openItem = openIdx !== null ? industry.questions[openIdx] : null;
@@ -300,49 +303,74 @@ const IndustryQuestions = () => {
   const right = items.filter((_, i) => i % 2 === 1);
   const lastIdx = items.length - 1;
 
-  const Bubble = ({ item, side, pos }: { item: (typeof items)[number]; side: "l" | "r"; pos: number }) => {
+  const Bubble = ({ item, col }: { item: (typeof items)[number]; col: "l" | "r" }) => {
     const isOpen = openIdx === item.idx;
+    const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
+    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10";
+    const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full ring-1 transition-colors ${
-          isOpen ? "bg-accent/15 ring-accent/40 text-accent" : "bg-white/5 ring-white/10 text-white/80"
+        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
+          lit
+            ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
+            : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
         }`}
       >
-        <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.6} />
+        <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" strokeWidth={1.6} />
+      </span>
+    );
+    const bubbleEl = (
+      <span
+        className={`relative flex-1 max-w-[330px] md:max-w-[360px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/50"
+        }`}
+      >
+        <span className="block pr-12">{item.short}</span>
+        {item.idx === lastIdx && !isOpen ? (
+          <span className="absolute right-5 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
+          </span>
+        ) : (
+          <span className="absolute right-4 bottom-1.5 text-sm font-medium text-white/45">
+            {times[item.idx % times.length]}
+          </span>
+        )}
+        <svg
+          aria-hidden
+          viewBox="0 0 22 18"
+          className={`absolute bottom-1 h-[18px] w-[22px] ${tail} ${
+            item.side === "r" ? "-right-[15px] -scale-x-100" : "-left-[15px]"
+          }`}
+        >
+          <path d="M22 0 C 20 9, 11 14, 0 17 C 12 13, 19 8, 22 0 Z" fill="currentColor" />
+        </svg>
       </span>
     );
     return (
       <button
         type="button"
-        onClick={() => setOpenIdx(isOpen ? null : item.idx)}
-        className={`group flex items-center gap-3 md:gap-4 w-full text-left ${offsets[(pos * 2 + (side === "r" ? 1 : 0)) % offsets.length]} ${
-          side === "r" ? "flex-row-reverse md:ml-0" : ""
-        }`}
+        onClick={() => {
+          setTouched(true);
+          setOpenIdx(isOpen ? null : item.idx);
+        }}
+        className={`group flex items-center gap-3 md:gap-4 w-full text-left ${
+          col === "r" ? "md:justify-end" : ""
+        } ${offsets[item.idx % offsets.length]}`}
       >
-        {iconEl}
-        <span
-          className={`relative flex-1 max-w-md px-5 md:px-7 py-4 md:py-5 text-base md:text-lg leading-snug transition-all duration-300 ring-1 ${
-            side === "l" ? "rounded-2xl rounded-bl-sm" : "rounded-2xl rounded-br-sm"
-          } ${
-            isOpen
-              ? "bg-accent/15 ring-accent text-white shadow-[0_0_30px_-6px_hsl(var(--accent)/0.6)]"
-              : "bg-white/[0.06] ring-white/10 text-white/90 group-hover:ring-accent/50"
-          }`}
-        >
-          <span className="block pr-12">{item.short}</span>
-          {item.idx === lastIdx && !isOpen ? (
-            <span className="absolute right-5 bottom-1/2 translate-y-1/2 flex gap-1">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              <span className="w-2 h-2 rounded-full bg-accent/40" />
-            </span>
-          ) : (
-            <span className="absolute right-4 bottom-3 text-xs text-white/50">
-              {times[item.idx % times.length]}
-            </span>
-          )}
-        </span>
+        {item.side === "l" ? (
+          <>
+            {iconEl}
+            {bubbleEl}
+          </>
+        ) : (
+          <>
+            {bubbleEl}
+            {iconEl}
+          </>
+        )}
       </button>
     );
   };
@@ -351,21 +379,28 @@ const IndustryQuestions = () => {
     <section className="px-4 md:px-6 py-16 md:py-24">
       <div className="container mx-auto max-w-7xl">
         <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
-          <svg aria-hidden className="pointer-events-none absolute inset-0 w-full h-full opacity-30" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <path d="M600 800 C 900 600, 1000 300, 1200 100" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" />
-            <path d="M0 700 C 300 600, 500 750, 800 650" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.3" />
-          </svg>
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-24 right-16 h-72 w-72 rounded-full bg-accent/20 blur-[120px]" />
+            <div className="absolute top-1/3 left-1/3 h-80 w-80 rounded-full bg-accent/10 blur-[140px]" />
+            <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-accent/15 blur-[120px]" />
+            <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 1200 800" preserveAspectRatio="none">
+              <path d="M700 0 C 860 90, 980 140, 1200 200" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.45" />
+              <path d="M560 120 C 660 320, 480 480, 620 700" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.28" />
+              <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
+              <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
+            </svg>
+          </div>
 
           <div className="relative">
-            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Отрасли</p>
+            <p className="text-[15px] uppercase tracking-[0.22em] text-accent font-semibold mb-4">Отрасли</p>
             <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] mb-5">
               Узнаёте <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
             </h2>
-            <p className="text-base md:text-xl text-white/70 max-w-3xl mb-8">
+            <p className="text-base md:text-xl text-white/75 max-w-3xl mb-8">
               Выберите свою сферу и найдите задачи, которые каждый день приходится решать вам и вашей команде.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-5">
+            <div className="flex flex-wrap gap-3 mb-6">
               {industries.map((ind) => (
                 <button
                   key={ind.id}
@@ -373,11 +408,12 @@ const IndustryQuestions = () => {
                   onClick={() => {
                     setActiveId(ind.id);
                     setOpenIdx(null);
+                    setTouched(false);
                   }}
                   className={`px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
                     activeId === ind.id
-                      ? "bg-accent border-accent text-accent-foreground"
-                      : "bg-transparent border-white/25 text-white hover:border-accent/70"
+                      ? "bg-accent border-accent text-accent-foreground shadow-[0_0_30px_-8px_hsl(var(--accent)/0.95)]"
+                      : "bg-white/5 border-white/20 text-white hover:border-accent/70"
                   }`}
                 >
                   {ind.label}
@@ -385,14 +421,14 @@ const IndustryQuestions = () => {
               ))}
             </div>
 
-            <p className="text-sm text-white/60 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
+            <p className="text-base text-white/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-x-16">
-              <div className="flex flex-col gap-5">
-                {left.map((it, i) => <Bubble key={it.short} item={it} side="l" pos={i} />)}
+              <div className="flex flex-col gap-4 md:gap-5">
+                {left.map((it) => <Bubble key={it.short} item={it} col="l" />)}
               </div>
-              <div className="flex flex-col gap-5 md:pt-4 md:items-end">
-                {right.map((it, i) => <Bubble key={it.short} item={it} side="r" pos={i} />)}
+              <div className="flex flex-col gap-4 md:gap-5 md:pt-12">
+                {right.map((it) => <Bubble key={it.short} item={it} col="r" />)}
               </div>
             </div>
 
@@ -434,7 +470,7 @@ const IndustryQuestions = () => {
               <button
                 type="button"
                 onClick={() => openTaskModal()}
-                className="inline-flex items-center gap-3 px-10 md:px-16 py-4 md:py-5 rounded-full font-semibold text-base md:text-lg bg-accent text-accent-foreground shadow-[0_0_40px_-8px_hsl(var(--accent)/0.7)] hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center gap-3 px-10 md:px-16 py-4 md:py-5 rounded-full font-semibold text-base md:text-lg bg-accent text-accent-foreground shadow-[0_0_60px_-10px_hsl(var(--accent)/0.85)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 Обсудить свою задачу <ArrowRight className="h-5 w-5" />
               </button>
