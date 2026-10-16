@@ -319,7 +319,7 @@ const NewHome = () => {
               <div className="relative">
                 <div className="overflow-x-auto md:overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   <img
-                    src={synergyImg.url}
+                    src={synergyImg}
                     alt="Синергия результата: человек, процессы, бизнес и технологии"
                     width={1920}
                     height={681}
