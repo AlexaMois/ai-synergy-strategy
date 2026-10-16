@@ -249,14 +249,14 @@ const Testimonials = () => {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-background" id="testimonials">
+    <section className="py-12 md:py-16 bg-background" id="testimonials">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(reviewSchema)}
         </script>
       </Helmet>
       <div className="container">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="section-title mb-4">Что говорят <span className="font-semibold">клиенты</span></h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Скриншоты реальных отзывов из переписок в мессенджерах
@@ -300,10 +300,10 @@ const Testimonials = () => {
               {shuffledReviews.map((review) => (
                 <CarouselItem
                   key={review.id}
-                  className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 pl-4"
+                  className="basis-1/2 sm:basis-1/3 lg:basis-1/4 pl-4"
                 >
                   <div
-                    className="relative group cursor-pointer w-full h-64 md:h-72 transition-all duration-300 hover:scale-105 active:scale-95 hover:z-10 select-none"
+                    className="relative group cursor-pointer w-full h-72 md:h-80 transition-all duration-300 hover:scale-105 active:scale-95 hover:z-10 select-none"
                     onClick={() => setSelectedImage(review.image)}
                     role="button"
                     tabIndex={0}
@@ -326,7 +326,7 @@ const Testimonials = () => {
           </Carousel>
         </div>
 
-        <div className="mt-6 text-center text-sm text-muted-foreground tabular-nums">
+        <div className="mt-4 text-center text-sm text-muted-foreground tabular-nums">
           {currentIndex} из {shuffledReviews.length}
         </div>
       </div>
