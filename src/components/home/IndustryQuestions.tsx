@@ -351,7 +351,6 @@ const IndustryQuestions = () => {
         </svg>
       </span>
     );
-    const step = col === "l" ? stepL[Math.floor(item.idx / 2)] : stepR[Math.floor(item.idx / 2)];
     return (
       <button
         type="button"
@@ -359,9 +358,7 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 md:gap-4 w-fit max-w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${
-          col === "r" ? "md:justify-end md:ml-auto" : ""
-        } ${step}`}
+        className={`group flex items-center gap-3 md:gap-4 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
       >
         {item.side === "l" ? (
           <>
@@ -426,11 +423,11 @@ const IndustryQuestions = () => {
 
             <p className="text-base text-white/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
-            <div className="grid md:grid-cols-2 gap-5 md:gap-x-16">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
               <div className="flex flex-col gap-4 md:gap-5">
                 {left.map((it) => <Bubble key={it.short} item={it} col="l" />)}
               </div>
-              <div className="flex flex-col gap-4 md:gap-5 md:pt-12">
+              <div className="flex flex-col gap-4 md:gap-5">
                 {right.map((it) => <Bubble key={it.short} item={it} col="r" />)}
               </div>
             </div>
