@@ -365,7 +365,7 @@ const NewHome = () => {
                     процессы: командировки, отчёты, напоминания и контроль сроков.
                   </p>
                 </div>
-                <div className="mt-8 flex items-end justify-between gap-4">
+                <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                   <div className="sm:max-w-[260px]">
                     <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
                       1,7 млн ₽
@@ -374,7 +374,7 @@ const NewHome = () => {
                       Сохранено за квартал в рамках проекта цифровизации.
                     </p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
                     Посмотреть, что внедрили
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
