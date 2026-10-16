@@ -12,7 +12,6 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import gearsImg from "@/assets/how-we-work-gears.jpg";
-import compassSketch from "@/assets/sketches/compass-sketch.webp";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
 
 const stats: Array<{
