@@ -366,7 +366,7 @@ const NewHome = () => {
                   </p>
                 </div>
                 <div className="mt-8 flex items-end justify-between gap-4">
-                  <div className="max-w-[260px]">
+                  <div className="sm:max-w-[260px]">
                     <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
                       1,7 млн ₽
                     </div>
