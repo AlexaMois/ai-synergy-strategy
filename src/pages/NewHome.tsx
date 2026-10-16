@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, Quote, Phone, Send } from "lucide-react";
+import { ArrowRight, Quote, Phone } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -358,6 +358,23 @@ const NewHome = () => {
           </div>
         </section>
 
+        {/* ПАРТНЁРЫ И КЛИЕНТЫ — ближе к концу страницы */}
+        <div className="pb-8 md:pb-12">
+          <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Партнёры и клиенты
+            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02]">
+              С кем уже{" "}
+              <span className="font-iriska font-normal italic text-accent">работали</span>
+              <br className="hidden md:block" />
+              и для кого создавали{" "}
+              <span className="font-iriska font-normal italic text-accent">решения</span>
+            </h2>
+          </div>
+          <Partners />
+        </div>
+
         {/* О НАС ГОВОРЯТ — одна гигантская цитата + одна со сдвигом */}
         <section className="container mx-auto max-w-6xl px-4 py-20 md:py-28">
           <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6 text-center">
@@ -387,23 +404,6 @@ const NewHome = () => {
         </section>
 
         <Testimonials />
-
-        {/* ПАРТНЁРЫ И КЛИЕНТЫ — ближе к концу страницы */}
-        <div className="pb-8 md:pb-12">
-          <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
-            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-              Партнёры и клиенты
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02]">
-              С кем уже{" "}
-              <span className="font-iriska font-normal italic text-accent">работали</span>
-              <br className="hidden md:block" />
-              и для кого создавали{" "}
-              <span className="font-iriska font-normal italic text-accent">решения</span>
-            </h2>
-          </div>
-          <Partners />
-        </div>
 
         {/* КАК МЫ РАБОТАЕМ — короткая бирюзовая плашка с компасом */}
         <section className="px-4 md:px-6">
@@ -473,17 +473,6 @@ const NewHome = () => {
                         <Phone className="h-4 w-4 md:h-5 md:w-5" />
                       </span>
                     </button>
-                    <a
-                      href="https://t.me/aleksamois"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-transparent text-foreground border border-foreground/30 hover:bg-foreground/5"
-                    >
-                      <span>Написать в Telegram</span>
-                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-foreground text-background group-hover:translate-x-0.5 transition-transform">
-                        <Send className="h-4 w-4 md:h-5 md:w-5" />
-                      </span>
-                    </a>
                   </div>
                 </div>
                 <div className="md:col-span-5 flex justify-center md:justify-end">
