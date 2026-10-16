@@ -262,142 +262,129 @@ const IndustryQuestions = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const industry = industries.find((i) => i.id === activeId) ?? industries[0];
+  const openItem = openIdx !== null ? industry.questions[openIdx] : null;
 
   return (
-    <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-      <div className="max-w-3xl mb-10 md:mb-12">
-        <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-          Отрасли
-        </p>
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-          Узнаёте{" "}
-          <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
-        </h2>
-        <p className="text-base md:text-lg text-muted-foreground">
-          Выберите свою сферу и найдите задачи, которые каждый день приходится
-          решать вам и вашей команде.
-        </p>
-      </div>
+    <section className="px-4 md:px-6 py-16 md:py-24">
+      <div className="container mx-auto max-w-7xl">
+        <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
+          <div className="max-w-3xl mb-10 md:mb-12">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Отрасли
+            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
+              Узнаёте{" "}
+              <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
+            </h2>
+            <p className="text-base md:text-lg text-white/70">
+              Выберите свою сферу и найдите задачи, которые каждый день
+              приходится решать вам и вашей команде.
+            </p>
+          </div>
 
-      <div className="flex flex-wrap gap-2.5 md:gap-3 mb-4 md:mb-6">
-        {industries.map((ind) => (
-          <button
-            key={ind.id}
-            type="button"
-            onClick={() => {
-              setActiveId(ind.id);
-              setOpenIdx(null);
-            }}
-            className={`px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
-              activeId === ind.id
-                ? "bg-accent border-accent text-accent-foreground shadow-card"
-                : "bg-card border-border text-foreground hover:border-accent/60"
-            }`}
-          >
-            {ind.label}
-          </button>
-        ))}
-      </div>
+          <div className="flex flex-wrap gap-2.5 md:gap-3 mb-4 md:mb-6">
+            {industries.map((ind) => (
+              <button
+                key={ind.id}
+                type="button"
+                onClick={() => {
+                  setActiveId(ind.id);
+                  setOpenIdx(null);
+                }}
+                className={`px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
+                  activeId === ind.id
+                    ? "bg-accent border-accent text-accent-foreground shadow-card"
+                    : "bg-transparent border-white/25 text-white/80 hover:border-accent/70 hover:text-white"
+                }`}
+              >
+                {ind.label}
+              </button>
+            ))}
+          </div>
 
-      <p className="text-sm text-muted-foreground mb-6">
-        Нажмите на вопрос, чтобы увидеть, что можно сделать
-      </p>
+          <p className="text-sm text-white/60 mb-8 md:mb-10">
+            Нажмите на вопрос, чтобы увидеть, что можно сделать
+          </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start">
-        {industry.questions.map((item, idx) => {
-          const isOpen = openIdx === idx;
-          return (
-            <div
-              key={item.q}
-              onClick={() => setOpenIdx(isOpen ? null : idx)}
-              className={`rounded-2xl border bg-card p-5 md:p-6 shadow-card transition-all duration-300 cursor-pointer ${
-                isOpen
-                  ? "border-accent shadow-plate md:rotate-0"
-                  : "border-border hover:border-accent/60 hover:shadow-soft"
-              } ${spanClasses[idx % spanClasses.length]} ${
-                idx % 2 === 0 ? "md:rotate-[-0.5deg]" : "md:rotate-[0.5deg]"
-              } hover:md:rotate-0`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="text-base md:text-lg font-semibold text-foreground leading-snug">
-                  {item.q}
-                </h3>
-                <span
-                  className={`shrink-0 mt-0.5 flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-300 ${
-                    isOpen
-                      ? "bg-accent border-accent text-accent-foreground rotate-45"
-                      : "border-border text-accent"
-                  }`}
+          <div className="flex flex-wrap items-baseline gap-x-8 gap-y-5 md:gap-x-12 md:gap-y-7">
+            {industry.questions.map((item, idx) => {
+              const isOpen = openIdx === idx;
+              return (
+                <button
+                  key={item.q}
+                  type="button"
+                  onClick={() => setOpenIdx(isOpen ? null : idx)}
+                  className={`text-left font-iriska italic leading-snug transition-all duration-300 hover:text-accent hover:md:rotate-0 ${
+                    questionStyles[idx % questionStyles.length]
+                  } ${isOpen ? "text-accent" : "text-white/90"}`}
                 >
-                  <Plus className="h-4 w-4" />
-                </span>
+                  {item.q}
+                </button>
+              );
+            })}
+          </div>
+
+          {openItem && (
+            <div className="mt-10 md:mt-12 rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 md:p-8">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+                    Что решим
+                  </p>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    {openItem.problem}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
+                    Что изменится
+                  </p>
+                  <p className="text-base text-white leading-relaxed">
+                    {openItem.change}
+                  </p>
+                </div>
               </div>
 
-              {isOpen && (
-                <div className="mt-4 pt-4 border-t border-border space-y-4">
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1">
-                      Что решим
+              {openItem.caseRef && (
+                <div className="mt-6 rounded-xl bg-accent/10 ring-1 ring-accent/20 p-5">
+                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1.5">
+                    Похожий проект
+                  </p>
+                  <p className="text-sm font-semibold text-white leading-snug">
+                    {openItem.caseRef.title}
+                  </p>
+                  <p className="mt-1 text-sm text-white/70 leading-relaxed">
+                    {openItem.caseRef.text}
+                  </p>
+                  {openItem.caseRef.metric && (
+                    <p className="mt-2 text-sm font-semibold text-accent">
+                      {openItem.caseRef.metric}
                     </p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {item.problem}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1">
-                      Что изменится
-                    </p>
-                    <p className="text-sm text-foreground leading-relaxed">
-                      {item.change}
-                    </p>
-                  </div>
-
-                  {item.caseRef && (
-                    <div className="rounded-xl bg-accent/10 p-4">
-                      <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1.5">
-                        Похожий проект
-                      </p>
-                      <p className="text-sm font-semibold text-foreground leading-snug">
-                        {item.caseRef.title}
-                      </p>
-                      <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                        {item.caseRef.text}
-                      </p>
-                      {item.caseRef.metric && (
-                        <p className="mt-2 text-sm font-semibold text-accent">
-                          {item.caseRef.metric}
-                        </p>
-                      )}
-                      {item.caseRef.to && (
-                        <Link
-                          to={item.caseRef.to}
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-2 inline-flex items-center text-sm font-semibold text-accent hover:underline"
-                        >
-                          Читать кейс <ArrowRight className="ml-1 h-4 w-4" />
-                        </Link>
-                      )}
-                    </div>
                   )}
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openTaskModal();
-                    }}
-                    className="group inline-flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full font-semibold text-sm md:text-base shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
-                  >
-                    <span>Обсудить такую задачу</span>
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
-                      <Phone className="h-3.5 w-3.5" />
-                    </span>
-                  </button>
+                  {openItem.caseRef.to && (
+                    <Link
+                      to={openItem.caseRef.to}
+                      className="mt-2 inline-flex items-center text-sm font-semibold text-accent hover:underline"
+                    >
+                      Читать кейс <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  )}
                 </div>
               )}
+
+              <button
+                type="button"
+                onClick={() => openTaskModal()}
+                className="group mt-6 inline-flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full font-semibold text-sm md:text-base shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
+              >
+                <span>Обсудить такую задачу</span>
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
+                  <Phone className="h-3.5 w-3.5" />
+                </span>
+              </button>
             </div>
-          );
-        })}
+          )}
+        </div>
       </div>
     </section>
   );
