@@ -30,6 +30,8 @@ interface Industry {
   questions: Question[];
 }
 
+const CONTACT_CONTEXT_STORAGE_KEY = "aleksamois.contactContext";
+
 const industries: Industry[] = [
   {
     id: "production",
@@ -343,6 +345,18 @@ const IndustryQuestions = () => {
     return lit.length > 1 ? lit : [];
   }, [activeId]);
 
+  const saveContactContext = (nextIndustry: Industry, question?: Question) => {
+    if (typeof window === "undefined") return;
+    window.sessionStorage.setItem(
+      CONTACT_CONTEXT_STORAGE_KEY,
+      JSON.stringify({
+        industry: nextIndustry.label,
+        question: question?.q ?? "",
+        topic: question?.topic ?? "",
+      }),
+    );
+  };
+
   useEffect(() => {
     const el = chatRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
@@ -430,6 +444,7 @@ const IndustryQuestions = () => {
         onClick={() => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
+          saveContactContext(industry, isOpen ? undefined : industry.questions[item.idx]);
         }}
         className={`group flex h-auto items-end gap-2.5 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
           side === "r" ? "self-end" : "self-start"
@@ -484,6 +499,7 @@ const IndustryQuestions = () => {
                     setActiveId(ind.id);
                     setOpenIdx(null);
                     setTouched(false);
+                    saveContactContext(ind);
                   }}
                   className={`h-auto px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
                     activeId === ind.id
