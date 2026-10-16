@@ -13,6 +13,7 @@ import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import gearsImg from "@/assets/how-we-work-gears.jpg";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
 
 const stats: Array<{
   value: number;
@@ -197,50 +198,35 @@ const NewHome = () => {
               <span className="font-iriska font-normal italic text-accent">с чего начать</span>?
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              Два формата, с которых обычно начинается работа. Эти встречи не
-              являются обязательным условием покупки конкретного решения — если
-              задача уже понятна, можно сразу обсуждать её решение.
+              Если задача уже понятна — сразу обсудим её решение. Если пока нет —
+              поможем разобраться, что менять в первую очередь и как не потратить
+              деньги на ненужные инструменты.
             </p>
           </div>
-          <div className="relative">
-            <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {[
               {
-                step: "Шаг 1",
-                title: "Стратегическая встреча для собственника",
-                text: "Разобраться в ситуации, определить главную проблему и первый шаг.",
+                step: "Одна задача",
+                title: "Разобраться в проблеме и определить первый шаг",
+                text: "За одну встречу разберём вашу ситуацию, найдём главное препятствие и определим, с чего начать.",
                 price: "17 000 ₽",
-                result: "Главная проблема и первый шаг.",
+                result: "Результат: понятный первый шаг и варианты решения.",
                 to: "/services/owner-digital-session",
-                bg: "bg-surface-mint",
-                textColor: "text-foreground",
-                muted: "text-foreground/70",
-                btnVariant: "dark" as const,
                 showSketch: routeSketch,
-                chip: "bg-accent/10 text-accent",
-                dots: "bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)]",
-                check: "text-accent",
               },
               {
-                step: "Шаг 2",
-                title: "Стратегия цифрового развития бизнеса",
-                text: "Разобрать процессы компании и составить практический план изменений на 90 дней.",
+                step: "Несколько задач",
+                title: "Составить план цифрового развития компании",
+                text: "Разберём ключевые процессы, определим приоритеты и составим план изменений на 90 дней.",
                 price: "78 000 ₽",
-                result: "План изменений на 90 дней.",
+                result: "Результат: план действий с приоритетами.",
                 to: "/services/digital-development-strategy",
-                bg: "bg-accent",
-                textColor: "text-background",
-                muted: "text-background/80",
-                btnVariant: "light" as const,
-                showSketch: null,
-                chip: "bg-background/15 text-background",
-                dots: "bg-[radial-gradient(hsl(var(--background)/0.35)_1.5px,transparent_1.5px)]",
-                check: "text-background",
+                showSketch: routeWarmSketch,
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[380px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                className="relative flex flex-col rounded-[28px] bg-surface-mint p-7 md:p-9 min-h-[380px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5"
               >
                 {card.showSketch && (
                   <img
@@ -252,36 +238,32 @@ const NewHome = () => {
                     className="absolute -bottom-4 -right-4 w-40 h-40 object-contain opacity-90 pointer-events-none"
                   />
                 )}
-                <div aria-hidden className={`absolute top-0 right-0 w-44 h-44 opacity-70 pointer-events-none ${card.dots} [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,black,transparent_72%)]`} />
-                <span className={`relative inline-flex items-center self-start px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest ${card.chip} mb-4`}>
+                <div aria-hidden className="absolute top-0 right-0 w-44 h-44 opacity-70 pointer-events-none bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)] [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,black,transparent_72%)]" />
+                <span className="relative inline-flex items-center self-start px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-accent/10 text-accent mb-4">
                   {card.step}
                 </span>
-                <h3 className={`text-xl md:text-2xl font-bold ${card.textColor} mb-3 leading-tight relative`}>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight relative">
                   {card.title}
                 </h3>
-                <p className={`text-sm md:text-base ${card.muted} leading-relaxed mb-6 relative max-w-[85%]`}>
+                <p className="text-sm md:text-base text-foreground/70 leading-relaxed mb-6 relative max-w-[85%]">
                   {card.text}
                 </p>
                 <div className="mt-auto space-y-4 relative">
                   <div className="flex items-end gap-3">
-                    <span className={`text-3xl md:text-4xl font-bold ${card.textColor} leading-none`}>
+                    <span className="text-3xl md:text-4xl font-bold text-foreground leading-none">
                       {card.price}
                     </span>
                   </div>
-                  <p className={`flex items-center gap-2 text-xs ${card.muted} max-w-[85%]`}>
-                    <BadgeCheck className={`h-4 w-4 shrink-0 ${card.check}`} />
+                  <p className="flex items-start gap-2 text-xs text-foreground/70 max-w-[85%]">
+                    <BadgeCheck className="h-4 w-4 shrink-0 text-accent mt-0.5" />
                     {card.result}
                   </p>
-                  <PillButton to={card.to} variant={card.btnVariant} className="text-sm">
+                  <PillButton to={card.to} variant="dark" className="text-sm">
                     Подробнее
                   </PillButton>
                 </div>
               </div>
             ))}
-            </div>
-            <div aria-hidden className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background text-foreground shadow-card ring-1 ring-border items-center justify-center">
-              <ArrowRight className="h-5 w-5" />
-            </div>
           </div>
           <div className="mt-10 text-center">
             <Link to="/services" className="inline-flex items-center text-accent hover:underline font-semibold text-lg">
