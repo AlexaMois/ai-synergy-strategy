@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight, FileClock, Users, Table, BarChart3, Inbox, Truck,
-  MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, Wrench, type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, MousePointerClick } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
@@ -264,42 +261,41 @@ const industries: Industry[] = [
   },
 ];
 
-// Короткие формулировки для «пузырей» чата: иконка и подсветка по умолчанию.
-// Сторона иконки выводится из колонки: левая колонка — иконка слева, правая — справа.
-type BubbleCfg = { short: string; icon: LucideIcon; deco?: boolean };
+// Короткие формулировки для «пузырей» чата и подсветка по умолчанию.
+type BubbleCfg = { short: string; deco?: boolean };
 
 const bubbles: Record<string, BubbleCfg[]> = {
   production: [
-    { short: "Станок встал. Почему инженер полчаса ищет инструкцию, пока производство теряет деньги?", icon: Wrench, deco: true },
-    { short: "Почему план производства снова собирают вручную из десятка таблиц, а ошибки приходится искать по ходу работы?", icon: Table, deco: true },
-    { short: "Склады забиты, деньги в запасах заморожены. Почему для нужного заказа опять не хватает сырья?", icon: Package },
-    { short: "Себестоимость опять выросла. Это сырьё подорожало или мы где-то теряем деньги?", icon: Wallet, deco: true },
-    { short: "Один опытный сотрудник ушёл в отпуск — и полпроизводства не знает, как теперь работать?", icon: Users },
-    { short: "Почему сотрудники снова заполняют журналы и отчёты вместо того, чтобы заниматься производством?", icon: FileClock },
+    { short: "Станок встал. Почему инженер полчаса ищет инструкцию, пока производство теряет деньги?", deco: true },
+    { short: "Почему план производства снова собирают вручную из десятка таблиц, а ошибки приходится искать по ходу работы?", deco: true },
+    { short: "Склады забиты, деньги в запасах заморожены. Почему для нужного заказа опять не хватает сырья?" },
+    { short: "Себестоимость опять выросла. Это сырьё подорожало или мы где-то теряем деньги?", deco: true },
+    { short: "Один опытный сотрудник ушёл в отпуск — и полпроизводства не знает, как теперь работать?" },
+    { short: "Почему сотрудники снова заполняют журналы и отчёты вместо того, чтобы заниматься производством?" },
   ],
   transport: [
-    { short: "Машина числится в ремонте, механик говорит, что готова. А чему верить?", icon: Wrench, deco: true },
-    { short: "Чтобы понять, что происходит в компании, опять нужно собирать информацию по всем отделам?", icon: BarChart3 },
-    { short: "В компании сотни инструкций, договоров и приказов. А нужный документ опять никто не может найти?", icon: FileClock, deco: true },
-    { short: "Бухгалтерия опять завалена вопросами по зарплате, а сотрудники неделями ждут ответа?", icon: Wallet },
-    { short: "Сотрудник вернулся из командировки. А где результаты, фотографии, замечания и что делать дальше?", icon: Truck },
-    { short: "Почему на один и тот же вопрос сотрудникам приходится отвечать снова и снова?", icon: Users },
+    { short: "Машина числится в ремонте, механик говорит, что готова. А чему верить?", deco: true },
+    { short: "Чтобы понять, что происходит в компании, опять нужно собирать информацию по всем отделам?" },
+    { short: "В компании сотни инструкций, договоров и приказов. А нужный документ опять никто не может найти?", deco: true },
+    { short: "Бухгалтерия опять завалена вопросами по зарплате, а сотрудники неделями ждут ответа?" },
+    { short: "Сотрудник вернулся из командировки. А где результаты, фотографии, замечания и что делать дальше?" },
+    { short: "Почему на один и тот же вопрос сотрудникам приходится отвечать снова и снова?" },
   ],
   construction: [
-    { short: "Как освободить инженеров ПТО от бесконечных таблиц, актов и ведомостей?", icon: HardHat },
-    { short: "Опять закупили лишнее? Или нужных материалов снова не хватило?", icon: Package, deco: true },
-    { short: "В проекте одно, в смете другое, а закупили вообще третье?", icon: Table, deco: true },
-    { short: "Нужный чертёж опять ищут по папкам, почте и перепискам?", icon: FileClock },
-    { short: "Чтобы понять, что происходит на объектах, снова приходится всех обзванивать?", icon: Users },
-    { short: "Документы неделями ходят по кабинетам. Где застряло согласование?", icon: CalendarClock, deco: true },
+    { short: "Как освободить инженеров ПТО от бесконечных таблиц, актов и ведомостей?" },
+    { short: "Опять закупили лишнее? Или нужных материалов снова не хватило?", deco: true },
+    { short: "В проекте одно, в смете другое, а закупили вообще третье?", deco: true },
+    { short: "Нужный чертёж опять ищут по папкам, почте и перепискам?" },
+    { short: "Чтобы понять, что происходит на объектах, снова приходится всех обзванивать?" },
+    { short: "Документы неделями ходят по кабинетам. Где застряло согласование?", deco: true },
   ],
   services: [
-    { short: "Клиент позвонил, написал в мессенджер, прислал голосовое — а заявка опять потерялась?", icon: Inbox, deco: true },
-    { short: "Клиенту уже пообещали услугу. А кто из сотрудников возьмёт заказ и когда приступит к работе?", icon: Users },
-    { short: "Смена начинается завтра, а кто из сотрудников на неё выйдет — снова выясняем по перепискам?", icon: CalendarClock, deco: true },
-    { short: "Сотрудник отработал смену. Почему руководителю опять приходится выпрашивать отчёт и напоминать о документах?", icon: FileClock },
-    { short: "Каждый новый клиент — снова вручную заполняем один и тот же договор?", icon: Table },
-    { short: "Руководитель сам проверяет каждую заявку: нашли исполнителя, ответили клиенту, получили оплату?", icon: BarChart3 },
+    { short: "Клиент позвонил, написал в мессенджер, прислал голосовое — а заявка опять потерялась?", deco: true },
+    { short: "Клиенту уже пообещали услугу. А кто из сотрудников возьмёт заказ и когда приступит к работе?" },
+    { short: "Смена начинается завтра, а кто из сотрудников на неё выйдет — снова выясняем по перепискам?", deco: true },
+    { short: "Сотрудник отработал смену. Почему руководителю опять приходится выпрашивать отчёт и напоминать о документах?" },
+    { short: "Каждый новый клиент — снова вручную заполняем один и тот же договор?" },
+    { short: "Руководитель сам проверяет каждую заявку: нашли исполнителя, ответили клиенту, получили оплату?" },
   ],
 };
 
@@ -399,20 +395,6 @@ const IndustryQuestions = () => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const pulsing = !isOpen && pulseIdx === item.idx;
-    const Icon = item.icon;
-
-    const iconEl = (
-      <span
-        className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
-          lit
-            ? "bg-accent/15 ring-accent text-accent"
-            : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
-        } ${pulsing ? "bubble-soft-pulse-icon" : ""}`}
-      >
-
-        <Icon className="h-4 w-4" strokeWidth={1.6} />
-      </span>
-    );
     const bubbleEl = (
       <span
         className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
@@ -452,17 +434,7 @@ const IndustryQuestions = () => {
           side === "r" ? "self-end" : "self-start"
         }`}
       >
-        {side === "l" ? (
-          <>
-            {iconEl}
-            {bubbleEl}
-          </>
-        ) : (
-          <>
-            {bubbleEl}
-            {iconEl}
-          </>
-        )}
+        {bubbleEl}
       </Button>
     );
   };
@@ -532,9 +504,6 @@ const IndustryQuestions = () => {
               />
               <div ref={chatRef} className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
                 <div className="flex items-center gap-3 px-5 md:px-6 py-4 md:py-3 border-b border-background/10">
-                  <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
-                    <MousePointerClick className="h-4 w-4" />
-                  </span>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-background leading-tight">Вопросы собственников · {industry.label}</p>
                     <p className="text-xs text-background/50 flex items-center gap-1.5">
