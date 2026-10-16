@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import PillButton from "@/components/PillButton";
 import { Link, useLocation } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { submitForm } from "@/lib/formsClient";
@@ -321,13 +321,14 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                 )}
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full md:w-auto h-12 px-8 text-base shrink-0"
+              <PillButton
+                type="submit"
+                variant="dark"
                 disabled={isSubmitting}
+                className="w-full md:w-auto justify-between md:justify-center shrink-0"
               >
                 {isSubmitting ? "Отправка..." : "Отправить"}
-              </Button>
+              </PillButton>
             </div>
             </form>
           </div>

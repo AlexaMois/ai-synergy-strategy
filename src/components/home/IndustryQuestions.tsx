@@ -5,6 +5,7 @@ import {
   MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, type LucideIcon,
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
+import PillButton from "@/components/PillButton";
 
 interface CaseRef {
   title: string;
