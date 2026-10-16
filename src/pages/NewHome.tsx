@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, Quote, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, Quote, Phone } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -203,9 +203,11 @@ const NewHome = () => {
               задача уже понятна, можно сразу обсуждать её решение.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="relative">
+            <div className="grid gap-5 md:grid-cols-2">
             {[
               {
+                step: "Шаг 1",
                 title: "Стратегическая встреча для собственника",
                 text: "Разобраться в ситуации, определить главную проблему и первый шаг.",
                 price: "17 000 ₽",
@@ -216,8 +218,12 @@ const NewHome = () => {
                 muted: "text-foreground/70",
                 btnVariant: "dark" as const,
                 showSketch: routeSketch,
+                chip: "bg-accent/10 text-accent",
+                dots: "bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)]",
+                check: "text-accent",
               },
               {
+                step: "Шаг 2",
                 title: "Стратегия цифрового развития бизнеса",
                 text: "Разобрать процессы компании и составить практический план изменений на 90 дней.",
                 price: "78 000 ₽",
@@ -228,6 +234,9 @@ const NewHome = () => {
                 muted: "text-background/80",
                 btnVariant: "light" as const,
                 showSketch: null,
+                chip: "bg-background/15 text-background",
+                dots: "bg-[radial-gradient(hsl(var(--background)/0.35)_1.5px,transparent_1.5px)]",
+                check: "text-background",
               },
             ].map((card) => (
               <div
@@ -244,6 +253,10 @@ const NewHome = () => {
                     className="absolute -bottom-4 -right-4 w-40 h-40 object-contain opacity-90 pointer-events-none"
                   />
                 )}
+                <div aria-hidden className={`absolute top-0 right-0 w-44 h-44 opacity-70 pointer-events-none ${card.dots} [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,black,transparent_72%)]`} />
+                <span className={`relative inline-flex items-center self-start px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest ${card.chip} mb-4`}>
+                  {card.step}
+                </span>
                 <h3 className={`text-xl md:text-2xl font-bold ${card.textColor} mb-3 leading-tight relative`}>
                   {card.title}
                 </h3>
@@ -256,13 +269,20 @@ const NewHome = () => {
                       {card.price}
                     </span>
                   </div>
-                  <p className={`text-xs ${card.muted} max-w-[85%]`}>{card.result}</p>
+                  <p className={`flex items-center gap-2 text-xs ${card.muted} max-w-[85%]`}>
+                    <BadgeCheck className={`h-4 w-4 shrink-0 ${card.check}`} />
+                    {card.result}
+                  </p>
                   <PillButton to={card.to} variant={card.btnVariant} className="text-sm">
                     Подробнее
                   </PillButton>
                 </div>
               </div>
             ))}
+            </div>
+            <div aria-hidden className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background text-foreground shadow-card ring-1 ring-border items-center justify-center">
+              <ArrowRight className="h-5 w-5" />
+            </div>
           </div>
           <div className="mt-10 text-center">
             <Link to="/services" className="inline-flex items-center text-accent hover:underline font-semibold text-lg">

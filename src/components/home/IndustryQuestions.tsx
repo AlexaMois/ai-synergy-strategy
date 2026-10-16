@@ -258,7 +258,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
     { short: "Документы и инструкции ищутся слишком долго?", icon: Users, side: "r", deco: true },
     { short: "Смены и задачи ведёте в таблицах?", icon: Table, side: "l" },
     { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3, side: "l" },
-    { short: "Знания сильных сотрудников нигде не зафиксированы?", icon: Users, side: "l", deco: true },
+    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users, side: "l", deco: true },
     { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, side: "l" },
   ],
   transport: [
@@ -266,7 +266,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
     { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, side: "r", deco: true },
     { short: "Командировки оформляются в переписке?", icon: MessageSquare, side: "l" },
     { short: "Документы по рейсам теряются при передаче?", icon: FileClock, side: "l" },
-    { short: "Статус для клиента собираете у трёх сотрудников?", icon: Users, side: "l", deco: true },
+    { short: "Статус для клиента собирают три сотрудника?", icon: Users, side: "l", deco: true },
     { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, side: "l" },
   ],
   construction: [
@@ -288,10 +288,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
 };
 
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
-// «Лесенка»: каждый следующий пузырь в столбце чуть ниже и чуть правее предыдущего.
-// Правая колонка прижата к правому краю, поэтому шаг вправо задаём через mr: 16 → 8 → 0.
-const stepL = ["", "md:mt-3 md:ml-8", "md:mt-6 md:ml-16"];
-const stepR = ["md:mr-16", "md:mt-3 md:mr-8", "md:mt-6"];
+
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
@@ -305,7 +302,7 @@ const IndustryQuestions = () => {
   const right = items.filter((_, i) => i % 2 === 1);
   const lastIdx = items.length - 1;
 
-  const Bubble = ({ item, col }: { item: (typeof items)[number]; col: "l" | "r" }) => {
+  const Bubble = ({ item }: { item: (typeof items)[number] }) => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
@@ -313,22 +310,22 @@ const IndustryQuestions = () => {
     const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
+        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ring-1 transition-colors ${
           lit
             ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
             : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
         }`}
       >
-        <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" strokeWidth={1.6} />
+        <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
       </span>
     );
     const bubbleEl = (
       <span
-        className={`relative w-fit max-w-[300px] md:max-w-[330px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+        className={`relative flex-1 min-w-0 px-4 md:px-5 py-3 md:py-3.5 text-[15px] md:text-[15px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
           lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
         }`}
       >
-        <span className="block pr-12">{item.short}</span>
+        <span className="block pr-10 md:pr-5">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
@@ -339,7 +336,7 @@ const IndustryQuestions = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
           </span>
         ) : (
-          <span className="absolute right-4 bottom-1.5 text-sm font-medium text-white/45">
+          <span className="absolute right-4 bottom-2 text-xs font-medium text-white/45">
             {times[item.idx % times.length]}
           </span>
         )}
@@ -354,7 +351,6 @@ const IndustryQuestions = () => {
         </svg>
       </span>
     );
-    const step = col === "l" ? stepL[Math.floor(item.idx / 2)] : stepR[Math.floor(item.idx / 2)];
     return (
       <button
         type="button"
@@ -362,9 +358,7 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 md:gap-4 w-fit max-w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${
-          col === "r" ? "md:justify-end md:ml-auto" : ""
-        } ${step}`}
+        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
       >
         {item.side === "l" ? (
           <>
@@ -429,12 +423,12 @@ const IndustryQuestions = () => {
 
             <p className="text-base text-white/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
-            <div className="grid md:grid-cols-2 gap-5 md:gap-x-16">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
               <div className="flex flex-col gap-4 md:gap-5">
-                {left.map((it) => <Bubble key={it.short} item={it} col="l" />)}
+                {left.map((it) => <Bubble key={it.short} item={it} />)}
               </div>
-              <div className="flex flex-col gap-4 md:gap-5 md:pt-12">
-                {right.map((it) => <Bubble key={it.short} item={it} col="r" />)}
+              <div className="flex flex-col gap-4 md:gap-5">
+                {right.map((it) => <Bubble key={it.short} item={it} />)}
               </div>
             </div>
 
