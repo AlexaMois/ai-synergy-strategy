@@ -308,7 +308,7 @@ const NewHome = () => {
               <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-16">
                 <div className="max-w-xl">
                   <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
-                  <h2 className="text-3xl md:text-4xl font-bold text-background leading-[1.15] mb-6">
+                  <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15] mb-6">
                     <span className="whitespace-nowrap">Человек → Процессы →</span>
                     <br className="hidden md:block" />{" "}
                     <span className="whitespace-nowrap">Бизнес → <span className="text-accent">Технологии</span></span>
@@ -318,7 +318,7 @@ const NewHome = () => {
                     так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-8">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-9">
                   {workSteps.map((step, i) => (
                     <div key={step.name} className="relative flex flex-col items-center text-center">
                       {i < workSteps.length - 1 && (
