@@ -352,22 +352,32 @@ const NewHome = () => {
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
-                    Кейс · Транспорт · Нефтегаз
+                    Кейс · Транспорт · Цифровые решения
                   </p>
                   <h3 className="text-2xl md:text-3xl font-bold mb-4 text-background">АкТрансСервис</h3>
                   <p className="text-sm md:text-base text-background/70 leading-relaxed max-w-md">
-                    В работе было 53 000 позиций. Вместо дорогого внешнего решения собрали другой
-                    путь и внедрили инструменты под реальные задачи компании.
+                    Документы разбросаны по папкам, сотрудники ищут ответы друг у друга, а
+                    руководителю приходится всё контролировать вручную.
+                  </p>
+                  <p className="mt-3 text-sm md:text-base text-background/85 leading-relaxed max-w-md">
+                    Создали корпоративный портал с поиском документов, ИИ-помощника «Джарвис», базу
+                    знаний и бота для обращений по зарплате. Автоматизировали отдельные рабочие
+                    процессы: командировки, отчёты, напоминания и контроль сроков.
                   </p>
                 </div>
-                <div className="mt-8 flex items-end justify-between gap-4">
-                  <div>
+                <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+                  <div className="sm:max-w-[260px]">
                     <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
                       1,7 млн ₽
                     </div>
-                    <p className="text-xs text-background/60">сохранено за квартал</p>
+                    <p className="text-xs text-background/60 leading-snug">
+                      Сохранено за квартал в рамках проекта цифровизации.
+                    </p>
                   </div>
-                  <ArrowRight className="h-6 w-6 text-accent group-hover:translate-x-1 transition-transform" />
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                    Посмотреть, что внедрили
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
               </Link>
               {/* Two smaller stacked cases */}
