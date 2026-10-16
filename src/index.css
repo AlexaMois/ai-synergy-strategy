@@ -694,6 +694,38 @@
     animation: blockPulse 3.6s ease-in-out infinite;
   }
 
+  /* Деликатная пульсация сообщения чата: чуть усиливается бирюзовое свечение и размер на 1,5% */
+  .bubble-soft-pulse {
+    transform-origin: center;
+    animation: bubbleSoftPulse 2.6s ease-in-out 1;
+  }
+  .bubble-soft-pulse-icon {
+    animation: bubbleIconPulse 2.6s ease-in-out 1;
+  }
+
+  @keyframes bubbleSoftPulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 38px -6px hsl(var(--accent) / 0.9);
+    }
+    45% {
+      transform: scale(1.015);
+      box-shadow: 0 0 62px 2px hsl(var(--accent) / 1);
+    }
+  }
+
+  @keyframes bubbleIconPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 26px -4px hsl(var(--accent) / 1);
+    }
+    45% {
+      box-shadow: 0 0 40px 2px hsl(var(--accent) / 1);
+    }
+  }
+
+
   .dot-soft-pulse {
     position: relative;
     display: inline-block;
@@ -729,6 +761,11 @@
     .block-soft-pulse {
       animation: none;
     }
+    .bubble-soft-pulse,
+    .bubble-soft-pulse-icon {
+      animation: none;
+    }
+
     .group:hover .group-hover\:translate-x-0\.5,
     .hover\:-translate-y-0\.5:hover {
       transform: none;
