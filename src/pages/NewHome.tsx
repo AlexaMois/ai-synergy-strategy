@@ -13,6 +13,7 @@ import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import gearsImg from "@/assets/how-we-work-gears.jpg";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
+import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
 
 const stats: Array<{
   value: number;
@@ -220,7 +221,7 @@ const NewHome = () => {
                 price: "78 000 ₽",
                 result: "Результат: план действий с приоритетами.",
                 to: "/services/digital-development-strategy",
-                showSketch: null,
+                showSketch: routeWarmSketch,
               },
             ].map((card) => (
               <div
