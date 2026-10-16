@@ -26,7 +26,7 @@ interface AnchorProps extends BaseProps {
   rel?: string;
 }
 interface ButtonProps extends BaseProps {
-  onClick: () => void;
+  onClick?: () => void;
   to?: never;
   href?: never;
   target?: never;
