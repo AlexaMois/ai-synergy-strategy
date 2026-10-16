@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
+import chatDeco from "@/assets/industry-chat-deco.png";
 
 interface CaseRef {
   title: string;
@@ -250,45 +251,49 @@ const industries: Industry[] = [
   },
 ];
 
-// Короткие формулировки для «пузырей» чата: иконка, сторона иконки и подсветка по умолчанию.
-type BubbleCfg = { short: string; icon: LucideIcon; side: "l" | "r"; deco?: boolean };
+// Короткие формулировки для «пузырей» чата: иконка и подсветка по умолчанию.
+// Сторона иконки выводится из колонки: левая колонка — иконка слева, правая — справа.
+type BubbleCfg = { short: string; icon: LucideIcon; deco?: boolean };
 
 const bubbles: Record<string, BubbleCfg[]> = {
   production: [
-    { short: "Статус заказа уточняете вручную?", icon: FileClock, side: "l" },
-    { short: "Документы и инструкции ищутся слишком долго?", icon: Users, side: "r", deco: true },
-    { short: "Смены и задачи ведёте в таблицах?", icon: Table, side: "l" },
-    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3, side: "l" },
-    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users, side: "l", deco: true },
-    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, side: "l" },
+    { short: "Статус заказа уточняете вручную?", icon: FileClock },
+    { short: "Документы и инструкции ищутся слишком долго?", icon: Users, deco: true },
+    { short: "Смены и задачи ведёте в таблицах?", icon: Table, deco: true },
+    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3 },
+    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users },
+    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, deco: true },
   ],
   transport: [
-    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox, side: "l" },
-    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, side: "r", deco: true },
-    { short: "Командировки оформляются в переписке?", icon: MessageSquare, side: "l" },
-    { short: "Документы по рейсам теряются при передаче?", icon: FileClock, side: "l" },
-    { short: "Статус для клиента собирают три сотрудника?", icon: Users, side: "l", deco: true },
-    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, side: "l" },
+    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox },
+    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, deco: true },
+    { short: "Командировки оформляются в переписке?", icon: MessageSquare, deco: true },
+    { short: "Документы по рейсам теряются при передаче?", icon: FileClock },
+    { short: "Статус для клиента собирают три сотрудника?", icon: Users },
+    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, deco: true },
   ],
   construction: [
-    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat, side: "l" },
-    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, side: "r", deco: true },
-    { short: "Материалы списаны, а по факту не сходится?", icon: Package, side: "l" },
-    { short: "Нужную версию документа не найти?", icon: FileClock, side: "l" },
-    { short: "Подрядчики отчитываются кто как может?", icon: Users, side: "l", deco: true },
-    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, side: "l" },
+    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat },
+    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, deco: true },
+    { short: "Материалы списаны, а по факту не сходится?", icon: Package, deco: true },
+    { short: "Нужную версию документа не найти?", icon: FileClock },
+    { short: "Подрядчики отчитываются кто как может?", icon: Users },
+    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, deco: true },
   ],
   services: [
-    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users, side: "l" },
-    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare, side: "r", deco: true },
-    { short: "Расписание держится в голове администратора?", icon: CalendarClock, side: "l" },
-    { short: "Повторные клиенты теряются?", icon: Inbox, side: "l" },
-    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3, side: "l", deco: true },
-    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet, side: "l" },
+    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users },
+    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare, deco: true },
+    { short: "Расписание держится в голове администратора?", icon: CalendarClock, deco: true },
+    { short: "Повторные клиенты теряются?", icon: Inbox },
+    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3 },
+    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet, deco: true },
   ],
 };
 
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
+
+// Разная ширина сообщений внутри колонки — как в живом чате.
+const widths = ["w-full", "md:w-[94%]", "md:w-[97%]"];
 
 
 const IndustryQuestions = () => {
@@ -301,20 +306,17 @@ const IndustryQuestions = () => {
   const items = industry.questions.map((q, i) => ({ q, idx: i, ...bubbles[industry.id][i] }));
   const left = items.filter((_, i) => i % 2 === 0);
   const right = items.filter((_, i) => i % 2 === 1);
-  const lastIdx = items.length - 1;
 
-  const Bubble = ({ item }: { item: (typeof items)[number] }) => {
+  const Bubble = ({ item, side }: { item: (typeof items)[number]; side: "l" | "r" }) => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
-    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10 group-hover:bg-white/[0.16]";
-    const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ring-1 transition-colors ${
+        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ring-1 transition-all duration-300 ${
           lit
-            ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
-            : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
+            ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
+            : "bg-white/[0.06] ring-white/15 text-white/70 group-hover:ring-accent/70 group-hover:text-accent"
         }`}
       >
         <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
@@ -322,34 +324,23 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 min-w-0 px-4 md:px-5 py-3 md:py-3.5 text-[15px] md:text-[15px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
-        }`}
+        className={`relative flex-1 min-w-0 px-5 md:px-6 py-3.5 md:py-4 text-[15px] font-medium leading-snug transition-all duration-300 rounded-[20px] ${
+          lit
+            ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
+            : "bg-white/[0.09] text-white ring-1 ring-white/10 group-hover:bg-white/[0.14] group-hover:ring-accent/50"
+        } ${side === "l" ? "rounded-bl-md" : "rounded-br-md"}`}
       >
-        <span className="block pr-10 md:pr-5">{item.short}</span>
+        <span className="block pr-12">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
-        {item.idx === lastIdx && !isOpen ? (
-          <span className="absolute right-5 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
-          </span>
-        ) : (
-          <span className="absolute right-4 bottom-2 text-xs font-medium text-white/45">
-            {times[item.idx % times.length]}
-          </span>
-        )}
-        <svg
-          aria-hidden
-          viewBox="0 0 22 18"
-          className={`absolute bottom-1 h-[18px] w-[22px] ${tail} ${
-            item.side === "r" ? "-right-[15px] -scale-x-100" : "-left-[15px]"
+        <span
+          className={`absolute right-4 bottom-2 text-[11px] font-medium ${
+            lit ? "text-accent-foreground/50" : "text-white/40"
           }`}
         >
-          <path d="M22 0 C 20 9, 11 14, 0 17 C 12 13, 19 8, 22 0 Z" fill="currentColor" />
-        </svg>
+          {times[item.idx % times.length]}
+        </span>
       </span>
     );
     return (
@@ -359,9 +350,11 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
+        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${widths[item.idx % widths.length]} ${
+          side === "r" ? "md:self-end" : ""
+        }`}
       >
-        {item.side === "l" ? (
+        {side === "l" ? (
           <>
             {iconEl}
             {bubbleEl}
@@ -390,6 +383,14 @@ const IndustryQuestions = () => {
               <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
               <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
             </svg>
+            <img
+              src={chatDeco}
+              alt=""
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="absolute -top-6 right-2 md:right-8 w-40 md:w-64 lg:w-72 opacity-90 drop-shadow-[0_0_45px_hsl(var(--accent)/0.35)]"
+            />
           </div>
 
           <div className="relative">
@@ -426,10 +427,10 @@ const IndustryQuestions = () => {
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
               <div className="flex flex-col gap-4 md:gap-5">
-                {left.map((it) => <Bubble key={it.short} item={it} />)}
+                {left.map((it) => <Bubble key={it.short} item={it} side="l" />)}
               </div>
-              <div className="flex flex-col gap-4 md:gap-5">
-                {right.map((it) => <Bubble key={it.short} item={it} />)}
+              <div className="flex flex-col gap-4 md:gap-5 md:pt-8">
+                {right.map((it) => <Bubble key={it.short} item={it} side="r" />)}
               </div>
             </div>
 
