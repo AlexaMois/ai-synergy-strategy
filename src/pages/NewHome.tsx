@@ -190,8 +190,6 @@ const NewHome = () => {
         {/* УЗНАЁТЕ СВОЙ БИЗНЕС? — интерактивные отраслевые вопросы */}
         <IndustryQuestions />
 
-        <MarqueeText />
-
         {/* С ЧЕГО НАЧАТЬ — два варианта: встреча и стратегия */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
@@ -272,6 +270,8 @@ const NewHome = () => {
             </Link>
           </div>
         </section>
+
+        <MarqueeText />
 
         {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
         <section className="bg-background py-16 md:py-24">
