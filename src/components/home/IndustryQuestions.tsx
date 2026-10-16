@@ -258,7 +258,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
     { short: "Документы и инструкции ищутся слишком долго?", icon: Users, side: "r", deco: true },
     { short: "Смены и задачи ведёте в таблицах?", icon: Table, side: "l" },
     { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3, side: "l" },
-    { short: "Знания сильных сотрудников нигде не зафиксированы?", icon: Users, side: "l", deco: true },
+    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users, side: "l", deco: true },
     { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, side: "l" },
   ],
   transport: [
@@ -266,7 +266,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
     { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, side: "r", deco: true },
     { short: "Командировки оформляются в переписке?", icon: MessageSquare, side: "l" },
     { short: "Документы по рейсам теряются при передаче?", icon: FileClock, side: "l" },
-    { short: "Статус для клиента собираете у трёх сотрудников?", icon: Users, side: "l", deco: true },
+    { short: "Статус для клиента собирают три сотрудника?", icon: Users, side: "l", deco: true },
     { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, side: "l" },
   ],
   construction: [
