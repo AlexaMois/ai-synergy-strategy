@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, BadgeCheck, Quote, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, ChevronRight, Quote, Phone } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -11,7 +11,17 @@ import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
-import gearsImg from "@/assets/how-we-work-gears.jpg";
+import iconPeople from "@/assets/how-we-work/icon-people.png";
+import iconProcess from "@/assets/how-we-work/icon-process.png";
+import iconBusiness from "@/assets/how-we-work/icon-business.png";
+import iconTech from "@/assets/how-we-work/icon-tech.png";
+
+const workSteps = [
+  { icon: iconPeople, name: "Человек", desc: "Анализируем опыт и задачи людей" },
+  { icon: iconProcess, name: "Процессы", desc: "Выстраиваем понятные и эффективные процессы" },
+  { icon: iconBusiness, name: "Бизнес", desc: "Смотрим на цели и точки роста" },
+  { icon: iconTech, name: "Технологии", desc: "Подбираем и внедряем цифровые инструменты" },
+];
 
 const stats: Array<{
   value: number;
