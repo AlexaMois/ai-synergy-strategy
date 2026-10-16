@@ -389,7 +389,7 @@ const IndustryQuestions = () => {
       <span
         className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
           lit
-            ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
+            ? "bg-accent/15 ring-accent text-accent"
             : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
         } ${pulsing ? "bubble-soft-pulse-icon" : ""}`}
       >
@@ -401,7 +401,7 @@ const IndustryQuestions = () => {
       <span
         className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
           lit
-            ? "bg-primary-dark text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
+            ? "bg-primary-dark text-accent-foreground"
             : "bg-background/[0.09] text-card ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
         } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"} ${pulsing ? "bubble-soft-pulse" : ""}`}
       >
@@ -415,7 +415,7 @@ const IndustryQuestions = () => {
         >
           {times[item.idx % times.length]}
         </span>
-        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
+        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
       </span>
@@ -455,9 +455,6 @@ const IndustryQuestions = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-10 lg:px-14 py-12 md:py-14">
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="absolute -top-24 right-16 h-72 w-72 rounded-full bg-accent/20 blur-[120px]" />
-            <div className="absolute top-1/3 left-1/3 h-80 w-80 rounded-full bg-accent/10 blur-[140px]" />
-            <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-accent/15 blur-[120px]" />
             <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 1200 800" preserveAspectRatio="none">
               <path d="M700 0 C 860 90, 980 140, 1200 200" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.45" />
               <path d="M560 120 C 660 320, 480 480, 620 700" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.28" />
@@ -490,7 +487,7 @@ const IndustryQuestions = () => {
                   }}
                   className={`h-auto px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
                     activeId === ind.id
-                      ? "bg-accent border-accent text-accent-foreground hover:bg-accent hover:text-accent-foreground shadow-[0_0_30px_-8px_hsl(var(--accent)/0.95)]"
+                      ? "bg-accent border-accent text-accent-foreground hover:bg-accent hover:text-accent-foreground"
                       : "bg-background/5 border-background/20 text-background hover:bg-background/10 hover:text-background hover:border-accent/70"
                   }`}
                 >
@@ -513,9 +510,9 @@ const IndustryQuestions = () => {
                 width={1024}
                 height={1024}
                 loading="lazy"
-                className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36 drop-shadow-[0_0_40px_hsl(var(--accent)/0.4)]"
+                className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36"
               />
-              <div ref={chatRef} className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
+              <div ref={chatRef} className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
                 <div className="flex items-center gap-3 px-5 md:px-6 py-4 md:py-3 border-b border-background/10">
                   <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
                     <MousePointerClick className="h-4 w-4" />
@@ -523,7 +520,7 @@ const IndustryQuestions = () => {
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-background leading-tight">Вопросы собственников · {industry.label}</p>
                     <p className="text-xs text-background/50 flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_hsl(var(--accent))]" /> на связи
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent" /> на связи
                     </p>
                   </div>
                 </div>
