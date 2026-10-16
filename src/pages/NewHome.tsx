@@ -316,15 +316,21 @@ const NewHome = () => {
                   </span>
                 </h2>
               </div>
-              <img
-                src={synergyImg.url}
-                alt="Синергия результата: человек, процессы, бизнес и технологии"
-                width={1920}
-                height={681}
-                loading="lazy"
-                className="relative block w-full h-auto object-cover"
-              />
-              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/60 leading-relaxed text-center xl:whitespace-nowrap">
+              <div className="relative">
+                <div className="overflow-x-auto md:overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  <img
+                    src={synergyImg.url}
+                    alt="Синергия результата: человек, процессы, бизнес и технологии"
+                    width={1920}
+                    height={681}
+                    loading="lazy"
+                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover"
+                  />
+                </div>
+                {/* на телефоне картинка шире экрана — мягкая подсказка, что её можно листать */}
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-ink to-transparent md:hidden" />
+              </div>
+              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/75 leading-relaxed text-center xl:whitespace-nowrap">
                 Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
                 чтобы они работали в привычной среде компании и снижали ручную нагрузку.
               </p>
