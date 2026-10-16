@@ -297,37 +297,37 @@ const NewHome = () => {
 
         <MarqueeText />
 
-        {/* КАК МЫ РАБОТАЕМ — тёмная плашка: заголовок сверху, большая картинка по центру, пояснение снизу */}
+        {/* КАК МЫ РАБОТАЕМ — чёрная плашка: заголовок сверху, картинка на всю ширину, пояснение снизу */}
         <section className="px-4 md:px-6 py-10 md:py-14">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg ring-1 ring-foreground/5 px-6 md:px-12 lg:px-14 py-10 md:py-12">
-              {/* мягкое бирюзовое свечение фона */}
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-ink overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              {/* мягкое бирюзовое свечение в зонах текста */}
               <div aria-hidden className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 left-[14%] h-72 w-72 rounded-full bg-accent/15 blur-[110px]" />
-                <div className="absolute -bottom-28 right-[14%] h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+                <div className="absolute -top-24 left-1/2 h-64 w-[420px] -translate-x-1/2 rounded-full bg-accent/15 blur-[110px]" />
+                <div className="absolute -bottom-24 left-1/2 h-40 w-[520px] -translate-x-1/2 rounded-full bg-accent/10 blur-[90px]" />
               </div>
-              <div className="relative">
-                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold text-center mb-4">
+              <div className="relative px-6 md:px-12 pt-10 md:pt-12 pb-7 md:pb-9 text-center">
+                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-4">
                   Как мы работаем
                 </p>
-                <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15] text-center mb-8 md:mb-10">
+                <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
                   <span className="md:whitespace-nowrap">
                     Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
                   </span>
                 </h2>
-                <img
-                  src={synergyImg.url}
-                  alt="Синергия результата: человек, процессы, бизнес и технологии"
-                  width={1920}
-                  height={681}
-                  loading="lazy"
-                  className="w-full h-auto object-contain rounded-2xl md:rounded-3xl ring-1 ring-background/10"
-                />
-                <p className="mt-7 md:mt-9 text-[13px] md:text-sm text-background/55 leading-relaxed text-center lg:whitespace-nowrap">
-                  Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
-                  чтобы они работали в привычной среде компании и снижали ручную нагрузку.
-                </p>
               </div>
+              <img
+                src={synergyImg.url}
+                alt="Синергия результата: человек, процессы, бизнес и технологии"
+                width={1920}
+                height={681}
+                loading="lazy"
+                className="relative block w-full h-auto object-cover"
+              />
+              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/60 leading-relaxed text-center xl:whitespace-nowrap">
+                Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
+                чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+              </p>
             </div>
           </div>
         </section>
