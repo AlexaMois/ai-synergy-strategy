@@ -46,11 +46,13 @@ const stats: Array<{
  */
 const PillButton = ({
   to,
+  onClick,
   children,
   variant = "dark",
   className = "",
 }: {
-  to: string;
+  to?: string;
+  onClick?: () => void;
   children: React.ReactNode;
   variant?: "dark" | "light" | "turquoise" | "ghost-light";
   className?: string;
@@ -67,9 +69,10 @@ const PillButton = ({
     turquoise: "bg-background text-foreground",
     "ghost-light": "bg-background text-foreground",
   }[variant];
+  const Comp: any = to ? Link : "button";
   return (
-    <Link
-      to={to}
+    <Comp
+      {...(to ? { to } : { type: "button", onClick })}
       className={`group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
     >
       <span>{children}</span>
@@ -78,7 +81,7 @@ const PillButton = ({
       >
         <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </span>
-    </Link>
+    </Comp>
   );
 };
 
@@ -116,14 +119,19 @@ const NewHome = () => {
                     Независимый инженер-архитектор цифрового развития бизнеса и внедрения искусственного интеллекта
                   </p>
                   <p className="text-sm sm:text-base md:text-lg text-background/80 mb-6 md:mb-10 max-w-xl">
-                    Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять цифровые решения с понятной пользой для бизнеса
+                    Помогаю собственникам сокращать ручную работу, устранять потери и внедрять цифровые решения с измеримой пользой для бизнеса
                   </p>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
-                    <PillButton to="/start" variant="light">
-                      Подобрать формат работы
+                    <PillButton
+                      variant="light"
+                      onClick={() =>
+                        document.getElementById("industry-questions")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                      }
+                    >
+                      Узнать свою задачу
                     </PillButton>
-                    <PillButton to="/services" variant="ghost-light">
-                      Посмотреть услуги
+                    <PillButton variant="ghost-light" onClick={openTaskModal}>
+                      Обсудить задачу
                     </PillButton>
                   </div>
                 </div>
@@ -136,7 +144,7 @@ const NewHome = () => {
                     height={900}
                     fetchPriority="high"
                     decoding="async"
-                    className="relative w-3/4 max-w-[260px] sm:max-w-xs md:max-w-md lg:max-w-lg h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
+                    className="relative w-[85%] max-w-[295px] sm:max-w-[368px] md:max-w-[504px] lg:max-w-[576px] h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
                   />
                 </div>
               </div>
