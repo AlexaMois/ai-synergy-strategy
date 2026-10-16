@@ -70,6 +70,26 @@ type ContactContext = {
   topic: string;
 };
 
+export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string) => ({
+  name: data.name.trim(),
+  phone: data.phone,
+  email: data.email?.trim() || '',
+  company: data.company?.trim() || '',
+  industry: data.industry?.trim() || contactContext?.industry || '',
+  task: [
+    data.comment.trim(),
+    contactContext?.industry ? `Выбранная отрасль: ${contactContext.industry}` : '',
+    contactContext?.topic ? `Тема вопроса: ${contactContext.topic}` : '',
+    contactContext?.question ? `Выбранный вопрос: ${contactContext.question}` : '',
+  ].filter(Boolean).join('\n\n'),
+  selectedIndustry: contactContext?.industry || '',
+  selectedQuestion: contactContext?.question || '',
+  selectedQuestionTopic: contactContext?.topic || '',
+  formName: 'Форма обратной связи',
+  consent: true,
+  website: honeypot,
+});
+
 interface ContactProps {
   defaultComment?: string;
 }
@@ -150,25 +170,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
-      const result = await submitForm('short-lead', {
-        name: data.name.trim(),
-        phone: data.phone,
-        email: data.email?.trim() || '',
-        company: data.company?.trim() || '',
-        industry: data.industry?.trim() || contactContext?.industry || '',
-        task: [
-          data.comment.trim(),
-          contactContext?.industry ? `Выбранная отрасль: ${contactContext.industry}` : '',
-          contactContext?.topic ? `Тема вопроса: ${contactContext.topic}` : '',
-          contactContext?.question ? `Выбранный вопрос: ${contactContext.question}` : '',
-        ].filter(Boolean).join('\n\n'),
-        selectedIndustry: contactContext?.industry || '',
-        selectedQuestion: contactContext?.question || '',
-        selectedQuestionTopic: contactContext?.topic || '',
-        formName: 'Форма обратной связи',
-        consent: true,
-        website: honeypot, // Honeypot field
-      });
+      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot));
 
       if (!result.ok) {
         toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
