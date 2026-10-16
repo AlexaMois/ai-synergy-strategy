@@ -297,10 +297,10 @@ const NewHome = () => {
 
         <MarqueeText />
 
-        {/* КАК МЫ РАБОТАЕМ — чёрная плашка: заголовок сверху, картинка на всю ширину, пояснение снизу */}
+        {/* КАК МЫ РАБОТАЕМ — тёмная плашка в тот же тон, что «Узнаёте свой бизнес»: заголовок сверху, картинка на всю ширину, пояснение снизу */}
         <section className="px-4 md:px-6 py-10 md:py-14">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-ink overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               {/* мягкое бирюзовое свечение в зонах текста */}
               <div aria-hidden className="pointer-events-none absolute inset-0">
                 <div className="absolute -top-24 left-1/2 h-64 w-[420px] -translate-x-1/2 rounded-full bg-accent/15 blur-[110px]" />
@@ -312,7 +312,7 @@ const NewHome = () => {
                 </p>
                 <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
                   <span className="md:whitespace-nowrap">
-                    Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
+                    Человек → Процессы → Бизнес → <span className="font-iriska font-normal italic text-accent">Технологии</span>
                   </span>
                 </h2>
               </div>
@@ -325,7 +325,7 @@ const NewHome = () => {
                     height={681}
                     loading="eager"
                     fetchPriority="high"
-                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover"
+                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover mix-blend-screen"
                   />
                 </div>
               </div>
