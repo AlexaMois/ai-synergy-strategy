@@ -305,14 +305,13 @@ const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 // Разная ширина сообщений внутри колонки — как в живом чате.
 const widths = ["md:max-w-[92%]", "md:max-w-[78%]", "md:max-w-[84%]", "md:max-w-[76%]", "md:max-w-[88%]", "md:max-w-[80%]"];
 
-// Габариты окна переписки на компьютере одинаковы во всех вкладках: сообщения
-// стали крупнее, поэтому окно выровнено по самой высокой переписке (Производство),
-// чтобы блок не «прыгал» при переключении отраслей.
+// Габариты окна переписки на компьютере оставлены прежними: сообщения плотнее,
+// а свободное место равномерно распределяется между ними.
 const chatMinH: Record<string, string> = {
-  production: "md:min-h-[810px]",
-  transport: "md:min-h-[810px]",
-  construction: "md:min-h-[810px]",
-  services: "md:min-h-[810px]",
+  production: "md:min-h-[627.8px]",
+  transport: "md:min-h-[586.5px]",
+  construction: "md:min-h-[586.5px]",
+  services: "md:min-h-[627.8px]",
 };
 
 // Деликатная подсказка «на меня можно нажать»: сообщения мягко пульсируют по очереди.
@@ -388,30 +387,30 @@ const IndustryQuestions = () => {
 
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full ring-1 transition-all duration-300 ${
+        className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
           lit
             ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
-            : "bg-accent/10 ring-accent/40 text-accent group-hover:bg-accent/20 group-hover:ring-accent"
+            : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
         } ${pulsing ? "bubble-soft-pulse-icon" : ""}`}
       >
 
-        <Icon className="h-4 w-4 md:h-[18px] md:w-[18px]" strokeWidth={1.6} />
+        <Icon className="h-4 w-4" strokeWidth={1.6} />
       </span>
     );
     const bubbleEl = (
       <span
-        className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-5 md:pt-2.5 md:pb-2 text-sm md:text-[19px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[24px] ${
+        className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
           lit
             ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
-            : "bg-primary-dark text-background ring-1 ring-accent/25 group-hover:ring-accent/70 group-hover:brightness-[1.08]"
+            : "bg-background/[0.09] text-card ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
         } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"} ${pulsing ? "bubble-soft-pulse" : ""}`}
       >
 
-        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-primary-dark"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
+        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
         {item.short}
         <span
-          className={`mt-1 block text-right text-[11px] leading-none font-medium md:mt-[7px] md:ml-2 md:inline md:float-right md:text-[12px] ${
-            lit ? "text-accent-foreground/60" : "text-background/70"
+          className={`mt-1 block text-right text-[11px] leading-none font-medium md:mt-[6px] md:ml-2 md:inline md:float-right ${
+            lit ? "text-accent-foreground/60" : "text-card/50"
           }`}
         >
           {times[item.idx % times.length]}
@@ -432,7 +431,7 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex h-auto items-end gap-3 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
+        className={`group flex h-auto items-end gap-2.5 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
           side === "r" ? "self-end" : "self-start"
         }`}
       >
@@ -528,7 +527,7 @@ const IndustryQuestions = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col justify-between gap-3 md:gap-3.5 px-4 md:px-6 py-5 md:py-5">
+                <div className="flex flex-1 flex-col justify-between gap-3 md:gap-2.5 px-4 md:px-6 py-5 md:py-4">
                   {items.map((it) => <Bubble key={it.idx} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
                 </div>
               </div>
