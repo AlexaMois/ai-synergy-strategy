@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight, FileClock, Users, Table, BarChart3, Inbox, Truck,
-  MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, Wrench, type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, MousePointerClick } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
@@ -264,9 +261,8 @@ const industries: Industry[] = [
   },
 ];
 
-// Короткие формулировки для «пузырей» чата: иконка и подсветка по умолчанию.
-// Сторона иконки выводится из колонки: левая колонка — иконка слева, правая — справа.
-type BubbleCfg = { short: string; icon: LucideIcon; deco?: boolean };
+// Короткие формулировки для «пузырей» чата и подсветка по умолчанию.
+type BubbleCfg = { short: string; deco?: boolean };
 
 const bubbles: Record<string, BubbleCfg[]> = {
   production: [
@@ -399,20 +395,6 @@ const IndustryQuestions = () => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const pulsing = !isOpen && pulseIdx === item.idx;
-    const Icon = item.icon;
-
-    const iconEl = (
-      <span
-        className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
-          lit
-            ? "bg-accent/15 ring-accent text-accent"
-            : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
-        } ${pulsing ? "bubble-soft-pulse-icon" : ""}`}
-      >
-
-        <Icon className="h-4 w-4" strokeWidth={1.6} />
-      </span>
-    );
     const bubbleEl = (
       <span
         className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
@@ -452,17 +434,7 @@ const IndustryQuestions = () => {
           side === "r" ? "self-end" : "self-start"
         }`}
       >
-        {side === "l" ? (
-          <>
-            {iconEl}
-            {bubbleEl}
-          </>
-        ) : (
-          <>
-            {bubbleEl}
-            {iconEl}
-          </>
-        )}
+        {bubbleEl}
       </Button>
     );
   };
@@ -532,9 +504,6 @@ const IndustryQuestions = () => {
               />
               <div ref={chatRef} className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
                 <div className="flex items-center gap-3 px-5 md:px-6 py-4 md:py-3 border-b border-background/10">
-                  <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
-                    <MousePointerClick className="h-4 w-4" />
-                  </span>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-background leading-tight">Вопросы собственников · {industry.label}</p>
                     <p className="text-xs text-background/50 flex items-center gap-1.5">
