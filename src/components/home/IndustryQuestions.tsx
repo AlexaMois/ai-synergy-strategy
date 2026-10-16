@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, FileClock, Users, Table, BarChart3, Inbox, Truck,
@@ -309,6 +309,12 @@ const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 // Разная ширина сообщений внутри колонки — как в живом чате.
 const widths = ["md:max-w-[92%]", "md:max-w-[78%]", "md:max-w-[84%]", "md:max-w-[76%]", "md:max-w-[88%]", "md:max-w-[80%]"];
 
+// Деликатная подсказка «на меня можно нажать»: сообщения мягко пульсируют по очереди.
+const PULSE_FIRST_MS = 1200;
+const PULSE_ON_MS = 3000;
+const PULSE_GAP_MS = 2400;
+
+
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
@@ -319,18 +325,70 @@ const IndustryQuestions = () => {
   const openItem = openIdx !== null ? industry.questions[openIdx] : null;
   const items = industry.questions.map((q, i) => ({ q, idx: i, ...bubbles[industry.id][i] }));
 
+  const chatRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const [pulseIdx, setPulseIdx] = useState<number | null>(null);
+
+  // Пульсируют два сообщения, уже подсвеченных бирюзой, — по очереди.
+  const pulseTargets = useMemo(() => {
+    const lit = (bubbles[activeId] ?? [])
+      .map((b, i) => (b.deco ? i : -1))
+      .filter((i) => i >= 0)
+      .slice(0, 2);
+    return lit.length > 1 ? lit : [];
+  }, [activeId]);
+
+  useEffect(() => {
+    const el = chatRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setPulseIdx(null);
+    if (touched || !inView || pulseTargets.length < 2) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+    let stop = false;
+    let timer = 0;
+    let step = 0;
+    const next = () => {
+      if (stop) return;
+      setPulseIdx(pulseTargets[step % pulseTargets.length]);
+      step += 1;
+      timer = window.setTimeout(() => {
+        setPulseIdx(null);
+        timer = window.setTimeout(next, PULSE_GAP_MS);
+      }, PULSE_ON_MS);
+    };
+    timer = window.setTimeout(next, PULSE_FIRST_MS);
+    return () => {
+      stop = true;
+      window.clearTimeout(timer);
+    };
+  }, [activeId, touched, inView, pulseTargets]);
+
+
   const Bubble = ({ item, side }: { item: (typeof items)[number]; side: "l" | "r" }) => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
+    const pulsing = !isOpen && pulseIdx === item.idx;
     const Icon = item.icon;
+
     const iconEl = (
       <span
         className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
           lit
             ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
             : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
-        }`}
+        } ${pulsing ? "bubble-soft-pulse-icon" : ""}`}
       >
+
         <Icon className="h-4 w-4" strokeWidth={1.6} />
       </span>
     );
@@ -340,8 +398,9 @@ const IndustryQuestions = () => {
           lit
             ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
             : "bg-background/[0.09] text-background ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
-        } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"}`}
+        } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"} ${pulsing ? "bubble-soft-pulse" : ""}`}
       >
+
         <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
         <span className="block">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
@@ -451,7 +510,7 @@ const IndustryQuestions = () => {
                 loading="lazy"
                 className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36 drop-shadow-[0_0_40px_hsl(var(--accent)/0.4)]"
               />
-              <div className="relative rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden">
+              <div ref={chatRef} className="relative rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden">
                 <div className="flex items-center gap-3 px-5 md:px-6 py-4 border-b border-background/10">
                   <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
                     <MousePointerClick className="h-4 w-4" />
