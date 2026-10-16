@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Phone } from "lucide-react";
+import {
+  ArrowRight, FileClock, Users, Table, BarChart3, AlertTriangle, Inbox, Truck,
+  MessageSquare, HardHat, Package, CalendarClock, Wallet, type LucideIcon,
+} from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 
 interface CaseRef {
@@ -246,144 +249,197 @@ const industries: Industry[] = [
   },
 ];
 
-// Вопросы — не карточки, а «рукописные» строки: разный размер и лёгкий наклон,
-// чтобы выглядело как хаотично написанные от руки заметки.
-const questionStyles = [
-  "text-2xl md:text-3xl md:rotate-[-1.2deg]",
-  "text-xl md:text-2xl md:rotate-[0.8deg]",
-  "text-2xl md:text-[1.7rem] md:rotate-[-0.6deg]",
-  "text-xl md:text-2xl md:rotate-[1.1deg]",
-  "text-2xl md:text-3xl md:rotate-[-0.9deg]",
-  "text-xl md:text-[1.6rem] md:rotate-[0.7deg]",
-];
+// Короткие формулировки для «пузырей» чата и иконки — по порядку вопросов.
+const bubbles: Record<string, { short: string; icon: LucideIcon }[]> = {
+  production: [
+    { short: "Статус заказа уточняете вручную?", icon: FileClock },
+    { short: "Документы и инструкции ищутся слишком долго?", icon: Users },
+    { short: "Смены и задачи ведёте в таблицах?", icon: Table },
+    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3 },
+    { short: "Знания сильных сотрудников нигде не зафиксированы?", icon: Users },
+    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle },
+  ],
+  transport: [
+    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox },
+    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck },
+    { short: "Командировки оформляются в переписке?", icon: MessageSquare },
+    { short: "Документы по рейсам теряются при передаче?", icon: FileClock },
+    { short: "Статус для клиента собираете у трёх сотрудников?", icon: Users },
+    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3 },
+  ],
+  construction: [
+    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat },
+    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle },
+    { short: "Материалы списаны, а по факту не сходится?", icon: Package },
+    { short: "Нужную версию документа не найти?", icon: FileClock },
+    { short: "Подрядчики отчитываются кто как может?", icon: Users },
+    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock },
+  ],
+  services: [
+    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users },
+    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare },
+    { short: "Расписание держится в голове администратора?", icon: CalendarClock },
+    { short: "Повторные клиенты теряются?", icon: Inbox },
+    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3 },
+    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet },
+  ],
+};
+
+const times = ["10:24", "10:26", "10:28", "10:31", "10:32"];
+// Лёгкий «хаотичный» сдвиг пузырей по горизонтали
+const offsets = ["md:ml-0", "md:ml-10", "md:ml-6", "md:ml-0", "md:ml-8", "md:ml-4"];
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const industry = industries.find((i) => i.id === activeId) ?? industries[0];
   const openItem = openIdx !== null ? industry.questions[openIdx] : null;
+  const items = industry.questions.map((q, i) => ({ q, idx: i, ...bubbles[industry.id][i] }));
+  const left = items.filter((_, i) => i % 2 === 0);
+  const right = items.filter((_, i) => i % 2 === 1);
+  const lastIdx = items.length - 1;
+
+  const Bubble = ({ item, side, pos }: { item: (typeof items)[number]; side: "l" | "r"; pos: number }) => {
+    const isOpen = openIdx === item.idx;
+    const Icon = item.icon;
+    const iconEl = (
+      <span
+        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full ring-1 transition-colors ${
+          isOpen ? "bg-accent/15 ring-accent/40 text-accent" : "bg-white/5 ring-white/10 text-white/80"
+        }`}
+      >
+        <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.6} />
+      </span>
+    );
+    return (
+      <button
+        type="button"
+        onClick={() => setOpenIdx(isOpen ? null : item.idx)}
+        className={`group flex items-center gap-3 md:gap-4 w-full text-left ${offsets[(pos * 2 + (side === "r" ? 1 : 0)) % offsets.length]} ${
+          side === "r" ? "flex-row-reverse md:ml-0" : ""
+        }`}
+      >
+        {iconEl}
+        <span
+          className={`relative flex-1 max-w-md px-5 md:px-7 py-4 md:py-5 text-base md:text-lg leading-snug transition-all duration-300 ring-1 ${
+            side === "l" ? "rounded-2xl rounded-bl-sm" : "rounded-2xl rounded-br-sm"
+          } ${
+            isOpen
+              ? "bg-accent/15 ring-accent text-white shadow-[0_0_30px_-6px_hsl(var(--accent)/0.6)]"
+              : "bg-white/[0.06] ring-white/10 text-white/90 group-hover:ring-accent/50"
+          }`}
+        >
+          <span className="block pr-12">{item.short}</span>
+          {item.idx === lastIdx && !isOpen ? (
+            <span className="absolute right-5 bottom-1/2 translate-y-1/2 flex gap-1">
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span className="w-2 h-2 rounded-full bg-accent/40" />
+            </span>
+          ) : (
+            <span className="absolute right-4 bottom-3 text-xs text-white/50">
+              {times[item.idx % times.length]}
+            </span>
+          )}
+        </span>
+      </button>
+    );
+  };
 
   return (
     <section className="px-4 md:px-6 py-16 md:py-24">
       <div className="container mx-auto max-w-7xl">
-        <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
-          <div className="max-w-3xl mb-10 md:mb-12">
-            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-              Отрасли
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
-              Узнаёте{" "}
-              <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
+        <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
+          <svg aria-hidden className="pointer-events-none absolute inset-0 w-full h-full opacity-30" viewBox="0 0 1200 800" preserveAspectRatio="none">
+            <path d="M600 800 C 900 600, 1000 300, 1200 100" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" />
+            <path d="M0 700 C 300 600, 500 750, 800 650" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.3" />
+          </svg>
+
+          <div className="relative">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Отрасли</p>
+            <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] mb-5">
+              Узнаёте <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
             </h2>
-            <p className="text-base md:text-lg text-white/70">
-              Выберите свою сферу и найдите задачи, которые каждый день
-              приходится решать вам и вашей команде.
+            <p className="text-base md:text-xl text-white/70 max-w-3xl mb-8">
+              Выберите свою сферу и найдите задачи, которые каждый день приходится решать вам и вашей команде.
             </p>
-          </div>
 
-          <div className="flex flex-wrap gap-2.5 md:gap-3 mb-4 md:mb-6">
-            {industries.map((ind) => (
-              <button
-                key={ind.id}
-                type="button"
-                onClick={() => {
-                  setActiveId(ind.id);
-                  setOpenIdx(null);
-                }}
-                className={`px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
-                  activeId === ind.id
-                    ? "bg-accent border-accent text-accent-foreground shadow-card"
-                    : "bg-transparent border-white/25 text-white/80 hover:border-accent/70 hover:text-white"
-                }`}
-              >
-                {ind.label}
-              </button>
-            ))}
-          </div>
-
-          <p className="text-sm text-white/60 mb-8 md:mb-10">
-            Нажмите на вопрос, чтобы увидеть, что можно сделать
-          </p>
-
-          <div className="flex flex-wrap items-baseline gap-x-8 gap-y-5 md:gap-x-12 md:gap-y-7">
-            {industry.questions.map((item, idx) => {
-              const isOpen = openIdx === idx;
-              return (
+            <div className="flex flex-wrap gap-3 mb-5">
+              {industries.map((ind) => (
                 <button
-                  key={item.q}
+                  key={ind.id}
                   type="button"
-                  onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className={`text-left font-iriska italic leading-snug transition-all duration-300 hover:text-accent hover:md:rotate-0 ${
-                    questionStyles[idx % questionStyles.length]
-                  } ${isOpen ? "text-accent" : "text-white/90"}`}
+                  onClick={() => {
+                    setActiveId(ind.id);
+                    setOpenIdx(null);
+                  }}
+                  className={`px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
+                    activeId === ind.id
+                      ? "bg-accent border-accent text-accent-foreground"
+                      : "bg-transparent border-white/25 text-white hover:border-accent/70"
+                  }`}
                 >
-                  {item.q}
+                  {ind.label}
                 </button>
-              );
-            })}
-          </div>
+              ))}
+            </div>
 
-          {openItem && (
-            <div className="mt-10 md:mt-12 rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
-                    Что решим
-                  </p>
-                  <p className="text-base text-white/70 leading-relaxed">
-                    {openItem.problem}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
-                    Что изменится
-                  </p>
-                  <p className="text-base text-white leading-relaxed">
-                    {openItem.change}
-                  </p>
-                </div>
+            <p className="text-sm text-white/60 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
+
+            <div className="grid md:grid-cols-2 gap-5 md:gap-x-16">
+              <div className="flex flex-col gap-5">
+                {left.map((it, i) => <Bubble key={it.short} item={it} side="l" pos={i} />)}
               </div>
+              <div className="flex flex-col gap-5 md:pt-4 md:items-end">
+                {right.map((it, i) => <Bubble key={it.short} item={it} side="r" pos={i} />)}
+              </div>
+            </div>
 
-              {openItem.caseRef && (
-                <div className="mt-6 rounded-xl bg-accent/10 ring-1 ring-accent/20 p-5">
-                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1.5">
-                    Похожий проект
-                  </p>
-                  <p className="text-sm font-semibold text-white leading-snug">
-                    {openItem.caseRef.title}
-                  </p>
-                  <p className="mt-1 text-sm text-white/70 leading-relaxed">
-                    {openItem.caseRef.text}
-                  </p>
-                  {openItem.caseRef.metric && (
-                    <p className="mt-2 text-sm font-semibold text-accent">
-                      {openItem.caseRef.metric}
-                    </p>
-                  )}
-                  {openItem.caseRef.to && (
-                    <Link
-                      to={openItem.caseRef.to}
-                      className="mt-2 inline-flex items-center text-sm font-semibold text-accent hover:underline"
-                    >
-                      Читать кейс <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  )}
+            {openItem && (
+              <div className="mt-10 rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 md:p-8">
+                <p className="font-semibold text-white text-lg mb-5">{openItem.q}</p>
+                <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">Что решим</p>
+                    <p className="text-base text-white/70 leading-relaxed">{openItem.problem}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">Что изменится</p>
+                    <p className="text-base text-white leading-relaxed">{openItem.change}</p>
+                  </div>
                 </div>
-              )}
+                {openItem.caseRef && (
+                  <div className="mt-6 rounded-xl bg-accent/10 ring-1 ring-accent/20 p-5">
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1.5">Похожий проект</p>
+                    <p className="text-sm font-semibold text-white leading-snug">{openItem.caseRef.title}</p>
+                    <p className="mt-1 text-sm text-white/70 leading-relaxed">{openItem.caseRef.text}</p>
+                    {openItem.caseRef.metric && (
+                      <p className="mt-2 text-sm font-semibold text-accent">{openItem.caseRef.metric}</p>
+                    )}
+                    {openItem.caseRef.to && (
+                      <Link to={openItem.caseRef.to} className="mt-2 inline-flex items-center text-sm font-semibold text-accent hover:underline">
+                        Читать кейс <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
+            <div className="mt-12 flex justify-center items-center gap-4">
+              <svg aria-hidden width="28" height="40" viewBox="0 0 28 40" className="text-accent hidden sm:block">
+                <path d="M14 2 L24 12 M4 20 L22 22 M8 36 L22 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              </svg>
               <button
                 type="button"
                 onClick={() => openTaskModal()}
-                className="group mt-6 inline-flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full font-semibold text-sm md:text-base shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
+                className="inline-flex items-center gap-3 px-10 md:px-16 py-4 md:py-5 rounded-full font-semibold text-base md:text-lg bg-accent text-accent-foreground shadow-[0_0_40px_-8px_hsl(var(--accent)/0.7)] hover:-translate-y-0.5 transition-all duration-300"
               >
-                <span>Обсудить такую задачу</span>
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
-                  <Phone className="h-3.5 w-3.5" />
-                </span>
+                Обсудить свою задачу <ArrowRight className="h-5 w-5" />
               </button>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </section>
