@@ -301,7 +301,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 
 // Разная ширина сообщений внутри колонки — как в живом чате.
-const widths = ["md:max-w-[88%]", "md:max-w-[65%]", "md:max-w-[72%]", "md:max-w-[64%]", "md:max-w-[80%]", "md:max-w-[74%]"];
+const widths = ["md:max-w-[92%]", "md:max-w-[78%]", "md:max-w-[84%]", "md:max-w-[76%]", "md:max-w-[88%]", "md:max-w-[80%]"];
 
 
 const IndustryQuestions = () => {
@@ -319,18 +319,18 @@ const IndustryQuestions = () => {
     const Icon = item.icon;
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ring-1 transition-all duration-300 ${
+        className={`shrink-0 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full ring-1 transition-all duration-300 ${
           lit
             ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
             : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
         }`}
       >
-        <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
+        <Icon className="h-4 w-4" strokeWidth={1.6} />
       </span>
     );
     const bubbleEl = (
       <span
-        className={`relative min-w-0 px-5 md:px-6 pt-4 pb-3 text-[15px] md:text-base font-medium leading-relaxed transition-all duration-300 rounded-[22px] ${
+        className={`relative min-w-0 px-4 md:px-5 pt-2.5 pb-2 text-sm md:text-[15px] font-medium leading-snug transition-all duration-300 rounded-[22px] ${
           lit
             ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
             : "bg-background/[0.09] text-background ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
@@ -361,7 +361,7 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex h-auto items-end gap-3 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
+        className={`group flex h-auto items-end gap-2.5 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
           side === "r" ? "self-end" : "self-start"
         }`}
       >
@@ -381,9 +381,9 @@ const IndustryQuestions = () => {
   };
 
   return (
-    <section className="px-4 md:px-6 py-16 md:py-24">
+    <section className="px-4 md:px-6 py-12 md:py-16">
       <div className="container mx-auto max-w-7xl">
-        <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
+        <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-10 lg:px-14 py-12 md:py-14">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute -top-24 right-16 h-72 w-72 rounded-full bg-accent/20 blur-[120px]" />
             <div className="absolute top-1/3 left-1/3 h-80 w-80 rounded-full bg-accent/10 blur-[140px]" />
