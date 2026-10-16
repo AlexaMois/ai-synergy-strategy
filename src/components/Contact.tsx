@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import PillButton from "@/components/PillButton";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
@@ -47,18 +47,48 @@ const formatPhoneNumber = (value: string): string => {
 };
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+const CONTACT_CONTEXT_STORAGE_KEY = "aleksamois.contactContext";
+const CONTACT_CONTEXT_EVENT = "aleksamois:contact-context";
 
-const contactSchema = z.object({
+const optionalText = (max: number) => z.string().trim().max(max, `Максимум ${max} символов`).optional().or(z.literal(""));
+
+export const contactSchema = z.object({
   name: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
-  company: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
-  industry: z.string().trim().min(1, "Обязательное поле").max(100, "Максимум 100 символов"),
+  company: optionalText(100),
+  industry: optionalText(100),
   phone: z.string().regex(phoneRegex, "Введите номер в формате +7 (XXX) XXX-XX-XX"),
-  email: z.string().trim().email("Введите корректный email").max(255, "Максимум 255 символов"),
-  comment: z.string().trim().max(1000, "Максимум 1000 символов").optional(),
+  email: z.string().trim().email("Введите корректный email").max(255, "Максимум 255 символов").optional().or(z.literal("")),
+  comment: z.string().trim().min(1, "Опишите задачу").max(1000, "Максимум 1000 символов"),
   consent: z.boolean().refine(val => val === true, "Необходимо согласие на обработку данных")
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+type ContactContext = {
+  industry: string;
+  question: string;
+  topic: string;
+};
+
+export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string) => ({
+  name: data.name.trim(),
+  phone: data.phone,
+  email: data.email?.trim() || '',
+  company: data.company?.trim() || '',
+  industry: data.industry?.trim() || contactContext?.industry || '',
+  task: [
+    data.comment.trim(),
+    contactContext?.industry ? `Выбранная отрасль: ${contactContext.industry}` : '',
+    contactContext?.topic ? `Тема вопроса: ${contactContext.topic}` : '',
+    contactContext?.question ? `Выбранный вопрос: ${contactContext.question}` : '',
+  ].filter(Boolean).join('\n\n'),
+  selectedIndustry: contactContext?.industry || '',
+  selectedQuestion: contactContext?.question || '',
+  selectedQuestionTopic: contactContext?.topic || '',
+  formName: 'Форма обратной связи',
+  consent: true,
+  website: honeypot,
+});
 
 interface ContactProps {
   defaultComment?: string;
@@ -67,7 +97,7 @@ interface ContactProps {
 const Contact = ({ defaultComment = "" }: ContactProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const location = useLocation();
+  const [contactContext, setContactContext] = useState<ContactContext | null>(null);
   
   const {
     ref,
@@ -99,30 +129,48 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   const consentValue = watch("consent");
   const phoneValue = watch("phone");
 
+  const readContactContext = () => {
+    if (typeof window === "undefined") return;
+    const raw = window.sessionStorage.getItem(CONTACT_CONTEXT_STORAGE_KEY);
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw) as Partial<ContactContext>;
+      const nextContext: ContactContext = {
+        industry: typeof parsed.industry === "string" ? parsed.industry : "",
+        question: typeof parsed.question === "string" ? parsed.question : "",
+        topic: typeof parsed.topic === "string" ? parsed.topic : "",
+      };
+      if (!nextContext.industry && !nextContext.question) return;
+      setContactContext(nextContext);
+      if (nextContext.industry && !watch("industry")) {
+        setValue("industry", nextContext.industry, { shouldValidate: false });
+      }
+    } catch {
+      setContactContext(null);
+    }
+  };
+
+  useEffect(() => {
+    readContactContext();
+    window.addEventListener(CONTACT_CONTEXT_EVENT, readContactContext);
+    return () => window.removeEventListener(CONTACT_CONTEXT_EVENT, readContactContext);
+  }, []);
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
-    setValue("phone", formatted, { shouldValidate: false });
+    setValue("phone", formatted, { shouldValidate: true });
   };
 
   // Honeypot state - hidden from users, bots will fill it
   const [honeypot, setHoneypot] = useState("");
 
   const onSubmit = async (data: ContactFormData) => {
+    if (isSubmitting) return;
     setIsSubmitting(true);
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
-      const result = await submitForm('short-lead', {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        company: data.company,
-        industry: data.industry,
-        task: data.comment || '',
-        formName: 'Форма обратной связи',
-        consent: true,
-        website: honeypot, // Honeypot field
-      });
+      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot));
 
       if (!result.ok) {
         toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
@@ -169,12 +217,11 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
             {/* Левая колонка - текст */}
             <div className={`${getStaggeredClass(1, 'animate-fade-in-up')}`}>
               <h2 className="section-title mb-4">
-                Будем <span className="font-semibold">на связи</span>
+                Расскажите, <span className="font-semibold">какую задачу хотите решить</span>
               </h2>
               <p className="text-foreground text-lg">
-                Оставьте свои контакты, и я свяжусь с вами, чтобы обсудить задачу
-                и понять, какой формат подойдёт: стратегическая встреча, стратегия
-                цифрового развития, аудит, обучение, внедрение или сопровождение.
+                Опишите, что сейчас отнимает время, мешает работе или приводит к лишним расходам.
+                Обсудим возможное решение и сориентируем по дальнейшим шагам.
               </p>
             </div>
 
@@ -183,6 +230,22 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               onSubmit={handleSubmit(onSubmit)} 
               className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
+            <div className="space-y-2 mb-4 sm:mb-6">
+              <Label htmlFor="comment" className="text-foreground">
+                Описание задачи <span className="text-primary">*</span>
+              </Label>
+              <Textarea
+                id="comment"
+                placeholder="Что сейчас отнимает время, мешает работе или приводит к лишним расходам?"
+                rows={5}
+                {...register("comment")}
+                className={errors.comment ? "border-destructive" : ""}
+              />
+              {errors.comment && (
+                <p className="text-sm text-destructive">{errors.comment.message}</p>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Имя */}
               <div className="space-y-2">
@@ -197,38 +260,6 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                 />
                 {errors.name && (
                   <p className="text-sm text-destructive">{errors.name.message}</p>
-                )}
-              </div>
-
-              {/* Компания */}
-              <div className="space-y-2">
-                <Label htmlFor="company" className="text-foreground">
-                  Компания <span className="text-primary">*</span>
-                </Label>
-                <Input
-                  id="company"
-                  placeholder="Название компании"
-                  {...register("company")}
-                  className={errors.company ? "border-destructive" : ""}
-                />
-                {errors.company && (
-                  <p className="text-sm text-destructive">{errors.company.message}</p>
-                )}
-              </div>
-
-              {/* Отрасль */}
-              <div className="space-y-2">
-                <Label htmlFor="industry" className="text-foreground">
-                  Отрасль <span className="text-primary">*</span>
-                </Label>
-                <Input
-                  id="industry"
-                  placeholder="Сфера деятельности"
-                  {...register("industry")}
-                  className={errors.industry ? "border-destructive" : ""}
-                />
-                {errors.industry && (
-                  <p className="text-sm text-destructive">{errors.industry.message}</p>
                 )}
               </div>
 
@@ -249,40 +280,55 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   <p className="text-sm text-destructive">{errors.phone.message}</p>
                 )}
               </div>
-            </div>
 
-            {/* Email - full width */}
-            <div className="space-y-2 mb-4 sm:mb-6">
-              <Label htmlFor="email" className="text-foreground">
-                Email <span className="text-primary">*</span>
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                {...register("email")}
-                className={errors.email ? "border-destructive" : ""}
-              />
-              {errors.email && (
-                <p className="text-sm text-destructive">{errors.email.message}</p>
-              )}
-            </div>
+              {/* Компания */}
+              <div className="space-y-2">
+                <Label htmlFor="company" className="text-foreground">
+                  Компания
+                </Label>
+                <Input
+                  id="company"
+                  placeholder="Название компании"
+                  {...register("company")}
+                  className={errors.company ? "border-destructive" : ""}
+                />
+                {errors.company && (
+                  <p className="text-sm text-destructive">{errors.company.message}</p>
+                )}
+              </div>
 
-            {/* Комментарий - full width */}
-            <div className="space-y-2 mb-4 sm:mb-6">
-              <Label htmlFor="comment" className="text-foreground">
-                Комментарий
-              </Label>
-              <Textarea
-                id="comment"
-                placeholder="Расскажите о вашей задаче"
-                rows={4}
-                {...register("comment")}
-                className={errors.comment ? "border-destructive" : ""}
-              />
-              {errors.comment && (
-                <p className="text-sm text-destructive">{errors.comment.message}</p>
-              )}
+              {/* Отрасль */}
+              <div className="space-y-2">
+                <Label htmlFor="industry" className="text-foreground">
+                  Отрасль
+                </Label>
+                <Input
+                  id="industry"
+                  placeholder="Сфера деятельности"
+                  {...register("industry")}
+                  className={errors.industry ? "border-destructive" : ""}
+                />
+                {errors.industry && (
+                  <p className="text-sm text-destructive">{errors.industry.message}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="email" className="text-foreground">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  {...register("email")}
+                  className={errors.email ? "border-destructive" : ""}
+                />
+                {errors.email && (
+                  <p className="text-sm text-destructive">{errors.email.message}</p>
+                )}
+              </div>
             </div>
 
             {/* Honeypot field - hidden from users, catches bots */}
@@ -306,7 +352,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   <Checkbox
                     id="consent"
                     checked={consentValue}
-                    onCheckedChange={(checked) => setValue("consent", checked as boolean)}
+                    onCheckedChange={(checked) => setValue("consent", checked as boolean, { shouldValidate: true })}
                     className={errors.consent ? "border-destructive" : ""}
                   />
                   <Label htmlFor="consent" className="text-sm text-foreground leading-relaxed cursor-pointer">
@@ -328,7 +374,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                 disabled={isSubmitting}
                 className="w-full md:w-auto justify-between md:justify-center shrink-0"
               >
-                {isSubmitting ? "Отправка..." : "Отправить"}
+                {isSubmitting ? "Отправка..." : "Обсудить задачу"}
               </PillButton>
             </div>
             </form>
