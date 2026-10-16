@@ -401,12 +401,12 @@ const IndustryQuestions = () => {
       <span
         className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
           lit
-            ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
+            ? "bg-primary-dark text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
             : "bg-background/[0.09] text-card ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
         } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"} ${pulsing ? "bubble-soft-pulse" : ""}`}
       >
 
-        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
+        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-primary-dark" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
         {item.short}
         <span
           className={`mt-1 block text-right text-[11px] leading-none font-medium md:mt-[6px] md:ml-2 md:inline md:float-right ${
