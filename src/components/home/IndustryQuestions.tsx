@@ -305,20 +305,17 @@ const IndustryQuestions = () => {
   const items = industry.questions.map((q, i) => ({ q, idx: i, ...bubbles[industry.id][i] }));
   const left = items.filter((_, i) => i % 2 === 0);
   const right = items.filter((_, i) => i % 2 === 1);
-  const lastIdx = items.length - 1;
 
-  const Bubble = ({ item }: { item: (typeof items)[number] }) => {
+  const Bubble = ({ item, side }: { item: (typeof items)[number]; side: "l" | "r" }) => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
-    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10 group-hover:bg-white/[0.16]";
-    const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ring-1 transition-colors ${
+        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ring-1 transition-all duration-300 ${
           lit
-            ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
-            : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
+            ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
+            : "bg-white/[0.06] ring-white/15 text-white/70 group-hover:ring-accent/70 group-hover:text-accent"
         }`}
       >
         <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
@@ -326,34 +323,23 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 min-w-0 px-4 md:px-5 py-3 md:py-3.5 text-[15px] md:text-[15px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
-        }`}
+        className={`relative flex-1 min-w-0 px-5 md:px-6 py-3.5 md:py-4 text-[15px] font-medium leading-snug transition-all duration-300 rounded-[20px] ${
+          lit
+            ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
+            : "bg-white/[0.09] text-white ring-1 ring-white/10 group-hover:bg-white/[0.14] group-hover:ring-accent/50"
+        } ${side === "l" ? "rounded-bl-md" : "rounded-br-md"}`}
       >
-        <span className="block pr-10 md:pr-5">{item.short}</span>
+        <span className="block pr-12">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
-        {item.idx === lastIdx && !isOpen ? (
-          <span className="absolute right-5 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
-          </span>
-        ) : (
-          <span className="absolute right-4 bottom-2 text-xs font-medium text-white/45">
-            {times[item.idx % times.length]}
-          </span>
-        )}
-        <svg
-          aria-hidden
-          viewBox="0 0 22 18"
-          className={`absolute bottom-1 h-[18px] w-[22px] ${tail} ${
-            item.side === "r" ? "-right-[15px] -scale-x-100" : "-left-[15px]"
+        <span
+          className={`absolute right-4 bottom-2 text-[11px] font-medium ${
+            lit ? "text-accent-foreground/50" : "text-white/40"
           }`}
         >
-          <path d="M22 0 C 20 9, 11 14, 0 17 C 12 13, 19 8, 22 0 Z" fill="currentColor" />
-        </svg>
+          {times[item.idx % times.length]}
+        </span>
       </span>
     );
     return (
@@ -363,17 +349,19 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
+        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${widths[item.idx % widths.length]} ${
+          side === "r" ? "md:self-end md:flex-row-reverse" : ""
+        }`}
       >
-        {item.side === "l" ? (
+        {side === "l" ? (
           <>
             {iconEl}
             {bubbleEl}
           </>
         ) : (
           <>
-            {bubbleEl}
             {iconEl}
+            {bubbleEl}
           </>
         )}
       </button>
