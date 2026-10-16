@@ -382,10 +382,10 @@ const IndustryQuestions = () => {
             <div className="absolute top-1/3 left-1/3 h-80 w-80 rounded-full bg-accent/10 blur-[140px]" />
             <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-accent/15 blur-[120px]" />
             <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 1200 800" preserveAspectRatio="none">
-              <path d="M660 0 C 820 120, 960 90, 1200 240" stroke="hsl(var(--accent))" strokeWidth="1.2" fill="none" opacity="0.5" />
-              <path d="M520 140 C 640 340, 470 520, 640 720" stroke="hsl(var(--accent))" strokeWidth="1.2" fill="none" opacity="0.35" />
-              <path d="M0 620 C 210 560, 340 700, 540 640" stroke="hsl(var(--accent))" strokeWidth="1.2" fill="none" opacity="0.4" />
-              <path d="M760 380 C 900 480, 1000 420, 1200 560" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.3" />
+              <path d="M700 0 C 860 90, 980 140, 1200 200" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.45" />
+              <path d="M560 120 C 660 320, 480 480, 620 700" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.28" />
+              <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
+              <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
             </svg>
           </div>
 
