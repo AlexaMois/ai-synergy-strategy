@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
+import chatDeco from "@/assets/industry-chat-deco.png";
 
 interface CaseRef {
   title: string;
@@ -382,6 +383,14 @@ const IndustryQuestions = () => {
               <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
               <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
             </svg>
+            <img
+              src={chatDeco}
+              alt=""
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="absolute -top-6 right-2 md:right-8 w-40 md:w-64 lg:w-72 opacity-90 drop-shadow-[0_0_45px_hsl(var(--accent)/0.35)]"
+            />
           </div>
 
           <div className="relative">
@@ -418,10 +427,10 @@ const IndustryQuestions = () => {
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
               <div className="flex flex-col gap-4 md:gap-5">
-                {left.map((it) => <Bubble key={it.short} item={it} />)}
+                {left.map((it) => <Bubble key={it.short} item={it} side="l" />)}
               </div>
-              <div className="flex flex-col gap-4 md:gap-5">
-                {right.map((it) => <Bubble key={it.short} item={it} />)}
+              <div className="flex flex-col gap-4 md:gap-5 md:pt-8">
+                {right.map((it) => <Bubble key={it.short} item={it} side="r" />)}
               </div>
             </div>
 
