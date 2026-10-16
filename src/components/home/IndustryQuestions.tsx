@@ -305,6 +305,15 @@ const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 // Разная ширина сообщений внутри колонки — как в живом чате.
 const widths = ["md:max-w-[92%]", "md:max-w-[78%]", "md:max-w-[84%]", "md:max-w-[76%]", "md:max-w-[88%]", "md:max-w-[80%]"];
 
+// Габариты окна переписки на компьютере оставлены прежними: сообщения плотнее,
+// а свободное место равномерно распределяется между ними.
+const chatMinH: Record<string, string> = {
+  production: "md:min-h-[627.8px]",
+  transport: "md:min-h-[586.5px]",
+  construction: "md:min-h-[586.5px]",
+  services: "md:min-h-[627.8px]",
+};
+
 // Деликатная подсказка «на меня можно нажать»: сообщения мягко пульсируют по очереди.
 const PULSE_FIRST_MS = 1200;
 const PULSE_ON_MS = 3000;
@@ -390,24 +399,24 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative min-w-0 px-4 md:px-5 pt-2.5 pb-2 text-sm md:text-[15px] font-medium leading-snug transition-all duration-300 rounded-[22px] ${
+        className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
           lit
             ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
-            : "bg-background/[0.09] text-background ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
+            : "bg-background/[0.09] text-card ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
         } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"} ${pulsing ? "bubble-soft-pulse" : ""}`}
       >
 
         <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
-        <span className="block">{item.short}</span>
-        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
-          <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
-        </span>
+        {item.short}
         <span
-          className={`mt-1 flex justify-end text-[11px] leading-none font-medium ${
-            lit ? "text-accent-foreground/60" : "text-background/45"
+          className={`mt-1 block text-right text-[11px] leading-none font-medium md:mt-[6px] md:ml-2 md:inline md:float-right ${
+            lit ? "text-accent-foreground/60" : "text-card/50"
           }`}
         >
           {times[item.idx % times.length]}
+        </span>
+        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
+          <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
       </span>
     );
@@ -506,8 +515,8 @@ const IndustryQuestions = () => {
                 loading="lazy"
                 className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36 drop-shadow-[0_0_40px_hsl(var(--accent)/0.4)]"
               />
-              <div ref={chatRef} className="relative rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden">
-                <div className="flex items-center gap-3 px-5 md:px-6 py-4 border-b border-background/10">
+              <div ref={chatRef} className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
+                <div className="flex items-center gap-3 px-5 md:px-6 py-4 md:py-3 border-b border-background/10">
                   <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
                     <MousePointerClick className="h-4 w-4" />
                   </span>
@@ -518,7 +527,7 @@ const IndustryQuestions = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col gap-3 px-4 md:px-6 py-5 md:py-6">
+                <div className="flex flex-1 flex-col justify-between gap-3 md:gap-2.5 px-4 md:px-6 py-5 md:py-4">
                   {items.map((it) => <Bubble key={it.idx} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
                 </div>
               </div>
