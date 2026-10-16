@@ -391,19 +391,23 @@ const NewHome = () => {
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс · Архитектура · Капитальные затраты
+                    Кейс · Экономия бюджета
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Крайпотребсоюз</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Планировалась покупка серверного оборудования примерно за 1,5 млн ₽. Архитектура позволила отказаться от покупки.
+                    Собирались потратить 1,5 млн ₽ на сервер. А он оказался не нужен.
+                  </p>
+                  <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
+                    Разобрались, как решить задачи с документами и тендерами без покупки дорогого
+                    оборудования. Подобрали более экономичный вариант.
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
                     <div className="text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
-                    <p className="text-xs text-muted-foreground mt-1">разовой экономии капитальных затрат — за счёт отказа от покупки серверного оборудования</p>
+                    <p className="text-xs text-muted-foreground mt-1">Сохранено на покупке оборудования</p>
                   </div>
-                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
                 </div>
               </Link>
               <Link
@@ -412,17 +416,23 @@ const NewHome = () => {
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                    Кейс · Логистика · Заявки
+                    Кейс · Клиентские заявки
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Грузовой Экспресс</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Перевозчик на север. Вместо сложной CRM собрали рабочую схему: голос, Telegram и Excel.
+                    Клиенты обращались, а часть заявок терялась в сообщениях и голосовых.
+                  </p>
+                  <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
+                    Вместо сложной CRM сделали простую систему: сотрудники передают заявки голосом
+                    или текстом, а информация автоматически попадает в общий учёт.
                   </p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-accent leading-none">0% потерь заявок</div>
-                    <p className="text-xs text-muted-foreground mt-1">9–12 часов в неделю экономии на обработке заявок</p>
+                    <div className="text-2xl font-bold text-accent leading-none">0% потерянных заявок</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      9–12 часов рабочего времени экономится каждую неделю
+                    </p>
                   </div>
                   <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
                 </div>
