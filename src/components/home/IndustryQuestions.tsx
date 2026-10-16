@@ -312,7 +312,7 @@ const IndustryQuestions = () => {
       <span
         className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
           lit
-            ? "bg-accent/15 ring-accent/50 text-accent shadow-[0_0_26px_-8px_hsl(var(--accent)/0.9)]"
+            ? "bg-accent/15 ring-2 ring-accent text-accent shadow-[0_0_18px_-6px_hsl(var(--accent)/0.8)]"
             : "bg-white/5 ring-white/10 text-white/80"
         }`}
       >
@@ -321,28 +321,28 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 max-w-[420px] px-5 md:px-6 py-3 md:py-4 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-accent text-white shadow-[0_0_40px_-12px_hsl(var(--accent)/0.85)]" : "ring-white/10 text-white group-hover:ring-accent/50"
+        className={`relative flex-1 max-w-[330px] md:max-w-[360px] px-5 md:px-6 py-3.5 md:py-4 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+          lit ? "ring-2 ring-accent text-white shadow-[0_0_26px_-10px_hsl(var(--accent)/0.75)]" : "ring-white/10 text-white group-hover:ring-accent/50"
         }`}
       >
-        <span className="block pr-14">{item.short}</span>
+        <span className="block pr-12">{item.short}</span>
         {item.idx === lastIdx && !isOpen ? (
-          <span className="absolute right-4 bottom-1/2 translate-y-1/2 inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-1.5 ring-1 ring-accent/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span className="w-1.5 h-1.5 rounded-full bg-accent/40" />
+          <span className="absolute right-4 bottom-1/2 translate-y-1/2 inline-flex items-center gap-1.5 rounded-full bg-accent/25 px-3 py-2 ring-1 ring-accent/60">
+            <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_hsl(var(--accent)/0.9)]" />
+            <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_hsl(var(--accent)/0.9)]" />
+            <span className="w-2 h-2 rounded-full bg-accent/50" />
           </span>
         ) : (
-          <span className="absolute right-4 bottom-2 text-[11px] md:text-xs text-white/50">
+          <span className="absolute right-4 bottom-2 text-xs font-medium text-white/70">
             {times[item.idx % times.length]}
           </span>
         )}
         <span
           aria-hidden
-          className={`absolute bottom-2.5 h-3 w-3 ${bg} ${
+          className={`absolute bottom-2 h-4 w-5 ${bg} ${
             item.side === "r"
-              ? "-right-[7px] [clip-path:polygon(0_0,0_100%,100%_100%)]"
-              : "-left-[7px] [clip-path:polygon(100%_0,100%_100%,0_100%)]"
+              ? "-right-[10px] [clip-path:polygon(0_0,0_100%,100%_100%)]"
+              : "-left-[10px] [clip-path:polygon(100%_0,100%_100%,0_100%)]"
           }`}
         />
       </span>
