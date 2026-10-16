@@ -297,37 +297,41 @@ const NewHome = () => {
 
         <MarqueeText />
 
-        {/* КАК МЫ РАБОТАЕМ — тёмная плашка: текст слева, светящаяся цепочка иконок справа */}
+        {/* КАК МЫ РАБОТАЕМ — чёрная плашка: заголовок сверху, картинка на всю ширину, пояснение снизу */}
         <section className="px-4 md:px-6 py-10 md:py-14">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              {/* мягкое бирюзовое свечение фона */}
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-ink overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              {/* мягкое бирюзовое свечение в зонах текста */}
               <div aria-hidden className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 right-[6%] h-72 w-72 rounded-full bg-accent/15 blur-[110px]" />
-                <div className="absolute -bottom-28 right-[38%] h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+                <div className="absolute -top-24 left-1/2 h-64 w-[420px] -translate-x-1/2 rounded-full bg-accent/15 blur-[110px]" />
+                <div className="absolute -bottom-24 left-1/2 h-40 w-[520px] -translate-x-1/2 rounded-full bg-accent/10 blur-[90px]" />
               </div>
-              <div className="relative grid items-center gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-14">
-                <div className="max-w-xl">
-                  <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
-                  <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15] mb-6">
-                    <span className="md:whitespace-nowrap">Человек → Процессы →</span>
-                    <br className="hidden md:block" />{" "}
-                    <span className="md:whitespace-nowrap">Бизнес → <span className="text-accent">Технологии</span></span>
-                  </h2>
-                  <p className="text-base md:text-lg text-background/80 leading-relaxed">
-                    Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты —
-                    так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
-                  </p>
+              <div className="relative px-6 md:px-12 pt-10 md:pt-12 pb-7 md:pb-9 text-center">
+                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+                  Как мы работаем
+                </p>
+                <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
+                  <span className="md:whitespace-nowrap">
+                    Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
+                  </span>
+                </h2>
+              </div>
+              <div className="relative">
+                <div className="overflow-x-auto md:overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  <img
+                    src={synergyImg.url}
+                    alt="Синергия результата: человек, процессы, бизнес и технологии"
+                    width={1920}
+                    height={681}
+                    loading="lazy"
+                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover"
+                  />
                 </div>
-                <img
-                  src={synergyImg.url}
-                  alt="Синергия результата: человек, процессы, бизнес и технологии"
-                  width={1920}
-                  height={681}
-                  loading="lazy"
-                  className="w-full h-auto object-contain"
-                />
               </div>
+              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center xl:whitespace-nowrap">
+                Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
+                чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+              </p>
             </div>
           </div>
         </section>

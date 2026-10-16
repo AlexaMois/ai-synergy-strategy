@@ -81,6 +81,7 @@ export default {
         },
         "soft-sand": "hsl(var(--soft-sand))",
         "dark-bg": "hsl(var(--dark-bg))",
+        "ink": "hsl(var(--ink))",
         "light-bg": "hsl(var(--light-bg))",
         surface: {
           mint: "hsl(var(--surface-mint))",
