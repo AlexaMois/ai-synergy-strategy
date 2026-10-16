@@ -132,6 +132,7 @@ const Footer = () => {
           <p>© ИП Моисеева Александра Алексеевна, 2023–2026. Все права защищены.</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  </>;
 };
 export default Footer;

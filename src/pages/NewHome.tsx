@@ -13,7 +13,6 @@ import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import compassSketch from "@/assets/sketches/compass-sketch.webp";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
-import chatSketch from "@/assets/sketches/chat-sketch.webp";
 
 const stats: Array<{
   value: number;
