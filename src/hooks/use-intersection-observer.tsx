@@ -4,12 +4,16 @@ interface UseIntersectionObserverProps {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  /** Safety net: force-reveal after N ms even if the observer never fires
+   *  (e.g. full-page screenshots, headless captures). */
+  revealAfterMs?: number;
 }
 
 export const useIntersectionObserver = ({
   threshold = 0.1,
   rootMargin = '0px',
   triggerOnce = true,
+  revealAfterMs,
 }: UseIntersectionObserverProps = {}) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -40,10 +44,16 @@ export const useIntersectionObserver = ({
 
     observer.observe(element);
 
+    const timer =
+      revealAfterMs && revealAfterMs > 0
+        ? window.setTimeout(() => setIsVisible(true), revealAfterMs)
+        : undefined;
+
     return () => {
       observer.disconnect();
+      if (timer) window.clearTimeout(timer);
     };
-  }, [threshold, rootMargin, triggerOnce]);
+  }, [threshold, rootMargin, triggerOnce, revealAfterMs]);
 
   return { ref, isVisible };
 };

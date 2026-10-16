@@ -1170,14 +1170,14 @@
   }
   
   .partner-logo-placeholder {
-    height: 55px;
-    min-width: 140px;
-    margin: 0 40px;
+    height: 76px;
+    min-width: 180px;
+    margin: 0 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    filter: grayscale(100%);
-    opacity: 0.6;
+    filter: grayscale(100%) contrast(1.15);
+    opacity: 0.9;
     transition: all 0.3s ease;
   }
   

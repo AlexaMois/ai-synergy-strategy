@@ -5,6 +5,7 @@ interface UseMobileAnimationsProps {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  revealAfterMs?: number;
 }
 
 /**
@@ -15,11 +16,13 @@ export const useMobileAnimations = ({
   threshold = 0.1,
   rootMargin = "0px",
   triggerOnce = true,
+  revealAfterMs,
 }: UseMobileAnimationsProps = {}) => {
   const { ref, isVisible } = useIntersectionObserver({
     threshold,
     rootMargin,
     triggerOnce,
+    revealAfterMs,
   });
   const isMobile = useIsMobile();
 

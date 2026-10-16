@@ -323,7 +323,8 @@ const NewHome = () => {
                     alt="Синергия результата: человек, процессы, бизнес и технологии"
                     width={1920}
                     height={681}
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover"
                   />
                 </div>

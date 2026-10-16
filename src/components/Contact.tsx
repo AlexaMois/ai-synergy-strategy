@@ -73,7 +73,8 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     ref,
     getStaggeredClass
   } = useMobileAnimations({
-    threshold: 0.2
+    threshold: 0.2,
+    revealAfterMs: 2000
   });
 
   const {
