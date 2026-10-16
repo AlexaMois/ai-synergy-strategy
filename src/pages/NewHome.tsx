@@ -305,7 +305,7 @@ const NewHome = () => {
                 <div className="absolute -top-24 right-[6%] h-72 w-72 rounded-full bg-accent/15 blur-[110px]" />
                 <div className="absolute -bottom-28 right-[38%] h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
               </div>
-              <div className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-16">
+              <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-16">
                 <div className="max-w-xl">
                   <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
                   <h2 className="text-3xl md:text-4xl font-bold text-background leading-[1.15] mb-6">
@@ -318,7 +318,7 @@ const NewHome = () => {
                     так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-10">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-8">
                   {workSteps.map((step, i) => (
                     <div key={step.name} className="relative flex flex-col items-center text-center">
                       {i < workSteps.length - 1 && (
@@ -329,7 +329,7 @@ const NewHome = () => {
                       )}
                       <div className="relative">
                         <div aria-hidden className="absolute inset-2 rounded-full bg-accent/25 blur-2xl" />
-                        <img src={step.icon} alt={step.name} width={816} height={816} loading="lazy" className="relative h-24 w-24 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain" />
+                        <img src={step.icon} alt={step.name} width={816} height={816} loading="lazy" className="relative h-24 w-24 sm:h-28 sm:w-28 lg:h-28 lg:w-28 object-contain" />
                       </div>
                       <p className="mt-4 text-base sm:text-lg font-semibold text-background">{step.name}</p>
                       <p className="mt-1.5 max-w-[14rem] text-[13px] sm:text-sm leading-snug text-background/75">{step.desc}</p>
