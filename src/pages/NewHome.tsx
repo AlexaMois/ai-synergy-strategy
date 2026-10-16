@@ -125,7 +125,7 @@ const NewHome = () => {
                     Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
                   </h1>
                   <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-background/90 mb-4 md:mb-8 max-w-2xl leading-snug">
-                    Инженер и архитектор цифрового развития бизнеса
+                    Независимый инженер-архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-sm sm:text-base md:text-lg text-background/80 mb-6 md:mb-10 max-w-xl">
                     Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять цифровые решения с понятной пользой для бизнеса
