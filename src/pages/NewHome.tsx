@@ -312,7 +312,7 @@ const NewHome = () => {
                 </p>
                 <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
                   <span className="md:whitespace-nowrap">
-                    Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
+                    Человек → Процессы → Бизнес → <span className="font-iriska font-normal italic text-accent">Технологии</span>
                   </span>
                 </h2>
               </div>
@@ -325,7 +325,7 @@ const NewHome = () => {
                     height={681}
                     loading="eager"
                     fetchPriority="high"
-                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover"
+                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover mix-blend-screen"
                   />
                 </div>
               </div>
