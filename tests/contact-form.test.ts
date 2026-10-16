@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { contactSchema } from "./Contact";
+import { contactSchema } from "../src/components/Contact";
 
 const validContact = {
   comment: "Нужно убрать ручную сверку заявок и снизить потери времени.",
