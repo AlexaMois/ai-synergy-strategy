@@ -309,7 +309,7 @@ const IndustryQuestions = () => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
-    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10";
+    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10 group-hover:bg-white/[0.16]";
     const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
@@ -324,11 +324,14 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 max-w-[330px] md:max-w-[360px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/50"
+        className={`relative w-fit max-w-[300px] md:max-w-[330px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
         }`}
       >
         <span className="block pr-12">{item.short}</span>
+        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
+          <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
+        </span>
         {item.idx === lastIdx && !isOpen ? (
           <span className="absolute right-5 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
@@ -351,6 +354,7 @@ const IndustryQuestions = () => {
         </svg>
       </span>
     );
+    const step = col === "l" ? stepL[Math.floor(item.idx / 2)] : stepR[Math.floor(item.idx / 2)];
     return (
       <button
         type="button"
@@ -358,9 +362,9 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 md:gap-4 w-full text-left ${
-          col === "r" ? "md:justify-end" : ""
-        } ${offsets[item.idx % offsets.length]}`}
+        className={`group flex items-center gap-3 md:gap-4 w-fit max-w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${
+          col === "r" ? "md:justify-end md:ml-auto" : ""
+        } ${step}`}
       >
         {item.side === "l" ? (
           <>
