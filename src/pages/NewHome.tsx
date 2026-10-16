@@ -296,21 +296,45 @@ const NewHome = () => {
 
         <MarqueeText />
 
-        {/* КАК МЫ РАБОТАЕМ — тёмная плашка с шестерёнками */}
+        {/* КАК МЫ РАБОТАЕМ — тёмная плашка: текст слева, светящаяся цепочка иконок справа */}
         <section className="px-4 md:px-6 py-10 md:py-14">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg">
-              <img src={gearsImg} alt="Человек, процессы, бизнес, технологии — связанные шестерёнки" width={1920} height={640} loading="lazy" className="absolute inset-0 w-full h-full object-cover object-right opacity-90 md:opacity-100" />
-              <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 md:via-dark-bg/40 to-transparent" />
-              <div className="relative px-6 md:px-12 lg:px-16 py-12 md:py-16 max-w-2xl">
-                <p className="text-sm uppercase tracking-widest text-background/70 font-semibold mb-5">Как мы работаем</p>
-                <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.1] mb-6">
-                  Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
-                </h2>
-                <p className="text-base md:text-lg text-background/80 leading-snug">
-                  Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты —
-                  так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
-                </p>
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              {/* мягкое бирюзовое свечение фона */}
+              <div aria-hidden className="pointer-events-none absolute inset-0">
+                <div className="absolute -top-24 right-[6%] h-72 w-72 rounded-full bg-accent/15 blur-[110px]" />
+                <div className="absolute -bottom-28 right-[38%] h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+              </div>
+              <div className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-16">
+                <div className="max-w-xl">
+                  <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
+                  <h2 className="text-3xl md:text-[44px] font-bold text-background leading-[1.15] mb-6">
+                    Человек → Процессы →<br className="hidden md:block" /> Бизнес →{" "}
+                    <span className="text-accent">Технологии</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-background/80 leading-relaxed">
+                    Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты —
+                    так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-10">
+                  {workSteps.map((step, i) => (
+                    <div key={step.name} className="relative flex flex-col items-center text-center">
+                      {i < workSteps.length - 1 && (
+                        <div aria-hidden className="absolute left-full top-[54px] -translate-x-1/2 hidden lg:flex items-center">
+                          <span className="h-px w-4 bg-gradient-to-r from-accent/10 via-accent/60 to-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)]" />
+                          <ChevronRight className="h-5 w-5 text-accent drop-shadow-[0_0_8px_hsl(var(--accent)/0.9)]" strokeWidth={2.5} />
+                        </div>
+                      )}
+                      <div className="relative">
+                        <div aria-hidden className="absolute inset-2 rounded-full bg-accent/25 blur-2xl" />
+                        <img src={step.icon} alt={step.name} width={816} height={816} loading="lazy" className="relative h-24 w-24 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain" />
+                      </div>
+                      <p className="mt-4 text-base sm:text-lg font-semibold text-background">{step.name}</p>
+                      <p className="mt-1.5 max-w-[14rem] text-[13px] sm:text-sm leading-snug text-background/75">{step.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
