@@ -468,7 +468,7 @@ const IndustryQuestions = () => {
   };
 
   return (
-    <section className="px-4 md:px-6 py-12 md:py-16">
+    <section id="industry-questions" className="scroll-mt-20 px-4 md:px-6 py-12 md:py-16">
       <div className="container mx-auto max-w-7xl">
         <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-10 lg:px-14 py-12 md:py-14">
           <div aria-hidden className="pointer-events-none absolute inset-0">
