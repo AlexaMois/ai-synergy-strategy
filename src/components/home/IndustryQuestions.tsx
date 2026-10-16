@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Phone, Plus } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 
 interface CaseRef {
