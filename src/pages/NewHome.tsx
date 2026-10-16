@@ -308,9 +308,10 @@ const NewHome = () => {
               <div className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-8 px-6 md:px-12 lg:px-14 py-12 md:py-16">
                 <div className="max-w-xl">
                   <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
-                  <h2 className="text-3xl md:text-[44px] font-bold text-background leading-[1.15] mb-6">
-                    Человек → Процессы →<br className="hidden md:block" /> Бизнес →{" "}
-                    <span className="text-accent">Технологии</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-background leading-[1.15] mb-6">
+                    <span className="whitespace-nowrap">Человек → Процессы →</span>
+                    <br className="hidden md:block" />{" "}
+                    <span className="whitespace-nowrap">Бизнес → <span className="text-accent">Технологии</span></span>
                   </h2>
                   <p className="text-base md:text-lg text-background/80 leading-relaxed">
                     Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты —
