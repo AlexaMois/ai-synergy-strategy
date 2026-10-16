@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, Quote, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, Quote, Phone } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
