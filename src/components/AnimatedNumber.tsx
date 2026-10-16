@@ -53,10 +53,13 @@ const AnimatedNumber = ({
   }, [isVisible, hasAnimated, value, duration]);
 
   const formattedValue = displayValue.toFixed(decimals).replace('.', ',');
+  const [intPart, fracPart] = formattedValue.split(',');
+  const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+  const shown = `${prefix}${fracPart ? `${grouped},${fracPart}` : grouped}${suffix}`;
 
   return (
     <span ref={ref as React.RefObject<HTMLSpanElement>} className={`tabular-nums ${className}`}>
-      {prefix}{formattedValue}{suffix}
+      {shown}
     </span>
   );
 };
