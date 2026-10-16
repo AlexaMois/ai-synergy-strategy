@@ -3,7 +3,6 @@ import { Printer, Phone, CheckCircle2, AlertTriangle, XCircle, HelpCircle } from
 import { Helmet } from "react-helmet-async";
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import OptimizedImage from "@/components/OptimizedImage";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -343,7 +342,6 @@ const Checklist30Page = () => {
           <p className="mt-1">Для профессионального аудита вашей системы — свяжитесь с нами</p>
         </div>
 
-        <Contact />
         <Partners />
         <Footer />
       </div>

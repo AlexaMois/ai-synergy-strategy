@@ -1,6 +1,5 @@
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
@@ -529,7 +528,6 @@ const CaseStudyCargoExpress = () => {
           </div>
         </section>
 
-        <Contact />
         <Partners />
         </main>
         

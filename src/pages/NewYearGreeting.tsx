@@ -7,7 +7,6 @@ import NeuralTree from '@/components/newyear/NeuralTree';
 import Snowfall from '@/components/newyear/Snowfall';
 import GiftCard from '@/components/newyear/GiftCard';
 import Partners from '@/components/Partners';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 const gifts = [{
   name: 'ИИ-Олег',
@@ -111,7 +110,6 @@ const NewYearGreeting: React.FC = () => {
       </section>
 
       <Partners className="py-6" />
-      <Contact />
       <Footer />
     </>;
 };

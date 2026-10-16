@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
@@ -314,7 +313,6 @@ const ResourcesPage = () => {
             </div>
           </section>
           
-          <Contact />
           <Partners />
         </main>
 

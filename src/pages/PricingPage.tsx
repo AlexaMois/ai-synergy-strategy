@@ -1,6 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -518,7 +517,6 @@ const PricingPage = () => {
               { question: "Что входит в стоимость?", answer: "В стоимость входит работа по выбранному формату: разбор задачи, встречи, анализ процессов, рекомендации, план, обучение, внедрение, разработка или сопровождение. Состав зависит от выбранной услуги и фиксируется до старта." },
             ]}
           />
-          <Contact />
           <Partners />
         </main>
 

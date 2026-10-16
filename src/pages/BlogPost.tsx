@@ -3,7 +3,6 @@ import { useEffect, useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PhotoLightbox from "@/components/PhotoLightbox";
 
@@ -435,7 +434,6 @@ const BlogPost = () => {
           </div>
         </section>
       )}
-        <Contact />
         <Partners />
       </main>
 

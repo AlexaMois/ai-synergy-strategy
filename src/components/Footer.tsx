@@ -4,6 +4,7 @@ const MaxIcon = ({ className }: { className?: string }) => (
   <img src="/max-icon.svg" alt="" aria-hidden="true" width={16} height={16} className={className} loading="lazy" />
 );
 import DisabledLink from "@/components/DisabledLink";
+import Contact from "@/components/Contact";
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,7 +24,9 @@ const Footer = () => {
       });
     }
   };
-  return <footer className="bg-dark-bg text-background py-12">
+  return <>
+    <Contact />
+    <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
@@ -129,6 +132,7 @@ const Footer = () => {
           <p>© ИП Моисеева Александра Алексеевна, 2023–2026. Все права защищены.</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  </>;
 };
 export default Footer;

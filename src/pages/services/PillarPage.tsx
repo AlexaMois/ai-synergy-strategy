@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { ArrowRight, CheckCircle2, BookOpen, Briefcase, FileText } from "lucide-react";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import FAQTeaser from "@/components/FAQTeaser";
@@ -319,7 +318,6 @@ const PillarPage = () => {
 
           <FAQTeaser items={data.faq} />
 
-          <Contact />
         </main>
 
         <Footer />
