@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote, Phone, Send } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import Footer from "@/components/Footer";
@@ -10,10 +9,9 @@ import MarqueeText from "@/components/MarqueeText";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
+import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import compassSketch from "@/assets/sketches/compass-sketch.webp";
-import handshakeSketch from "@/assets/sketches/handshake-sketch.webp";
-import magnifierSketch from "@/assets/sketches/magnifier-docs-sketch.webp";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
 import chatSketch from "@/assets/sketches/chat-sketch.webp";
 
@@ -32,25 +30,6 @@ const stats: Array<{
   { value: 80, suffix: "%", label: "клиентов приходят по рекомендации" },
   { value: 85, suffix: "%", label: "клиентов возвращаются" },
   { value: 3, suffix: "", label: "месяца — средняя окупаемость решений" },
-];
-
-const externalViewCards = [
-  {
-    title: "Много ручной работы",
-    text: "Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды.",
-  },
-  {
-    title: "Руководитель держит контроль на себе",
-    text: "Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников.",
-  },
-  {
-    title: "Инструменты работают разрозненно",
-    text: "Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины.",
-  },
-  {
-    title: "Нужно понять первый шаг",
-    text: "Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать.",
-  },
 ];
 
 /**
@@ -208,92 +187,31 @@ const NewHome = () => {
           </div>
         </section>
 
-        <div className="pt-16 md:pt-24">
-          <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
-            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-              Партнёры и клиенты
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02]">
-              С кем уже{" "}
-              <span className="font-iriska font-normal italic text-accent">работали</span>
-              <br className="hidden md:block" />
-              и для кого создавали{" "}
-              <span className="font-iriska font-normal italic text-accent">решения</span>
-            </h2>
-          </div>
-          <Partners />
-        </div>
-
-        {/* ВНЕШНИЙ ВЗГЛЯД — лавандовая плашка + табличный список */}
-        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-          <div className="rounded-[32px] md:rounded-[40px] bg-surface-lavender overflow-hidden mb-10 shadow-plate ring-1 ring-foreground/5">
-            <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 py-10 md:py-14">
-              <div className="md:col-span-7">
-                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-                  Когда нужен{" "}
-                  <span className="font-iriska font-normal italic text-accent">
-                    внешний взгляд
-                  </span>{" "}
-                  на цифровое развитие
-                </h2>
-                <p className="text-base md:text-lg text-foreground/70 max-w-2xl">
-                  Сначала важно увидеть ручную нагрузку, точки потерь, дублирование и задачи,
-                  которые мешают компании работать быстрее и спокойнее.
-                </p>
-              </div>
-              <div className="md:col-span-5 flex justify-center md:justify-end">
-                <img
-                  src={magnifierSketch}
-                  alt=""
-                  width={800}
-                  height={800}
-                  loading="lazy"
-                  className="w-56 md:w-72 lg:w-80 h-auto object-contain"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="divide-y divide-border border-y border-border">
-            {externalViewCards.map(({ title, text }, i) => (
-              <div
-                key={title}
-                className="grid md:grid-cols-12 gap-6 py-6 md:py-8 items-start"
-              >
-                <div className="md:col-span-1 font-iriska text-5xl md:text-6xl font-bold text-accent tabular-nums leading-none">
-                  0{i + 1}
-                </div>
-                <div className="md:col-span-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground">{title}</h3>
-                </div>
-                <div className="md:col-span-7">
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* УЗНАЁТЕ СВОЙ БИЗНЕС? — интерактивные отраслевые вопросы */}
+        <IndustryQuestions />
 
         <MarqueeText />
 
-        {/* С ЧЕГО НАЧАТЬ — pastel-плашки с разными фонами, средняя featured */}
+        {/* С ЧЕГО НАЧАТЬ — два варианта: встреча и стратегия */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-              С чего можно{" "}
-              <span className="font-iriska font-normal italic text-accent">начать</span>
+              Не знаете,{" "}
+              <span className="font-iriska font-normal italic text-accent">с чего начать</span>?
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              Формат зависит от того, насколько понятна текущая задача и насколько подробно нужно
-              разбирать компанию.
+              Два формата, с которых обычно начинается работа. Эти встречи не
+              являются обязательным условием покупки конкретного решения — если
+              задача уже понятна, можно сразу обсуждать её решение.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2">
             {[
               {
-                title: "Стратегическая встреча по цифровизации для собственника",
-                text: "Быстро понять первый шаг: какие процессы требуют внимания и какой формат работы выбрать дальше.",
+                title: "Стратегическая встреча для собственника",
+                text: "Разобраться в ситуации, определить главную проблему и первый шаг.",
                 price: "17 000 ₽",
-                result: "Первые приоритеты цифрового развития.",
+                result: "Главная проблема и первый шаг.",
                 to: "/services/owner-digital-session",
                 bg: "bg-surface-mint",
                 textColor: "text-foreground",
@@ -302,10 +220,10 @@ const NewHome = () => {
                 showSketch: routeSketch,
               },
               {
-                title: "Разработка стратегии цифрового развития бизнеса",
-                text: "Практический план на 90 дней: что менять первым, какие инструменты рассматривать и как двигаться поэтапно.",
+                title: "Стратегия цифрового развития бизнеса",
+                text: "Разобрать процессы компании и составить практический план изменений на 90 дней.",
                 price: "78 000 ₽",
-                result: "Карта ручной нагрузки, приоритеты и план действий.",
+                result: "План изменений на 90 дней.",
                 to: "/services/digital-development-strategy",
                 bg: "bg-accent",
                 textColor: "text-background",
@@ -313,22 +231,10 @@ const NewHome = () => {
                 btnVariant: "light" as const,
                 showSketch: null,
               },
-              {
-                title: "Глубокий аудит компании для цифровизации",
-                text: "Подробно разбираем процессы, данные, документы и готовность к внедрению цифровых решений.",
-                price: "от 116 000 ₽",
-                result: "Карта процессов, риски, дорожная карта внедрения.",
-                to: "/services/digital-audit",
-                bg: "bg-surface-sand",
-                textColor: "text-foreground",
-                muted: "text-foreground/70",
-                btnVariant: "dark" as const,
-                showSketch: compassSketch,
-              },
             ].map((card) => (
               <div
                 key={card.title}
-                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[420px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
+                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[380px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
               >
                 {card.showSketch && (
                   <img
@@ -367,52 +273,8 @@ const NewHome = () => {
           </div>
         </section>
 
-        {/* ФИЛОСОФИЯ — большая бирюзовая плашка с гигантской формулой и компасом */}
-        <section className="px-4 md:px-6">
-          <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                <div className="md:col-span-8">
-                  <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
-                    Философия работы
-                  </p>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8">
-                    {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
-                      <div key={word} className="flex items-center gap-3 md:gap-5">
-                        <span className="text-3xl md:text-5xl font-bold text-background leading-none">
-                          {word}
-                        </span>
-                        {i < arr.length - 1 && (
-                          <ArrowRight className="h-6 w-6 md:h-9 md:w-9 text-background/70" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-lg md:text-xl text-background/90 mb-3 max-w-2xl leading-snug">
-                    Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты.
-                  </p>
-                  <p className="text-base md:text-lg text-background/75 max-w-2xl">
-                    Каждый инструмент должен работать в привычной среде компании, снижать ручную
-                    нагрузку и помогать руководителю видеть ситуацию яснее.
-                  </p>
-                </div>
-                <div className="md:col-span-4 flex justify-center md:justify-end">
-                  <img
-                    src={compassSketch}
-                    alt=""
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    className="w-56 md:w-72 lg:w-80 h-auto object-contain drop-shadow-2xl"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
-        <section className="bg-background py-16 md:py-24 mt-16 md:mt-24">
+        <section className="bg-background py-16 md:py-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
               <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
@@ -526,43 +388,59 @@ const NewHome = () => {
 
         <Testimonials />
 
-        {/* КОМУ ПОМОГАЕМ — тёмная плашка + рукопожатие */}
-        <section className="bg-foreground text-background py-16 md:py-24">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="grid md:grid-cols-12 gap-10 items-center">
-              <div className="md:col-span-6">
-                <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-                  Кому помогаем
-                </p>
-                <h2 className="text-3xl md:text-5xl font-bold mb-5 leading-[1.05] text-background">
-                  Компании от 5 до{" "}
-                  <span className="font-iriska font-normal italic text-accent">300 сотрудников</span>
-                </h2>
-                <p className="text-base md:text-lg text-background/70">
-                  Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной
-                  штатной IT-команды, где цифровые изменения нужно внедрять поэтапно — с понятной
-                  пользой и без перегруза сотрудников.
-                </p>
-                <div className="flex flex-wrap gap-2 md:gap-3 mt-8">
-                  {["производство", "транспорт", "торговля", "нефтегаз", "услуги"].map((s) => (
-                    <span
-                      key={s}
-                      className="inline-flex items-center text-sm md:text-base font-semibold px-3.5 py-1.5 md:px-4 md:py-2 rounded-full bg-background/10 border border-background/20 text-background whitespace-nowrap hover:bg-accent hover:border-accent hover:text-accent-foreground transition-colors"
-                    >
-                      {s}
-                    </span>
-                  ))}
+        {/* ПАРТНЁРЫ И КЛИЕНТЫ — ближе к концу страницы */}
+        <div className="pb-8 md:pb-12">
+          <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
+              Партнёры и клиенты
+            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02]">
+              С кем уже{" "}
+              <span className="font-iriska font-normal italic text-accent">работали</span>
+              <br className="hidden md:block" />
+              и для кого создавали{" "}
+              <span className="font-iriska font-normal italic text-accent">решения</span>
+            </h2>
+          </div>
+          <Partners />
+        </div>
+
+        {/* КАК МЫ РАБОТАЕМ — короткая бирюзовая плашка с компасом */}
+        <section className="px-4 md:px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
+                <div className="md:col-span-8">
+                  <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
+                    Как мы работаем
+                  </p>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-6">
+                    {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
+                      <div key={word} className="flex items-center gap-3 md:gap-5">
+                        <span className="text-2xl md:text-4xl font-bold text-background leading-none">
+                          {word}
+                        </span>
+                        {i < arr.length - 1 && (
+                          <ArrowRight className="h-5 w-5 md:h-7 md:w-7 text-background/70" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-lg md:text-xl text-background/90 max-w-2xl leading-snug">
+                    Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты —
+                    так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+                  </p>
                 </div>
-              </div>
-              <div className="md:col-span-6 flex justify-center md:justify-end">
-                <img
-                  src={handshakeSketch}
-                  alt=""
-                  width={800}
-                  height={800}
-                  loading="lazy"
-                  className="w-[32rem] md:w-[40rem] lg:w-[48rem] h-auto object-contain"
-                />
+                <div className="md:col-span-4 flex justify-center md:justify-end">
+                  <img
+                    src={compassSketch}
+                    alt=""
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    className="w-48 md:w-60 lg:w-72 h-auto object-contain drop-shadow-2xl"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -575,20 +453,16 @@ const NewHome = () => {
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
                 <div className="md:col-span-7">
                   <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02] mb-6">
-                    Начните с понятного{" "}
+                    Расскажите, какую задачу хотите{" "}
                     <span className="font-iriska font-normal italic text-accent">
-                      первого шага
+                      решить
                     </span>
                   </h2>
                   <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl">
-                    Начните с выбора формата работы. За несколько минут станет понятно, что сейчас
-                    актуальнее: стратегическая встреча, стратегия, аудит, обучение, внедрение или
-                    сопровождение.
+                    Опишите свою ситуацию — предложу решение или честно скажу,
+                    если оно вам не нужно.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <PillButton to="/start" variant="dark">
-                      Подобрать формат работы
-                    </PillButton>
                     <button
                       type="button"
                       onClick={() => openTaskModal()}
