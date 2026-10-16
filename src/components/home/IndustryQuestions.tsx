@@ -307,28 +307,34 @@ const IndustryQuestions = () => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
-    const bg = lit ? "bg-gradient-to-br from-accent/30 via-accent/20 to-accent/10" : "bg-white/[0.06]";
-    const tail = lit ? "text-accent/20" : "text-white/[0.06]";
+    const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10";
+    const tail = lit ? "text-accent/25" : "text-white/10";
     const iconEl = (
-      <span className="shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full bg-white/5 ring-1 ring-white/10 text-white/80 transition-colors group-hover:text-white">
+      <span
+        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
+          lit
+            ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
+            : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
+        }`}
+      >
         <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" strokeWidth={1.6} />
       </span>
     );
     const bubbleEl = (
       <span
         className={`relative flex-1 max-w-[330px] md:max-w-[360px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-2 ring-accent text-white shadow-[0_0_26px_-10px_hsl(var(--accent)/0.75)]" : "ring-white/10 text-white group-hover:ring-accent/50"
+          lit ? "ring-2 ring-accent text-white shadow-[0_0_40px_-6px_hsl(var(--accent)/0.85)]" : "ring-white/10 text-white group-hover:ring-accent/50"
         }`}
       >
         <span className="block pr-12">{item.short}</span>
         {item.idx === lastIdx && !isOpen ? (
-          <span className="absolute right-4 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2 rounded-full bg-accent/25 px-3.5 py-2.5 ring-1 ring-accent/60">
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.95)]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.95)]" />
+          <span className="absolute right-5 bottom-1/2 translate-y-1/2 inline-flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_14px_hsl(var(--accent)/1)]" />
             <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
           </span>
         ) : (
-          <span className="absolute right-4 bottom-2 text-[13px] font-semibold text-white/80">
+          <span className="absolute right-4 bottom-1.5 text-sm font-semibold text-white/90">
             {times[item.idx % times.length]}
           </span>
         )}
