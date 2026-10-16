@@ -298,7 +298,7 @@ const NewHome = () => {
             <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg">
               <img src={gearsImg} alt="Человек, процессы, бизнес, технологии — связанные шестерёнки" width={1920} height={640} loading="lazy" className="absolute inset-0 w-full h-full object-cover object-right opacity-90 md:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 md:via-dark-bg/40 to-transparent" />
-              <div className="relative px-6 md:px-12 lg:px-16 py-12 md:py-16 max-w-xl">
+              <div className="relative px-6 md:px-12 lg:px-16 py-12 md:py-16 max-w-2xl">
                 <p className="text-sm uppercase tracking-widest text-background/70 font-semibold mb-5">Как мы работаем</p>
                 <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.1] mb-6">
                   Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
