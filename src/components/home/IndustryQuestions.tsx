@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
+import { Button } from "@/components/ui/button";
 import chatDeco from "@/assets/industry-chat-deco.png";
 
 interface CaseRef {
@@ -16,6 +17,7 @@ interface CaseRef {
 }
 
 interface Question {
+  topic?: string;
   q: string;
   problem: string;
   change: string;
@@ -148,46 +150,52 @@ const industries: Industry[] = [
     label: "Строительство",
     questions: [
       {
-        q: "Чтобы узнать, что происходит на объекте, приходится постоянно звонить прорабу?",
+        topic: "01 · Перегрузка сотрудников",
+        q: "Как освободить инженеров ПТО от бесконечных таблиц, актов и ведомостей?",
         problem:
-          "Объект живёт в звонках и чатах. Пока дозвонитесь — день прошёл, а картина всё равно приблизительная.",
+          "Инженеры должны заниматься строительством, а вместо этого часами переносят данные из документа в документ.",
         change:
-          "Ход работ виден в одном месте: что сделано, что отстаёт, кто отвечает — без обзвона.",
+          "Автоматизировать подготовку ведомостей и документов. Основа — задачи ОКБ «Енисейпром» и реализованные механизмы работы с документами.",
       },
       {
-        q: "О проблеме на объекте узнаёте, когда исправлять уже дороже?",
+        topic: "02 · Лишние расходы",
+        q: "Опять закупили лишнее? Или нужных материалов снова не хватило?",
         problem:
-          "Сигналы о сбоях тонут в ежедневной переписке и доходят до вас с опозданием.",
+          "Спецификации, упаковки, объёмы и цены приходится пересчитывать вручную. Ошибка обнаруживается, когда заказ уже оформлен.",
         change:
-          "Отклонения подсвечиваются сразу — реагировать можно до того, как проблема стала дорогой.",
+          "Автоматизировать комплектацию и расчёт материалов. Основа — разобранная задача Владимира по фасадам.",
       },
       {
-        q: "Материалы списываются, а по факту не сходится — и непонятно, где разрыв?",
+        topic: "03 · Ошибки в расчётах",
+        q: "В проекте одно, в смете другое, а закупили вообще третье?",
         problem:
-          "Списание и наличие живут в разных учётах, и разрыв видно только на инвентаризации.",
+          "Сотрудники вручную сверяют десятки документов. Расхождения отнимают время и создают риск лишних расходов.",
         change:
-          "Приход, списание и остатки видны в связке — разрыв находится быстро и по адресу.",
+          "Сопоставлять проектные спецификации, сметы и закупочные ведомости, показывать расхождения для проверки. Основа — запрос ОКБ «Енисейпром».",
       },
       {
-        q: "Документы по объектам живут в бумагах и чатах — нужную версию не найти?",
+        topic: "04 · Потеря информации",
+        q: "Нужный чертёж опять ищут по папкам, почте и перепискам?",
         problem:
-          "Акты, сметы и переписка по объекту разбросаны — поиск нужного документа занимает часы.",
+          "На поиск актуальной версии уходит время, а решения приходится откладывать.",
         change:
-          "Все документы по объекту — в одном месте, с понятным порядком версий и согласований.",
+          "Единый поиск по документам с управлением доступом. Аналогичный механизм работает в портале «АкТрансСервиса».",
       },
       {
-        q: "Подрядчики отчитываются кто как может — единой картины по объектам нет?",
+        topic: "05 · Нет оперативной картины",
+        q: "Чтобы понять, что происходит на объектах, снова приходится всех обзванивать?",
         problem:
-          "Каждый подрядчик присылает отчёт в своём формате, и сводить их приходится вручную.",
+          "Фото в одном чате, отчёты в другом, замечания в третьем. Пока собрали информацию, она уже устарела.",
         change:
-          "Отчёты приходят в едином виде — сравнивать подрядчиков и объекты можно на одной картине.",
+          "Собирать отчёты, фото и голосовые сообщения в едином порядке. Есть действующий механизм выездной отчётности в боте командировок.",
       },
       {
-        q: "Закрывающие документы собираются в конце месяца авралом?",
+        topic: "06 · Зависшие согласования",
+        q: "Документы неделями ходят по кабинетам. Где застряло согласование?",
         problem:
-          "Документы копятся до последнего, и конец месяца превращается в аврал с рисками.",
+          "Подписи, акты и согласования приходится отслеживать вручную. Руководитель лично выясняет, у кого сейчас документ.",
         change:
-          "Документы оформляются по ходу работ — конец месяца проходит спокойно.",
+          "Организовать движение документов, статусы и ответственных. Потребность подтверждена в разборе отдела главного инженера; конкретное внедрение согласований требует отдельной проверки.",
       },
     ],
   },
@@ -273,12 +281,12 @@ const bubbles: Record<string, BubbleCfg[]> = {
     { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, deco: true },
   ],
   construction: [
-    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat },
-    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, deco: true },
-    { short: "Материалы списаны, а по факту не сходится?", icon: Package, deco: true },
-    { short: "Нужную версию документа не найти?", icon: FileClock },
-    { short: "Подрядчики отчитываются кто как может?", icon: Users },
-    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, deco: true },
+    { short: "Как освободить инженеров ПТО от бесконечных таблиц, актов и ведомостей?", icon: HardHat },
+    { short: "Опять закупили лишнее? Или нужных материалов снова не хватило?", icon: Package, deco: true },
+    { short: "В проекте одно, в смете другое, а закупили вообще третье?", icon: Table, deco: true },
+    { short: "Нужный чертёж опять ищут по папкам, почте и перепискам?", icon: FileClock },
+    { short: "Чтобы понять, что происходит на объектах, снова приходится всех обзванивать?", icon: Users },
+    { short: "Документы неделями ходят по кабинетам. Где застряло согласование?", icon: CalendarClock, deco: true },
   ],
   services: [
     { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users },
@@ -293,7 +301,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 
 // Разная ширина сообщений внутри колонки — как в живом чате.
-const widths = ["w-full", "md:w-[94%]", "md:w-[97%]"];
+const widths = ["md:max-w-[78%]", "md:max-w-[65%]", "md:max-w-[70%]", "md:max-w-[68%]", "md:max-w-[84%]", "md:max-w-[75%]"];
 
 
 const IndustryQuestions = () => {
@@ -304,8 +312,6 @@ const IndustryQuestions = () => {
   const industry = industries.find((i) => i.id === activeId) ?? industries[0];
   const openItem = openIdx !== null ? industry.questions[openIdx] : null;
   const items = industry.questions.map((q, i) => ({ q, idx: i, ...bubbles[industry.id][i] }));
-  const left = items.filter((_, i) => i % 2 === 0);
-  const right = items.filter((_, i) => i % 2 === 1);
 
   const Bubble = ({ item, side }: { item: (typeof items)[number]; side: "l" | "r" }) => {
     const isOpen = openIdx === item.idx;
@@ -316,7 +322,7 @@ const IndustryQuestions = () => {
         className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ring-1 transition-all duration-300 ${
           lit
             ? "bg-accent/15 ring-accent text-accent shadow-[0_0_26px_-4px_hsl(var(--accent)/1)]"
-            : "bg-white/[0.06] ring-white/15 text-white/70 group-hover:ring-accent/70 group-hover:text-accent"
+            : "bg-background/[0.06] ring-background/15 text-background/70 group-hover:ring-accent/70 group-hover:text-accent"
         }`}
       >
         <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
@@ -324,19 +330,20 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 min-w-0 px-5 md:px-6 py-3.5 md:py-4 text-[15px] font-medium leading-snug transition-all duration-300 rounded-[20px] ${
+        className={`relative min-w-0 px-5 md:px-6 pt-4 pb-3 text-[15px] md:text-base font-medium leading-relaxed transition-all duration-300 rounded-[22px] ${
           lit
             ? "bg-accent text-accent-foreground shadow-[0_0_38px_-6px_hsl(var(--accent)/0.9)]"
-            : "bg-white/[0.09] text-white ring-1 ring-white/10 group-hover:bg-white/[0.14] group-hover:ring-accent/50"
-        } ${side === "l" ? "rounded-bl-md" : "rounded-br-md"}`}
+            : "bg-background/[0.09] text-background ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
+        } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"}`}
       >
-        <span className="block pr-12">{item.short}</span>
+        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-accent" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
+        <span className="block">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
         <span
-          className={`absolute right-4 bottom-2 text-[11px] font-medium ${
-            lit ? "text-accent-foreground/50" : "text-white/40"
+          className={`mt-1 flex justify-end text-[11px] leading-none font-medium ${
+            lit ? "text-accent-foreground/60" : "text-background/45"
           }`}
         >
           {times[item.idx % times.length]}
@@ -344,14 +351,18 @@ const IndustryQuestions = () => {
       </span>
     );
     return (
-      <button
+      <Button
         type="button"
+        variant="ghost"
+        aria-label={item.short}
+        aria-expanded={isOpen}
+        aria-controls="industry-question-answer"
         onClick={() => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${widths[item.idx % widths.length]} ${
-          side === "r" ? "md:self-end" : ""
+        className={`group flex h-auto items-end gap-3 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
+          side === "r" ? "self-end" : "self-start"
         }`}
       >
         {side === "l" ? (
@@ -365,7 +376,7 @@ const IndustryQuestions = () => {
             {iconEl}
           </>
         )}
-      </button>
+      </Button>
     );
   };
 
@@ -395,63 +406,61 @@ const IndustryQuestions = () => {
 
           <div className="relative">
             <p className="text-[15px] uppercase tracking-[0.22em] text-accent font-semibold mb-4">Отрасли</p>
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] mb-5">
+            <h2 className="text-4xl md:text-6xl font-bold text-background leading-[1.05] mb-5">
               Узнаёте <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
             </h2>
-            <p className="text-base md:text-xl text-white/75 max-w-3xl mb-8">
+            <p className="text-base md:text-xl text-background/75 max-w-3xl mb-8">
               Выберите свою сферу и найдите задачи, которые каждый день приходится решать вам и вашей команде.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-6">
               {industries.map((ind) => (
-                <button
+                <Button
                   key={ind.id}
                   type="button"
+                  variant="ghost"
+                  aria-pressed={activeId === ind.id}
                   onClick={() => {
                     setActiveId(ind.id);
                     setOpenIdx(null);
                     setTouched(false);
                   }}
-                  className={`px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
+                  className={`h-auto px-6 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base border transition-all duration-300 ${
                     activeId === ind.id
-                      ? "bg-accent border-accent text-accent-foreground shadow-[0_0_30px_-8px_hsl(var(--accent)/0.95)]"
-                      : "bg-white/5 border-white/20 text-white hover:border-accent/70"
+                      ? "bg-accent border-accent text-accent-foreground hover:bg-accent hover:text-accent-foreground shadow-[0_0_30px_-8px_hsl(var(--accent)/0.95)]"
+                      : "bg-background/5 border-background/20 text-background hover:bg-background/10 hover:text-background hover:border-accent/70"
                   }`}
                 >
                   {ind.label}
-                </button>
+                </Button>
               ))}
             </div>
 
-            <p className="text-base text-white/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
+            <p className="text-base text-background/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
-            <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
-              <div className="flex flex-col gap-4 md:gap-5">
-                {left.map((it) => <Bubble key={it.short} item={it} side="l" />)}
-              </div>
-              <div className="flex flex-col gap-4 md:gap-5 md:pt-8">
-                {right.map((it) => <Bubble key={it.short} item={it} side="r" />)}
-              </div>
+            <div className="mx-auto flex max-w-4xl flex-col gap-5 md:gap-6">
+              {items.map((it) => <Bubble key={it.idx} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
             </div>
 
             {openItem && (
-              <div className="mt-10 rounded-2xl bg-white/5 ring-1 ring-white/10 p-6 md:p-8">
-                <p className="font-semibold text-white text-lg mb-5">{openItem.q}</p>
+              <div id="industry-question-answer" className="mt-10 rounded-2xl bg-background/5 ring-1 ring-background/10 p-6 md:p-8">
+                {openItem.topic && <p className="mb-3 text-sm font-semibold text-accent">{openItem.topic}</p>}
+                <p className="font-semibold text-background text-lg mb-5">{openItem.q}</p>
                 <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">Что решим</p>
-                    <p className="text-base text-white/70 leading-relaxed">{openItem.problem}</p>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" ? "Ситуация" : "Что решим"}</p>
+                    <p className="text-base text-background/70 leading-relaxed">{openItem.problem}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">Что изменится</p>
-                    <p className="text-base text-white leading-relaxed">{openItem.change}</p>
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">{activeId === "construction" ? "Что можем сделать" : "Что изменится"}</p>
+                    <p className="text-base text-background leading-relaxed">{openItem.change}</p>
                   </div>
                 </div>
                 {openItem.caseRef && (
                   <div className="mt-6 rounded-xl bg-accent/10 ring-1 ring-accent/20 p-5">
                     <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-1.5">Похожий проект</p>
-                    <p className="text-sm font-semibold text-white leading-snug">{openItem.caseRef.title}</p>
-                    <p className="mt-1 text-sm text-white/70 leading-relaxed">{openItem.caseRef.text}</p>
+                    <p className="text-sm font-semibold text-background leading-snug">{openItem.caseRef.title}</p>
+                    <p className="mt-1 text-sm text-background/70 leading-relaxed">{openItem.caseRef.text}</p>
                     {openItem.caseRef.metric && (
                       <p className="mt-2 text-sm font-semibold text-accent">{openItem.caseRef.metric}</p>
                     )}
