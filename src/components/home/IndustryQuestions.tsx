@@ -288,10 +288,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
 };
 
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
-// «Лесенка»: каждый следующий пузырь в столбце чуть ниже и чуть правее предыдущего.
-// Правая колонка прижата к правому краю, поэтому шаг вправо задаём через mr: 16 → 8 → 0.
-const stepL = ["", "md:mt-3 md:ml-8", "md:mt-6 md:ml-16"];
-const stepR = ["md:mr-16", "md:mt-3 md:mr-8", "md:mt-6"];
+
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
@@ -324,11 +321,11 @@ const IndustryQuestions = () => {
     );
     const bubbleEl = (
       <span
-        className={`relative w-fit max-w-[300px] md:max-w-[330px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+        className={`relative flex-1 min-w-0 px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-base font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
           lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
         }`}
       >
-        <span className="block pr-12">{item.short}</span>
+        <span className="block pr-10 md:pr-12">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
