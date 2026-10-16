@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import RelatedBlogPosts from "@/components/RelatedBlogPosts";
@@ -468,7 +467,6 @@ const AutomationHubPage = () => {
 
         <RelatedBlogPosts slugs={["why-ai-projects-fail", "ai-roi-calculation", "ai-synergy-framework"]} />
 
-        <Contact />
       </main>
 
       <Footer />

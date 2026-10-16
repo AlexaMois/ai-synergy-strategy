@@ -1,6 +1,5 @@
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -90,7 +89,6 @@ const MaterialsPage = () => {
             </div>
           </section>
 
-          <Contact />
           <Partners />
         </main>
         

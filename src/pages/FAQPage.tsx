@@ -5,7 +5,6 @@ import { Compass, Wallet, Map, GraduationCap, LifeBuoy, Search, X, Shield } from
 import { Link } from "react-router-dom";
 
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -445,7 +444,6 @@ const FAQPage = () => {
         </div>
       </main>
 
-      <Contact />
       <Footer />
     </div>
   );

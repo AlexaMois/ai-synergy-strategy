@@ -1,6 +1,5 @@
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -150,7 +149,6 @@ const Blog = () => {
 
       {/* Newsletter Section */}
       
-        <Contact />
         <Partners />
       </main>
 

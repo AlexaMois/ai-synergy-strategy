@@ -1,6 +1,5 @@
 
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
 import Partners from "@/components/Partners";
 import PublicationsMarquee from "@/components/PublicationsMarquee";
 import PageTransition from "@/components/PageTransition";
@@ -791,9 +790,6 @@ const About = () => {
           </div>
         </section>
 
-        <div id="contacts">
-          <Contact />
-        </div>
         <Partners />
         </main>
 

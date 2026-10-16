@@ -466,49 +466,6 @@ const NewHome = () => {
           </div>
         </section>
 
-        {/* ФИНАЛЬНЫЙ CTA — сиреневая плашка с пузырями переписки */}
-        <section id="contact" className="px-4 md:px-6 py-16 md:py-24">
-          <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-surface-blush overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                <div className="md:col-span-7">
-                  <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.02] mb-6">
-                    Расскажите, какую задачу хотите{" "}
-                    <span className="font-iriska font-normal italic text-accent">
-                      решить
-                    </span>
-                  </h2>
-                  <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-xl">
-                    Опишите свою ситуацию — предложу решение или честно скажу,
-                    если оно вам не нужно.
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <button
-                      type="button"
-                      onClick={() => openTaskModal()}
-                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-accent text-accent-foreground hover:bg-primary-dark"
-                    >
-                      <span>Обсудить задачу</span>
-                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
-                        <Phone className="h-4 w-4 md:h-5 md:w-5" />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div className="md:col-span-5 flex justify-center md:justify-end">
-                  <img
-                    src={chatSketch}
-                    alt=""
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    className="w-56 md:w-72 lg:w-80 h-auto object-contain"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
       </main>
 
