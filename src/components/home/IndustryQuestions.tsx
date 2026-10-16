@@ -310,22 +310,22 @@ const IndustryQuestions = () => {
     const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
-        className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
+        className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ring-1 transition-colors ${
           lit
             ? "bg-accent/20 ring-accent/60 text-accent shadow-[0_0_22px_-6px_hsl(var(--accent)/0.9)]"
             : "bg-white/5 ring-white/10 text-white/80 group-hover:text-white"
         }`}
       >
-        <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" strokeWidth={1.6} />
+        <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" strokeWidth={1.6} />
       </span>
     );
     const bubbleEl = (
       <span
-        className={`relative flex-1 min-w-0 px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-base font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
+        className={`relative flex-1 min-w-0 px-4 md:px-5 py-3 md:py-3.5 text-[15px] md:text-[15px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
           lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/60"
         }`}
       >
-        <span className="block pr-10 md:pr-12">{item.short}</span>
+        <span className="block pr-10 md:pr-5">{item.short}</span>
         <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none shadow-[0_4px_16px_-4px_hsl(var(--accent)/0.9)]">
           <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
         </span>
