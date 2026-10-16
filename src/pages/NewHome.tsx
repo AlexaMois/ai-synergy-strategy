@@ -328,9 +328,9 @@ const NewHome = () => {
                   />
                 </div>
                 {/* на телефоне картинка шире экрана — мягкая подсказка, что её можно листать */}
-                <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-ink to-transparent md:hidden" />
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-ink via-ink/85 to-transparent md:hidden" />
               </div>
-              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/75 leading-relaxed text-center xl:whitespace-nowrap">
+              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center xl:whitespace-nowrap">
                 Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
                 чтобы они работали в привычной среде компании и снижали ручную нагрузку.
               </p>
