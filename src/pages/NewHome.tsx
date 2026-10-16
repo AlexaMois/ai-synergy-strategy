@@ -184,7 +184,7 @@ const NewHome = () => {
                     <div className="font-iriska font-bold text-accent leading-[0.9] mb-1 text-5xl md:text-7xl">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
-                    <p className="text-xs md:text-sm text-muted-foreground leading-snug">{label}</p>
+                    <p className="text-sm md:text-base font-semibold text-foreground leading-snug">{label}</p>
                     {sub && (
                       <p className="mt-1 text-[11px] md:text-xs text-muted-foreground/80 leading-snug">
                         {sub}
