@@ -178,16 +178,16 @@ const NewHome = () => {
                   Разборы процессов, задач и точек потерь — за 4+ года практики в ИИ.
                 </p>
               </div>
-              <div className="md:col-span-7 grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
+              <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {stats.slice(1).map(({ value, suffix, label, decimals, sub }) => (
-                  <div key={label} className="bg-card p-4 md:p-6 flex items-center gap-3 md:gap-5">
+                  <div key={label} className="bg-card p-3.5 md:p-6 flex items-center gap-3.5 md:gap-5">
                     <div className="font-iriska font-bold text-accent leading-[0.85] shrink-0 text-4xl md:text-6xl">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs md:text-sm font-semibold text-foreground leading-tight">{label}</p>
+                      <p className="text-sm md:text-sm font-semibold text-foreground leading-tight">{label}</p>
                       {sub && (
-                        <p className="mt-1 text-[10px] md:text-xs text-muted-foreground/80 leading-snug">
+                        <p className="mt-1 text-xs md:text-xs text-muted-foreground/80 leading-snug">
                           {sub}
                         </p>
                       )}
