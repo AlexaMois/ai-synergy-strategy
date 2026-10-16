@@ -705,7 +705,7 @@
   }
   .bubble-soft-pulse-icon {
     position: relative;
-    z-index: 30;
+    z-index: 40;
     animation: bubbleIconPulse 2.6s ease-in-out 1;
   }
 
