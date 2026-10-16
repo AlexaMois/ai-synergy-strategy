@@ -15,7 +15,7 @@ import iconPeople from "@/assets/how-we-work/icon-people.png";
 import iconProcess from "@/assets/how-we-work/icon-process.png";
 import iconBusiness from "@/assets/how-we-work/icon-business.png";
 import iconTech from "@/assets/how-we-work/icon-tech.png";
-import synergyImg from "@/assets/how-we-work/synergy.png.asset.json";
+import synergyImg from "@/assets/how-we-work/synergy.webp";
 
 const workSteps = [
   { icon: iconPeople, name: "Человек", desc: "Анализируем опыт и задачи людей" },
