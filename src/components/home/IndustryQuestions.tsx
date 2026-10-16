@@ -246,15 +246,15 @@ const industries: Industry[] = [
   },
 ];
 
-// Раскладка «слегка хаотично, но удобно»: чередуем широкие и узкие карточки,
-// плюс лёгкий наклон на десктопе — на мобильном всё в одну колонку без наклона.
-const spanClasses = [
-  "md:col-span-2",
-  "md:col-span-1",
-  "md:col-span-1",
-  "md:col-span-2",
-  "md:col-span-1",
-  "md:col-span-2",
+// Вопросы — не карточки, а «рукописные» строки: разный размер и лёгкий наклон,
+// чтобы выглядело как хаотично написанные от руки заметки.
+const questionStyles = [
+  "text-2xl md:text-3xl md:rotate-[-1.2deg]",
+  "text-xl md:text-2xl md:rotate-[0.8deg]",
+  "text-2xl md:text-[1.7rem] md:rotate-[-0.6deg]",
+  "text-xl md:text-2xl md:rotate-[1.1deg]",
+  "text-2xl md:text-3xl md:rotate-[-0.9deg]",
+  "text-xl md:text-[1.6rem] md:rotate-[0.7deg]",
 ];
 
 const IndustryQuestions = () => {
