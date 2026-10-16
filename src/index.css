@@ -703,11 +703,6 @@
     z-index: 30;
     animation: bubbleSoftPulse 2.6s ease-in-out 1;
   }
-  .bubble-soft-pulse-icon {
-    position: relative;
-    z-index: 40;
-    animation: bubbleIconPulse 2.6s ease-in-out 1;
-  }
 
   @keyframes bubbleSoftPulse {
     0%,
@@ -723,17 +718,6 @@
     }
   }
 
-  @keyframes bubbleIconPulse {
-    0%,
-    100% {
-      transform: translateY(0) scale(1);
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    }
-    45% {
-      transform: translateY(-5px) scale(1.16);
-      box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.7);
-    }
-  }
 
 
 
@@ -773,8 +757,7 @@
     .block-soft-pulse {
       animation: none;
     }
-    .bubble-soft-pulse,
-    .bubble-soft-pulse-icon {
+    .bubble-soft-pulse {
       animation: none;
     }
 
