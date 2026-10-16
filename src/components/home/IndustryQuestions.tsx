@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, FileClock, Users, Table, BarChart3, AlertTriangle, Inbox, Truck,
-  MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, type LucideIcon,
+  MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, Wrench, type LucideIcon,
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 import PillButton from "@/components/PillButton";
@@ -301,7 +301,7 @@ const bubbles: Record<string, BubbleCfg[]> = {
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
 
 // Разная ширина сообщений внутри колонки — как в живом чате.
-const widths = ["md:max-w-[78%]", "md:max-w-[65%]", "md:max-w-[70%]", "md:max-w-[68%]", "md:max-w-[84%]", "md:max-w-[75%]"];
+const widths = ["md:max-w-[88%]", "md:max-w-[65%]", "md:max-w-[72%]", "md:max-w-[64%]", "md:max-w-[80%]", "md:max-w-[74%]"];
 
 
 const IndustryQuestions = () => {
