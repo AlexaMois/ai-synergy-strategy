@@ -302,7 +302,7 @@ const IndustryQuestions = () => {
   const right = items.filter((_, i) => i % 2 === 1);
   const lastIdx = items.length - 1;
 
-  const Bubble = ({ item, col }: { item: (typeof items)[number]; col: "l" | "r" }) => {
+  const Bubble = ({ item }: { item: (typeof items)[number] }) => {
     const isOpen = openIdx === item.idx;
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
@@ -425,10 +425,10 @@ const IndustryQuestions = () => {
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-x-14">
               <div className="flex flex-col gap-4 md:gap-5">
-                {left.map((it) => <Bubble key={it.short} item={it} col="l" />)}
+                {left.map((it) => <Bubble key={it.short} item={it} />)}
               </div>
               <div className="flex flex-col gap-4 md:gap-5">
-                {right.map((it) => <Bubble key={it.short} item={it} col="r" />)}
+                {right.map((it) => <Bubble key={it.short} item={it} />)}
               </div>
             </div>
 
