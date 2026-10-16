@@ -158,7 +158,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
-    setValue("phone", formatted, { shouldValidate: false });
+    setValue("phone", formatted, { shouldValidate: true });
   };
 
   // Honeypot state - hidden from users, bots will fill it
@@ -352,7 +352,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   <Checkbox
                     id="consent"
                     checked={consentValue}
-                    onCheckedChange={(checked) => setValue("consent", checked as boolean)}
+                    onCheckedChange={(checked) => setValue("consent", checked as boolean, { shouldValidate: true })}
                     className={errors.consent ? "border-destructive" : ""}
                   />
                   <Label htmlFor="consent" className="text-sm text-foreground leading-relaxed cursor-pointer">
