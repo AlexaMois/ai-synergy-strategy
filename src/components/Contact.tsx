@@ -160,7 +160,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
+    <section id="contact" ref={ref} className="relative bg-accent/10 py-10 md:py-16 lg:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}

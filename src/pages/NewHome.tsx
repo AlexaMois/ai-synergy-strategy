@@ -427,7 +427,7 @@ const NewHome = () => {
         </section>
 
         {/* ПАРТНЁРЫ И КЛИЕНТЫ — ближе к концу страницы */}
-        <div className="pb-8 md:pb-12">
+<div className="bg-background pt-4 pb-14 md:pb-20">
           <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Партнёры и клиенты
@@ -443,32 +443,34 @@ const NewHome = () => {
           <Partners />
         </div>
 
-        {/* О НАС ГОВОРЯТ — одна гигантская цитата + одна со сдвигом */}
-        <section className="container mx-auto max-w-6xl px-4 py-20 md:py-28">
-          <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6 text-center">
-            О нас{" "}
-            <span className="font-iriska font-bold italic text-accent normal-case text-2xl">говорят</span>
-          </p>
-          <figure className="max-w-4xl mx-auto text-center mb-16">
-            <Quote className="h-10 w-10 text-accent mx-auto mb-6" />
-            <blockquote className="text-2xl md:text-4xl font-bold text-foreground leading-snug mb-6">
-              «Александра, вы творите историю. Вас первого внешнего эксперта пригласили на наше
-              закрытое заседание правления».
-            </blockquote>
-            <figcaption className="text-sm md:text-base text-muted-foreground">
-              <span className="font-semibold text-foreground">Ольга Яковлевна</span>
-              <span> — руководитель юридического отдела, Крайпотребсоюз</span>
-            </figcaption>
-          </figure>
-          <figure className="max-w-2xl ml-auto border-l-2 border-accent pl-6 md:pl-8">
-            <blockquote className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-3 italic">
-              «Вы даже не представляете, как вы всем нужны — просто они ещё об этом не знают».
-            </blockquote>
-            <figcaption className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">Максим Андриянов</span>
-              <span> — генеральный директор, АкТрансСервис</span>
-            </figcaption>
-          </figure>
+        {/* О НАС ГОВОРЯТ — светло-бирюзовая полоса для отделения от соседних блоков */}
+        <section className="bg-accent/10 py-14 md:py-20">
+          <div className="container mx-auto max-w-5xl px-4">
+            <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4 text-center">
+              О нас{" "}
+              <span className="font-iriska font-bold italic text-accent normal-case text-2xl">говорят</span>
+            </p>
+            <figure className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
+              <Quote className="h-10 w-10 text-accent mx-auto mb-5" />
+              <blockquote className="text-2xl md:text-[34px] font-medium text-foreground leading-snug mb-5">
+                «Александра, вы творите историю. Вас первого внешнего эксперта пригласили на наше
+                закрытое заседание правления».
+              </blockquote>
+              <figcaption className="text-sm md:text-base text-muted-foreground">
+                <span className="font-semibold text-foreground">Ольга Яковлевна</span>
+                <span> — руководитель юридического отдела, Крайпотребсоюз</span>
+              </figcaption>
+            </figure>
+            <figure className="max-w-2xl mx-auto border-l-2 border-accent pl-6 md:pl-8">
+              <blockquote className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-3 italic">
+                «Вы даже не представляете, как вы всем нужны — просто они ещё об этом не знают».
+              </blockquote>
+              <figcaption className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Максим Андриянов</span>
+                <span> — генеральный директор, АкТрансСервис</span>
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <Testimonials />
