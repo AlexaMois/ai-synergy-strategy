@@ -405,7 +405,6 @@ const NewHome = () => {
 
         <Testimonials />
 
-
         {/* КАК МЫ РАБОТАЕМ — короткая бирюзовая плашка с компасом */}
         <section className="px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
