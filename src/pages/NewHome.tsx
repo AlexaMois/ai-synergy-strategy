@@ -309,9 +309,9 @@ const NewHome = () => {
                 <div className="max-w-xl">
                   <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-5">Как мы работаем</p>
                   <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15] mb-6">
-                    <span className="whitespace-nowrap">Человек → Процессы →</span>
+                    <span className="md:whitespace-nowrap">Человек → Процессы →</span>
                     <br className="hidden md:block" />{" "}
-                    <span className="whitespace-nowrap">Бизнес → <span className="text-accent">Технологии</span></span>
+                    <span className="md:whitespace-nowrap">Бизнес → <span className="text-accent">Технологии</span></span>
                   </h2>
                   <p className="text-base md:text-lg text-background/80 leading-relaxed">
                     Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты —
