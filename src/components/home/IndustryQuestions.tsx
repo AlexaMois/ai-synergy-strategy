@@ -350,7 +350,7 @@ const IndustryQuestions = () => {
           setOpenIdx(isOpen ? null : item.idx);
         }}
         className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300 ${widths[item.idx % widths.length]} ${
-          side === "r" ? "md:self-end md:flex-row-reverse" : ""
+          side === "r" ? "md:self-end" : ""
         }`}
       >
         {side === "l" ? (
@@ -360,8 +360,8 @@ const IndustryQuestions = () => {
           </>
         ) : (
           <>
-            {iconEl}
             {bubbleEl}
+            {iconEl}
           </>
         )}
       </button>
