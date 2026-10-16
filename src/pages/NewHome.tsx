@@ -203,9 +203,11 @@ const NewHome = () => {
               задача уже понятна, можно сразу обсуждать её решение.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="relative">
+            <div className="grid gap-5 md:grid-cols-2">
             {[
               {
+                step: "Шаг 1",
                 title: "Стратегическая встреча для собственника",
                 text: "Разобраться в ситуации, определить главную проблему и первый шаг.",
                 price: "17 000 ₽",
@@ -216,8 +218,12 @@ const NewHome = () => {
                 muted: "text-foreground/70",
                 btnVariant: "dark" as const,
                 showSketch: routeSketch,
+                chip: "bg-accent/10 text-accent",
+                dots: "bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)]",
+                check: "text-accent",
               },
               {
+                step: "Шаг 2",
                 title: "Стратегия цифрового развития бизнеса",
                 text: "Разобрать процессы компании и составить практический план изменений на 90 дней.",
                 price: "78 000 ₽",
@@ -228,6 +234,9 @@ const NewHome = () => {
                 muted: "text-background/80",
                 btnVariant: "light" as const,
                 showSketch: null,
+                chip: "bg-background/15 text-background",
+                dots: "bg-[radial-gradient(hsl(var(--background)/0.35)_1.5px,transparent_1.5px)]",
+                check: "text-background",
               },
             ].map((card) => (
               <div
