@@ -145,6 +145,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   const [honeypot, setHoneypot] = useState("");
 
   const onSubmit = async (data: ContactFormData) => {
+    if (isSubmitting) return;
     setIsSubmitting(true);
     
     try {
@@ -277,7 +278,6 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
                   <p className="text-sm text-destructive">{errors.phone.message}</p>
                 )}
               </div>
-            </div>
 
               {/* Компания */}
               <div className="space-y-2">
@@ -312,7 +312,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               </div>
 
               {/* Email */}
-              <div className="space-y-2">
+              <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="email" className="text-foreground">
                   Email
                 </Label>
