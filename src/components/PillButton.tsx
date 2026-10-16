@@ -31,6 +31,8 @@ interface ButtonProps extends BaseProps {
   href?: never;
   target?: never;
   rel?: never;
+  type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 type Props = LinkProps | AnchorProps | ButtonProps;
@@ -102,8 +104,14 @@ const PillButton = (props: Props) => {
       </a>
     );
   }
+  const { type = "button", disabled } = props as ButtonProps;
   return (
-    <button type="button" onClick={(props as ButtonProps).onClick} className={cls}>
+    <button
+      type={type}
+      onClick={props.onClick}
+      disabled={disabled}
+      className={`${cls} disabled:opacity-60 disabled:pointer-events-none`}
+    >
       {inner}
     </button>
   );

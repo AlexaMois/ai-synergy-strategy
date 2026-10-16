@@ -467,13 +467,9 @@ const IndustryQuestions = () => {
               <svg aria-hidden width="28" height="40" viewBox="0 0 28 40" className="text-accent hidden sm:block">
                 <path d="M14 2 L24 12 M4 20 L22 22 M8 36 L22 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
               </svg>
-              <button
-                type="button"
-                onClick={() => openTaskModal()}
-                className="inline-flex items-center gap-3 px-10 md:px-16 py-4 md:py-5 rounded-full font-semibold text-base md:text-lg bg-accent text-accent-foreground shadow-[0_0_60px_-10px_hsl(var(--accent)/0.85)] hover:-translate-y-0.5 transition-all duration-300"
-              >
-                Обсудить свою задачу <ArrowRight className="h-5 w-5" />
-              </button>
+              <PillButton onClick={() => openTaskModal()} variant="turquoise">
+                Обсудить задачу
+              </PillButton>
             </div>
           </div>
         </div>
