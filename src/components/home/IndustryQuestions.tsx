@@ -31,6 +31,7 @@ interface Industry {
 }
 
 const CONTACT_CONTEXT_STORAGE_KEY = "aleksamois.contactContext";
+const CONTACT_CONTEXT_EVENT = "aleksamois:contact-context";
 
 const industries: Industry[] = [
   {
@@ -355,6 +356,7 @@ const IndustryQuestions = () => {
         topic: question?.topic ?? "",
       }),
     );
+    window.dispatchEvent(new CustomEvent(CONTACT_CONTEXT_EVENT));
   };
 
   useEffect(() => {
