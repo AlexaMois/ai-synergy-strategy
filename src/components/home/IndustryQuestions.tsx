@@ -308,7 +308,7 @@ const IndustryQuestions = () => {
     const lit = isOpen || (!touched && !!item.deco);
     const Icon = item.icon;
     const bg = lit ? "bg-gradient-to-br from-accent/35 via-accent/25 to-accent/15" : "bg-white/10";
-    const tail = lit ? "text-accent/25" : "text-white/10";
+    const tail = lit ? "text-accent/30" : "text-white/[0.14]";
     const iconEl = (
       <span
         className={`shrink-0 flex items-center justify-center w-12 h-12 md:w-[52px] md:h-[52px] rounded-full ring-1 transition-colors ${
@@ -323,7 +323,7 @@ const IndustryQuestions = () => {
     const bubbleEl = (
       <span
         className={`relative flex-1 max-w-[330px] md:max-w-[360px] px-5 md:px-6 py-3 md:py-3.5 text-[15px] md:text-[17px] font-medium leading-snug ring-1 transition-all duration-300 rounded-[22px] ${bg} ${
-          lit ? "ring-2 ring-accent text-white shadow-[0_0_40px_-6px_hsl(var(--accent)/0.85)]" : "ring-white/10 text-white group-hover:ring-accent/50"
+          lit ? "ring-2 ring-accent text-white shadow-[0_0_22px_-2px_hsl(var(--accent)/0.95)]" : "ring-white/10 text-white group-hover:ring-accent/50"
         }`}
       >
         <span className="block pr-12">{item.short}</span>
@@ -334,7 +334,7 @@ const IndustryQuestions = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
           </span>
         ) : (
-          <span className="absolute right-4 bottom-1.5 text-sm font-semibold text-white/90">
+          <span className="absolute right-4 bottom-1.5 text-sm font-medium text-white/45">
             {times[item.idx % times.length]}
           </span>
         )}
