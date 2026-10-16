@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, FileClock, Users, Table, BarChart3, AlertTriangle, Inbox, Truck,
-  MessageSquare, HardHat, Package, CalendarClock, Wallet, type LucideIcon,
+  MessageSquare, HardHat, Package, CalendarClock, Wallet, MousePointerClick, type LucideIcon,
 } from "lucide-react";
 import { openTaskModal } from "@/components/CallbackModal";
 
@@ -288,8 +288,10 @@ const bubbles: Record<string, BubbleCfg[]> = {
 };
 
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
-// Лёгкий «живой» сдвиг пузырей по горизонтали
-const offsets = ["", "md:ml-8", "", "md:ml-6", "", "md:ml-10"];
+// «Лесенка»: каждый следующий пузырь в столбце чуть ниже и чуть правее предыдущего.
+// Правая колонка прижата к правому краю, поэтому шаг вправо задаём через mr: 16 → 8 → 0.
+const stepL = ["", "md:mt-3 md:ml-8", "md:mt-6 md:ml-16"];
+const stepR = ["md:mr-16", "md:mt-3 md:mr-8", "md:mt-6"];
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
