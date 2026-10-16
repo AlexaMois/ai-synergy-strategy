@@ -250,45 +250,49 @@ const industries: Industry[] = [
   },
 ];
 
-// Короткие формулировки для «пузырей» чата: иконка, сторона иконки и подсветка по умолчанию.
-type BubbleCfg = { short: string; icon: LucideIcon; side: "l" | "r"; deco?: boolean };
+// Короткие формулировки для «пузырей» чата: иконка и подсветка по умолчанию.
+// Сторона иконки выводится из колонки: левая колонка — иконка слева, правая — справа.
+type BubbleCfg = { short: string; icon: LucideIcon; deco?: boolean };
 
 const bubbles: Record<string, BubbleCfg[]> = {
   production: [
-    { short: "Статус заказа уточняете вручную?", icon: FileClock, side: "l" },
-    { short: "Документы и инструкции ищутся слишком долго?", icon: Users, side: "r", deco: true },
-    { short: "Смены и задачи ведёте в таблицах?", icon: Table, side: "l" },
-    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3, side: "l" },
-    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users, side: "l", deco: true },
-    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, side: "l" },
+    { short: "Статус заказа уточняете вручную?", icon: FileClock },
+    { short: "Документы и инструкции ищутся слишком долго?", icon: Users, deco: true },
+    { short: "Смены и задачи ведёте в таблицах?", icon: Table, deco: true },
+    { short: "Отчёты к планёркам собираются вручную?", icon: BarChart3 },
+    { short: "Опыт сильных сотрудников нигде не записан?", icon: Users },
+    { short: "Ошибки замечаете слишком поздно?", icon: AlertTriangle, deco: true },
   ],
   transport: [
-    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox, side: "l" },
-    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, side: "r", deco: true },
-    { short: "Командировки оформляются в переписке?", icon: MessageSquare, side: "l" },
-    { short: "Документы по рейсам теряются при передаче?", icon: FileClock, side: "l" },
-    { short: "Статус для клиента собирают три сотрудника?", icon: Users, side: "l", deco: true },
-    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, side: "l" },
+    { short: "Заявки теряются между мессенджерами и почтой?", icon: Inbox },
+    { short: "Где машина — узнаёте обзвоном водителей?", icon: Truck, deco: true },
+    { short: "Командировки оформляются в переписке?", icon: MessageSquare, deco: true },
+    { short: "Документы по рейсам теряются при передаче?", icon: FileClock },
+    { short: "Статус для клиента собирают три сотрудника?", icon: Users },
+    { short: "Расходы сводите вручную из разных таблиц?", icon: BarChart3, deco: true },
   ],
   construction: [
-    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat, side: "l" },
-    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, side: "r", deco: true },
-    { short: "Материалы списаны, а по факту не сходится?", icon: Package, side: "l" },
-    { short: "Нужную версию документа не найти?", icon: FileClock, side: "l" },
-    { short: "Подрядчики отчитываются кто как может?", icon: Users, side: "l", deco: true },
-    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, side: "l" },
+    { short: "Что на объекте — узнаёте звонком прорабу?", icon: HardHat },
+    { short: "О проблеме узнаёте, когда исправлять дорого?", icon: AlertTriangle, deco: true },
+    { short: "Материалы списаны, а по факту не сходится?", icon: Package, deco: true },
+    { short: "Нужную версию документа не найти?", icon: FileClock },
+    { short: "Подрядчики отчитываются кто как может?", icon: Users },
+    { short: "Закрывающие документы — аврал в конце месяца?", icon: CalendarClock, deco: true },
   ],
   services: [
-    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users, side: "l" },
-    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare, side: "r", deco: true },
-    { short: "Расписание держится в голове администратора?", icon: CalendarClock, side: "l" },
-    { short: "Повторные клиенты теряются?", icon: Inbox, side: "l" },
-    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3, side: "l", deco: true },
-    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet, side: "l" },
+    { short: "Непонятно, кто отвечает за обращение клиента?", icon: Users },
+    { short: "Заявки расползаются по личным чатам?", icon: MessageSquare, deco: true },
+    { short: "Расписание держится в голове администратора?", icon: CalendarClock, deco: true },
+    { short: "Повторные клиенты теряются?", icon: Inbox },
+    { short: "Отчёт по выручке — вручную раз в месяц?", icon: BarChart3 },
+    { short: "Непонятно, можно ли обойтись дешевле?", icon: Wallet, deco: true },
   ],
 };
 
 const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
+
+// Разная ширина сообщений внутри колонки — как в живом чате.
+const widths = ["w-full", "md:w-[94%]", "md:w-[97%]"];
 
 
 const IndustryQuestions = () => {
