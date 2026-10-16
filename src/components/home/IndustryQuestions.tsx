@@ -394,26 +394,19 @@ const IndustryQuestions = () => {
               <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
               <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
             </svg>
-            <img
-              src={chatDeco}
-              alt=""
-              width={1024}
-              height={1024}
-              loading="lazy"
-              className="absolute -top-6 right-2 md:right-8 w-40 md:w-64 lg:w-72 opacity-90 drop-shadow-[0_0_45px_hsl(var(--accent)/0.35)]"
-            />
           </div>
 
-          <div className="relative">
+          <div className="relative grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-14 items-center">
+            <div>
             <p className="text-[15px] uppercase tracking-[0.22em] text-accent font-semibold mb-4">Отрасли</p>
-            <h2 className="text-4xl md:text-6xl font-bold text-background leading-[1.05] mb-5">
+            <h2 className="text-4xl md:text-5xl font-bold text-background leading-[1.05] mb-5">
               Узнаёте <span className="font-iriska font-normal italic text-accent">свой бизнес</span>?
             </h2>
-            <p className="text-base md:text-xl text-background/75 max-w-3xl mb-8">
+            <p className="text-base md:text-lg text-background/75 mb-7">
               Выберите свою сферу и найдите задачи, которые каждый день приходится решать вам и вашей команде.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-2.5 mb-5">
               {industries.map((ind) => (
                 <Button
                   key={ind.id}
@@ -436,12 +429,42 @@ const IndustryQuestions = () => {
               ))}
             </div>
 
-            <p className="text-base text-background/70 mb-8 md:mb-10">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
+            <p className="text-sm md:text-base text-background/60 mb-8">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
-            <div className="mx-auto flex max-w-4xl flex-col gap-5 md:gap-6">
-              {items.map((it) => <Bubble key={it.idx} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
+            <PillButton onClick={() => openTaskModal()} variant="turquoise">
+              Обсудить задачу
+            </PillButton>
             </div>
 
+            <div className="relative">
+              <img
+                src={chatDeco}
+                alt=""
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36 drop-shadow-[0_0_40px_hsl(var(--accent)/0.4)]"
+              />
+              <div className="relative rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(var(--accent)/0.35)] overflow-hidden">
+                <div className="flex items-center gap-3 px-5 md:px-6 py-4 border-b border-background/10">
+                  <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 ring-1 ring-accent text-accent">
+                    <MousePointerClick className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-background leading-tight">Вопросы собственников · {industry.label}</p>
+                    <p className="text-xs text-background/50 flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_hsl(var(--accent))]" /> на связи
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 px-4 md:px-6 py-5 md:py-6">
+                  {items.map((it) => <Bubble key={it.idx} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
             {openItem && (
               <div id="industry-question-answer" className="mt-10 rounded-2xl bg-background/5 ring-1 ring-background/10 p-6 md:p-8">
                 {openItem.topic && <p className="mb-3 text-sm font-semibold text-accent">{openItem.topic}</p>}
@@ -474,14 +497,6 @@ const IndustryQuestions = () => {
               </div>
             )}
 
-            <div className="mt-12 flex justify-center items-center gap-4">
-              <svg aria-hidden width="28" height="40" viewBox="0 0 28 40" className="text-accent hidden sm:block">
-                <path d="M14 2 L24 12 M4 20 L22 22 M8 36 L22 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-              </svg>
-              <PillButton onClick={() => openTaskModal()} variant="turquoise">
-                Обсудить задачу
-              </PillButton>
-            </div>
           </div>
         </div>
       </div>
