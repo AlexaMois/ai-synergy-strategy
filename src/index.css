@@ -707,23 +707,28 @@
     0%,
     100% {
       transform: scale(1);
+      filter: brightness(1);
       box-shadow: 0 0 38px -6px hsl(var(--accent) / 0.9);
     }
     45% {
-      transform: scale(1.015);
-      box-shadow: 0 0 62px 2px hsl(var(--accent) / 1);
+      transform: scale(1.018);
+      filter: brightness(1.14);
+      box-shadow: 0 0 58px 0px hsl(var(--accent) / 1);
     }
   }
 
   @keyframes bubbleIconPulse {
     0%,
     100% {
+      filter: brightness(1);
       box-shadow: 0 0 26px -4px hsl(var(--accent) / 1);
     }
     45% {
-      box-shadow: 0 0 40px 2px hsl(var(--accent) / 1);
+      filter: brightness(1.3);
+      box-shadow: 0 0 38px 1px hsl(var(--accent) / 1);
     }
   }
+
 
 
   .dot-soft-pulse {
