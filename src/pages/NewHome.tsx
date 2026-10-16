@@ -11,7 +11,7 @@ import Partners from "@/components/Partners";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
-import compassSketch from "@/assets/sketches/compass-sketch.webp";
+import gearsImg from "@/assets/how-we-work-gears.jpg";
 import routeSketch from "@/assets/sketches/route-sketch.webp";
 
 const stats: Array<{
@@ -292,6 +292,26 @@ const NewHome = () => {
 
         <MarqueeText />
 
+        {/* КАК МЫ РАБОТАЕМ — тёмная плашка с шестерёнками */}
+        <section className="px-4 md:px-6 py-10 md:py-14">
+          <div className="container mx-auto max-w-7xl">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-dark-bg overflow-hidden shadow-plate-lg">
+              <img src={gearsImg} alt="Человек, процессы, бизнес, технологии — связанные шестерёнки" width={1920} height={640} loading="lazy" className="absolute inset-0 w-full h-full object-cover object-right opacity-90 md:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 md:via-dark-bg/40 to-transparent" />
+              <div className="relative px-6 md:px-12 lg:px-16 py-12 md:py-16 max-w-2xl">
+                <p className="text-sm uppercase tracking-widest text-background/70 font-semibold mb-5">Как мы работаем</p>
+                <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.1] mb-6">
+                  Человек → Процессы → Бизнес → <span className="text-accent">Технологии</span>
+                </h2>
+                <p className="text-base md:text-lg text-background/80 leading-snug">
+                  Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты —
+                  так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
         <section className="bg-background py-16 md:py-24">
           <div className="container mx-auto max-w-6xl px-4">
@@ -424,46 +444,6 @@ const NewHome = () => {
 
         <Testimonials />
 
-        {/* КАК МЫ РАБОТАЕМ — короткая бирюзовая плашка с компасом */}
-        <section className="px-4 md:px-6">
-          <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
-                <div className="md:col-span-8">
-                  <p className="text-sm uppercase tracking-widest text-background/80 font-semibold mb-6">
-                    Как мы работаем
-                  </p>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-6">
-                    {["Человек", "Процессы", "Бизнес", "Технологии"].map((word, i, arr) => (
-                      <div key={word} className="flex items-center gap-3 md:gap-5">
-                        <span className="text-2xl md:text-4xl font-bold text-background leading-none">
-                          {word}
-                        </span>
-                        {i < arr.length - 1 && (
-                          <ArrowRight className="h-5 w-5 md:h-7 md:w-7 text-background/70" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-lg md:text-xl text-background/90 max-w-2xl leading-snug">
-                    Сначала разбираем работу людей и процессы, потом подбираем цифровые инструменты —
-                    так, чтобы они работали в привычной среде компании и снижали ручную нагрузку.
-                  </p>
-                </div>
-                <div className="md:col-span-4 flex justify-center md:justify-end">
-                  <img
-                    src={compassSketch}
-                    alt=""
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    className="w-48 md:w-60 lg:w-72 h-auto object-contain drop-shadow-2xl"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
 
       </main>

@@ -142,10 +142,10 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-white via-white to-gray-50/50 section-gradient-bottom-light overflow-hidden">
+      <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <div className={`p-8 sm:p-12 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(1, 'animate-scale-in')}`}>
+            <div className={`p-8 sm:p-12 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(1, 'animate-scale-in')}`}>
               <h2 className="section-title mb-4">
                 Спасибо, <span className="font-semibold">я свяжусь с вами</span>
               </h2>
@@ -160,7 +160,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 bg-gradient-to-b from-white via-white to-gray-50/50 section-gradient-bottom-light overflow-hidden">
+    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}
@@ -180,7 +180,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
             {/* Правая колонка - форма */}
             <form 
               onSubmit={handleSubmit(onSubmit)} 
-              className={`p-6 sm:p-8 rounded-2xl bg-card border border-border shadow-soft ${getStaggeredClass(2, 'animate-fade-in-up')}`}
+              className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               {/* Имя */}
