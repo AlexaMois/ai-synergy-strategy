@@ -336,7 +336,7 @@ const IndustryQuestions = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-accent/50" />
           </span>
         ) : (
-          <span className="absolute right-4 bottom-1.5 text-sm font-medium text-white/45">
+          <span className="absolute right-4 bottom-2 text-xs font-medium text-white/45">
             {times[item.idx % times.length]}
           </span>
         )}
@@ -358,7 +358,7 @@ const IndustryQuestions = () => {
           setTouched(true);
           setOpenIdx(isOpen ? null : item.idx);
         }}
-        className={`group flex items-center gap-3 md:gap-4 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
+        className={`group flex items-center gap-3 w-full text-left cursor-pointer hover:-translate-y-0.5 active:translate-y-0 transition-transform duration-300`}
       >
         {item.side === "l" ? (
           <>
