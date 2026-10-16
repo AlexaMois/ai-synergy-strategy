@@ -12,7 +12,6 @@ import AnimatedNumber from "@/components/AnimatedNumber";
 import IndustryQuestions from "@/components/home/IndustryQuestions";
 import heroCharacter from "@/assets/alexandra-hero.webp";
 import gearsImg from "@/assets/how-we-work-gears.jpg";
-import routeSketch from "@/assets/sketches/route-sketch.webp";
 
 const stats: Array<{
   value: number;
@@ -193,10 +192,10 @@ const NewHome = () => {
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-              Не знаете,{" "}
+              Не знаете{" "}
               <span className="font-iriska font-normal italic text-accent">с чего начать</span>?
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-foreground/80">
               Если задача уже понятна — сразу обсудим её решение. Если пока нет —
               поможем разобраться, что менять в первую очередь и как не потратить
               деньги на ненужные инструменты.
@@ -211,10 +210,10 @@ const NewHome = () => {
                 price: 17000,
                 result: "Результат: понятный первый шаг и варианты решения.",
                 to: "/services/owner-digital-session",
-                showSketch: routeSketch,
+                showSketch: null,
                 bg: "bg-surface-mint",
                 textColor: "text-foreground",
-                muted: "text-foreground/70",
+                muted: "text-foreground/85",
                 btnVariant: "dark" as const,
                 chip: "bg-accent/10 text-accent",
                 dots: "bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)]",
@@ -228,11 +227,11 @@ const NewHome = () => {
                 result: "Результат: план действий с приоритетами.",
                 to: "/services/digital-development-strategy",
                 showSketch: null,
-                bg: "bg-accent",
+                bg: "bg-primary-dark",
                 textColor: "text-background",
-                muted: "text-background/80",
+                muted: "text-background",
                 btnVariant: "light" as const,
-                chip: "bg-background/15 text-background",
+                chip: "bg-background/20 text-background",
                 dots: "bg-[radial-gradient(hsl(var(--background)/0.35)_1.5px,transparent_1.5px)]",
                 check: "text-background",
               },
@@ -267,7 +266,7 @@ const NewHome = () => {
                       <AnimatedNumber value={card.price} suffix=" ₽" />
                     </span>
                   </div>
-                  <p className={`flex items-start gap-2 text-xs ${card.muted} max-w-[85%]`}>
+                  <p className={`flex items-start gap-2 text-sm ${card.muted} max-w-[85%]`}>
                     <BadgeCheck className={`h-4 w-4 shrink-0 ${card.check} mt-0.5`} />
                     {card.result}
                   </p>
