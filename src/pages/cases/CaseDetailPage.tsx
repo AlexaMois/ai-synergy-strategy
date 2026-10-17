@@ -6,7 +6,7 @@ import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, ArrowRight } from "lucide-react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
 import { scrollToContact } from "@/lib/scrollToContact";
 
@@ -71,7 +71,6 @@ const casesData: Record<string, CaseData> = {
 const CaseDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const caseData = slug ? casesData[slug] : null;
 
