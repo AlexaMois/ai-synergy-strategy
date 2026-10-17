@@ -6,8 +6,9 @@ import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, ArrowRight } from "lucide-react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
+import { scrollToContact } from "@/lib/scrollToContact";
 
 interface CaseData {
   slug: string;
@@ -62,7 +63,6 @@ const casesData: Record<string, CaseData> = {
     ],
     results: [
       "Время ответа на технический запрос — 3 секунды",
-      "Экономия 150–350 тыс ₽ в месяц",
       "Снижена зависимость от ручного поиска по документации",
     ],
   },
@@ -71,23 +71,8 @@ const casesData: Record<string, CaseData> = {
 const CaseDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const caseData = slug ? casesData[slug] : null;
-
-  const scrollToContact = () => {
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  };
 
   if (!caseData) {
     return (
@@ -244,7 +229,7 @@ const CaseDetailPage = () => {
                 Обсудим вашу задачу и найдём оптимальное решение
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу <ArrowRight className="ml-2 h-5 w-5" />
+                Обсудить похожую задачу <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </section>

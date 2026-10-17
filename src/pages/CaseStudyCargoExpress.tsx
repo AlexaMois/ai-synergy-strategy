@@ -6,27 +6,13 @@ import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Phone, MessageSquare, Mic } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { scrollToContact as scrollToContactForm } from "@/lib/scrollToContact";
 import { trackCTAClick } from "@/utils/analytics";
 
 const CaseStudyCargoExpress = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const scrollToContact = () => {
     trackCTAClick({ location: 'cases', buttonText: 'Cargo Express CTA' });
-    
-    if (location.pathname !== '/') {
-      navigate('/#contact');
-      return;
-    }
-    const element = document.querySelector('#contact');
-    if (element) {
-      const navHeight = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
+    scrollToContactForm();
   };
 
   return (
@@ -522,7 +508,7 @@ const CaseStudyCargoExpress = () => {
                 а с разбора процесса приёма заявок.
               </p>
               <Button size="lg" onClick={scrollToContact}>
-                Обсудить задачу
+                Обсудить похожую задачу
               </Button>
             </div>
           </div>

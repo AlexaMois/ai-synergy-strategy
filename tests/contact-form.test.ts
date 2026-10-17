@@ -12,6 +12,13 @@ const validContact = {
 };
 
 describe("contactSchema", () => {
+  test("includes the viewed case in the existing task without overwriting the client request", () => {
+    const payload = buildContactSubmission(validContact, null, "", null, "Грузовой Экспресс");
+    expect(payload.task).toContain("Просмотренный кейс: Грузовой Экспресс");
+    expect(payload.task).toContain(validContact.comment);
+    expect(payload.formName).toBe("Форма обратной связи");
+    expect(buildContactSubmission(validContact, null, "").task).not.toContain("Просмотренный кейс:");
+  });
   test("requires task description, name, phone and consent", () => {
     expect(contactSchema.safeParse(validContact).success).toBe(true);
 

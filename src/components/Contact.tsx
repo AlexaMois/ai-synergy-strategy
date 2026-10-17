@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 import { readContactIntent, setContactIntent, INTENT_EVENT, intentTask, type ContactIntent } from "@/lib/contactIntent";
 import { useLocation } from "react-router-dom";
+import { caseForPath } from "@/data/caseStudies";
 import { budgetOptions, readyForCallOptions, labelOf } from "@/components/diagnostic/diagnosticConfig";
 
 // Format phone number as +7 (XXX) XXX-XX-XX
@@ -75,13 +76,14 @@ type ContactContext = {
   topic: string;
 };
 
-export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string, intent: ContactIntent | null = null) => ({
+export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string, intent: ContactIntent | null = null, caseName?: string) => ({
   name: data.name.trim(),
   phone: data.phone,
   email: data.email?.trim() || '',
   company: data.company?.trim() || '',
   industry: data.industry?.trim() || contactContext?.industry || '',
   task: [
+    caseName ? `Просмотренный кейс: ${caseName}` : '',
     intentTask(intent),
     data.comment.trim(),
     intent && data.budget ? `Бюджет: ${labelOf(budgetOptions, data.budget)}` : "",
@@ -105,6 +107,7 @@ interface ContactProps {
 const Contact = ({ defaultComment = "" }: ContactProps) => {
   const location = useLocation();
   const isStartPage = location.pathname.replace(/\/$/, "") === "/start";
+  const currentCase = caseForPath(location.pathname);
   const [intent, setIntent] = useState<ContactIntent | null>(null);
   const sendingRef = useRef(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -196,7 +199,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
-      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot, intent));
+      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot, intent, currentCase?.client));
 
       if (!result.ok) {
         toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
@@ -259,6 +262,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               onSubmit={handleSubmit(onSubmit)} 
               className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
+            {currentCase && <p className="mb-6 border-b border-border pb-4 text-sm text-muted-foreground">Похожая задача · {currentCase.client}</p>}
             {isStartPage && intent && <div className="mb-6 border-b border-border pb-4">
               <p className="font-semibold text-foreground">{intent.kind === "meeting" ? "Личный разбор с Александрой — 17 000 ₽" : "Обсуждение внедрения"}</p>
               {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}

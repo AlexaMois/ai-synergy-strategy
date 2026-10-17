@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PillButton from "@/components/PillButton";
+import { scrollToContact } from "@/lib/scrollToContact";
 import portalShot from "@/assets/cases/aktrans/portal.webp";
 import docFormShot from "@/assets/cases/aktrans/doc-form.webp";
 import dashboardShot from "@/assets/cases/aktrans/dashboard.webp";
@@ -164,7 +165,7 @@ const AkTransServiceContent = () => {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <PillButton to="/start" variant="dark">
+                <PillButton onClick={scrollToContact} variant="dark">
                   Обсудить похожую задачу
                 </PillButton>
                 <Link
@@ -532,7 +533,7 @@ const AkTransServiceContent = () => {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <PillButton to="/start" variant="dark">
+              <PillButton onClick={scrollToContact} variant="dark">
                 Обсудить похожую задачу
               </PillButton>
               <Link
