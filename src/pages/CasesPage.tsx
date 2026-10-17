@@ -37,8 +37,8 @@ const CasesPage = () => {
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-7">{description}.</p>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Фильтры по проблемам">
-              <Button size="sm" variant={problem === "all" ? "secondary" : "outline"} aria-pressed={problem === "all"} onClick={() => setProblem("all")} className="rounded-full h-auto min-h-10 text-sm">Все проекты</Button>
-              {availableCaseProblems().map(item => <Button key={item.id} size="sm" variant={problem === item.id ? "secondary" : "outline"} aria-pressed={problem === item.id} onClick={() => setProblem(item.id)} className="rounded-full h-auto min-h-10 text-sm">{item.label}</Button>)}
+              <Button size="sm" variant={problem === "all" ? "secondary" : "outline"} aria-pressed={problem === "all"} onClick={() => { setProblem("all"); trackCaseFilter("all"); }} className="rounded-full h-auto min-h-10 text-sm">Все проекты</Button>
+              {availableCaseProblems().map(item => <Button key={item.id} size="sm" variant={problem === item.id ? "secondary" : "outline"} aria-pressed={problem === item.id} onClick={() => { setProblem(item.id); trackCaseFilter(item.id); }} className="rounded-full h-auto min-h-10 text-sm">{item.label}</Button>)}
             </div>
           </section>
           <section className="container mx-auto max-w-7xl px-4 pb-10 md:pb-16" aria-label="Выполненные проекты" aria-live="polite">

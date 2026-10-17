@@ -9,11 +9,16 @@ describe("approved case catalog rules", () => {
     try { expect(publishedCases().some(item => item.id === "not-approved")).toBe(false); }
     finally { caseStudies.pop(); }
   });
-  test("offers no empty procurement filter and filters published problems correctly", () => {
+  test("offers no empty procurement or travel filter and filters published problems correctly", () => {
     expect(availableCaseProblems().map(item => item.id)).not.toContain("procurement");
+    expect(availableCaseProblems().map(item => item.id)).not.toContain("travel");
     expect(publishedCases("requests").map(item => item.client)).toEqual(["Грузовой Экспресс"]);
-    expect(publishedCases("travel").map(item => item.client)).toEqual(["АкТрансСервис"]);
-    expect(publishedCases("documents").length).toBe(3);
+    expect(publishedCases("documents").map(item => item.client)).toEqual(["АкТрансСервис", "Производственная компания"]);
+    expect(publishedCases("control").length).toBe(3);
+  });
+  test("architectural case does not promise a working product demo", () => {
+    expect(caseForPath("/cases/kraypotrebsoyuz")?.linkLabel).toBe("Читать кейс");
+    expect(caseForPath("/cases/aktransservice")?.linkLabel).toBe("Посмотреть, как это работает");
   });
   test("keeps only the approved production response time", () => {
     expect(caseForPath("/cases/production-doc-search")?.results.map(item => item.value)).toEqual(["3 секунды"]);
