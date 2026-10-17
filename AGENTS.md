@@ -7,3 +7,4 @@
 - Contact intent is session-scoped and used only on /start; service identity and assessment are included in the mapped task field because catalog option IDs must never be invented.
 - Assessment PDFs embed the existing local Cyrillic font and paginate text so exports work offline after the font loads without sending answers to another service.
 - Process time is parsed and validated by the pure assessment module; unknown values remain nonnumeric so the UI and PDF never invent workload estimates.
+- Process recommendations use conservative local work-type rules over the described current process, not storage or category precedence; ambiguous descriptions request clarification, and each recognized type supplies a measurable experiment without claiming an established cause.

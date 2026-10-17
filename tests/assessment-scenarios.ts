@@ -1,0 +1,15 @@
+import { emptyForm, type DiagnosticForm } from "../src/components/diagnostic/diagnosticConfig";
+import { type ProcessKind } from "../src/lib/processAssessment";
+
+// Reconstructed from the seven situations in QA_ankety_Start_17-10-2026.md.
+// The report does not include original full forms. Shared values are test inputs, not company facts.
+const base: DiagnosticForm = { ...emptyForm, participants: "4", hoursPerWeek: "unknown", frequency: "2", losses: ["1", "6"], systems: ["5"], dataStorage: "2", goal: "Устранить отмеченную проблему", successCriteria: "Время выполнения и число ошибок" };
+export const scenarios: { id: number; title: string; kind: ProcessKind; form: DiagnosticForm }[] = [
+  { id: 1, title: "Поиск инструкции к станку", kind: "document-search", form: { ...base, process: "Поиск инструкции к станку", processDescription: "Сотрудники ищут техническую инструкцию к станку в папках и спрашивают друг друга.", manualActions: ["6"], consequences: "Станок простаивает, пока ищем инструкцию" } },
+  { id: 2, title: "Отчёт механиков расходится с 1С", kind: "data-reconciliation", form: { ...base, process: "Сверка ремонтов", processDescription: "Отчёт механиков о ремонте одной и той же машины расходится с 1С: статусы ремонта не совпадают.", manualActions: ["3"], systems: ["1", "5", "6"], dataStorage: "3", consequences: "Неясно, какой ремонт завершён" } },
+  { id: 3, title: "Материалы в проекте, смете и закупке", kind: "data-reconciliation", form: { ...base, process: "Сверка материалов", processDescription: "Материалы в проекте, смете и закупке расходятся: разные наименования, единицы измерения, объёмы и цены.", manualActions: ["4", "3"], consequences: "Ошибки в закупке материалов" } },
+  { id: 4, title: "Заявки из звонков и голосовых", kind: "lost-requests", form: { ...base, process: "Входящие заявки", processDescription: "Клиенты звонят и присылают голосовые сообщения. Заявки пропадают, часть обращений остаётся без ответа.", manualActions: ["1", "8"], systems: ["6", "8"], dataStorage: "3", losses: ["2"], consequences: "Клиенты не получают ответ" } },
+  { id: 5, title: "План выпуска и потребность в сырье", kind: "production-planning", form: { ...base, process: "Производственное планирование", processDescription: "План выпуска и потребность в сырье считаются вручную в таблице для производственных заказов.", manualActions: ["3", "12"], consequences: "Много времени уходит на расчёт плана" } },
+  { id: 6, title: "Согласование договора при тех же галочках", kind: "contract-approval", form: { ...base, process: "Согласование договора", processDescription: "Менеджер передаёт договор юристу и директору на согласование, ждёт ответа и возвращает версии на исправление.", manualActions: ["4", "3"], consequences: "Долго ждём согласования договора" } },
+  { id: 7, title: "Неизвестное время", kind: "document-search", form: { ...base, process: "Поиск инструкции", processDescription: "Ищем инструкцию к станку в папках. Время поиска не замеряли.", manualActions: ["6"], consequences: "Задерживается работа", hoursPerWeek: "unknown" } },
+];
