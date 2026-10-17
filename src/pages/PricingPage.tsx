@@ -9,7 +9,6 @@ import { ArrowRight, Layers, Users, Database, Server, LifeBuoy, ShieldCheck } fr
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
 import { openCallbackModal } from "@/components/CallbackModal";
-import { scrollToContact } from "@/lib/scrollToContact";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
