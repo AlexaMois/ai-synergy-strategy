@@ -6,6 +6,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import CaseProjectCard from "@/components/cases/CaseProjectCard";
 import { availableCaseProblems, publishedCases, type CaseProblem } from "@/data/caseStudies";
+import { trackCaseFilter } from "@/utils/analytics";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 
 const CasesPage = () => {

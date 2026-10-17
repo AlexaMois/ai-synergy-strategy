@@ -33,7 +33,7 @@ export default function CaseProjectCard({ project }: { project: CaseStudy }) {
         </Button>
       </div>
       {image && <figure className={`${featured ? "lg:border-l" : "border-t"} border-foreground/10 bg-background flex flex-col justify-center min-w-0`}>
-        <Link to={project.link} className="block p-3 md:p-5">
+        <Link to={project.link} onClick={() => trackCaseOpen(project.id)} className="block p-3 md:p-5">
           <img src={media[image.key]} alt={image.alt} loading={featured ? "eager" : "lazy"} className={`w-full object-contain ${featured ? "aspect-[4/3]" : "aspect-[16/9]"}`} />
         </Link>
         <figcaption className="px-5 pb-5">
