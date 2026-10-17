@@ -134,8 +134,8 @@ const Navigation = () => {
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    trackZakazatZvonok();
-    openCallbackModal("task");
+    trackCTAClick({ location: 'navigation' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
