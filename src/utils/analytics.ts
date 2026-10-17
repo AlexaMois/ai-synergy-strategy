@@ -36,7 +36,6 @@ export const trackZakazatZvonok = () => {
 
 export const trackCaseFilter = (filterId: string) => {
   if (!hasAnalyticsConsent()) return;
-  ymGoal(YANDEX_COUNTER_ID, 'case_filter');
   if (typeof window !== 'undefined' && window.ym) {
     window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'case_filter', { filter: filterId });
   }
