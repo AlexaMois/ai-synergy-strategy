@@ -5,6 +5,7 @@ const MaxIcon = ({ className }: { className?: string }) => (
 );
 import DisabledLink from "@/components/DisabledLink";
 import Contact from "@/components/Contact";
+import Partners from "@/components/Partners";
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +27,7 @@ const Footer = () => {
   };
   return <>
     <Contact />
+    {location.pathname !== '/' && <Partners placement="after-contact" />}
     <footer className="bg-dark-bg text-background py-12">
       <div className="container mx-auto px-4">
         {/* Основная информация */}

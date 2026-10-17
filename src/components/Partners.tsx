@@ -14,12 +14,21 @@ import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
 import tsarskiyStol from '@/assets/partners/tsarskiy-stol.webp';
 import aktransservice from '@/assets/partners/aktransservice.png';
 import yunarmiya from '@/assets/partners/yunarmiya.webp';
+import { useLocation } from 'react-router-dom';
 
 interface PartnersProps {
   className?: string;
+  placement?: 'page' | 'after-contact';
 }
 
-const Partners = ({ className }: PartnersProps) => {
+const Partners = ({ className, placement = 'page' }: PartnersProps) => {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
+  // Keep the approved homepage placement; inner pages render only through Footer.
+  if (isHome ? placement === 'after-contact' : placement !== 'after-contact') {
+    return null;
+  }
+
   const partners = [
     { id: 1, name: "ОПОРА РОССИИ", logo: oporaRossii },
     { id: 2, name: "IT Park", logo: itPark },
@@ -40,7 +49,7 @@ const Partners = ({ className }: PartnersProps) => {
   ];
 
   return (
-    <section className={className || "pt-2 md:pt-4 pb-10 md:pb-14 lg:pb-16 bg-background"}>
+    <section aria-label="С кем уже работали" className={className || "pt-2 md:pt-4 pb-10 md:pb-14 lg:pb-16 bg-background"}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="marquee-container">
           <div className="marquee-content marquee-logos">
