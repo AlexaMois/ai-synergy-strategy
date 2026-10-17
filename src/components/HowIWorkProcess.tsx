@@ -3,7 +3,7 @@ import AvailabilityBadge from "@/components/AvailabilityBadge";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { Search, LayoutDashboard, ShieldCheck } from "lucide-react";
 import { AVAILABLE_SLOTS_THIS_WEEK } from "@/config/availability";
-import { openTaskModal } from "@/components/CallbackModal";
+import { scrollToContact } from "@/lib/scrollToContact";
 
 const HowIWorkProcess = () => {
   const { ref, getStaggeredClass } = useMobileAnimations({ threshold: 0.2 });
@@ -111,7 +111,7 @@ const HowIWorkProcess = () => {
               Узнать, что можно автоматизировать <span className="font-semibold">в вашей компании</span>
             </h3>
             <div className="flex flex-col gap-2 items-center">
-              <Button size="lg" onClick={() => openTaskModal()}>
+              <Button size="lg" onClick={() => scrollToContact()}>
                 Обсудить задачу
               </Button>
               <AvailabilityBadge slotsAvailable={AVAILABLE_SLOTS_THIS_WEEK} />

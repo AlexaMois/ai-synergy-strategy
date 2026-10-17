@@ -46,8 +46,6 @@ export const openCallbackModal = (variant: CallbackVariant = "callback") => {
   window.dispatchEvent(new CustomEvent(CALLBACK_MODAL_EVENT, { detail: { variant } }));
 };
 
-export const openTaskModal = () => openCallbackModal("task");
-
 const CallbackModal = () => {
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);

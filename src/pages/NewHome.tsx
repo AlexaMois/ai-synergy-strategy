@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, ChevronRight, Quote, Phone } from "lucide-react";
-import { openTaskModal } from "@/components/CallbackModal";
+import { scrollToContact } from "@/lib/scrollToContact";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import TrustMarquee from "@/components/TrustMarquee";
@@ -130,7 +130,7 @@ const NewHome = () => {
                     >
                       Узнать свою задачу
                     </PillButton>
-                    <PillButton variant="ghost-light" onClick={openTaskModal}>
+                    <PillButton variant="ghost-light" onClick={scrollToContact}>
                       Обсудить задачу
                     </PillButton>
                   </div>
