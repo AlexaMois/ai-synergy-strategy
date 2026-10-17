@@ -72,4 +72,11 @@ describe("report 17.10.2026 work-specific rules", () => {
       expect(classifyProcess({ ...form, dataStorage, goal: "Искать инструкции", aiUsage: "1", readyForCall: "1" })).toBe("data-reconciliation");
     }
   });
+  test("negated problem statements do not become asserted problems", () => {
+    for (const processDescription of ["Заявки не теряются, отвечаем на все звонки", "Расхождений нет, сверяем данные", "Нет расхождений в смете", "Обращения обрабатываем без потерь"]) {
+      const form = { ...emptyForm, process: "Текущая работа", processDescription };
+      expect(classifyProcess(form)).toBe("insufficient");
+      expect(assessProcess(form).solution).toContain("Недостаточно сведений");
+    }
+  });
 });

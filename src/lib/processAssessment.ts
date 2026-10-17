@@ -20,6 +20,8 @@ export function classifyProcess(form: DiagnosticForm): ProcessKind {
   const description = form.processDescription.trim().toLocaleLowerCase("ru").replace(/ё/g, "е");
   if (!description) return "insufficient";
   const text = `${form.process.toLocaleLowerCase("ru").replace(/ё/g, "е")}. ${description}`;
+  // Negated or contradicted cues cannot safely justify a problem classification.
+  if (/не\s+(теря\w*|пропада\w*|ищ\w*|согласовы\w*|планиру\w*)|(?:заявк\w*|обращен\w*|расхожд\w*|согласован\w*).{0,25}\bнет\b|нет\s+(?:потер\w*|расхожд\w*|необходимости\s+согласовы\w*)|без\s+(?:потер\w*|расхожд\w*)/u.test(text)) return "insufficient";
   const kinds: ProcessKind[] = [];
   const has = (pattern: RegExp) => pattern.test(text);
   if (has(/поиск|ищ[уе]|найти|искать|отыск|наход/) && has(/инструкц|документ|руководств|технич|чертеж/)) kinds.push("document-search");
@@ -32,6 +34,13 @@ export function classifyProcess(form: DiagnosticForm): ProcessKind {
 }
 
 type Recommendation = { focus: string; solution: string; experiment: string; criterion: string };
+const causeChecks: Record<Exclude<ProcessKind, "insufficient">, string> = {
+  "document-search": "Проверьте доступность актуальной инструкции и точность поиска на реальных вопросах.",
+  "data-reconciliation": "Проверьте совпадение объектов, дат среза, единиц и первичных документов в источниках.",
+  "contract-approval": "Проверьте, на каком этапе договор ожидает ответа и сколько раз возвращается на исправление.",
+  "lost-requests": "Проверьте переход от входящего звонка или сообщения к регистрации и ответу клиенту.",
+  "production-planning": "Проверьте подтверждение норм, остатков, резервов и доступной мощности для выбранных заказов.",
+};
 const recommendations: Record<Exclude<ProcessKind, "insufficient">, Recommendation> = {
   "document-search": {
     focus: "Поиск технических инструкций и документов",
@@ -82,7 +91,7 @@ export function assessProcess(form: DiagnosticForm): AssessmentResult {
   const criterion = recommendation?.criterion ?? "После уточнения выберите один наблюдаемый показатель: время выполнения, число ошибок или долю необработанных случаев; запишите исходное значение. Сейчас данных для предметного критерия недостаточно.";
   return {
     problem: `${recommendation?.focus ?? "Тип проблемы пока не определён"}. ${form.consequences.trim() ? `По вашим словам: ${form.consequences.trim()}.` : "Последствия не описаны."}${losses.length ? ` Отмеченные потери: ${losses.join(", ")}.` : ""}`,
-    cause: `${noCriticalLoss ? "Критичные потери не отмечены. " : ""}Причина не установлена: недостаточно данных о конкретных случаях.${recommendation ? ` Участок проверки по описанию: ${recommendation.focus.toLocaleLowerCase("ru")}. ${recommendation.solution}` : ` ${clarification}`} Это направление проверки, а не доказанная причина.`,
+    cause: `${noCriticalLoss ? "Критичные потери не отмечены. " : ""}Причина не установлена: недостаточно данных о конкретных случаях. ${kind === "insufficient" ? "Сначала уточните одно действие и наблюдаемую проблему." : causeChecks[kind]} Это направление проверки, а не доказанная причина.`,
     scale: `${/^\d+$/.test(form.participants.trim()) && Number(form.participants) > 0 ? `${form.participants.trim()} сотрудников` : "Число участников неизвестно"} · ${hours === null ? "Время на процесс пока неизвестно. Недостаточно данных для оценки часов и возможной экономии." : `${hours} ч в неделю суммарно · около ${hours * 4} ч за 4 недели. Это нагрузка всего процесса, а не обещанная экономия.`}${actions.length ? ` Ручные действия: ${actions.join(", ")}.` : ""}`,
     solution: recommendation?.solution ?? clarification,
     firstStep: `${experiment} Критерий проверки: ${criterion}${form.successCriteria.trim() ? ` Ваш показатель: «${form.successCriteria.trim()}».` : ""}${form.goal.trim() ? ` Ваша цель: «${form.goal.trim()}»; достижение пока не проверено.` : ""} Размер выборки — предложение для первого теста, а не сведения о вашей компании; если случаев меньше, используйте доступные и укажите фактическое количество.`,
