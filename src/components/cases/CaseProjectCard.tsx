@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { CaseStudy } from "@/data/caseStudies";
+import { trackCaseOpen } from "@/utils/analytics";
 import portal from "@/assets/cases/aktrans/portal.webp";
 import dashboard from "@/assets/cases/aktrans/dashboard.webp";
 import jarvis from "@/assets/cases/aktrans/jarvis-menu.webp";

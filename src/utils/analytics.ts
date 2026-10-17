@@ -17,8 +17,36 @@ const ymGoal = (counterId: number, goal: string) => {
   }
 };
 
+// Аналитические события отправляются только при согласии на аналитику.
+export const hasAnalyticsConsent = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  try {
+    const stored = localStorage.getItem('cookie_consent');
+    if (!stored) return false;
+    const parsed = JSON.parse(stored);
+    return parsed?.consent?.analytics === true;
+  } catch {
+    return false;
+  }
+};
+
 export const trackZakazatZvonok = () => {
   ymGoal(YANDEX_COUNTER_ID, 'click_zakazat_zvonok');
+};
+
+export const trackCaseFilter = (filterId: string) => {
+  if (!hasAnalyticsConsent()) return;
+  ymGoal(YANDEX_COUNTER_ID, 'case_filter');
+  if (typeof window !== 'undefined' && window.ym) {
+    window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'case_filter', { filter: filterId });
+  }
+};
+
+export const trackCaseOpen = (caseId: string) => {
+  if (!hasAnalyticsConsent()) return;
+  if (typeof window !== 'undefined' && window.ym) {
+    window.ym(YANDEX_COUNTER_ID, 'reachGoal', 'case_open', { case_id: caseId });
+  }
 };
 
 export const trackCtaPillar = () => {
