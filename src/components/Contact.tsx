@@ -84,8 +84,8 @@ export const buildContactSubmission = (data: ContactFormData, contactContext: Co
   task: [
     intentTask(intent),
     data.comment.trim(),
-    data.budget ? `Бюджет: ${labelOf(budgetOptions, data.budget)}` : "",
-    data.readyForCall ? `Готовность к разговору: ${labelOf(readyForCallOptions, data.readyForCall)}` : "",
+    intent && data.budget ? `Бюджет: ${labelOf(budgetOptions, data.budget)}` : "",
+    intent && data.readyForCall ? `Готовность к разговору: ${labelOf(readyForCallOptions, data.readyForCall)}` : "",
     contactContext?.industry ? `Выбранная отрасль: ${contactContext.industry}` : '',
     contactContext?.topic ? `Тема вопроса: ${contactContext.topic}` : '',
     contactContext?.question ? `Выбранный вопрос: ${contactContext.question}` : '',
@@ -264,7 +264,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}
               <PillButton size="sm" variant="outline-dark" onClick={() => setContactIntent(null)} className="mt-3">Обычное обращение</PillButton>
             </div>}
-            {isStartPage && <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {isStartPage && intent && <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div><Label htmlFor="contact-budget">Бюджет (необязательно)</Label><select id="contact-budget" {...register("budget")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{budgetOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
               <div><Label htmlFor="contact-call">Готовность к разговору (необязательно)</Label><select id="contact-call" {...register("readyForCall")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{readyForCallOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
             </div>}
