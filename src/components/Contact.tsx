@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,6 +12,9 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
+import { readContactIntent, setContactIntent, INTENT_EVENT, intentTask, type ContactIntent } from "@/lib/contactIntent";
+import { useLocation } from "react-router-dom";
+import { budgetOptions, readyForCallOptions, labelOf } from "@/components/diagnostic/diagnosticConfig";
 
 // Format phone number as +7 (XXX) XXX-XX-XX
 const formatPhoneNumber = (value: string): string => {
@@ -59,6 +62,8 @@ export const contactSchema = z.object({
   phone: z.string().regex(phoneRegex, "Введите номер в формате +7 (XXX) XXX-XX-XX"),
   email: z.string().trim().email("Введите корректный email").max(255, "Максимум 255 символов").optional().or(z.literal("")),
   comment: z.string().trim().min(1, "Опишите задачу").max(1000, "Максимум 1000 символов"),
+  budget: optionalText(100),
+  readyForCall: optionalText(100),
   consent: z.boolean().refine(val => val === true, "Необходимо согласие на обработку данных")
 });
 
@@ -70,14 +75,17 @@ type ContactContext = {
   topic: string;
 };
 
-export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string) => ({
+export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string, intent: ContactIntent | null = null) => ({
   name: data.name.trim(),
   phone: data.phone,
   email: data.email?.trim() || '',
   company: data.company?.trim() || '',
   industry: data.industry?.trim() || contactContext?.industry || '',
   task: [
+    intentTask(intent),
     data.comment.trim(),
+    data.budget ? `Бюджет: ${labelOf(budgetOptions, data.budget)}` : "",
+    data.readyForCall ? `Готовность к разговору: ${labelOf(readyForCallOptions, data.readyForCall)}` : "",
     contactContext?.industry ? `Выбранная отрасль: ${contactContext.industry}` : '',
     contactContext?.topic ? `Тема вопроса: ${contactContext.topic}` : '',
     contactContext?.question ? `Выбранный вопрос: ${contactContext.question}` : '',
@@ -85,7 +93,7 @@ export const buildContactSubmission = (data: ContactFormData, contactContext: Co
   selectedIndustry: contactContext?.industry || '',
   selectedQuestion: contactContext?.question || '',
   selectedQuestionTopic: contactContext?.topic || '',
-  formName: 'Форма обратной связи',
+  formName: intent?.kind === 'meeting' ? 'Личный разбор — 17 000 ₽' : 'Форма обратной связи',
   consent: true,
   website: honeypot,
 });
@@ -95,6 +103,10 @@ interface ContactProps {
 }
 
 const Contact = ({ defaultComment = "" }: ContactProps) => {
+  const location = useLocation();
+  const isStartPage = location.pathname.replace(/\/$/, "") === "/start";
+  const [intent, setIntent] = useState<ContactIntent | null>(null);
+  const sendingRef = useRef(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [contactContext, setContactContext] = useState<ContactContext | null>(null);
@@ -142,7 +154,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
       };
       if (!nextContext.industry && !nextContext.question) return;
       setContactContext(nextContext);
-      if (nextContext.industry && !watch("industry")) {
+      if (nextContext.industry) {
         setValue("industry", nextContext.industry, { shouldValidate: false });
       }
     } catch {
@@ -156,6 +168,19 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     return () => window.removeEventListener(CONTACT_CONTEXT_EVENT, readContactContext);
   }, []);
 
+  useEffect(() => {
+    const update = () => {
+      const next = readContactIntent();
+      setIntent(isStartPage ? next : null);
+      if (isStartPage && next?.process) setValue("comment", next.process.slice(0, 1000), { shouldValidate: false });
+      setIsSubmitted(false);
+      sendingRef.current = false;
+    };
+    update();
+    window.addEventListener(INTENT_EVENT, update);
+    return () => window.removeEventListener(INTENT_EVENT, update);
+  }, [isStartPage, setValue]);
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
     setValue("phone", formatted, { shouldValidate: true });
@@ -165,27 +190,31 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   const [honeypot, setHoneypot] = useState("");
 
   const onSubmit = async (data: ContactFormData) => {
-    if (isSubmitting) return;
+    if (sendingRef.current || isSubmitted) return;
+    sendingRef.current = true;
     setIsSubmitting(true);
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
-      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot));
+      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot, intent));
 
       if (!result.ok) {
         toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
         setIsSubmitting(false);
+        sendingRef.current = false;
         return;
       }
 
 
       setIsSubmitting(false);
+      setContactIntent(null);
       setIsSubmitted(true);
       trackFormSubmission('contact');
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");
       setIsSubmitting(false);
+      sendingRef.current = false;
     }
   };
 
@@ -230,6 +259,15 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               onSubmit={handleSubmit(onSubmit)} 
               className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
+            {isStartPage && intent && <div className="mb-6 border-b border-border pb-4">
+              <p className="font-semibold text-foreground">{intent.kind === "meeting" ? "Личный разбор с Александрой — 17 000 ₽" : "Обсуждение внедрения"}</p>
+              {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}
+              <PillButton size="sm" variant="outline-dark" onClick={() => setContactIntent(null)} className="mt-3">Обычное обращение</PillButton>
+            </div>}
+            {isStartPage && <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div><Label htmlFor="contact-budget">Бюджет (необязательно)</Label><select id="contact-budget" {...register("budget")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{budgetOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
+              <div><Label htmlFor="contact-call">Готовность к разговору (необязательно)</Label><select id="contact-call" {...register("readyForCall")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{readyForCallOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
+            </div>}
             <div className="space-y-2 mb-4 sm:mb-6">
               <Label htmlFor="comment" className="text-foreground">
                 Описание задачи <span className="text-primary">*</span>

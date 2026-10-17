@@ -1,30 +1,26 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
-import { submitForm } from "@/lib/formsClient";
-import { markDiagnosticStarted, markDiagnosticSubmitted } from "@/lib/diagnosticState";
+import { ArrowLeft, ArrowRight, Check, AlertCircle, Download } from "lucide-react";
+import PillButton from "@/components/PillButton";
+import { Button } from "@/components/ui/button";
+import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS } from "@/lib/processAssessment";
+import { readIndustryContext, setContactIntent } from "@/lib/contactIntent";
+import { saveAssessmentPdf } from "@/lib/assessmentPdf";
+import { scrollToContact } from "@/lib/scrollToContact";
+import { markDiagnosticStarted } from "@/lib/diagnosticState";
 import {
   DiagnosticForm as FormData,
   emptyForm,
   Option,
   aiUsageOptions,
-  budgetOptions,
   dataStorageOptions,
-  decisionMakerOptions,
   frequencyOptions,
-  labelOf,
-  labelsOf,
   lossOptions,
   manualActionOptions,
-  readinessLevel,
-  readyForCallOptions,
   systemOptions,
-  teamSizeOptions,
-  urgencyOptions,
-  wantsDraftOptions,
 } from "./diagnosticConfig";
 
-const TOTAL_STEPS = 8;
-const DRAFT_KEY = "diagnostic-draft-v1";
+const TOTAL_STEPS = ASSESSMENT_STEPS;
+const DRAFT_KEY = "diagnostic-draft-v2";
 
 type Errors = Partial<Record<keyof FormData, string>>;
 
@@ -34,9 +30,10 @@ const loadDraft = (): { step: number; form: FormData } | null => {
   try {
     const raw = sessionStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as { step?: number; form?: Partial<FormData> };
+    const parsed = JSON.parse(raw) as { step?: number; form?: Partial<FormData>; sourceQuestion?: string };
     if (!parsed?.form) return null;
-    const step = Math.min(Math.max(Number(parsed.step) || 1, 1), TOTAL_STEPS);
+    if ((readIndustryContext()?.question || "") !== (parsed.sourceQuestion || "")) return null;
+    const step = Math.min(Math.max(Number(parsed.step) || 1, 1), TOTAL_STEPS + 1);
     return { step, form: { ...emptyForm, ...parsed.form } };
   } catch {
     return null;
@@ -45,18 +42,10 @@ const loadDraft = (): { step: number; form: FormData } | null => {
 
 const saveDraft = (step: number, form: FormData) => {
   try {
-    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form }));
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form, sourceQuestion: readIndustryContext()?.question || "" }));
     markDiagnosticStarted();
   } catch {
     /* приватный режим — просто не сохраняем */
-  }
-};
-
-const clearDraft = () => {
-  try {
-    sessionStorage.removeItem(DRAFT_KEY);
-  } catch {
-    /* ignore */
   }
 };
 
@@ -146,7 +135,8 @@ const TextField = ({
         placeholder={placeholder}
         className={`${inputCls} ${error ? "border-destructive" : "border-foreground/10"}`}
         inputMode={type === "number" ? "numeric" : undefined}
-        min={type === "number" ? 1 : undefined}
+        min={type === "number" ? 0 : undefined}
+        step={type === "number" ? "any" : undefined}
         aria-invalid={!!error}
       />
       {hint && <p className="text-xs text-muted-foreground mt-1.5">{hint}</p>}
@@ -217,7 +207,7 @@ const RadioGroup = ({
       {options.map((o) => {
         const active = value === o.id;
         return (
-          <button
+          <Button
             key={o.id}
             type="button"
             role="radio"
@@ -239,7 +229,7 @@ const RadioGroup = ({
               </span>
               {o.label}
             </span>
-          </button>
+          </Button>
         );
       })}
     </div>
@@ -270,7 +260,7 @@ const CheckGroup = ({
       {options.map((o) => {
         const active = value.includes(o.id);
         return (
-          <button
+          <Button
             key={o.id}
             type="button"
             role="checkbox"
@@ -294,7 +284,7 @@ const CheckGroup = ({
               </span>
               {o.label}
             </span>
-          </button>
+          </Button>
         );
       })}
     </div>
@@ -318,18 +308,20 @@ const SummaryRow = ({ title, children }: { title: string; children: React.ReactN
 const DiagnosticForm = () => {
   const draft = useMemo(loadDraft, []);
   const [step, setStep] = useState(draft?.step ?? 1);
-  const [form, setForm] = useState<FormData>(draft?.form ?? emptyForm);
+  const [form, setForm] = useState<FormData>(() => {
+    const context = readIndustryContext();
+    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: draft?.form.process || context?.question || "" };
+  });
   const [errors, setErrors] = useState<Errors>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [recordId, setRecordId] = useState<string | null>(null);
-  const submittedRef = useRef(false);
+  const [completed, setCompleted] = useState(draft?.step === 6);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfError, setPdfError] = useState("");
   const topRef = useRef<HTMLDivElement>(null);
 
   // сохраняем черновик после каждого изменения
   useEffect(() => {
-    if (!recordId) saveDraft(step, form);
-  }, [step, form, recordId]);
+    saveDraft(completed ? 6 : step, form);
+  }, [step, form, completed]);
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -365,36 +357,13 @@ const DiagnosticForm = () => {
     }
     if (s === 4) {
       if (form.systems.length === 0) e.systems = "Отметьте используемые программы и системы";
-      if (!form.aiUsage) e.aiUsage = "Выберите один вариант";
+      
       if (!form.dataStorage) e.dataStorage = "Выберите один вариант";
     }
     if (s === 5) {
       if (!form.goal.trim()) e.goal = "Опишите результат за 1–3 месяца";
       if (!form.successCriteria.trim()) e.successCriteria = "Укажите критерий результата";
-      if (!form.urgency) e.urgency = "Выберите срочность задачи";
-    }
-    if (s === 6) {
-      if (!form.budget) e.budget = "Выберите рассматриваемый бюджет";
-      if (!form.decisionMaker) e.decisionMaker = "Укажите, кто принимает решение";
-      if (!form.readyForCall) e.readyForCall = "Выберите один вариант";
-    }
-    if (s === 7) {
-      if (!form.companyName.trim()) e.companyName = "Укажите название компании";
-      if (!form.industry.trim()) e.industry = "Укажите сферу деятельности";
-      if (!form.city.trim()) e.city = "Укажите город или регион";
-      if (!form.teamSize) e.teamSize = "Выберите размер команды";
-      if (form.website.trim() && !/^https?:\/\/\S+\.\S+/i.test(form.website.trim()))
-        e.website = "Вставьте полную ссылку, например https://…";
-    }
-    if (s === 8) {
-      if (!form.name.trim()) e.name = "Укажите ваше имя";
-      if (!form.position.trim()) e.position = "Укажите должность";
-      if (normalizePhone(form.phone).replace(/\D/g, "").length < 10)
-        e.phone = "Укажите телефон, привязанный к MAX";
-      if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
-        e.email = "Проверьте адрес электронной почты";
-      if (!form.wantsDraft) e.wantsDraft = "Выберите один вариант";
-      if (!form.consent) e.consent = "Нужно согласие на обработку персональных данных";
+
     }
     return e;
   };
@@ -407,138 +376,52 @@ const DiagnosticForm = () => {
       setStep(step + 1);
       scrollTop();
     } else {
-      void submit();
+      setCompleted(true);
+      scrollTop();
     }
   };
 
   const back = () => {
     setErrors({});
-    setSubmitError(null);
+
     if (step > 1) {
       setStep(step - 1);
       scrollTop();
     }
   };
 
-  const submit = async () => {
-    if (submittedRef.current || submitting) return;
-    submittedRef.current = true;
-    setSubmitting(true);
-    setSubmitError(null);
-    try {
-      const result = await submitForm("diagnostic", {
-        process: form.process.trim(),
-          manualActions: form.manualActions,
-          processDescription: form.processDescription.trim(),
-          participants: Math.trunc(Number(form.participants)),
-          frequency: form.frequency,
-          hoursPerWeek: Number(form.hoursPerWeek.replace(",", ".")),
-          losses: form.losses,
-          consequences: form.consequences.trim(),
-          systems: form.systems,
-          aiUsage: form.aiUsage,
-          dataStorage: form.dataStorage,
-          goal: form.goal.trim(),
-          successCriteria: form.successCriteria.trim(),
-          urgency: form.urgency,
-          budget: form.budget,
-          decisionMaker: form.decisionMaker,
-          readyForCall: form.readyForCall,
-          companyOwner: form.companyOwner.trim(),
-          companyName: form.companyName.trim(),
-          industry: form.industry.trim(),
-          city: form.city.trim(),
-          website: form.website.trim(),
-          teamSize: form.teamSize,
-          name: form.name.trim(),
-          position: form.position.trim(),
-          phone: normalizePhone(form.phone),
-          email: form.email.trim(),
-          notes: form.notes.trim(),
-          wantsDraft: form.wantsDraft,
-          consent: true,
-      });
-      const id = result.recordId;
-      if (!result.ok || !id) {
-        submittedRef.current = false;
-        setSubmitError(
-          result.error ||
-            "Не удалось отправить анкету. Проверьте соединение и попробуйте ещё раз или напишите на ai@aleksamois.ru"
-        );
-        return;
-      }
-      clearDraft();
-      markDiagnosticSubmitted();
-      setRecordId(id);
-      scrollTop();
-    } catch {
-      submittedRef.current = false;
-      setSubmitError(
-        "Не удалось отправить анкету. Проверьте соединение и попробуйте ещё раз или напишите на ai@aleksamois.ru"
-      );
-    } finally {
-      setSubmitting(false);
-    }
+  const result = useMemo(() => assessProcess(form), [form]);
+  const context = readIndustryContext();
+  const request = (kind: "implementation" | "meeting") => {
+    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result) });
+    scrollToContact();
   };
 
-  const readiness = useMemo(() => readinessLevel(form), [form]);
-
-  /* ---------- итоговый экран (только после 200 OK и ID) ---------- */
-  if (recordId) {
+  if (completed) {
     return (
-      <div ref={topRef} className="max-w-4xl mx-auto">
+      <div ref={topRef} className="max-w-4xl mx-auto scroll-mt-24" data-assessment-result>
         <div className="rounded-[28px] md:rounded-[36px] bg-surface-mint p-6 md:p-10 ring-1 ring-foreground/5 shadow-plate">
-          <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-full mb-5">
-            <Check className="w-4 h-4" />
-            <span className="text-sm font-semibold">Анкета отправлена</span>
-          </div>
-          <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-4">
-            Спасибо. Предварительный разбор процессов завершён.
-          </h3>
-          <p className="text-base md:text-lg text-foreground/75 mb-8">
-            Мы изучим ответы и свяжемся с вами в MAX для короткого разговора на 15–20 минут.
-          </p>
-
+          <p className="text-sm font-semibold text-accent mb-3">Самостоятельная проверка · результат</p>
+          <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-5">Ваш процесс: {form.process}</h3>
+          {context?.industry && <p className="text-muted-foreground mb-5">{context.industry} · {context.topic}</p>}
           <div className="grid gap-3 md:grid-cols-2">
-            <SummaryRow title="Выбранный процесс">{form.process}</SummaryRow>
-            <SummaryRow title="Основные ручные действия">
-              {labelsOf(manualActionOptions, form.manualActions).join(", ")}
-            </SummaryRow>
-            <SummaryRow title="Масштаб процесса">
-              {form.participants} чел. · {labelOf(frequencyOptions, form.frequency).toLowerCase()} ·
-              около {form.hoursPerWeek} ч в неделю
-            </SummaryRow>
-            <SummaryRow title="Проблемы и риски">
-              {labelsOf(lossOptions, form.losses).join(", ")}
-              {form.consequences && (
-                <span className="block mt-1.5 text-muted-foreground">{form.consequences}</span>
-              )}
-            </SummaryRow>
-            <SummaryRow title="Используемые системы">
-              {labelsOf(systemOptions, form.systems).join(", ")}
-              <span className="block mt-1.5 text-muted-foreground">
-                ИИ: {labelOf(aiUsageOptions, form.aiUsage)} · данные:{" "}
-                {labelOf(dataStorageOptions, form.dataStorage)}
-              </span>
-            </SummaryRow>
-            <SummaryRow title="Ваша цель">
-              {form.goal}
-              {form.successCriteria && (
-                <span className="block mt-1.5 text-muted-foreground">
-                  Критерий: {form.successCriteria}
-                </span>
-              )}
-            </SummaryRow>
-            <SummaryRow title="Готовность к следующему шагу">
-              <span className="font-semibold">{readiness.title}</span>
-              <span className="block mt-1.5 text-muted-foreground">{readiness.text}</span>
-            </SummaryRow>
+            {assessmentSections(result).map(([title, value]) => <SummaryRow key={title} title={title}>{value}</SummaryRow>)}
           </div>
-
-          <p className="text-xs md:text-sm text-muted-foreground mt-6 leading-relaxed">
-            Это предварительная оценка по ответам анкеты. Точный экономический эффект, архитектура
-            решения, бюджет и срок окупаемости определяются после анализа процесса и исходных данных.
-          </p>
+          <p className="text-sm text-muted-foreground mt-6">Это предварительная оценка по вашим ответам, не аудит и не расчёт окупаемости. Возможную причину и решение нужно подтвердить на данных процесса.</p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6">
+            <Button variant="outline" disabled={pdfBusy} onClick={async () => {
+              setPdfBusy(true); setPdfError("");
+              try { await saveAssessmentPdf(form, result); }
+              catch { setPdfError("Не удалось сохранить PDF. Попробуйте ещё раз."); }
+              finally { setPdfBusy(false); }
+            }}><Download className="h-4 w-4 mr-2" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
+            <Button variant="ghost" onClick={() => { setCompleted(false); setStep(1); scrollTop(); }}>Изменить ответы</Button>
+          </div>
+          {pdfError && <p role="alert" className="text-destructive mt-3">{pdfError}</p>}
+          <div className="border-t border-border mt-8 pt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+            <PillButton onClick={() => request("implementation")} variant="turquoise" size="md">Обсудить внедрение</PillButton>
+            <PillButton onClick={() => request("meeting")} variant="dark" size="md">Личный разбор · 17 000 ₽</PillButton>
+          </div>
         </div>
       </div>
     );
@@ -550,17 +433,16 @@ const DiagnosticForm = () => {
     2: { h: "Масштаб процесса", sub: "Сколько людей и времени он забирает" },
     3: { h: "Проблемы и риски", sub: "Что теряется сегодня" },
     4: { h: "Системы и данные", sub: "В чём работаете и где лежат данные" },
-    5: { h: "Цель и срочность", sub: "Какой результат нужен" },
-    6: { h: "Бюджет и решение", sub: "Как принимается решение" },
-    7: { h: "О компании", sub: "Контекст бизнеса" },
-    8: { h: "Контакт", sub: "Связь только через MAX" },
+    5: { h: "Нужный результат", sub: "Какой результат нужен" },
+
   };
 
   const hasErrors = Object.values(errors).some(Boolean);
 
   return (
-    <div ref={topRef} className="max-w-4xl mx-auto">
+    <div ref={topRef} className="max-w-4xl mx-auto scroll-mt-24">
       <div className="rounded-[28px] md:rounded-[36px] bg-card p-5 sm:p-7 md:p-10 ring-1 ring-foreground/5 shadow-plate">
+        {context?.question && <p className="mb-5 rounded-xl bg-surface-mint p-4 text-sm text-foreground">{context.industry}: {context.question}</p>}
         {/* прогресс */}
         <div className="mb-6 md:mb-8">
           <div className="flex items-center justify-between mb-3">
@@ -680,14 +562,6 @@ const DiagnosticForm = () => {
                 error={errors.systems}
               />
               <RadioGroup
-                label="Используете ли вы инструменты искусственного интеллекта в работе?"
-                options={aiUsageOptions}
-                value={form.aiUsage}
-                onChange={(v) => set("aiUsage", v)}
-                required
-                error={errors.aiUsage}
-              />
-              <RadioGroup
                 label="Где хранятся данные по этому процессу?"
                 options={dataStorageOptions}
                 value={form.dataStorage}
@@ -716,182 +590,11 @@ const DiagnosticForm = () => {
                 required
                 error={errors.successCriteria}
               />
-              <RadioGroup
-                label="Насколько срочно нужно разобраться с задачей?"
-                options={urgencyOptions}
-                value={form.urgency}
-                onChange={(v) => set("urgency", v)}
-                required
-                error={errors.urgency}
-              />
+
             </>
           )}
 
-          {step === 6 && (
-            <>
-              <RadioGroup
-                label="Какой бюджет компания готова рассматривать, если расчёт подтвердит экономический эффект?"
-                options={budgetOptions}
-                value={form.budget}
-                onChange={(v) => set("budget", v)}
-                required
-                error={errors.budget}
-              />
-              <RadioGroup
-                label="Кто принимает решение?"
-                options={decisionMakerOptions}
-                value={form.decisionMaker}
-                onChange={(v) => set("decisionMaker", v)}
-                required
-                error={errors.decisionMaker}
-              />
-              <RadioGroup
-                label="Готов ли руководитель к разговору на 15–20 минут?"
-                options={readyForCallOptions}
-                value={form.readyForCall}
-                onChange={(v) => set("readyForCall", v)}
-                required
-                error={errors.readyForCall}
-              />
-              <TextField
-                label="Ответственный со стороны компании"
-                value={form.companyOwner}
-                onChange={(v) => set("companyOwner", v)}
-                placeholder="Необязательно"
-              />
-            </>
-          )}
 
-          {step === 7 && (
-            <>
-              <TextField
-                label="Название компании"
-                value={form.companyName}
-                onChange={(v) => set("companyName", v)}
-                required
-                error={errors.companyName}
-              />
-              <TextField
-                label="Сфера деятельности"
-                value={form.industry}
-                onChange={(v) => set("industry", v)}
-                required
-                error={errors.industry}
-              />
-              <TextField
-                label="Город или регион"
-                value={form.city}
-                onChange={(v) => set("city", v)}
-                required
-                error={errors.city}
-              />
-              <TextField
-                label="Сайт или соцсети компании"
-                value={form.website}
-                onChange={(v) => set("website", v)}
-                placeholder="https://example.ru"
-                hint="Вставьте полную ссылку, например https://…"
-                error={errors.website}
-              />
-              <RadioGroup
-                label="Размер команды"
-                options={teamSizeOptions}
-                value={form.teamSize}
-                onChange={(v) => set("teamSize", v)}
-                required
-                error={errors.teamSize}
-              />
-            </>
-          )}
-
-          {step === 8 && (
-            <>
-              <TextField
-                label="Ваше имя"
-                value={form.name}
-                onChange={(v) => set("name", v)}
-                required
-                error={errors.name}
-              />
-              <TextField
-                label="Должность"
-                value={form.position}
-                onChange={(v) => set("position", v)}
-                required
-                error={errors.position}
-              />
-              <TextField
-                label="Телефон, привязанный к MAX"
-                type="tel"
-                value={form.phone}
-                onChange={(v) => set("phone", v)}
-                placeholder="+7 999 000 00 00"
-                hint="Свяжемся только в MAX по этому номеру"
-                required
-                error={errors.phone}
-              />
-              <TextField
-                label="Email"
-                type="email"
-                value={form.email}
-                onChange={(v) => set("email", v)}
-                placeholder="Необязательно"
-                error={errors.email}
-              />
-              <AreaField
-                label="Что важно знать перед первым разговором?"
-                value={form.notes}
-                onChange={(v) => set("notes", v)}
-                placeholder="Необязательно"
-                rows={3}
-              />
-              <RadioGroup
-                label="Готовы получить предварительный вариант решения после короткого разговора?"
-                options={wantsDraftOptions}
-                value={form.wantsDraft}
-                onChange={(v) => set("wantsDraft", v)}
-                required
-                error={errors.wantsDraft}
-              />
-              {/* honeypot */}
-              <input
-                type="text"
-                name="company_extra"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                className="hidden"
-                onChange={() => undefined}
-              />
-              <div>
-                <label
-                  className={`flex items-start gap-3 cursor-pointer rounded-2xl border bg-background p-4 ${
-                    errors.consent ? "border-destructive" : "border-foreground/10"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={form.consent}
-                    onChange={(e) => set("consent", e.target.checked)}
-                    className="mt-1 w-5 h-5 accent-accent shrink-0"
-                  />
-                  <span className="text-sm text-foreground/80 leading-relaxed">
-                    Даю согласие на обработку персональных данных в соответствии с{" "}
-                    <a
-                      href="/legal/privacy-policy/"
-                      className="text-accent underline underline-offset-2"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      политикой конфиденциальности
-                    </a>
-                    .
-                  </span>
-                </label>
-                <FieldError error={errors.consent} />
-              </div>
-            </>
-          )}
         </div>
 
         {hasErrors && (
@@ -900,46 +603,28 @@ const DiagnosticForm = () => {
           </p>
         )}
 
-        {submitError && (
-          <div className="mt-6 rounded-2xl bg-destructive/10 p-4 ring-1 ring-destructive/20">
-            <p className="flex items-start gap-2 text-sm text-destructive">
-              <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
-              {submitError}
-            </p>
-          </div>
-        )}
-
         {/* навигация */}
         <div className="mt-8 flex flex-col-reverse sm:flex-row items-stretch sm:items-center gap-3 sm:justify-between">
-          <button
+          <Button
             type="button"
             onClick={back}
-            disabled={step === 1 || submitting}
+            disabled={step === 1}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-foreground/15 px-6 py-3 text-base font-semibold text-foreground/80 hover:text-foreground hover:border-foreground/30 disabled:opacity-40 disabled:cursor-not-allowed transition"
           >
             <ArrowLeft className="w-4 h-4" /> Назад
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={next}
-            disabled={submitting}
             className="group inline-flex items-center justify-center gap-3 rounded-full bg-accent text-accent-foreground pl-6 pr-2 py-2 min-h-[52px] text-base md:text-lg font-semibold shadow-card hover:shadow-elevated hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0 transition-all"
           >
             <span>
-              {submitting
-                ? "Отправляем…"
-                : step === TOTAL_STEPS
-                ? "Отправить анкету"
-                : "Продолжить"}
+              {step === TOTAL_STEPS ? "Показать результат" : "Продолжить"}
             </span>
             <span className="flex items-center justify-center w-10 h-10 rounded-full bg-background text-foreground group-hover:translate-x-0.5 transition-transform">
-              {submitting ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <ArrowRight className="w-4 h-4" />
-              )}
+              <ArrowRight className="w-4 h-4" />
             </span>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

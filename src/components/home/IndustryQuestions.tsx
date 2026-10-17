@@ -5,6 +5,8 @@ import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
 import chatDeco from "@/assets/industry-chat-deco.png";
+import { requestDiagnosticAutostart } from "@/lib/diagnosticState";
+import { setContactIntent } from "@/lib/contactIntent";
 
 interface CaseRef {
   title: string;
@@ -548,6 +550,17 @@ const IndustryQuestions = () => {
                     )}
                   </div>
                 )}
+                <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+                  <PillButton variant="turquoise" size="md" onClick={() => {
+                    saveContactContext(industry, openItem);
+                    setContactIntent(null);
+                    scrollToContact();
+                  }}>Обсудить такую задачу</PillButton>
+                  <PillButton variant="light" size="md" to="/start" onClick={() => {
+                    saveContactContext(industry, openItem);
+                    requestDiagnosticAutostart();
+                  }}>Разобраться самостоятельно</PillButton>
+                </div>
               </div>
             )}
 

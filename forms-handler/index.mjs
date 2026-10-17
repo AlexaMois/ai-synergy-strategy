@@ -198,7 +198,7 @@ const ShortLeadSchema = z.object({
   email: z.string().trim().email().max(200).optional().or(z.literal('')),
   company: z.string().trim().max(200).optional().default(''),
   industry: z.string().trim().max(200).optional().default(''),
-  task: z.string().trim().max(2000).optional().default(''),
+  task: z.string().trim().max(20000).optional().default(''),
   formName: z.string().trim().max(120).optional().default('Короткая заявка'),
   consent: z.literal(true),
   pageUrl: z.string().trim().max(300).optional().default(''),
