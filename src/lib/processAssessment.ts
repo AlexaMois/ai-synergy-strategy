@@ -4,6 +4,15 @@ export const ASSESSMENT_STEPS = 5;
 export const MEETING_PRICE = 17000;
 export type AssessmentResult = { problem: string; cause: string; scale: string; solution: string; firstStep: string };
 
+export function processHours(value: string): number | null {
+  const normalized = value.trim().replace(",", ".");
+  if (!/^\d+([.]\d+)?$/.test(normalized)) return null;
+  const hours = Number(normalized);
+  return Number.isFinite(hours) && hours > 0 ? hours : null;
+}
+
+export const validProcessTime = (value: string) => value === "unknown" || processHours(value) !== null;
+
 export function assessProcess(form: DiagnosticForm): AssessmentResult {
   const scattered = ["3", "4"].includes(form.dataStorage);
   const documents = form.manualActions.some(id => ["2", "4", "6"].includes(id));
@@ -26,11 +35,11 @@ export function assessProcess(form: DiagnosticForm): AssessmentResult {
         : stock
           ? "Проверить сведение остатков, потребностей и сроков в единый учёт с согласованными правилами расчёта."
           : "Зафиксировать правила процесса и проверить автоматизацию одного повторяющегося действия в существующих системах.";
-  const hours = Number(form.hoursPerWeek.replace(",", "."));
+  const hours = processHours(form.hoursPerWeek);
   return {
     problem: `${form.consequences.trim()} Отмеченные потери: ${labelsOf(lossOptions, form.losses).join(", ")}.`,
     cause,
-    scale: `${form.participants} сотрудников · ${hours} ч в неделю суммарно · около ${hours * 4} ч за 4 недели. Ручные действия: ${labelsOf(manualActionOptions, form.manualActions).join(", ")}. Это нагрузка всего процесса, а не обещанная экономия.`,
+    scale: `${form.participants} сотрудников · ${hours === null ? "Время на процесс пока неизвестно. Недостаточно данных для оценки часов и возможной экономии." : `${hours} ч в неделю суммарно · около ${hours * 4} ч за 4 недели. Это нагрузка всего процесса, а не обещанная экономия.`} Ручные действия: ${labelsOf(manualActionOptions, form.manualActions).join(", ")}.`,
     solution,
     firstStep: `Зафиксируйте путь одного реального случая процесса «${form.process.trim()}»: действия, время, передачи и ошибки. Сравните исходное значение показателя «${form.successCriteria.trim()}» с целью «${form.goal.trim()}», затем выберите одно действие для пробной автоматизации.`,
   };

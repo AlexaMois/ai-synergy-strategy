@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, ArrowDown, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
@@ -23,13 +22,12 @@ const StartPage = () => {
   );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
-  const diagnosticIntroRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
     markDiagnosticStarted();
     setTimeout(() => {
-      const target = diagnosticRef.current ?? diagnosticIntroRef.current;
+      const target = diagnosticRef.current;
       target?.scrollIntoView({ behavior: "smooth", block: "start" });
       const field = diagnosticRef.current?.querySelector<HTMLElement>(
         "input, textarea, select, button"
@@ -46,9 +44,6 @@ const StartPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const scrollToResult = () => {
-    document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
   const bookMeeting = () => {
     setContactIntent({ kind: "meeting" });
     scrollToContact();
@@ -75,20 +70,20 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Разбор цифровых задач для собственника · 17 000 ₽ | Александра Моисеева</title>
+        <title>Бесплатная проверка процесса и личный разбор · 17 000 ₽ | Александра Моисеева</title>
         <meta
           name="description"
-          content="Разбор цифровых задач для собственника за 17 000 ₽: где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
+          content="Самостоятельная проверка одного процесса бесплатно с результатом и PDF или личный разбор с Александрой за 17 000 ₽. Онлайн по всей России."
         />
         <meta
           name="keywords"
           content="разбор цифровых задач, автоматизация процессов, с чего начать автоматизацию, стратегия цифрового развития, аудит процессов"
         />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="Разбор цифровых задач для собственника · 17 000 ₽ | Александра Моисеева" />
+        <meta property="og:title" content="Бесплатная проверка процесса и личный разбор · 17 000 ₽ | Александра Моисеева" />
         <meta
           property="og:description"
-          content="Разберём, где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России."
+          content="Бесплатная проверка одного процесса с PDF или личный разбор с Александрой за 17 000 ₽."
         />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
@@ -110,13 +105,15 @@ const StartPage = () => {
             <div className="grid md:grid-cols-2 gap-5">
               <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Самостоятельная проверка одного процесса</h2>
-                <p className="text-2xl font-semibold text-foreground mb-6">Бесплатно</p>
+                <p className="text-3xl md:text-4xl font-semibold text-foreground mb-5">Бесплатно</p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-7">Главная проблема, предполагаемая причина, масштаб ручной работы, возможное решение, конкретный первый шаг.</p>
                 <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto">Проверить свой процесс</PillButton>
               </div>
-              <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Личный разбор с Александрой</h2>
-                <p className="text-2xl font-semibold text-foreground mb-6">17 000 ₽</p>
-                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-auto">Записаться на разбор</PillButton>
+              <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
+                <h2 className="text-xl md:text-2xl font-bold text-background mb-4">Личный разбор с Александрой</h2>
+                <p className="text-3xl md:text-4xl font-semibold text-accent mb-5">17 000 ₽</p>
+                <p className="text-base md:text-lg text-background leading-relaxed mb-7">За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект</p>
+                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Записаться на разбор</PillButton>
               </div>
             </div>
           </section>
@@ -125,115 +122,30 @@ const StartPage = () => {
               <DiagnosticForm />
             </section>
           )}
-          {/* 1. HERO */}
-          <section className="pt-6 md:pt-12 px-4 md:px-6">
-            <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[24px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-card ring-1 ring-foreground/5">
-                <div className="px-5 md:px-10 lg:px-14 py-7 md:py-14">
-                  <div className="max-w-4xl">
-                    <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
-                      Первый шаг
-                    </p>
-                    <h2 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
-                      Разбор задачи с собственником
-                    </h2>
-                    <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-3xl leading-snug">
-                      За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект
-                    </p>
-
-                    <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-2xl space-y-1">
-                      <p>
-                        Проводит разбор Александра Моисеева, руководитель «НейроРешений»&nbsp;
-                      </p>
-                      <p>Дистанционно по всей России.</p>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-                      <PillButton
-                        onClick={bookMeeting}
-                        variant="turquoise"
-                        className="w-full sm:w-auto justify-center"
-                      >
-                        Записаться на разбор
-                      </PillButton>
-                      <button
-                        type="button"
-                        onClick={scrollToResult}
-                        className="inline-flex items-center justify-center sm:justify-start text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-3 sm:py-2"
-                      >
-                        Что получите после разбора <ArrowDown className="ml-2 h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 2. Когда стоит начать с разбора — открытые строки */}
-          <section className="bg-background container mx-auto max-w-7xl px-4 py-16 md:py-24">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-10 md:mb-14 max-w-3xl">
-              Когда стоит начать с{" "}
-              <span className="font-iriska font-normal italic text-accent">разбора</span>
-            </h2>
-            <div className="border-t border-border">
-              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
-                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">01</div>
-                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                  Сначала важно увидеть ручную нагрузку, точки потерь, дублирование и задачи, которые мешают компании работать быстрее
-                </p>
-              </div>
-              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
-                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">02</div>
-                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                  Документы, заявки, отчёты, таблицы или справки собираются вручную и забирают время команды
-                </p>
-              </div>
-              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
-                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">03</div>
-                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                  Чтобы понять ситуацию, приходится постоянно уточнять, проверять, сверять данные и собирать информацию у сотрудников
-                </p>
-              </div>
-              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
-                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">04</div>
-                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                  Таблицы, мессенджеры, CRM, файлы и сервисы используются отдельно друг от друга и не дают единой картины
-                </p>
-              </div>
-              <div className="grid md:grid-cols-12 gap-2 md:gap-8 items-baseline border-b border-border py-5 md:py-7">
-                <div className="md:col-span-2 text-3xl md:text-4xl font-bold text-accent leading-none tabular-nums">05</div>
-                <p className="md:col-span-10 text-base md:text-xl text-foreground/80 leading-snug">
-                  Компания хочет развиваться в цифровом направлении, но пока не ясно, что внедрять первым, какой бюджет закладывать и какой эффект ожидать
-                </p>
-              </div>
-            </div>
-          </section>
-
           {/* 3. Что происходит на встрече + что Вы получите */}
           <section
             id="result"
-            className="bg-background container mx-auto max-w-7xl px-4 pb-16 md:pb-24 scroll-mt-24"
+            className="bg-background container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
           >
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-white px-6 md:px-8 py-8 md:py-10 shadow-card">
-                <h2 className="text-2xl md:text-4xl font-bold text-white leading-[1.08] mb-6 md:mb-8">
+              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-background px-6 md:px-8 py-8 md:py-10 shadow-card">
+                <h2 className="text-2xl md:text-4xl font-bold text-background leading-[1.08] mb-6 md:mb-8">
                   Что происходит на встрече
                 </h2>
-                <div className="border-t border-white/15 mb-6 md:mb-8">
+                <div className="border-t border-background/15 mb-6 md:mb-8">
                   {flow.map((step, i) => (
                     <div
                       key={step}
-                      className="flex items-baseline gap-4 border-b border-white/15 py-3.5"
+                      className="flex items-baseline gap-4 border-b border-background/15 py-3.5"
                     >
                       <span className="text-base md:text-lg font-bold text-accent tabular-nums">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-base md:text-lg text-white/85">{step}</span>
+                      <span className="text-base md:text-lg text-background/85">{step}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-base md:text-lg text-white/70 leading-snug">
+                <p className="text-base md:text-lg text-background/70 leading-snug">
                   Каждый инструмент должен работать в привычной среде компании, снижать ручную нагрузку и помогать руководителю видеть ситуацию яснее
                 </p>
               </div>
@@ -250,34 +162,13 @@ const StartPage = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-white leading-snug max-w-xl">
+                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-accent-foreground leading-snug max-w-xl">
                   Разбор является самостоятельным продуктом. После встречи Вы сами решаете, двигаться дальше с «НейроРешениями» или использовать рекомендации внутри компании.
                 </p>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6">Записаться на разбор</PillButton>
               </div>
             </div>
           </section>
-
-          {/* 4. После разбора */}
-          <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6 md:mb-8">
-              Компаниям от 3 до 300 сотрудников
-            </h2>
-            <p className="text-base md:text-xl text-foreground/75 leading-snug max-w-3xl">
-              Формат зависит от того, насколько понятна текущая задача и насколько подробно нужно разбирать компанию
-            </p>
-            <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-2xl leading-relaxed">
-              Работаю с собственниками и руководителями. Особенно полезна компаниям без сильной штатной IT-команды
-            </p>
-            <div className="mt-6 md:mt-8">
-              <Link
-                to="/services"
-                className="inline-flex items-center text-accent hover:underline font-medium"
-              >
-                Посмотреть услуги <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-          </section>
-
 
         </main>
 

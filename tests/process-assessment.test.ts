@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { ASSESSMENT_STEPS, MEETING_PRICE, assessProcess } from "../src/lib/processAssessment";
+import { ASSESSMENT_STEPS, MEETING_PRICE, assessProcess, processHours, validProcessTime } from "../src/lib/processAssessment";
 import { emptyForm } from "../src/components/diagnostic/diagnosticConfig";
 import { buildContactSubmission, contactSchema } from "../src/components/Contact";
 
@@ -30,5 +30,26 @@ describe("self-check rules", () => {
   test("budget and call readiness are optional, consent is required", () => {
     expect(contactSchema.safeParse(contact).success).toBe(true);
     expect(contactSchema.safeParse({ ...contact, consent: false }).success).toBe(false);
+  });
+  test("unknown time is accepted without inventing hours or savings", () => {
+    expect(validProcessTime("unknown")).toBe(true);
+    expect(processHours("unknown")).toBeNull();
+    const result = assessProcess({ ...form, hoursPerWeek: "unknown" });
+    expect(result.scale).toContain("Недостаточно данных");
+    expect(result.scale).not.toMatch(/\d+ ч|NaN/);
+  });
+  test("missing and invalid time never becomes a numeric estimate", () => {
+    for (const value of ["", "0", "-5", "abc"]) {
+      expect(validProcessTime(value)).toBe(false);
+      expect(processHours(value)).toBeNull();
+    }
+    expect(processHours("2,5")).toBe(2.5);
+  });
+  test("ordinary contact does not send stale commercial answers", () => {
+    const payload = buildContactSubmission({ ...contact, budget: "1", readyForCall: "1" }, null, "");
+    expect(payload.task).not.toContain("Бюджет:");
+    expect(payload.task).not.toContain("Готовность к разговору:");
+    const commercial = buildContactSubmission({ ...contact, budget: "1", readyForCall: "1" }, null, "", { kind: "implementation" });
+    expect(commercial.task).toContain("Бюджет: До 50 000 ₽");
   });
 });

@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, AlertCircle, Download } from "lucide-react";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
-import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS } from "@/lib/processAssessment";
+import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS, validProcessTime } from "@/lib/processAssessment";
 import { readIndustryContext, setContactIntent } from "@/lib/contactIntent";
 import { saveAssessmentPdf } from "@/lib/assessmentPdf";
 import { scrollToContact } from "@/lib/scrollToContact";
@@ -213,7 +213,7 @@ const RadioGroup = ({
             role="radio"
             aria-checked={active}
             onClick={() => onChange(o.id)}
-            className={`text-left rounded-2xl border px-4 py-3 text-sm md:text-base transition-all min-h-[52px] ${
+            className={`text-left rounded-2xl border px-4 py-3 text-sm md:text-base transition-all h-auto whitespace-normal justify-start min-h-[52px] ${
               active
                 ? "border-accent bg-accent/10 text-foreground font-semibold"
                 : "border-foreground/10 bg-card text-foreground/80 hover:border-accent/50"
@@ -268,7 +268,7 @@ const CheckGroup = ({
             onClick={() =>
               onChange(active ? value.filter((v) => v !== o.id) : [...value, o.id])
             }
-            className={`text-left rounded-2xl border px-4 py-3 text-sm md:text-base transition-all min-h-[52px] ${
+            className={`text-left rounded-2xl border px-4 py-3 text-sm md:text-base transition-all h-auto whitespace-normal justify-start min-h-[52px] ${
               active
                 ? "border-accent bg-accent/10 text-foreground font-semibold"
                 : "border-foreground/10 bg-card text-foreground/80 hover:border-accent/50"
@@ -310,7 +310,7 @@ const DiagnosticForm = () => {
   const [step, setStep] = useState(draft?.step ?? 1);
   const [form, setForm] = useState<FormData>(() => {
     const context = readIndustryContext();
-    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: draft?.form.process || context?.question || "" };
+    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: draft?.form.process === context?.question ? "" : draft?.form.process || "" };
   });
   const [errors, setErrors] = useState<Errors>({});
   const [completed, setCompleted] = useState(draft?.step === 6);
@@ -334,8 +334,6 @@ const DiagnosticForm = () => {
   const validate = (s: number): Errors => {
     const e: Errors = {};
     const isPositiveInt = (v: string) => /^\d+$/.test(v.trim()) && Number(v) >= 1;
-    const isPositiveNum = (v: string) =>
-      /^\d+([.,]\d+)?$/.test(v.trim().replace(",", ".")) && Number(v.replace(",", ".")) > 0;
 
     if (s === 1) {
       if (!form.process.trim()) e.process = "Укажите процесс, который хотите улучшить";
@@ -348,8 +346,8 @@ const DiagnosticForm = () => {
       if (!isPositiveInt(form.participants))
         e.participants = "Укажите целое число сотрудников больше нуля";
       if (!form.frequency) e.frequency = "Выберите частоту повторения процесса";
-      if (!isPositiveNum(form.hoursPerWeek))
-        e.hoursPerWeek = "Укажите число часов больше нуля";
+      if (!validProcessTime(form.hoursPerWeek))
+        e.hoursPerWeek = "Укажите число часов больше нуля или выберите «Не знаю»";
     }
     if (s === 3) {
       if (form.losses.length === 0) e.losses = "Отметьте, что теряется или задерживается";
@@ -441,8 +439,11 @@ const DiagnosticForm = () => {
 
   return (
     <div ref={topRef} className="max-w-4xl mx-auto scroll-mt-24">
-      <div className="rounded-[28px] md:rounded-[36px] bg-card p-5 sm:p-7 md:p-10 ring-1 ring-foreground/5 shadow-plate">
-        {context?.question && <p className="mb-5 rounded-xl bg-surface-mint p-4 text-sm text-foreground">{context.industry}: {context.question}</p>}
+      <div className="rounded-t-[28px] bg-foreground px-5 sm:px-7 md:px-10 py-6 md:py-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-background">Самостоятельная проверка одного процесса</h2>
+      </div>
+      <div className="rounded-b-[28px] bg-card p-5 sm:p-7 md:p-10 ring-1 ring-foreground/5 shadow-plate">
+        {context?.question && <div className="mb-6 border-l-4 border-accent pl-4"><p className="text-xs font-semibold text-accent mb-2">Выбранная проблема · {context.industry}</p><p className="text-base text-foreground leading-relaxed">{context.question}</p></div>}
         {/* прогресс */}
         <div className="mb-6 md:mb-8">
           <div className="flex items-center justify-between mb-3">
@@ -453,7 +454,7 @@ const DiagnosticForm = () => {
               {Math.round((step / TOTAL_STEPS) * 100)}%
             </span>
           </div>
-          <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+          <div className="h-3 w-full rounded-full bg-muted overflow-hidden">
             <div
               className="h-full rounded-full bg-accent transition-all duration-500"
               style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
@@ -517,16 +518,22 @@ const DiagnosticForm = () => {
                 required
                 error={errors.frequency}
               />
-              <TextField
-                label="Сколько часов в неделю уходит на процесс?"
-                type="number"
-                value={form.hoursPerWeek}
-                onChange={(v) => set("hoursPerWeek", v)}
-                placeholder="10"
-                hint="Суммарно по всем участникам, приблизительно"
-                required
-                error={errors.hoursPerWeek}
-              />
+              <div>
+                <Label required>Сколько часов в неделю уходит на процесс?</Label>
+                <div className="flex flex-wrap gap-3 mb-3" role="group" aria-label="Оценка времени">
+                  <Button variant={form.hoursPerWeek === "unknown" ? "outline" : "default"} onClick={() => set("hoursPerWeek", "")}>Указать часы</Button>
+                  <Button variant={form.hoursPerWeek === "unknown" ? "default" : "outline"} aria-pressed={form.hoursPerWeek === "unknown"} onClick={() => set("hoursPerWeek", "unknown")}>Не знаю</Button>
+                </div>
+                {form.hoursPerWeek !== "unknown" && <TextField
+                  label="Часов в неделю, суммарно по всем участникам"
+                  type="number"
+                  value={form.hoursPerWeek}
+                  onChange={(v) => set("hoursPerWeek", v)}
+                  placeholder="10"
+                  error={errors.hoursPerWeek}
+                />}
+                {form.hoursPerWeek === "unknown" && <FieldError error={errors.hoursPerWeek} />}
+              </div>
             </>
           )}
 
