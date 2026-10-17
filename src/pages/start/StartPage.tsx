@@ -101,21 +101,38 @@ const StartPage = () => {
 
         <main>
           <section className="container mx-auto max-w-7xl px-4 pt-6 md:pt-12 pb-8">
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-8">С чего начать</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6">С чего начать</h1>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+              Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.
+            </p>
             <div className="grid md:grid-cols-2 gap-5">
               <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Самостоятельная проверка одного процесса</h2>
-                <p className="text-3xl md:text-4xl font-semibold text-foreground mb-5">Бесплатно</p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-7">Главная проблема, предполагаемая причина, масштаб ручной работы, возможное решение, конкретный первый шаг.</p>
-                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto">Проверить свой процесс</PillButton>
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">Самостоятельно</p>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Узнайте, где процесс забирает время</h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5">Ответьте на вопросы о работе сотрудников, задержках и ошибках. Получите предварительные выводы и первый шаг для проверки.</p>
+                <p className="text-3xl md:text-4xl font-semibold text-foreground mb-1">Бесплатно</p>
+                <p className="text-sm md:text-base text-muted-foreground mb-7">Без регистрации и обязательного звонка.</p>
+                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto">Проверить свой процесс →</PillButton>
               </div>
               <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
-                <h2 className="text-xl md:text-2xl font-bold text-background mb-4">Личный разбор с Александрой</h2>
-                <p className="text-3xl md:text-4xl font-semibold text-accent mb-5">17 000 ₽</p>
-                <p className="text-base md:text-lg text-background leading-relaxed mb-7">За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект</p>
-                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Записаться на разбор</PillButton>
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-background/60 mb-4">С Александрой</p>
+                <h2 className="text-xl md:text-2xl font-bold text-background mb-4">Разберём, что менять в первую очередь</h2>
+                <p className="text-base md:text-lg text-background/85 leading-relaxed mb-5">На личной встрече разберём вашу ситуацию, ограничения и варианты решения. Определим приоритет и дальнейшие действия.</p>
+                <p className="text-3xl md:text-4xl font-semibold text-accent mb-1">17 000 ₽</p>
+                <p className="text-sm md:text-base text-background/70 mb-7">Самостоятельная экспертная услуга.</p>
+                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Записаться на разбор →</PillButton>
               </div>
             </div>
+            <p className="mt-6 text-base md:text-lg text-foreground">
+              Уже знаете, что хотите внедрить?{" "}
+              <button
+                type="button"
+                onClick={scrollToContact}
+                className="font-semibold text-accent underline-offset-4 hover:underline"
+              >
+                Сразу обсудить задачу →
+              </button>
+            </p>
           </section>
           {diagnosticStarted && (
             <section ref={diagnosticRef} id="self-check" className="container mx-auto px-4 pt-6 pb-12 scroll-mt-24">
