@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, MousePointerClick } from "lucide-react";
-import { openTaskModal } from "@/components/CallbackModal";
+import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
 import chatDeco from "@/assets/industry-chat-deco.png";
@@ -488,7 +488,7 @@ const IndustryQuestions = () => {
 
             <p className="text-sm md:text-base text-background/60 mb-8">Нажмите на вопрос, чтобы увидеть, что можно сделать</p>
 
-            <PillButton onClick={() => openTaskModal()} variant="turquoise">
+            <PillButton onClick={() => scrollToContact()} variant="turquoise">
               Обсудить задачу
             </PillButton>
             </div>

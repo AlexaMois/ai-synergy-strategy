@@ -8,7 +8,8 @@ import { Helmet } from "react-helmet-async";
 import { ArrowRight, Layers, Users, Database, Server, LifeBuoy, ShieldCheck } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { trackCTAClick } from "@/utils/analytics";
-import { openCallbackModal, openTaskModal } from "@/components/CallbackModal";
+import { openCallbackModal } from "@/components/CallbackModal";
+import { scrollToContact } from "@/lib/scrollToContact";
 import brainHeartSketch from "@/assets/sketches/brain-heart-sketch.webp";
 import chatHeartSketch from "@/assets/sketches/chat-heart-sketch.webp";
 import routeWarmSketch from "@/assets/sketches/route-warm-sketch.webp";
@@ -220,7 +221,7 @@ const PricingPage = () => {
                       </PillButton>
                       <button
                         type="button"
-                        onClick={() => openTaskModal()}
+                        onClick={() => scrollToContact()}
                         className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                       >
                         Обсудить задачу <ArrowRight className="ml-2 h-5 w-5" />
@@ -438,7 +439,7 @@ const PricingPage = () => {
                       <PillButton to="/start" variant="light">
                         Подобрать формат работы
                       </PillButton>
-                      <PillButton onClick={() => openTaskModal()} variant="dark">
+                      <PillButton onClick={() => scrollToContact()} variant="dark">
                         Обсудить задачу
                       </PillButton>
                     </div>
@@ -503,7 +504,7 @@ const PricingPage = () => {
               Опишите задачу — определим подходящий формат работы и следующий шаг.
             </p>
             <div className="flex justify-center">
-              <PillButton onClick={() => openTaskModal()} variant="turquoise">
+              <PillButton onClick={() => scrollToContact()} variant="turquoise">
                 Обсудить задачу
               </PillButton>
             </div>

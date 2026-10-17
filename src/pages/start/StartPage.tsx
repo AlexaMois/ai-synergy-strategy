@@ -8,7 +8,7 @@ import { ArrowRight, ArrowDown, Check } from "lucide-react";
 import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/DiagnosticForm";
 import FAQTeaser from "@/components/FAQTeaser";
-import { openTaskModal } from "@/components/CallbackModal";
+import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import {
@@ -132,7 +132,7 @@ const StartPage = () => {
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
                       <PillButton
-                        onClick={openTaskModal}
+                        onClick={scrollToContact}
                         variant="turquoise"
                         className="w-full sm:w-auto justify-center"
                       >
