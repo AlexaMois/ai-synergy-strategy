@@ -30,8 +30,9 @@ const loadDraft = (): { step: number; form: FormData } | null => {
   try {
     const raw = sessionStorage.getItem(DRAFT_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as { step?: number; form?: Partial<FormData> };
+    const parsed = JSON.parse(raw) as { step?: number; form?: Partial<FormData>; sourceQuestion?: string };
     if (!parsed?.form) return null;
+    if ((readIndustryContext()?.question || "") !== (parsed.sourceQuestion || "")) return null;
     const step = Math.min(Math.max(Number(parsed.step) || 1, 1), TOTAL_STEPS + 1);
     return { step, form: { ...emptyForm, ...parsed.form } };
   } catch {
@@ -41,7 +42,7 @@ const loadDraft = (): { step: number; form: FormData } | null => {
 
 const saveDraft = (step: number, form: FormData) => {
   try {
-    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form }));
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form, sourceQuestion: readIndustryContext()?.question || "" }));
     markDiagnosticStarted();
   } catch {
     /* приватный режим — просто не сохраняем */
@@ -309,7 +310,7 @@ const DiagnosticForm = () => {
   const [step, setStep] = useState(draft?.step ?? 1);
   const [form, setForm] = useState<FormData>(() => {
     const context = readIndustryContext();
-    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: context?.question || draft?.form.process || "" };
+    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: draft?.form.process || context?.question || "" };
   });
   const [errors, setErrors] = useState<Errors>({});
   const [completed, setCompleted] = useState(draft?.step === 6);
