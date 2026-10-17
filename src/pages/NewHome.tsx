@@ -16,6 +16,7 @@ import iconProcess from "@/assets/how-we-work/icon-process.png";
 import iconBusiness from "@/assets/how-we-work/icon-business.png";
 import iconTech from "@/assets/how-we-work/icon-tech.png";
 import synergyImg from "@/assets/how-we-work/synergy.webp";
+import { requestDiagnosticAutostart } from "@/lib/diagnosticState";
 
 const workSteps = [
   { icon: iconPeople, name: "Человек", desc: "Анализируем опыт и задачи людей" },
@@ -297,6 +298,9 @@ const NewHome = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
+            <Link to="/start" onClick={requestDiagnosticAutostart} className="mb-5 flex justify-center items-center text-accent underline underline-offset-4 font-medium">
+              Проверить свой процесс бесплатно <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
             <Link to="/services" className="inline-flex items-center text-accent hover:underline font-semibold text-lg">
               Все форматы работы <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

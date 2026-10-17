@@ -10,7 +10,7 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { setContactIntent } from "@/lib/contactIntent";
 import {
   consumeDiagnosticAutostart,
   isDiagnosticStarted,
@@ -24,7 +24,6 @@ const StartPage = () => {
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
   const diagnosticIntroRef = useRef<HTMLDivElement>(null);
-  const { ref: revealRef, isVisible } = useIntersectionObserver({ threshold: 0.2 });
 
   const startDiagnostic = () => {
     setDiagnosticStarted(true);
@@ -49,6 +48,10 @@ const StartPage = () => {
 
   const scrollToResult = () => {
     document.getElementById("result")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const bookMeeting = () => {
+    setContactIntent({ kind: "meeting" });
+    scrollToContact();
   };
 
 
@@ -102,6 +105,26 @@ const StartPage = () => {
         <PageBreadcrumbs currentPage="С чего начать" />
 
         <main>
+          <section className="container mx-auto max-w-7xl px-4 pt-6 md:pt-12 pb-8">
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-8">С чего начать</h1>
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Самостоятельная проверка одного процесса</h2>
+                <p className="text-2xl font-semibold text-foreground mb-6">Бесплатно</p>
+                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto">Проверить свой процесс</PillButton>
+              </div>
+              <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Личный разбор с Александрой</h2>
+                <p className="text-2xl font-semibold text-foreground mb-6">17 000 ₽</p>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-auto">Записаться на разбор</PillButton>
+              </div>
+            </div>
+          </section>
+          {diagnosticStarted && (
+            <section ref={diagnosticRef} id="self-check" className="container mx-auto px-4 pt-6 pb-12 scroll-mt-24">
+              <DiagnosticForm />
+            </section>
+          )}
           {/* 1. HERO */}
           <section className="pt-6 md:pt-12 px-4 md:px-6">
             <div className="container mx-auto max-w-7xl">
@@ -111,17 +134,12 @@ const StartPage = () => {
                     <p className="text-xs sm:text-sm uppercase tracking-widest text-accent font-semibold mb-4 md:mb-6">
                       Первый шаг
                     </p>
-                    <h1 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
+                    <h2 className="text-[1.7rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] sm:leading-[1.05] md:leading-[1.02] tracking-tight text-foreground mb-4 md:mb-6">
                       Разбор задачи с собственником
-                    </h1>
+                    </h2>
                     <p className="text-base sm:text-lg md:text-xl text-foreground/75 mb-5 max-w-3xl leading-snug">
                       За одну встречу определим, где компания теряет время и деньги, что стоит автоматизировать первым и какой следующий шаг даст наибольший эффект
                     </p>
-
-                    <div className="inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-2xl bg-background/80 px-4 py-3 mb-5 shadow-card ring-1 ring-foreground/5">
-                      <span className="text-2xl md:text-3xl font-bold text-foreground">17 000 ₽</span>
-                      <span className="text-sm md:text-base text-muted-foreground">фиксированная стоимость</span>
-                    </div>
 
                     <div className="text-sm sm:text-base text-foreground/70 mb-6 md:mb-8 max-w-2xl space-y-1">
                       <p>
@@ -132,7 +150,7 @@ const StartPage = () => {
 
                     <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
                       <PillButton
-                        onClick={scrollToContact}
+                        onClick={bookMeeting}
                         variant="turquoise"
                         className="w-full sm:w-auto justify-center"
                       >
@@ -260,85 +278,7 @@ const StartPage = () => {
             </div>
           </section>
 
-          {/* 9. Самостоятельный старт */}
-          <section
-            ref={diagnosticIntroRef}
-            id="self-start"
-            className="px-4 md:px-6 py-16 md:py-24 scroll-mt-24"
-          >
-            <div
-              ref={revealRef as React.RefObject<HTMLDivElement>}
-              className={`container mx-auto max-w-7xl reveal-soft ${isVisible ? "is-visible" : ""}`}
-            >
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-5 md:mb-6">
-                Самостоятельный старт
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6 md:mb-8">
-                Опишите задачу{" "}
-                <span className="font-iriska font-normal italic text-accent">сами</span>
-              </h2>
-              <p className="text-base md:text-xl text-foreground/75 leading-relaxed max-w-2xl mb-12 md:mb-16">
-                Возьмите один процесс который забирает время, деньги или требует слишком много ручной работы.
-              </p>
 
-              {diagnosticStarted ? (
-                <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-accent px-6 py-5 md:px-8 md:py-6 shadow-card animate-fade-in">
-                  <span className="inline-flex items-center gap-2.5 text-sm md:text-base font-semibold text-white">
-                    <span className="dot-soft-pulse" />
-                    Самостоятельный старт · анкета открыта
-                  </span>
-                  <span className="text-sm md:text-base text-white/80">
-                    7–10 минут · один процесс
-                  </span>
-                </div>
-              ) : (
-                <div className="block-soft-pulse rounded-[28px] md:rounded-[40px] bg-accent px-6 md:px-12 py-10 md:py-14">
-                  <div className="grid md:grid-cols-12 gap-10 md:gap-12 items-center">
-                    <div className="md:col-span-8">
-                      <span className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white mb-7 md:mb-8">
-                        <span className="dot-soft-pulse" />
-                        АНКЕТА БИЗНЕС-ПРОЦЕССА
-                      </span>
-                      <div className="border-t border-white/25 mb-8 md:mb-10">
-                        {[
-                          "Выберите один процесс",
-                          "Зафиксируйте ручные действия",
-                          "Опишите главную проблему",
-                        ].map((step, i) => (
-                          <div
-                            key={step}
-                            className="flex items-baseline gap-4 border-b border-white/25 py-4"
-                          >
-                            <span className="text-sm md:text-base font-bold text-white/60 tabular-nums">
-                              {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <span className="text-base md:text-lg text-white leading-snug">{step}</span>
-                          </div>
-                        ))}
-                      </div>
-                      <PillButton onClick={startDiagnostic} variant="light">
-                        Описать задачу
-                      </PillButton>
-                    </div>
-                    <div className="md:col-span-4 md:text-right">
-                      <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-none tracking-tight">
-                        7–10 минут
-                      </p>
-                      <p className="mt-3 text-base md:text-lg text-white/80">{"\n"}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </section>
-
-          {diagnosticStarted && (
-            <section ref={diagnosticRef} className="pt-10 md:pt-14 pb-4">
-              <div className="container mx-auto px-4">
-                <DiagnosticForm />
-              </div>
-            </section>
-          )}
         </main>
 
         <FAQTeaser
