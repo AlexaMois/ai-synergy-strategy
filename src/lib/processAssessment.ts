@@ -21,7 +21,7 @@ export function classifyProcess(form: DiagnosticForm): ProcessKind {
   if (!description) return "insufficient";
   const text = `${form.process.toLocaleLowerCase("ru").replace(/ё/g, "е")}. ${description}`;
   // Negated or contradicted cues cannot safely justify a problem classification.
-  if (/не\s+(теря\w*|пропада\w*|ищ\w*|согласовы\w*|планиру\w*)|(?:заявк\w*|обращен\w*|расхожд\w*|согласован\w*).{0,25}\bнет\b|нет\s+(?:потер\w*|расхожд\w*|необходимости\s+согласовы\w*)|без\s+(?:потер\w*|расхожд\w*)/u.test(text)) return "insufficient";
+  if (/не\s+(теря\w*|пропада\w*|ищ\w*|согласовы\w*|планиру\w*)|(?:заявк\w*|обращен\w*|расхожд\w*|согласован\w*).{0,25}нет(?:[\s.,;!?]|$)|нет\s+(?:потер\w*|расхожд\w*|необходимости\s+согласовы\w*)|без\s+(?:потер\w*|расхожд\w*)/u.test(text)) return "insufficient";
   const kinds: ProcessKind[] = [];
   const has = (pattern: RegExp) => pattern.test(text);
   if (has(/поиск|ищ[уе]|найти|искать|отыск|наход/) && has(/инструкц|документ|руководств|технич|чертеж/)) kinds.push("document-search");
