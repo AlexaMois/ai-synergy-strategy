@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { CaseStudy } from "@/data/caseStudies";
+import { trackCaseOpen } from "@/utils/analytics";
 import portal from "@/assets/cases/aktrans/portal.webp";
 import dashboard from "@/assets/cases/aktrans/dashboard.webp";
 import jarvis from "@/assets/cases/aktrans/jarvis-menu.webp";
@@ -28,11 +29,11 @@ export default function CaseProjectCard({ project }: { project: CaseStudy }) {
           </div>)}
         </dl>
         <Button asChild variant="link" className="justify-start h-auto whitespace-normal px-0 mt-6 text-foreground text-base">
-          <Link to={project.link}>Посмотреть, как это работает <ArrowRight aria-hidden="true" /></Link>
+          <Link to={project.link} onClick={() => trackCaseOpen(project.id)}>{project.linkLabel} <ArrowRight aria-hidden="true" /></Link>
         </Button>
       </div>
       {image && <figure className={`${featured ? "lg:border-l" : "border-t"} border-foreground/10 bg-background flex flex-col justify-center min-w-0`}>
-        <Link to={project.link} className="block p-3 md:p-5">
+        <Link to={project.link} onClick={() => trackCaseOpen(project.id)} className="block p-3 md:p-5">
           <img src={media[image.key]} alt={image.alt} loading={featured ? "eager" : "lazy"} className={`w-full object-contain ${featured ? "aspect-[4/3]" : "aspect-[16/9]"}`} />
         </Link>
         <figcaption className="px-5 pb-5">

@@ -10,6 +10,7 @@ export interface CaseStudy {
   problems: CaseProblem[];
   visibility: "public" | "draft";
   link: string;
+  linkLabel: string;
 }
 
 export const caseProblems: { id: CaseProblem; label: string }[] = [
@@ -32,7 +33,8 @@ export const caseStudies: CaseStudy[] = [
       { key: "jarvis", alt: "Меню Jarvis в MAX для сотрудников АкТрансСервиса", caption: "Jarvis в MAX", kind: "screenshot" },
     ],
     results: [{ value: "1,7 млн ₽", label: "Сохранено за квартал в рамках проекта цифровизации", confirmation: "Результат, опубликованный в подробном кейсе АкТрансСервиса; относится к проекту в целом." }],
-    problems: ["documents", "control", "manual", "travel"], visibility: "public", link: "/cases/aktransservice",
+    problems: ["documents", "control", "manual"], visibility: "public", link: "/cases/aktransservice",
+    linkLabel: "Посмотреть, как это работает",
   },
   {
     id: "kraypotrebsoyuz", client: "Крайпотребсоюз", industry: "Потребительская кооперация",
@@ -40,7 +42,8 @@ export const caseStudies: CaseStudy[] = [
     solution: "Проработали архитектуру решения и нашли способ отказаться от запланированной покупки серверного оборудования.",
     images: [{ key: "kray-meeting", alt: "Александра Моисеева на собрании Крайпотребсоюза", caption: "Собрание Крайпотребсоюза · материал проекта", kind: "photo" }],
     results: [{ value: "1,3 млн ₽", label: "Разовая экономия капитальных затрат", confirmation: "Отказ от серверного оборудования; в подробном кейсе описано подтверждение результатов Председателем Правления." }],
-    problems: ["documents", "control", "manual"], visibility: "public", link: "/cases/kraypotrebsoyuz",
+    problems: ["control", "manual"], visibility: "public", link: "/cases/kraypotrebsoyuz",
+    linkLabel: "Читать кейс",
   },
   {
     id: "production-doc-search", client: "Производственная компания", industry: "Производство",
@@ -48,6 +51,7 @@ export const caseStudies: CaseStudy[] = [
     solution: "Создали поиск по технической документации. Сотрудник получает доступ через QR-код и находит информацию по рабочему запросу.",
     images: [], results: [{ value: "3 секунды", label: "Ответ на технический запрос", confirmation: "Время ответа, опубликованное в существующем подробном кейсе." }],
     problems: ["documents", "manual"], visibility: "public", link: "/cases/production-doc-search",
+    linkLabel: "Посмотреть, как это работает",
   },
   {
     id: "cargo-express", client: "Грузовой Экспресс", industry: "Транспорт · Логистика",
@@ -58,6 +62,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "9–12 часов", label: "Экономия в неделю на обработке заявок для команды из 3 человек", confirmation: "Общий результат команды из трёх менеджеров, опубликованный в подробном кейсе." },
     ],
     problems: ["requests", "control", "manual"], visibility: "public", link: "/cases/cargo-express",
+    linkLabel: "Посмотреть, как это работает",
   },
 ];
 
