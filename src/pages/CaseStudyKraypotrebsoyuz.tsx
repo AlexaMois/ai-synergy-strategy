@@ -7,7 +7,7 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
 import AnimatedNumber from "@/components/AnimatedNumber";
-import { Link } from "react-router-dom";
+import { scrollToContact } from "@/lib/scrollToContact";
 
 // Photos
 import heroImage from "@/assets/cases/kraypotrebsoyuz/kraypotrebsoyuz-hero.jpg";
@@ -519,8 +519,8 @@ const CaseStudyKraypotrebsoyuz = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Хотите получить похожий результат для вашей компании?
             </h2>
-            <Button size="lg" asChild>
-              <Link to="/start">Подобрать формат работы</Link>
+            <Button size="lg" onClick={scrollToContact}>
+              Обсудить похожую задачу
             </Button>
           </div>
         </section>

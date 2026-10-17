@@ -4,7 +4,8 @@
 - Dark plates that host artwork whose own background is pure black use the semantic `ink` token (`bg-ink`) instead of `dark-bg`, and the artwork spans the plate edge to edge — this keeps the artwork and the plate seamless instead of showing a rectangular seam.
 - Footer owns the company-logo marquee after Contact on inner pages; Partners suppresses legacy page-level placements there while preserving the homepage placement, so one shared logo list cannot render duplicate rows.
 - Process assessment is calculated locally in a pure module; only explicit Contact submission sends its summary through the existing short-lead handler, preventing automatic CRM records and duplicate form flows.
-- Contact intent is session-scoped and used only on /start; service identity and assessment are included in the mapped task field because catalog option IDs must never be invented.
+- Contact service intent is session-scoped on /start; case context is derived from the current published case route and appended to the existing mapped task field, avoiding stale cross-page context and invented CRM option IDs.
+- Case catalog cards and problem filters use one typed public/draft data source with evidence descriptions; only published cases populate filters to prevent empty or unapproved categories.
 - Assessment PDFs embed the existing local Cyrillic font and paginate text so exports work offline after the font loads without sending answers to another service.
 - Process time is parsed and validated by the pure assessment module; unknown values remain nonnumeric so the UI and PDF never invent workload estimates.
 - Process recommendations use conservative local work-type rules over the described current process, not storage or category precedence; ambiguous descriptions request clarification, and each recognized type supplies a measurable experiment without claiming an established cause.
