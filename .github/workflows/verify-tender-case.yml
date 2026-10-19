@@ -20,7 +20,7 @@ jobs:
           node-version: '20'
           cache: npm
       - name: Install project dependencies
-        run: npm ci
+        run: npm install --no-package-lock --no-audit --no-fund
       - name: Full production build
         run: npm run build
       - name: Bun
