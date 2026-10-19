@@ -12,7 +12,7 @@ import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 const CasesPage = () => {
   const [problem, setProblem] = useState<CaseProblem | "all">("all");
   const projects = publishedCases(problem);
-  const description = "Реальные проекты, рабочие инструменты и результаты. Найдите знакомую проблему и посмотрите, какое решение мы создали";
+  const description = "Реальные проекты, рабочие инструменты и результаты. Выберите знакомую бизнес-задачу и посмотрите реализованное решение";
   return (
     <PageTransition>
       <Helmet>
@@ -36,7 +36,7 @@ const CasesPage = () => {
               Посмотрите, как мы решаем задачи бизнеса
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-7">{description}.</p>
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Фильтры по проблемам">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Фильтры по бизнес-задачам">
               <Button size="sm" variant={problem === "all" ? "secondary" : "outline"} aria-pressed={problem === "all"} onClick={() => { setProblem("all"); trackCaseFilter("all"); }} className={`rounded-full h-auto min-h-10 text-sm px-4 border-foreground/10 ${problem === "all" ? "bg-foreground text-background hover:bg-foreground/90" : "bg-card"}`} >Все проекты</Button>
               {availableCaseProblems().map(item => <Button key={item.id} size="sm" variant={problem === item.id ? "secondary" : "outline"} aria-pressed={problem === item.id} onClick={() => { setProblem(item.id); trackCaseFilter(item.id); }} className={`rounded-full h-auto min-h-10 text-sm px-4 border-foreground/10 ${problem === item.id ? "bg-foreground text-background hover:bg-foreground/90" : "bg-card"}`}>{item.label}</Button>)}
             </div>
