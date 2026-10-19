@@ -9,6 +9,7 @@ import PillButton from "@/components/PillButton";
 import { caseForPath } from "@/data/caseStudies";
 import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
+import NeuroTenderologContent from "./NeuroTenderologContent";
 import { scrollToContact } from "@/lib/scrollToContact";
 
 interface CaseData {
@@ -178,6 +179,12 @@ const CaseDetailPage = () => {
             <Partners />
             <Footer />
           </>
+        ) : slug === "neurotenderolog" ? (
+          <>
+            <NeuroTenderologContent />
+            <Partners />
+            <Footer />
+          </>
         ) : (
         <>
         <main>
@@ -237,134 +244,6 @@ const CaseDetailPage = () => {
               </ul>
             </div>
           </section>
-
-          {slug === "neurotenderolog" && (
-            <section className="py-12 md:py-16 bg-surface-mint" aria-labelledby="reality-title">
-              <div className="mx-auto px-4 max-w-7xl">
-                <h2 id="reality-title" className="!text-3xl md:!text-5xl !text-foreground !leading-tight mb-10">Как работает в реальности</h2>
-                <div className="space-y-10 md:space-y-12">
-                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
-                    <div className="lg:col-span-5">
-                    <p className="text-sm text-primary font-medium mb-3">1. Карточка закупки и решение человека</p>
-                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">Человек принимает решение по карточке</h3>
-                    <p className="text-foreground leading-relaxed">
-                      Отдельная карточка содержит название закупки, цену, ссылки и мини-анализ. Человек оценивает закупку, подтверждает подходящие варианты, отклоняет другие и отмечает спорные. Сервис помогает отбирать закупки и передаёт решение об участии ответственному специалисту.
-                    </p>
-                    </div>
-                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
-                    <a
-                      href="/cases/neurotenderolog/tender_card_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Открыть скриншот в полном размере"
-                      aria-label="Открыть скриншот в полном размере"
-                      className="block w-full max-w-[566px]"
-                    >
-                      <img
-                        src="/cases/neurotenderolog/tender_card_public.webp"
-                        alt="Реальная карточка закупки с ценой, мини-анализом и вариантами решения человека"
-                        width={566}
-                        height={590}
-                        loading="lazy"
-                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
-                      />
-                    </a>
-                    <a
-                      href="/cases/neurotenderolog/tender_card_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-primary hover:underline"
-                    >
-                      Открыть полностью ↗
-                    </a>
-                    </figure>
-                  </article>
-                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
-                    <div className="lg:col-span-5">
-                    <p className="text-sm text-primary font-medium mb-3">2. День с подходящей закупкой</p>
-                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">07.10.2026: 1 подходит, 4 требуют решения</h3>
-                    <div className="space-y-3 text-foreground leading-relaxed">
-                      <p>«ИИ Разработка»: 15 новых закупок, 14 отсечено первично, 1 подробно проверена и отсечена при подробной проверке.</p>
-                      <p>«ИИ Консалтинг»: 146 новых закупок, 140 отсечено первично, 6 подробно проверено. Из них 1 отсечена при подробной проверке, 4 требуют решения, 1 подходит.</p>
-                      <p className="font-medium">Дневной итог по двум направлениям: 1 подходящая закупка и 4 закупки, которые требуют решения человека.</p>
-                    </div>
-                    </div>
-                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
-                    <a
-                      href="/cases/neurotenderolog/tender_daily_match_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Открыть скриншот в полном размере"
-                      aria-label="Открыть скриншот в полном размере"
-                      className="block w-full max-w-[587px]"
-                    >
-                      <img
-                        src="/cases/neurotenderolog/tender_daily_match_public.webp"
-                        alt="Отбор 7 октября 2026 года: 1 подходящая закупка и 4 требуют решения"
-                        width={587}
-                        height={917}
-                        loading="lazy"
-                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
-                      />
-                    </a>
-                    <a
-                      href="/cases/neurotenderolog/tender_daily_match_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-primary hover:underline"
-                    >
-                      Открыть полностью ↗
-                    </a>
-                    </figure>
-                  </article>
-                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
-                    <div className="lg:col-span-5">
-                    <p className="text-sm text-primary font-medium mb-3">3. День полного отсева закупок</p>
-                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">18.10.2026: 0 подходящих закупок</h3>
-                    <div className="space-y-3 text-foreground leading-relaxed">
-                      <p>«ИИ Разработка»: 22 новые закупки, 22 отсечено.</p>
-                      <p>«ИИ Консалтинг»: 171 новая закупка, 171 отсечено.</p>
-                      <p className="font-medium">Подходящих закупок по двум направлениям: 0. Результат отбора за конкретный день может быть нулевым.</p>
-                    </div>
-                    </div>
-                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
-                    <a
-                      href="/cases/neurotenderolog/tender_daily_zero_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Открыть скриншот в полном размере"
-                      aria-label="Открыть скриншот в полном размере"
-                      className="block w-full max-w-[517px]"
-                    >
-                      <img
-                        src="/cases/neurotenderolog/tender_daily_zero_public.webp"
-                        alt="Отбор 18 октября 2026 года: 22 и 171 новая закупка, 0 подходящих"
-                        width={517}
-                        height={554}
-                        loading="lazy"
-                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
-                      />
-                    </a>
-                    <a
-                      href="/cases/neurotenderolog/tender_daily_zero_public.webp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-primary hover:underline"
-                    >
-                      Открыть полностью ↗
-                    </a>
-                    </figure>
-                  </article>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mt-6">
-                  Скриншоты показывают реальные результаты отбора за отдельные дни. Среднюю эффективность оценивают по репрезентативной выборке
-                </p>
-                <p className="text-muted-foreground leading-relaxed mt-3">
-                  Дневные примеры иллюстрируют работу фильтрации. Показатель до 750 просмотренных закупок в день относится к одному направлению. Эффект во времени и деньгах требует отдельного измерения.
-                </p>
-              </div>
-            </section>
-          )}
 
           <section className="mx-auto max-w-7xl px-4 pt-6 pb-12 md:pb-16">
             <div className="rounded-[32px] bg-foreground p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-card">
