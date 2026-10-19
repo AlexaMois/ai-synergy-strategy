@@ -42,8 +42,9 @@ const CasesPage = () => {
             </div>
           </section>
           <section className="container mx-auto max-w-7xl px-4 pb-10 md:pb-16" aria-label="Выполненные проекты" aria-live="polite">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
-              {projects.map(project => <CaseProjectCard key={project.id} project={project} />)}
+            {projects.filter(project => project.id === "aktransservice").map(project => <CaseProjectCard key={project.id} project={project} />)}
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+              {projects.filter(project => project.id !== "aktransservice").map(project => <CaseProjectCard key={project.id} project={project} />)}
             </div>
           </section>
         </main>

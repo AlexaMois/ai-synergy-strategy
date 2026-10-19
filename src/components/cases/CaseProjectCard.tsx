@@ -19,7 +19,7 @@ export default function CaseProjectCard({ project }: { project: CaseStudy }) {
   const ink = project.id === "neurotenderolog";
   const dark = featured || ink;
   return (
-    <article data-case-id={project.id} className={`min-w-0 overflow-hidden rounded-[28px] shadow-card ring-1 ring-foreground/5 ${featured ? "md:col-span-2 lg:col-span-3 grid lg:grid-cols-12 bg-foreground" : `flex flex-col ${ink ? "bg-foreground" : mint ? "bg-surface-mint" : "bg-card"}`}`}>
+    <article data-case-id={project.id} className={`min-w-0 w-full mb-5 break-inside-avoid overflow-hidden rounded-[28px] shadow-card ring-1 ring-foreground/5 ${featured ? "grid lg:grid-cols-12 bg-foreground" : `flex flex-col ${ink ? "bg-foreground" : mint ? "bg-surface-mint" : "bg-card"}`}`}>
       <div className={`flex flex-col items-start p-6 md:p-7 ${featured ? "lg:col-span-7 lg:p-10" : ""}`}>
         <p className={`text-xs uppercase tracking-widest font-semibold mb-4 ${dark ? "text-accent" : "text-muted-foreground"}`}>{project.industry}</p>
         <h2 className={`!text-2xl ${featured ? "md:!text-3xl" : ""} !leading-tight !font-bold mb-3 ${dark ? "!text-background" : "!text-foreground"}`}>{project.problem}</h2>

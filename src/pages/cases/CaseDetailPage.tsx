@@ -258,7 +258,7 @@ const CaseDetailPage = () => {
                       rel="noopener noreferrer"
                       title="Открыть скриншот в полном размере"
                       aria-label="Открыть скриншот в полном размере"
-                      className="block w-full max-w-[587px]"
+                      className="block w-full max-w-[566px]"
                     >
                       <img
                         src="/cases/neurotenderolog/tender_card_public.webp"
@@ -334,7 +334,7 @@ const CaseDetailPage = () => {
                       rel="noopener noreferrer"
                       title="Открыть скриншот в полном размере"
                       aria-label="Открыть скриншот в полном размере"
-                      className="block w-full max-w-[587px]"
+                      className="block w-full max-w-[517px]"
                     >
                       <img
                         src="/cases/neurotenderolog/tender_daily_zero_public.webp"
