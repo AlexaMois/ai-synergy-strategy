@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PillButton from "@/components/PillButton";
+import CaseReadingNav from "@/components/cases/CaseReadingNav";
 import { scrollToContact } from "@/lib/scrollToContact";
 import portalShot from "@/assets/cases/aktrans/portal.webp";
 import docFormShot from "@/assets/cases/aktrans/doc-form.webp";
@@ -153,7 +154,12 @@ const AkTransServiceContent = () => {
                 Портал собирает документы и права доступа, Jarvis помогает сотрудникам работать с корпоративными знаниями и внутренними сценариями, а автоматизации на локальном сервере сами проверяют данные и доставляют результат людям.
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-10 max-w-4xl">
+              <div className="mb-8 grid max-w-3xl gap-4 rounded-[24px] bg-card/90 p-5 shadow-card ring-1 ring-foreground/5 sm:grid-cols-[auto_1fr] sm:items-center md:p-6">
+                <span className="text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl">1,7 млн ₽</span>
+                <span className="text-base leading-relaxed text-foreground/75">Сохранено за квартал в рамках проекта цифрового развития компании</span>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-8 max-w-4xl">
                 {heroTags.map((label, i) => (
                   <div
                     key={i}
@@ -181,8 +187,15 @@ const AkTransServiceContent = () => {
         </div>
       </section>
 
+      <CaseReadingNav items={[
+        { label: "Подход", target: "aktrans-principle" },
+        { label: "Документы", target: "aktrans-docs" },
+        { label: "Поиск знаний", target: "aktrans-knowledge" },
+        { label: "Архитектура", target: "aktrans-system" },
+      ]} />
+
       {/* Главный принцип — обычный текстовый блок на белом */}
-      <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+      <section id="aktrans-principle" className="container mx-auto max-w-7xl scroll-mt-28 px-4 py-10 md:py-14">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-14">
           <div className="lg:col-span-5">
             <Eyebrow>Главный принцип проекта</Eyebrow>
@@ -209,7 +222,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 01 Портал знаний */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-docs" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl mb-8 md:mb-10">
           <Eyebrow n="01">Портал знаний</Eyebrow>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-5">
@@ -256,7 +269,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 02 Три слоя поиска */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-access" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl mb-10">
           <Eyebrow n="02">Три слоя поиска</Eyebrow>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight">
@@ -288,7 +301,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 03 Дашборд */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-scenarios" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl mb-8 md:mb-10">
           <Eyebrow n="03">Руководителю нужен контроль</Eyebrow>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-5">
@@ -312,7 +325,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 04 Jarvis в MAX */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-knowledge" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl mb-10">
           <Eyebrow n="04">Jarvis в MAX</Eyebrow>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight">
@@ -381,7 +394,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 05 Автоматизации — тёмный блок */}
-      <section className="px-4 md:px-6 pb-16 md:pb-24">
+      <section className="px-4 md:px-6 pb-10 md:pb-14">
         <div className="container mx-auto max-w-7xl">
           <div className="rounded-[32px] md:rounded-[40px] bg-foreground text-background px-6 md:px-12 lg:px-16 py-12 md:py-16">
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
@@ -420,7 +433,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* 06 Архитектура: локальный сервер + связи + что работает сейчас */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-system" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl mb-10">
           <Eyebrow n="06">Архитектура</Eyebrow>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight">
@@ -488,7 +501,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* Почему кейс важен и как выбирается технология */}
-      <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-24">
+      <section id="aktrans-value" className="container mx-auto max-w-7xl scroll-mt-28 px-4 pb-10 md:pb-14">
         <div className="max-w-3xl border-t border-foreground/10 pt-10">
           <Eyebrow>Почему этот кейс важен</Eyebrow>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-5">
@@ -512,7 +525,7 @@ const AkTransServiceContent = () => {
       </section>
 
       {/* Финальный CTA */}
-      <section className="px-4 md:px-6 pb-16 md:pb-24">
+      <section className="px-4 md:px-6 pb-10 md:pb-14">
         <div className="container mx-auto max-w-7xl">
           <div className="rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
             <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-tight mb-5 max-w-3xl">

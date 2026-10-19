@@ -4,6 +4,7 @@ import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import CaseReadingNav from "@/components/cases/CaseReadingNav";
 import { Button } from "@/components/ui/button";
 import PillButton from "@/components/PillButton";
 import { Truck, TrendingUp, Users, Clock, CheckCircle, Target, BarChart3, Phone, MessageSquare, Mic } from "lucide-react";
@@ -55,40 +56,47 @@ const CaseStudyCargoExpress = () => {
             <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl">
               Приём заявок голосом в Telegram → единый учёт и контроль
             </p>
-<dl className="grid sm:grid-cols-2 gap-6 md:gap-10 border-t border-foreground/15 pt-6 md:pt-8">
-              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">0%</dd><dt className="text-sm text-muted-foreground">потери заявок</dt></div>
-              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">9–12 часов</dd><dt className="text-sm text-muted-foreground">экономия в неделю на обработке заявок для команды из 3 человек</dt></div>
+<dl className="grid sm:grid-cols-2 gap-5 rounded-[24px] bg-card/85 p-5 ring-1 ring-foreground/5 md:gap-9 md:p-7">
+              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">0%</dd><dt className="text-sm text-foreground/75">потерь заявок</dt></div>
+              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">9–12 часов</dd><dt className="text-sm text-foreground/75">экономия в неделю на обработке заявок для команды из 3 человек</dt></div>
             </dl>
           </div>
         </section>
 
+        <CaseReadingNav items={[
+          { label: "Бизнес-задача", target: "cargo-context" },
+          { label: "Как работает", target: "cargo-solution" },
+          { label: "Результаты", target: "cargo-results" },
+          { label: "Экономика", target: "cargo-economy" },
+        ]} />
+
         {/* About Client Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">О <span className="font-semibold">клиенте</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">О <span className="font-semibold">клиенте</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6 mb-6">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+              <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6">
                 <strong className="text-foreground">Грузовой Экспресс</strong> — транспортно-логистическая компания, оказывающая услуги:
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-3">
                   <span className="text-primary">–</span>
-                  <span className="text-muted-foreground">авиационных перевозок</span>
+                  <span className="text-foreground/75">авиационных перевозок</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary">–</span>
-                  <span className="text-muted-foreground">речных и морских перевозок</span>
+                  <span className="text-foreground/75">речных и морских перевозок</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary">–</span>
-                  <span className="text-muted-foreground">автомобильной логистики</span>
+                  <span className="text-foreground/75">автомобильной логистики</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-primary">–</span>
-                  <span className="text-muted-foreground">ответственного хранения</span>
+                  <span className="text-foreground/75">ответственного хранения</span>
                 </li>
               </ul>
               <div className="border-l-2 border-accent pl-5 py-2">
@@ -107,14 +115,14 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Context Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="cargo-context" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Контекст <span className="font-semibold">задачи</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Контекст <span className="font-semibold">задачи</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6 mb-6">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+              <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-4">
                 Заявки поступали из разных каналов:
               </p>
               <div className="grid sm:grid-cols-3 gap-4 mb-6">
@@ -131,7 +139,7 @@ const CaseStudyCargoExpress = () => {
                   <span className="text-foreground">голосовые</span>
                 </div>
               </div>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/75">
                 Фиксация заявок происходила вручную с задержкой.<br />
                 <strong className="text-foreground">Данные об обращениях хранились в нескольких местах.</strong>
               </p>
@@ -142,36 +150,36 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Problem Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-2">Заявки поступают — <span className="font-semibold">нужен единый контроль</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-2">Заявки поступают — <span className="font-semibold">нужен единый контроль</span></h2></div>
 <div className="md:col-span-8 min-w-0">
-            <p className="text-muted-foreground mb-8">Задачи для улучшения</p>
+            <p className="text-foreground/75 mb-8">Задачи для улучшения</p>
             
             <div className="border-t border-foreground/10 pt-6 mb-8">
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground font-bold">•</span>
-                  <span className="text-muted-foreground"><strong className="text-foreground">10–15% заявок</strong> терялись или дублировались</span>
+                  <span className="text-foreground/75 font-bold">•</span>
+                  <span className="text-foreground/75"><strong className="text-foreground">10–15% заявок</strong> терялись или дублировались</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground font-bold">•</span>
-                  <span className="text-muted-foreground">медленная обработка из-за ручного ввода</span>
+                  <span className="text-foreground/75 font-bold">•</span>
+                  <span className="text-foreground/75">медленная обработка из-за ручного ввода</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground font-bold">•</span>
-                  <span className="text-muted-foreground">высокий человеческий фактор</span>
+                  <span className="text-foreground/75 font-bold">•</span>
+                  <span className="text-foreground/75">высокий человеческий фактор</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground font-bold">•</span>
-                  <span className="text-muted-foreground">потребность в ежедневной аналитике</span>
+                  <span className="text-foreground/75 font-bold">•</span>
+                  <span className="text-foreground/75">потребность в ежедневной аналитике</span>
                 </li>
               </ul>
               
               <div className="border-l border-foreground/15 pl-5 py-2">
                 <p className="text-foreground font-medium mb-2">Руководству невозможно было в любой момент увидеть:</p>
-                <ul className="space-y-1 text-muted-foreground">
+                <ul className="space-y-1 text-foreground/75">
                   <li>– сколько заявок пришло</li>
                   <li>– в каком они статусе</li>
                   <li>– где возникают узкие места</li>
@@ -180,7 +188,7 @@ const CaseStudyCargoExpress = () => {
             </div>
 
             <div className="border-t border-foreground/10 pt-6">
-              <p className="text-muted-foreground">
+              <p className="text-foreground/75">
                 CRM-системы (включая Битрикс) рассматривались,<br />
                 <strong className="text-foreground">но от их внедрения осознанно отказались.</strong>
               </p>
@@ -191,30 +199,30 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Why No CRM Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Почему отказались <span className="font-semibold">от CRM</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Почему выбрали <span className="font-semibold">Telegram и таблицы</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6 mb-6">
-              <p className="text-muted-foreground mb-4">Совместно с командой Грузового Экспресса были оценены риски:</p>
+              <p className="text-foreground/75 mb-4">Совместно с командой Грузового Экспресса были оценены риски:</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground">–</span>
-                  <span className="text-muted-foreground">длительное внедрение</span>
+                  <span className="text-foreground/75">–</span>
+                  <span className="text-foreground/75">длительное внедрение</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground">–</span>
-                  <span className="text-muted-foreground">необходимость обучать всю команду</span>
+                  <span className="text-foreground/75">–</span>
+                  <span className="text-foreground/75">необходимость обучать всю команду</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground">–</span>
-                  <span className="text-muted-foreground">смена привычного рабочего процесса</span>
+                  <span className="text-foreground/75">–</span>
+                  <span className="text-foreground/75">смена привычного рабочего процесса</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-muted-foreground">–</span>
-                  <span className="text-muted-foreground">сопротивление со стороны менеджеров</span>
+                  <span className="text-foreground/75">–</span>
+                  <span className="text-foreground/75">сопротивление со стороны менеджеров</span>
                 </li>
               </ul>
             </div>
@@ -232,10 +240,10 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Architecture Solution Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="cargo-solution" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Архитектурное <span className="font-semibold">решение</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Архитектурное <span className="font-semibold">решение</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6 mb-8">
@@ -247,15 +255,15 @@ const CaseStudyCargoExpress = () => {
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <span className="text-primary-dark w-8 text-xl font-bold shrink-0 tabular-nums">1</span>
-                  <p className="text-muted-foreground">Менеджер принимает заявку</p>
+                  <p className="text-foreground/75">Менеджер принимает заявку</p>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-primary-dark w-8 text-xl font-bold shrink-0 tabular-nums">2</span>
-                  <p className="text-muted-foreground">Вносит её голосом или текстом в Telegram</p>
+                  <p className="text-foreground/75">Вносит её голосом или текстом в Telegram</p>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-primary-dark w-8 text-xl font-bold shrink-0 tabular-nums">3</span>
-                  <div className="text-muted-foreground">
+                  <div className="text-foreground/75">
                     <p className="mb-2">Система автоматически:</p>
                     <ul className="space-y-1 ml-4">
                       <li>– распознаёт данные</li>
@@ -278,32 +286,32 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* What Changed for Managers Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Что изменилось <span className="font-semibold">для менеджеров</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Что изменилось <span className="font-semibold">для менеджеров</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
                 <p className="text-foreground font-medium mb-2">Работа в привычном Telegram</p>
-                <p className="text-sm text-muted-foreground">Работа в привычном интерфейсе Telegram</p>
+                <p className="text-sm text-foreground/75">Работа в привычном интерфейсе Telegram</p>
               </div>
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
                 <p className="text-foreground font-medium mb-2">Заявку можно внести:</p>
-                <p className="text-sm text-muted-foreground">с телефона, в дороге, даже во время обеда</p>
+                <p className="text-sm text-foreground/75">с телефона, в дороге, даже во время обеда</p>
               </div>
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
                 <p className="text-foreground font-medium mb-2">Данные фиксируются сразу</p>
-                <p className="text-sm text-muted-foreground">Моментальное сохранение в систему</p>
+                <p className="text-sm text-foreground/75">Моментальное сохранение в систему</p>
               </div>
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
                 <p className="text-foreground font-medium mb-2">Исключён ручной перенос</p>
-                <p className="text-sm text-muted-foreground">Единая фиксация каждого обращения</p>
+                <p className="text-sm text-foreground/75">Единая фиксация каждого обращения</p>
               </div>
             </div>
 
@@ -322,10 +330,10 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* What Management Got Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Что получило руководство</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Что получило руководство</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -349,7 +357,7 @@ const CaseStudyCargoExpress = () => {
 
             <div className="border-t border-foreground/10 pt-6">
               <p className="text-foreground font-medium mb-3">Руководство в любой момент видит:</p>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-foreground/75">
                 <li>– сколько заявок пришло</li>
                 <li>– сколько новых / в работе / выполнено</li>
                 <li>– где возникают задержки</li>
@@ -361,29 +369,29 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Results Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="cargo-results" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Измеримые результаты</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Измеримые результаты</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="border-t border-foreground/10 pt-6">
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="text-muted-foreground">До</span> внедрения
+                  <span className="text-foreground/75">До</span> внедрения
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-muted-foreground font-bold">•</span>
-                    <span className="text-muted-foreground">10–15% потерь и дублей заявок</span>
+                    <span className="text-foreground/75 font-bold">•</span>
+                    <span className="text-foreground/75">10–15% потерь и дублей заявок</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-muted-foreground font-bold">•</span>
-                    <span className="text-muted-foreground">ручной контроль</span>
+                    <span className="text-foreground/75 font-bold">•</span>
+                    <span className="text-foreground/75">ручной контроль</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-muted-foreground font-bold">•</span>
-                    <span className="text-muted-foreground">потребность в управленческой аналитике</span>
+                    <span className="text-foreground/75 font-bold">•</span>
+                    <span className="text-foreground/75">потребность в управленческой аналитике</span>
                   </li>
                 </ul>
               </div>
@@ -418,25 +426,25 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Economic Effect Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="cargo-economy" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-surface-mint p-6 md:p-12 ring-1 ring-foreground/5">
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Экономический эффект</h2>
+            <h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Экономический эффект</h2>
             
             <div className="grid sm:grid-cols-3 gap-6 mb-8">
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <Clock className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-3xl font-bold text-primary-dark mb-2">9–12 часов</p>
-                <p className="text-sm text-muted-foreground">экономия в неделю<br />на обработке заявок</p>
+                <p className="text-sm text-foreground/75">экономия в неделю<br />на обработке заявок</p>
               </div>
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <TrendingUp className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-3xl font-bold text-primary-dark mb-2">0</p>
-                <p className="text-sm text-muted-foreground">потери заявок<br />сведены к нулю</p>
+                <p className="text-sm text-foreground/75">потерь заявок<br />сведены к нулю</p>
               </div>
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <BarChart3 className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-3xl font-bold text-primary-dark mb-2">данные</p>
-                <p className="text-sm text-muted-foreground">решения на основе<br />проверенных данных</p>
+                <p className="text-sm text-foreground/75">решения на основе<br />проверенных данных</p>
               </div>
             </div>
 
@@ -450,10 +458,10 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Project Status Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Статус проекта</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Статус проекта</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6">
@@ -470,7 +478,7 @@ const CaseStudyCargoExpress = () => {
                   <Target className="hidden w-6 h-6 text-primary-dark shrink-0" strokeWidth={1.5} />
                   <div className="text-foreground">
                     планируется масштабирование в 2026 году:
-                    <ul className="mt-2 ml-4 text-muted-foreground">
+                    <ul className="mt-2 ml-4 text-foreground/75">
                       <li>– рост объёма заявок</li>
                       <li>– подключение новых направлений</li>
                     </ul>
@@ -484,10 +492,10 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* Key Insight Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-foreground p-6 md:p-12 [&_h2]:!text-background [&_p]:!text-background [&_li]:!text-background [&_span]:!text-background [&_div]:border-background/15">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Главный вывод кейса</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Главный вывод кейса</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="py-2">
@@ -500,7 +508,7 @@ const CaseStudyCargoExpress = () => {
               </p>
               <div className="border-l border-foreground/15 pl-5 py-2">
                 <p className="text-foreground">Система работает потому что:</p>
-                <ul className="mt-2 space-y-1 text-muted-foreground">
+                <ul className="mt-2 space-y-1 text-foreground/75">
                   <li>– опирается на привычные действия сотрудников</li>
                   <li>– поддерживает повседневную работу сотрудников</li>
                   <li>– и даёт руководству контроль</li>
@@ -513,14 +521,14 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* For Whom Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Для кого этот кейс</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Для кого этот кейс</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="border-t border-foreground/10 pt-6">
-              <p className="text-muted-foreground mb-4">Релевантен компаниям, где:</p>
+              <p className="text-foreground/75 mb-4">Релевантен компаниям, где:</p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="hidden w-5 h-5 text-primary-dark shrink-0 mt-0.5" strokeWidth={1.5} />
@@ -546,13 +554,13 @@ const CaseStudyCargoExpress = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="rounded-[32px] md:rounded-[40px] bg-foreground p-6 md:p-12 shadow-card [&_h2]:!text-background [&_p]:!text-background/85">
               <h2 className="text-2xl md:text-4xl font-bold text-background leading-tight mb-4">
                 Следующий шаг
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
+              <p className="text-lg text-foreground/75 mb-6 max-w-2xl">
                 Если у вас похожая ситуация —<br />
                 начните с ожидаемого результата<br />
                 и разбора процесса приёма заявок.
