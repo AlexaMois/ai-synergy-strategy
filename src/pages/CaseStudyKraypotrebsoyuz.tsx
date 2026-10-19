@@ -78,7 +78,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <div className="lg:col-span-7 min-w-0">
                 <p className="text-xs font-semibold text-primary-dark uppercase tracking-widest mb-5"><span>КЕЙС</span> · ПОТРЕБИТЕЛЬСКАЯ КООПЕРАЦИЯ</p>
                 <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-                  Крайпотребсоюз: как выстроили цифровую архитектуру и сохранили <span className="whitespace-nowrap font-bold">1,3 млн ₽</span> капитальных затрат
+                  Крайпотребсоюз: архитектура цифрового развития бизнеса
                 </h1>
                 <dl className="mt-8 rounded-[24px] bg-card/90 p-5 shadow-card ring-1 ring-foreground/5 md:p-6">
                   <dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">1,3 млн ₽</dd>
