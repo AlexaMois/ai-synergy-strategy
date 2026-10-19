@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { X, ZoomIn, ZoomOut } from "lucide-react";
 import PillButton from "@/components/PillButton";
 import { caseForPath } from "@/data/caseStudies";
 import { scrollToContact } from "@/lib/scrollToContact";
@@ -14,18 +16,21 @@ const stages = [
 
 const screenshots = {
   card: {
+    title: "Карточка закупки после ИИ-анализа",
     src: "/cases/neurotenderolog/tender_card_public.webp",
     width: 566,
     height: 590,
     alt: "Реальная карточка закупки с предметом, ценой, кратким анализом и вариантами решения",
   },
   match: {
+    title: "Результат отбора · 7 октября 2026",
     src: "/cases/neurotenderolog/tender_daily_match_public.webp",
     width: 587,
     height: 917,
     alt: "Реальная сводка от 7 октября 2026 года: одна подходящая закупка и четыре для решения специалиста",
   },
   zero: {
+    title: "Результат отбора · 18 октября 2026",
     src: "/cases/neurotenderolog/tender_daily_zero_public.webp",
     width: 517,
     height: 554,
@@ -37,32 +42,34 @@ type Screenshot = (typeof screenshots)[keyof typeof screenshots];
 
 const EvidenceImage = ({
   image,
-  previewHeight = "h-[220px] md:h-[250px]",
+  onOpen,
+  previewHeight = "h-[295px] md:h-[340px]",
 }: {
   image: Screenshot;
+  onOpen: () => void;
   previewHeight?: string;
 }) => (
-  <a
-    href={image.src}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={"Открыть оригинал: " + image.alt}
-    className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-dark"
+  <button
+    type="button"
+    onClick={onOpen}
+    aria-label={"Увеличить изображение: " + image.title}
+    title="Увеличить изображение"
+    className="group relative block w-full cursor-zoom-in rounded-[20px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-dark"
   >
-    <div className={"flex w-full items-center justify-center overflow-hidden rounded-[20px] border border-foreground/10 bg-white/90 px-4 py-3 " + previewHeight}>
+    <div className={"flex w-full items-center justify-center overflow-hidden rounded-[20px] border border-foreground/10 bg-white/95 px-3 py-3 transition-shadow group-hover:shadow-card " + previewHeight}>
       <img
         src={image.src}
         width={image.width}
         height={image.height}
         alt={image.alt}
         loading="lazy"
-        className="h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.025]"
+        className="h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.035]"
       />
     </div>
-    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary-dark group-hover:underline">
-      Открыть скриншот полностью <span aria-hidden="true">↗</span>
+    <span aria-hidden="true" className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-foreground/90 text-background shadow-card transition-transform group-hover:scale-110">
+      <ZoomIn className="h-5 w-5" />
     </span>
-  </a>
+  </button>
 );
 
 const outcomes = [
@@ -84,8 +91,38 @@ const outcomes = [
   },
 ];
 
-const NeuroTenderologContent = () => (
-  <main>
+const NeuroTenderologContent = () => {
+  const [activeScreenshot, setActiveScreenshot] = useState<Screenshot | null>(null);
+  const [zoomed, setZoomed] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const openScreenshot = (image: Screenshot) => {
+    setZoomed(false);
+    setActiveScreenshot(image);
+  };
+
+  const closeScreenshot = () => {
+    setZoomed(false);
+    setActiveScreenshot(null);
+  };
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (activeScreenshot && !dialog.open) dialog.showModal();
+    if (!activeScreenshot && dialog.open) dialog.close();
+  }, [activeScreenshot]);
+
+  useEffect(() => {
+    if (!activeScreenshot) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = original; };
+  }, [activeScreenshot]);
+
+  return (
+    <>
+      <main>
     <section className="mx-auto max-w-7xl px-4 pt-7 md:pt-10">
       <div className="rounded-[32px] bg-surface-mint p-6 shadow-card ring-1 ring-foreground/5 md:rounded-[40px] md:p-10 lg:p-12">
         <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -154,14 +191,16 @@ const NeuroTenderologContent = () => (
             Пять последовательных этапов отбора
           </p>
         </div>
-        <ol className="grid grid-cols-2 gap-x-5 gap-y-6 border-t border-background/20 pt-6 md:grid-cols-5 md:gap-6">
+        <ol className="grid grid-cols-1 gap-3 border-t border-background/20 pt-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {stages.map((stage, index) => (
-            <li key={stage.title} className={index === 4 ? "col-span-2 md:col-span-1" : "min-w-0"}>
-              <span className="mb-3 inline-block text-sm font-semibold tabular-nums text-accent">
+            <li key={stage.title} className="flex min-w-0 items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.07] p-4 lg:flex-col lg:gap-0 lg:p-5">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-accent font-bold tabular-nums text-2xl text-foreground lg:mb-5">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="text-base font-semibold leading-snug text-background">{stage.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-background/65">{stage.detail}</p>
+              <div className="min-w-0">
+                <h3 className="!text-lg !font-bold !leading-snug !text-background xl:!text-xl">{stage.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-background/85">{stage.detail}</p>
+              </div>
             </li>
           ))}
         </ol>
@@ -178,7 +217,7 @@ const NeuroTenderologContent = () => (
             Три рабочих сценария
           </h2>
           <p className="mt-4 text-base leading-relaxed text-foreground/70">
-            Скриншоты показывают результат отбора за конкретные дни. Оригиналы открываются по нажатию.
+            Скриншоты показывают результат отбора за конкретные дни. Нажмите на изображение для увеличения.
           </p>
         </div>
 
@@ -196,7 +235,7 @@ const NeuroTenderologContent = () => (
             </p>
           </div>
           <figure className="min-w-0 lg:col-span-7">
-            <EvidenceImage image={screenshots.card} previewHeight="h-[235px] md:h-[275px]" />
+            <EvidenceImage image={screenshots.card} onOpen={() => openScreenshot(screenshots.card)} previewHeight="h-[300px] md:h-[385px]" />
           </figure>
         </article>
 
@@ -217,7 +256,7 @@ const NeuroTenderologContent = () => (
               новых закупок. Подходящие и спорные варианты переданы специалисту.
             </p>
             <figure className="mt-auto">
-              <EvidenceImage image={screenshots.match} />
+              <EvidenceImage image={screenshots.match} onOpen={() => openScreenshot(screenshots.match)} />
             </figure>
           </article>
 
@@ -237,7 +276,7 @@ const NeuroTenderologContent = () => (
               Все предложения за день прошли отбор по заданным критериям.
             </p>
             <figure className="mt-auto">
-              <EvidenceImage image={screenshots.zero} />
+              <EvidenceImage image={screenshots.zero} onOpen={() => openScreenshot(screenshots.zero)} />
             </figure>
           </article>
         </div>
@@ -259,15 +298,15 @@ const NeuroTenderologContent = () => (
             Что получает клиент
           </h2>
         </div>
-        <div className="grid gap-x-7 gap-y-0 sm:grid-cols-2 md:col-span-8">
+        <div className="grid gap-4 sm:grid-cols-2 md:col-span-8">
           {outcomes.map((item, index) => (
-            <div key={item.title} className="border-t border-foreground/15 py-5">
-              <p className="mb-2 text-xs font-semibold tabular-nums text-primary-dark">
+            <article key={item.title} className="rounded-[24px] border border-foreground/10 bg-card p-5 shadow-card md:p-6">
+              <span className="mb-5 inline-flex h-12 min-w-12 items-center justify-center rounded-[14px] bg-surface-mint px-3 text-2xl font-bold tabular-nums text-primary-dark">
                 {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="text-lg font-bold leading-snug text-foreground">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/70">{item.detail}</p>
-            </div>
+              </span>
+              <h3 className="!text-xl !font-bold !leading-snug !text-foreground xl:!text-2xl">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-foreground/80">{item.detail}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -286,7 +325,57 @@ const NeuroTenderologContent = () => (
         </PillButton>
       </div>
     </section>
-  </main>
-);
+      </main>
+      <dialog
+        ref={dialogRef}
+        aria-label={activeScreenshot?.title ?? "Просмотр изображения"}
+        onClose={closeScreenshot}
+        onClick={(event) => { if (event.target === event.currentTarget) closeScreenshot(); }}
+        className="fixed inset-0 m-auto w-[calc(100vw-24px)] max-w-[1050px] max-h-[calc(100dvh-24px)] overflow-hidden rounded-[24px] border border-white/15 bg-[#15191d] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm md:rounded-[30px]"
+      >
+        {activeScreenshot && (
+          <div className="flex max-h-[88dvh] min-h-0 flex-col md:h-[min(88dvh,900px)]">
+            <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/15 px-4 py-3 sm:px-6">
+              <p className="min-w-0 text-base font-semibold leading-snug text-white sm:text-lg">{activeScreenshot.title}</p>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setZoomed(value => !value)}
+                  aria-label={zoomed ? "Уменьшить изображение" : "Увеличить изображение в два раза"}
+                  title={zoomed ? "Уменьшить" : "Увеличить"}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                  {zoomed ? <ZoomOut className="h-5 w-5" /> : <ZoomIn className="h-5 w-5" />}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeScreenshot}
+                  aria-label="Закрыть просмотр"
+                  title="Закрыть"
+                  autoFocus
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-foreground hover:bg-white/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+            <div className="min-h-0 flex-1 overflow-auto overscroll-contain p-3 sm:p-6">
+              <div className={zoomed ? "flex min-h-full min-w-max items-start justify-start" : "flex min-h-0 items-center justify-center md:min-h-full"}>
+                <img
+                  src={activeScreenshot.src}
+                  width={activeScreenshot.width}
+                  height={activeScreenshot.height}
+                  alt={activeScreenshot.alt}
+                  className={zoomed ? "h-auto max-w-none rounded-xl" : "h-auto max-h-[calc(88dvh-125px)] w-auto max-w-full rounded-xl object-contain"}
+                  style={zoomed ? { width: activeScreenshot.width * 2 } : undefined}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </dialog>
+    </>
+  );
+};
 
 export default NeuroTenderologContent;
