@@ -334,7 +334,7 @@ const NeuroTenderologContent = () => {
         className="fixed inset-0 m-auto w-[calc(100vw-24px)] max-w-[1050px] max-h-[calc(100dvh-24px)] overflow-hidden rounded-[24px] border border-white/15 bg-[#15191d] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm md:rounded-[30px]"
       >
         {activeScreenshot && (
-          <div className="flex h-[min(88dvh,900px)] min-h-0 flex-col">
+          <div className="flex max-h-[88dvh] min-h-0 flex-col md:h-[min(88dvh,900px)]">
             <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/15 px-4 py-3 sm:px-6">
               <p className="min-w-0 text-base font-semibold leading-snug text-white sm:text-lg">{activeScreenshot.title}</p>
               <div className="flex shrink-0 items-center gap-2">
@@ -360,7 +360,7 @@ const NeuroTenderologContent = () => {
               </div>
             </div>
             <div className="min-h-0 flex-1 overflow-auto overscroll-contain p-3 sm:p-6">
-              <div className={zoomed ? "flex min-h-full min-w-max items-start justify-start" : "flex min-h-full items-center justify-center"}>
+              <div className={zoomed ? "flex min-h-full min-w-max items-start justify-start" : "flex min-h-0 items-center justify-center md:min-h-full"}>
                 <img
                   src={activeScreenshot.src}
                   width={activeScreenshot.width}
