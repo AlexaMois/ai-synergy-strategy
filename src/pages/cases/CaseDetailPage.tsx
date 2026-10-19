@@ -9,9 +9,6 @@ import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, Arro
 import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
 import { scrollToContact } from "@/lib/scrollToContact";
-import tenderCardAsset from "@/assets/cases/neurotenderolog/tender_card_public.webp.asset.json";
-import tenderMatchAsset from "@/assets/cases/neurotenderolog/tender_daily_match_public.webp.asset.json";
-import tenderZeroAsset from "@/assets/cases/neurotenderolog/tender_daily_zero_public.webp.asset.json";
 
 interface CaseData {
   slug: string;
@@ -292,7 +289,7 @@ const CaseDetailPage = () => {
                       Отдельная карточка содержит название закупки, цену, ссылки и мини-анализ. Человек выбирает «Подходит», «Не подходит» или «Спорно». Сервис помогает отбирать закупки, а не подаёт заявки и не выигрывает контракты.
                     </p>
                     <img
-                      src={tenderCardAsset.url}
+                      src="/cases/neurotenderolog/tender_card_public.webp"
                       alt="Реальная карточка закупки с ценой, мини-анализом и вариантами решения человека"
                       width={566}
                       height={590}
@@ -309,7 +306,7 @@ const CaseDetailPage = () => {
                       <p className="font-medium">Дневной итог по двум направлениям: 1 подходящая закупка и 4 закупки, которые требуют решения человека.</p>
                     </div>
                     <img
-                      src={tenderMatchAsset.url}
+                      src="/cases/neurotenderolog/tender_daily_match_public.webp"
                       alt="Отбор 7 октября 2026 года: 1 подходящая закупка и 4 требуют решения"
                       width={587}
                       height={917}
@@ -326,7 +323,7 @@ const CaseDetailPage = () => {
                       <p className="font-medium">Подходящих закупок по двум направлениям: 0. Результат отбора за конкретный день может быть нулевым.</p>
                     </div>
                     <img
-                      src={tenderZeroAsset.url}
+                      src="/cases/neurotenderolog/tender_daily_zero_public.webp"
                       alt="Отбор 18 октября 2026 года: 22 и 171 новая закупка, подходящих нет"
                       width={517}
                       height={554}
