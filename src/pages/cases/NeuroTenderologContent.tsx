@@ -122,21 +122,21 @@ const NeuroTenderologContent = () => (
       <div className="grid gap-0 rounded-[28px] border border-foreground/10 bg-card px-6 shadow-card md:grid-cols-3 md:px-8">
         <div className="border-b border-foreground/10 py-6 md:border-b-0 md:border-r md:pr-7">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">01 · Задача бизнеса</p>
-          <h2 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+          <p className="text-base font-semibold leading-snug text-foreground md:text-lg">
             Управляемый отбор закупок при большом потоке предложений
-          </h2>
+          </p>
         </div>
         <div className="border-b border-foreground/10 py-6 md:border-b-0 md:border-r md:px-7">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">02 · Что сделали</p>
-          <h2 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+          <p className="text-base font-semibold leading-snug text-foreground md:text-lg">
             Фильтрация, ИИ-оценка и доставка результатов в MAX
-          </h2>
+          </p>
         </div>
         <div className="py-6 md:pl-7">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">03 · Что получили</p>
-          <h2 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+          <p className="text-base font-semibold leading-snug text-foreground md:text-lg">
             Работающий сервис с тремя постоянными клиентами
-          </h2>
+          </p>
         </div>
       </div>
     </section>
