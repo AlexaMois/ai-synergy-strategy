@@ -23,7 +23,7 @@ function extractBlogEntries(root: string): Array<{ slug: string; date: string }>
 /**
  * Convert Russian date like "5 марта 2026" to ISO "2026-03-05"
  */
-function russianDateToISO(dateStr: string): string {
+function russianDateToISO(dateStr: string): string | undefined {
   const months: Record<string, string> = {
     'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
     'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
@@ -32,11 +32,12 @@ function russianDateToISO(dateStr: string): string {
   const parts = dateStr.trim().split(/\s+/);
   if (parts.length === 3) {
     const day = parts[0].padStart(2, '0');
-    const month = months[parts[1].toLowerCase()] || '01';
+    const month = months[parts[1].toLowerCase()];
+    if (!month || !/^\d{1,2}$/.test(parts[0]) || !/^\d{4}$/.test(parts[2])) return undefined;
     const year = parts[2];
     return `${year}-${month}-${day}`;
   }
-  return new Date().toISOString().split('T')[0];
+  return undefined;
 }
 
 function buildSitemapXml(root: string): string {
@@ -65,6 +66,9 @@ function buildSitemapXml(root: string): string {
     { path: '/cases/production-doc-search', priority: '0.7', changefreq: 'monthly' },
     { path: '/cases/kraypotrebsoyuz', priority: '0.7', changefreq: 'monthly' },
     { path: '/cases/cargo-express', priority: '0.7', changefreq: 'monthly' },
+    { path: '/cases/neurotenderolog', priority: '0.7', changefreq: 'monthly' },
+    { path: '/cases/caregiver-matching', priority: '0.7', changefreq: 'monthly' },
+    { path: '/cases/business-travel', priority: '0.7', changefreq: 'monthly' },
     { path: '/materials', priority: '0.8', changefreq: 'weekly' },
     { path: '/materials/blog', priority: '0.7', changefreq: 'weekly' },
     { path: '/materials/checklist-30', priority: '0.7', changefreq: 'monthly' },
