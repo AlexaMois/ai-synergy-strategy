@@ -10,6 +10,7 @@ import { caseForPath } from "@/data/caseStudies";
 import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
 import NeuroTenderologContent from "./NeuroTenderologContent";
+import BusinessCaseContent from "./BusinessCaseContent";
 import { scrollToContact } from "@/lib/scrollToContact";
 
 interface CaseData {
@@ -187,74 +188,8 @@ const CaseDetailPage = () => {
           </>
         ) : (
         <>
-        <main>
-          <section className="mx-auto max-w-7xl px-4 pt-8 md:pt-12">
-            <div className="rounded-[32px] md:rounded-[40px] bg-surface-mint shadow-card ring-1 ring-foreground/5 p-6 md:p-12">
-              <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-5">Кейс · {caseData.industry}</p>
-              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-                <div className="lg:col-span-8 min-w-0">
-                  <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-5">{caseData.title}</h1>
-                  <p className="text-base md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{caseData.subtitle}</p>
-                  <p className="text-sm text-muted-foreground mt-5">Статус: {caseData.status}</p>
-                </div>
-                <dl className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-foreground/15 pt-6 lg:pt-0 lg:pl-8 space-y-6">
-                  {project?.results.map(result => <div key={result.value}>
-                    <dd className="font-bold text-4xl md:text-5xl text-foreground leading-tight mb-2" title={result.confirmation}>{result.value}</dd>
-                    <dt className="text-sm text-muted-foreground leading-relaxed">{result.label}</dt>
-                  </div>)}
-                </dl>
-              </div>
-            </div>
-          </section>
+        <BusinessCaseContent story={caseData} project={project} />
 
-          <section className="mx-auto max-w-7xl px-4 py-12 md:py-16">
-            <div className="grid md:grid-cols-12 gap-6 md:gap-12">
-              <div className="md:col-span-4">
-                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">01 · Контекст</p>
-                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Задача бизнеса</h2>
-                <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{caseData.targetAudience}</p>
-              </div>
-              <p className="md:col-span-8 text-base md:text-lg text-foreground leading-relaxed">{caseData.task}</p>
-            </div>
-          </section>
-
-          <section className="bg-card py-12 md:py-16">
-            <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-12 gap-6 md:gap-12">
-              <div className="md:col-span-4">
-                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">02 · Решение</p>
-                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Что сделали</h2>
-              </div>
-              <ol className="md:col-span-8 border-t border-foreground/10">
-                {caseData.actions.map((action, index) => <li key={action} className="flex gap-5 py-5 border-b border-foreground/10">
-                  <span className="text-primary-dark font-bold text-sm pt-1 tabular-nums">{String(index + 1).padStart(2, "0")}</span>
-                  <p className="text-base md:text-lg text-foreground leading-relaxed">{action}</p>
-                </li>)}
-              </ol>
-            </div>
-          </section>
-
-          <section className="mx-auto max-w-7xl px-4 py-12 md:py-16">
-            <div className="grid md:grid-cols-12 gap-6 md:gap-12">
-              <div className="md:col-span-4">
-                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">03 · Подтверждённые результаты</p>
-                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Что получили</h2>
-              </div>
-              <ul className="md:col-span-8 border-t border-foreground/10">
-                {caseData.results.map(result => <li key={result} className="py-5 border-b border-foreground/10 text-base md:text-lg text-foreground leading-relaxed">{result}</li>)}
-              </ul>
-            </div>
-          </section>
-
-          <section className="mx-auto max-w-7xl px-4 pt-6 pb-12 md:pb-16">
-            <div className="rounded-[32px] bg-foreground p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-card">
-              <div>
-                <p className="text-xs uppercase tracking-widest font-semibold text-accent mb-3">Следующий шаг</p>
-                <h2 className="!text-2xl md:!text-3xl !leading-tight !text-background">Обсудим вашу задачу</h2>
-              </div>
-              <PillButton onClick={scrollToContact} variant="light" size="md" className="self-start shrink-0">Обсудить похожую задачу</PillButton>
-            </div>
-          </section>
-        </main>
 
         <Partners />
         <Footer />
