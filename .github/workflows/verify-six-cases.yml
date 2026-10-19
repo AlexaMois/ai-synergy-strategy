@@ -50,6 +50,8 @@ jobs:
             const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});
             for(const slug of routes){
               const page=await context.newPage();
+              page.setDefaultTimeout(5500);
+              console.log('PAGE_START',view,slug);
               const jsErrors=[]; page.on('pageerror',e=>jsErrors.push(e.message));
               const response=await page.goto(base+'/cases/'+slug,{waitUntil:'domcontentloaded'});
               ok(response && response.ok(),slug+' HTTP failure');
@@ -87,6 +89,7 @@ jobs:
               const contactTop=await page.locator('#contact').evaluate(x=>Math.round(x.getBoundingClientRect().top));
               ok(contactTop<height+100&&contactTop>-height,view+' '+slug+' CTA scroll failed: '+contactTop);
               results.push({view,slug,h1,...measures,navCount,images:images.length,contactTop,jsErrors});
+              console.log('PAGE_OK',view,slug);
               await page.close();
             }
             await context.close();
