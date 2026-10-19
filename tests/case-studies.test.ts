@@ -1,20 +1,23 @@
 import { describe, expect, test } from "bun:test";
 import { caseStudies, publishedCases, availableCaseProblems, caseForPath } from "../src/data/caseStudies";
+import { isRouteAllowed } from "../src/config/routes";
 
 describe("approved case catalog rules", () => {
-  test("publishes only the four existing cases", () => {
-    expect(publishedCases().map(item => item.link)).toEqual(["/cases/aktransservice", "/cases/kraypotrebsoyuz", "/cases/production-doc-search", "/cases/cargo-express"]);
+  test("publishes the seven approved cases only", () => {
+    expect(publishedCases().map(item => item.link)).toEqual(["/cases/aktransservice", "/cases/kraypotrebsoyuz", "/cases/production-doc-search", "/cases/cargo-express", "/cases/neurotenderolog", "/cases/caregiver-matching", "/cases/business-travel"]);
     const draft = { ...caseStudies[0], id: "not-approved", visibility: "draft" as const };
     caseStudies.push(draft);
     try { expect(publishedCases().some(item => item.id === "not-approved")).toBe(false); }
     finally { caseStudies.pop(); }
   });
-  test("offers no empty procurement or travel filter and filters published problems correctly", () => {
-    expect(availableCaseProblems().map(item => item.id)).not.toContain("procurement");
-    expect(availableCaseProblems().map(item => item.id)).not.toContain("travel");
-    expect(publishedCases("requests").map(item => item.client)).toEqual(["Грузовой Экспресс"]);
+  test("offers populated procurement and travel filters and keeps relevant existing categories", () => {
+    expect(availableCaseProblems().map(item => item.id)).toContain("procurement");
+    expect(availableCaseProblems().map(item => item.id)).toContain("travel");
+    expect(publishedCases("procurement").map(item => item.id)).toEqual(["neurotenderolog"]);
+    expect(publishedCases("travel").map(item => item.id)).toEqual(["business-travel"]);
+    expect(publishedCases("requests").map(item => item.client)).toEqual(["Грузовой Экспресс", "Система подбора и сопровождения сиделок"]);
     expect(publishedCases("documents").map(item => item.client)).toEqual(["АкТрансСервис", "Производственная компания"]);
-    expect(publishedCases("control").length).toBe(3);
+    expect(publishedCases("control").length).toBe(4);
   });
   test("architectural case does not promise a working product demo", () => {
     expect(caseForPath("/cases/kraypotrebsoyuz")?.linkLabel).toBe("Читать кейс");
@@ -33,5 +36,26 @@ describe("approved case catalog rules", () => {
     expect(caseForPath("/cases/aktransservice/")?.client).toBe("АкТрансСервис");
     expect(caseForPath("/")).toBeUndefined();
     expect(caseForPath("/start")).toBeUndefined();
+  });
+  test("new approved cases have no images and use allowed detail routes", () => {
+    for (const slug of ["neurotenderolog", "caregiver-matching", "business-travel"]) {
+      const item = caseForPath(`/cases/${slug}`);
+      expect(item?.visibility).toBe("public");
+      expect(item?.images).toEqual([]);
+      expect(isRouteAllowed(`/cases/${slug}`)).toBe(true);
+    }
+  });
+  test("tender service keeps three clients and a daily per-direction viewing measure", () => {
+    const item = caseForPath("/cases/neurotenderolog");
+    expect(item?.results.map(result => result.value)).toEqual(["3 клиента", "До 750"]);
+    expect(item?.problems).toEqual(["procurement", "manual"]);
+  });
+  test("caregiver case uses the implementation year without invented efficiency figures", () => {
+    expect(caseForPath("/cases/caregiver-matching")?.results.map(result => result.value)).toEqual(["2025"]);
+    expect(caseForPath("/cases/caregiver-matching")?.problems).toEqual(["requests", "control", "manual"]);
+  });
+  test("travel case describes two implementations only", () => {
+    expect(caseForPath("/cases/business-travel")?.results.map(result => result.value)).toEqual(["2 компании"]);
+    expect(caseForPath("/cases/business-travel")?.problems).toEqual(["travel", "manual"]);
   });
 });

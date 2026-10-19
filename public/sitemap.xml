@@ -111,6 +111,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://aleksamois.ru/cases/neurotenderolog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/cases/caregiver-matching</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aleksamois.ru/cases/business-travel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aleksamois.ru/materials</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
