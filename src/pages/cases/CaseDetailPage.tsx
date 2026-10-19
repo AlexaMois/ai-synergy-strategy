@@ -5,7 +5,8 @@ import { Helmet } from "react-helmet-async";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Target, TrendingUp, Users, Clock, Image as ImageIcon, ArrowRight } from "lucide-react";
+import PillButton from "@/components/PillButton";
+import { caseForPath } from "@/data/caseStudies";
 import { useNavigate, useParams } from "react-router-dom";
 import AkTransServiceContent from "./AkTransServiceContent";
 import { scrollToContact } from "@/lib/scrollToContact";
@@ -131,6 +132,7 @@ const CaseDetailPage = () => {
   const navigate = useNavigate();
 
   const caseData = slug ? casesData[slug] : null;
+  const project = slug ? caseForPath(`/cases/${slug}`) : undefined;
 
   if (!caseData) {
     return (
@@ -179,121 +181,84 @@ const CaseDetailPage = () => {
         ) : (
         <>
         <main>
-          {/* Hero Section */}
-          <section className="pt-10 pb-10 md:pb-16 bg-background">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <div className="flex items-center gap-4 mb-4">
-                <Target className="w-10 h-10 text-primary" strokeWidth={1.5} />
-                <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                  caseData.status === 'действующий' 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-muted text-muted-foreground'
-                }`}>
-                  {caseData.status}
-                </span>
-              </div>
-              <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-4">
-                {caseData.title}
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                {caseData.subtitle}
-              </p>
-            </div>
-          </section>
-
-          {/* Meta Info Section */}
-          <section className="py-10 md:py-16 bg-muted">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <div className={`grid sm:grid-cols-2 ${caseData.price && caseData.price !== "—" ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-4`}>
-                <div className="bg-card rounded-2xl p-6 shadow-soft">
-                  <Users className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground mb-1">Для кого</p>
-                  <p className="text-foreground font-medium">{caseData.targetAudience}</p>
+          <section className="mx-auto max-w-7xl px-4 pt-8 md:pt-12">
+            <div className="rounded-[32px] md:rounded-[40px] bg-surface-mint shadow-card ring-1 ring-foreground/5 p-6 md:p-12">
+              <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-5">Кейс · {caseData.industry}</p>
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+                <div className="lg:col-span-8 min-w-0">
+                  <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight mb-5">{caseData.title}</h1>
+                  <p className="text-base md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{caseData.subtitle}</p>
+                  <p className="text-sm text-muted-foreground mt-5">Статус: {caseData.status}</p>
                 </div>
-                <div className="bg-card rounded-2xl p-6 shadow-soft">
-                  <Target className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground mb-1">Отрасль</p>
-                  <p className="text-foreground font-medium">{caseData.industry}</p>
-                </div>
-                {caseData.price && caseData.price !== "—" && (
-                  <div className="bg-card rounded-2xl p-6 shadow-soft">
-                    <TrendingUp className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-                    <p className="text-sm text-muted-foreground mb-1">Стоимость</p>
-                    <p className="text-foreground font-medium">{caseData.price}</p>
-                  </div>
-                )}
-                <div className="bg-card rounded-2xl p-6 shadow-soft">
-                  <Clock className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-                  <p className="text-sm text-muted-foreground mb-1">Статус</p>
-                  <p className="text-foreground font-medium">{caseData.status}</p>
-                </div>
+                <dl className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-foreground/15 pt-6 lg:pt-0 lg:pl-8 space-y-6">
+                  {project?.results.map(result => <div key={result.value}>
+                    <dd className="font-bold text-4xl md:text-5xl text-foreground leading-tight mb-2" title={result.confirmation}>{result.value}</dd>
+                    <dt className="text-sm text-muted-foreground leading-relaxed">{result.label}</dt>
+                  </div>)}
+                </dl>
               </div>
             </div>
           </section>
 
-          {/* Task Section */}
-          <section className="py-10 md:py-16 bg-background">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <h2 className="section-title mb-8">Задача</h2>
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <p className="text-lg text-foreground leading-relaxed">
-                  {caseData.task}
-                </p>
+          <section className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+            <div className="grid md:grid-cols-12 gap-6 md:gap-12">
+              <div className="md:col-span-4">
+                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">01 · Контекст</p>
+                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Задача бизнеса</h2>
+                <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{caseData.targetAudience}</p>
               </div>
+              <p className="md:col-span-8 text-base md:text-lg text-foreground leading-relaxed">{caseData.task}</p>
             </div>
           </section>
 
-          {/* Actions Section */}
-          <section className="py-10 md:py-16 bg-muted">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <h2 className="section-title mb-8">Что было сделано</h2>
-              <div className="bg-card rounded-2xl p-6 shadow-soft">
-                <ul className="space-y-4">
-                  {caseData.actions.map((action, index) => (
-                    <li key={index} className="flex items-start gap-4">
-                      <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">
-                        {index + 1}
-                      </span>
-                      <p className="text-foreground pt-1">{action}</p>
-                    </li>
-                  ))}
-                </ul>
+          <section className="bg-card py-12 md:py-16">
+            <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-12 gap-6 md:gap-12">
+              <div className="md:col-span-4">
+                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">02 · Решение</p>
+                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Что сделали</h2>
               </div>
+              <ol className="md:col-span-8 border-t border-foreground/10">
+                {caseData.actions.map((action, index) => <li key={action} className="flex gap-5 py-5 border-b border-foreground/10">
+                  <span className="text-primary-dark font-bold text-sm pt-1 tabular-nums">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="text-base md:text-lg text-foreground leading-relaxed">{action}</p>
+                </li>)}
+              </ol>
             </div>
           </section>
 
-          {/* Results Section */}
-          <section className="py-10 md:py-16 bg-background">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <h2 className="section-title mb-8">Результаты</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {caseData.results.map((result, index) => (
-                  <div key={index} className="bg-card rounded-2xl p-6 shadow-soft flex items-start gap-4">
-                    <CheckCircle className="w-6 h-6 text-primary shrink-0" strokeWidth={1.5} />
-                    <p className="text-foreground font-medium">{result}</p>
-                  </div>
-                ))}
+          <section className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+            <div className="grid md:grid-cols-12 gap-6 md:gap-12">
+              <div className="md:col-span-4">
+                <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">03 · Подтверждённые результаты</p>
+                <h2 className="!text-3xl md:!text-4xl !leading-tight !text-foreground">Что получили</h2>
               </div>
+              <ul className="md:col-span-8 border-t border-foreground/10">
+                {caseData.results.map(result => <li key={result} className="py-5 border-b border-foreground/10 text-base md:text-lg text-foreground leading-relaxed">{result}</li>)}
+              </ul>
             </div>
           </section>
 
           {slug === "neurotenderolog" && (
-            <section className="py-10 md:py-16 bg-muted" aria-labelledby="reality-title">
-              <div className="container mx-auto px-4 max-w-6xl">
-                <h2 id="reality-title" className="section-title mb-8">Как работает в реальности</h2>
-                <div className="grid lg:grid-cols-3 gap-4">
-                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+            <section className="py-12 md:py-16 bg-surface-mint" aria-labelledby="reality-title">
+              <div className="mx-auto px-4 max-w-7xl">
+                <h2 id="reality-title" className="!text-3xl md:!text-5xl !text-foreground !leading-tight mb-10">Как работает в реальности</h2>
+                <div className="space-y-10 md:space-y-12">
+                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
+                    <div className="lg:col-span-5">
                     <p className="text-sm text-primary font-medium mb-3">1. Карточка закупки и решение человека</p>
-                    <h3 className="text-lg font-semibold text-foreground mb-3">Человек принимает решение по карточке</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">Человек принимает решение по карточке</h3>
                     <p className="text-foreground leading-relaxed">
                       Отдельная карточка содержит название закупки, цену, ссылки и мини-анализ. Человек выбирает «Подходит», «Не подходит» или «Спорно». Сервис помогает отбирать закупки, а не подаёт заявки и не выигрывает контракты.
                     </p>
+                    </div>
+                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
                     <a
                       href="/cases/neurotenderolog/tender_card_public.webp"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Открыть скриншот в полном размере"
                       aria-label="Открыть скриншот в полном размере"
+                      className="block w-full max-w-[587px]"
                     >
                       <img
                         src="/cases/neurotenderolog/tender_card_public.webp"
@@ -301,7 +266,7 @@ const CaseDetailPage = () => {
                         width={566}
                         height={590}
                         loading="lazy"
-                        className="mt-4 w-full h-auto rounded-lg"
+                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
                       />
                     </a>
                     <a
@@ -312,21 +277,26 @@ const CaseDetailPage = () => {
                     >
                       Открыть полностью ↗
                     </a>
+                    </figure>
                   </article>
-                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
+                    <div className="lg:col-span-5">
                     <p className="text-sm text-primary font-medium mb-3">2. День с подходящей закупкой</p>
-                    <h3 className="text-lg font-semibold text-foreground mb-3">07.10.2026: 1 подходит, 4 требуют решения</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">07.10.2026: 1 подходит, 4 требуют решения</h3>
                     <div className="space-y-3 text-foreground leading-relaxed">
                       <p>«ИИ Разработка»: 15 новых закупок, 14 отсечено первично, 1 подробно проверена и отсечена при подробной проверке.</p>
                       <p>«ИИ Консалтинг»: 146 новых закупок, 140 отсечено первично, 6 подробно проверено. Из них 1 отсечена при подробной проверке, 4 требуют решения, 1 подходит.</p>
                       <p className="font-medium">Дневной итог по двум направлениям: 1 подходящая закупка и 4 закупки, которые требуют решения человека.</p>
                     </div>
+                    </div>
+                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
                     <a
                       href="/cases/neurotenderolog/tender_daily_match_public.webp"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Открыть скриншот в полном размере"
                       aria-label="Открыть скриншот в полном размере"
+                      className="block w-full max-w-[587px]"
                     >
                       <img
                         src="/cases/neurotenderolog/tender_daily_match_public.webp"
@@ -334,7 +304,7 @@ const CaseDetailPage = () => {
                         width={587}
                         height={917}
                         loading="lazy"
-                        className="mt-4 w-full h-auto rounded-lg"
+                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
                       />
                     </a>
                     <a
@@ -345,21 +315,26 @@ const CaseDetailPage = () => {
                     >
                       Открыть полностью ↗
                     </a>
+                    </figure>
                   </article>
-                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+                  <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 border-t border-foreground/15 pt-8 md:pt-10">
+                    <div className="lg:col-span-5">
                     <p className="text-sm text-primary font-medium mb-3">3. День без подходящих закупок</p>
-                    <h3 className="text-lg font-semibold text-foreground mb-3">18.10.2026: подходящих закупок нет</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight text-foreground mb-4">18.10.2026: подходящих закупок нет</h3>
                     <div className="space-y-3 text-foreground leading-relaxed">
                       <p>«ИИ Разработка»: 22 новые закупки, 22 отсечено.</p>
                       <p>«ИИ Консалтинг»: 171 новая закупка, 171 отсечено.</p>
                       <p className="font-medium">Подходящих закупок по двум направлениям: 0. Результат отбора за конкретный день может быть нулевым.</p>
                     </div>
+                    </div>
+                    <figure className="lg:col-span-7 min-w-0 flex flex-col items-center">
                     <a
                       href="/cases/neurotenderolog/tender_daily_zero_public.webp"
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Открыть скриншот в полном размере"
                       aria-label="Открыть скриншот в полном размере"
+                      className="block w-full max-w-[587px]"
                     >
                       <img
                         src="/cases/neurotenderolog/tender_daily_zero_public.webp"
@@ -367,7 +342,7 @@ const CaseDetailPage = () => {
                         width={517}
                         height={554}
                         loading="lazy"
-                        className="mt-4 w-full h-auto rounded-lg"
+                        className="block w-full max-w-full h-auto rounded-2xl ring-1 ring-foreground/10"
                       />
                     </a>
                     <a
@@ -378,6 +353,7 @@ const CaseDetailPage = () => {
                     >
                       Открыть полностью ↗
                     </a>
+                    </figure>
                   </article>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mt-6">
@@ -390,18 +366,13 @@ const CaseDetailPage = () => {
             </section>
           )}
 
-          {/* CTA Section */}
-          <section className="py-10 md:py-16 bg-primary/10">
-            <div className="container mx-auto px-4 max-w-6xl text-center">
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-                Хотите похожий результат?
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Обсудим вашу задачу и найдём оптимальное решение
-              </p>
-              <Button size="lg" onClick={scrollToContact}>
-                Обсудить похожую задачу <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+          <section className="mx-auto max-w-7xl px-4 pt-6 pb-12 md:pb-16">
+            <div className="rounded-[32px] bg-foreground p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-card">
+              <div>
+                <p className="text-xs uppercase tracking-widest font-semibold text-accent mb-3">Следующий шаг</p>
+                <h2 className="!text-2xl md:!text-3xl !leading-tight !text-background">Обсудим вашу задачу</h2>
+              </div>
+              <PillButton onClick={scrollToContact} variant="light" size="md" className="self-start shrink-0">Обсудить похожую задачу</PillButton>
             </div>
           </section>
         </main>
