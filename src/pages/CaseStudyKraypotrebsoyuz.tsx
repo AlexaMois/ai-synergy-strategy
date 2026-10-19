@@ -133,7 +133,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               
               <div className="border-l-2 border-accent pl-5 py-2 flex items-center">
                 <p className="text-lg font-medium text-foreground">
-                  Оценка инвестиций — около <span className="text-primary-dark font-bold">1,5 млн ₽</span> только на оборудование, без учёта сопровождения и масштабирования.
+                  Оценка инвестиций — около <span className="text-primary-dark font-bold">1,5 млн ₽</span> на оборудование. Стоимость сопровождения и масштабирования рассчитывается отдельно.
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  На первых встречах мы с командой Крайпотребсоюза осознанно не стали выбирать технологию сразу.
+                  На первых встречах мы с командой Крайпотребсоюза начали с анализа задач и проверки технических вариантов.
                 </p>
                 
                 <div className="border-t border-foreground/10 pt-6">
@@ -227,7 +227,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 
                 <div className="border-l-2 border-accent pl-5 py-2">
                   <p className="text-base font-medium text-foreground">
-                    <span className="text-primary">Результат этапа:</span> стало понятно, что значительная часть задач может быть решена без тяжёлой серверной инфраструктуры.
+                    <span className="text-primary">Результат этапа:</span> стало понятно, что значительную часть задач можно решить на более экономичной инфраструктуре.
                   </p>
                 </div>
               </div>
@@ -451,7 +451,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="hidden w-5 h-5 text-primary-dark mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">сроки договоров больше не теряются</span>
+                    <span className="text-foreground">сроки договоров находятся под контролем</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="hidden w-5 h-5 text-primary-dark mt-0.5 flex-shrink-0" />
@@ -528,7 +528,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             
             <div className="py-2 mb-6">
               <p className="text-xl text-foreground leading-relaxed mb-6">
-                Проект показал, что устойчивые решения по ИИ возникают не из технологий, а из <strong>совместной работы</strong>:
+                Проект показал, что устойчивые решения по ИИ возникают благодаря <strong>совместной работы</strong>:
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center mb-6">
