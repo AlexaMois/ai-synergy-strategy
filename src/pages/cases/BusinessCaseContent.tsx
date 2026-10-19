@@ -18,6 +18,24 @@ interface Props {
   project?: CaseStudy;
 }
 
+const conciseSummaries: Record<string, { task: string; solution: string; result: string }> = {
+  "production-doc-search": {
+    task: "Быстрый доступ к техническим инструкциям на рабочем месте",
+    solution: "Поиск по документации с входом через QR-код",
+    result: "Ответ на технический запрос за 3 секунды",
+  },
+  "caregiver-matching": {
+    task: "Единый контур заявок, подбора и сопровождения сиделок",
+    solution: "Telegram-бот с учётом в Google Таблицах",
+    result: "Решение реализовано в 2025 году",
+  },
+  "business-travel": {
+    task: "Организация рабочих командировок",
+    solution: "Решение внедрено в двух компаниях",
+    result: "Система используется в рабочих процессах",
+  },
+};
+
 const BusinessCaseContent = ({ story, project }: Props) => (
   <main>
     <section className="mx-auto max-w-7xl px-4 pt-8 md:pt-12">
@@ -46,9 +64,9 @@ const BusinessCaseContent = ({ story, project }: Props) => (
     <section aria-label="Основное о проекте" className="mx-auto max-w-7xl px-4 py-10 md:py-14">
       <div className="grid overflow-hidden rounded-[28px] border border-foreground/10 bg-card shadow-card md:grid-cols-3">
         {[
-          { label: "Задача бизнеса", text: story.task },
-          { label: "Решение", text: story.actions[0] ?? story.subtitle },
-          { label: "Результат", text: story.results[0] ?? story.status },
+          { label: "Задача бизнеса", text: conciseSummaries[project?.id ?? ""]?.task ?? story.task },
+          { label: "Решение", text: conciseSummaries[project?.id ?? ""]?.solution ?? story.actions[0] },
+          { label: "Результат", text: conciseSummaries[project?.id ?? ""]?.result ?? story.results[0] },
         ].map((item, index) => (
           <article key={item.label} className="min-w-0 border-b border-foreground/10 p-6 last:border-0 md:border-b-0 md:border-r md:p-7 md:last:border-r-0">
             <span className="mb-4 inline-flex h-11 min-w-11 items-center justify-center rounded-xl bg-surface-mint px-2 text-lg font-bold tabular-nums text-primary-dark">{String(index + 1).padStart(2, "0")}</span>
