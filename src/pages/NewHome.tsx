@@ -341,9 +341,10 @@ const NewHome = () => {
                   />
                 </div>
               </div>
-              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center xl:whitespace-nowrap">
-                Разбираем работу людей и процессы, подбираем и внедряем цифровые инструменты — так,
-                чтобы они работали в привычной среде компании и снижали ручную нагрузку.
+              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center">
+                Сначала разбираем процессы и считаем потери. До запуска согласуем правила работы с
+                данными, стоимость внедрения и сопровождения, критерии результата. После запуска
+                передаём доступы и инструкции в рамках согласованного проекта.
               </p>
             </div>
           </div>
