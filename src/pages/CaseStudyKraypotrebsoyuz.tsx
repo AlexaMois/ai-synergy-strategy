@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import CaseReadingNav from "@/components/cases/CaseReadingNav";
 import { Button } from "@/components/ui/button";
 import PillButton from "@/components/PillButton";
 import { Building2, TrendingUp, Users, Clock, DollarSign, Target, CheckCircle2, ArrowRight, Handshake } from "lucide-react";
@@ -77,11 +78,11 @@ const CaseStudyKraypotrebsoyuz = () => {
               <div className="lg:col-span-7 min-w-0">
                 <p className="text-xs font-semibold text-primary-dark uppercase tracking-widest mb-5"><span>КЕЙС</span> · ПОТРЕБИТЕЛЬСКАЯ КООПЕРАЦИЯ</p>
                 <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-                  Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-bold">и отказались от серверов за <span className="whitespace-nowrap">1,5 млн ₽</span></span>
+                  Крайпотребсоюз: как выстроили цифровую архитектуру и сохранили <span className="whitespace-nowrap font-bold">1,3 млн ₽</span> капитальных затрат
                 </h1>
-                <dl className="mt-8 pt-6 border-t border-foreground/15">
+                <dl className="mt-8 rounded-[24px] bg-card/90 p-5 shadow-card ring-1 ring-foreground/5 md:p-6">
                   <dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">1,3 млн ₽</dd>
-                  <dt className="text-sm text-muted-foreground leading-relaxed">экономия капитальных затрат<br />(отказ от серверного оборудования)</dt>
+                  <dt className="text-sm text-foreground/75 leading-relaxed">экономия капитальных затрат<br />(отказ от серверного оборудования)</dt>
                 </dl>
               </div>
               
@@ -95,16 +96,23 @@ const CaseStudyKraypotrebsoyuz = () => {
           </div>
         </section>
 
+        <CaseReadingNav items={[
+          { label: "Бизнес-задача", target: "kray-task" },
+          { label: "Архитектура", target: "kray-solution" },
+          { label: "Экономика", target: "kray-economy" },
+          { label: "Результаты", target: "kray-results" },
+        ]} />
+
         {/* Situation Section - Two columns */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="kray-task" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-6">Ситуация: запрос <span className="font-semibold">на внедрение ИИ</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-6">Ситуация: запрос <span className="font-semibold">на внедрение ИИ</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-lg text-foreground/75 leading-relaxed mb-6">
                   Летом руководство Крайпотребсоюза поставило задачу — начать внедрение ИИ в управленческие и операционные процессы.
                 </p>
                 
@@ -143,15 +151,15 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Decision Point Section - Two columns */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-6">Совместная точка <span className="font-semibold">принятия решения</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-6">Совместная точка <span className="font-semibold">принятия решения</span></h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-lg text-foreground/75 leading-relaxed mb-6">
                   На первых встречах мы с командой Крайпотребсоюза начали с анализа задач и проверки технических вариантов.
                 </p>
                 
@@ -187,7 +195,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Stage 1 Section - Two columns with photo on the right */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-10 shrink-0 text-primary-dark font-bold text-3xl tabular-nums">1</div>
@@ -196,7 +204,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-lg text-foreground/75 leading-relaxed mb-6">
                   В течение первого месяца мы вместе с командой:
                 </p>
                 
@@ -221,7 +229,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                   </ul>
                 </div>
                 
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-base md:text-lg text-foreground/75 leading-relaxed mb-6">
                   Параллельно было запущено обучение сотрудников работе с ИИ, чтобы снять опасения и подготовить команду к изменениям.
                 </p>
                 
@@ -245,7 +253,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Stage 2 Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="kray-solution" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
 <div className="md:col-span-4 min-w-0"><div className="flex items-center gap-4 mb-6">
@@ -254,13 +262,13 @@ const CaseStudyKraypotrebsoyuz = () => {
             </div></div>
 <div className="md:col-span-8 min-w-0">
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-lg text-foreground/75 leading-relaxed mb-6">
               По итогам аудита совместно было принято решение:
             </p>
             
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="border-t border-foreground/10 pt-6 text-center">
-                <div className="text-muted-foreground text-3xl mb-2">✕</div>
+                <div className="text-foreground/75 text-3xl mb-2">✕</div>
                 <p className="text-foreground">отказаться от покупки серверов и локальной LLM на старте</p>
               </div>
               <div className="bg-surface-mint rounded-[28px] p-6 md:p-8 text-center">
@@ -302,7 +310,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Stage 3 Section - Horizontal month cards */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
 <div className="md:col-span-4 min-w-0"><div className="flex items-center gap-4 mb-6">
@@ -311,7 +319,7 @@ const CaseStudyKraypotrebsoyuz = () => {
             </div></div>
 <div className="md:col-span-8 min-w-0">
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-lg text-foreground/75 leading-relaxed mb-6">
               Проект развивался поэтапно:
             </p>
             
@@ -334,7 +342,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 <ul className="space-y-1 text-foreground">
                   <li>— внедрение Bpium</li>
                   <li>— автоматический контроль сроков договоров</li>
-                  <li className="text-muted-foreground text-sm">(юридический и кадровый блок)</li>
+                  <li className="text-foreground/75 text-sm">(юридический и кадровый блок)</li>
                 </ul>
               </div>
               
@@ -344,12 +352,12 @@ const CaseStudyKraypotrebsoyuz = () => {
                 </div>
                 <ul className="space-y-1 text-foreground">
                   <li>— запуск OCR-распознавания входящей отчётности</li>
-                  <li className="text-muted-foreground text-sm">(финансово-экономический отдел)</li>
+                  <li className="text-foreground/75 text-sm">(финансово-экономический отдел)</li>
                 </ul>
               </div>
             </div>
             
-            <p className="text-base text-muted-foreground italic">
+            <p className="text-base text-foreground/75 italic">
               OCR на текущий момент внедрён в формате пилота, проходит тестирование и масштабируется.
             </p>
 </div>
@@ -358,9 +366,9 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Economics Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="kray-economy" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-surface-mint p-6 md:p-12 ring-1 ring-foreground/5">
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Экономика и эффект</h2>
+            <h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Экономика и эффект</h2>
             
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="border-t border-foreground/10 pt-6 text-center">
@@ -368,7 +376,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 <p className="text-4xl font-bold text-primary-dark mb-2">
                   ~<AnimatedNumber value={250} className="text-primary" /> тыс ₽
                 </p>
-                <p className="text-sm text-muted-foreground">инвестиции во внедрение и сопровождение</p>
+                <p className="text-sm text-foreground/75">инвестиции во внедрение и сопровождение</p>
               </div>
               
               <div className="border-t border-foreground/15 pt-6 text-center">
@@ -377,14 +385,14 @@ const CaseStudyKraypotrebsoyuz = () => {
                   ~<AnimatedNumber value={1.3} decimals={1} className="text-primary" /> млн ₽
                 </p>
                 <p className="text-sm text-foreground font-medium">экономия капитальных затрат</p>
-                <p className="text-xs text-muted-foreground mt-1">(отказ от серверного оборудования)</p>
+                <p className="text-xs text-foreground/75 mt-1">(отказ от серверного оборудования)</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Featured Photo - Full width */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <img 
               src={meetingImage2} 
@@ -395,7 +403,7 @@ const CaseStudyKraypotrebsoyuz = () => {
               <p className="text-lg font-semibold text-foreground mb-2">
                 Ключевые решения Совета Крайпотребсоюза
               </p>
-              <p className="text-base text-muted-foreground mb-3">
+              <p className="text-base text-foreground/75 mb-3">
                 17 декабря 2025 года состоялось расширенное заседание Совета Крайпотребсоюза, с участием членов Совета, руководителей районных кооперативных организаций, собственных хозяйств, главных бухгалтеров, ведущих специалистов по направлениям деятельности и ветеранов.
               </p>
               <a 
@@ -411,10 +419,10 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Results Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="kray-results" className="scroll-mt-28 px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-8">Результаты</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-8">Результаты</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -470,10 +478,10 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Continuation Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-6">Продолжение сотрудничества</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-6">Продолжение сотрудничества</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             {/* Text block at top */}
@@ -520,15 +528,15 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* Conclusion Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-foreground p-6 md:p-12 [&_h2]:!text-background [&_p]:!text-background [&_li]:!text-background [&_span]:!text-background [&_div]:border-background/15">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-6">Главный вывод кейса</h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="!text-2xl md:!text-4xl !font-bold !leading-tight !text-foreground mb-6">Главный вывод кейса</h2></div>
 <div className="md:col-span-8 min-w-0">
             
             <div className="py-2 mb-6">
               <p className="text-xl text-foreground leading-relaxed mb-6">
-                Проект показал, что устойчивые решения по ИИ возникают благодаря <strong>совместной работы</strong>:
+                Проект показал, что устойчивые решения по ИИ возникают благодаря <strong>совместной работе</strong>:
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center mb-6">
@@ -547,7 +555,7 @@ const CaseStudyKraypotrebsoyuz = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section className="px-4 md:px-6 py-7 md:py-10">
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-foreground p-6 md:p-12 shadow-card [&_h2]:!text-background">
             <h2 className="text-2xl md:text-4xl font-bold text-background leading-tight mb-6">
               Хотите получить похожий результат для вашей компании?
