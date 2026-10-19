@@ -277,6 +277,47 @@ const CaseDetailPage = () => {
             </div>
           </section>
 
+          {slug === "neurotenderolog" && (
+            <section className="py-10 md:py-16 bg-muted" aria-labelledby="reality-title">
+              <div className="container mx-auto px-4 max-w-6xl">
+                <h2 id="reality-title" className="section-title mb-8">Как работает в реальности</h2>
+                <div className="grid lg:grid-cols-3 gap-4">
+                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+                    <p className="text-sm text-primary font-medium mb-3">1. Карточка закупки и решение человека</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-3">Человек принимает решение по карточке</h3>
+                    <p className="text-foreground leading-relaxed">
+                      Отдельная карточка содержит название закупки, цену, ссылки и мини-анализ. Человек выбирает «Подходит», «Не подходит» или «Спорно». Сервис помогает отбирать закупки, а не подаёт заявки и не выигрывает контракты.
+                    </p>
+                  </article>
+                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+                    <p className="text-sm text-primary font-medium mb-3">2. День с подходящей закупкой</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-3">07.10.2026: 1 подходит, 4 требуют решения</h3>
+                    <div className="space-y-3 text-foreground leading-relaxed">
+                      <p>«ИИ Разработка»: 15 новых закупок, 14 отсечено первично, 1 подробно проверена и отсечена при подробной проверке.</p>
+                      <p>«ИИ Консалтинг»: 146 новых закупок, 140 отсечено первично, 6 подробно проверено. Из них 1 отсечена при подробной проверке, 4 требуют решения, 1 подходит.</p>
+                      <p className="font-medium">Дневной итог по двум направлениям: 1 подходящая закупка и 4 закупки, которые требуют решения человека.</p>
+                    </div>
+                  </article>
+                  <article className="bg-card rounded-2xl p-6 shadow-soft">
+                    <p className="text-sm text-primary font-medium mb-3">3. День без подходящих закупок</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-3">18.10.2026: подходящих закупок нет</h3>
+                    <div className="space-y-3 text-foreground leading-relaxed">
+                      <p>«ИИ Разработка»: 22 новые закупки, 22 отсечено.</p>
+                      <p>«ИИ Консалтинг»: 171 новая закупка, 171 отсечено.</p>
+                      <p className="font-medium">Подходящих закупок по двум направлениям: 0. Результат отбора за конкретный день может быть нулевым.</p>
+                    </div>
+                  </article>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mt-6">
+                  Скриншоты показывают реальные результаты отбора в отдельные дни, а не среднюю эффективность сервиса
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-3">
+                  Эти дневные примеры не заменяют эксплуатационный показатель «до 750 закупок в день на одно направление» и не доказывают экономию денег или часов.
+                </p>
+              </div>
+            </section>
+          )}
+
           {/* CTA Section */}
           <section className="py-10 md:py-16 bg-primary/10">
             <div className="container mx-auto px-4 max-w-6xl text-center">
