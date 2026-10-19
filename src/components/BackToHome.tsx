@@ -4,8 +4,14 @@ import { Link, useLocation } from "react-router-dom";
 const BackToHome = () => {
   const location = useLocation();
   
-  // Скрываем на главной и на standalone-лендинге /neurostylist
-  if (location.pathname === '/' || location.pathname.startsWith('/neurostylist')) return null;
+  // Скрываем на главной, на standalone-лендинге /neurostylist и на страницах кейсов
+  // (там уже есть хлебные крошки со ссылкой «Главная»)
+  if (
+    location.pathname === '/' ||
+    location.pathname.startsWith('/neurostylist') ||
+    location.pathname === '/cases' ||
+    location.pathname.startsWith('/cases/')
+  ) return null;
   
   return (
     <Link
