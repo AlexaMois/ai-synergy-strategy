@@ -6,6 +6,7 @@
 - Process assessment is calculated locally in a pure module; only explicit Contact submission sends its summary through the existing short-lead handler, preventing automatic CRM records and duplicate form flows.
 - Contact service intent is session-scoped on /start; case context is derived from the current published case route and appended to the existing mapped task field, avoiding stale cross-page context and invented CRM option IDs.
 - Case catalog cards and problem filters use one typed public/draft data source with evidence descriptions; only published cases populate filters to prevent empty or unapproved categories.
+- Universal case detail heroes read confirmed metrics from the catalog source while their editorial task/actions/results remain unchanged; this prevents separate display figures from drifting. Real tender screenshots stay in sequential text/media rows with original-file links for readable evidence on desktop and mobile.
 - Assessment PDFs embed the existing local Cyrillic font and paginate text so exports work offline after the font loads without sending answers to another service.
 - Process time is parsed and validated by the pure assessment module; unknown values remain nonnumeric so the UI and PDF never invent workload estimates.
 - Process recommendations use conservative local work-type rules over the described current process, not storage or category precedence; ambiguous descriptions request clarification, and each recognized type supplies a measurable experiment without claiming an established cause.

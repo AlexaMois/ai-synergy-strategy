@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import type { CaseStudy } from "@/data/caseStudies";
 import { trackCaseOpen } from "@/utils/analytics";
 import portal from "@/assets/cases/aktrans/portal.webp";
@@ -15,31 +15,32 @@ export default function CaseProjectCard({ project }: { project: CaseStudy }) {
   const [activeImage, setActiveImage] = useState(0);
   const image = project.images[activeImage];
   const featured = project.id === "aktransservice";
+  const mint = ["production-doc-search", "caregiver-matching"].includes(project.id);
+  const ink = project.id === "neurotenderolog";
+  const dark = featured || ink;
   return (
-    <article className={`overflow-hidden rounded-[28px] shadow-card ring-1 ring-foreground/5 ${featured ? "bg-surface-mint md:col-span-2 grid lg:grid-cols-2" : "bg-card flex flex-col"}`}>
-      <div className={`p-6 md:p-8 flex flex-col ${featured ? "lg:p-10" : ""}`}>
-        <p className="text-sm text-muted-foreground mb-3">{project.industry}</p>
-        <h2 className="!text-[22px] md:!text-[26px] !font-bold !leading-[1.2] text-foreground mb-4">{project.problem}</h2>
-        <p className="text-primary-dark font-semibold mb-4">{project.client}</p>
-        <p className="text-base text-foreground leading-relaxed mb-6">{project.solution}</p>
-        <dl className="mt-auto border-t border-foreground/10 pt-5 space-y-4">
+    <article data-case-id={project.id} className={`min-w-0 w-full mb-5 break-inside-avoid overflow-hidden rounded-[28px] shadow-card ring-1 ring-foreground/5 ${featured ? "grid lg:grid-cols-12 bg-foreground" : `flex flex-col ${ink ? "bg-foreground" : mint ? "bg-surface-mint" : "bg-card"}`}`}>
+      <div className={`flex flex-col items-start p-6 md:p-7 ${featured ? "lg:col-span-7 lg:p-10" : ""}`}>
+        <p className={`text-xs uppercase tracking-widest font-semibold mb-4 ${dark ? "text-accent" : "text-muted-foreground"}`}>{project.industry}</p>
+        <h2 className={`!text-2xl ${featured ? "md:!text-3xl" : ""} !leading-tight !font-bold mb-3 ${dark ? "!text-background" : "!text-foreground"}`}>{project.problem}</h2>
+        <p className={`text-sm font-semibold mb-3 ${dark ? "text-accent" : "text-primary-dark"}`}>{project.client}</p>
+        <p className={`text-sm ${featured ? "md:text-base" : ""} leading-relaxed mb-6 ${dark ? "text-background/85" : "text-muted-foreground"}`}>{project.solution}</p>
+        <dl className={`w-full mt-auto grid ${project.results.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-4 border-t pt-5 ${dark ? "border-background/15" : "border-foreground/10"}`}>
           {project.results.map(result => <div key={result.value}>
-            <dt className="text-sm text-muted-foreground leading-relaxed">{result.label}</dt>
-            <dd className="text-2xl font-bold text-primary-dark mt-1" title={result.confirmation}>{result.value}</dd>
+            <dd className={`text-3xl ${featured ? "md:text-5xl" : ""} font-bold leading-tight mb-2 ${dark ? "text-accent" : "text-foreground"}`} title={result.confirmation}>{result.value}</dd>
+            <dt className={`text-xs leading-relaxed ${dark ? "text-background/75" : "text-muted-foreground"}`}>{result.label}</dt>
           </div>)}
         </dl>
-        <Button asChild variant="link" className="justify-start h-auto whitespace-normal px-0 mt-6 text-foreground text-base">
-          <Link to={project.link} onClick={() => trackCaseOpen(project.id)}>{project.linkLabel} <ArrowRight aria-hidden="true" /></Link>
-        </Button>
+        <PillButton to={project.link} onClick={() => trackCaseOpen(project.id)} variant={dark ? "light" : "dark"} size="sm" className="mt-6 max-w-full">{project.linkLabel}</PillButton>
       </div>
-      {image && <figure className={`${featured ? "lg:border-l" : "border-t"} border-foreground/10 bg-background flex flex-col justify-center min-w-0`}>
-        <Link to={project.link} onClick={() => trackCaseOpen(project.id)} className="block p-3 md:p-5">
+      {image && <figure className={`${featured ? "lg:col-span-5 lg:border-l border-background/15 flex flex-col justify-center p-5 lg:p-7" : "px-6 pb-6"} min-w-0`}>
+        <Link to={project.link} onClick={() => trackCaseOpen(project.id)} className="block overflow-hidden rounded-2xl bg-card ring-1 ring-foreground/10">
           <img src={media[image.key]} alt={image.alt} loading={featured ? "eager" : "lazy"} className={`w-full object-contain ${featured ? "aspect-[4/3]" : "aspect-[16/9]"}`} />
         </Link>
-        <figcaption className="px-5 pb-5">
-          {project.images.length > 1 ? <div className="flex flex-wrap gap-2" aria-label="Скриншоты АкТрансСервиса">
-            {project.images.map((shot, index) => <Button key={shot.key} size="sm" variant={activeImage === index ? "secondary" : "ghost"} aria-pressed={activeImage === index} onClick={() => setActiveImage(index)} className="text-sm h-auto min-h-9 whitespace-normal">{shot.caption}</Button>)}
-          </div> : <p className="text-sm text-muted-foreground">{image.caption}</p>}
+        <figcaption className="pt-3">
+          {project.images.length > 1 ? <div className="flex flex-wrap gap-1.5" aria-label="Скриншоты АкТрансСервиса">
+            {project.images.map((shot, index) => <Button key={shot.key} size="sm" variant="ghost" aria-pressed={activeImage === index} onClick={() => setActiveImage(index)} className={`rounded-full text-xs h-auto min-h-9 whitespace-normal px-3 ${activeImage === index ? "bg-background text-foreground hover:bg-background/90" : "text-background hover:bg-background/10 hover:text-background"}`}>{shot.caption}</Button>)}
+          </div> : <p className="text-xs text-muted-foreground leading-relaxed">{image.caption}</p>}
         </figcaption>
       </figure>}
     </article>

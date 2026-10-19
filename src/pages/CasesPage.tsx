@@ -30,20 +30,21 @@ const CasesPage = () => {
       <div className="min-h-screen bg-background">
         <PageBreadcrumbs currentPage="Кейсы" />
         <main>
-          <section className="container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-8 md:pb-10">
-            <p className="text-sm uppercase text-primary-dark font-semibold mb-4">Кейсы · НейроРешения</p>
+          <section className="container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-8">
+            <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">Кейсы · НейроРешения</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-5 max-w-5xl">
               Посмотрите, как мы решаем задачи бизнеса
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-7">{description}.</p>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Фильтры по проблемам">
-              <Button size="sm" variant={problem === "all" ? "secondary" : "outline"} aria-pressed={problem === "all"} onClick={() => { setProblem("all"); trackCaseFilter("all"); }} className="rounded-full h-auto min-h-10 text-sm">Все проекты</Button>
-              {availableCaseProblems().map(item => <Button key={item.id} size="sm" variant={problem === item.id ? "secondary" : "outline"} aria-pressed={problem === item.id} onClick={() => { setProblem(item.id); trackCaseFilter(item.id); }} className="rounded-full h-auto min-h-10 text-sm">{item.label}</Button>)}
+              <Button size="sm" variant={problem === "all" ? "secondary" : "outline"} aria-pressed={problem === "all"} onClick={() => { setProblem("all"); trackCaseFilter("all"); }} className={`rounded-full h-auto min-h-10 text-sm px-4 border-foreground/10 ${problem === "all" ? "bg-foreground text-background hover:bg-foreground/90" : "bg-card"}`} >Все проекты</Button>
+              {availableCaseProblems().map(item => <Button key={item.id} size="sm" variant={problem === item.id ? "secondary" : "outline"} aria-pressed={problem === item.id} onClick={() => { setProblem(item.id); trackCaseFilter(item.id); }} className={`rounded-full h-auto min-h-10 text-sm px-4 border-foreground/10 ${problem === item.id ? "bg-foreground text-background hover:bg-foreground/90" : "bg-card"}`}>{item.label}</Button>)}
             </div>
           </section>
           <section className="container mx-auto max-w-7xl px-4 pb-10 md:pb-16" aria-label="Выполненные проекты" aria-live="polite">
-            <div className="grid md:grid-cols-2 gap-5 md:gap-6 items-start">
-              {projects.map(project => <CaseProjectCard key={project.id} project={project} />)}
+            {projects.filter(project => project.id === "aktransservice").map(project => <CaseProjectCard key={project.id} project={project} />)}
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+              {projects.filter(project => project.id !== "aktransservice").map(project => <CaseProjectCard key={project.id} project={project} />)}
             </div>
           </section>
         </main>
