@@ -288,14 +288,30 @@ const CaseDetailPage = () => {
                     <p className="text-foreground leading-relaxed">
                       Отдельная карточка содержит название закупки, цену, ссылки и мини-анализ. Человек выбирает «Подходит», «Не подходит» или «Спорно». Сервис помогает отбирать закупки, а не подаёт заявки и не выигрывает контракты.
                     </p>
-                    <img
-                      src="/cases/neurotenderolog/tender_card_public.webp"
-                      alt="Реальная карточка закупки с ценой, мини-анализом и вариантами решения человека"
-                      width={566}
-                      height={590}
-                      loading="lazy"
-                      className="mt-4 w-full h-auto rounded-lg"
-                    />
+                    <a
+                      href="/cases/neurotenderolog/tender_card_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Открыть скриншот в полном размере"
+                      aria-label="Открыть скриншот в полном размере"
+                    >
+                      <img
+                        src="/cases/neurotenderolog/tender_card_public.webp"
+                        alt="Реальная карточка закупки с ценой, мини-анализом и вариантами решения человека"
+                        width={566}
+                        height={590}
+                        loading="lazy"
+                        className="mt-4 w-full h-auto rounded-lg"
+                      />
+                    </a>
+                    <a
+                      href="/cases/neurotenderolog/tender_card_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block text-sm text-primary hover:underline"
+                    >
+                      Открыть полностью ↗
+                    </a>
                   </article>
                   <article className="bg-card rounded-2xl p-6 shadow-soft">
                     <p className="text-sm text-primary font-medium mb-3">2. День с подходящей закупкой</p>
@@ -305,14 +321,30 @@ const CaseDetailPage = () => {
                       <p>«ИИ Консалтинг»: 146 новых закупок, 140 отсечено первично, 6 подробно проверено. Из них 1 отсечена при подробной проверке, 4 требуют решения, 1 подходит.</p>
                       <p className="font-medium">Дневной итог по двум направлениям: 1 подходящая закупка и 4 закупки, которые требуют решения человека.</p>
                     </div>
-                    <img
-                      src="/cases/neurotenderolog/tender_daily_match_public.webp"
-                      alt="Отбор 7 октября 2026 года: 1 подходящая закупка и 4 требуют решения"
-                      width={587}
-                      height={917}
-                      loading="lazy"
-                      className="mt-4 w-full h-auto rounded-lg"
-                    />
+                    <a
+                      href="/cases/neurotenderolog/tender_daily_match_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Открыть скриншот в полном размере"
+                      aria-label="Открыть скриншот в полном размере"
+                    >
+                      <img
+                        src="/cases/neurotenderolog/tender_daily_match_public.webp"
+                        alt="Отбор 7 октября 2026 года: 1 подходящая закупка и 4 требуют решения"
+                        width={587}
+                        height={917}
+                        loading="lazy"
+                        className="mt-4 w-full h-auto rounded-lg"
+                      />
+                    </a>
+                    <a
+                      href="/cases/neurotenderolog/tender_daily_match_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block text-sm text-primary hover:underline"
+                    >
+                      Открыть полностью ↗
+                    </a>
                   </article>
                   <article className="bg-card rounded-2xl p-6 shadow-soft">
                     <p className="text-sm text-primary font-medium mb-3">3. День без подходящих закупок</p>
@@ -322,14 +354,30 @@ const CaseDetailPage = () => {
                       <p>«ИИ Консалтинг»: 171 новая закупка, 171 отсечено.</p>
                       <p className="font-medium">Подходящих закупок по двум направлениям: 0. Результат отбора за конкретный день может быть нулевым.</p>
                     </div>
-                    <img
-                      src="/cases/neurotenderolog/tender_daily_zero_public.webp"
-                      alt="Отбор 18 октября 2026 года: 22 и 171 новая закупка, подходящих нет"
-                      width={517}
-                      height={554}
-                      loading="lazy"
-                      className="mt-4 w-full h-auto rounded-lg"
-                    />
+                    <a
+                      href="/cases/neurotenderolog/tender_daily_zero_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Открыть скриншот в полном размере"
+                      aria-label="Открыть скриншот в полном размере"
+                    >
+                      <img
+                        src="/cases/neurotenderolog/tender_daily_zero_public.webp"
+                        alt="Отбор 18 октября 2026 года: 22 и 171 новая закупка, подходящих нет"
+                        width={517}
+                        height={554}
+                        loading="lazy"
+                        className="mt-4 w-full h-auto rounded-lg"
+                      />
+                    </a>
+                    <a
+                      href="/cases/neurotenderolog/tender_daily_zero_public.webp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block text-sm text-primary hover:underline"
+                    >
+                      Открыть полностью ↗
+                    </a>
                   </article>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mt-6">
