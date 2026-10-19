@@ -33,7 +33,7 @@ const FAQTeaser = ({ items, title = "Частые вопросы" }: FAQTeaserPr
               <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
