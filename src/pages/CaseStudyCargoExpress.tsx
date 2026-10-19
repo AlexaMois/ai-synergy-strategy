@@ -20,11 +20,11 @@ const CaseStudyCargoExpress = () => {
     <PageTransition>
       <Helmet>
         <title>Кейс: Грузовой Экспресс — Приём заявок голосом в Telegram</title>
-        <meta name="description" content="Как транспортно-логистическая компания получила полную прозрачность без CRM: Telegram-бот для голосового приёма заявок + Google Sheets. Экономия 9-12 часов/неделю, 0% потерь заявок." />
+        <meta name="description" content="Как транспортно-логистическая компания получила прозрачный учёт заявок через Telegram и таблицы: Telegram-бот для голосового приёма заявок + Google Sheets. Экономия 9-12 часов/неделю, 0% потерь заявок." />
         <meta name="keywords" content="автоматизация логистики, Telegram бот для бизнеса, голосовой ввод заявок, кейс внедрения ИИ, Грузовой Экспресс" />
         <link rel="canonical" href="https://aleksamois.ru/cases/cargo-express" />
         <meta property="og:title" content="Кейс: Грузовой Экспресс — Приём заявок голосом в Telegram" />
-        <meta property="og:description" content="Полная прозрачность без CRM. Экономия 9-12 часов/неделю на команду." />
+        <meta property="og:description" content="Прозрачный учёт заявок через Telegram и таблицы. Экономия 9-12 часов/неделю на команду." />
         <meta property="og:url" content="https://aleksamois.ru/cases/cargo-express" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -53,7 +53,7 @@ const CaseStudyCargoExpress = () => {
               </h1>
             </div>
             <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl">
-              Приём заявок голосом в Telegram → полная прозрачность без CRM
+              Приём заявок голосом в Telegram → единый учёт и контроль
             </p>
 <dl className="grid sm:grid-cols-2 gap-6 md:gap-10 border-t border-foreground/15 pt-6 md:pt-8">
               <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">0%</dd><dt className="text-sm text-muted-foreground">потери заявок</dt></div>
@@ -132,8 +132,8 @@ const CaseStudyCargoExpress = () => {
                 </div>
               </div>
               <p className="text-muted-foreground">
-                Фиксация заявок происходила вручную и не всегда сразу.<br />
-                <strong className="text-foreground">Единого источника данных не было.</strong>
+                Фиксация заявок происходила вручную с задержкой.<br />
+                <strong className="text-foreground">Данные об обращениях хранились в нескольких местах.</strong>
               </p>
             </div>
 </div>
@@ -145,9 +145,9 @@ const CaseStudyCargoExpress = () => {
         <section className="px-4 md:px-6 py-10 md:py-14">
           <div className="mx-auto max-w-7xl">
             <div className="grid md:grid-cols-12 gap-6 md:gap-12 border-t border-foreground/10 pt-8 md:pt-10">
-<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-2">Проблема: заявки есть — <span className="font-semibold">управляемости нет</span></h2></div>
+<div className="md:col-span-4 min-w-0"><h2 className="text-2xl md:text-4xl font-bold leading-tight text-foreground mb-2">Заявки поступают — <span className="font-semibold">нужен единый контроль</span></h2></div>
 <div className="md:col-span-8 min-w-0">
-            <p className="text-muted-foreground mb-8">Ключевые боли</p>
+            <p className="text-muted-foreground mb-8">Задачи для улучшения</p>
             
             <div className="border-t border-foreground/10 pt-6 mb-8">
               <ul className="space-y-3 mb-6">
@@ -165,7 +165,7 @@ const CaseStudyCargoExpress = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-muted-foreground font-bold">•</span>
-                  <span className="text-muted-foreground">отсутствие ежедневной аналитики</span>
+                  <span className="text-muted-foreground">потребность в ежедневной аналитике</span>
                 </li>
               </ul>
               
@@ -240,7 +240,7 @@ const CaseStudyCargoExpress = () => {
             
             <div className="border-t border-foreground/10 pt-6 mb-8">
               <p className="text-lg text-foreground font-medium mb-6">
-                Было принято решение встроить систему в существующий процесс, а не менять его.
+                Было принято решение дополнить существующий процесс единым учётом обращений.
               </p>
               
               <h3 className="text-lg font-semibold text-foreground mb-4">Как работает система:</h3>
@@ -287,7 +287,7 @@ const CaseStudyCargoExpress = () => {
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
-                <p className="text-foreground font-medium mb-2">Не нужно осваивать CRM</p>
+                <p className="text-foreground font-medium mb-2">Работа в привычном Telegram</p>
                 <p className="text-sm text-muted-foreground">Работа в привычном интерфейсе Telegram</p>
               </div>
               <div className="border-t border-foreground/10 pt-6">
@@ -303,7 +303,7 @@ const CaseStudyCargoExpress = () => {
               <div className="border-t border-foreground/10 pt-6">
                 <CheckCircle className="hidden w-8 h-8 text-primary-dark mb-4" strokeWidth={1.5} />
                 <p className="text-foreground font-medium mb-2">Исключён ручной перенос</p>
-                <p className="text-sm text-muted-foreground">Нет двойной работы и ошибок</p>
+                <p className="text-sm text-muted-foreground">Единая фиксация каждого обращения</p>
               </div>
             </div>
 
@@ -383,7 +383,7 @@ const CaseStudyCargoExpress = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-muted-foreground font-bold">•</span>
-                    <span className="text-muted-foreground">отсутствие управленческой аналитики</span>
+                    <span className="text-muted-foreground">потребность в управленческой аналитике</span>
                   </li>
                 </ul>
               </div>
@@ -403,7 +403,7 @@ const CaseStudyCargoExpress = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="hidden w-5 h-5 text-primary-dark shrink-0 mt-0.5" strokeWidth={1.5} />
-                    <span className="text-foreground font-medium">ежедневные отчёты без ручной подготовки</span>
+                    <span className="text-foreground font-medium">автоматическая подготовка ежедневных отчётов</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="hidden w-5 h-5 text-primary-dark shrink-0 mt-0.5" strokeWidth={1.5} />
@@ -436,13 +436,13 @@ const CaseStudyCargoExpress = () => {
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <BarChart3 className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-3xl font-bold text-primary-dark mb-2">данные</p>
-                <p className="text-sm text-muted-foreground">решения на основе<br />фактов, не ощущений</p>
+                <p className="text-sm text-muted-foreground">решения на основе<br />проверенных данных</p>
               </div>
             </div>
 
             <div className="border-l-2 border-accent pl-5 py-2">
               <p className="text-lg text-foreground">
-                Даже без внедрения CRM компания получила:<br />
+                На базе Telegram и таблиц компания получила:<br />
                 <strong>прозрачность • контроль • масштабируемость</strong>
               </p>
             </div>
@@ -495,14 +495,14 @@ const CaseStudyCargoExpress = () => {
                 Этот проект показал:
               </p>
               <p className="text-2xl text-primary-dark font-semibold mb-6 leading-relaxed">
-                ИИ даёт эффект не за счёт сложности,<br />
-                а за счёт правильного встраивания в реальные процессы.
+                Результат обеспечивает ИИ, встроенный в привычные процессы,<br />
+                с понятными правилами работы и измеримыми итогами.
               </p>
               <div className="border-l border-foreground/15 pl-5 py-2">
                 <p className="text-foreground">Система работает потому что:</p>
                 <ul className="mt-2 space-y-1 text-muted-foreground">
-                  <li>– не требует переучивания</li>
-                  <li>– не мешает людям</li>
+                  <li>– опирается на привычные действия сотрудников</li>
+                  <li>– поддерживает повседневную работу сотрудников</li>
                   <li>– и даёт руководству контроль</li>
                 </ul>
               </div>
@@ -554,8 +554,8 @@ const CaseStudyCargoExpress = () => {
               </h2>
               <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
                 Если у вас похожая ситуация —<br />
-                начать стоит не с выбора системы,<br />
-                а с разбора процесса приёма заявок.
+                начните с ожидаемого результата<br />
+                и разбора процесса приёма заявок.
               </p>
               <PillButton variant="light" size="md" onClick={scrollToContact}>
                 Обсудить похожую задачу
