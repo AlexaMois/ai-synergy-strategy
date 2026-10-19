@@ -64,7 +64,11 @@ jobs:
               ok(measures.form,view+' '+slug+' contact form absent');
               ok(jsErrors.length===0,view+' '+slug+' JS errors '+jsErrors.join(';'));
               const images=await page.locator('main img').evaluateAll(async nodes=>{
-                await Promise.all(nodes.map(x=>x.decode().catch(()=>{})));
+                nodes.forEach(x=>{x.loading='eager';});
+                await Promise.all(nodes.map(x=>Promise.race([
+                  x.decode().catch(()=>{}),
+                  new Promise(resolve=>setTimeout(resolve,3500))
+                ])));
                 return nodes.map(x=>({alt:x.alt,loaded:x.naturalWidth>0,width:x.naturalWidth}));
               });
               ok(images.every(x=>x.loaded),view+' '+slug+' broken images '+JSON.stringify(images));
