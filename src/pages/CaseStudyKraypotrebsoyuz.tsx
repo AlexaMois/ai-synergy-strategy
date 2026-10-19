@@ -75,9 +75,9 @@ const CaseStudyKraypotrebsoyuz = () => {
           <div className="mx-auto max-w-7xl rounded-[32px] md:rounded-[40px] bg-surface-mint p-6 md:p-12 shadow-card ring-1 ring-foreground/5">
             <div className="grid lg:grid-cols-12 gap-8 md:gap-10 items-center">
               <div className="lg:col-span-7 min-w-0">
-                <p className="text-xs font-semibold text-primary-dark uppercase tracking-widest mb-5">КЕЙС · ПОТРЕБИТЕЛЬСКАЯ КООПЕРАЦИЯ</p>
+                <p className="text-xs font-semibold text-primary-dark uppercase tracking-widest mb-5"><span>КЕЙС</span> · ПОТРЕБИТЕЛЬСКАЯ КООПЕРАЦИЯ</p>
                 <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-                  Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-bold">и отказались от серверов за 1,5 млн ₽</span>
+                  Крайпотребсоюз: как совместно выстроили ИИ-архитектуру <span className="font-bold">и отказались от серверов за <span className="whitespace-nowrap">1,5 млн ₽</span></span>
                 </h1>
                 <dl className="mt-8 pt-6 border-t border-foreground/15">
                   <dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">1,3 млн ₽</dd>

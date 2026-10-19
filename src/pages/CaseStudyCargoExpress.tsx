@@ -552,7 +552,7 @@ const CaseStudyCargoExpress = () => {
               <h2 className="text-2xl md:text-4xl font-bold text-background leading-tight mb-4">
                 Следующий шаг
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
                 Если у вас похожая ситуация —<br />
                 начать стоит не с выбора системы,<br />
                 а с разбора процесса приёма заявок.
