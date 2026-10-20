@@ -1,170 +1,187 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+  Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
 import { useLocation, useNavigate } from "react-router-dom";
-import { trackCTAClick } from "@/utils/analytics";
+import { trackCTAClick, trackExitPopupEvent } from "@/utils/analytics";
 import PillButton from "@/components/PillButton";
 import {
-  isDiagnosticStarted,
-  isDiagnosticSubmitted,
   isExitPopupShown,
+  isExitPopupSuppressed,
+  markExitPopupAccepted,
+  markExitPopupDismissed,
   markExitPopupShown,
   requestDiagnosticAutostart,
 } from "@/lib/diagnosticState";
-/* Служебные и специальные разделы — попап не показываем */
+
 const BLOCKED_PREFIXES = [
-  "/legal",
-  "/portal",
-  "/neurostylist",
-  "/.lovable",
-  "/consent",
-  "/privacy-policy",
-  "/terms",
-  "/newyear",
-  "/redirect",
+  "/start", "/legal", "/portal", "/neurostylist", "/.lovable",
+  "/consent", "/privacy-policy", "/terms", "/newyear", "/redirect",
 ];
 
-const isAllowedRoute = (pathname: string) =>
-  !BLOCKED_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/") || pathname.startsWith(p));
+const isEligibleRoute = (pathname: string) =>
+  !BLOCKED_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix + "/"));
+
+/* Popup waits until cookie preferences are recorded and other dialogs/forms are idle. */
+const isInterfaceIdle = () => {
+  try {
+    if (!localStorage.getItem("cookie_consent")) return false;
+  } catch {
+    return false;
+  }
+  const active = document.activeElement;
+  if (active?.matches("input, textarea, select, [contenteditable='true']")) return false;
+  if (document.querySelector("form:focus-within")) return false;
+  if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open']")) return false;
+  return true;
+};
 
 const canShow = (pathname: string) =>
-  isAllowedRoute(pathname) &&
-  !isExitPopupShown() &&
-  !isDiagnosticSubmitted() &&
-  !isDiagnosticStarted();
+  isEligibleRoute(pathname) && !isExitPopupShown() && !isExitPopupSuppressed();
 
 const ExitIntentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
   const location = useLocation();
   const navigate = useNavigate();
   const pathnameRef = useRef(location.pathname);
   pathnameRef.current = location.pathname;
 
   useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
     if (!canShow(location.pathname)) return;
 
+    let elapsed = 0;
+    let activeSince: number | null = document.visibilityState === "visible" && document.hasFocus()
+      ? Date.now() : null;
+    let scrolledHalfway = false;
+
+    const activeMs = () => elapsed + (activeSince === null ? 0 : Date.now() - activeSince);
+    const setActive = (active: boolean) => {
+      if (active && activeSince === null) activeSince = Date.now();
+      if (!active && activeSince !== null) {
+        elapsed += Date.now() - activeSince;
+        activeSince = null;
+      }
+    };
+    const updateActivity = () => setActive(document.visibilityState === "visible" && document.hasFocus());
+    const eligibleNow = () =>
+      document.visibilityState === "visible" &&
+      document.hasFocus() &&
+      canShow(pathnameRef.current) &&
+      isInterfaceIdle();
+
     const show = () => {
-      if (!canShow(pathnameRef.current)) return;
+      if (!eligibleNow()) return;
       markExitPopupShown();
+      trackExitPopupEvent("exit_popup_show");
       setIsOpen(true);
     };
 
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
-    if (isMobile) {
-      // Mobile: 45 секунд на странице И минимум 40% просмотра
-      let timeReady = false;
-      let scrollReady = false;
-      const tryShow = () => {
-        if (timeReady && scrollReady) {
-          cleanup();
-          show();
-        }
-      };
-
-      const timer = setTimeout(() => {
-        timeReady = true;
-        tryShow();
-      }, 45000);
-
-      const handleScroll = () => {
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollHeight <= 0) return;
-        const percent = (window.scrollY / scrollHeight) * 100;
-        if (percent >= 40) {
-          scrollReady = true;
-          tryShow();
-        }
-      };
-
-      const cleanup = () => {
-        clearTimeout(timer);
-        window.removeEventListener("scroll", handleScroll);
-      };
-
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      handleScroll();
-
-      return cleanup;
-    }
-
-    // Desktop: курсор уходит за верхнюю границу окна
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        document.removeEventListener("mouseleave", handleMouseLeave);
-        show();
-      }
+    const handleScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 0 && window.scrollY / maxScroll >= 0.5) scrolledHalfway = true;
     };
 
+    const handleMouseLeave = (event: MouseEvent) => {
+      if (media.matches || event.clientY > 0 || activeMs() < 30000) return;
+      show();
+    };
+
+    const media = window.matchMedia("(max-width: 767px)");
+    const mobileInterval = window.setInterval(() => {
+      if (!media.matches) return;
+      handleScroll();
+      if (activeMs() >= 60000 && scrolledHalfway) show();
+    }, 500);
+
     document.addEventListener("mouseleave", handleMouseLeave);
-    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("visibilitychange", updateActivity);
+    window.addEventListener("focus", updateActivity);
+    window.addEventListener("blur", updateActivity);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.clearInterval(mobileInterval);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", updateActivity);
+      window.removeEventListener("focus", updateActivity);
+      window.removeEventListener("blur", updateActivity);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [location.pathname]);
 
-  const handleCTA = () => {
-    trackCTAClick({ location: "exit_intent", buttonText: "Описать задачу" });
+  const dismiss = () => {
+    if (!isOpen) return;
+    trackExitPopupEvent("exit_popup_dismiss");
+    markExitPopupDismissed();
     setIsOpen(false);
-    if (location.pathname.replace(/\/$/, "") === "/start") {
-      window.dispatchEvent(new Event("self-start:open"));
-    } else {
-      requestDiagnosticAutostart();
-      navigate("/start");
-    }
+  };
+
+  const handleCTA = () => {
+    trackExitPopupEvent("exit_popup_cta");
+    trackCTAClick({ location: "exit_intent", buttonText: "Проверить свой процесс" });
+    markExitPopupAccepted();
+    setIsOpen(false);
+    requestDiagnosticAutostart();
+    navigate("/start");
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[560px] p-0 overflow-hidden rounded-[28px] shadow-elevated border-0 mx-auto [&>button]:hidden">
-        <div className="relative px-6 sm:px-10 pt-8 sm:pt-10 pb-7 sm:pb-9">
-          {/* мягкое бирюзовое свечение в углу */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-accent/20 blur-3xl"
-          />
-
+    <Dialog open={isOpen} onOpenChange={(next) => { if (!next) dismiss(); }}>
+      <DialogContent
+        aria-describedby="exit-popup-description"
+        className="w-[calc(100%-2rem)] max-w-[560px] max-h-[90dvh] overflow-y-auto rounded-[28px] border-0 p-0 shadow-elevated [&>button]:hidden max-sm:!left-0 max-sm:!right-0 max-sm:!top-auto max-sm:!bottom-0 max-sm:!w-full max-sm:!max-w-none max-sm:!translate-x-0 max-sm:!translate-y-0 max-sm:!rounded-b-none max-sm:!rounded-t-[28px]"
+      >
+        <div className="relative px-6 pb-7 pt-8 sm:px-10 sm:pb-9 sm:pt-10"
+          style={isMobile ? { paddingBottom: "max(1.75rem, env(safe-area-inset-bottom))" } : undefined}>
+          <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent/20 blur-3xl" />
           <div className="relative">
-            <span className="inline-flex items-center gap-2.5 rounded-full bg-accent/10 text-accent px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] mb-6">
+            <button type="button" onClick={dismiss} aria-label="Закрыть приглашение"
+              className="absolute -right-2 -top-3 flex h-11 w-11 items-center justify-center rounded-full text-foreground/65 transition-colors hover:bg-foreground/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">
+              <span aria-hidden="true" className="text-2xl leading-none">×</span>
+            </button>
+            <span className="mb-5 inline-flex items-center gap-2.5 rounded-full bg-accent/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-accent sm:mb-6 sm:text-xs">
               <span className="dot-soft-pulse" />
-              Анкета · 7–10 минут
+              Бесплатная проверка · 7–10 минут
             </span>
-
             <DialogHeader className="mb-5 space-y-3">
-              <DialogTitle className="text-[26px] sm:text-4xl font-bold text-foreground leading-[1.05] text-left">
-                Не уходите с задачей{" "}
-                <span className="font-iriska font-normal italic text-accent">в голове</span>
+              <DialogTitle className="text-left text-[26px] font-bold leading-[1.08] text-foreground sm:text-4xl">
+                Превратите рабочую задачу{" "}
+                <span className="font-iriska font-normal italic text-accent">в первый шаг</span>
               </DialogTitle>
-              <DialogDescription className="text-base sm:text-lg text-foreground/70 leading-relaxed text-left">
-                Опишите один процесс за 7–10 минут. Вопросы помогут разложить задачу по фактам и подготовиться к предметному разговору.
+              <DialogDescription id="exit-popup-description" className="text-left text-base leading-relaxed text-foreground/70 sm:text-lg">
+                Выберите один бизнес-процесс, ответьте на вопросы и получите предварительный разбор: где возникают потери, что стоит проверить первым и как оценить результат.
               </DialogDescription>
             </DialogHeader>
 
-            <div className="border-t border-border mb-6">
-              {["Выберите один процесс", "Зафиксируйте ручные действия", "Опишите главную проблему"].map(
-                (step, i) => (
-                  <div key={step} className="flex items-baseline gap-3.5 border-b border-border py-3">
-                    <span className="text-xs sm:text-sm font-bold text-accent tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-sm sm:text-base text-foreground/85 leading-snug">{step}</span>
-                  </div>
-                )
-              )}
-            </div>
+            <ul className="mb-6 hidden border-t border-border sm:block">
+              {[
+                "Предварительные выводы по Вашим ответам",
+                "Первый шаг и критерий проверки результата",
+                "Возможность сохранить результат в PDF",
+              ].map((item, index) => (
+                <li key={item} className="flex items-baseline gap-3.5 border-b border-border py-3">
+                  <span className="text-xs font-bold tabular-nums text-accent sm:text-sm">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-sm leading-snug text-foreground/85 sm:text-base">{item}</span>
+                </li>
+              ))}
+            </ul>
 
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <PillButton onClick={handleCTA} variant="turquoise">
-                Описать задачу
-              </PillButton>
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="text-sm sm:text-base font-semibold text-foreground/50 hover:text-foreground transition-colors px-2 py-2 text-left sm:text-center"
-              >
-                Не сейчас
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <PillButton onClick={handleCTA} variant="turquoise">Проверить свой процесс</PillButton>
+              <button type="button" onClick={dismiss}
+                className="min-h-11 px-2 py-2 text-left text-sm font-semibold text-foreground/55 transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent sm:text-center sm:text-base">
+                Продолжить просмотр
               </button>
             </div>
           </div>
