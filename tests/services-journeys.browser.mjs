@@ -79,6 +79,32 @@ try {
     if(viewport.width===1440)await page.screenshot({path:"services-desktop.png",fullPage:true});
     if(viewport.width===390)await page.screenshot({path:"services-mobile.png",fullPage:true});
     if(viewport.width===320)await page.screenshot({path:"services-mobile-small.png",fullPage:true});
+    // Regression: every entry of the real navigation menu must be a working link.
+    const menuEntries = [
+      ["Все направления", "/services"],
+      ["Убрать ручную работу", "/services/automation"],
+      ["Выбрать первый приоритет", "/services/owner-digital-session"],
+      ["Обучить команду", "/services/digital-tools-program"],
+      ["Отбирать закупки", "/services/neurotenderolog"],
+    ];
+    for (const [label,target] of menuEntries) {
+      await page.goto(BASE+"/cases");
+      await page.locator("main h1").waitFor({state:"visible"});
+      if (viewport.width>=1024) {
+        await page.getByRole("link",{name:"Услуги",exact:true}).hover();
+      } else {
+        await page.getByRole("button",{name:"Toggle menu"}).click();
+        await page.getByRole("button",{name:"Услуги",exact:true}).click();
+      }
+      const link = page.getByRole("link",{name:label,exact:true});
+      await link.waitFor({state:"visible"});
+      assert.equal(await link.getAttribute("href"),target,"menu points to correct route "+label);
+      await link.click();
+      await page.waitForURL(url=>url.pathname===target,{timeout:8000});
+      await page.locator("main h1").waitFor({state:"visible"});
+      assert.equal(await page.getByText("404",{exact:true}).count(),0,"menu destination renders "+target);
+      console.log("PASS menu",viewport.width,label,target);
+    }
     await context.close();
   }
   console.log("PASS all service routes and four client journeys");
