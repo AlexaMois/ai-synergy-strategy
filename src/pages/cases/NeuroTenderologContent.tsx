@@ -43,7 +43,7 @@ type Screenshot = (typeof screenshots)[keyof typeof screenshots];
 const EvidenceImage = ({
   image,
   onOpen,
-  previewHeight = "h-[295px] md:h-[340px]",
+  previewHeight = "h-[370px] md:h-[470px]",
 }: {
   image: Screenshot;
   onOpen: () => void;
@@ -56,14 +56,14 @@ const EvidenceImage = ({
     title="Увеличить изображение"
     className="group relative block w-full cursor-zoom-in rounded-[20px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-dark"
   >
-    <div className={"flex w-full items-center justify-center overflow-hidden rounded-[20px] border border-foreground/10 bg-white/95 px-3 py-3 transition-shadow group-hover:shadow-card " + previewHeight}>
+    <div className={"flex w-full items-center justify-center overflow-hidden rounded-[20px] bg-white px-2 py-3 transition-shadow group-hover:shadow-card sm:px-3 " + previewHeight}>
       <img
         src={image.src}
         width={image.width}
         height={image.height}
         alt={image.alt}
         loading="lazy"
-        className="h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.035]"
+        className="h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
       />
     </div>
     <span aria-hidden="true" className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-foreground/90 text-background shadow-card transition-transform group-hover:scale-110">
@@ -221,62 +221,66 @@ const NeuroTenderologContent = () => {
           </p>
         </div>
 
-        <article className="grid items-center gap-7 rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-8 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 01 · Карточка закупки
-            </p>
-            <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
-              Специалист получает данные для решения
-            </h3>
-            <p className="mt-4 max-w-lg leading-relaxed text-foreground/75">
-              Название закупки, цена, ссылки и краткий ИИ-разбор собраны в одном сообщении.
-              Специалист оценивает предложение и выбирает дальнейшее действие.
-            </p>
-          </div>
-          <figure className="min-w-0 lg:col-span-7">
-            <EvidenceImage image={screenshots.card} onOpen={() => openScreenshot(screenshots.card)} previewHeight="h-[300px] md:h-[385px]" />
-          </figure>
-        </article>
-
-        <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          <article className="flex min-w-0 flex-col rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-7">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 02 · 07.10.2026
-            </p>
-            <h3 className="text-xl font-bold leading-tight text-foreground md:text-2xl">
-              День с подходящей закупкой
-            </h3>
-            <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">1</span><span className="text-sm text-foreground/70">подходящая</span></div>
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">4</span><span className="text-sm text-foreground/70">требуют решения</span></div>
+        <div className="space-y-6">
+          <article className="grid min-w-0 items-center gap-7 border-b border-foreground/10 pb-7 lg:grid-cols-12 lg:gap-10">
+            <div className="min-w-0 lg:col-span-5">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 01 · Карточка закупки
+              </p>
+              <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
+                Специалист получает данные для решения
+              </h3>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-foreground/80">
+                Название закупки, цена, ссылки и краткий ИИ-разбор собраны в одном сообщении.
+                Специалист оценивает предложение и выбирает дальнейшее действие.
+              </p>
             </div>
-            <p className="mb-5 leading-relaxed text-foreground/75">
-              По направлениям «ИИ Разработка» и «ИИ Консалтинг» система обработала 15 и 146
-              новых закупок. Подходящие и спорные варианты переданы специалисту.
-            </p>
-            <figure className="mt-auto">
-              <EvidenceImage image={screenshots.match} onOpen={() => openScreenshot(screenshots.match)} />
+            <figure className="min-w-0 lg:col-span-7">
+              <EvidenceImage image={screenshots.card} onOpen={() => openScreenshot(screenshots.card)} previewHeight="h-[370px] md:h-[470px]" />
             </figure>
           </article>
 
-          <article className="flex min-w-0 flex-col rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-7">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 03 · 18.10.2026
-            </p>
-            <h3 className="text-xl font-bold leading-tight text-foreground md:text-2xl">
-              День полного отсева
-            </h3>
-            <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">0</span><span className="text-sm text-foreground/70">подходящих</span></div>
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">193</span><span className="text-sm text-foreground/70">новые закупки</span></div>
+          <article className="grid min-w-0 items-center gap-7 border-b border-foreground/10 pb-7 lg:grid-cols-12 lg:gap-10">
+            <div className="min-w-0 lg:col-span-5">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 02 · 07.10.2026
+              </p>
+              <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
+                День с подходящей закупкой
+              </h3>
+              <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
+                <div><span className="block text-4xl font-bold tabular-nums text-foreground">1</span><span className="text-sm text-foreground/70">подходящая</span></div>
+                <div><span className="block text-4xl font-bold tabular-nums text-foreground">4</span><span className="text-sm text-foreground/70">требуют решения</span></div>
+              </div>
+              <p className="max-w-lg text-base leading-relaxed text-foreground/80">
+                По направлениям «ИИ Разработка» и «ИИ Консалтинг» система обработала 15 и 146
+                новых закупок. Подходящие и спорные варианты переданы специалисту.
+              </p>
             </div>
-            <p className="mb-5 leading-relaxed text-foreground/75">
-              «ИИ Разработка»: 22 закупки. «ИИ Консалтинг»: 171 закупка.
-              Все предложения за день прошли отбор по заданным критериям.
-            </p>
-            <figure className="mt-auto">
-              <EvidenceImage image={screenshots.zero} onOpen={() => openScreenshot(screenshots.zero)} />
+            <figure className="min-w-0 lg:col-span-7">
+              <EvidenceImage image={screenshots.match} onOpen={() => openScreenshot(screenshots.match)} previewHeight="h-[370px] md:h-[470px]" />
+            </figure>
+          </article>
+
+          <article className="grid min-w-0 items-center gap-7 lg:grid-cols-12 lg:gap-10">
+            <div className="min-w-0 lg:col-span-5">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 03 · 18.10.2026
+              </p>
+              <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
+                День полного отсева
+              </h3>
+              <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
+                <div><span className="block text-4xl font-bold tabular-nums text-foreground">0</span><span className="text-sm text-foreground/70">подходящих</span></div>
+                <div><span className="block text-4xl font-bold tabular-nums text-foreground">193</span><span className="text-sm text-foreground/70">новые закупки</span></div>
+              </div>
+              <p className="max-w-lg text-base leading-relaxed text-foreground/80">
+                «ИИ Разработка»: 22 закупки. «ИИ Консалтинг»: 171 закупка.
+                Все предложения за день прошли отбор по заданным критериям.
+              </p>
+            </div>
+            <figure className="min-w-0 lg:col-span-7">
+              <EvidenceImage image={screenshots.zero} onOpen={() => openScreenshot(screenshots.zero)} previewHeight="h-[370px] md:h-[470px]" />
             </figure>
           </article>
         </div>
