@@ -23,6 +23,7 @@ const BlogOldRedirect = () => {
 const StartPage = lazy(() => import("./pages/start/StartPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
+const TenderServicePage = lazy(() => import("./pages/services/TenderServicePage"));
 const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
 const PillarPage = lazy(() => import("./pages/services/PillarPage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
@@ -94,6 +95,8 @@ const AppContent = () => {
           {/* Services */}
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/automation" element={<AutomationHubPage />} />
+          <Route path="/services/neurotenderolog" element={<TenderServicePage />} />
+          <Route path="/services/neurotenderolog/" element={<TenderServicePage />} />
           {/* Legacy slugs → 301-style redirects to current service pages */}
           <Route path="/services/diagnostics" element={<Navigate to="/services/digital-audit" replace />} />
           <Route path="/services/architecture" element={<Navigate to="/services/digital-solution-design" replace />} />
