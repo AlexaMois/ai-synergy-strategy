@@ -134,7 +134,34 @@ try {
     assert(bounds && bounds.height <= 568 && bounds.width <= 322, "mobile popup fits 320x568");
   });
 
-  console.log("Browser scenarios passed:", passed);
+  await scenario("desktop engaged-visit fallback after 45 seconds and 35% scroll", { width: 1440, height: 900 }, async (page) => {
+    await page.goto(BASE + "/cases");
+    await page.getByRole("heading", { name: /Посмотрите, как мы решаем задачи бизнеса/ }).waitFor({ state: "visible" });
+    await page.bringToFront();
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight * 0.75));
+    await page.clock.fastForward(46000);
+    await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).waitFor({ state: "visible" });
+    await page.getByRole("button", { name: "Закрыть приглашение" }).click();
+  });
+
+  await scenario("QA preview bypasses cooldown and stays reusable", { width: 1440, height: 900 }, async (page) => {
+    await page.goto(BASE + "/cases");
+    await page.evaluate(() => {
+      localStorage.setItem("self-start-popup-suppressed-until-v1", String(Date.now() + 14 * 86400000));
+      sessionStorage.setItem("self-start-popup-shown", "1");
+      sessionStorage.setItem("self-start-form-started", "1");
+    });
+    await page.goto(BASE + "/cases?popup_preview=1");
+    const popup = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
+    await popup.waitFor({ state: "visible" });
+    await popup.getByRole("button", { name: "Продолжить просмотр" }).click();
+    await popup.waitFor({ state: "hidden" });
+    await page.reload();
+    await popup.waitFor({ state: "visible" });
+    assert.equal(await page.evaluate(() => sessionStorage.getItem("self-start-popup-shown")), "1");
+  });
+
+    console.log("Browser scenarios passed:", passed);
 } finally {
   await browser.close();
 }

@@ -49,6 +49,8 @@ const ExitIntentPopup = () => {
   const navigate = useNavigate();
   const pathnameRef = useRef(location.pathname);
   pathnameRef.current = location.pathname;
+  // Явная ссылка для ручной приёмки. Работает независимо от прежних показов.
+  const previewMode = new URLSearchParams(location.search).get("popup_preview") === "1";
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
@@ -58,12 +60,27 @@ const ExitIntentPopup = () => {
   }, []);
 
   useEffect(() => {
-    if (!canShow(location.pathname)) return;
+    if (!previewMode || !isEligibleRoute(location.pathname)) return;
+    let previewOpened = false;
+    const tryOpenPreview = () => {
+      if (previewOpened || !isInterfaceIdle()) return;
+      previewOpened = true;
+      setIsOpen(true);
+      window.clearInterval(timer);
+    };
+    const timer = window.setInterval(tryOpenPreview, 250);
+    tryOpenPreview();
+    return () => window.clearInterval(timer);
+  }, [location.pathname, previewMode]);
+
+  useEffect(() => {
+    if (previewMode || !canShow(location.pathname)) return;
 
     let elapsed = 0;
     let activeSince: number | null = document.visibilityState === "visible" && document.hasFocus()
       ? Date.now() : null;
     let scrolledHalfway = false;
+    let scrolledThird = false;
 
     const activeMs = () => elapsed + (activeSince === null ? 0 : Date.now() - activeSince);
     const setActive = (active: boolean) => {
@@ -74,14 +91,14 @@ const ExitIntentPopup = () => {
       }
     };
     const updateActivity = () => setActive(document.visibilityState === "visible" && document.hasFocus());
-    const eligibleNow = () =>
+    const eligibleNow = (allowBlurredWindow = false) =>
       document.visibilityState === "visible" &&
-      document.hasFocus() &&
+      (allowBlurredWindow || document.hasFocus()) &&
       canShow(pathnameRef.current) &&
       isInterfaceIdle();
 
-    const show = () => {
-      if (!eligibleNow()) return;
+    const show = (allowBlurredWindow = false) => {
+      if (!eligibleNow(allowBlurredWindow)) return;
       markExitPopupShown();
       trackExitPopupEvent("exit_popup_show");
       setIsOpen(true);
@@ -89,19 +106,25 @@ const ExitIntentPopup = () => {
 
     const handleScroll = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 0 && window.scrollY / maxScroll >= 0.35) scrolledThird = true;
       if (maxScroll > 0 && window.scrollY / maxScroll >= 0.5) scrolledHalfway = true;
     };
 
     const handleMouseLeave = (event: MouseEvent) => {
       if (media.matches || event.clientY > 0 || activeMs() < 30000) return;
-      show();
+      // Уход к вкладкам браузера способен снять фокус до события mouseleave.
+      show(true);
     };
 
     const media = window.matchMedia("(max-width: 767px)");
-    const mobileInterval = window.setInterval(() => {
-      if (!media.matches) return;
+    const engagementInterval = window.setInterval(() => {
       handleScroll();
-      if (activeMs() >= 60000 && scrolledHalfway) show();
+      if (media.matches) {
+        if (activeMs() >= 60000 && scrolledHalfway) show();
+      } else if (activeMs() >= 45000 && scrolledThird) {
+        // Резервный показ после реального изучения страницы.
+        show();
+      }
     }, 500);
 
     document.addEventListener("mouseleave", handleMouseLeave);
@@ -112,19 +135,21 @@ const ExitIntentPopup = () => {
     handleScroll();
 
     return () => {
-      window.clearInterval(mobileInterval);
+      window.clearInterval(engagementInterval);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("visibilitychange", updateActivity);
       window.removeEventListener("focus", updateActivity);
       window.removeEventListener("blur", updateActivity);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [location.pathname]);
+  }, [location.pathname, previewMode]);
 
   const dismiss = () => {
     if (!isOpen) return;
-    trackExitPopupEvent("exit_popup_dismiss");
-    markExitPopupDismissed();
+    if (!previewMode) {
+      trackExitPopupEvent("exit_popup_dismiss");
+      markExitPopupDismissed();
+    }
     setIsOpen(false);
   };
 
