@@ -66,6 +66,7 @@ async function runViewport(width, height, testZoom = false) {
       await dialog.waitFor({ state: "visible" });
       assert.equal(page.url(), beforeUrl, "opening image keeps URL");
       assert.equal(context.pages().length, priorTabs, "opening image keeps same tab");
+      await dialog.locator("img").evaluate(async img => { await img.decode(); });
       const state = await dialog.evaluate(node => {
         const image = node.querySelector("img");
         const r = node.getBoundingClientRect();
