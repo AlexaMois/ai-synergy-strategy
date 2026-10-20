@@ -29,15 +29,15 @@ const TenderServicePage = () => (
       <main>
         <section className="px-4 pt-8 md:px-6 md:pt-12">
           <div className="container mx-auto max-w-7xl">
-            <div className="rounded-[30px] bg-surface-mint p-7 shadow-plate md:rounded-[40px] md:p-12">
+            <div className="min-w-0 rounded-[30px] bg-surface-mint px-5 py-8 shadow-plate sm:px-7 md:rounded-[40px] md:p-12">
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">Отдельный продукт · Закупки и тендеры</p>
-              <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">НейроТендеролог: поиск и первичный отбор закупок</h1>
+              <h1 className="max-w-4xl break-words text-[27px] font-bold leading-tight text-foreground [overflow-wrap:anywhere] sm:text-3xl md:text-5xl">НейроТендеролог: поиск и первичный отбор закупок</h1>
               <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">Система помогает сократить ручной просмотр закупок: собирает предложения, применяет профиль компании, готовит предварительный разбор и передаёт решение специалисту.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Подключение НейроТендеролога. Источник: /services/neurotenderolog"})} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
+                <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Подключение НейроТендеролога. Источник: /services/neurotenderolog"})} className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full bg-foreground px-4 text-center text-sm font-semibold text-background hover:bg-foreground/85 sm:w-auto sm:px-6 sm:text-base">
                   Обсудить отбор закупок <ArrowRight className="h-4 w-4"/>
                 </Link>
-                <Link to="/cases/neurotenderolog" className="inline-flex min-h-12 items-center gap-2 px-4 font-semibold text-primary-dark hover:underline">
+                <Link to="/cases/neurotenderolog" className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 px-2 text-center text-sm font-semibold text-primary-dark hover:underline sm:w-auto sm:px-4 sm:text-base">
                   Реальный кейс и скриншоты <ArrowUpRight className="h-4 w-4"/>
                 </Link>
               </div>
