@@ -111,6 +111,9 @@ export default function sitemapPlugin(): Plugin {
     name: 'vite-plugin-generate-sitemap',
     closeBundle() {
       const root = process.cwd();
+      // Vite runs closeBundle even after a failed transform. Preserve the original build
+      // error instead of replacing it with ENOENT while writing a sitemap to missing dist.
+      if (!fs.existsSync(path.resolve(root, 'dist'))) return;
       const xml = buildSitemapXml(root);
       for (const out of ['dist/sitemap.xml', 'public/sitemap.xml']) {
         fs.writeFileSync(path.resolve(root, out), xml, 'utf-8');
