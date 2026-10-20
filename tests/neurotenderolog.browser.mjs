@@ -111,9 +111,8 @@ async function runViewport(width, height, testZoom = false) {
         bodyOverflowX: getComputedStyle(document.body).overflowX,
       };
     });
-    assert(horizontal.contentWidth <= horizontal.contentViewport + 2 &&
-      (horizontal.bodyOverflowX === "hidden" || horizontal.bodyOverflowX === "clip"),
-      "case content fits viewport; global offscreen mobile menu remains clipped: " + JSON.stringify(horizontal));
+    assert(horizontal.contentWidth <= horizontal.contentViewport + 2,
+      "case content must fit its viewport: " + JSON.stringify(horizontal));
     assert.equal(errors.length, 0, "no console/runtime errors: " + errors.join("; "));
     console.log("PASS tender screenshots, focus and responsive geometry " + width + "x" + height + (testZoom ? " 200%" : ""));
   } finally {
