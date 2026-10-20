@@ -58,12 +58,13 @@ try {
   await scenario("dismiss, reload and different tab respect 14-day cooldown", { width: 1440, height: 900 }, async (page, context) => {
     await openFromDesktop(page);
     await page.getByRole("button", { name: "Продолжить просмотр" }).click();
-    assert.equal(await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).count(), 0);
+    await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).waitFor({ state: "hidden" });
     await page.reload();
     await page.clock.fastForward(31000);
     await page.evaluate(() => document.dispatchEvent(new MouseEvent("mouseleave", { clientY: 0 })));
     assert.equal(await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).count(), 0);
     const anotherTab = await context.newPage();
+    await anotherTab.clock.install();
     await anotherTab.goto(BASE + "/cases");
     await anotherTab.clock.fastForward(31000);
     await anotherTab.evaluate(() => document.dispatchEvent(new MouseEvent("mouseleave", { clientY: 0 })));
