@@ -48,7 +48,7 @@ try {
     const popup = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
     await popup.waitFor({ state: "visible" });
     await page.screenshot({ path: "artifacts/popup-desktop.png" });
-    await popup.getByRole("button", { name: /Проверить свой процесс/ }).click();
+    await popup.getByRole("button", { name: /Проверить процесс/ }).click();
     await page.waitForURL(/\/start\/?$/);
     await page.getByText("Самостоятельная проверка одного процесса").waitFor({ state: "visible" });
     assert.equal(await page.evaluate(() => sessionStorage.getItem("self-start-source")), "exit_popup");
