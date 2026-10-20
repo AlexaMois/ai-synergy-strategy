@@ -2,6 +2,8 @@
 export const ALLOWED_ROUTES = [
   '/',
   '/services',
+  '/services/automation',
+  '/services/neurotenderolog',
   '/services/diagnostics',
   '/services/architecture',
   '/services/support',
