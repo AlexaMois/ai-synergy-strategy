@@ -59,7 +59,7 @@ const TenderServicePage = () => (
         </section>
         <section className="bg-foreground py-14 text-background md:py-20">
           <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="max-w-3xl text-3xl font-bold leading-tight md:text-4xl">Что проверяем перед запуском</h2>
+            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-background md:text-4xl">Что проверяем перед запуском</h2>
             <p className="mt-4 max-w-3xl leading-relaxed text-background/80">Составляем профиль закупок, проверяем релевантность первичного отбора и согласуем работу со спорными случаями.</p>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
@@ -69,13 +69,13 @@ const TenderServicePage = () => (
               ].map(([title,text])=>(
                 <div key={title} className="rounded-2xl border border-background/20 bg-background/5 p-5">
                   <CheckCircle2 className="mb-4 h-6 w-6 text-accent" />
-                  <h3 className="text-xl font-bold">{title}</h3><p className="mt-3 text-base leading-relaxed text-background/75">{text}</p>
+                  <h3 className="text-xl font-bold text-background">{title}</h3><p className="mt-3 text-base leading-relaxed text-background/85">{text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+        <section className="container mx-auto max-w-7xl px-4 py-14 md:py-14">
           <div className="grid gap-7 rounded-[28px] bg-surface-sand p-7 md:grid-cols-12 md:items-center md:p-10">
             <div className="md:col-span-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Доказательства</p>
