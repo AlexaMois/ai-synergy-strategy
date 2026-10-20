@@ -1,0 +1,61 @@
+name: Popup PR checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/components/ExitIntentPopup.tsx"
+      - "src/lib/diagnosticState.ts"
+      - "src/components/diagnostic/DiagnosticForm.tsx"
+      - "src/lib/contactIntent.ts"
+      - "src/utils/analytics.ts"
+      - "tests/popup*"
+      - ".github/workflows/popup-pr-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  popup-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install project
+        run: npm ci
+      - name: Build site
+        run: npm run build
+        env:
+          VITE_FORMS_BASE_URL: https://forms.aleksamois.ru
+      - name: TypeScript check
+        run: npx tsc --noEmit
+      - name: Lint changed application files
+        run: npx eslint src/components/ExitIntentPopup.tsx src/lib/diagnosticState.ts src/components/diagnostic/DiagnosticForm.tsx src/lib/contactIntent.ts src/utils/analytics.ts
+      - name: Check 14-day and 90-day storage rules
+        run: node tests/popup-state.mjs
+      - name: Install browser test runner
+        run: npm install --no-save --package-lock=false playwright@1.56.1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start Vite server
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/popup-vite.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl --silent --fail http://127.0.0.1:8080/cases > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/popup-vite.log
+          exit 1
+      - name: Browser acceptance checks
+        run: node tests/popup.browser.mjs
+      - name: Upload browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: popup-browser-screenshots
+          path: artifacts/
+          if-no-files-found: ignore
