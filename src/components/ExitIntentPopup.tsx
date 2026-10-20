@@ -215,7 +215,7 @@ const ExitIntentPopup = () => {
             </DialogDescription>
           </DialogHeader>
 
-          <ul className="mb-6 border-y border-border/80" aria-label="Что Вы получите">
+          <ul className="mb-6 hidden border-y border-border/80 sm:block" aria-label="Что Вы получите">
             {[
               "Предварительные выводы по Вашим ответам",
               "Первый шаг и критерий проверки результата",
@@ -231,6 +231,12 @@ const ExitIntentPopup = () => {
               </li>
             ))}
           </ul>
+
+          <div className="mb-5 flex flex-wrap items-center gap-x-2 gap-y-1 border-y border-border/80 py-3 text-[12px] font-medium text-foreground/75 sm:hidden" aria-label="Что Вы получите">
+            <span>Выводы</span><span className="text-accent">·</span>
+            <span>Первый шаг</span><span className="text-accent">·</span>
+            <span>PDF</span>
+          </div>
 
           <div className="flex min-w-0 flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-4">
             <PillButton
