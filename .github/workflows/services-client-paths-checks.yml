@@ -27,10 +27,10 @@ jobs:
           cache: npm
       - name: Install
         run: npm install --no-audit --no-fund
-      - name: Build
-        run: npm run build
       - name: TypeScript
         run: npx tsc --noEmit
+      - name: Build
+        run: npm run build
       - name: ESLint
         run: npx eslint src/pages/ServicesPage.tsx src/pages/services/AutomationHubPage.tsx src/pages/services/TenderServicePage.tsx src/pages/services/ServiceDetailPage.tsx src/pages/services/PillarPage.tsx src/data/serviceJourneys.ts src/components/Navigation.tsx src/App.tsx
       - name: Install browser test runner
