@@ -1,0 +1,50 @@
+name: Tender case visual acceptance
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/pages/cases/NeuroTenderologContent.tsx"
+      - "tests/neurotenderolog.browser.mjs"
+      - ".github/workflows/tender-case-pr-checks.yml"
+permissions:
+  contents: read
+jobs:
+  tender-case:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Production build
+        run: npm run build
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Lint changed case
+        run: npx eslint src/pages/cases/NeuroTenderologContent.tsx
+      - name: Install browser runner
+        run: npm install --no-save --package-lock=false playwright@1.56.1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start development server
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/tender-vite.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl --silent --fail http://127.0.0.1:8080/cases/neurotenderolog > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/tender-vite.log
+          exit 1
+      - name: Visual and lightbox browser checks
+        run: node tests/neurotenderolog.browser.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tender-case-screenshots
+          path: artifacts/
+          if-no-files-found: ignore
