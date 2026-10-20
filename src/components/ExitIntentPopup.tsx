@@ -16,7 +16,7 @@ import {
 
 const BLOCKED_PREFIXES = [
   "/start", "/legal", "/portal", "/neurostylist", "/.lovable",
-  "/consent", "/privacy-policy", "/terms", "/newyear", "/redirect",
+  "/consent", "/privacy-policy", "/terms", "/newyear", "/redirect", "/404", "/not-found",
 ];
 
 const isEligibleRoute = (pathname: string) =>
@@ -33,6 +33,7 @@ const isInterfaceIdle = () => {
   if (active?.matches("input, textarea, select, [contenteditable='true']")) return false;
   if (document.querySelector("form:focus-within")) return false;
   if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open']")) return false;
+  if (document.getElementById("cookie-consent-title") || document.title.startsWith("404")) return false;
   return true;
 };
 
