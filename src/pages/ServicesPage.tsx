@@ -1,429 +1,154 @@
-import Footer from "@/components/Footer";
-import Partners from "@/components/Partners";
 import { Helmet } from "react-helmet-async";
-import ServicesDetailed from "@/components/ServicesDetailed";
-import AdditionalServices from "@/components/AdditionalServices";
-import FAQTeaser from "@/components/FAQTeaser";
-import PageTransition from "@/components/PageTransition";
-import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import {
-  Target, Users, Cog, Database, Layers,
-  Award, ShieldCheck, Search, ListChecks, Rocket, ClipboardCheck,
-  ArrowRight,
-} from "lucide-react";
-import { getBreadcrumbs } from "@/utils/breadcrumbSchema";
 import { Link } from "react-router-dom";
-import { pillarPages } from "@/data/pillarPages";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Footer from "@/components/Footer";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
+import PageTransition from "@/components/PageTransition";
+import { serviceJourneys } from "@/data/serviceJourneys";
+import { services } from "@/data/services";
+import { setContactIntent } from "@/lib/contactIntent";
 
-const systemElements = [
-  { icon: Target, label: "Смысл задачи", desc: "Что именно нужно изменить и какой результат важен для бизнеса." },
-  { icon: Users, label: "Люди", desc: "Кто участвует в процессе, кто принимает решения и кто будет пользоваться инструментом." },
-  { icon: Cog, label: "Процессы", desc: "Как задача выполняется сейчас, где есть повторы, ручные действия и лишние согласования." },
-  { icon: Database, label: "Данные", desc: "Где хранятся документы, заявки, таблицы, отчёты и насколько они готовы к цифровизации." },
-  { icon: Layers, label: "Архитектура", desc: "Какие инструменты уже есть, что можно использовать, что нужно связать между собой и где требуется разработка." },
+const phases = [
+  ["01", "Фиксируем операцию", "Что запускает работу, где она заканчивается, кто отвечает и сколько раз повторяется."],
+  ["02", "Считаем потери", "Время, ручные касания, ошибки, текущая стоимость, доступность данных."],
+  ["03", "Меняем рабочий порядок", "Правила, роли, интеграции, контроль исключений и тестирование."],
+  ["04", "Подтверждаем результат", "Сравниваем показатели, передаём инструкции и закрепляем ответственность."],
+];
+const groups = [
+  { title: "Выбрать приоритет", slugs: ["owner-digital-session", "digital-development-strategy"] },
+  { title: "Спроектировать и внедрить", slugs: ["digital-audit", "digital-solution-design", "implementation-support"] },
+  { title: "Закрепить работу системы", slugs: ["digital-tools-support"] },
+  { title: "Развить навыки команды", slugs: ["digital-tools-program"] },
 ];
 
-const PillButton = ({
-  to,
-  children,
-  variant = "dark",
-  className = "",
-}: {
-  to: string;
-  children: React.ReactNode;
-  variant?: "dark" | "light" | "turquoise";
-  className?: string;
-}) => {
-  const styles = {
-    dark: "bg-foreground text-background hover:bg-foreground/90",
-    light: "bg-background text-foreground hover:bg-background/90",
-    turquoise: "bg-accent text-accent-foreground hover:bg-primary-dark",
-  }[variant];
-  const iconBg = {
-    dark: "bg-accent text-accent-foreground",
-    light: "bg-foreground text-background",
-    turquoise: "bg-background text-foreground",
-  }[variant];
-  return (
-    <Link
-      to={to}
-      className={`group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
-    >
-      <span>{children}</span>
-      <span
-        className={`flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
-      >
-        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-      </span>
-    </Link>
-  );
-};
-
-const processSteps = [
-  {
-    icon: Search,
-    title: "Разбираем текущую ситуацию",
-    text: "Смотрим процессы, данные, документы, роли, текущие инструменты и ручную нагрузку."
-  },
-  {
-    icon: ListChecks,
-    title: "Определяем приоритеты",
-    text: "Выбираем задачи, которые дают понятный эффект по времени, деньгам и управляемости."
-  },
-  {
-    icon: Rocket,
-    title: "Запускаем выбранный формат",
-    text: "Проводим встречу, стратегию, аудит, обучение, внедрение, разработку или сопровождение."
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Фиксируем результат",
-    text: "Передаём план, рекомендации, инструкции, рабочие сценарии, цифровой инструмент или отчёт по сопровождению."
-  }
-];
-
-const ServicesPage = () => {
-  return <PageTransition>
-      <Helmet>
-        <title>Услуги по цифровизации и автоматизации бизнеса</title>
-        <meta name="description" content="Форматы работы для бизнеса: стратегическая встреча, стратегия цифрового развития, аудит, обучение, внедрение, разработка и сопровождение." />
-        <meta name="keywords" content="цифровое развитие бизнеса, стратегия цифровизации, аудит цифровизации, внедрение цифровых инструментов, сопровождение, НейроРешения" />
-        <link rel="canonical" href="https://aleksamois.ru/services" />
-        <meta property="og:title" content="Услуги по цифровизации и автоматизации бизнеса" />
-        <meta property="og:description" content="Форматы работы для бизнеса: стратегическая встреча, стратегия цифрового развития, аудит, обучение, внедрение, разработка и сопровождение." />
-        <meta property="og:url" content="https://aleksamois.ru/services" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
-        <script type="application/ld+json">
-          {JSON.stringify(getBreadcrumbs.services())}
-        </script>
-      </Helmet>
-      <div className="min-h-screen bg-background">
-        <PageBreadcrumbs currentPage="Услуги" />
-
-        <main>
-          {/* HERO — большая песочная плашка (отличается от голубой главной и розовой /start) */}
-          <section className="pt-8 md:pt-12 px-4 md:px-6">
-            <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
-                  <div className="md:col-span-7">
-                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
-                      Услуги · НейроРешения
-                    </p>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
-                      Услуги по{" "}
-                      <span className="font-iriska font-normal italic text-accent">
-                        цифровому развитию
-                      </span>{" "}
-                      бизнеса
-                    </h1>
-                    <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl leading-snug">
-                      Разбираю процессы, нахожу точки потерь и помогаю внедрять цифровые инструменты, которые снижают ручную нагрузку, сохраняют бюджет и усиливают управляемость
-                    </p>
-                    <p className="text-base md:text-lg text-foreground/70 mb-10 max-w-2xl leading-relaxed">
-                      Работаю с конкретными задачами бизнеса: ручной ввод и проверка данных, документы, заявки, отчёты, согласования, внутренние базы знаний, рабочие процессы, контроль исполнения и поддержка сотрудников.
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <PillButton to="/start" variant="dark">
-                        Подобрать формат работы
-                      </PillButton>
-                      <Link
-                        to="/pricing"
-                        className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
-                      >
-                        Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="md:col-span-5 flex justify-center md:justify-end md:translate-y-6 lg:translate-y-10">
-                    <div className="w-full max-w-md lg:max-w-lg rounded-[28px] bg-background/55 backdrop-blur-md ring-1 ring-foreground/10 shadow-plate p-6 md:p-8 md:-rotate-1">
-                      <div className="w-full flex flex-col items-center gap-6 text-center">
-                        {/* Уровень 1: Система */}
-                        <div className="relative">
-                          <div className="absolute inset-0 rounded-2xl bg-accent/40 blur-xl" aria-hidden="true" />
-                          <div className="relative px-7 py-3.5 rounded-2xl bg-accent text-white font-bold text-lg md:text-xl shadow-card ring-1 ring-accent/40 uppercase tracking-widest">
-                            Система
-                          </div>
-                        </div>
-                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
-                        {/* Уровень 2: Компания */}
-                        <div className="px-6 py-3 rounded-xl bg-background text-foreground font-semibold text-base md:text-lg shadow-card ring-1 ring-foreground/10">
-                          Компания
-                        </div>
-                        <div className="w-0.5 h-8 bg-accent/60 rounded-full" aria-hidden="true" />
-                        {/* Уровень 3: Люди / Процессы / Данные */}
-                        <div className="flex gap-3 flex-wrap justify-center">
-                          {["Люди", "Процессы", "Данные"].map((t) => (
-                            <div
-                              key={t}
-                              className="px-4 py-2.5 rounded-lg bg-background text-foreground text-base font-medium ring-1 ring-foreground/10 shadow-sm"
-                            >
-                              {t}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* СИСТЕМА КАК ЦЕЛОЕ — горизонтальные цветные пиллы */}
-          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-            <div className="max-w-3xl mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-4">
-                Смотрю на компанию{" "}
-                <span className="font-iriska font-normal italic text-accent">как на систему</span>
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground mb-4">
-                Цифровое развитие начинается не с выбора сервиса. Сначала нужно понять, как работает компания: кто участвует в процессе, где повторяются действия, какие данные используются, где теряется время и что мешает руководителю видеть полную картину.
+const ServicesPage = () => (
+  <PageTransition>
+    <Helmet>
+      <title>Решения задач бизнеса: автоматизация, стратегия, обучение и закупки | НейроРешения</title>
+      <meta name="description" content="Четыре маршрута: автоматизация ручных операций, стратегические решения собственника, обучение команды и отбор закупок. Действующие форматы, цены и кейсы." />
+      <link rel="canonical" href="https://aleksamois.ru/services/" />
+      <meta property="og:title" content="Решения задач бизнеса | НейроРешения" />
+      <meta property="og:description" content="От рабочей задачи к измеримому результату. Четыре понятных маршрута." />
+      <meta property="og:url" content="https://aleksamois.ru/services/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
+    </Helmet>
+    <div className="min-h-screen bg-background">
+      <PageBreadcrumbs currentPage="Услуги" />
+      <main>
+        <section className="px-4 pt-8 md:px-6 md:pt-12">
+          <div className="container mx-auto max-w-7xl">
+            <div className="rounded-[30px] bg-surface-sand px-6 py-10 shadow-plate ring-1 ring-foreground/5 md:rounded-[40px] md:px-12 md:py-16">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">Решения · НейроРешения</p>
+              <h1 className="max-w-4xl text-3xl font-bold leading-[1.06] tracking-tight text-foreground md:text-5xl">
+                Начинаем с рабочей задачи. <span className="text-primary-dark">Доводим до измеримого результата.</span>
+              </h1>
+              <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">
+                Убираем лишние ручные действия, связываем существующие программы, выбираем приоритет изменений и помогаем команде освоить рабочие инструменты. Сначала выберите свою ситуацию, затем определим формат работы.
               </p>
-              <p className="text-base md:text-lg text-muted-foreground">
-                В каждом проекте держу в фокусе пять опор:
-              </p>
-            </div>
-            {/* Иерархическая схема: 3 входа → СИСТЕМА → 2 выхода */}
-            <div>
-              {/* Уровень 1: три опоры на входе — асимметричный ряд */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-                {[0, 1, 2].map((i) => {
-                  const el = systemElements[i];
-                  const Icon = el.icon;
-                  const palettes = ["bg-surface-mint", "bg-surface-lavender", "bg-surface-blush"];
-                  const spans = ["md:col-span-5", "md:col-span-3", "md:col-span-4"];
-                  const offsets = ["", "md:-translate-y-4 lg:-translate-y-6", "md:translate-y-3"];
-                  return (
-                    <div
-                      key={el.label}
-                      className={`${palettes[i]} ${spans[i]} ${offsets[i]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3 transition-transform`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
-                          {el.label}
-                        </p>
-                      </div>
-                      <p className="text-sm text-foreground/70 leading-snug">{el.desc}</p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Соединитель сверху → центр */}
-              <div className="flex justify-center" aria-hidden="true">
-                <div className="w-px h-8 md:h-10 bg-foreground/20" />
-              </div>
-
-              {/* Уровень 2: СИСТЕМА — ядро */}
-              <div className="flex justify-center">
-                <div className="w-full md:w-3/4 lg:w-2/3 rounded-[24px] bg-accent text-white p-6 md:p-8 shadow-plate ring-1 ring-foreground/10 text-center">
-                  <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-white/85 font-semibold mb-2">
-                    Система
-                  </p>
-                  <p className="font-iriska italic text-2xl md:text-3xl leading-tight text-white">
-                    компания как единое рабочее пространство
-                  </p>
-                </div>
-              </div>
-
-              {/* Соединитель центр → низ */}
-              <div className="flex justify-center" aria-hidden="true">
-                <div className="w-px h-8 md:h-10 bg-foreground/20" />
-              </div>
-
-              {/* Уровень 3: два опорных слоя на выходе — со смещением */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-                {[3, 4].map((i, idx) => {
-                  const el = systemElements[i];
-                  const Icon = el.icon;
-                  const palettes = ["bg-card", "bg-surface-sand"];
-                  const spans = ["md:col-span-7 md:col-start-2", "md:col-span-4 md:translate-y-6"];
-                  return (
-                    <div
-                      key={el.label}
-                      className={`${palettes[idx]} ${spans[idx]} rounded-[20px] p-5 md:p-6 ring-1 ring-foreground/5 shadow-sm flex flex-col gap-3`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <p className="font-semibold text-foreground text-base md:text-lg leading-tight">
-                          {el.label}
-                        </p>
-                      </div>
-                      <p className="text-sm text-foreground/70 leading-snug">{el.desc}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Итог */}
-            <p className="mt-6 text-base md:text-lg text-foreground/80">
-              <span className="font-semibold text-foreground">Итог:</span>{" "}
-              решение подбирается не ради технологии, а под реальную работу компании.
-            </p>
-
-            {/* Профессиональная основа */}
-            <div className="mt-10 rounded-[24px] bg-card p-6 md:p-8 ring-1 ring-foreground/5 shadow-card">
-              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">
-                Профессиональная основа
-              </p>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
-                Дипломированный специалист по искусственному интеллекту
-              </h3>
-              <p className="text-base text-muted-foreground mb-5 max-w-3xl">
-                Квалификация KAEO, уровень 5. Практический опыт внедрения цифровых решений в бизнес-процессы, обучение команд, проектирование цифровых инструментов и сопровождение внедрений.
-              </p>
-              <div className="flex items-center gap-5 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <Award className="w-5 h-5 text-accent flex-shrink-0" />
-                  <span className="text-sm font-medium text-foreground">Дипломированный специалист по ИИ</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-accent flex-shrink-0" />
-                  <span className="text-sm font-medium text-foreground">KAEO уровень 5</span>
-                </div>
-                <Link
-                  to="/about#qualifications"
-                  className="text-accent hover:text-accent/80 hover:underline text-sm font-medium transition-colors inline-flex items-center gap-1"
-                >
-                  Смотреть сертификаты <ArrowRight className="h-4 w-4" />
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#routes" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
+                  Найти свою задачу <ArrowRight className="h-4 w-4" />
+                </a>
+                <Link to="/cases" className="inline-flex min-h-12 items-center gap-2 px-3 font-semibold text-foreground hover:text-primary-dark">
+                  Посмотреть кейсы <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <ServicesDetailed />
-          <AdditionalServices />
+        <section id="routes" className="container mx-auto max-w-7xl scroll-mt-24 px-4 py-14 md:py-20">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">С какой задачей пришли?</p>
+          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Четыре маршрута для бизнеса</h2>
+          <p className="mb-9 max-w-3xl text-base text-foreground/70 md:text-lg">Каждый маршрут ведёт к понятному результату и следующему шагу. Архитектура и разработка используются там, где они нужны процессу.</p>
+          <div className="grid gap-5 md:grid-cols-2">
+            {serviceJourneys.map((journey, index) => {
+              const Icon = journey.icon;
+              const dark = index === 0;
+              return (
+                <article key={journey.id} className={["flex min-w-0 flex-col rounded-[28px] p-6 shadow-card ring-1 ring-foreground/5 md:p-8", dark ? "bg-foreground text-background" : index===3 ? "bg-surface-mint text-foreground" : "bg-card text-foreground"].join(" ")}>
+                  <div className="mb-5 flex items-center justify-between gap-3">
+                    <span className={["text-xs font-semibold uppercase tracking-widest", dark ? "text-accent" : "text-primary-dark"].join(" ")}>{journey.eyebrow}</span>
+                    <Icon className={["h-7 w-7",dark ? "text-accent" : "text-primary-dark"].join(" ")} aria-hidden="true" />
+                  </div>
+                  <h3 className="max-w-lg text-2xl font-bold leading-tight md:text-3xl">{journey.title}</h3>
+                  <p className={["mt-4 flex-1 text-base leading-relaxed",dark ? "text-background/80" : "text-foreground/75"].join(" ")}>{journey.situation}</p>
+                  <div className={["my-6 border-t pt-5",dark ? "border-white/20" : "border-foreground/10"].join(" ")}>
+                    <p className={["mb-2 text-xs font-semibold uppercase tracking-wider",dark ? "text-accent" : "text-primary-dark"].join(" ")}>Что меняется</p>
+                    <p className="text-sm leading-relaxed md:text-base">{journey.whatChanges}</p>
+                  </div>
+                  <Link to={journey.href} className={["inline-flex min-h-12 self-start items-center gap-3 rounded-full px-5 text-sm font-semibold md:text-base",dark ? "bg-accent text-accent-foreground hover:bg-accent/85" : "bg-foreground text-background hover:bg-foreground/85"].join(" ")}>
+                    {journey.action} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
-          {/* ПОПУЛЯРНЫЕ НАПРАВЛЕНИЯ — pillar SEO-страницы */}
-          <section className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
-            <div className="max-w-3xl mb-8">
-              <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-3">
-                Популярные направления
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
-                С чего чаще всего{" "}
-                <span className="font-iriska font-normal italic text-accent">начинают</span>
-              </h2>
+        <section className="bg-foreground py-14 text-background md:py-20">
+          <div className="container mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Наш принцип</p>
+              <h2 className="text-3xl font-bold leading-tight md:text-4xl">Сначала процесс. Затем технология.</h2>
+              <p className="mt-4 leading-relaxed text-background/75">Результат проверяется на фактических данных, а ответственность закрепляется за людьми.</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-              {pillarPages.map((p) => (
-                <Link
-                  key={p.slug}
-                  to={p.url}
-                  className="group rounded-[24px] bg-card ring-1 ring-foreground/5 p-6 md:p-7 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all flex flex-col"
-                >
-                  <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-3">
-                    Направление
-                  </p>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-accent transition-colors mb-3 leading-tight">
-                    {p.cardTitle}
-                  </h3>
-                  <p className="text-sm md:text-base text-foreground/75 leading-snug mb-5 flex-1">
-                    {p.cardDescription}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent">
-                    Подробнее <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
+            <div className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
+              {phases.map(([number,title,detail])=>(
+                <div key={number} className="rounded-2xl border border-background/20 bg-background/5 p-5">
+                  <span className="text-sm font-bold text-accent">{number}</span>
+                  <h3 className="mt-3 text-lg font-bold">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-background/75">{detail}</p>
+                </div>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* КАК ПРОХОДИТ РАБОТА — тёмная плашка с шагами */}
-          <section className="px-4 md:px-6 py-16 md:py-24">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-foreground text-background overflow-hidden shadow-plate-lg ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                <div className="max-w-3xl mb-12">
-                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-5">
-                    Процесс
-                  </p>
-                  <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.05] mb-4">
-                    <span className="text-background">Как</span>{" "}
-                    <span className="font-iriska font-normal italic text-accent">проходит работа</span>
-                  </h2>
-                  <p className="text-base md:text-lg text-background/70 max-w-2xl">
-                    Любой выбранный формат проходит через четыре понятных шага.
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:items-start">
-                {processSteps.map((step, index) => {
+        <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Как организована работа</p>
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">Форматы внутри маршрутов</h2>
+          <p className="mb-8 mt-3 max-w-3xl text-base text-foreground/70">Семь действующих форматов сохраняются. Это способы выполнения конкретной задачи, а не семь равнозначных вариантов первого шага.</p>
+          <div className="grid gap-5 md:grid-cols-2">
+            {groups.map((group)=>(
+              <div key={group.title} className="rounded-[24px] border border-border bg-card p-5 md:p-7">
+                <h3 className="mb-4 text-xl font-bold text-foreground">{group.title}</h3>
+                <div className="divide-y divide-border/80">
+                  {group.slugs.map(slug=>{
+                    const service=services.find(item=>item.slug===slug);
+                    if(!service)return null;
                     return (
-                      <div
-                        key={index}
-                        className={`relative rounded-[24px] bg-background/5 ring-1 ring-background/10 p-6 md:p-7 hover:bg-background/10 transition-colors duration-300 ${index % 2 === 1 ? "lg:translate-y-6" : ""}`}
-                      >
-                        <div className="mb-5">
-                          <span className="font-iriska italic text-5xl md:text-6xl text-accent leading-none">
-                            0{index + 1}
-                          </span>
+                      <Link key={slug} to={service.href} className="group flex items-center justify-between gap-3 py-3.5">
+                        <div className="min-w-0">
+                          <p className="font-medium text-foreground group-hover:text-primary-dark">{service.shortTitle}</p>
+                          <p className="mt-1 text-sm text-muted-foreground">{service.price}</p>
                         </div>
-                        <h3 className="font-bold text-background text-lg md:text-xl mb-2 leading-tight">
-                          {step.title}
-                        </h3>
-                        <p className="text-sm md:text-base text-background/70 leading-relaxed">
-                          {step.text}
-                        </p>
-                      </div>
+                        <ArrowUpRight className="h-5 w-5 shrink-0 text-primary-dark" />
+                      </Link>
                     );
                   })}
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="container mx-auto max-w-7xl px-4 pb-20">
+          <div className="flex flex-col gap-5 rounded-[28px] bg-surface-mint p-7 shadow-card md:flex-row md:items-center md:justify-between md:p-10">
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary-dark">Первый шаг</p>
+              <h2 className="text-2xl font-bold text-foreground md:text-3xl">Опишите одну операцию, которая отнимает время</h2>
+              <p className="mt-3 max-w-2xl text-base text-foreground/75">Разберём исходные сведения и определим ближайшее действие.</p>
             </div>
-          </section>
-
-          <FAQTeaser
-            items={[
-              { question: "С чего начинается работа?", answer: "Работа начинается с выбора подходящего формата. Если задача пока сформулирована не до конца, лучше начать со стратегической встречи или страницы выбора формата." },
-              { question: "Можно заказать одну услугу?", answer: "Да. Каждый формат можно заказать отдельно. При этом часть услуг логично продолжают друг друга: стратегия может перейти в аудит, аудит — во внедрение, внедрение — в сопровождение." },
-              { question: "Сколько длится внедрение?", answer: "Срок зависит от задачи, масштаба компании и готовности процессов. Небольшие внедрения могут занимать несколько недель, более сложные проекты требуют поэтапной работы." },
-              { question: "Что входит в сопровождение?", answer: "В сопровождение входит поддержка внедрённых инструментов, донастройка сценариев, разбор обращений, обновление инструкций, помощь сотрудникам и рекомендации по дальнейшему развитию системы." },
-            ]}
-          />
-
-          {/* ФИНАЛЬНЫЙ CTA — бирюзовая плашка */}
-          <section className="px-4 md:px-6 pb-16 md:pb-24">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent text-white overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5">
-                  Начните с{" "}
-                  <span className="font-iriska font-normal italic text-white">подходящего формата</span>
-                </h2>
-                <p className="text-base md:text-lg text-white/85 mb-10 max-w-2xl mx-auto">
-                  Выберите услугу на этой странице или перейдите на страницу выбора формата, чтобы понять, какой вариант подходит компании сейчас.
-                </p>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <PillButton to="/start" variant="light">
-                    Подобрать формат работы
-                  </PillButton>
-                  <Link
-                    to="/pricing"
-                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/85 hover:text-white transition-colors"
-                  >
-                    Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <Partners />
-        </main>
-
-        <Footer />
-      </div>
-    </PageTransition>;
-};
+            <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Разбор одной ручной операции. Источник: /services"})} className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background">
+              Описать задачу <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </PageTransition>
+);
 export default ServicesPage;

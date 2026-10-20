@@ -108,14 +108,11 @@ const Navigation = () => {
     label: "Услуги",
     isScroll: false,
     submenu: [
-      { href: "/services", label: "Все услуги" },
-      { href: "/services/owner-digital-session", label: "Стратегическая встреча" },
-      { href: "/services/digital-development-strategy", label: "Стратегия цифрового развития" },
-      { href: "/services/digital-audit", label: "Глубокий аудит" },
-      { href: "/services/digital-tools-program", label: "Авторская программа" },
-      { href: "/services/implementation-support", label: "Сопровождение внедрения" },
-      { href: "/services/digital-solution-design", label: "Разработка цифрового решения" },
-      { href: "/services/digital-tools-support", label: "Сопровождение инструментов" },
+      { href: "/services", label: "Все направления" },
+      { href: "/services/automation", label: "Убрать ручную работу" },
+      { href: "/services/owner-digital-session", label: "Выбрать первый приоритет" },
+      { href: "/services/digital-tools-program", label: "Обучить команду" },
+      { href: "/services/neurotenderolog", label: "Отбирать закупки" },
     ]
   }, {
     href: "/cases",

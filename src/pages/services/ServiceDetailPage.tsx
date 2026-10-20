@@ -1,272 +1,167 @@
 import { Helmet } from "react-helmet-async";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Package, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
-import FAQTeaser from "@/components/FAQTeaser";
 import { getServiceBySlug } from "@/data/services";
+import { journeyForService, serviceAcceptance } from "@/data/serviceJourneys";
+import { setContactIntent } from "@/lib/contactIntent";
 
-const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "Подходит, если": CheckCircle2,
-  "Что входит": Package,
-  "Результат": TrendingUp,
+const seo: Record<string,{title:string;h1:string;description:string}> = {
+  "owner-digital-session": { title:"Стратегическая встреча для собственника за 17 000 ₽",h1:"Выберите первый приоритет за одну стратегическую встречу",description:"Личный разбор текущей ситуации с Александрой. Главное ограничение, первый шаг, ответственность и письменные выводы на одной странице. 17 000 ₽." },
+  "digital-development-strategy": { title:"Стратегия цифрового развития бизнеса на 90 дней",h1:"План цифровых изменений на 90 дней",description:"Анализ нескольких процессов, интервью и порядок действий на 90 дней. Стратегия цифрового развития бизнеса за 78 000 ₽." },
+  "digital-audit": { title:"Глубокий аудит процессов перед цифровизацией",h1:"Аудит процессов и данных перед внедрением",description:"Карта процессов, потери ручной работы, данные, риски, бюджетные ориентиры и дорожная карта. Аудит от 116 000 ₽." },
+  "digital-solution-design": { title:"Проектирование и разработка цифрового решения",h1:"Рабочее цифровое решение для одной задачи бизнеса",description:"Проектирование, интеграции, тестирование, запуск и передача решения. Разработка под процесс от 260 000 ₽." },
+  "implementation-support": { title:"Управление и сопровождение цифрового внедрения",h1:"Доведём цифровое внедрение до рабочего результата",description:"Ответственные, этапы, подрядчики, сроки, приёмка и обучение сотрудников. Сопровождение внедрения 89 000–170 000 ₽ в месяц." },
+  "digital-tools-support": { title:"Эксплуатация и сопровождение цифровых инструментов",h1:"Работающая система под контролем",description:"Мониторинг обращений, исправления, инструкции и развитие внедрённых решений. Сопровождение 35 000–89 000 ₽ в месяц." },
+  "digital-tools-program": { title:"Обучение команды цифровым инструментам и ИИ",h1:"Обучаем команду на реальных рабочих задачах",description:"Практическая корпоративная программа: документы, таблицы, тексты, источники, правила использования ИИ. 68 000–152 000 ₽." },
 };
-
-// SEO overrides per service slug (Title, Description, H1)
-const serviceSeo: Record<string, { title: string; description: string; h1: string }> = {
-  "owner-digital-session": {
-    title: "Стратегическая встреча по цифровизации бизнеса",
-    description: "Рабочая встреча для собственника: находим ручные процессы, точки потерь и первый шаг цифровизации с понятным планом действий.",
-    h1: "Стратегическая встреча",
-  },
-  "digital-development-strategy": {
-    title: "Стратегия цифрового развития компании",
-    description: "Помогаю собрать стратегию цифрового развития: приоритеты, процессы, данные, инструменты, бюджет и дорожную карту внедрения.",
-    h1: "Стратегия цифрового развития",
-  },
-  "digital-audit": {
-    title: "Глубокий аудит бизнес-процессов",
-    description: "Глубокий аудит помогает найти ручную работу, потери времени, слабые места в процессах и задачи для автоматизации в первую очередь.",
-    h1: "Глубокий аудит бизнес-процессов",
-  },
-  "digital-tools-program": {
-    title: "Авторская программа по цифровым инструментам для команды",
-    description: "Практическая программа для сотрудников: применяем ИИ и цифровые инструменты в документах, отчётах, таблицах и ежедневных задачах.",
-    h1: "Авторская программа",
-  },
-  "implementation-support": {
-    title: "Сопровождение внедрения цифровых решений",
-    description: "Помогаю встроить цифровое решение в работу команды: процессы, ответственные, инструкции, контроль и доработки после запуска.",
-    h1: "Сопровождение внедрения",
-  },
-  "digital-solution-design": {
-    title: "Разработка цифровых решений для бизнеса",
-    description: "Создаём цифровые решения под конкретные процессы: заявки, документы, отчёты, базы знаний, голосовые сценарии и интеграции.",
-    h1: "Разработка цифрового решения",
-  },
-  "digital-tools-support": {
-    title: "Сопровождение цифровых инструментов и ИИ-систем",
-    description: "Поддерживаем запущенные цифровые инструменты: стабильность, исправление ошибок, доработка сценариев и помощь команде.",
-    h1: "Сопровождение инструментов",
-  },
-};
+const fixed = (price:string)=> !/(от|–|-|\/мес)/.test(price);
 
 const ServiceDetailPage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
-
   if (!service) return <Navigate to="/services" replace />;
 
-  const forWhom = service.sections.find((s) => s.heading === "Подходит, если");
-  const includes = service.sections.find((s) => s.heading === "Что входит");
-  const result = service.sections.find((s) => s.heading === "Результат");
-  const seo = serviceSeo[service.slug];
-  const pageTitle = seo?.title ?? `${service.title} · НейроРешения`;
-  const pageDescription = seo?.description ?? service.subtitle;
-  const pageH1 = seo?.h1 ?? service.title;
-  const canonicalUrl = `https://aleksamois.ru${service.href}${service.href.endsWith("/") ? "" : "/"}`;
-  // Фиксированная стоимость — только цены без «от» и без диапазона (17 000 ₽ и 78 000 ₽)
-  const isFixedPrice = !/(от|–|-|\/мес)/.test(service.price);
+  const journey = journeyForService(service.slug);
+  const detail = serviceAcceptance[service.slug];
+  const meta = seo[service.slug];
+  const includes = service.sections.find(item=>item.heading==="Что входит");
+  const forWhom = service.sections.find(item=>item.heading==="Подходит, если");
+  const url = "https://aleksamois.ru" + service.href + "/";
+  const openInquiry = () => setContactIntent({
+    kind: service.slug === "owner-digital-session" ? "meeting" : "implementation",
+    process: "Услуга: " + service.title + ". Маршрут: " + journey.title + ". Источник: " + service.href,
+  });
 
   return (
     <PageTransition>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content={canonicalUrl} />
+        <title>{meta.title} | НейроРешения</title>
+        <meta name="description" content={meta.description} />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
       </Helmet>
-
       <div className="min-h-screen bg-background">
-        <PageBreadcrumbs currentPage={service.shortTitle} />
-
+        <PageBreadcrumbs currentPage={service.shortTitle} parentPages={[{label:"Услуги",href:"/services"},{label:journey.title,href:journey.href}]} />
         <main>
-          {/* HERO */}
-          <section className="pt-8 md:pt-12 px-4 md:px-6">
+          <section className="px-4 pt-8 md:px-6 md:pt-12">
             <div className="container mx-auto max-w-7xl">
-              <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-sand overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-                <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
-                  <div className="md:col-span-8">
-                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
-                      Услуга · {service.number}
-                    </p>
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
-                      {pageH1}
-                    </h1>
-                    <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl leading-snug">
-                      {service.subtitle}
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <Link
-                        to="/start"
-                        className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-foreground text-background hover:bg-foreground/90"
-                      >
-                        <span>Подобрать формат работы</span>
-                        <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-accent text-accent-foreground group-hover:translate-x-0.5 transition-transform">
-                          <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-                        </span>
-                      </Link>
-                      <Link
-                        to="/pricing"
-                        className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-foreground/80 hover:text-foreground transition-colors"
-                      >
-                        Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
-                    </div>
+              <div className="grid items-center gap-5 overflow-hidden rounded-[30px] bg-surface-sand p-7 shadow-plate md:grid-cols-12 md:rounded-[40px] md:p-12">
+                <div className="min-w-0 md:col-span-8">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">{journey.eyebrow} · Формат работы</p>
+                  <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">{meta.h1}</h1>
+                  <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-lg">{service.subtitle}</p>
+                  <div className="mt-7 flex flex-wrap items-center gap-4">
+                    <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
+                      {detail.cta} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <Link to={journey.href} className="inline-flex min-h-12 items-center gap-2 font-medium text-primary-dark hover:underline">
+                      <ArrowLeft className="h-4 w-4" /> Весь маршрут
+                    </Link>
                   </div>
-                  <div className="md:col-span-4 flex justify-center md:justify-end">
-                    <img
-                      src={service.sketch}
-                      alt=""
-                      width={512}
-                      height={512}
-                      className="w-48 md:w-64 lg:w-80 h-auto object-contain"
-                    />
-                  </div>
+                </div>
+                <div className="flex justify-center md:col-span-4 md:justify-end">
+                  <img src={service.sketch} alt="" width={480} height={480} className="h-auto w-44 object-contain md:w-64" loading="lazy"/>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Подходит, если */}
+          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+            <div className="grid gap-6 md:grid-cols-12">
+              <div className="md:col-span-4">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Конкретная задача</p>
+                <h2 className="text-3xl font-bold text-foreground">Зачем нужен этот этап</h2>
+              </div>
+              <div className="grid gap-4 md:col-span-8">
+                <div className="rounded-[24px] bg-card p-6 shadow-card">
+                  <h3 className="text-lg font-bold text-foreground">Рабочий результат</h3>
+                  <p className="mt-3 text-base leading-relaxed text-foreground/75">{detail.task}</p>
+                </div>
+                <div className="rounded-[24px] bg-surface-mint p-6">
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-foreground"><CheckCircle2 className="h-5 w-5 text-primary-dark"/> Как подтверждаем выполнение</h3>
+                  <p className="mt-3 text-base leading-relaxed text-foreground/75">{detail.proof}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {forWhom?.list && (
-            <section className="container mx-auto max-w-7xl px-4 py-16 md:py-20">
-              <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-                <div className="md:col-span-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <CheckCircle2 className="w-6 h-6 text-accent" />
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                      Подходит, если
-                    </h2>
-                  </div>
-                </div>
-                <div className="md:col-span-8">
-                  <ul className="space-y-3">
-                    {forWhom.list.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-base md:text-lg text-foreground/85">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-3 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <section className="container mx-auto max-w-7xl px-4 pb-14 md:pb-20">
+              <div className="grid gap-8 md:grid-cols-12">
+                <h2 className="text-2xl font-bold text-foreground md:col-span-4 md:text-3xl">Когда этот формат подходит</h2>
+                <ul className="grid gap-3 md:col-span-8">
+                  {forWhom.list.map((item,i)=>(
+                    <li key={i} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-base leading-relaxed text-foreground/80">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary-dark" aria-hidden="true"/><span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </section>
           )}
 
-          {/* Что входит */}
           {includes?.list && (
-            <section className="px-4 md:px-6 pb-16 md:pb-20">
-              <div className="container mx-auto max-w-7xl">
-                <div className="rounded-[32px] md:rounded-[40px] bg-card shadow-card ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
-                  <div className="flex items-center gap-2 mb-6">
-                    <Package className="w-6 h-6 text-accent" />
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                      Что входит
-                    </h2>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {includes.list.map((item, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 rounded-2xl bg-background p-5 ring-1 ring-foreground/5"
-                      >
-                        <span className="font-iriska italic text-2xl text-accent leading-none w-8 flex-shrink-0">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="text-base text-foreground/85">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+            <section className="bg-foreground py-14 text-background md:py-20">
+              <div className="container mx-auto max-w-7xl px-4">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Состав работ</p>
+                <h2 className="mb-8 text-3xl font-bold md:text-4xl">Что входит в формат</h2>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {includes.list.map((item,i)=>(
+                    <div key={i} className="rounded-[20px] border border-background/20 bg-background/5 p-5">
+                      <span className="text-sm font-bold text-accent">{String(i+1).padStart(2,"0")}</span>
+                      <p className="mt-3 leading-relaxed text-background/90">{item}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
           )}
 
-          {/* Результат */}
-          {result && (
-            <section className="container mx-auto max-w-7xl px-4 pb-16 md:pb-20">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-16">
-                <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-6 h-6 text-white" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">Результат</h2>
-                </div>
-                <p className="text-xl md:text-2xl text-white leading-snug max-w-3xl">
-                  {result.content}
+          <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-[24px] border border-border p-6 md:p-8">
+                <ShieldCheck className="mb-4 h-7 w-7 text-primary-dark" aria-hidden="true"/>
+                <h2 className="text-xl font-bold text-foreground">Люди и ответственность</h2>
+                <p className="mt-3 leading-relaxed text-foreground/75">{detail.people}</p>
+              </div>
+              <div className="rounded-[24px] border border-border p-6 md:p-8">
+                <ArrowRight className="mb-4 h-7 w-7 text-primary-dark" aria-hidden="true"/>
+                <h2 className="text-xl font-bold text-foreground">Следующий шаг</h2>
+                <p className="mt-3 leading-relaxed text-foreground/75">{detail.next}</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto max-w-7xl px-4 pb-20">
+            <div className="flex flex-col gap-6 rounded-[30px] bg-foreground p-7 text-background md:flex-row md:items-center md:justify-between md:p-10">
+              <div className="max-w-2xl">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Стоимость формата</p>
+                <p className="text-3xl font-bold md:text-4xl">{service.price}</p>
+                <p className="mt-3 text-sm leading-relaxed text-background/75">
+                  {fixed(service.price) ? "Фиксированная цена. Состав и результат услуги согласуются до начала." : "Объём, этапы, срок и окончательная стоимость согласуются по задаче."}
                 </p>
               </div>
-            </section>
-          )}
-
-          {/* Стоимость + CTA */}
-          <section className="px-4 md:px-6 pb-16 md:pb-24">
-            <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-foreground text-background shadow-plate-lg ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20">
-                <div className="grid md:grid-cols-12 gap-8 items-center">
-                  <div className="md:col-span-7">
-                    <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-                      Стоимость
-                    </p>
-                    <p className="text-3xl md:text-5xl font-bold text-background leading-none mb-4">
-                      {service.price}
-                    </p>
-                    {!isFixedPrice ? (
-                      <p className="text-base md:text-lg text-background/70 max-w-xl">
-                        Финальная стоимость зависит от масштаба компании, количества процессов и глубины задачи. Уточняется до старта.
-                      </p>
-                    ) : (
-                      <p className="text-base md:text-lg text-background/70 max-w-xl">
-                        Фиксированная стоимость.
-                      </p>
-                    )}
-                  </div>
-                  <div className="md:col-span-5 flex flex-col gap-3 md:items-end">
-                    <Link
-                      to="/start"
-                      className="group inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-semibold text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 bg-background text-foreground hover:bg-background/90"
-                    >
-                      <span>Подобрать формат работы</span>
-                      <span className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-accent text-accent-foreground group-hover:translate-x-0.5 transition-transform">
-                        <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
-                      </span>
-                    </Link>
-                    <Link
-                      to="/pricing"
-                      className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-background/80 hover:text-background transition-colors"
-                    >
-                      Посмотреть цены <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </div>
-                </div>
+              <div className="flex shrink-0 flex-col gap-3">
+                <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-accent-foreground">
+                  {detail.cta} <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link to="/pricing" className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-background/85 hover:text-background">
+                  Все цены <ArrowUpRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </section>
-
-          <FAQTeaser
-            items={[
-              { question: "С чего начинается работа?", answer: "Работа начинается с короткого разбора задачи: уточняем цели, ограничения, ожидания и подходящий формат. Дальше согласуем этапы и стартуем." },
-              { question: "Можно ли заказать только эту услугу?", answer: "Да. Услуга работает как отдельный формат. При необходимости логично продолжается следующим: стратегия → аудит → внедрение → сопровождение." },
-              isFixedPrice
-                ? { question: "Как уточняется стоимость?", answer: "Стоимость фиксированная и указана на странице услуги." }
-                : { question: "Как уточняется стоимость?", answer: "После первого разбора фиксируется объём задачи и итоговая стоимость. Для внедрения, разработки и сопровождения возможна поэтапная оплата." },
-              { question: "Что происходит после завершения?", answer: "После завершения можно перейти в сопровождение: развивать инструмент, добавлять сценарии, поддерживать сотрудников и адаптировать систему под новые задачи." },
-            ]}
-          />
-
         </main>
-
         <Footer />
       </div>
     </PageTransition>
   );
 };
-
 export default ServiceDetailPage;

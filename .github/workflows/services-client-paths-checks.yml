@@ -1,0 +1,57 @@
+name: Service journey rebuild checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/pages/ServicesPage.tsx'
+      - 'src/pages/services/**'
+      - 'src/data/serviceJourneys.ts'
+      - 'src/components/Navigation.tsx'
+      - 'src/App.tsx'
+      - 'tests/services-journeys.browser.mjs'
+      - '.github/workflows/services-client-paths-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  service-journeys:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install
+        run: npm install --no-audit --no-fund
+      - name: Build
+        run: npm run build
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint
+        run: npx eslint src/pages/ServicesPage.tsx src/pages/services/AutomationHubPage.tsx src/pages/services/TenderServicePage.tsx src/pages/services/ServiceDetailPage.tsx src/pages/services/PillarPage.tsx src/data/serviceJourneys.ts src/components/Navigation.tsx src/App.tsx
+      - name: Install browser test runner
+        run: npm install --no-save --package-lock=false playwright@1.56.1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Launch site
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/services-vite.log 2>&1 &
+          for i in $(seq 1 45); do
+            if curl --silent --fail http://127.0.0.1:8080/services > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/services-vite.log
+          exit 1
+      - name: Browser smoke tests
+        run: node tests/services-journeys.browser.mjs
+      - name: Archive screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: services-rebuild
+          path: services-mobile.png
+          if-no-files-found: ignore

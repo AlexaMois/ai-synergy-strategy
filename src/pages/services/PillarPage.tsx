@@ -8,6 +8,7 @@ import FAQTeaser from "@/components/FAQTeaser";
 import RelatedBlogPosts from "@/components/RelatedBlogPosts";
 import PillButton from "@/components/PillButton";
 import { getPillarBySlug } from "@/data/pillarPages";
+import { serviceJourneyById } from "@/data/serviceJourneys";
 import { trackCtaPillar, trackPillarToService } from "@/utils/analytics";
 
 const PillarPage = () => {
@@ -17,6 +18,17 @@ const PillarPage = () => {
 
   if (!data) return <Navigate to="/services" replace />;
 
+  const route = serviceJourneyById(slug === "cifrovizaciya-biznesa" ? "priority" : "operation");
+  const routeTitle = slug === "cifrovizaciya-biznesa"
+    ? "Цифровизация бизнеса: приоритеты, процессы и управление"
+    : slug === "vnedrenie-ii-v-biznes"
+      ? "Внедрение ИИ в рабочий бизнес-процесс с контролем результата"
+      : "Автоматизация бизнес-процессов: ручные операции и измеримый результат";
+  const routeLead = slug === "cifrovizaciya-biznesa"
+    ? "Сначала выясняем, где компания теряет время и управляемость. Затем выбираем главное ограничение, ответственного и последовательность изменений."
+    : slug === "vnedrenie-ii-v-biznes"
+      ? "Используем ИИ для анализа документов, обращений и контекста там, где он приносит измеримую пользу. Проверяем качество и сохраняем решения человека."
+      : "Находим повторяющиеся ручные действия, связываем существующие программы и проверяем экономику одной операции на реальных данных.";
   const canonicalUrl = `https://aleksamois.ru${data.url}`;
 
   return (
@@ -63,13 +75,13 @@ const PillarPage = () => {
               <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
                 <div className="px-6 md:px-12 lg:px-16 py-12 md:py-20">
                   <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
-                    {data.hero.eyebrow}
+                    {route.eyebrow} · Подробный разбор
                   </p>
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6 max-w-4xl">
-                    {data.seo.h1}
+                    {routeTitle}
                   </h1>
                   <p className="text-lg md:text-xl text-foreground/75 mb-10 max-w-3xl leading-snug">
-                    {data.hero.subtitle}
+                    {routeLead}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-10 max-w-4xl">
@@ -90,19 +102,35 @@ const PillarPage = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <PillButton to={data.hero.primaryCta.to} variant="dark" onClick={trackCtaPillar}>
-                      {data.hero.primaryCta.label}
+                    <PillButton to={route.href} variant="dark" onClick={trackCtaPillar}>
+                      {route.action}
                     </PillButton>
                     <Link
                       to={data.hero.secondaryCta.to}
                       onClick={trackCtaPillar}
                       className="inline-flex items-center text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-semibold text-base md:text-lg px-2 py-2"
                     >
-                      {data.hero.secondaryCta.label}
+                      Все направления
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto max-w-7xl px-4 py-10 md:py-14">
+            <div className="grid gap-5 rounded-[24px] bg-card p-6 shadow-card md:grid-cols-12 md:items-center md:p-9">
+              <div className="md:col-span-7">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary-dark">Как это превращается в работу</p>
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">{route.title}</h2>
+                <p className="mt-3 text-base leading-relaxed text-foreground/75">{route.whatChanges}</p>
+              </div>
+              <div className="md:col-span-5">
+                <p className="mb-3 text-sm text-foreground/65">Что можно измерить: {route.evidence}</p>
+                <Link to={route.href} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-5 font-semibold text-background hover:bg-foreground/85">
+                  {route.action} <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </section>
@@ -112,7 +140,7 @@ const PillarPage = () => {
             <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
               <div className="max-w-3xl mb-10 md:mb-12">
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
-                  Эффект автоматизации
+                  Показатели опубликованных кейсов
                 </p>
                 <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
                   Что меняется{" "}
