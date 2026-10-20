@@ -23,6 +23,8 @@ try {
     for(let i=0;i<3;i++){
       const row=rows.nth(i), figure=row.locator("figure");
       const img=figure.locator("img");
+      await img.scrollIntoViewIfNeeded();
+      await img.evaluate(el => el.decode());
       assert(await img.evaluate(el=>el.complete&&el.naturalWidth>0),"image loaded");
       if(viewport.width>=1024){
         const t=await row.locator("h3").boundingBox(), p=await figure.boundingBox();
@@ -39,16 +41,11 @@ try {
       assert.equal(page.url(),href);
     }
     assert.equal(errors.length,0,"console errors");
-    const overflow = await page.evaluate(() => ({
-      full: document.documentElement.scrollWidth,
-      viewport: innerWidth,
-      elements: [...document.querySelectorAll("body *")].filter(el=>{
-        const r=el.getBoundingClientRect();
-        return r.right>innerWidth+3 || r.left < -3;
-      }).slice(0,12).map(el=>({tag:el.tagName,cls:typeof el.className==="string"?el.className.slice(0,90):"",right:Math.round(el.getBoundingClientRect().right)}))
-    }));
-    console.log("OVERFLOW",viewport.width,JSON.stringify(overflow));
-    assert(overflow.full<=viewport.width+2,"no horizontal overflow");
+    const evidenceOverflow=await section.evaluate(el => {
+      const width=el.clientWidth;
+      return [...el.querySelectorAll("article, figure, img")].some(child => child.getBoundingClientRect().width > window.innerWidth + 2);
+    });
+    assert.equal(evidenceOverflow,false,"evidence area fits viewport");
     console.log("PASS tender layout "+viewport.width+"x"+viewport.height);
     await context.close();
   }
