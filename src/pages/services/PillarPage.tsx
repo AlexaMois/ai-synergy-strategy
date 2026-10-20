@@ -252,7 +252,7 @@ const PillarPage = () => {
                       {s.label}
                     </h3>
                     {s.description && (
-                      <p className={`text-base ${p.muted} leading-relaxed`>
+                      <p className={`text-base ${p.muted} leading-relaxed`}>
                         {s.description}
                       </p>
                     )}
