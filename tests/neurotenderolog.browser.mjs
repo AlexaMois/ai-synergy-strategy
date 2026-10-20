@@ -22,11 +22,14 @@ async function runViewport(width, height, testZoom = false) {
     sessionStorage.setItem("self-start-popup-shown", "1");
   });
   const page = await context.newPage();
+  // Third-party RUM endpoint rejects localhost CORS; isolate UI tests from this external service.
+  await page.route("https://cloudflareinsights.com/**", route => route.fulfill({ status: 204, headers: { "access-control-allow-origin": "*" }, body: "" }));
   const errors = [];
   page.on("pageerror", error => errors.push(String(error)));
   page.on("console", msg => { if (msg.type() === "error") errors.push(msg.text()); });
   try {
     await page.goto(BASE + "/cases/neurotenderolog");
+    if (testZoom) await page.evaluate(() => { document.documentElement.style.fontSize = "200%"; });
     await page.getByRole("heading", { name: "НейроТендеролог", exact: true }).waitFor({ state: "visible" });
     await page.getByRole("heading", { name: "Три рабочих сценария" }).scrollIntoViewIfNeeded();
     await page.evaluate(() => document.fonts.ready);
