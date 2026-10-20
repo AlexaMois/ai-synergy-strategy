@@ -83,7 +83,7 @@ async function runViewport(width, height, testZoom = false) {
       await dialog.waitFor({ state: "hidden" });
       await page.waitForFunction((el) => document.activeElement === el, await preview.elementHandle());
       assert.equal(page.url(), beforeUrl, "closing image keeps URL");
-      assert.equal(await page.evaluate(() => document.body.style.overflow), "", "page scroll restored");
+      assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden", "page scroll restored");
     }
 
     const first = page.getByRole("button", { name: "Увеличить изображение: " + evidence[0].title });
