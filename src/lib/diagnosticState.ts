@@ -21,7 +21,7 @@ const writeSession = (key: string, value: string) => {
   notify();
 };
 
-let fallbackUntil: Record<string, number> = {};
+const fallbackUntil: Record<string, number> = {};
 const readUntil = (key: string): number => {
   try {
     const timestamp = Number(localStorage.getItem(key));
