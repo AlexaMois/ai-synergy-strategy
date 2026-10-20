@@ -346,7 +346,7 @@ const NeuroTenderologContent = () => {
         aria-label={activeScreenshot?.title ?? "Просмотр изображения"}
         onClose={() => { closeScreenshot(); screenshotTriggerRef.current?.focus(); }}
         onClick={(event) => { if (event.target === event.currentTarget) closeScreenshot(); }}
-        className="fixed inset-0 m-auto w-[calc(100vw-24px)] max-w-[1050px] max-h-[calc(100dvh-24px)] overflow-hidden rounded-[24px] border border-white/15 bg-[#15191d] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm md:rounded-[30px]"
+        className="fixed inset-0 m-auto w-[calc(100vw-24px)] max-w-[1050px] max-h-[90dvh] overflow-hidden rounded-[24px] border border-white/15 bg-[#15191d] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm md:rounded-[30px]"
       >
         {activeScreenshot && (
           <div className="flex max-h-[88dvh] min-h-0 flex-col md:h-[min(88dvh,900px)]">
