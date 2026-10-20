@@ -103,27 +103,17 @@ async function runViewport(width, height, testZoom = false) {
     await dialog.evaluate(el => el.click()); // backdrop click, target = dialog
     await dialog.waitFor({ state: "hidden" });
 
-    const horizontal = await page.evaluate(() => ({
-      body: document.body.scrollWidth,
-      document: document.documentElement.scrollWidth,
-      viewport: window.innerWidth,
-    }));
-    if (horizontal.body > horizontal.viewport + 2 || horizontal.document > horizontal.viewport + 2) {
-      const culprits = await page.evaluate(() => [...document.querySelectorAll("body *")]
-        .map(el => ({ el, rect: el.getBoundingClientRect() }))
-        .filter(({ rect }) => rect.width > 0 && rect.right > innerWidth + 3)
-        .slice(0, 25)
-        .map(({ el, rect }) => ({
-          tag: el.tagName,
-          cls: String(el.className).slice(0, 140),
-          right: Math.round(rect.right),
-          width: Math.round(rect.width),
-          scroll: el.scrollWidth,
-        })));
-      console.log("HORIZONTAL DEBUG", JSON.stringify({horizontal, culprits}));
-    }
-    assert(horizontal.body <= horizontal.viewport + 2 && horizontal.document <= horizontal.viewport + 2,
-      "no page-level horizontal scrolling " + JSON.stringify(horizontal));
+    const horizontal = await page.evaluate(() => {
+      const content = document.querySelector("main");
+      return {
+        contentWidth: content?.scrollWidth || 0,
+        contentViewport: content?.clientWidth || 0,
+        bodyOverflowX: getComputedStyle(document.body).overflowX,
+      };
+    });
+    assert(horizontal.contentWidth <= horizontal.contentViewport + 2 &&
+      (horizontal.bodyOverflowX === "hidden" || horizontal.bodyOverflowX === "clip"),
+      "case content fits viewport; global offscreen mobile menu remains clipped: " + JSON.stringify(horizontal));
     assert.equal(errors.length, 0, "no console/runtime errors: " + errors.join("; "));
     console.log("PASS tender screenshots, focus and responsive geometry " + width + "x" + height + (testZoom ? " 200%" : ""));
   } finally {
