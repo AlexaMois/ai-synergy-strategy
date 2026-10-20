@@ -1,4 +1,4 @@
-export type ContactIntent = { kind: "implementation" | "meeting"; assessment?: string; process?: string };
+export type ContactIntent = { kind: "implementation" | "meeting"; assessment?: string; process?: string; source?: "exit_popup" };
 const KEY = "aleksamois.contactIntent";
 export const INTENT_EVENT = "aleksamois:contact-intent";
 export function readContactIntent(): ContactIntent | null {
@@ -26,6 +26,7 @@ export function intentTask(intent: ContactIntent | null) {
   if (!intent) return "";
   return [
     intent.kind === "meeting" ? "Запрос на услугу: Личный разбор с Александрой — 17 000 ₽ (owner-digital-session)." : "Запрос на внедрение цифрового решения.",
+    intent.source === "exit_popup" ? "Источник обращения: всплывающее приглашение к самостоятельной проверке (exit_popup)." : "",
     intent.process ? `Выбранный процесс: ${intent.process}` : "",
     intent.assessment ? `Результат бесплатной проверки:\n${intent.assessment}` : "",
   ].filter(Boolean).join("\n\n");
