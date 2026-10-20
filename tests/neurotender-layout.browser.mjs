@@ -39,7 +39,16 @@ try {
       assert.equal(page.url(),href);
     }
     assert.equal(errors.length,0,"console errors");
-    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),"no horizontal overflow");
+    const overflow = await page.evaluate(() => ({
+      full: document.documentElement.scrollWidth,
+      viewport: innerWidth,
+      elements: [...document.querySelectorAll("body *")].filter(el=>{
+        const r=el.getBoundingClientRect();
+        return r.right>innerWidth+3 || r.left < -3;
+      }).slice(0,12).map(el=>({tag:el.tagName,cls:typeof el.className==="string"?el.className.slice(0,90):"",right:Math.round(el.getBoundingClientRect().right)}))
+    }));
+    console.log("OVERFLOW",viewport.width,JSON.stringify(overflow));
+    assert(overflow.full<=viewport.width+2,"no horizontal overflow");
     console.log("PASS tender layout "+viewport.width+"x"+viewport.height);
     await context.close();
   }
