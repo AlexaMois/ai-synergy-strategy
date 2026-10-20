@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { X, ZoomIn, ZoomOut } from "lucide-react";
 import PillButton from "@/components/PillButton";
 import { caseForPath } from "@/data/caseStudies";
@@ -43,30 +43,26 @@ type Screenshot = (typeof screenshots)[keyof typeof screenshots];
 const EvidenceImage = ({
   image,
   onOpen,
-  previewHeight = "h-[295px] md:h-[340px]",
 }: {
   image: Screenshot;
-  onOpen: () => void;
-  previewHeight?: string;
+  onOpen: (event: MouseEvent<HTMLButtonElement>) => void;
 }) => (
   <button
     type="button"
     onClick={onOpen}
     aria-label={"Увеличить изображение: " + image.title}
     title="Увеличить изображение"
-    className="group relative block w-full cursor-zoom-in rounded-[20px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-dark"
+    className="group relative inline-flex max-w-full cursor-zoom-in rounded-[14px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-dark"
   >
-    <div className={"flex w-full items-center justify-center overflow-hidden rounded-[20px] border border-foreground/10 bg-white/95 px-3 py-3 transition-shadow group-hover:shadow-card " + previewHeight}>
-      <img
-        src={image.src}
-        width={image.width}
-        height={image.height}
-        alt={image.alt}
-        loading="lazy"
-        className="h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.035]"
-      />
-    </div>
-    <span aria-hidden="true" className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-foreground/90 text-background shadow-card transition-transform group-hover:scale-110">
+    <img
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      alt={image.alt}
+      loading="lazy"
+      className="block h-auto max-h-[540px] w-auto max-w-full rounded-[12px] object-contain shadow-[0_20px_44px_-24px_rgba(16,25,32,0.4)] ring-1 ring-foreground/10 transition-shadow duration-200 group-hover:shadow-[0_22px_48px_-20px_rgba(16,25,32,0.48)] sm:max-h-[600px]"
+    />
+    <span aria-hidden="true" className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full bg-foreground/90 text-background shadow-card transition-transform group-hover:scale-105">
       <ZoomIn className="h-5 w-5" />
     </span>
   </button>
@@ -95,8 +91,10 @@ const NeuroTenderologContent = () => {
   const [activeScreenshot, setActiveScreenshot] = useState<Screenshot | null>(null);
   const [zoomed, setZoomed] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const screenshotTriggerRef = useRef<HTMLButtonElement | null>(null);
 
-  const openScreenshot = (image: Screenshot) => {
+  const openScreenshot = (image: Screenshot, event: MouseEvent<HTMLButtonElement>) => {
+    screenshotTriggerRef.current = event.currentTarget;
     setZoomed(false);
     setActiveScreenshot(image);
   };
@@ -194,7 +192,7 @@ const NeuroTenderologContent = () => {
         <ol className="grid grid-cols-1 gap-3 border-t border-background/20 pt-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {stages.map((stage, index) => (
             <li key={stage.title} className="flex min-w-0 items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.07] p-4 lg:flex-col lg:gap-0 lg:p-5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-accent font-bold tabular-nums text-2xl text-foreground lg:mb-5">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] bg-accent text-[28px] font-bold tabular-nums text-foreground lg:mb-5 lg:h-16 lg:w-16 lg:text-[34px]">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <div className="min-w-0">
@@ -209,78 +207,95 @@ const NeuroTenderologContent = () => {
 
     <section aria-labelledby="tender-evidence" className="bg-surface-mint/60 py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-8 max-w-3xl md:mb-10">
+        <div className="mb-4 max-w-3xl md:mb-7">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
             Реальные материалы
           </p>
           <h2 id="tender-evidence" className="!text-3xl !leading-tight !text-foreground md:!text-5xl">
             Три рабочих сценария
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-foreground/70">
+          <p className="mt-4 text-base leading-relaxed text-foreground/75">
             Скриншоты показывают результат отбора за конкретные дни. Нажмите на изображение для увеличения.
           </p>
         </div>
 
-        <article className="grid items-center gap-7 rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-8 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 01 · Карточка закупки
-            </p>
-            <h3 className="text-2xl font-bold leading-tight text-foreground md:text-3xl">
-              Специалист получает данные для решения
-            </h3>
-            <p className="mt-4 max-w-lg leading-relaxed text-foreground/75">
-              Название закупки, цена, ссылки и краткий ИИ-разбор собраны в одном сообщении.
-              Специалист оценивает предложение и выбирает дальнейшее действие.
-            </p>
-          </div>
-          <figure className="min-w-0 lg:col-span-7">
-            <EvidenceImage image={screenshots.card} onOpen={() => openScreenshot(screenshots.card)} previewHeight="h-[300px] md:h-[385px]" />
-          </figure>
-        </article>
-
-        <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          <article className="flex min-w-0 flex-col rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-7">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 02 · 07.10.2026
-            </p>
-            <h3 className="text-xl font-bold leading-tight text-foreground md:text-2xl">
-              День с подходящей закупкой
-            </h3>
-            <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">1</span><span className="text-sm text-foreground/70">подходящая</span></div>
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">4</span><span className="text-sm text-foreground/70">требуют решения</span></div>
+        <div className="divide-y divide-foreground/15">
+          <article className="grid min-w-0 items-center gap-7 py-9 md:gap-10 md:py-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-14">
+            <div className="min-w-0">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 01 · Карточка закупки
+              </p>
+              <h3 className="max-w-lg !text-2xl !font-bold !leading-[1.2] !text-foreground md:!text-3xl">
+                Специалист получает данные для решения
+              </h3>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-foreground/80 md:text-[17px]">
+                Название закупки, цена, ссылки и краткий ИИ-разбор собраны в одном сообщении.
+                Специалист оценивает предложение и выбирает дальнейшее действие.
+              </p>
             </div>
-            <p className="mb-5 leading-relaxed text-foreground/75">
-              По направлениям «ИИ Разработка» и «ИИ Консалтинг» система обработала 15 и 146
-              новых закупок. Подходящие и спорные варианты переданы специалисту.
-            </p>
-            <figure className="mt-auto">
-              <EvidenceImage image={screenshots.match} onOpen={() => openScreenshot(screenshots.match)} />
+            <figure className="flex min-w-0 justify-center lg:justify-end">
+              <EvidenceImage image={screenshots.card} onOpen={(event) => openScreenshot(screenshots.card, event)} />
             </figure>
           </article>
 
-          <article className="flex min-w-0 flex-col rounded-[28px] bg-card p-6 shadow-card ring-1 ring-foreground/5 md:p-7">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
-              Сценарий 03 · 18.10.2026
-            </p>
-            <h3 className="text-xl font-bold leading-tight text-foreground md:text-2xl">
-              День полного отсева
-            </h3>
-            <div className="my-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-foreground/10 py-4">
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">0</span><span className="text-sm text-foreground/70">подходящих</span></div>
-              <div><span className="block text-4xl font-bold tabular-nums text-foreground">193</span><span className="text-sm text-foreground/70">новые закупки</span></div>
+          <article className="grid min-w-0 items-center gap-7 py-9 md:gap-10 md:py-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-14">
+            <div className="min-w-0">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 02 · 07.10.2026
+              </p>
+              <h3 className="max-w-lg !text-2xl !font-bold !leading-[1.2] !text-foreground md:!text-3xl">
+                День с подходящей закупкой
+              </h3>
+              <dl className="mt-5 flex flex-wrap gap-x-9 gap-y-3 border-y border-foreground/15 py-4">
+                <div>
+                  <dd className="text-4xl font-bold tabular-nums text-foreground">1</dd>
+                  <dt className="mt-1 text-sm text-foreground/75">подходящая</dt>
+                </div>
+                <div>
+                  <dd className="text-4xl font-bold tabular-nums text-foreground">4</dd>
+                  <dt className="mt-1 text-sm text-foreground/75">требуют решения</dt>
+                </div>
+              </dl>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-foreground/80 md:text-[17px]">
+                По направлениям «ИИ Разработка» и «ИИ Консалтинг» система обработала 15 и 146
+                новых закупок. Подходящие и спорные варианты переданы специалисту.
+              </p>
             </div>
-            <p className="mb-5 leading-relaxed text-foreground/75">
-              «ИИ Разработка»: 22 закупки. «ИИ Консалтинг»: 171 закупка.
-              Все предложения за день прошли отбор по заданным критериям.
-            </p>
-            <figure className="mt-auto">
-              <EvidenceImage image={screenshots.zero} onOpen={() => openScreenshot(screenshots.zero)} />
+            <figure className="flex min-w-0 justify-center lg:justify-end">
+              <EvidenceImage image={screenshots.match} onOpen={(event) => openScreenshot(screenshots.match, event)} />
+            </figure>
+          </article>
+
+          <article className="grid min-w-0 items-center gap-7 py-9 md:gap-10 md:py-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-14">
+            <div className="min-w-0">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">
+                Сценарий 03 · 18.10.2026
+              </p>
+              <h3 className="max-w-lg !text-2xl !font-bold !leading-[1.2] !text-foreground md:!text-3xl">
+                День полного отсева
+              </h3>
+              <dl className="mt-5 flex flex-wrap gap-x-9 gap-y-3 border-y border-foreground/15 py-4">
+                <div>
+                  <dd className="text-4xl font-bold tabular-nums text-foreground">0</dd>
+                  <dt className="mt-1 text-sm text-foreground/75">подходящих</dt>
+                </div>
+                <div>
+                  <dd className="text-4xl font-bold tabular-nums text-foreground">193</dd>
+                  <dt className="mt-1 text-sm text-foreground/75">новые закупки</dt>
+                </div>
+              </dl>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-foreground/80 md:text-[17px]">
+                «ИИ Разработка»: 22 закупки. «ИИ Консалтинг»: 171 закупка.
+                Все предложения за день прошли отбор по заданным критериям.
+              </p>
+            </div>
+            <figure className="flex min-w-0 justify-center lg:justify-end">
+              <EvidenceImage image={screenshots.zero} onOpen={(event) => openScreenshot(screenshots.zero, event)} />
             </figure>
           </article>
         </div>
-        <p className="mt-6 max-w-4xl text-sm leading-relaxed text-foreground/65">
+
+        <p className="mt-5 max-w-4xl text-sm leading-relaxed text-foreground/70">
           Это примеры отдельных рабочих дней. Показатель до 750 просмотренных закупок в день
           относится к одному направлению. Эффект во времени и деньгах оценивается отдельно
           по данным эксплуатации.
@@ -300,12 +315,12 @@ const NeuroTenderologContent = () => {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 md:col-span-8">
           {outcomes.map((item, index) => (
-            <article key={item.title} className="rounded-[24px] border border-foreground/10 bg-card p-5 shadow-card md:p-6">
-              <span className="mb-5 inline-flex h-12 min-w-12 items-center justify-center rounded-[14px] bg-surface-mint px-3 text-2xl font-bold tabular-nums text-primary-dark">
+            <article key={item.title} className="flex min-h-[230px] flex-col rounded-[24px] border border-foreground/10 bg-card p-6 shadow-card md:min-h-[255px] md:p-7">
+              <span className="mb-5 block text-[38px] font-bold leading-none tabular-nums tracking-tight text-primary-dark md:text-[46px]">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="!text-xl !font-bold !leading-snug !text-foreground xl:!text-2xl">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-foreground/80">{item.detail}</p>
+              <h3 className="!text-[19px] !font-bold !leading-snug !text-foreground md:!text-[21px]">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-foreground/80 md:text-[17px]">{item.detail}</p>
             </article>
           ))}
         </div>
@@ -329,7 +344,7 @@ const NeuroTenderologContent = () => {
       <dialog
         ref={dialogRef}
         aria-label={activeScreenshot?.title ?? "Просмотр изображения"}
-        onClose={closeScreenshot}
+        onClose={() => { closeScreenshot(); screenshotTriggerRef.current?.focus(); }}
         onClick={(event) => { if (event.target === event.currentTarget) closeScreenshot(); }}
         className="fixed inset-0 m-auto w-[calc(100vw-24px)] max-w-[1050px] max-h-[calc(100dvh-24px)] overflow-hidden rounded-[24px] border border-white/15 bg-[#15191d] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm md:rounded-[30px]"
       >
