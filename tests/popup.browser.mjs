@@ -161,6 +161,54 @@ try {
     assert.equal(await page.evaluate(() => sessionStorage.getItem("self-start-popup-shown")), "1");
   });
 
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 768, height: 1024 },
+    { width: 390, height: 844 },
+    { width: 320, height: 568 },
+  ]) {
+    await scenario("popup visual geometry " + viewport.width + "x" + viewport.height, viewport, async (page) => {
+      await page.goto(BASE + "/cases?popup_preview=1");
+      const dialog = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
+      await dialog.waitFor({ state: "visible" });
+      await page.evaluate(() => document.fonts.ready);
+      const result = await dialog.evaluate((node) => {
+        const box = node.getBoundingClientRect();
+        const inner = node.firstElementChild;
+        const header = node.querySelector("h2");
+        const close = node.querySelector("button[aria-label='Закрыть приглашение']");
+        const primary = [...node.querySelectorAll("button")].find((b) => b.textContent?.includes("Проверить процесс"));
+        const secondary = [...node.querySelectorAll("button")].find((b) => b.textContent?.includes("Продолжить просмотр"));
+        const rect = (el) => el?.getBoundingClientRect();
+        const inside = (r) => !!r && r.left >= box.left - 1 && r.right <= box.right + 1 &&
+          r.top >= box.top - 1 && r.bottom <= box.bottom + 1;
+        return {
+          outerOverflow: node.scrollWidth - node.clientWidth,
+          innerOverflow: inner.scrollWidth - inner.clientWidth,
+          titleOverflow: header ? header.scrollWidth - header.clientWidth : 0,
+          insideClose: inside(rect(close)),
+          insidePrimary: inside(rect(primary)),
+          insideSecondary: inside(rect(secondary)),
+          closeSize: { w: rect(close)?.width, h: rect(close)?.height },
+          headingPresent: !!header,
+          bounds: { width: box.width, height: box.height },
+          viewport: { w: window.innerWidth, h: window.innerHeight },
+          verticalScroll: node.scrollHeight > node.clientHeight,
+        };
+      });
+      assert(result.headingPresent, "popup heading present");
+      assert(result.outerOverflow <= 1, "outer horizontal overflow " + JSON.stringify(result));
+      assert(result.innerOverflow <= 1, "inner horizontal overflow " + JSON.stringify(result));
+      assert(result.titleOverflow <= 1, "heading horizontal overflow " + JSON.stringify(result));
+      assert(result.insideClose && result.insidePrimary && result.insideSecondary,
+        "buttons must remain visible " + JSON.stringify(result));
+      assert(result.closeSize.w >= 39 && result.closeSize.h >= 39, "close target");
+      assert(result.bounds.width <= viewport.width + 1 && result.bounds.height <= viewport.height + 1,
+        "popup fits screen");
+      await page.screenshot({ path: "artifacts/popup-polished-" + viewport.width + ".png" });
+    });
+  }
+
     console.log("Browser scenarios passed:", passed);
 } finally {
   await browser.close();
