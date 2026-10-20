@@ -238,7 +238,7 @@ const PillarPage = () => {
                   { bg: "bg-surface-sand", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-lavender", text: "text-foreground", muted: "text-foreground/70" },
                   { bg: "bg-surface-blush", text: "text-foreground", muted: "text-foreground/70" },
-                  { bg: "bg-accent", text: "text-white", muted: "text-white/85" },
+                  { bg: "bg-surface-mint", text: "text-foreground", muted: "text-foreground/80" },
                 ];
                 const p = palettes[i % palettes.length];
                 return (
@@ -252,7 +252,7 @@ const PillarPage = () => {
                       {s.label}
                     </h3>
                     {s.description && (
-                      <p className={`text-sm md:text-base ${p.muted} leading-snug`}>
+                      <p className={`text-base ${p.muted} leading-relaxed`>
                         {s.description}
                       </p>
                     )}
@@ -294,7 +294,7 @@ const PillarPage = () => {
                     {c.label}
                   </h3>
                   {c.description && (
-                    <p className="text-sm md:text-base text-foreground/70 leading-snug">
+                    <p className="text-base text-foreground/80 leading-relaxed">
                       {c.description}
                     </p>
                   )}
@@ -310,11 +310,11 @@ const PillarPage = () => {
           {/* Финальный CTA — бирюзовая плашка */}
           <section className="px-4 md:px-6 pb-16 md:pb-24">
             <div className="container mx-auto max-w-7xl">
-              <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-5 max-w-3xl mx-auto">
+              <div className="rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-14 md:py-20 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-background leading-[1.05] mb-5 max-w-3xl mx-auto">
                   {data.cta.title}
                 </h2>
-                <p className="text-base md:text-lg text-white/85 mb-10 max-w-2xl mx-auto">
+                <p className="text-base md:text-lg text-background/85 mb-10 max-w-2xl mx-auto">
                   {data.cta.text}
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
@@ -324,7 +324,7 @@ const PillarPage = () => {
                   <Link
                     to={data.cta.secondary.to}
                     onClick={trackCtaPillar}
-                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-white/90 hover:text-white transition-colors"
+                    className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg text-background/90 hover:text-background transition-colors"
                   >
                     {data.cta.secondary.label}
                     <ArrowRight className="ml-2 h-5 w-5" />
