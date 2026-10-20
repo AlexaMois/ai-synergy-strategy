@@ -88,7 +88,7 @@ try {
     await page.bringToFront();
     await page.clock.fastForward(61000);
     assert.equal(await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).count(), 0);
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }); });
     await page.clock.runFor(1200);
     const popup = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
     await popup.waitFor({ state: "visible" });
@@ -126,7 +126,7 @@ try {
     await page.goto(BASE + "/cases/caregiver-matching");
     await page.getByRole("heading", { name: /Система подбора и сопровождения сиделок/ }).waitFor({ state: "visible" });
     await page.clock.fastForward(61000);
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }); });
     await page.clock.runFor(1200);
     const popup = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
     await popup.waitFor({ state: "visible" });
