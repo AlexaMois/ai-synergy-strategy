@@ -111,7 +111,7 @@ const ServiceDetailPage = () => {
             <section className="bg-foreground py-14 text-background md:py-20">
               <div className="container mx-auto max-w-7xl px-4">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Состав работ</p>
-                <h2 className="mb-8 text-3xl font-bold md:text-4xl">Что входит в формат</h2>
+                <h2 className="mb-8 text-3xl font-bold text-background md:text-4xl">Что входит в формат</h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {includes.list.map((item,i)=>(
                     <div key={i} className="rounded-[20px] border border-background/20 bg-background/5 p-5">
@@ -139,7 +139,7 @@ const ServiceDetailPage = () => {
             </div>
           </section>
 
-          <section className="container mx-auto max-w-7xl px-4 pb-20">
+          <section className="container mx-auto max-w-7xl px-4 pb-10">
             <div className="flex flex-col gap-6 rounded-[30px] bg-foreground p-7 text-background md:flex-row md:items-center md:justify-between md:p-10">
               <div className="max-w-2xl">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Стоимость формата</p>
@@ -149,7 +149,7 @@ const ServiceDetailPage = () => {
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3">
-                <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-accent-foreground">
+                <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground">
                   {detail.cta} <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/pricing" className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-background/85 hover:text-background">

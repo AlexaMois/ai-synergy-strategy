@@ -6,7 +6,6 @@ import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import PageTransition from "@/components/PageTransition";
 import { serviceJourneys } from "@/data/serviceJourneys";
 import { services } from "@/data/services";
-import { setContactIntent } from "@/lib/contactIntent";
 
 const phases = [
   ["01", "Фиксируем операцию", "Что запускает работу, где она заканчивается, кто отвечает и сколько раз повторяется."],
@@ -72,13 +71,13 @@ const ServicesPage = () => (
                     <span className={["text-xs font-semibold uppercase tracking-widest", dark ? "text-accent" : "text-primary-dark"].join(" ")}>{journey.eyebrow}</span>
                     <Icon className={["h-7 w-7",dark ? "text-accent" : "text-primary-dark"].join(" ")} aria-hidden="true" />
                   </div>
-                  <h3 className="max-w-lg text-2xl font-bold leading-tight md:text-3xl">{journey.title}</h3>
-                  <p className={["mt-4 flex-1 text-base leading-relaxed",dark ? "text-background/80" : "text-foreground/75"].join(" ")}>{journey.situation}</p>
-                  <div className={["my-6 border-t pt-5",dark ? "border-white/20" : "border-foreground/10"].join(" ")}>
+                  <h3 className={["max-w-lg text-2xl font-bold leading-tight md:text-3xl", dark ? "text-background" : "text-foreground"].join(" ")}>{journey.title}</h3>
+                  <p className={["mt-4 text-base leading-relaxed",dark ? "text-background/85" : "text-foreground/80"].join(" ")}>{journey.situation}</p>
+                  <div className={["my-6 border-t pt-5",dark ? "border-background/25" : "border-foreground/10"].join(" ")}>
                     <p className={["mb-2 text-xs font-semibold uppercase tracking-wider",dark ? "text-accent" : "text-primary-dark"].join(" ")}>Что меняется</p>
-                    <p className="text-sm leading-relaxed md:text-base">{journey.whatChanges}</p>
+                    <p className={["text-base leading-relaxed", dark ? "text-background/90" : "text-foreground/80"].join(" ")}>{journey.whatChanges}</p>
                   </div>
-                  <Link to={journey.href} className={["inline-flex min-h-12 self-start items-center gap-3 rounded-full px-5 text-sm font-semibold md:text-base",dark ? "bg-accent text-accent-foreground hover:bg-accent/85" : "bg-foreground text-background hover:bg-foreground/85"].join(" ")}>
+                  <Link to={journey.href} className={["inline-flex min-h-12 self-start items-center gap-3 rounded-full px-5 text-sm font-semibold md:text-base",dark ? "bg-accent text-foreground hover:bg-accent/85" : "bg-foreground text-background hover:bg-foreground/85"].join(" ")}>
                     {journey.action} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </article>
@@ -91,15 +90,15 @@ const ServicesPage = () => (
           <div className="container mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Наш принцип</p>
-              <h2 className="text-3xl font-bold leading-tight md:text-4xl">Сначала процесс. Затем технология.</h2>
+              <h2 className="text-3xl font-bold leading-tight text-background md:text-4xl">Сначала процесс. Затем технология.</h2>
               <p className="mt-4 leading-relaxed text-background/75">Результат проверяется на фактических данных, а ответственность закрепляется за людьми.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
               {phases.map(([number,title,detail])=>(
                 <div key={number} className="rounded-2xl border border-background/20 bg-background/5 p-5">
                   <span className="text-sm font-bold text-accent">{number}</span>
-                  <h3 className="mt-3 text-lg font-bold">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-background/75">{detail}</p>
+                  <h3 className="mt-3 text-lg font-bold text-background">{title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-background/85">{detail}</p>
                 </div>
               ))}
             </div>
@@ -108,9 +107,9 @@ const ServicesPage = () => (
 
         <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Как организована работа</p>
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl">Форматы внутри маршрутов</h2>
-          <p className="mb-8 mt-3 max-w-3xl text-base text-foreground/70">Семь действующих форматов сохраняются. Это способы выполнения конкретной задачи, а не семь равнозначных вариантов первого шага.</p>
-          <div className="grid gap-5 md:grid-cols-2">
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">Как устроена работа</h2>
+          <p className="mb-8 mt-3 max-w-3xl text-base text-foreground/70">Для каждой задачи выбираем глубину разбора, проектирование, обучение и сопровождение. Состав и стоимость каждого этапа указаны отдельно.</p>
+          <div className="grid items-start gap-5 md:grid-cols-2">
             {groups.map((group)=>(
               <div key={group.title} className="rounded-[24px] border border-border bg-card p-5 md:p-7">
                 <h3 className="mb-4 text-xl font-bold text-foreground">{group.title}</h3>
@@ -121,8 +120,8 @@ const ServicesPage = () => (
                     return (
                       <Link key={slug} to={service.href} className="group flex items-center justify-between gap-3 py-3.5">
                         <div className="min-w-0">
-                          <p className="font-medium text-foreground group-hover:text-primary-dark">{service.shortTitle}</p>
-                          <p className="mt-1 text-sm text-muted-foreground">{service.price}</p>
+                          <p className="text-base font-semibold leading-snug text-foreground group-hover:text-primary-dark">{service.shortTitle}</p>
+                          <p className="mt-1 text-sm font-medium text-foreground/75">{service.price}</p>
                         </div>
                         <ArrowUpRight className="h-5 w-5 shrink-0 text-primary-dark" />
                       </Link>
@@ -134,18 +133,6 @@ const ServicesPage = () => (
           </div>
         </section>
 
-        <section className="container mx-auto max-w-7xl px-4 pb-20">
-          <div className="flex flex-col gap-5 rounded-[28px] bg-surface-mint p-7 shadow-card md:flex-row md:items-center md:justify-between md:p-10">
-            <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary-dark">Первый шаг</p>
-              <h2 className="text-2xl font-bold text-foreground md:text-3xl">Опишите одну операцию, которая отнимает время</h2>
-              <p className="mt-3 max-w-2xl text-base text-foreground/75">Разберём исходные сведения и определим ближайшее действие.</p>
-            </div>
-            <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Разбор одной ручной операции. Источник: /services"})} className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background">
-              Описать задачу <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
