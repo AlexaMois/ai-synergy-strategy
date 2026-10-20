@@ -91,7 +91,7 @@ try {
       await page.goto(BASE+"/cases");
       await page.locator("main h1").waitFor({state:"visible"});
       if (viewport.width>=1024) {
-        await page.getByRole("link",{name:"Услуги",exact:true}).hover();
+        await page.locator("header nav").first().getByRole("link",{name:"Услуги",exact:true}).hover();
       } else {
         await page.getByRole("button",{name:"Toggle menu"}).click();
         await page.getByRole("button",{name:"Услуги",exact:true}).click();
