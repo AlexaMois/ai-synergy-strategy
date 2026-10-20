@@ -37,7 +37,8 @@ async function runViewport(width, height, testZoom = false) {
     for (let i = 0; i < 3; i++) {
       const row = scenarioRows.nth(i);
       assert.equal(await row.locator("img").count(), 1, "one image in each scenario");
-      assert.equal(await row.locator(".shadow-card").count(), 0, "no nested card wrappers around screenshots");
+      assert.equal(await row.locator("figure > button > img").count(), 1, "screenshot is a direct image inside its zoom button");
+      assert.equal(await row.locator("figure .bg-card").count(), 0, "no background card around screenshot");
       await row.scrollIntoViewIfNeeded();
       if (width >= 1024) {
         const geometry = await row.evaluate(el => {
