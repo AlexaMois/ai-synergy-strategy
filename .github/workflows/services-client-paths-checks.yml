@@ -53,5 +53,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: services-rebuild
-          path: services-mobile.png
+          path: |
+            services-desktop.png
+            services-mobile.png
+            services-mobile-small.png
           if-no-files-found: ignore
