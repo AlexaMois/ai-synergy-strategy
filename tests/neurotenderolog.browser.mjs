@@ -97,8 +97,8 @@ async function runViewport(width, height, testZoom = false) {
     await dialog.getByRole("button", { name: "Уменьшить изображение" }).click();
     await dialog.getByRole("button", { name: "Закрыть просмотр" }).click();
     await dialog.waitFor({ state: "hidden" });
-    await first.focus();
-    await page.keyboard.press("Space");
+    await first.scrollIntoViewIfNeeded();
+    await first.press("Space");
     await dialog.waitFor({ state: "visible" });
     await dialog.evaluate(el => el.click()); // backdrop click, target = dialog
     await dialog.waitFor({ state: "hidden" });
