@@ -28,7 +28,7 @@ const faq = [
 
 const Inquiry = ({ label, className = "" }: {label:string;className?:string})=>(
   <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Интерес: автоматизация одной ручной цепочки между системами. Источник: /services/automation"})}
-    className={["inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-accent-foreground transition-colors hover:bg-accent/85",className].join(" ")}>
+    className={["inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground transition-colors hover:bg-accent/85",className].join(" ")}>
     {label} <ArrowRight className="h-4 w-4" />
   </Link>
 );
@@ -79,7 +79,7 @@ const AutomationHubPage = () => (
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/60">Схема иллюстрирует типовую операцию. Конкретные шаги утверждаются после изучения данных клиента.</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/75">Схема иллюстрирует типовую операцию. Конкретные шаги утверждаются после изучения данных клиента.</p>
               </div>
             </div>
           </div>
@@ -106,13 +106,13 @@ const AutomationHubPage = () => (
         <section className="bg-foreground py-14 text-background md:py-20">
           <div className="container mx-auto max-w-7xl px-4">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Приёмка по фактам</p>
-            <h2 className="max-w-3xl text-3xl font-bold leading-tight md:text-4xl">Как доказываем ценность операции</h2>
+            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-background md:text-4xl">Как доказываем ценность операции</h2>
             <p className="mt-4 max-w-3xl leading-relaxed text-background/75">Измерения до и после согласуем на одном и том же типе работы. Отдельно проверяем качество результата и путь обработки исключений.</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map(metric=>(
                 <div key={metric.title} className="rounded-2xl border border-background/20 bg-background/5 p-5">
-                  <h3 className="text-lg font-bold text-background">{metric.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-background/70">{metric.detail}</p>
+                  <h3 className="text-xl font-bold text-background">{metric.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-background/85">{metric.detail}</p>
                 </div>
               ))}
             </div>
@@ -156,7 +156,7 @@ const AutomationHubPage = () => (
           </div>
         </section>
 
-        <section className="px-4 pb-16 md:px-6 md:pb-20">
+        <section className="px-4 pb-8 md:px-6 md:pb-10">
           <div className="container mx-auto flex max-w-7xl flex-col gap-6 rounded-[30px] bg-surface-sand p-7 md:flex-row md:items-center md:justify-between md:p-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground md:text-3xl">Начнём с одного понятного процесса</h2>
