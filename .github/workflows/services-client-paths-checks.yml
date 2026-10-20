@@ -8,6 +8,7 @@ on:
       - 'src/pages/services/**'
       - 'src/data/serviceJourneys.ts'
       - 'src/components/Navigation.tsx'
+      - 'src/config/routes.ts'
       - 'src/App.tsx'
       - 'tests/services-journeys.browser.mjs'
       - '.github/workflows/services-client-paths-checks.yml'
