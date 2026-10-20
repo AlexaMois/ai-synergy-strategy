@@ -6,7 +6,8 @@ import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS, va
 import { readIndustryContext, setContactIntent } from "@/lib/contactIntent";
 import { saveAssessmentPdf } from "@/lib/assessmentPdf";
 import { scrollToContact } from "@/lib/scrollToContact";
-import { markDiagnosticStarted } from "@/lib/diagnosticState";
+import { getDiagnosticSource, markDiagnosticStarted, markDiagnosticSubmitted } from "@/lib/diagnosticState";
+import { trackExitPopupEvent } from "@/utils/analytics";
 import {
   DiagnosticForm as FormData,
   emptyForm,
@@ -375,6 +376,8 @@ const DiagnosticForm = () => {
       scrollTop();
     } else {
       setCompleted(true);
+      markDiagnosticSubmitted();
+      trackExitPopupEvent("diagnostic_complete", getDiagnosticSource() || "direct");
       scrollTop();
     }
   };
@@ -391,7 +394,9 @@ const DiagnosticForm = () => {
   const result = useMemo(() => assessProcess(form), [form]);
   const context = readIndustryContext();
   const request = (kind: "implementation" | "meeting") => {
-    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result) });
+    const source = getDiagnosticSource();
+    if (kind === "meeting" && source === "exit_popup") trackExitPopupEvent("exit_popup_meeting_click");
+    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result), source: source || undefined });
     scrollToContact();
   };
 
@@ -409,7 +414,10 @@ const DiagnosticForm = () => {
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6">
             <Button variant="outline" disabled={pdfBusy} onClick={async () => {
               setPdfBusy(true); setPdfError("");
-              try { await saveAssessmentPdf(form, result); }
+              try {
+                await saveAssessmentPdf(form, result);
+                trackExitPopupEvent("diagnostic_pdf_download", getDiagnosticSource() || "direct");
+              }
               catch { setPdfError("Не удалось сохранить PDF. Попробуйте ещё раз."); }
               finally { setPdfBusy(false); }
             }}><Download className="h-4 w-4 mr-2" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
