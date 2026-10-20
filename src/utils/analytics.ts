@@ -125,6 +125,7 @@ interface TrackCTAClickParams {
 }
 
 export const trackCTAClick = ({ location, buttonText = 'Заказать звонок', pageUrl }: TrackCTAClickParams) => {
+  if (!hasAnalyticsConsent()) return;
   const utmData = getUTMData();
 
   // Yandex.Metrika goal
@@ -133,6 +134,24 @@ export const trackCTAClick = ({ location, buttonText = 'Заказать зво�
       cta_location: location,
       button_text: buttonText,
       ...utmData,
+    });
+  }
+};
+
+export type ExitPopupGoal =
+  | "exit_popup_show"
+  | "exit_popup_cta"
+  | "exit_popup_dismiss"
+  | "diagnostic_complete"
+  | "diagnostic_pdf_download"
+  | "exit_popup_meeting_click";
+
+export const trackExitPopupEvent = (goal: ExitPopupGoal, source: "exit_popup" | "direct" = "exit_popup") => {
+  if (!hasAnalyticsConsent()) return;
+  if (typeof window !== "undefined" && window.ym) {
+    window.ym(YANDEX_COUNTER_ID, "reachGoal", goal, {
+      source,
+      page: window.location.pathname,
     });
   }
 };
