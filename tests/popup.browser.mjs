@@ -89,6 +89,8 @@ try {
     assert.equal(await page.getByRole("dialog", { name: /Превратите рабочую задачу/ }).count(), 0);
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await page.clock.runFor(1200);
+    console.log("MOBILE DEBUG", JSON.stringify(await page.evaluate(() => ({ scrollY: scrollY, max: document.documentElement.scrollHeight - innerHeight, hidden: document.hidden, focused: document.hasFocus(), active: document.activeElement?.tagName, cookie: !!localStorage.getItem("cookie_consent"), dialog: !!document.querySelector("[role=dialog][data-state=open]"), started: sessionStorage.getItem("self-start-form-started"), shown: sessionStorage.getItem("self-start-popup-shown") }))));
+    await page.screenshot({ path: "artifacts/mobile-precondition.png" });
     const popup = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
     await popup.waitFor({ state: "visible" });
     await page.screenshot({ path: "artifacts/popup-mobile.png" });
