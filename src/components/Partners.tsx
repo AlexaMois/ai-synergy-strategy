@@ -14,6 +14,7 @@ import gruzovoyExpress from '@/assets/partners/gruzovoy-express.png';
 import tsarskiyStol from '@/assets/partners/tsarskiy-stol.webp';
 import aktransservice from '@/assets/partners/aktransservice.png';
 import yunarmiya from '@/assets/partners/yunarmiya.webp';
+import kgKrasnoyarskiy from '@/assets/partners/kg-krasnoyarskiy.png';
 import { useLocation } from 'react-router-dom';
 
 interface PartnersProps {
@@ -46,6 +47,7 @@ const Partners = ({ className, placement = 'page' }: PartnersProps) => {
     { id: 14, name: "Царский Стол", logo: tsarskiyStol },
     { id: 15, name: "АкТрансСервис", logo: aktransservice },
     { id: 16, name: "Юнармия", logo: yunarmiya },
+    { id: 17, name: "Красноярский", logo: kgKrasnoyarskiy },
   ];
 
   return (
