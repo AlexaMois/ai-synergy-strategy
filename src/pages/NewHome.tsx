@@ -329,7 +329,7 @@ const NewHome = () => {
                 </h2>
               </div>
               <div className="relative">
-                <div className="overflow-x-auto md:overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="overflow-hidden">
                   <img
                     src={synergyImg}
                     alt="Синергия результата: человек, процессы, бизнес и технологии"
@@ -337,7 +337,7 @@ const NewHome = () => {
                     height={681}
                     loading="eager"
                     fetchPriority="high"
-                    className="block h-auto w-full min-w-[680px] md:min-w-0 object-cover mix-blend-screen"
+                    className="block h-auto w-full object-contain mix-blend-screen"
                   />
                 </div>
               </div>
