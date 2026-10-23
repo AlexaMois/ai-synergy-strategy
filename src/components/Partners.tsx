@@ -47,7 +47,7 @@ const Partners = ({ className, placement = 'page' }: PartnersProps) => {
     { id: 14, name: "Царский Стол", logo: tsarskiyStol },
     { id: 15, name: "АкТрансСервис", logo: aktransservice },
     { id: 16, name: "Юнармия", logo: yunarmiya },
-    { id: 17, name: "Красноярский", logo: kgKrasnoyarskiy },
+    { id: 17, name: "Красноярский кооперативный техникум экономики, коммерции и права", logo: kgKrasnoyarskiy },
   ];
 
   return (
