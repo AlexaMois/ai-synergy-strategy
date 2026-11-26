@@ -1,4 +1,5 @@
-export type ContactIntent = { kind: "implementation" | "meeting"; assessment?: string; process?: string; source?: "exit_popup" };
+export type IndustryContext = { industry: string; question: string; topic: string; scenarioId?: string };
+export type ContactIntent = { kind: "implementation" | "meeting"; assessment?: string; process?: string; source?: "exit_popup"; context?: IndustryContext | null };
 const KEY = "aleksamois.contactIntent";
 export const INTENT_EVENT = "aleksamois:contact-intent";
 export function readContactIntent(): ContactIntent | null {
@@ -14,12 +15,20 @@ export function setContactIntent(intent: ContactIntent | null) {
   } catch { /* private mode */ }
   window.dispatchEvent(new Event(INTENT_EVENT));
 }
-export function readIndustryContext(): { industry: string; question: string; topic: string } | null {
+export function readIndustryContext(): IndustryContext | null {
   try {
     const value = JSON.parse(sessionStorage.getItem("aleksamois.contactContext") || "null");
     if (!value) return null;
-    return { industry: String(value.industry || ""), question: String(value.question || ""), topic: String(value.topic || "") };
+    return { industry: String(value.industry || ""), question: String(value.question || ""), topic: String(value.topic || ""), scenarioId: typeof value.scenarioId === "string" ? value.scenarioId : undefined };
   } catch { return null; }
+}
+
+export function setIndustryContext(context: IndustryContext | null) {
+  try {
+    if (context) sessionStorage.setItem("aleksamois.contactContext", JSON.stringify(context));
+    else sessionStorage.removeItem("aleksamois.contactContext");
+  } catch { /* storage may be unavailable */ }
+  window.dispatchEvent(new CustomEvent("aleksamois:contact-context"));
 }
 
 export function intentTask(intent: ContactIntent | null) {

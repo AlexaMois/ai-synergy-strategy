@@ -12,7 +12,7 @@ import { useMobileAnimations } from "@/hooks/use-mobile-animations";
 import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
-import { readContactIntent, setContactIntent, INTENT_EVENT, intentTask, type ContactIntent } from "@/lib/contactIntent";
+import { readContactIntent, readIndustryContext, setContactIntent, INTENT_EVENT, intentTask, type ContactIntent, type IndustryContext } from "@/lib/contactIntent";
 import { useLocation } from "react-router-dom";
 import { caseForPath } from "@/data/caseStudies";
 import { budgetOptions, readyForCallOptions, labelOf } from "@/components/diagnostic/diagnosticConfig";
@@ -51,7 +51,6 @@ const formatPhoneNumber = (value: string): string => {
 };
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
-const CONTACT_CONTEXT_STORAGE_KEY = "aleksamois.contactContext";
 const CONTACT_CONTEXT_EVENT = "aleksamois:contact-context";
 
 const optionalText = (max: number) => z.string().trim().max(max, `Максимум ${max} символов`).optional().or(z.literal(""));
@@ -70,13 +69,11 @@ export const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-type ContactContext = {
-  industry: string;
-  question: string;
-  topic: string;
-};
+type ContactContext = IndustryContext;
 
-export const buildContactSubmission = (data: ContactFormData, contactContext: ContactContext | null, honeypot: string, intent: ContactIntent | null = null, caseName?: string) => ({
+export const buildContactSubmission = (data: ContactFormData, currentContext: ContactContext | null, honeypot: string, intent: ContactIntent | null = null, caseName?: string) => {
+  const contactContext = intent?.context !== undefined ? intent.context : currentContext;
+  return ({
   name: data.name.trim(),
   phone: data.phone,
   email: data.email?.trim() || '',
@@ -98,7 +95,8 @@ export const buildContactSubmission = (data: ContactFormData, contactContext: Co
   formName: intent?.kind === 'meeting' ? 'Личный разбор — 17 000 ₽' : 'Форма обратной связи',
   consent: true,
   website: honeypot,
-});
+  });
+};
 
 interface ContactProps {
   defaultComment?: string;
@@ -113,6 +111,8 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [contactContext, setContactContext] = useState<ContactContext | null>(null);
+  const autoIndustryRef = useRef("");
+  const autoCommentRef = useRef("");
   
   const {
     ref,
@@ -127,6 +127,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
     watch
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -145,23 +146,14 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   const phoneValue = watch("phone");
 
   const readContactContext = () => {
-    if (typeof window === "undefined") return;
-    const raw = window.sessionStorage.getItem(CONTACT_CONTEXT_STORAGE_KEY);
-    if (!raw) return;
-    try {
-      const parsed = JSON.parse(raw) as Partial<ContactContext>;
-      const nextContext: ContactContext = {
-        industry: typeof parsed.industry === "string" ? parsed.industry : "",
-        question: typeof parsed.question === "string" ? parsed.question : "",
-        topic: typeof parsed.topic === "string" ? parsed.topic : "",
-      };
-      if (!nextContext.industry && !nextContext.question) return;
-      setContactContext(nextContext);
-      if (nextContext.industry) {
-        setValue("industry", nextContext.industry, { shouldValidate: false });
-      }
-    } catch {
-      setContactContext(null);
+    const next = readIndustryContext();
+    const industry = next?.industry || "";
+    const previous = autoIndustryRef.current;
+    const current = getValues("industry") || "";
+    setContactContext(next);
+    if (!current || current === previous) {
+      setValue("industry", industry, { shouldValidate: false });
+      autoIndustryRef.current = industry;
     }
   };
 
@@ -175,14 +167,21 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     const update = () => {
       const next = readContactIntent();
       setIntent(isStartPage ? next : null);
-      if (isStartPage && next?.process) setValue("comment", next.process.slice(0, 1000), { shouldValidate: false });
+      if (isStartPage && next?.process) {
+        const value = next.process.slice(0, 1000);
+        setValue("comment", value, { shouldValidate: false });
+        autoCommentRef.current = value;
+      } else if (autoCommentRef.current && getValues("comment") === autoCommentRef.current) {
+        setValue("comment", "", { shouldValidate: false });
+        autoCommentRef.current = "";
+      }
       setIsSubmitted(false);
       sendingRef.current = false;
     };
     update();
     window.addEventListener(INTENT_EVENT, update);
     return () => window.removeEventListener(INTENT_EVENT, update);
-  }, [isStartPage, setValue]);
+  }, [isStartPage, setValue, getValues]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);

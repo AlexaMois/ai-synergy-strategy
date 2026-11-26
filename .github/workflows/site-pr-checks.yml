@@ -88,6 +88,9 @@ jobs:
         run: |
           node --check tests/site-pr.browser.mjs
           node tests/site-pr.browser.mjs
+          command -v pdftotext >/dev/null || (sudo apt-get update && sudo apt-get install -y poppler-utils)
+          node --check tests/industry-diagnostic.browser.mjs
+          node tests/industry-diagnostic.browser.mjs
       - name: Upload browser evidence
         if: always()
         uses: actions/upload-artifact@v4

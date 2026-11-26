@@ -1,4 +1,5 @@
-import { type DiagnosticForm, labelsOf, manualActionOptions, lossOptions, systemOptions, labelOf, dataStorageOptions } from "@/components/diagnostic/diagnosticConfig";
+import { type DiagnosticForm, labelsOf, manualActionOptions, lossOptions, systemOptions, labelOf, dataStorageOptions, frequencyOptions, scenarioCategoryIds } from "@/components/diagnostic/diagnosticConfig";
+import { getIndustryScenario, type IndustryScenario } from "@/data/industryScenarios";
 
 export const ASSESSMENT_STEPS = 5;
 export const MEETING_PRICE = 17000;
@@ -74,7 +75,43 @@ const recommendations: Record<Exclude<ProcessKind, "insufficient">, Recommendati
   },
 };
 
+const actionLabels = (form: DiagnosticForm) => {
+  const scenario = getIndustryScenario(form.scenarioId);
+  if (scenario) return [...scenario.actions.filter(a => form.selectedActionIds.includes(a.id)).map(a => a.label), ...(form.selectedActionIds.includes(scenario.id + "-other") && form.otherAction.trim() ? [form.otherAction.trim()] : [])];
+  return [...labelsOf(manualActionOptions, form.manualActions.filter(id => id !== "13")), ...(form.manualActions.includes("13") ? [form.otherAction.trim() || "Другое"] : [])];
+};
+const actualLosses = (form: DiagnosticForm) => [...labelsOf(lossOptions, form.losses.filter(id => id !== "11")), ...(form.losses.includes("11") ? [form.otherLoss.trim() || "Другое"] : [])];
+const actualSystems = (form: DiagnosticForm) => [...labelsOf(systemOptions, form.systems.filter(id => id !== "13")), ...(form.systems.includes("13") ? [form.otherSystem.trim() || "Другое"] : [])];
+const normalizeEvidence = (s: string) => s.toLocaleLowerCase("ru").replace(/ё/g, "е").trim();
+
+function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): AssessmentResult {
+  const description = normalizeEvidence(form.processDescription);
+  const consequences = normalizeEvidence(form.consequences);
+  const actions = actionLabels(form);
+  const losses = actualLosses(form);
+  const systems = actualSystems(form);
+  const hours = processHours(form.hoursPerWeek);
+  const conflict = /(?:нет|без)\s+(?:потерь|ошибок|расхождений|задержек|простоев)|не\s+(?:теря\S*|пропада\S*|ищ\S*|задержива\S*|сверя\S*|простаива\S*|согласовы\S*)/u.test(description + " " + consequences);
+  const relevant = new RegExp(scenario.evidencePattern, "u").test(description);
+  const negatedOutcome = /(?:потерь|ошибок|расхождений|задержек|простоев)\s+нет|(?:заявки|обращения)\s+не\s+теряются/u.test(description + " " + consequences);
+  const hasLoss = form.losses.length > 0 && !form.losses.includes("10");
+  const ready = description.length >= 12 && relevant && consequences.length > 0 && actions.length > 0 && hasLoss && !conflict && !negatedOutcome;
+  const clarify = "Уточните одно фактически выполняемое действие, используемые документы или данные, наблюдаемую задержку либо ошибку и ответственного. Выбранная тема сама по себе не доказывает проблему. Сначала замерьте исходное состояние.";
+  const goal = form.goal.trim() ? " Ваша цель: «" + form.goal.trim() + "»; её достижение предстоит проверить." : "";
+  const criterion = form.successCriteria.trim() ? " Ваш показатель: «" + form.successCriteria.trim() + "»." : "";
+  const frequency = labelOf(frequencyOptions, form.frequency);
+  return {
+    problem: "Выбранный процесс: " + scenario.process + ". " + (form.consequences.trim() ? "По вашим словам: " + form.consequences.trim() + "." : "Последствия пока неизвестны.") + (losses.length ? " Отмеченные потери: " + losses.join(", ") + "." : ""),
+    cause: ready ? "Гипотеза для проверки: " + scenario.cause + " Подтвердите её на фактических случаях." : "Причина пока не установлена. " + clarify,
+    scale: (/^\d+$/.test(form.participants.trim()) && Number(form.participants) > 0 ? form.participants.trim() + " сотрудников" : "Число участников неизвестно") + " · " + (hours === null ? "Время пока неизвестно. Для оценки нагрузки требуется замер." : hours + " ч в неделю суммарно · около " + hours * 4 + " ч за 4 недели. Это нагрузка всего процесса, а не обещанная экономия.") + (frequency ? " Частота: " + frequency + "." : "") + (actions.length ? " Ручные действия: " + actions.join(", ") + "." : ""),
+    solution: ready ? "При подтверждении проблемы на данных: " + scenario.solution + (systems.length ? " Используемые инструменты по вашим ответам: " + systems.join(", ") + ". Проверьте фактические источники и доступы." : "") : clarify,
+    firstStep: (ready ? "Первый тест: " + scenario.experiment + " Начните с отмеченных действий: " + actions.join(", ") + ". Критерий: " + scenario.criterion + " Сравните значения до и после; объём выборки ориентировочный, используйте доступные случаи." : clarify + " Критерий первого шага: зафиксированы исходные значения времени, ошибок или задержек.") + criterion + goal,
+  };
+}
+
 export function assessProcess(form: DiagnosticForm): AssessmentResult {
+  const scenario = getIndustryScenario(form.scenarioId);
+  if (scenario) return assessScenario(form, scenario);
   const kind = classifyProcess(form);
   const recommendation = kind === "insufficient" ? null : recommendations[kind];
   const currentWork = `${form.process} ${form.processDescription}`.toLocaleLowerCase("ru").replace(/ё/g, "е");
@@ -86,8 +123,8 @@ export function assessProcess(form: DiagnosticForm): AssessmentResult {
   if (materialReconciliation) experiment = "Выберите 10 позиций материалов с расхождениями в сравниваемых источниках (проект, смета и закупка — только если они используются). Сопоставьте номенклатуру, единицы измерения, объёмы и цены на одну дату и для одной версии проекта; запишите исходные значения, расхождения и подтверждающий документ. Не пересчитывайте несовместимые единицы без согласованного коэффициента. Отдельно отметьте позиции, для которых не хватает данных.";
   else if (repairReconciliation) experiment = "Выберите 20 записей о ремонте за один период. Для одной и той же машины и одного ремонта сопоставьте отчёт механика и второй источник (если используется 1С — запись в 1С) по идентификатору машины, дате, виду ремонта и статусу. Составьте список конфликтующих статусов и отсутствующих записей; проверьте их по первичным документам. Если общего идентификатора нет, сначала согласуйте его.";
   const hours = processHours(form.hoursPerWeek);
-  const losses = labelsOf(lossOptions, form.losses);
-  const actions = labelsOf(manualActionOptions, form.manualActions);
+  const losses = actualLosses(form);
+  const actions = actionLabels(form);
   const criterion = recommendation?.criterion ?? "После уточнения выберите один наблюдаемый показатель: время выполнения, число ошибок или долю необработанных случаев; запишите исходное значение. Сейчас данных для предметного критерия недостаточно.";
   return {
     problem: `${recommendation?.focus ?? "Тип проблемы пока не определён"}. ${form.consequences.trim() ? `По вашим словам: ${form.consequences.trim()}.` : "Последствия не описаны."}${losses.length ? ` Отмеченные потери: ${losses.join(", ")}.` : ""}`,
@@ -105,9 +142,14 @@ export const assessmentSections = (result: AssessmentResult) => [
 ];
 
 export function assessmentText(form: DiagnosticForm, result: AssessmentResult) {
+  const scenario = getIndustryScenario(form.scenarioId);
+  const categoryIds = scenario ? scenarioCategoryIds(scenario, form.selectedActionIds) : form.manualActions;
   return [
+    ...(scenario ? [`Отрасль: ${scenario.industry}`, `Выбранная проблема: ${scenario.question}`, `ID сценария: ${scenario.id}`, `ID выбранных действий: ${form.selectedActionIds.join(", ")}`] : []),
     `Процесс: ${form.process}`, `Как устроен: ${form.processDescription}`,
-    `Инструменты: ${labelsOf(systemOptions, form.systems).join(", ")}`,
+    `Частота: ${labelOf(frequencyOptions, form.frequency)}`,
+    `Категории действий Bpium (поле 15): ${categoryIds.join(", ")}`,
+    `Инструменты: ${actualSystems(form).join(", ")}`,
     `Данные: ${labelOf(dataStorageOptions, form.dataStorage)}`,
     ...assessmentSections(result).map(([title, value]) => `${title}: ${value}`),
     "Предварительная оценка по вашим ответам, не аудит и не расчёт окупаемости.",

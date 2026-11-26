@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { getIndustryScenario, scenarioContext } from "@/data/industryScenarios";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
@@ -9,7 +11,7 @@ import DiagnosticForm, { hasDiagnosticDraft } from "@/components/diagnostic/Diag
 import FAQTeaser from "@/components/FAQTeaser";
 import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
-import { setContactIntent } from "@/lib/contactIntent";
+import { readContactIntent, setContactIntent, setIndustryContext } from "@/lib/contactIntent";
 import {
   consumeDiagnosticAutostart,
   isDiagnosticStarted,
@@ -17,8 +19,11 @@ import {
 } from "@/lib/diagnosticState";
 
 const StartPage = () => {
+  const location = useLocation();
+  const scenario = getIndustryScenario(new URLSearchParams(location.search).get("scenario"));
+  const scenarioId = scenario?.id || "";
   const [diagnosticStarted, setDiagnosticStarted] = useState(
-    () => hasDiagnosticDraft() || isDiagnosticStarted()
+    () => !!scenario || hasDiagnosticDraft(scenarioId) || isDiagnosticStarted()
   );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
@@ -37,12 +42,16 @@ const StartPage = () => {
   };
 
   useEffect(() => {
-    if (consumeDiagnosticAutostart()) startDiagnostic();
+    setIndustryContext(scenario ? scenarioContext(scenario) : null);
+    const requested = consumeDiagnosticAutostart();
+    const intent = readContactIntent();
+    if (requested || (scenarioId && intent?.context?.scenarioId !== scenarioId) || (!scenarioId && intent?.context?.scenarioId)) setContactIntent(null);
+    if (scenario || requested) startDiagnostic();
     const onOpen = () => startDiagnostic();
     window.addEventListener("self-start:open", onOpen);
     return () => window.removeEventListener("self-start:open", onOpen);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [scenarioId]);
 
   const bookMeeting = () => {
     setContactIntent({ kind: "meeting" });
@@ -136,7 +145,7 @@ const StartPage = () => {
           </section>
           {diagnosticStarted && (
             <section ref={diagnosticRef} id="self-check" className="container mx-auto px-4 pt-6 pb-12 scroll-mt-24">
-              <DiagnosticForm />
+              <DiagnosticForm key={scenarioId || "universal"} scenario={scenario} />
             </section>
           )}
           {/* 3. Что происходит на встрече + что Вы получите */}

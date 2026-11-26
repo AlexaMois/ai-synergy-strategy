@@ -8,7 +8,12 @@ mkdirSync("artifacts", { recursive: true });
 let passed = 0;
 
 async function scenario(title, viewport, test) {
-  const context = await browser.newContext({ viewport, reducedMotion: "reduce" });
+  const context = await browser.newContext({ viewport, reducedMotion: "reduce", serviceWorkers: "block" });
+  await context.route("**/*", route => {
+    const request = route.request();
+    if (new URL(request.url()).origin !== new URL(BASE).origin || !["GET","HEAD"].includes(request.method())) return route.abort("blockedbyclient");
+    return route.continue();
+  });
   await context.addInitScript(() => {
     localStorage.setItem("cookie_consent", JSON.stringify({
       version: "v3",

@@ -1,7 +1,23 @@
 // Конфигурация анкеты «Первичный разбор бизнес-процессов компании».
 // Значения id соответствуют вариантам каталога Bpium 81 — менять их нельзя.
 
+import { type IndustryScenario } from "@/data/industryScenarios";
+
 export type Option = { id: string; label: string };
+
+export const scenarioActionOptions = (scenario: IndustryScenario): Option[] => [
+  ...scenario.actions.map(({ id, label }) => ({ id, label })),
+  { id: scenario.id + "-other", label: "Своё действие" },
+];
+export const scenarioCategoryIds = (scenario: IndustryScenario, ids: string[]) => Array.from(new Set(ids.flatMap(id => {
+  if (id === scenario.id + "-other") return ["13"];
+  const action = scenario.actions.find(a => a.id === id);
+  return action ? [action.categoryId] : [];
+})));
+export const prioritizedOptions = (options: Option[], priority: string[]) => [...options].sort((a,b) => {
+  const rank = (id: string) => priority.includes(id) ? priority.indexOf(id) : priority.length;
+  return rank(a.id)-rank(b.id);
+});
 
 export const manualActionOptions: Option[] = [
   { id: "1", label: "Заявки и обращения клиентов" },
@@ -128,6 +144,11 @@ export const labelsOf = (options: Option[], selected: string[]) =>
   selected.map((id) => labelOf(options, id)).filter(Boolean);
 
 export type DiagnosticForm = {
+  scenarioId: string;
+  selectedActionIds: string[];
+  otherAction: string;
+  otherLoss: string;
+  otherSystem: string;
   process: string;
   manualActions: string[];
   processDescription: string;
@@ -161,6 +182,11 @@ export type DiagnosticForm = {
 };
 
 export const emptyForm: DiagnosticForm = {
+  scenarioId: "",
+  selectedActionIds: [],
+  otherAction: "",
+  otherLoss: "",
+  otherSystem: "",
   process: "",
   manualActions: [],
   processDescription: "",

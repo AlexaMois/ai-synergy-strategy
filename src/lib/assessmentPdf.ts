@@ -1,7 +1,6 @@
 import fontUrl from "@/assets/fonts/Roboto-Regular.ttf?url";
 import { type DiagnosticForm } from "@/components/diagnostic/diagnosticConfig";
 import { assessmentText, type AssessmentResult } from "./processAssessment";
-import { readIndustryContext } from "./contactIntent";
 
 export async function saveAssessmentPdf(form: DiagnosticForm, result: AssessmentResult) {
   const [{ jsPDF }, response] = await Promise.all([import("jspdf"), fetch(fontUrl)]);
@@ -14,10 +13,7 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
   pdf.addFont("Roboto.ttf", "Roboto", "normal");
   pdf.setFont("Roboto");
   pdf.setFontSize(12);
-  const context = readIndustryContext();
-  const text = ["Самостоятельная проверка процесса", "Александра Моисеева · aleksamois.ru",
-    context?.industry ? `Отрасль: ${context.industry}` : "", context?.question ? `Выбранный вопрос: ${context.question}` : "",
-    assessmentText(form, result)].filter(Boolean).join("\n\n");
+  const text = ["Самостоятельная проверка процесса", "Александра Моисеева · aleksamois.ru", assessmentText(form, result)].filter(Boolean).join("\n\n");
   let y = 20;
   for (const line of pdf.splitTextToSize(text, 170) as string[]) {
     if (y > 275) { pdf.addPage(); y = 20; }
