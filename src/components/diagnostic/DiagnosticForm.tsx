@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, Check, AlertCircle, Download } from "lucide-reac
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
 import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS, validProcessTime } from "@/lib/processAssessment";
-import { readIndustryContext, setContactIntent } from "@/lib/contactIntent";
+import { setContactIntent } from "@/lib/contactIntent";
+import { getIndustryScenario, scenarioContext, type IndustryScenario } from "@/data/industryScenarios";
 import { saveAssessmentPdf } from "@/lib/assessmentPdf";
 import { scrollToContact } from "@/lib/scrollToContact";
 import { getDiagnosticSource, markDiagnosticStarted, markDiagnosticSubmitted } from "@/lib/diagnosticState";
@@ -18,46 +19,45 @@ import {
   lossOptions,
   manualActionOptions,
   systemOptions,
+  scenarioActionOptions,
+  scenarioCategoryIds,
+  prioritizedOptions,
 } from "./diagnosticConfig";
 
 const TOTAL_STEPS = ASSESSMENT_STEPS;
-const DRAFT_KEY = "diagnostic-draft-v2";
+const DRAFT_KEY = "diagnostic-draft-v3";
+const LEGACY_DRAFT_KEY = "diagnostic-draft-v2";
 
 type Errors = Partial<Record<keyof FormData, string>>;
 
-/* ---------- черновик ---------- */
-
-const loadDraft = (): { step: number; form: FormData } | null => {
+const loadDraft = (scenarioId: string): { step: number; form: FormData } | null => {
   try {
     const raw = sessionStorage.getItem(DRAFT_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as { step?: number; form?: Partial<FormData>; sourceQuestion?: string };
+    const legacy = !raw && !scenarioId ? sessionStorage.getItem(LEGACY_DRAFT_KEY) : null;
+    if (!raw && !legacy) return null;
+    const parsed = JSON.parse(raw || legacy || "null") as { step?: number; form?: Partial<FormData>; scenarioId?: string; sourceQuestion?: string };
     if (!parsed?.form) return null;
-    if ((readIndustryContext()?.question || "") !== (parsed.sourceQuestion || "")) return null;
+    if (raw ? parsed.scenarioId !== scenarioId : !!parsed.sourceQuestion) return null;
+    const form = { ...emptyForm, ...parsed.form, scenarioId };
+    const scenario = getIndustryScenario(scenarioId);
+    if (scenario) {
+      if (!Array.isArray(form.selectedActionIds) || form.selectedActionIds.some(id => !scenarioActionOptions(scenario).some(a => a.id === id))) return null;
+      form.manualActions = scenarioCategoryIds(scenario, form.selectedActionIds);
+    }
     const step = Math.min(Math.max(Number(parsed.step) || 1, 1), TOTAL_STEPS + 1);
-    return { step, form: { ...emptyForm, ...parsed.form } };
-  } catch {
-    return null;
-  }
+    return { step, form };
+  } catch { return null; }
 };
 
 const saveDraft = (step: number, form: FormData) => {
   try {
-    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form, sourceQuestion: readIndustryContext()?.question || "" }));
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ step, form, scenarioId: form.scenarioId }));
+    sessionStorage.removeItem(LEGACY_DRAFT_KEY);
     markDiagnosticStarted();
-  } catch {
-    /* приватный режим — просто не сохраняем */
-  }
+  } catch { /* storage may be unavailable */ }
 };
 
-/* есть ли незавершённый черновик — нужно, чтобы форма снова открылась после обновления страницы */
-export const hasDiagnosticDraft = () => {
-  try {
-    return !!sessionStorage.getItem(DRAFT_KEY);
-  } catch {
-    return false;
-  }
-};
+export const hasDiagnosticDraft = (scenarioId = "") => !!loadDraft(scenarioId);
 
 /* нормализация телефона: только цифры, 8XXXXXXXXXX → +7XXXXXXXXXX */
 export const normalizePhone = (raw: string) => {
@@ -306,13 +306,15 @@ const SummaryRow = ({ title, children }: { title: string; children: React.ReactN
 
 /* ---------- основной компонент ---------- */
 
-const DiagnosticForm = () => {
-  const draft = useMemo(loadDraft, []);
+const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
+  const scenarioId = scenario?.id || "";
+  const draft = useMemo(() => loadDraft(scenarioId), [scenarioId]);
   const [step, setStep] = useState(draft?.step ?? 1);
-  const [form, setForm] = useState<FormData>(() => {
-    const context = readIndustryContext();
-    return { ...(draft?.form ?? emptyForm), industry: context?.industry || draft?.form.industry || "", process: draft?.form.process === context?.question ? "" : draft?.form.process || "" };
-  });
+  const [form, setForm] = useState<FormData>(() => draft?.form ?? { ...emptyForm, scenarioId, industry: scenario?.industry || "", process: scenario?.process || "" });
+  const prompts = scenario?.prompts;
+  const context = scenario ? scenarioContext(scenario) : null;
+  const actionValue = scenario ? form.selectedActionIds : form.manualActions;
+  const otherSelected = actionValue.includes(scenario ? scenario.id + "-other" : "13");
   const [errors, setErrors] = useState<Errors>({});
   const [completed, setCompleted] = useState(draft?.step === 6);
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -325,10 +327,23 @@ const DiagnosticForm = () => {
   }, [step, form, completed]);
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm((prev) => {
+      const next = { ...prev, [key]: value };
+      if (key === "losses" && !next.losses.includes("11")) next.otherLoss = "";
+      if (key === "systems" && !next.systems.includes("13")) next.otherSystem = "";
+      return next;
+    });
     setErrors((prev) => (prev[key] ? { ...prev, [key]: undefined } : prev));
   };
 
+  const setActions = (ids: string[]) => {
+    if (scenario) {
+      setForm(prev => ({ ...prev, selectedActionIds: ids, manualActions: scenarioCategoryIds(scenario, ids), otherAction: ids.includes(scenario.id + "-other") ? prev.otherAction : "" }));
+    } else {
+      setForm(prev => ({ ...prev, manualActions: ids, otherAction: ids.includes("13") ? prev.otherAction : "" }));
+    }
+    setErrors(prev => ({ ...prev, manualActions: undefined, otherAction: undefined }));
+  };
   const scrollTop = () =>
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -342,6 +357,10 @@ const DiagnosticForm = () => {
         e.processDescription = "Опишите, как процесс устроен сейчас";
       if (form.manualActions.length === 0)
         e.manualActions = "Отметьте хотя бы одно ручное действие";
+      if (otherSelected && !form.otherAction.trim()) e.otherAction = "Опишите своё ручное действие";
+      if (form.process.length > 500) e.process = "До 500 символов";
+      if (form.processDescription.length > 3000) e.processDescription = "До 3000 символов";
+      if (otherSelected && form.otherAction.length > 500) e.otherAction = "До 500 символов";
     }
     if (s === 2) {
       if (!isPositiveInt(form.participants))
@@ -353,15 +372,22 @@ const DiagnosticForm = () => {
     if (s === 3) {
       if (form.losses.length === 0) e.losses = "Отметьте, что теряется или задерживается";
       if (!form.consequences.trim()) e.consequences = "Опишите, к чему приводят проблемы";
+      if (form.losses.includes("11") && !form.otherLoss.trim()) e.otherLoss = "Опишите другие потери";
+      if (form.consequences.length > 3000) e.consequences = "До 3000 символов";
+      if (form.losses.includes("11") && form.otherLoss.length > 500) e.otherLoss = "До 500 символов";
     }
     if (s === 4) {
       if (form.systems.length === 0) e.systems = "Отметьте используемые программы и системы";
       
       if (!form.dataStorage) e.dataStorage = "Выберите один вариант";
+      if (form.systems.includes("13") && !form.otherSystem.trim()) e.otherSystem = "Укажите другой инструмент";
+      if (form.systems.includes("13") && form.otherSystem.length > 500) e.otherSystem = "До 500 символов";
     }
     if (s === 5) {
       if (!form.goal.trim()) e.goal = "Опишите результат за 1–3 месяца";
       if (!form.successCriteria.trim()) e.successCriteria = "Укажите критерий результата";
+      if (form.goal.length > 3000) e.goal = "До 3000 символов";
+      if (form.successCriteria.length > 1000) e.successCriteria = "До 1000 символов";
 
     }
     return e;
@@ -392,11 +418,10 @@ const DiagnosticForm = () => {
   };
 
   const result = useMemo(() => assessProcess(form), [form]);
-  const context = readIndustryContext();
   const request = (kind: "implementation" | "meeting") => {
-    const source = getDiagnosticSource();
+    const source = scenario ? null : getDiagnosticSource();
     if (kind === "meeting" && source === "exit_popup") trackExitPopupEvent("exit_popup_meeting_click");
-    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result), source: source || undefined });
+    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result), source: source || undefined, context });
     scrollToContact();
   };
 
@@ -406,7 +431,7 @@ const DiagnosticForm = () => {
         <div className="rounded-[28px] md:rounded-[36px] bg-surface-mint p-6 md:p-10 ring-1 ring-foreground/5 shadow-plate">
           <p className="text-sm font-semibold text-accent mb-3">Самостоятельная проверка · результат</p>
           <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-5">Ваш процесс: {form.process}</h3>
-          {context?.industry && <p className="text-muted-foreground mb-5">{context.industry} · {context.topic}</p>}
+          {context?.industry && <div className="text-muted-foreground mb-5" data-scenario-id={scenarioId}><p>{context.industry} · {context.topic}</p><p>{context.question}</p></div>}
           <div className="grid gap-3 md:grid-cols-2">
             {assessmentSections(result).map(([title, value]) => <SummaryRow key={title} title={title}>{value}</SummaryRow>)}
           </div>
@@ -451,7 +476,7 @@ const DiagnosticForm = () => {
         <h2 className="text-2xl md:text-3xl font-bold text-background">Самостоятельная проверка одного процесса</h2>
       </div>
       <div className="rounded-b-[28px] bg-card p-5 sm:p-7 md:p-10 ring-1 ring-foreground/5 shadow-plate">
-        {context?.question && <div className="mb-6 border-l-4 border-accent pl-4"><p className="text-xs font-semibold text-accent mb-2">Выбранная проблема · {context.industry}</p><p className="text-base text-foreground leading-relaxed">{context.question}</p></div>}
+        {context?.question && <div className="mb-6 border-l-4 border-accent pl-4" data-scenario-id={scenarioId}><p className="text-xs font-semibold text-accent mb-2">Выбранная проблема · {context.industry}</p><p className="text-base text-foreground leading-relaxed">{context.question}</p></div>}
         {/* прогресс */}
         <div className="mb-6 md:mb-8">
           <div className="flex items-center justify-between mb-3">
@@ -484,33 +509,35 @@ const DiagnosticForm = () => {
                 label="Какой один процесс или участок работы вы хотите улучшить в первую очередь?"
                 value={form.process}
                 onChange={(v) => set("process", v)}
-                placeholder="Например: обработка входящих заявок"
+                placeholder={scenario?.process || "Например: обработка входящих заявок"}
                 required
                 error={errors.process}
               />
               <AreaField
-                label="Опишите, как процесс устроен сейчас"
+                label={prompts?.processDescription.label || "Опишите, как процесс устроен сейчас"}
                 value={form.processDescription}
                 onChange={(v) => set("processDescription", v)}
-                placeholder="Кто что делает, в какой последовательности, где возникают задержки"
+                placeholder={prompts?.processDescription.placeholder || "Кто что делает, в какой последовательности, где возникают задержки"}
                 required
                 error={errors.processDescription}
               />
               <CheckGroup
-                label="Какие действия сотрудники регулярно выполняют вручную?"
-                options={manualActionOptions}
-                value={form.manualActions}
-                onChange={(v) => set("manualActions", v)}
+                label={scenario ? "Какие действия в выбранном процессе сотрудники выполняют вручную?" : "Какие действия сотрудники регулярно выполняют вручную?"}
+                options={scenario ? scenarioActionOptions(scenario) : manualActionOptions}
+                value={actionValue}
+                onChange={setActions}
                 required
                 error={errors.manualActions}
               />
+              {otherSelected && <AreaField label="Опишите своё ручное действие" value={form.otherAction} onChange={v => set("otherAction", v)} required error={errors.otherAction} />}
             </>
           )}
 
           {step === 2 && (
             <>
               <TextField
-                label="Сколько сотрудников участвует в процессе?"
+                label={prompts?.participants.label || "Сколько сотрудников участвует в процессе?"}
+                hint={prompts?.participants.placeholder}
                 type="number"
                 value={form.participants}
                 onChange={(v) => set("participants", v)}
@@ -519,7 +546,7 @@ const DiagnosticForm = () => {
                 error={errors.participants}
               />
               <RadioGroup
-                label="С какой частотой повторяется процесс?"
+                label={prompts?.frequency.label || "С какой частотой повторяется процесс?"}
                 options={frequencyOptions}
                 value={form.frequency}
                 onChange={(v) => set("frequency", v)}
@@ -527,7 +554,7 @@ const DiagnosticForm = () => {
                 error={errors.frequency}
               />
               <div>
-                <Label required>Сколько часов в неделю уходит на процесс?</Label>
+                <Label required>{prompts?.hours.label || "Сколько часов в неделю уходит на процесс?"}</Label>
                 <div className="flex flex-wrap gap-3 mb-3" role="group" aria-label="Оценка времени">
                   <Button variant={form.hoursPerWeek === "unknown" ? "outline" : "default"} onClick={() => set("hoursPerWeek", "")}>Указать часы</Button>
                   <Button variant={form.hoursPerWeek === "unknown" ? "default" : "outline"} aria-pressed={form.hoursPerWeek === "unknown"} onClick={() => set("hoursPerWeek", "unknown")}>Не знаю</Button>
@@ -548,18 +575,19 @@ const DiagnosticForm = () => {
           {step === 3 && (
             <>
               <CheckGroup
-                label="Что чаще всего теряется, задерживается или выполняется с ошибками?"
+                label={prompts?.losses.label || "Что чаще всего теряется, задерживается или выполняется с ошибками?"}
                 options={lossOptions}
                 value={form.losses}
                 onChange={(v) => set("losses", v)}
                 required
                 error={errors.losses}
               />
+              {form.losses.includes("11") && <AreaField label="Опишите другие потери" value={form.otherLoss} onChange={v => set("otherLoss", v)} required error={errors.otherLoss} />}
               <AreaField
                 label="К чему приводят текущие проблемы?"
                 value={form.consequences}
                 onChange={(v) => set("consequences", v)}
-                placeholder="Например: клиенты ждут ответа, руководитель не видит статус заявок"
+                placeholder={prompts?.losses.placeholder || "Например: клиенты ждут ответа, руководитель не видит статус заявок"}
                 required
                 error={errors.consequences}
               />
@@ -569,15 +597,16 @@ const DiagnosticForm = () => {
           {step === 4 && (
             <>
               <CheckGroup
-                label="Какие программы и системы используются в этом процессе?"
-                options={systemOptions}
+                label={prompts?.systems.label || "Какие программы и системы используются в этом процессе?"}
+                options={prompts ? prioritizedOptions(systemOptions, prompts.systems.suggestedIds) : systemOptions}
                 value={form.systems}
                 onChange={(v) => set("systems", v)}
                 required
                 error={errors.systems}
               />
+              {form.systems.includes("13") && <TextField label="Укажите другой инструмент" value={form.otherSystem} onChange={v => set("otherSystem", v)} required error={errors.otherSystem} />}
               <RadioGroup
-                label="Где хранятся данные по этому процессу?"
+                label={prompts?.storage.label || "Где хранятся данные по этому процессу?"}
                 options={dataStorageOptions}
                 value={form.dataStorage}
                 onChange={(v) => set("dataStorage", v)}
@@ -590,18 +619,18 @@ const DiagnosticForm = () => {
           {step === 5 && (
             <>
               <AreaField
-                label="Какой результат нужен за 1–3 месяца?"
+                label={prompts?.goal.label || "Какой результат нужен за 1–3 месяца?"}
                 value={form.goal}
                 onChange={(v) => set("goal", v)}
-                placeholder="Например: единая точка приёма заявок и контроль сроков ответа"
+                placeholder={prompts?.goal.placeholder || "Например: единая точка приёма заявок и контроль сроков ответа"}
                 required
                 error={errors.goal}
               />
               <TextField
-                label="По какому критерию вы поймёте, что результат достигнут?"
+                label={prompts?.successCriteria.label || "По какому критерию вы поймёте, что результат достигнут?"}
                 value={form.successCriteria}
                 onChange={(v) => set("successCriteria", v)}
-                placeholder="Например: ни одна заявка не теряется"
+                placeholder={prompts?.successCriteria.placeholder || "Например: ни одна заявка не теряется"}
                 required
                 error={errors.successCriteria}
               />

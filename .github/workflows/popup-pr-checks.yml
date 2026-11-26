@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   popup-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          VITE_FORMS_BASE_URL: https://forms.aleksamois.ru
+          VITE_FORMS_BASE_URL: https://forms.ci.invalid
       - name: TypeScript check
         run: npx tsc --noEmit
       - name: Lint changed application files
