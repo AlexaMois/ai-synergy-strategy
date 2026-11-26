@@ -13,15 +13,16 @@ const BackToHome = () => {
     location.pathname.startsWith('/cases/')
   ) return null;
   
+  const commercialPath = /^(\/products|\/mini-agents|\/ai-agents|\/expert|\/services|\/pricing|\/start|\/faq)(\/|$)/.test(location.pathname);
   return (
     <Link
       to="/"
-      className="fixed bottom-20 right-6 z-40 bg-accent text-accent-foreground rounded-xl px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"
+      className={"fixed bottom-20 right-6 z-40 bg-accent text-accent-foreground rounded-xl px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"+(commercialPath?" !text-[#212121] max-sm:right-2 max-sm:p-3 max-sm:rounded-full":"")}
       data-floating-home
       aria-label="На главную"
     >
       <Home className="w-5 h-5" />
-      <span className="text-sm font-medium">На главную</span>
+      <span className={"text-sm font-medium"+(commercialPath?" max-sm:sr-only":"")}>На главную</span>
     </Link>
   );
 };

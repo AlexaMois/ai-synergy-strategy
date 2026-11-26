@@ -25,6 +25,8 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
+        // Trigger existing on-scroll animations and lazy assets before recording a full page.
+        await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,65));}window.scrollTo(0,0);await new Promise(r=>setTimeout(r,300));});
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         const geometry=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(geometry.width<=geometry.viewport+3,"overflow "+JSON.stringify(geometry));

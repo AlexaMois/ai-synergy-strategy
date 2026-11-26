@@ -124,7 +124,7 @@ const NewHome = () => {
                     Программные продукты, ИИ-агенты и автоматизация бизнеса
                   </p>
                   <p className="text-sm sm:text-base md:text-lg !text-[#212121] mb-6 md:mb-10 max-w-xl">
-                    Программные продукты, ИИ-агенты и автоматизация бизнеса. Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
+                    Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
                   </p>
                   <p className="!text-[#212121] font-semibold text-base md:text-lg mb-5">Александра Моисеева, основатель и инженер-архитектор цифрового развития бизнеса</p>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">

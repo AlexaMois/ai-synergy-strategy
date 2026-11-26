@@ -180,6 +180,8 @@ try {
       const dialog = page.getByRole("dialog", { name: /Превратите рабочую задачу/ });
       await dialog.waitFor({ state: "visible" });
       await page.evaluate(() => document.fonts.ready);
+      // Measure after the existing entrance animation finishes; retain the same geometry assertions.
+      await dialog.evaluate(async node => {await Promise.all(node.getAnimations({subtree:true}).filter(a=>a.effect?.getTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{})));});
       const result = await dialog.evaluate((node) => {
         const box = node.getBoundingClientRect();
         const inner = node.firstElementChild;
