@@ -111,8 +111,8 @@ const Navigation = () => {
       { href: "/services", label: "Все направления" },
       { href: "/services/automation", label: "Убрать ручную работу" },
       { href: "/services/owner-digital-session", label: "Выбрать первый приоритет" },
-      { href: "/services/digital-tools-program", label: "Обучить команду" },
-      { href: "/services/neurotenderolog", label: "Отбирать закупки" },
+      { href: "/services/digital-tools-program", label: "Повысить производительность команды" },
+      { href: "/services/neurotenderolog", label: "Автоматизация закупок" },
     ]
   }, {
     href: "/cases",
