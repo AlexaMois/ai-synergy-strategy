@@ -94,8 +94,9 @@ function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): Asses
   const conflict = /(?:нет|без)\s+(?:потерь|ошибок|расхождений|задержек|простоев)|не\s+(?:теря\S*|пропада\S*|ищ\S*|задержива\S*|сверя\S*|простаива\S*|согласовы\S*)/u.test(description + " " + consequences);
   const relevant = new RegExp(scenario.evidencePattern, "u").test(description);
   const negatedOutcome = /(?:потерь|ошибок|расхождений|задержек|простоев)\s+нет|(?:заявки|обращения)\s+не\s+теряются/u.test(description + " " + consequences);
+  const explicitAbsence = /(?:^|[\s.,;!?])(?:(?:нет|без|отсутствие)\s+(?:потерь|потери|ошибки|ошибок|расхождения|расхождений|задержки|задержек|простоя|простоев)|(?:потеря|потери|потерь|ошибка|ошибки|ошибок|расхождение|расхождения|расхождений|задержка|задержки|задержек|простой|простоя|простои|простоев)\s+(?:нет|отсутствует|отсутствуют))(?=$|[\s.,;!?])/u.test(description + " " + consequences);
   const hasLoss = form.losses.length > 0 && !form.losses.includes("10");
-  const ready = description.length >= 12 && relevant && consequences.length > 0 && actions.length > 0 && hasLoss && !conflict && !negatedOutcome;
+  const ready = description.length >= 12 && relevant && consequences.length > 0 && actions.length > 0 && hasLoss && !conflict && !negatedOutcome && !explicitAbsence;
   const clarify = "Уточните одно фактически выполняемое действие, используемые документы или данные, наблюдаемую задержку либо ошибку и ответственного. Выбранная тема сама по себе не доказывает проблему. Сначала замерьте исходное состояние.";
   const goal = form.goal.trim() ? " Ваша цель: «" + form.goal.trim() + "»; её достижение предстоит проверить." : "";
   const criterion = form.successCriteria.trim() ? " Ваш показатель: «" + form.successCriteria.trim() + "»." : "";
