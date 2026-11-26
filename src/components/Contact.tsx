@@ -13,7 +13,7 @@ import { submitForm } from "@/lib/formsClient";
 import { toast } from "sonner";
 import { trackFormSubmission } from "@/utils/analytics";
 import { readContactIntent, readIndustryContext, setContactIntent, INTENT_EVENT, intentTask, type ContactIntent, type IndustryContext } from "@/lib/contactIntent";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { caseForPath } from "@/data/caseStudies";
 import { budgetOptions, readyForCallOptions, labelOf } from "@/components/diagnostic/diagnosticConfig";
 
@@ -105,10 +105,12 @@ interface ContactProps {
 
 const Contact = ({ defaultComment = "" }: ContactProps) => {
   const location = useLocation();
+  const navigate=useNavigate();
   const isStartPage = location.pathname.replace(/\/$/, "") === "/start";
   const isHomePage = location.pathname === "/";
   const currentCase = caseForPath(location.pathname);
   const [intent, setIntent] = useState<ContactIntent | null>(null);
+  const intentRef=useRef<ContactIntent|null>(null);
   const sendingRef = useRef(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -168,8 +170,10 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   useEffect(() => {
     const update = () => {
       const next = readContactIntent();
-      setIntent(isStartPage || (isHomePage && next?.kind === "onsite" && next.sourcePath === "/") ? next : null);
-      if (isStartPage && next?.process) {
+      const active=isStartPage || (isHomePage && next?.kind === "onsite" && next.sourcePath === "/") ? next : null;
+      intentRef.current=active;
+      setIntent(active);
+      if (isStartPage && next?.process && (!getValues("comment") || getValues("comment")===autoCommentRef.current)) {
         const value = next.process.slice(0, 1000);
         setValue("comment", value, { shouldValidate: false });
         autoCommentRef.current = value;
@@ -200,7 +204,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     
     try {
       // Персональные данные уходят только в CRM (Bpium). В MAX — только номер записи.
-      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot, intent, currentCase?.client));
+      const result = await submitForm('short-lead', buildContactSubmission(data, contactContext, honeypot, intentRef.current, currentCase?.client));
 
       if (!result.ok) {
         toast.error(result.error || "Произошла ошибка при отправке. Попробуйте ещё раз.");
@@ -265,10 +269,10 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
             {currentCase && <p className="mb-6 border-b border-border pb-4 text-sm text-muted-foreground">Похожая задача · {currentCase.client}</p>}
-            {(isStartPage || isHomePage) && intent && <div className="mb-6 border-b border-border pb-4">
+            {(isStartPage || isHomePage) && intent && <div data-commercial-intent={intent.offerId||"legacy"} className="mb-6 border-b border-border pb-4">
               <p className="font-semibold text-foreground">{intent.offerLabel || (intent.kind === "onsite" ? "Выездная диагностика — 8 000 ₽" : "Обсуждение внедрения")}</p>
               {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}
-              <PillButton size="sm" variant="outline-dark" onClick={() => setContactIntent(null)} className="mt-3">Обычное обращение</PillButton>
+              <PillButton size="sm" variant="outline-dark" onClick={() => {setContactIntent(null); if(isStartPage && new URLSearchParams(location.search).has("offer")) navigate("/start#contact",{replace:true});}} className="mt-3">Обычное обращение</PillButton>
             </div>}
             {isStartPage && intent && <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div><Label htmlFor="contact-budget">Бюджет (необязательно)</Label><select id="contact-budget" {...register("budget")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{budgetOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>

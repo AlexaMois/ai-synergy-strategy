@@ -293,14 +293,15 @@ const commercialRoutes = {
     "2",
     "Согласовать адрес, процесс и время выезда в Красноярске"
   ],
+  "expert-training": ["3","Согласовать задачу обучения, состав участников и действующие условия"],
   "expert-audit": [
     "2",
     "Согласовать объём аудита и данные"
   ]
 };
 const ShortLeadSchema = z.object({
-  offerId: z.enum(["mini-01","mini-02","mini-03","mini-04","mini-05","mini-06","mini-07","mini-08","mini-09","mini-10","mini-11","mini-12","mini-13","mini-14","mini-15","product-neurotenderolog","product-knowledge-management","hermes-basic","hermes-advanced","custom-agent","automation-process","automation-corporate-system","automation-integration","automation-custom-software","expert-onsite","expert-audit"]).optional(),
-  format: z.enum(["demo","connect","setup","adaptation","project","onsite","audit"]).optional(),
+  offerId: z.enum(["mini-01","mini-02","mini-03","mini-04","mini-05","mini-06","mini-07","mini-08","mini-09","mini-10","mini-11","mini-12","mini-13","mini-14","mini-15","product-neurotenderolog","product-knowledge-management","hermes-basic","hermes-advanced","custom-agent","automation-process","automation-corporate-system","automation-integration","automation-custom-software","expert-onsite","expert-audit","expert-training"]).optional(),
+  format: z.enum(["demo","connect","setup","adaptation","project","onsite","audit","training"]).optional(),
   licensePlan: z.enum(["license","plus","managed"]).optional(),
   sourcePath: z.string().trim().max(300).optional(),
   name: str(150),

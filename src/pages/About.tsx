@@ -15,7 +15,7 @@ import PillButton from "@/components/PillButton";
 import { useState, useEffect } from "react";
 import { Heart, Lightbulb, Shield, UserCheck, Award, Users, Briefcase, Home, ExternalLink, Send } from "lucide-react";
 import { useMobileAnimations } from "@/hooks/use-mobile-animations";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import alexandraHeadshot from "@/assets/alexandra-headshot.webp";
 import alexandraAbout from "@/assets/alexandra-about.webp";
@@ -165,7 +165,7 @@ const About = () => {
       <Helmet>
         <title>Александра Моисеева — инженер цифрового развития бизнеса</title>
         <meta name="description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
-        <meta name="keywords" content="эксперт по автоматизации бизнеса с ИИ, ИИ‑стратег Красноярск, консультант по автоматизации процессов, AI Strategy Consultant" />
+        <meta name="keywords" content="Александра Моисеева, НейроРешения, инженер-архитектор, автоматизация бизнеса, ИИ-агенты, Красноярск" />
         <link rel="canonical" href="https://aleksamois.ru/about/" />
         <meta property="og:title" content="Александра Моисеева — инженер цифрового развития бизнеса" />
         <meta property="og:description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
@@ -202,14 +202,14 @@ const About = () => {
                     Независимый инженер и архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl leading-relaxed">
-                    Основатель агентства «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления процессами
+                    Основатель компании «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления процессами
                   </p>
                   <div className="relative z-10 flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">
                       Подобрать формат работы
                     </PillButton>
                     <PillButton to="/services" variant="outline-dark">
-                      Посмотреть услуги
+                      Посмотреть решения
                     </PillButton>
                   </div>
                 </div>
@@ -467,7 +467,7 @@ const About = () => {
                 {
                   number: "04",
                   title: "Я говорю прямо о рисках",
-                  text: "Моя задача — сохранить клиенту деньги, время и управленческое внимание. Поэтому я заранее показываю, где инструмент даст пользу сразу, где нужна подготовка, а где лучше начать со стратегии, аудита или обучения команды. Для собственника это означает одно: решение принимается на фактах, цифрах и понимании последствий.",
+                  text: "Моя задача — сохранить клиенту деньги, время и управленческое внимание. Поэтому я заранее показываю, где инструмент даст пользу сразу, где нужна подготовка, а где стоит начать с диагностики, аудита или обучения команды. Для собственника это означает одно: решение принимается на фактах, цифрах и понимании последствий.",
                 },
               ].map((p, i) => {
                 const palettes = [
@@ -495,47 +495,46 @@ const About = () => {
 
         {/* What is NeyroResheniya */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-          <div className="rounded-[32px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-20">
+          <div id="company-directions" className="rounded-[32px] md:rounded-[40px] bg-accent !text-[#212121] overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-12 lg:px-16 py-12 md:py-20">
             <div className="grid md:grid-cols-12 gap-8 md:gap-12">
               <div className="md:col-span-5">
-                <p className="text-sm uppercase tracking-widest text-white/90 font-semibold mb-5">
-                  Агентство
+                <p className="text-sm uppercase tracking-widest !text-[#212121] font-semibold mb-5">
+                  Технологическая компания
                 </p>
-                <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] mb-6">
+                <h2 className="text-3xl md:text-5xl font-bold !text-[#212121] leading-[1.05] mb-6">
                   Что такое{" "}
-                  <span className="font-iriska font-normal italic text-white">
+                  <span className="font-iriska font-normal italic !text-[#212121]">
                     «НейроРешения»
                   </span>
                 </h2>
-                <div className="space-y-4 text-base md:text-lg text-white/85 leading-relaxed">
+                <div className="space-y-4 text-base md:text-lg !text-[#212121] leading-relaxed">
                 <p>
-                  «НейроРешения» — агентство цифрового развития бизнеса, которое выросло из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
+                  «НейроРешения» выросли из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
                 </p>
                 <p>
-                  Это методология, продуктовая система и команда решений вокруг задач собственника: стратегия, аудит, обучение, внедрение, разработка и сопровождение цифровых инструментов.
+                  Программные продукты, ИИ-агенты и автоматизация бизнеса. Помогаем сократить ручную работу, связать данные и системы, проверяем результат на согласованных показателях.
                 </p>
                 </div>
               </div>
               <div className="md:col-span-7">
-                <p className="text-sm font-semibold text-white/90 uppercase tracking-widest mb-5">Направления</p>
-                <ul className="space-y-3 text-base md:text-lg text-white">
+                <p className="text-sm font-semibold !text-[#212121] uppercase tracking-widest mb-5">Направления</p>
+                <ul className="space-y-3 text-base md:text-lg !text-[#212121]">
                 {[
-                  "Стратегия цифрового развития",
-                  "Глубокий аудит компании для цифровизации",
-                  "Обучение команды работе с цифровыми инструментами",
-                  "Сопровождение цифрового внедрения",
-                  "Проектирование и разработка решений под бизнес-процессы",
-                  "Поддержка и развитие цифровых инструментов компании",
-                ].map((item) => (
-                  <li key={item} className="flex gap-3 border-b border-white/15 pb-3">
-                    <span className="text-white/70 flex-shrink-0 font-iriska italic">—</span>
-                    <span>{item}</span>
+                  ["Продукты: НейроТендеролог и корпоративный портал знаний", "/products"],
+                  ["МиниАгенты: одна задача, один МиниАгент", "/mini-agents"],
+                  ["ИИ-агенты: Hermes и индивидуальная разработка", "/ai-agents"],
+                  ["Автоматизация бизнеса", "/services/automation"],
+                  ["Экспертная работа: диагностика, аудит, обучение и ДПО", "/expert"],
+                ].map(([item,href]) => (
+                  <li key={href} className="flex gap-3 border-b border-foreground/20 pb-3">
+                    <span className="text-foreground flex-shrink-0 font-iriska italic">·</span>
+                    <Link className="font-semibold underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2" to={href}>{item}</Link>
                   </li>
                 ))}
                 </ul>
                 <div className="mt-8">
                   <PillButton to="/services" variant="light">
-                    Посмотреть услуги
+                    Посмотреть решения
                   </PillButton>
                 </div>
               </div>
@@ -649,7 +648,7 @@ const About = () => {
                 <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                   {[
                     { label: "Роль", value: "Инженер и архитектор цифрового развития бизнеса" },
-                    { label: "Компания", value: "Основатель агентства «НейроРешения»" },
+                    { label: "Компания", value: "Основатель компании «НейроРешения»" },
                     { label: "Практика", value: "4+ года практики в ИИ" },
                     { label: "Проекты", value: "40 внедрённых проектов" },
                     { label: "Разборы", value: "360 разборов бизнес-процессов" },
@@ -769,14 +768,14 @@ const About = () => {
               работы
             </h2>
             <p className="text-base md:text-lg text-white/90 leading-relaxed mb-10 max-w-2xl">
-              Если задача уже ясна — переходите к услугам. Если сначала нужно выбрать первый шаг — начните со страницы выбора формата.
+              Выберите готовое решение или начните с проверки рабочего процесса.
             </p>
             <div className="flex flex-wrap gap-3">
               <PillButton to="/start" variant="light">
                 Подобрать формат работы
               </PillButton>
               <PillButton to="/services" variant="outline-light">
-                Посмотреть услуги
+                Посмотреть решения
               </PillButton>
               <PillButton
                 href="https://t.me/aleksamois"

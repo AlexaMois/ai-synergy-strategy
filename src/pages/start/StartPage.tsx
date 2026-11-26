@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import catalog from "@/data/commercialCatalog.json";
 import { getIndustryScenario, scenarioContext } from "@/data/industryScenarios";
 import Footer from "@/components/Footer";
@@ -21,16 +21,19 @@ import {
 
 const StartPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const requestedOffer = new URLSearchParams(location.search).get("offer");
   const scenario = getIndustryScenario(new URLSearchParams(location.search).get("scenario"));
   const scenarioId = scenario?.id || "";
   const [diagnosticStarted, setDiagnosticStarted] = useState(
-    () => !!scenario || hasDiagnosticDraft(scenarioId) || isDiagnosticStarted()
+    () => !!scenario || (!requestedOffer && (hasDiagnosticDraft(scenarioId) || isDiagnosticStarted()))
   );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
     setContactIntent(null);
+    if (requestedOffer) navigate("/start", {replace:true});
     setDiagnosticStarted(true);
     markDiagnosticStarted();
     setTimeout(() => {
@@ -47,8 +50,8 @@ const StartPage = () => {
     setIndustryContext(scenario ? scenarioContext(scenario) : null);
     const requested = consumeDiagnosticAutostart();
     const intent = readContactIntent();
-    if (requested || (scenarioId && intent?.context?.scenarioId !== scenarioId) || (!scenarioId && intent?.context?.scenarioId)) setContactIntent(null);
-    if (scenario || requested) startDiagnostic();
+    if ((requested && !requestedOffer) || (scenarioId && intent?.context?.scenarioId !== scenarioId) || (!scenarioId && intent?.context?.scenarioId)) setContactIntent(null);
+    if (scenario || (requested && !requestedOffer)) startDiagnostic();
     const onOpen = () => startDiagnostic();
     window.addEventListener("self-start:open", onOpen);
     return () => window.removeEventListener("self-start:open", onOpen);
@@ -62,14 +65,17 @@ const StartPage = () => {
   useEffect(() => {
     const q=new URLSearchParams(location.search); const id=q.get("offer");
     if(!id) { if(readContactIntent()?.offerId) setContactIntent(null); return; }
-    const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная диагностика — 8 000 ₽","expert-audit":"Комплексный аудит","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
+    const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная диагностика — 8 000 ₽","expert-audit":"Комплексный аудит","expert-training":"Авторская программа «Цифровые инструменты для бизнеса»","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
     const title=catalog.mini.find(x=>x.id===id)?.name||catalog.hermes.find(x=>x.id===id)?.name||offerNames[id];
     if(!title)return;
     const previous=readContactIntent(); const fmt=q.get("format")||"connect"; const license=q.get("license");
-    const format=["demo","connect","setup","adaptation","project","onsite","audit"].includes(fmt)?fmt:"connect";
+    const format=["demo","connect","setup","adaptation","project","onsite","audit","training"].includes(fmt)?fmt:"connect";
     const licensePlan=catalog.mini.some(m=>m.id===id&&m.license==="standard")&&catalog.licenses.some(l=>l.id===license)?license||undefined:undefined;
-    setContactIntent({kind:id==="expert-onsite"?"onsite":"implementation",offerId:id,offerLabel:title,format,licensePlan,sourcePath:previous?.offerId===id?previous.sourcePath:undefined,context:null,process:title});
-    const timer=window.setTimeout(scrollToContact,220);return ()=>window.clearTimeout(timer);
+    const mini=catalog.mini.find(x=>x.id===id);
+    const fallbackSource=mini?"/mini-agents/"+mini.slug:catalog.hermes.some(x=>x.id===id)?"/ai-agents/hermes":({"product-neurotenderolog":"/services/neurotenderolog","product-knowledge-management":"/products/knowledge-management","custom-agent":"/ai-agents/custom","expert-onsite":"/expert","expert-audit":"/services/digital-audit","expert-training":"/services/digital-tools-program"} as Record<string,string>)[id]||"/services/automation";
+    const sourcePath=previous?.offerId===id&&previous.sourcePath?previous.sourcePath:fallbackSource;
+    setContactIntent({kind:id==="expert-onsite"?"onsite":"implementation",offerId:id,offerLabel:title,format,licensePlan,sourcePath,context:null,process:title});
+    const frame=window.requestAnimationFrame(()=>document.getElementById("contact")?.scrollIntoView({behavior:"instant" as ScrollBehavior,block:"start"}));return ()=>window.cancelAnimationFrame(frame);
   }, [location.search]);
 
 
@@ -150,7 +156,7 @@ const StartPage = () => {
               <Link className="font-semibold text-[#116078] underline underline-offset-4" to="/services">Выбрать решение из каталога</Link>. Уже знаете, что хотите внедрить?{" "}
               <button
                 type="button"
-                onClick={scrollToContact}
+                onClick={() => { setContactIntent(null); if(requestedOffer) navigate("/start#contact",{replace:true}); scrollToContact(); }}
                 className="font-semibold text-accent underline-offset-4 hover:underline"
               >
                 Сразу обсудить задачу →
