@@ -70,19 +70,21 @@ const PillButton = ({
     turquoise: "bg-background text-foreground",
     "ghost-light": "bg-background text-foreground",
   }[variant];
-  const Comp: any = to ? Link : "button";
-  return (
-    <Comp
-      {...(to ? { to } : { type: "button", onClick })}
-      className={`group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
-    >
+  const buttonClass = `group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`;
+  const content = (
+    <>
       <span>{children}</span>
       <span
         className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
       >
         <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </span>
-    </Comp>
+    </>
+  );
+  return to ? (
+    <Link to={to} className={buttonClass}>{content}</Link>
+  ) : (
+    <button type="button" onClick={onClick} className={buttonClass}>{content}</button>
   );
 };
 

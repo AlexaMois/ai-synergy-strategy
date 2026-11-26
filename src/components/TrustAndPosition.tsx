@@ -49,7 +49,7 @@ const TrustAndPosition = () => {
           </h2>
 
           {/* Hero-metric */}
-          <div ref={counterRef as any} className="grid md:grid-cols-12 gap-6 items-end mb-10 pb-10 border-b border-background/15">
+          <div ref={counterRef as React.RefObject<HTMLDivElement>} className="grid md:grid-cols-12 gap-6 items-end mb-10 pb-10 border-b border-background/15">
             <div className="md:col-span-5">
               <div className="font-iriska font-bold text-accent leading-none text-[7rem] md:text-[10rem]">
                 {countYears}<span className="text-5xl md:text-7xl align-top">+</span>

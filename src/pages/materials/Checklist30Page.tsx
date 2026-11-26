@@ -225,7 +225,7 @@ const Checklist30Page = () => {
                               <TableCell className="text-muted-foreground">{q.example}</TableCell>
                               {block.hasEtalon && (
                                 <TableCell className="text-muted-foreground text-sm italic">
-                                  {(q as any).etalon}
+                                  {(q as { etalon?: string }).etalon}
                                 </TableCell>
                               )}
                               <TableCell className="hidden print-only-col text-center text-lg">☐</TableCell>
