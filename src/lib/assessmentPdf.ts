@@ -45,18 +45,25 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
     pdf.addImage(logo, "PNG", left, 12, 55, 11.4);
     font(10, "normal", muted); pdf.text(report.date, right, 18, { align: "right" });
     pdf.setDrawColor("#4CBAD6"); pdf.setLineWidth(0.8); pdf.line(left, 27, right, 27);
-    y = 34;
+    y = 36;
     if (!first) { font(10, "bold", muted); pdf.text("Самостоятельная проверка процесса · продолжение", left, y); y += 8; }
   };
   const nextPage = () => { pdf.addPage(); head(false); };
   const space = (amount: number) => { if (y + amount > bottom) nextPage(); };
-  const lines = (text: string, size: number, weight: "normal" | "bold" = "normal", color = ink, leading = 4.5) => {
+  const textHeight = (text: string, size: number, weight: "normal" | "bold", leading: number) => {
+    font(size, weight);
+    return (pdf.splitTextToSize(text, width) as string[]).length * leading;
+  };
+  const lines = (text: string, size: number, weight: "normal" | "bold" = "normal", color = ink, leading = 4.5, keepWithNext = 0) => {
     font(size, weight, color);
     const wrapped = pdf.splitTextToSize(text, width) as string[];
-    for (const row of wrapped) {
-      space(leading);
+    space(Math.min(wrapped.length, 2) * leading + (wrapped.length <= 2 ? keepWithNext : 0));
+    for (let index = 0; index < wrapped.length; index++) {
+      const remaining = wrapped.length - index;
+      // Keep the last lines together and, for the final paragraph, with the conclusion note.
+      space(remaining <= 2 ? remaining * leading + keepWithNext : leading);
       font(size, weight, color);
-      pdf.text(row, left, y);
+      pdf.text(wrapped[index], left, y);
       y += leading;
     }
   };
@@ -78,25 +85,32 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
   space(metricHeight + 2);
   report.metrics.forEach((_, i) => {
     const x = left + i * (cell + gap);
-    pdf.setFillColor("#F7F8FA"); pdf.setDrawColor(line);
+    pdf.setFillColor("#F7F8FA"); pdf.setDrawColor(line); pdf.setLineWidth(0.25);
     pdf.roundedRect(x, y, cell, metricHeight, 1.8, 1.8, "FD");
     font(12, "bold"); pdf.text(valueRows[i], x + 3, y + 6, { lineHeightFactor: 1.18 });
     font(10, "normal", muted); pdf.text(labelRows[i], x + 3, y + valueHeight + 6, { lineHeightFactor: 1.2 });
   });
   y += metricHeight + 5;
   lines(report.metricNote, 10, "normal", muted, 4.4);
-  for (const section of report.sections) {
-    space(20);
-    y += 2;
+  const caveatHeight = 1.5 + textHeight(report.caveat, 10, "normal", 4.4);
+  for (const [index, section] of report.sections.entries()) {
+    const lastSection = index === report.sections.length - 1;
+    const headingHeight = 4.5 + textHeight(section.title, 13, "bold", 5);
+    const paragraphsHeight = section.paragraphs.reduce((sum, paragraph) => sum + textHeight(paragraph, 11, "normal", 4.7) + 0.4, 0);
+    const blockHeight = headingHeight + paragraphsHeight + (lastSection ? caveatHeight : 0);
+    // Compact short sections stay together; long answers flow across pages.
+    space(blockHeight <= 70 ? blockHeight : headingHeight + Math.min(paragraphsHeight, 9.4));
+    y += 1;
     pdf.setDrawColor(line); pdf.setLineWidth(0.25); pdf.line(left, y, right, y);
-    y += 5;
+    y += 3.5;
     lines(section.title, 13, "bold", section.id === "firstStep" ? accent : ink, 5);
-    for (const paragraph of section.paragraphs) {
-      lines(paragraph, 11, "normal", ink, 4.7);
-      y += 0.8;
+    for (const [paragraphIndex, paragraph] of section.paragraphs.entries()) {
+      const lastParagraph = lastSection && paragraphIndex === section.paragraphs.length - 1;
+      lines(paragraph, 11, "normal", ink, 4.7, lastParagraph ? caveatHeight + 0.4 : 0);
+      y += 0.4;
     }
   }
-  y += 2; lines(report.caveat, 10, "normal", muted, 4.4);
+  space(caveatHeight); y += 1.5; lines(report.caveat, 10, "normal", muted, 4.4);
   const count = pdf.getNumberOfPages();
   for (let page = 1; page <= count; page++) {
     pdf.setPage(page);

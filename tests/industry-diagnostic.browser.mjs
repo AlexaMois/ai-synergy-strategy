@@ -3,6 +3,15 @@ import { readFile, mkdir, copyFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { chromium } from "playwright";
 
+// A continued client report must contain meaningful content, not a lone note line.
+function assertContinuationContent(pdfPath, pages) {
+  for (let page = 2; page <= pages; page++) {
+    const content = execFileSync("pdftotext", ["-f", String(page), "-l", String(page), "-layout", "-enc", "UTF-8", pdfPath, "-"], { encoding: "utf8" });
+    const body = content.split("Самостоятельная проверка процесса · продолжение")[1]?.split("Александра Моисеева")[0] || "";
+    assert(body.split(/\r?\n/u).filter(line => line.trim()).length >= 3, "Continuation page has insufficient body content: " + page);
+  }
+}
+
 // Independent approved expectation snapshot; only synthetic data, local preview, intercepted forms.
 const cases = [
   {
@@ -1894,11 +1903,12 @@ try {
           const pages=Number(info.match(/^Pages:\s+(\d+)/m)?.[1]);
           assert(pages>=1&&pages<=2,"typical PDF page count");
           assert(/Page size:.*A4/i.test(info),"A4 page size");
+          assertContinuationContent(pdfPath, pages);
           for(let n=1;n<=pages;n++)assert(pdfText.includes("Страница "+n+" из "+pages));
           const artifact="artifacts/site-pr/report-"+width+"-"+s.id;
           await copyFile(pdfPath,artifact+".pdf");
           execFileSync("pdftoppm",["-r","110","-png",artifact+".pdf",artifact]);
-          await result.screenshot({path:artifact+".png"});
+          await result.screenshot({path:artifact+".png", style:"header.fixed, button.fixed { visibility: hidden !important; }"});
           assert.equal(posts.length,beforeResult,"PDF must not submit");
         }
         if(i===0){
@@ -1972,7 +1982,9 @@ try {
       const captureReport=async(name, expectedState, long=false)=>{
         assert.equal(await contradicted.locator("[data-report-state]").getAttribute("data-report-state"),expectedState);
         const prefix="artifacts/site-pr/report-"+width+"-"+name;
-        await contradicted.screenshot({path:prefix+".png"});
+        await contradicted.screenshot({path:prefix+".png", style:"header.fixed, button.fixed { visibility: hidden !important; }"});
+        await contradicted.evaluate(el => el.scrollIntoView({block:"start",behavior:"instant"}));
+        await page.screenshot({path:prefix+"-viewport.png"});
         const downloadPromise=page.waitForEvent("download");
         await contradicted.getByRole("button",{name:"Сохранить результат в PDF",exact:true}).click();
         const download=await downloadPromise;
@@ -1982,6 +1994,7 @@ try {
         const info=execFileSync("pdfinfo",[path],{encoding:"utf8"});
         const pages=Number(info.match(/^Pages:\s+(\d+)/m)?.[1]);
         assert(pages>=1&&(long?pages>1:pages<=2));
+        assertContinuationContent(path, pages);
         assert(!/ID сценария|ID выбранных действий|Категории действий Bpium|поле 15/.test(text));
         assert(text.includes("Первый шаг")&&text.includes("Критерии проверки"));
         if(long)assert(text.includes("КОНЕЦ ДЛИННОГО ОТВЕТА"));
