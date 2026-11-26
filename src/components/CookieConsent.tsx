@@ -14,7 +14,7 @@ export const COOKIE_SETTINGS_EVENT = "open-cookie-settings";
 // Яндекс.Метрика загружается только после согласия на аналитические cookies
 const updateYandexConsent = (consent: ConsentState) => {
   if (typeof window === "undefined") return;
-  const w = window as any;
+  const w = window as Window & { loadAnalytics?: () => void; disableAnalytics?: () => void };
   if (consent.analytics) {
     if (typeof w.loadAnalytics === "function") w.loadAnalytics();
     return;

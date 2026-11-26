@@ -247,7 +247,7 @@ const StylistQuiz = ({ onClose }: StylistQuizProps) => {
       const contactRaw = (contacts.contact || "").trim();
       const city = (contacts.city || "").trim();
       const contact_type: "telegram" | "phone" =
-        /^[+\d\s()\-]+$/.test(contactRaw) && contactRaw.replace(/\D/g, "").length >= 7
+        /^[+\d\s()-]+$/.test(contactRaw) && contactRaw.replace(/\D/g, "").length >= 7
           ? "phone"
           : "telegram";
 
@@ -1241,9 +1241,6 @@ const ReviewItemsView = ({
 
   const removeItem = (id: string) => {
     setItems((prev) => {
-      const target = prev.find((x) => x.id === id);
-      if (target?.photoPath) {
-      }
       return prev.filter((x) => x.id !== id);
     });
   };
@@ -1325,11 +1322,7 @@ const ReviewItemCard = ({
     try {
       const path = await uploadFileToStorage(file, `review-${index + 1}`);
       if (path) {
-        // удаляем старый файл только после успешной загрузки нового
-        const oldPath = item.photoPath;
         onChange({ photoPath: path, photoName: file.name });
-        if (oldPath) {
-        }
       }
     } finally {
       setUploading(false);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Tables } from "@/integrations/supabase/types";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -270,7 +271,7 @@ const IdeasAdmin = () => {
     setEditingId(null);
   };
 
-  const handleEdit = (idea: any) => {
+  const handleEdit = (idea: Tables<"ideas">) => {
     setForm({
       title: idea.title,
       description: idea.description,
@@ -325,7 +326,7 @@ const IdeasAdmin = () => {
                   <Label>Источник</Label>
                   <select
                     value={form.source}
-                    onChange={(e) => setForm({ ...form, source: e.target.value as any })}
+                    onChange={(e) => setForm({ ...form, source: e.target.value as typeof form.source })}
                     className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                   >
                     <option value="internal">Внутреннее</option>
@@ -338,7 +339,7 @@ const IdeasAdmin = () => {
                   <Label>Статус</Label>
                   <select
                     value={form.status}
-                    onChange={(e) => setForm({ ...form, status: e.target.value as any })}
+                    onChange={(e) => setForm({ ...form, status: e.target.value as typeof form.status })}
                     className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                   >
                     <option value="backlog">В бэклоге</option>
@@ -351,7 +352,7 @@ const IdeasAdmin = () => {
                   <Label>Приоритет</Label>
                   <select
                     value={form.priority}
-                    onChange={(e) => setForm({ ...form, priority: e.target.value as any })}
+                    onChange={(e) => setForm({ ...form, priority: e.target.value as typeof form.priority })}
                     className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                   >
                     <option value="low">Низкий</option>
@@ -397,7 +398,7 @@ const IdeasAdmin = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {ideas.map((idea: any) => (
+              {ideas.map((idea) => (
                 <TableRow key={idea.id}>
                   <TableCell className="font-medium max-w-xs truncate">
                     {idea.title}
@@ -520,7 +521,7 @@ const RoadmapAdmin = () => {
     setEditingId(null);
   };
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: Tables<"roadmap_items">) => {
     setForm({
       title: item.title,
       short_description: item.short_description || "",
@@ -574,7 +575,7 @@ const RoadmapAdmin = () => {
                   <Label>Статус</Label>
                   <select
                     value={form.status}
-                    onChange={(e) => setForm({ ...form, status: e.target.value as any })}
+                    onChange={(e) => setForm({ ...form, status: e.target.value as typeof form.status })}
                     className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                   >
                     <option value="planned">Запланировано</option>
@@ -599,7 +600,7 @@ const RoadmapAdmin = () => {
                   className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                 >
                   <option value="">Не выбрано</option>
-                  {ideas.map((idea: any) => (
+                  {ideas.map((idea) => (
                     <option key={idea.id} value={idea.id}>
                       {idea.title}
                     </option>
@@ -634,7 +635,7 @@ const RoadmapAdmin = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {items.map((item: any) => (
+              {items.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell className="font-medium max-w-xs truncate">
                     {item.title}
@@ -748,7 +749,7 @@ const UpdatesAdmin = () => {
     setEditingId(null);
   };
 
-  const handleEdit = (release: any) => {
+  const handleEdit = (release: Tables<"release_notes">) => {
     setForm({
       title: release.title,
       summary: release.summary,
@@ -819,7 +820,7 @@ const UpdatesAdmin = () => {
                   <Label>Статус</Label>
                   <select
                     value={form.status}
-                    onChange={(e) => setForm({ ...form, status: e.target.value as any })}
+                    onChange={(e) => setForm({ ...form, status: e.target.value as typeof form.status })}
                     className="w-full h-11 px-3 rounded-xl border border-input bg-background"
                   >
                     <option value="released">Опубликовано</option>
@@ -864,7 +865,7 @@ const UpdatesAdmin = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {releases.map((release: any) => (
+              {releases.map((release) => (
                 <TableRow key={release.id}>
                   <TableCell className="font-medium max-w-xs truncate">
                     {release.title}

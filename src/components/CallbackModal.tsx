@@ -106,7 +106,7 @@ const CallbackModal = () => {
         }
         setIsSubmitting(false);
         setIsSubmitted(true);
-        trackFormSubmission("task" as any);
+        trackFormSubmission("task");
         return;
       }
       // Заказ звонка: контакты уходят только в CRM (Bpium), в MAX — только номер записи.
@@ -125,7 +125,7 @@ const CallbackModal = () => {
       }
       setIsSubmitting(false);
       setIsSubmitted(true);
-      trackFormSubmission("callback" as any);
+      trackFormSubmission("callback");
     } catch (e) {
       console.error("callback submit error", e);
       toast.error("Произошла ошибка при отправке. Попробуйте ещё раз.");

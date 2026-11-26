@@ -37,8 +37,7 @@ const Footer = () => {
             <p className="text-xl font-bold mb-2">Александра Моисеева</p>
             <p className="text-background/80 text-base leading-relaxed">
               Независимый инженер и архитектор цифрового развития бизнеса<br />
-              ​Даю честную оценку, считаю экономику и заранее определяю критерии результата<br />
-              ​
+              Даю честную оценку, считаю экономику и заранее определяю критерии результата<br />
             </p>
           </div>
 
@@ -54,7 +53,7 @@ const Footer = () => {
               <DisabledLink to="/materials/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
               <DisabledLink to="/pricing" className="hover:text-primary transition-colors">Цены</DisabledLink>
               <DisabledLink to="/faq" className="hover:text-primary transition-colors">FAQ</DisabledLink>
-              <DisabledLink to="/about#contacts" className="hover:text-primary transition-colors">Контакты</DisabledLink>
+              <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
             </div>
           </div>
 

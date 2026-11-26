@@ -571,7 +571,7 @@ const About = () => {
             </h2>
           </div>
 
-          <div ref={statsRef as any} className="space-y-10">
+          <div ref={statsRef as React.RefObject<HTMLDivElement>} className="space-y-10">
               {/* Credentials — асимметричный bento */}
               {(() => {
                 const items = [

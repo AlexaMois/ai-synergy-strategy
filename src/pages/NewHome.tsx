@@ -32,7 +32,7 @@ const stats: Array<{
   sub?: string;
   decimals?: number;
 }> = [
-  { value: 360, suffix: "", label: "разборов бизнес-процессов" },
+  { value: 360, suffix: "", label: "консультаций" },
   { value: 40, suffix: "", label: "внедрённых проектов", sub: "решения, которые дошли до рабочего применения" },
   { value: 7, suffix: "", label: "городов", sub: "работаю онлайн по России" },
   { value: 10, suffix: "", label: "отраслей" },
@@ -70,19 +70,21 @@ const PillButton = ({
     turquoise: "bg-background text-foreground",
     "ghost-light": "bg-background text-foreground",
   }[variant];
-  const Comp: any = to ? Link : "button";
-  return (
-    <Comp
-      {...(to ? { to } : { type: "button", onClick })}
-      className={`group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`}
-    >
+  const buttonClass = `group inline-flex items-center gap-2.5 sm:gap-3 pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles} ${className}`;
+  const content = (
+    <>
       <span>{children}</span>
       <span
         className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full ${iconBg} group-hover:translate-x-0.5 transition-transform`}
       >
         <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
       </span>
-    </Comp>
+    </>
+  );
+  return to ? (
+    <Link to={to} className={buttonClass}>{content}</Link>
+  ) : (
+    <button type="button" onClick={onClick} className={buttonClass}>{content}</button>
   );
 };
 
@@ -93,11 +95,11 @@ const NewHome = () => {
         <title>Цифровизация и автоматизация бизнеса — Александра Моисеева</title>
         <meta
           name="description"
-          content="Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять ИИ там, где он даёт понятную пользу бизнесу."
+          content="Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом."
         />
         <link rel="canonical" href="https://aleksamois.ru/" />
         <meta property="og:title" content="Цифровизация и автоматизация бизнеса — Александра Моисеева" />
-        <meta property="og:description" content="Помогаю собственникам находить ручные процессы, снижать нагрузку на команду и внедрять ИИ там, где он даёт понятную пользу бизнесу." />
+        <meta property="og:description" content="Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -120,7 +122,7 @@ const NewHome = () => {
                     Независимый инженер-архитектор цифрового развития бизнеса и внедрения искусственного интеллекта
                   </p>
                   <p className="text-sm sm:text-base md:text-lg text-background/80 mb-6 md:mb-10 max-w-xl">
-                    Помогаю собственникам сокращать ручную работу, устранять потери и внедрять цифровые решения с измеримой пользой для бизнеса
+                    Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом.
                   </p>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
                     <PillButton
@@ -169,10 +171,10 @@ const NewHome = () => {
                   <AnimatedNumber value={360} suffix="" />
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
-                  разборов бизнес-процессов
+                  консультаций
                 </p>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md">
-                  Разборы процессов, задач и точек потерь — за 4+ года практики в ИИ.
+                  Консультации по бизнес-процессам и цифровым решениям за 4+ года практики в ИИ.
                 </p>
               </div>
               <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
@@ -208,94 +210,43 @@ const NewHome = () => {
         {/* УЗНАЁТЕ СВОЙ БИЗНЕС? — интерактивные отраслевые вопросы */}
         <IndustryQuestions />
 
-        {/* С ЧЕГО НАЧАТЬ — два варианта: встреча и стратегия */}
+        {/* С ЧЕГО НАЧАТЬ — выездная диагностика */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
-              Не знаете{" "}
-              <span className="font-iriska font-normal italic text-accent">с чего начать</span>?
+              С чего начать{" "}
+              <span className="font-iriska font-normal italic text-accent">цифровизацию</span>?
             </h2>
             <p className="text-base md:text-lg text-foreground/80">
-              Если уже знаете, что хотите изменить, сразу обсудим решение. Если
-              пока непонятно, за что браться первым, поможем определить приоритеты
-              и избежать лишних расходов.
+              Начнём с конкретного рабочего процесса. Выявим потери времени и денег, определим приоритет и следующий шаг.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              {
-                step: "Для руководителя",
-                title: "Разобраться в задачах и определить \nпервый шаг",
-                text: "За одну встречу разберём вашу ситуацию, найдём основные точки потерь и определим, что стоит изменить в первую очередь.",
-                price: 17000,
-                result: "Результат: приоритеты и короткий план следующих шагов.",
-                to: "/services/owner-digital-session",
-                showSketch: null,
-                bg: "bg-surface-mint",
-                textColor: "text-foreground",
-                muted: "text-foreground/85",
-                btnVariant: "dark" as const,
-                chip: "bg-background text-primary-dark",
-                dots: "bg-[radial-gradient(hsl(var(--border))_1.5px,transparent_1.5px)]",
-                check: "text-accent",
-              },
-              {
-                step: "Для компании",
-                title: "Понять, что менять в компании и в каком порядке",
-                text: "Разберём ключевые процессы вместе с сотрудниками, найдём ручную работу и потери времени, определим приоритеты изменений.",
-                price: 78000,
-                result: "Результат: документ с планом действий на 90 дней.",
-                to: "/services/digital-development-strategy",
-                showSketch: null,
-                bg: "bg-primary-dark",
-                textColor: "text-background",
-                muted: "text-background",
-                btnVariant: "light" as const,
-                chip: "bg-background text-primary-dark",
-                dots: "bg-[radial-gradient(hsl(var(--background)/0.35)_1.5px,transparent_1.5px)]",
-                check: "text-background",
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className={`relative flex flex-col rounded-[28px] ${card.bg} p-7 md:p-9 min-h-[380px] overflow-hidden shadow-card hover:shadow-plate hover:-translate-y-1 transition-all duration-300 ring-1 ring-foreground/5`}
-              >
-                {card.showSketch && (
-                  <img
-                    src={card.showSketch}
-                    alt=""
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    className="absolute -bottom-4 -right-4 w-40 h-40 object-contain opacity-90 pointer-events-none"
-                  />
-                )}
-                <div aria-hidden className={`absolute top-0 right-0 w-44 h-44 opacity-70 pointer-events-none ${card.dots} [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,black,transparent_72%)]`} />
-                <span className={`relative inline-flex items-center self-start px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest ${card.chip} mb-4`}>
-                  {card.step}
-                </span>
-                <h3 className={`text-xl md:text-2xl font-bold ${card.textColor} mb-3 leading-tight relative`}>
-                  {card.title}
-                </h3>
-                <p className={`text-sm md:text-base ${card.muted} leading-relaxed mb-6 relative max-w-[85%]`}>
-                  {card.text}
-                </p>
-                <div className="mt-auto space-y-4 relative">
-                  <div className="flex items-end gap-3">
-                    <span className={`font-iriska font-bold text-3xl md:text-4xl leading-none ${card.textColor}`}>
-                      <AnimatedNumber value={card.price} suffix=" ₽" />
-                    </span>
-                  </div>
-                  <p className={`flex items-start gap-2 text-sm ${card.muted} max-w-[85%]`}>
-                    <BadgeCheck className={`h-4 w-4 shrink-0 ${card.check} mt-0.5`} />
-                    {card.result}
-                  </p>
-                  <PillButton to={card.to} variant={card.btnVariant} className="text-sm">
-                    Подробнее
-                  </PillButton>
-                </div>
+          <div className="relative flex flex-col rounded-[28px] bg-surface-mint p-7 md:p-9 overflow-hidden shadow-card ring-1 ring-foreground/5">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
+              Выездная диагностика бизнес-процесса
+            </h3>
+            <p className="text-sm md:text-base text-foreground/85 leading-relaxed mb-4">
+              На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу.
+            </p>
+            <p className="text-sm md:text-base font-medium text-foreground mb-4">
+              Красноярск · До 1 часа
+            </p>
+            <p className="flex items-start gap-2 text-sm md:text-base text-foreground/85 mb-6">
+              <BadgeCheck className="h-4 w-4 shrink-0 text-accent mt-0.5" />
+              <span><strong>Результат:</strong> краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</span>
+            </p>
+            <div className="space-y-4">
+              <div className="font-iriska font-bold text-3xl md:text-4xl leading-none text-foreground">
+                <AnimatedNumber value={8000} suffix=" ₽" />
               </div>
-            ))}
+              <p className="text-sm md:text-base text-foreground/85">
+                Стоимость диагностики полностью засчитывается в оплату последующего проекта автоматизации.
+              </p>
+              <p className="text-sm text-foreground/85">Место и время выезда согласуем заранее.</p>
+              <PillButton onClick={scrollToContact} variant="dark" className="text-sm">
+                Пригласить специалиста
+              </PillButton>
+            </div>
           </div>
           <div className="mt-10 text-center">
             <Link to="/start" onClick={requestDiagnosticAutostart} className="mb-5 flex justify-center items-center text-accent underline underline-offset-4 font-medium">
@@ -324,7 +275,7 @@ const NewHome = () => {
                 </p>
                 <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
                   <span className="md:whitespace-nowrap">
-                    Человек → Процессы → Бизнес → <span className="font-iriska font-normal italic text-accent">Технологии</span>
+                    От процессов к <span className="font-iriska font-normal italic text-accent">технологии</span>
                   </span>
                 </h2>
               </div>
@@ -443,9 +394,9 @@ const NewHome = () => {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-accent leading-none">0% потерянных заявок</div>
+                    <div className="text-2xl font-bold text-accent leading-none">0% потерянных заявок после внедрения</div>
                     <p className="text-xs text-muted-foreground mt-1">
-                      9–12 часов рабочего времени экономится каждую неделю
+                      9–12 часов в неделю экономит команда из трёх сотрудников
                     </p>
                   </div>
                   <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />

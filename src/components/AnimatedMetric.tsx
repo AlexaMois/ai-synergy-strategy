@@ -8,7 +8,7 @@ interface AnimatedMetricProps {
 // Extract number and its surrounding text
 const parseMetric = (text: string) => {
   // Match number patterns with potential decimal (comma or dot), thousands separators
-  const match = text.match(/^(.*?)(\d+(?:[,\.]\d+)?)(.*)$/);
+  const match = text.match(/^(.*?)(\d+(?:[,.]\d+)?)(.*)$/);
   if (match) {
     const prefix = match[1];
     const rawNumberStr = match[2];
