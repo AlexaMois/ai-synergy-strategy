@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, mkdir } from "node:fs/promises";
+import { readFile, mkdir, copyFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { chromium } from "playwright";
 
@@ -1872,7 +1872,7 @@ try {
         assert(resultText.includes(s.question));
         assert(resultText.includes(s.solution),s.id+" contextual recommendation");
         assert(resultText.includes(s.criterion));
-        assert(i===1 ? resultText.includes("Время пока неизвестно") : resultText.includes("48 ч за 4 недели"));
+        assert(i===1 ? resultText.includes("Время пока неизвестно") : (await result.locator('[data-metric="fourWeeks"]').innerText()).includes("48 ч"));
         const state=await draft();
         assert.equal(state.scenarioId,s.id);
         assert.deepEqual(state.form.manualActions,[...new Set([...s.actions.slice(0,2).map(a=>a.categoryId),...(i===0?["13"]:[])])]);
@@ -1887,7 +1887,18 @@ try {
           assert.equal((await readFile(pdfPath)).subarray(0,4).toString(),"%PDF");
           const normalized = value => value.replace(/\s+/gu," ").trim();
           const pdfText=normalized(execFileSync("pdftotext",["-enc","UTF-8",pdfPath,"-"],{encoding:"utf8"}));
-          for(const str of [s.id,s.question,...s.actions.slice(0,2).map(a=>a.label),s.criterion,...(i===0?[custom]:[])]) assert(pdfText.includes(normalized(str)),s.id+" PDF missing "+str);
+          for(const str of [s.question,s.process,...s.actions.slice(0,2).map(a=>a.label),s.criterion,...(i===0?[custom]:[])]) assert(pdfText.includes(normalized(str)),s.id+" PDF missing "+str);
+          assert(!pdfText.includes(s.id),"client PDF must exclude generated scenario ID");
+          assert(!/ID сценария|ID выбранных действий|Категории действий Bpium|поле 15/.test(pdfText));
+          const info=execFileSync("pdfinfo",[pdfPath],{encoding:"utf8"});
+          const pages=Number(info.match(/^Pages:\s+(\d+)/m)?.[1]);
+          assert(pages>=1&&pages<=2,"typical PDF page count");
+          assert(/Page size:.*A4/i.test(info),"A4 page size");
+          for(let n=1;n<=pages;n++)assert(pdfText.includes("Страница "+n+" из "+pages));
+          const artifact="artifacts/site-pr/report-"+width+"-"+s.id;
+          await copyFile(pdfPath,artifact+".pdf");
+          execFileSync("pdftoppm",["-r","110","-png",artifact+".pdf",artifact]);
+          await result.screenshot({path:artifact+".png"});
           assert.equal(posts.length,beforeResult,"PDF must not submit");
         }
         if(i===0){
@@ -1957,6 +1968,45 @@ try {
       assert(!(await contradicted.innerText()).includes(cases[0].solution));
       assert.equal(posts.length,1);
       console.log("PASS",width,"explicit absence of downtime");
+      assert.equal(await contradicted.locator("[data-report-state]").getAttribute("data-report-state"),"conflicting");
+      const captureReport=async(name, expectedState, long=false)=>{
+        assert.equal(await contradicted.locator("[data-report-state]").getAttribute("data-report-state"),expectedState);
+        const prefix="artifacts/site-pr/report-"+width+"-"+name;
+        await contradicted.screenshot({path:prefix+".png"});
+        const downloadPromise=page.waitForEvent("download");
+        await contradicted.getByRole("button",{name:"Сохранить результат в PDF",exact:true}).click();
+        const download=await downloadPromise;
+        const path=await download.path();
+        await copyFile(path,prefix+".pdf");
+        const text=execFileSync("pdftotext",["-enc","UTF-8",path,"-"],{encoding:"utf8"}).replace(/\s+/gu," ");
+        const info=execFileSync("pdfinfo",[path],{encoding:"utf8"});
+        const pages=Number(info.match(/^Pages:\s+(\d+)/m)?.[1]);
+        assert(pages>=1&&(long?pages>1:pages<=2));
+        assert(!/ID сценария|ID выбранных действий|Категории действий Bpium|поле 15/.test(text));
+        assert(text.includes("Первый шаг")&&text.includes("Критерии проверки"));
+        if(long)assert(text.includes("КОНЕЦ ДЛИННОГО ОТВЕТА"));
+        execFileSync("pdftoppm",["-r","110","-png",prefix+".pdf",prefix]);
+        assert.equal(posts.length,1);
+      };
+      await captureReport("conflicting","conflicting");
+      await contradicted.getByRole("button",{name:"Изменить ответы",exact:true}).click();
+      await form.locator("textarea").first().fill("Описание уточняется.");
+      await next(2); await next(3);
+      await form.locator("textarea").fill("Требуется исходный замер.");
+      await next(4); await next(5);
+      await form.getByRole("button",{name:"Показать результат",exact:true}).click();
+      await visible(contradicted);
+      await captureReport("insufficient","insufficient");
+      await contradicted.getByRole("button",{name:"Изменить ответы",exact:true}).click();
+      await form.locator("textarea").first().fill(("Данные текущего процесса требуют уточнения. ").repeat(58)+"КОНЕЦ ДЛИННОГО ОТВЕТА");
+      await next(2); await next(3);
+      await form.locator("textarea").fill(("Описание последствий требует сверки с первичными данными. ").repeat(44));
+      await next(4); await next(5);
+      await form.locator("textarea").fill(("Целевые показатели уточняются после исходного замера. ").repeat(45));
+      await form.getByRole("button",{name:"Показать результат",exact:true}).click();
+      await visible(contradicted);
+      await captureReport("long","insufficient",true);
+      console.log("PASS",width,"client report states and long PDF");
     }catch(error){await page.screenshot({path:"artifacts/site-pr/industry-"+width+"-failure.png",fullPage:true}).catch(()=>{});throw error;}
     finally{await context.close();}
   }
