@@ -507,7 +507,7 @@ const About = () => {
                     «НейроРешения»
                   </span>
                 </h2>
-                <div className="space-y-4 text-base md:text-lg !text-[#212121] leading-relaxed">
+                <div className="space-y-4 text-base md:text-lg !text-[#212121] [&>p]:!text-[#212121] leading-relaxed">
                 <p>
                   «НейроРешения» выросли из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
                 </p>

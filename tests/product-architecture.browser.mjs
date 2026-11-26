@@ -13,6 +13,8 @@ const browser=await chromium.launch({headless:true});
 const report=[];
 const routes=["/","/services","/products","/services/neurotenderolog","/products/knowledge-management","/mini-agents","/ai-agents","/ai-agents/hermes","/ai-agents/custom","/services/automation","/expert","/pricing","/start","/faq","/services/digital-audit","/services/digital-tools-program","/about",...catalog.mini.map(x=>"/mini-agents/"+x.slug)];
 const digits=s=>s.replace(/[^0-9]/g,"");
+// Element-only evidence excludes fixed site chrome; full-page screenshots above retain it.
+const blockStyle="header, button.fixed, [data-floating-home] { visibility: hidden !important; }";
 try {
   for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:568}]){
     const context=await browser.newContext({viewport,isMobile:viewport.width<600,hasTouch:viewport.width<600,deviceScaleFactor:1,reducedMotion:"reduce",serviceWorkers:"block"});
@@ -50,8 +52,8 @@ try {
         const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
         assert.equal(new URL(canonical).pathname.replace(/\/$/,""),path.replace(/\/$/,""),"canonical path "+path);
         assert.equal(await page.locator("main h1").count(),1);
-        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),5);await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png"});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png"});}
-        if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),5);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png"});}
+        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),5);await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
+        if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),5);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));const contrast=await block.evaluate(el=>{const lum=c=>c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll("p, h2, ul a")].map(n=>{const fg=lum(getComputedStyle(n).color);return {text:n.textContent.slice(0,70),ratio:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)};});});assert(contrast.every(x=>x.ratio>=7),"About commercial block contrast "+JSON.stringify(contrast));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png",style:blockStyle});}
         if(path==="/mini-agents"){
           assert.equal(await page.locator("#catalog .nr-mini-card").count(),15);
           for(const item of catalog.mini){const card=page.locator('#catalog a[href="/mini-agents/'+item.slug+'"]');assert.equal(await card.count(),1);assert(digits(await card.locator(".nr-card-bottom").innerText()).includes(String(item.price)));}
