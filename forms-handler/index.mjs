@@ -400,9 +400,12 @@ function shortLeadValues(d) {
     const [category, next] = commercialRoutes[d.offerId];
     values['45'] = category;
     values['47'] = next;
+    values['intake_next_action'] = next;
     const license = d.offerId.startsWith('mini-') && d.offerId !== 'mini-15' ? d.licensePlan : undefined;
     values['14'] = [d.task, 'ID предложения: ' + d.offerId, 'Формат: ' + (d.format || 'connect'), license ? 'Лицензия: ' + license : '', d.sourcePath ? 'Источник: ' + d.sourcePath : ''].filter(Boolean).join('\n\n');
   } else if (d.task) values['14'] = d.task
+  // Short intake and legacy workflow use the same next action in catalog 81.
+  values['intake_next_action'] = values['47'];
   return values
 }
 

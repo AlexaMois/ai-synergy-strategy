@@ -25,10 +25,24 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
-        if(path==="/"){fontEvidence=await page.evaluate(async()=>{const faces=[];for(const name of ["Golos Text","Raleway","Iriska"]){try{const loaded=await document.fonts.load(`600 18px "${name}"`,"НейроРешения");faces.push({name,loaded:loaded.some(f=>f.status==="loaded"),count:loaded.length});}catch(e){faces.push({name,loaded:false,error:String(e)});}}const imgs=[...document.querySelectorAll("header img,main img")].filter(x=>/Александра Моисеева|Нейрорешения/i.test(x.alt));return {faces,images:imgs.map(x=>({alt:x.alt,loaded:x.complete&&x.naturalWidth>0,width:x.naturalWidth}))};});report.push({width:viewport.width,path:"brand-assets",status:fontEvidence.faces.every(f=>f.loaded)&&fontEvidence.images.length>0&&fontEvidence.images.every(x=>x.loaded)?"pass":"fail",evidence:fontEvidence});}
 
         // Trigger existing on-scroll animations and lazy assets before recording a full page.
         await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,65));}window.scrollTo(0,0);await new Promise(r=>setTimeout(r,300));});
+        if(path==="/"){
+          // Deferred stylesheet is initially media=print. Wait for actual font-face registration.
+          await page.waitForFunction(()=>["Golos Text","Raleway","Iriska"].every(name=>[...document.fonts].some(f=>f.family.replace(/["']/g,"")===name)),null,{timeout:15000}).catch(()=>{});
+          fontEvidence=await page.evaluate(async()=>{
+            const faces=[];
+            for(const name of ["Golos Text","Raleway","Iriska"]){
+              try{const loaded=await document.fonts.load(`600 18px "${name}"`,"НейроРешения");faces.push({name,loaded:loaded.some(f=>f.status==="loaded"),count:loaded.length});}
+              catch(e){faces.push({name,loaded:false,error:String(e)});}
+            }
+            const imgs=[...document.querySelectorAll("header img,main img")].filter(x=>/Александра Моисеева|Нейрорешения/i.test(x.alt));
+            await Promise.all(imgs.map(x=>x.decode().catch(()=>{})));
+            return {faces,images:imgs.map(x=>({alt:x.alt,loaded:x.complete&&x.naturalWidth>0,width:x.naturalWidth})),fontStyles:[...document.querySelectorAll('link[rel="stylesheet"]')].filter(x=>x.href.includes("fonts.googleapis.com")).map(x=>({media:x.media,loaded:!!x.sheet}))};
+          });
+          report.push({width:viewport.width,path:"brand-assets",status:fontEvidence.faces.every(f=>f.loaded)&&fontEvidence.images.length>0&&fontEvidence.images.every(x=>x.loaded)?"pass":"fail",evidence:fontEvidence});
+        }
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         const geometry=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(geometry.width<=geometry.viewport+3,"overflow "+JSON.stringify(geometry));
@@ -82,10 +96,10 @@ try {
       stage="verify confirmation";await page.waitForFunction(()=>document.querySelector("#contact")?.textContent.includes("Спасибо"),null,{timeout:10000});
       assert.equal(payload?.offerId,"mini-01");assert.equal(payload?.licensePlan,"plus");assert.equal(payload?.format,"connect");assert.equal(payload?.sourcePath,"/mini-agents/"+catalog.mini[0].slug);
       assert(payload.task.includes("mini-01"));
-      await page.goto(new URL("/start?offer=mini-01&format=connect&license=plus#contact",BASE).href);await page.locator('[data-commercial-intent="mini-01"]').waitFor();
+      stage="restore context from URL";await page.goto(new URL("/start?offer=mini-01&format=connect&license=plus#contact",BASE).href);await page.locator('[data-commercial-intent="mini-01"]').waitFor();
       const restored=await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")));assert.equal(restored.sourcePath,"/mini-agents/max-files");assert.equal(restored.licensePlan,"plus");
-      await page.getByRole("button",{name:"Обычное обращение",exact:true}).click();await page.waitForURL(url=>!url.searchParams.has("offer"));assert.equal(await page.locator("[data-commercial-intent]").count(),0);
-      for(const [route,id] of [["/services/digital-audit","expert-audit"],["/services/digital-solution-design","automation-custom-software"],["/services/digital-tools-program","expert-training"]]){await page.goto(new URL(route,BASE).href);await page.locator('main a[href*="offer='+id+'"]').first().click();await page.waitForURL(url=>url.searchParams.get("offer")===id);await page.locator('[data-commercial-intent="'+id+'"]').waitFor();assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")).offerId),id);}
+      stage="reset commercial context";await page.getByRole("button",{name:"Обычное обращение",exact:true}).click();await page.waitForURL(url=>!url.searchParams.has("offer"));assert.equal(await page.locator("[data-commercial-intent]").count(),0);
+      for(const [route,id] of [["/services/digital-audit","expert-audit"],["/services/digital-solution-design","automation-custom-software"],["/services/digital-tools-program","expert-training"]]){stage="service route "+id;await page.goto(new URL(route,BASE).href);await page.locator('main a[href*="offer='+id+'"]').first().click();await page.waitForURL(url=>url.searchParams.get("offer")===id);await page.locator('[data-commercial-intent="'+id+'"]').waitFor();assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")).offerId),id);}
       report.push({width:viewport.width,path:"commercial CTA and form intent",status:"pass"});
     }catch(e){report.push({width:viewport.width,path:"commercial CTA and form intent",status:"fail",stage,message:String(e),payloadReceived:!!payload,visibleErrors:await page.locator("#contact .text-destructive").allTextContents().catch(()=>[])});await page.screenshot({path:folder+"/"+viewport.width+"-form-failure.png",fullPage:true}).catch(()=>{});}
     if(errors.length)report.push({width:viewport.width,path:"runtime errors",status:"fail",message:errors.join("; ")});

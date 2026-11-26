@@ -26,11 +26,11 @@ for(const [i,[offerId,format,category,licensePlan]] of cases.entries()){
  assert.equal(v["45"],category,offerId);
  assert.deepEqual(v["51"],["1"]);assert.equal(v["41"],"1");assert.deepEqual(v["42"],["1"]);assert.equal(v["44"],"2");
  assert(v["14"].includes("ID предложения: "+offerId));assert(v["14"].includes("Формат: "+format));assert(v["14"].includes("Источник: "+sourcePath));
- assert.equal(v["14"].includes("Лицензия: "),Boolean(licensePlan));assert(v["47"].length>10);
+ assert.equal(v["14"].includes("Лицензия: "),Boolean(licensePlan));assert(v["47"].length>10);assert.equal(v.intake_next_action,v["47"]);
  assert.deepEqual(Object.keys(notified.at(-1)).sort(),["createdAt","formName","pageUrl","recordId"]);
 }
 const old=await handleRequest({path:"/short-lead",rawBody:JSON.stringify({name:"CI Mock",phone:"+79990000000",task:"Legacy",consent:true}),headers:{"x-forwarded-for":"192.0.2.100"}});
-assert.equal(old.statusCode,200);assert.equal(captured.at(-1)["45"],"6");
+assert.equal(old.statusCode,200);assert.equal(captured.at(-1)["45"],"6");assert.equal(captured.at(-1).intake_next_action,captured.at(-1)["47"]);
 const invalid=await handleRequest({path:"/short-lead",rawBody:JSON.stringify({name:"CI Mock",phone:"+79990000000",task:"Invalid",consent:true,offerId:"unknown"}),headers:{"x-forwarded-for":"192.0.2.101"}});
 assert.equal(invalid.statusCode,400);assert.equal(captured.length,cases.length+1);assert.equal(notified.length,captured.length);
 console.log("PASS",cases.length,"commercial Bpium mock routes, legacy compatibility, invalid offer rejection, notification field contract; zero live requests");
