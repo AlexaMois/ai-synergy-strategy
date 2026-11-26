@@ -108,7 +108,7 @@ const StartPage = () => {
             <div className="grid md:grid-cols-2 gap-5">
               <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
                 <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">Самостоятельно</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-foreground mb-4">Узнайте, где процесс забирает время</h2>
+                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-foreground mb-4">Узнайте, где компания теряет деньги</h2>
                 <p className="text-[16px] font-normal text-muted-foreground leading-relaxed mb-5">Ответьте на вопросы о работе сотрудников, задержках и ошибках. Получите предварительные выводы и первый шаг для проверки.</p>
                 <p className="text-[20px] md:text-[22px] font-bold text-foreground mb-1">Бесплатно</p>
                 <p className="text-sm md:text-base text-muted-foreground mb-7">Без регистрации и обязательного звонка.</p>
@@ -116,7 +116,7 @@ const StartPage = () => {
               </div>
               <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
                 <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-background/60 mb-4">С Александрой</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Разберём, что менять в первую очередь</h2>
+                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Разберём, что делать в первую очередь</h2>
                 <p className="text-[16px] font-normal text-background/85 leading-relaxed mb-5">На стратегической встрече разберём Вашу ситуацию, определим главное ограничение и выберем, какое действие стоит предпринять первым. Вы получите письменные выводы на одной странице: что менять, с чего начать и как проверить результат.</p>
                 <p className="text-[20px] md:text-[22px] font-bold text-accent mb-1">17 000 ₽</p>
                 <p className="text-sm md:text-base text-background/70 mb-7">Самостоятельная экспертная услуга. Дальнейшее сотрудничество необязательно.</p>

@@ -84,8 +84,8 @@ try {
       ["Все направления", "/services"],
       ["Убрать ручную работу", "/services/automation"],
       ["Выбрать первый приоритет", "/services/owner-digital-session"],
-      ["Обучить команду", "/services/digital-tools-program"],
-      ["Отбирать закупки", "/services/neurotenderolog"],
+      ["Повысить производительность команды", "/services/digital-tools-program"],
+      ["Автоматизация закупок", "/services/neurotenderolog"],
     ];
     for (const [label,target] of menuEntries) {
       await page.goto(BASE+"/cases");

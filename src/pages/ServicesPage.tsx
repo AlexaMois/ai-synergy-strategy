@@ -8,13 +8,13 @@ import { serviceJourneys } from "@/data/serviceJourneys";
 import { services } from "@/data/services";
 
 const phases = [
-  ["01", "Фиксируем операцию", "Что запускает работу, где она заканчивается, кто отвечает и сколько раз повторяется."],
+  ["01", "Изучаем текущие процессы", "Что запускает работу, где она заканчивается, кто отвечает и сколько раз повторяется."],
   ["02", "Считаем потери", "Время, ручные касания, ошибки, текущая стоимость, доступность данных."],
-  ["03", "Меняем рабочий порядок", "Правила, роли, интеграции, контроль исключений и тестирование."],
+  ["03", "Проектируем и внедряем решение", "Правила, роли, интеграции, контроль исключений и тестирование."],
   ["04", "Подтверждаем результат", "Сравниваем показатели, передаём инструкции и закрепляем ответственность."],
 ];
 const groups = [
-  { title: "Выбрать приоритет", slugs: ["owner-digital-session", "digital-development-strategy"] },
+  { title: "Определить первый шаг", slugs: ["owner-digital-session", "digital-development-strategy"] },
   { title: "Спроектировать и внедрить", slugs: ["digital-audit", "digital-solution-design", "implementation-support"] },
   { title: "Закрепить работу системы", slugs: ["digital-tools-support"] },
   { title: "Развить навыки команды", slugs: ["digital-tools-program"] },
@@ -90,7 +90,7 @@ const ServicesPage = () => (
           <div className="container mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Наш принцип</p>
-              <h2 className="text-3xl font-bold leading-tight text-background md:text-4xl">Сначала процесс. Затем технология.</h2>
+              <h2 className="text-3xl font-bold leading-tight text-background md:text-4xl">От процессов к технологии</h2>
               <p className="mt-4 leading-relaxed text-background/75">Результат проверяется на фактических данных, а ответственность закрепляется за людьми.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
