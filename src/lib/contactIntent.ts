@@ -1,11 +1,11 @@
 export type IndustryContext = { industry: string; question: string; topic: string; scenarioId?: string };
-export type ContactIntent = { kind: "implementation" | "meeting"; assessment?: string; process?: string; source?: "exit_popup"; context?: IndustryContext | null };
+export type ContactIntent = { kind: "implementation" | "meeting" | "onsite"; offerId?: string; offerLabel?: string; format?: string; licensePlan?: string; sourcePath?: string; assessment?: string; process?: string; source?: "exit_popup"; context?: IndustryContext | null };
 const KEY = "aleksamois.contactIntent";
 export const INTENT_EVENT = "aleksamois:contact-intent";
 export function readContactIntent(): ContactIntent | null {
   try {
     const data = JSON.parse(sessionStorage.getItem(KEY) || "null");
-    return data && ["implementation", "meeting"].includes(data.kind) ? data : null;
+    return data && ["implementation", "onsite"].includes(data.kind) ? data : null;
   } catch { return null; }
 }
 export function setContactIntent(intent: ContactIntent | null) {
@@ -34,7 +34,10 @@ export function setIndustryContext(context: IndustryContext | null) {
 export function intentTask(intent: ContactIntent | null) {
   if (!intent) return "";
   return [
-    intent.kind === "meeting" ? "Запрос на услугу: Личный разбор с Александрой — 17 000 ₽ (owner-digital-session)." : "Запрос на внедрение цифрового решения.",
+    intent.offerLabel ? `Выбранная услуга: ${intent.offerLabel} (${intent.offerId || ""}).` : intent.kind === "onsite" ? "Выездная диагностика — 8 000 ₽, Красноярск, один процесс, до 1 часа." : "Запрос на внедрение цифрового решения.",
+    intent.format ? `Формат: ${intent.format}` : "",
+    intent.licensePlan ? `Лицензия: ${intent.licensePlan}` : "",
+    intent.sourcePath ? `Источник: ${intent.sourcePath}` : "",
     intent.source === "exit_popup" ? "Источник обращения: всплывающее приглашение к самостоятельной проверке (exit_popup)." : "",
     intent.process ? `Выбранный процесс: ${intent.process}` : "",
     intent.assessment ? `Результат бесплатной проверки:\n${intent.assessment}` : "",

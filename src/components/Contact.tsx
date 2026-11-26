@@ -92,7 +92,8 @@ export const buildContactSubmission = (data: ContactFormData, currentContext: Co
   selectedIndustry: contactContext?.industry || '',
   selectedQuestion: contactContext?.question || '',
   selectedQuestionTopic: contactContext?.topic || '',
-  formName: intent?.kind === 'meeting' ? 'Личный разбор — 17 000 ₽' : 'Форма обратной связи',
+  formName: intent?.offerLabel || (intent?.kind === 'onsite' ? 'Выездная диагностика — 8 000 ₽' : 'Форма обратной связи'),
+  ...(intent?.offerId ? {offerId:intent.offerId,format:intent.format||'connect',licensePlan:intent.licensePlan,sourcePath:intent.sourcePath} : {}),
   consent: true,
   website: honeypot,
   });
@@ -105,6 +106,7 @@ interface ContactProps {
 const Contact = ({ defaultComment = "" }: ContactProps) => {
   const location = useLocation();
   const isStartPage = location.pathname.replace(/\/$/, "") === "/start";
+  const isHomePage = location.pathname === "/";
   const currentCase = caseForPath(location.pathname);
   const [intent, setIntent] = useState<ContactIntent | null>(null);
   const sendingRef = useRef(false);
@@ -166,7 +168,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   useEffect(() => {
     const update = () => {
       const next = readContactIntent();
-      setIntent(isStartPage ? next : null);
+      setIntent(isStartPage || (isHomePage && next?.kind === "onsite") ? next : null);
       if (isStartPage && next?.process) {
         const value = next.process.slice(0, 1000);
         setValue("comment", value, { shouldValidate: false });
@@ -181,7 +183,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
     update();
     window.addEventListener(INTENT_EVENT, update);
     return () => window.removeEventListener(INTENT_EVENT, update);
-  }, [isStartPage, setValue, getValues]);
+  }, [isStartPage, isHomePage, setValue, getValues]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
@@ -263,8 +265,8 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               className={`p-6 sm:p-8 rounded-3xl bg-card shadow-elevated ${getStaggeredClass(2, 'animate-fade-in-up')}`}
             >
             {currentCase && <p className="mb-6 border-b border-border pb-4 text-sm text-muted-foreground">Похожая задача · {currentCase.client}</p>}
-            {isStartPage && intent && <div className="mb-6 border-b border-border pb-4">
-              <p className="font-semibold text-foreground">{intent.kind === "meeting" ? "Личный разбор с Александрой — 17 000 ₽" : "Обсуждение внедрения"}</p>
+            {(isStartPage || isHomePage) && intent && <div className="mb-6 border-b border-border pb-4">
+              <p className="font-semibold text-foreground">{intent.offerLabel || (intent.kind === "onsite" ? "Выездная диагностика — 8 000 ₽" : "Обсуждение внедрения")}</p>
               {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}
               <PillButton size="sm" variant="outline-dark" onClick={() => setContactIntent(null)} className="mt-3">Обычное обращение</PillButton>
             </div>}

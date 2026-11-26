@@ -192,7 +192,117 @@ const str = (max) => z.string().trim().min(1).max(max)
 const ids = z.array(z.string().regex(/^\d{1,3}$/)).min(1).max(20)
 const optId = z.string().regex(/^\d{1,3}$/)
 
+const commercialRoutes = {
+  "mini-01": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-02": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-03": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-04": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-05": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-06": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-07": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-08": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-09": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-10": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-11": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-12": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-13": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-14": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "mini-15": [
+    "5",
+    "Уточнить рабочий сценарий, источники данных и условия лицензирования"
+  ],
+  "product-neurotenderolog": [
+    "6",
+    "Уточнить профиль закупок и условия демонстрации или подключения"
+  ],
+  "product-knowledge-management": [
+    "6",
+    "Уточнить задачи, документы, доступы и условия демонстрации"
+  ],
+  "hermes-basic": [
+    "5",
+    "Согласовать модель, размещение, мессенджер и доступы"
+  ],
+  "hermes-advanced": [
+    "5",
+    "Согласовать сценарий, навыки и техническое задание"
+  ],
+  "custom-agent": [
+    "5",
+    "Определить сценарии, данные, полномочия и критерии приёмки"
+  ],
+  "automation-process": [
+    "5",
+    "Определить процесс, системы и критерии приёмки"
+  ],
+  "automation-corporate-system": [
+    "5",
+    "Уточнить роли, данные и состав системы"
+  ],
+  "automation-integration": [
+    "5",
+    "Уточнить системы, данные и правила интеграции"
+  ],
+  "automation-custom-software": [
+    "5",
+    "Согласовать задачу, объём и критерии приёмки"
+  ],
+  "expert-onsite": [
+    "2",
+    "Согласовать адрес, процесс и время выезда в Красноярске"
+  ],
+  "expert-audit": [
+    "2",
+    "Согласовать объём аудита и данные"
+  ]
+};
 const ShortLeadSchema = z.object({
+  offerId: z.enum(["mini-01","mini-02","mini-03","mini-04","mini-05","mini-06","mini-07","mini-08","mini-09","mini-10","mini-11","mini-12","mini-13","mini-14","mini-15","product-neurotenderolog","product-knowledge-management","hermes-basic","hermes-advanced","custom-agent","automation-process","automation-corporate-system","automation-integration","automation-custom-software","expert-onsite","expert-audit"]).optional(),
+  format: z.enum(["demo","connect","setup","adaptation","project","onsite","audit"]).optional(),
+  licensePlan: z.enum(["license","plus","managed"]).optional(),
+  sourcePath: z.string().trim().max(300).optional(),
   name: str(150),
   phone: z.string().trim().min(6).max(30),
   email: z.string().trim().email().max(200).optional().or(z.literal('')),
@@ -285,7 +395,13 @@ function shortLeadValues(d) {
   if (d.email) values['5'] = [{ contact: d.email }]
   if (d.company) values['8'] = d.company
   if (d.industry) values['9'] = d.industry
-  if (d.task) values['14'] = d.task
+  if (d.offerId) {
+    const [category, next] = commercialRoutes[d.offerId];
+    values['45'] = category;
+    values['47'] = next;
+    const license = d.offerId.startsWith('mini-') && d.offerId !== 'mini-15' ? d.licensePlan : undefined;
+    values['14'] = [d.task, 'ID предложения: ' + d.offerId, 'Формат: ' + (d.format || 'connect'), license ? 'Лицензия: ' + license : '', d.sourcePath ? 'Источник: ' + d.sourcePath : ''].filter(Boolean).join('\n\n');
+  } else if (d.task) values['14'] = d.task
   return values
 }
 
