@@ -61,7 +61,7 @@ const StartPage = () => {
   };
   useEffect(() => {
     const q=new URLSearchParams(location.search); const id=q.get("offer");
-    if(!id) return;
+    if(!id) { if(readContactIntent()?.offerId) setContactIntent(null); return; }
     const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная диагностика — 8 000 ₽","expert-audit":"Комплексный аудит","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
     const title=catalog.mini.find(x=>x.id===id)?.name||catalog.hermes.find(x=>x.id===id)?.name||offerNames[id];
     if(!title)return;

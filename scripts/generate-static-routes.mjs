@@ -347,7 +347,7 @@ function injectMeta(html, route, meta) {
   // <meta name="description"> (upsert — отсутствует в index.html по умолчанию)
   upsert(
     /<meta\s+name="description"[^>]*>/i,
-    `<meta name="description" content="${description}">`
+    `<meta name="description" content="${description}" data-rh="true">`
   );
 
   // robots
@@ -363,14 +363,14 @@ function injectMeta(html, route, meta) {
   // canonical
   out = out.replace(
     /<link\s+rel="canonical"[^>]*>/i,
-    `<link rel="canonical" href="${canonical}">`
+    `<link rel="canonical" href="${canonical}" data-rh="true">`
   );
 
   // og:url / og:title / og:description / og:type
-  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}">`);
-  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}">`);
-  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}">`);
-  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}">`);
+  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}" data-rh="true">`);
+  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}" data-rh="true">`);
+  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}" data-rh="true">`);
+  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}" data-rh="true">`);
 
   // twitter:url
   upsert(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${canonical}">`);

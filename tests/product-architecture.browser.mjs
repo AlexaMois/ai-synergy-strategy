@@ -28,7 +28,9 @@ try {
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         const geometry=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(geometry.width<=geometry.viewport+3,"overflow "+JSON.stringify(geometry));
-        assert.equal(await page.locator('link[rel="canonical"]').count(),1);
+        await page.waitForFunction(()=>document.querySelectorAll('link[rel="canonical"]').length===1,{},{timeout:10000});
+        const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
+        assert.equal(new URL(canonical).pathname.replace(/\/$/,""),path.replace(/\/$/,""),"canonical path "+path);
         assert.equal(await page.locator("main h1").count(),1);
         if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),5);}
         if(path==="/mini-agents"){
@@ -55,6 +57,22 @@ try {
       await page.waitForFunction(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")||"null")?.licensePlan==="plus");
       const intent=await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")));
       assert.equal(intent.offerId,"mini-01");assert.equal(intent.sourcePath,"/mini-agents/"+catalog.mini[0].slug);
+      let payload;
+      await context.route("https://forms.ci.invalid/short-lead",async route=>{
+        const headers={"access-control-allow-origin":"*","access-control-allow-methods":"POST, OPTIONS","access-control-allow-headers":"content-type"};
+        if(route.request().method()==="OPTIONS")return route.fulfill({status:204,headers});
+        payload=route.request().postDataJSON();
+        return route.fulfill({status:200,headers,contentType:"application/json",body:JSON.stringify({ok:true,recordId:"ci-test-only"})});
+      });
+      const form=page.locator("#contact form");
+      await form.locator("#name").fill("CI Test");
+      await form.locator("#phone").fill("+7 (999) 000-00-00");
+      await form.locator("#comment").fill("Синтетическая проверка заявки, без отправки в CRM");
+      await form.locator("#consent").click();
+      await form.locator('button[type="submit"]').click();
+      await page.waitForFunction(()=>document.querySelector("#contact")?.textContent.includes("Спасибо"));
+      assert.equal(payload?.offerId,"mini-01");assert.equal(payload?.licensePlan,"plus");assert.equal(payload?.format,"connect");assert.equal(payload?.sourcePath,"/mini-agents/"+catalog.mini[0].slug);
+      assert(payload.task.includes("mini-01"));
       report.push({width:viewport.width,path:"commercial CTA and form intent",status:"pass"});
     }catch(e){report.push({width:viewport.width,path:"commercial CTA and form intent",status:"fail",message:String(e)});}
     if(errors.length)report.push({width:viewport.width,path:"runtime errors",status:"fail",message:errors.join("; ")});

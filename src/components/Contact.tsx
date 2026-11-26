@@ -168,7 +168,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   useEffect(() => {
     const update = () => {
       const next = readContactIntent();
-      setIntent(isStartPage || (isHomePage && next?.kind === "onsite") ? next : null);
+      setIntent(isStartPage || (isHomePage && next?.kind === "onsite" && next.sourcePath === "/") ? next : null);
       if (isStartPage && next?.process) {
         const value = next.process.slice(0, 1000);
         setValue("comment", value, { shouldValidate: false });
