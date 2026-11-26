@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
+import "./product-architecture.browser.mjs";
 
 // Public-page smoke tests only. Never send real leads or use production services.
 const BASE = new URL(process.env.TEST_BASE_URL || "http://127.0.0.1:4173");
@@ -127,7 +128,7 @@ try {
       await visible(offerCard.getByText("Красноярск · До 1 часа", { exact: true }));
       await visible(offerCard.getByText(/Стоимость диагностики полностью засчитывается/));
       await visible(offerCard.getByText(/8[\s\u00a0\u202f]*000\s*₽/));
-      await main.getByRole("link", { name: "Все форматы работы", exact: true }).click();
+      await main.getByRole("link", { name: "Все решения", exact: true }).click();
       await page.waitForURL(url => url.pathname.replace(/\/$/, "") === "/services");
       await visible(page.locator("main h1").first());
       await checkLayout("/services");

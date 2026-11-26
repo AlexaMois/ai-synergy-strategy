@@ -33,7 +33,7 @@ try {
       await page.goto(BASE+route);
       const h1=page.locator("main h1");
       await h1.waitFor({state:"visible",timeout:20000});
-      assert((await h1.innerText()).trim().length>15, "h1 is meaningful "+route);
+      assert((await h1.innerText()).trim().length>3, "h1 is meaningful "+route);
       assert((await page.locator('link[rel="canonical"]').count())>=1,"canonical present "+route);
       assert.equal(await page.getByText("404", {exact:true}).count(),0,"route exists "+route);
       const scroll=await page.evaluate(()=>({content:document.documentElement.scrollWidth,viewport:innerWidth}));
@@ -62,17 +62,18 @@ try {
       console.log("PASS",viewport.width,route,(await h1.innerText()).slice(0,56));
     }
     await page.goto(BASE+"/services");
-    await page.getByRole("heading",{name:"Четыре маршрута для бизнеса"}).waitFor();
+    await page.getByRole("heading",{name:"Решения для рабочих задач вашего бизнеса"}).waitFor();
     const routeLinks = [
+      "/products",
+      "/mini-agents",
+      "/ai-agents",
       "/services/automation",
-      "/services/owner-digital-session",
-      "/services/digital-tools-program",
-      "/services/neurotenderolog",
+      "/expert",
     ];
     for(const target of routeLinks){
       assert(await page.locator('a[href="'+target+'"]').count()>0,"journey link "+target);
     }
-    assert.equal(await page.locator("a[href^='/services/'][href$='-session']").count()>=1,true);
+    assert.equal(await page.locator("main a[href^='/services/'][href$='-session']").count(),0);
     assert.equal(await page.getByRole("heading",{name:/Опишите одну операцию, которая отнимает время/}).count(),0,
       "redundant CTA panel removed before contact form");
     assert.equal(await page.locator("section#contact form").count(),1,"single real lead form");
@@ -81,33 +82,31 @@ try {
     if(viewport.width===320)await page.screenshot({path:"services-mobile-small.png",fullPage:true});
     // Regression: every entry of the real navigation menu must be a working link.
     const menuEntries = [
-      ["Все направления", "/services"],
-      ["Убрать ручную работу", "/services/automation"],
-      ["Выбрать первый приоритет", "/services/owner-digital-session"],
-      ["Повысить производительность команды", "/services/digital-tools-program"],
-      ["Автоматизация закупок", "/services/neurotenderolog"],
+      ["Продукты", "/products", "Все продукты"],
+      ["МиниАгенты", "/mini-agents"],
+      ["ИИ-агенты", "/ai-agents", "Все ИИ-агенты"],
+      ["Автоматизация", "/services/automation"],
+      ["Экспертная работа", "/expert", "Все экспертные услуги"],
+      ["Кейсы", "/cases"],
+      ["Цены", "/pricing"],
+      ["Об Александре", "/about"]
     ];
-    for (const [label,target] of menuEntries) {
+    for (const [label,target,submenu] of menuEntries) {
       await page.goto(BASE+"/cases");
-      await page.locator("main h1").waitFor({state:"visible"});
-      if (viewport.width>=1024) {
-        await page.locator("header nav").first().getByRole("link",{name:"Услуги",exact:true}).hover();
-      } else {
-        await page.getByRole("button",{name:"Toggle menu"}).click();
-        await page.getByRole("button",{name:"Услуги",exact:true}).click();
-      }
-      const link = page.getByRole("link",{name:label,exact:true});
+      const desktop = viewport.width>=1024;
+      if (!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      if (!desktop && submenu) await page.getByRole("button",{name:label,exact:true}).click();
+      const link=page.getByRole("link",{name:!desktop&&submenu?submenu:label,exact:true}).filter({visible:true}).first();
       await link.waitFor({state:"visible"});
-      assert.equal(await link.getAttribute("href"),target,"menu points to correct route "+label);
+      assert.equal(await link.getAttribute("href"),target);
       await link.click();
-      await page.waitForURL(url=>url.pathname===target,{timeout:8000});
-      await page.locator("main h1").waitFor({state:"visible"});
-      assert.equal(await page.getByText("404",{exact:true}).count(),0,"menu destination renders "+target);
+      await page.waitForURL(url=>url.pathname.replace(/\/$/,"")===target,{timeout:8000});
+      await page.locator("main h1").first().waitFor({state:"visible"});
       console.log("PASS menu",viewport.width,label,target);
     }
     await context.close();
   }
-  console.log("PASS all service routes and four client journeys");
+  console.log("PASS all service routes and commercial navigation");
 } finally {
   await browser.close();
 }

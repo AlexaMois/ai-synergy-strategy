@@ -227,9 +227,9 @@ const Navigation = () => {
           
           {/* Phone number and CTA button on the right */}
           <div className="flex shrink-0 items-center gap-2 xl:gap-3">
-            <a href={phoneLink} className="hidden 2xl:flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a href={phoneLink} className="flex shrink-0 items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
               <Phone className="h-4 w-4" strokeWidth={1.5} />
-              {phoneNumber}
+              <span className="sr-only 2xl:not-sr-only">{phoneNumber}</span>
             </a>
             <Button size="sm" onClick={scrollToContact}>
               Обсудить задачу

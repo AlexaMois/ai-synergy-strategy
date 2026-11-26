@@ -39,8 +39,8 @@ const AutomationHubPage = () => (
       <title>Автоматизация бизнес-процессов и ручных операций в 1С/CRM | НейроРешения</title>
       <meta name="description" content="Убираем ручную передачу заявок и документов между почтой, мессенджерами, таблицами и 1С/CRM. Измеряем время, ошибки и стоимость операции. Проектирование, внедрение и контроль результата." />
       <link rel="canonical" href="https://aleksamois.ru/services/automation/" />
-      <meta property="og:title" content="Автоматизация ручных операций между системами | НейроРешения" />
-      <meta property="og:description" content="Одна повторяющаяся операция, реальные данные, измеримый результат." />
+      <meta property="og:title" content="Автоматизация бизнес-процессов и ручных операций в 1С/CRM | НейроРешения" />
+      <meta property="og:description" content="Убираем ручную передачу заявок и документов между почтой, мессенджерами, таблицами и 1С/CRM. Измеряем время, ошибки и стоимость операции. Проектирование, внедрение и контроль результата." />
       <meta property="og:url" content="https://aleksamois.ru/services/automation/" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />

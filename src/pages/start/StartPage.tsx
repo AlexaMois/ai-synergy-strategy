@@ -106,7 +106,7 @@ const StartPage = () => {
         <meta property="og:title" content="С чего начать: бесплатная проверка и выездная диагностика | НейроРешения" />
         <meta
           property="og:description"
-          content="Бесплатная проверка одного процесса с PDF или выездная диагностика в Красноярске за 8 000 ₽."
+          content="Самостоятельная проверка одного процесса бесплатно с PDF или выездная диагностика за 8 000 ₽ в Красноярске."
         />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />

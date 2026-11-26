@@ -18,8 +18,8 @@ const TenderServicePage = () => (
       <title>НейроТендеролог: поиск и первичный отбор закупок | НейроРешения</title>
       <meta name="description" content="НейроТендеролог находит и первично отбирает закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности." />
       <link rel="canonical" href="https://aleksamois.ru/services/neurotenderolog/" />
-      <meta property="og:title" content="НейроТендеролог: отбор закупок | НейроРешения" />
-      <meta property="og:description" content="Поток закупок, первичная фильтрация, объяснение отбора и решение человека." />
+      <meta property="og:title" content="НейроТендеролог: поиск и первичный отбор закупок | НейроРешения" />
+      <meta property="og:description" content="НейроТендеролог находит и первично отбирает закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности." />
       <meta property="og:url" content="https://aleksamois.ru/services/neurotenderolog/" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
