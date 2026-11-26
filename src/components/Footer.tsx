@@ -46,9 +46,14 @@ const Footer = () => {
             <p className="text-lg font-semibold mb-4">Навигация</p>
             <div className="flex flex-col gap-2 text-background/80 text-sm">
               <DisabledLink to="/start" className="hover:text-primary transition-colors">С чего начать</DisabledLink>
-              <DisabledLink to="/services" className="hover:text-primary transition-colors">Услуги</DisabledLink>
+              <DisabledLink to="/services" className="hover:text-primary transition-colors">Все решения</DisabledLink>
+              <DisabledLink to="/products" className="hover:text-primary transition-colors">Продукты</DisabledLink>
+              <DisabledLink to="/mini-agents" className="hover:text-primary transition-colors">МиниАгенты</DisabledLink>
+              <DisabledLink to="/ai-agents" className="hover:text-primary transition-colors">ИИ-агенты</DisabledLink>
+              <DisabledLink to="/services/automation" className="hover:text-primary transition-colors">Автоматизация</DisabledLink>
+              <DisabledLink to="/expert" className="hover:text-primary transition-colors">Экспертная работа</DisabledLink>
               <DisabledLink to="/cases" className="hover:text-primary transition-colors">Кейсы</DisabledLink>
-              <DisabledLink to="/about" className="hover:text-primary transition-colors">Обо мне</DisabledLink>
+              <DisabledLink to="/about" className="hover:text-primary transition-colors">Об Александре</DisabledLink>
               <DisabledLink to="/materials" className="hover:text-primary transition-colors">Материалы</DisabledLink>
               <DisabledLink to="/materials/blog" className="hover:text-primary transition-colors">Блог</DisabledLink>
               <DisabledLink to="/pricing" className="hover:text-primary transition-colors">Цены</DisabledLink>

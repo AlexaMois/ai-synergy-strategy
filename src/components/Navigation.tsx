@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import DisabledLink from "@/components/DisabledLink";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 import { trackCTAClick } from "@/utils/analytics";
+import { setContactIntent } from "@/lib/contactIntent";
 
 // Preload page on hover for instant navigation
 const preloadPage = (path: string) => {
@@ -95,41 +96,20 @@ const Navigation = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
-  const navLinks: NavLink[] = [{
-    href: "/",
-    label: "Главная",
-    isScroll: false
-  }, {
-    href: "/start",
-    label: "С чего начать",
-    isScroll: false
-  }, {
-    href: "/services",
-    label: "Услуги",
-    isScroll: false,
-    submenu: [
-      { href: "/services", label: "Все направления" },
-      { href: "/services/automation", label: "Убрать ручную работу" },
-      { href: "/services/owner-digital-session", label: "Выбрать первый приоритет" },
-      { href: "/services/digital-tools-program", label: "Повысить производительность команды" },
-      { href: "/services/neurotenderolog", label: "Автоматизация закупок" },
-    ]
-  }, {
-    href: "/cases",
-    label: "Кейсы",
-    isScroll: false
-  }, {
-    href: "/pricing",
-    label: "Цены",
-    isScroll: false
-  }, {
-    href: "/about",
-    label: "Обо мне",
-    isScroll: false
-  }];
+  const navLinks: NavLink[] = [
+    {href:"/products",label:"Продукты",isScroll:false,submenu:[{href:"/products",label:"Все продукты"},{href:"/services/neurotenderolog",label:"НейроТендеролог"},{href:"/products/knowledge-management",label:"Корпоративный портал знаний"}]},
+    {href:"/mini-agents",label:"МиниАгенты",isScroll:false},
+    {href:"/ai-agents",label:"ИИ-агенты",isScroll:false,submenu:[{href:"/ai-agents",label:"Все ИИ-агенты"},{href:"/ai-agents/hermes",label:"Hermes"},{href:"/ai-agents/custom",label:"Индивидуальная разработка"}]},
+    {href:"/services/automation",label:"Автоматизация",isScroll:false},
+    {href:"/expert",label:"Экспертная работа",isScroll:false,submenu:[{href:"/expert",label:"Все экспертные услуги"},{href:"/start",label:"С чего начать"},{href:"/services/digital-audit",label:"Комплексный аудит"},{href:"/services/digital-tools-program",label:"Корпоративное обучение и ДПО"}]},
+    {href:"/cases",label:"Кейсы",isScroll:false},
+    {href:"/pricing",label:"Цены",isScroll:false},
+    {href:"/about",label:"Об Александре",isScroll:false}
+  ];
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    setContactIntent(null);
     trackCTAClick({ location: 'navigation' });
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
