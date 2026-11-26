@@ -96,7 +96,12 @@ try {
       stage="verify confirmation";await page.waitForFunction(()=>document.querySelector("#contact")?.textContent.includes("Спасибо"),null,{timeout:10000});
       assert.equal(payload?.offerId,"mini-01");assert.equal(payload?.licensePlan,"plus");assert.equal(payload?.format,"connect");assert.equal(payload?.sourcePath,"/mini-agents/"+catalog.mini[0].slug);
       assert(payload.task.includes("mini-01"));
-      stage="restore context from URL";await page.goto(new URL("/start?offer=mini-01&format=connect&license=plus#contact",BASE).href);await page.locator('[data-commercial-intent="mini-01"]').waitFor();
+      // A successful submit clears the intent and shows confirmation. A same-document navigation to the identical hash URL is not a fresh visit.
+      stage="restore context from URL";assert.equal(await page.evaluate(()=>sessionStorage.getItem("aleksamois.contactIntent")),null);
+      await page.goto(new URL("/mini-agents/"+catalog.mini[0].slug,BASE).href);
+      await page.goto(new URL("/start?offer=mini-01&format=connect&license=plus#contact",BASE).href);
+      await page.locator('[data-commercial-intent="mini-01"]').waitFor({timeout:10000});
+      await page.reload();await page.locator('[data-commercial-intent="mini-01"]').waitFor({timeout:10000});
       const restored=await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")));assert.equal(restored.sourcePath,"/mini-agents/max-files");assert.equal(restored.licensePlan,"plus");
       stage="reset commercial context";await page.getByRole("button",{name:"Обычное обращение",exact:true}).click();await page.waitForURL(url=>!url.searchParams.has("offer"));assert.equal(await page.locator("[data-commercial-intent]").count(),0);
       for(const [route,id] of [["/services/digital-audit","expert-audit"],["/services/digital-solution-design","automation-custom-software"],["/services/digital-tools-program","expert-training"]]){stage="service route "+id;await page.goto(new URL(route,BASE).href);await page.locator('main a[href*="offer='+id+'"]').first().click();await page.waitForURL(url=>url.searchParams.get("offer")===id);await page.locator('[data-commercial-intent="'+id+'"]').waitFor();assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")).offerId),id);}
