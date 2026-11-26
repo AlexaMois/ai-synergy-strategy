@@ -422,9 +422,10 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
   if (completed) {
     return (
       <div ref={topRef} className="max-w-4xl mx-auto scroll-mt-24" data-assessment-result>
-        <div className="rounded-2xl bg-white text-[#212121] p-3 sm:p-5 ring-1 ring-[#E5E7EB]">
+        <div className="overflow-hidden rounded-2xl bg-white text-[#212121] ring-1 ring-[#E5E7EB]">
           <AssessmentReport report={clientReport} scenarioId={scenarioId} />
-          <div className="flex flex-col sm:flex-row flex-wrap gap-2 mt-4">
+          <div className="px-4 pb-4 sm:px-6 sm:pb-6">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2">
             <Button variant="outline" className="!text-[#212121] !border-[#616161] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" disabled={pdfBusy} onClick={async () => {
               setPdfBusy(true); setPdfError("");
               try {
@@ -440,6 +441,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
           <div className="border-t border-border mt-4 pt-4 flex flex-col sm:flex-row flex-wrap gap-2">
             <PillButton onClick={() => request("implementation")} variant="turquoise" size="md" className="!bg-[#4CBBD6] !text-[#212121] hover:!bg-[#4CBBD6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Обсудить внедрение</PillButton>
             <PillButton onClick={() => request("meeting")} variant="dark" size="md" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Личный разбор · 17 000 ₽</PillButton>
+          </div>
           </div>
         </div>
       </div>

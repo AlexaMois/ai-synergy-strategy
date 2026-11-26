@@ -43,7 +43,7 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
   };
   const head = (first: boolean) => {
     pdf.addImage(logo, "PNG", left, 12, 55, 11.4);
-    font(9, "normal", muted); pdf.text(report.date, right, 18, { align: "right" });
+    font(10, "normal", muted); pdf.text(report.date, right, 18, { align: "right" });
     pdf.setDrawColor("#4CBAD6"); pdf.setLineWidth(0.8); pdf.line(left, 27, right, 27);
     y = 34;
     if (!first) { font(10, "bold", muted); pdf.text("Самостоятельная проверка процесса · продолжение", left, y); y += 8; }
@@ -70,10 +70,10 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
   const gap = 2, cell = (width - 3 * gap) / 4;
   font(12, "bold");
   const valueRows = report.metrics.map(m => pdf.splitTextToSize(m.value, cell - 6) as string[]);
-  font(8, "normal", muted);
+  font(10, "normal", muted);
   const labelRows = report.metrics.map(m => pdf.splitTextToSize(m.label, cell - 6) as string[]);
   const valueHeight = Math.max(...valueRows.map(a => a.length)) * 5;
-  const labelHeight = Math.max(...labelRows.map(a => a.length)) * 3.5;
+  const labelHeight = Math.max(...labelRows.map(a => a.length)) * 4.3;
   const metricHeight = valueHeight + labelHeight + 9;
   space(metricHeight + 2);
   report.metrics.forEach((_, i) => {
@@ -81,12 +81,12 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
     pdf.setFillColor("#F7F8FA"); pdf.setDrawColor(line);
     pdf.roundedRect(x, y, cell, metricHeight, 1.8, 1.8, "FD");
     font(12, "bold"); pdf.text(valueRows[i], x + 3, y + 6, { lineHeightFactor: 1.18 });
-    font(8, "normal", muted); pdf.text(labelRows[i], x + 3, y + valueHeight + 6, { lineHeightFactor: 1.2 });
+    font(10, "normal", muted); pdf.text(labelRows[i], x + 3, y + valueHeight + 6, { lineHeightFactor: 1.2 });
   });
   y += metricHeight + 5;
   lines(report.metricNote, 10, "normal", muted, 4.4);
   for (const section of report.sections) {
-    space(16);
+    space(20);
     y += 2;
     pdf.setDrawColor(line); pdf.setLineWidth(0.25); pdf.line(left, y, right, y);
     y += 5;
@@ -101,12 +101,12 @@ export async function saveAssessmentPdf(form: DiagnosticForm, result: Assessment
   for (let page = 1; page <= count; page++) {
     pdf.setPage(page);
     pdf.setDrawColor(line); pdf.setLineWidth(0.3); pdf.line(left, 275, right, 275);
-    font(9, "bold"); pdf.text("Александра Моисеева", left, 280);
-    font(8.5, "normal", accent);
+    font(10, "bold"); pdf.text("Александра Моисеева", left, 280);
+    font(10, "normal", accent);
     pdf.textWithLink("aleksamois.ru", left, 285, { url: "https://aleksamois.ru/" });
     pdf.textWithLink("ai@aleksamois.ru", left + 31, 285, { url: "mailto:ai@aleksamois.ru" });
     pdf.textWithLink("+7 995 078-88-37", left + 75, 285, { url: "tel:+79950788837" });
-    font(8.5, "normal", muted); pdf.text("Страница " + page + " из " + count, right, 285, { align: "right" });
+    font(10, "normal", muted); pdf.text("Страница " + page + " из " + count, right, 285, { align: "right" });
   }
   pdf.save("proverka-processa.pdf");
 }
