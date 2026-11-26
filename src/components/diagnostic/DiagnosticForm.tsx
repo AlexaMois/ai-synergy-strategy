@@ -1,8 +1,11 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, AlertCircle, Download } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, AlertCircle, Download, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
-import { assessProcess, assessmentSections, assessmentText, ASSESSMENT_STEPS, validProcessTime } from "@/lib/processAssessment";
+import { assessProcess, assessmentText, ASSESSMENT_STEPS, validProcessTime } from "@/lib/processAssessment";
+import { buildClientAssessment } from "@/lib/clientAssessment";
+import AssessmentReport from "./AssessmentReport";
 import { setContactIntent } from "@/lib/contactIntent";
 import { getIndustryScenario, scenarioContext, type IndustryScenario } from "@/data/industryScenarios";
 import { saveAssessmentPdf } from "@/lib/assessmentPdf";
@@ -295,15 +298,6 @@ const CheckGroup = ({
 
 /* ---------- итоговый экран ---------- */
 
-const SummaryRow = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="rounded-2xl bg-card p-5 ring-1 ring-foreground/5">
-    <p className="text-xs uppercase tracking-wider text-accent font-semibold mb-2">{title}</p>
-    <div className="text-sm md:text-base text-foreground/85 leading-relaxed break-words">
-      {children}
-    </div>
-  </div>
-);
-
 /* ---------- основной компонент ---------- */
 
 const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
@@ -418,6 +412,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
   };
 
   const result = useMemo(() => assessProcess(form), [form]);
+  const clientReport = useMemo(() => buildClientAssessment(form, result), [form, result]);
   const request = (kind: "implementation" | "meeting") => {
     const source = scenario ? null : getDiagnosticSource();
     if (kind === "meeting" && source === "exit_popup") trackExitPopupEvent("exit_popup_meeting_click");
@@ -428,30 +423,27 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
   if (completed) {
     return (
       <div ref={topRef} className="max-w-4xl mx-auto scroll-mt-24" data-assessment-result>
-        <div className="rounded-[28px] md:rounded-[36px] bg-surface-mint p-6 md:p-10 ring-1 ring-foreground/5 shadow-plate">
-          <p className="text-sm font-semibold text-accent mb-3">Самостоятельная проверка · результат</p>
-          <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-5">Ваш процесс: {form.process}</h3>
-          {context?.industry && <div className="text-muted-foreground mb-5" data-scenario-id={scenarioId}><p>{context.industry} · {context.topic}</p><p>{context.question}</p></div>}
-          <div className="grid gap-3 md:grid-cols-2">
-            {assessmentSections(result).map(([title, value]) => <SummaryRow key={title} title={title}>{value}</SummaryRow>)}
-          </div>
-          <p className="text-sm text-muted-foreground mt-6">Это предварительная оценка по вашим ответам, не аудит и не расчёт окупаемости. Возможную причину и решение нужно подтвердить на данных процесса.</p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6">
-            <Button variant="outline" disabled={pdfBusy} onClick={async () => {
+        <div className="overflow-hidden rounded-2xl bg-white text-[#212121] ring-1 ring-[#E5E7EB]">
+          <AssessmentReport report={clientReport} scenarioId={scenarioId} />
+          <div className="px-4 pb-4 sm:px-6 sm:pb-6">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2">
+            <Button variant="outline" className="w-full min-w-0 !h-auto min-h-10 !whitespace-normal py-2 text-center sm:w-auto !text-[#212121] !border-[#616161] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" disabled={pdfBusy} onClick={async () => {
               setPdfBusy(true); setPdfError("");
               try {
-                await saveAssessmentPdf(form, result);
+                await saveAssessmentPdf(form, result, clientReport);
                 trackExitPopupEvent("diagnostic_pdf_download", getDiagnosticSource() || "direct");
               }
               catch { setPdfError("Не удалось сохранить PDF. Попробуйте ещё раз."); }
               finally { setPdfBusy(false); }
-            }}><Download className="h-4 w-4 mr-2" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
-            <Button variant="ghost" onClick={() => { setCompleted(false); setStep(1); scrollTop(); }}>Изменить ответы</Button>
+            }}><Download className="h-4 w-4 mr-2 shrink-0" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
+            <Button variant="ghost" className="!text-[#212121] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" onClick={() => { setCompleted(false); setStep(1); scrollTop(); }}>Изменить ответы</Button>
           </div>
-          {pdfError && <p role="alert" className="text-destructive mt-3">{pdfError}</p>}
-          <div className="border-t border-border mt-8 pt-6 flex flex-col sm:flex-row flex-wrap gap-3">
-            <PillButton onClick={() => request("implementation")} variant="turquoise" size="md">Обсудить внедрение</PillButton>
-            <PillButton onClick={() => request("meeting")} variant="dark" size="md">Личный разбор · 17 000 ₽</PillButton>
+          {pdfError && <p role="alert" className="!text-[#962D3A] mt-3">{pdfError}</p>}
+          <div className="border-t border-border mt-4 pt-4 flex flex-col sm:flex-row flex-wrap gap-2">
+            <PillButton onClick={() => request("implementation")} variant="turquoise" size="md" className="!bg-[#4CBBD6] !text-[#212121] hover:!bg-[#4CBBD6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Обсудить внедрение</PillButton>
+            <PillButton onClick={() => request("meeting")} variant="dark" size="md" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Личный разбор · 17 000 ₽</PillButton>
+          </div>
+          <Link to="/" className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#116078] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2" data-report-home><Home className="h-4 w-4 shrink-0" aria-hidden="true" />На главную</Link>
           </div>
         </div>
       </div>

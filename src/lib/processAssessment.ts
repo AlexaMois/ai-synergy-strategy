@@ -84,7 +84,7 @@ const actualLosses = (form: DiagnosticForm) => [...labelsOf(lossOptions, form.lo
 const actualSystems = (form: DiagnosticForm) => [...labelsOf(systemOptions, form.systems.filter(id => id !== "13")), ...(form.systems.includes("13") ? [form.otherSystem.trim() || "Другое"] : [])];
 const normalizeEvidence = (s: string) => s.toLocaleLowerCase("ru").replace(/ё/g, "е").trim();
 
-function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): AssessmentResult {
+function scenarioEvidence(form: DiagnosticForm, scenario?: IndustryScenario) {
   const description = normalizeEvidence(form.processDescription);
   const consequences = normalizeEvidence(form.consequences);
   const actions = actionLabels(form);
@@ -92,11 +92,16 @@ function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): Asses
   const systems = actualSystems(form);
   const hours = processHours(form.hoursPerWeek);
   const conflict = /(?:нет|без)\s+(?:потерь|ошибок|расхождений|задержек|простоев)|не\s+(?:теря\S*|пропада\S*|ищ\S*|задержива\S*|сверя\S*|простаива\S*|согласовы\S*)/u.test(description + " " + consequences);
-  const relevant = new RegExp(scenario.evidencePattern, "u").test(description);
+  const relevant = scenario ? new RegExp(scenario.evidencePattern, "u").test(description) : false;
   const negatedOutcome = /(?:потерь|ошибок|расхождений|задержек|простоев)\s+нет|(?:заявки|обращения)\s+не\s+теряются/u.test(description + " " + consequences);
   const explicitAbsence = /(?:^|[\s.,;!?])(?:(?:нет|без|отсутствие)\s+(?:потерь|потери|ошибки|ошибок|расхождения|расхождений|задержки|задержек|простоя|простоев)|(?:потеря|потери|потерь|ошибка|ошибки|ошибок|расхождение|расхождения|расхождений|задержка|задержки|задержек|простой|простоя|простои|простоев)\s+(?:нет|отсутствует|отсутствуют))(?=$|[\s.,;!?])/u.test(description + " " + consequences);
   const hasLoss = form.losses.length > 0 && !form.losses.includes("10");
   const ready = description.length >= 12 && relevant && consequences.length > 0 && actions.length > 0 && hasLoss && !conflict && !negatedOutcome && !explicitAbsence;
+  return { actions, losses, systems, hours, ready, relevant, conflict: conflict || negatedOutcome || explicitAbsence, hasLoss };
+}
+
+function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): AssessmentResult {
+  const { actions, losses, systems, hours, ready } = scenarioEvidence(form, scenario);
   const clarify = "Уточните одно фактически выполняемое действие, используемые документы или данные, наблюдаемую задержку либо ошибку и ответственного. Выбранная тема сама по себе не доказывает проблему. Сначала замерьте исходное состояние.";
   const goal = form.goal.trim() ? " Ваша цель: «" + form.goal.trim() + "»; её достижение предстоит проверить." : "";
   const criterion = form.successCriteria.trim() ? " Ваш показатель: «" + form.successCriteria.trim() + "»." : "";
@@ -110,9 +115,7 @@ function assessScenario(form: DiagnosticForm, scenario: IndustryScenario): Asses
   };
 }
 
-export function assessProcess(form: DiagnosticForm): AssessmentResult {
-  const scenario = getIndustryScenario(form.scenarioId);
-  if (scenario) return assessScenario(form, scenario);
+function universalAssessmentContext(form: DiagnosticForm) {
   const kind = classifyProcess(form);
   const recommendation = kind === "insufficient" ? null : recommendations[kind];
   const currentWork = `${form.process} ${form.processDescription}`.toLocaleLowerCase("ru").replace(/ё/g, "е");
@@ -123,6 +126,25 @@ export function assessProcess(form: DiagnosticForm): AssessmentResult {
   let experiment = recommendation?.experiment ?? clarification;
   if (materialReconciliation) experiment = "Выберите 10 позиций материалов с расхождениями в сравниваемых источниках (проект, смета и закупка — только если они используются). Сопоставьте номенклатуру, единицы измерения, объёмы и цены на одну дату и для одной версии проекта; запишите исходные значения, расхождения и подтверждающий документ. Не пересчитывайте несовместимые единицы без согласованного коэффициента. Отдельно отметьте позиции, для которых не хватает данных.";
   else if (repairReconciliation) experiment = "Выберите 20 записей о ремонте за один период. Для одной и той же машины и одного ремонта сопоставьте отчёт механика и второй источник (если используется 1С — запись в 1С) по идентификатору машины, дате, виду ремонта и статусу. Составьте список конфликтующих статусов и отсутствующих записей; проверьте их по первичным документам. Если общего идентификатора нет, сначала согласуйте его.";
+  return { kind, recommendation, noCriticalLoss, clarification, experiment };
+}
+
+export function clientAssessmentInputs(form: DiagnosticForm) {
+  const scenario = getIndustryScenario(form.scenarioId);
+  const facts = scenarioEvidence(form, scenario);
+  const universal = scenario ? null : universalAssessmentContext(form);
+  return {
+    scenario, facts, universal,
+    frequency: labelOf(frequencyOptions, form.frequency),
+    storage: labelOf(dataStorageOptions, form.dataStorage),
+    causeHint: universal && universal.kind !== "insufficient" ? causeChecks[universal.kind] : "",
+  };
+}
+
+export function assessProcess(form: DiagnosticForm): AssessmentResult {
+  const scenario = getIndustryScenario(form.scenarioId);
+  if (scenario) return assessScenario(form, scenario);
+  const { kind, recommendation, noCriticalLoss, clarification, experiment } = universalAssessmentContext(form);
   const hours = processHours(form.hoursPerWeek);
   const losses = actualLosses(form);
   const actions = actionLabels(form);

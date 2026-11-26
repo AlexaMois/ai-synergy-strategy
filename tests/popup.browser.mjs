@@ -121,7 +121,10 @@ try {
     await page.reload();
     await page.getByText("Шаг 5 из 5").waitFor();
     await page.getByRole("button", { name: /Показать результат/ }).click();
-    await page.getByText("Самостоятельная проверка · результат").waitFor();
+    const report = page.locator("[data-assessment-result]");
+    await report.waitFor({ state: "visible" });
+    await report.getByText("Самостоятельная проверка процесса", { exact: true }).waitFor({ state: "visible" });
+    await report.getByRole("heading", { name: "Обработка входящих заявок", exact: true }).waitFor({ state: "visible" });
     assert.equal(await page.evaluate(() => Number(localStorage.getItem("self-start-popup-completed-until-v1")) - Date.now() > 89 * 86400000), true);
     await page.getByRole("button", { name: /Личный разбор · 17 000 ₽/ }).click();
     assert.equal(await page.evaluate(() => Boolean(sessionStorage.getItem("aleksamois.contactIntent"))), true);
