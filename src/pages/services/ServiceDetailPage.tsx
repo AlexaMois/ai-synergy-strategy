@@ -31,7 +31,8 @@ const ServiceDetailPage = () => {
   const forWhom = service.sections.find(item=>item.heading==="Подходит, если");
   const url = "https://aleksamois.ru" + service.href + "/";
   const openInquiry = () => setContactIntent({
-    kind: service.slug === "owner-digital-session" ? "meeting" : "implementation",
+    kind: "implementation",
+    ...(service.slug==="digital-audit"?{offerId:"expert-audit",offerLabel:service.title,format:"audit",sourcePath:service.href}:service.slug==="digital-solution-design"?{offerId:"automation-custom-software",offerLabel:service.title,format:"project",sourcePath:service.href}:{}),
     process: "Услуга: " + service.title + ". Маршрут: " + journey.title + ". Источник: " + service.href,
   });
 

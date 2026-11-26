@@ -27,7 +27,7 @@ const faq = [
 ];
 
 const Inquiry = ({ label, className = "" }: {label:string;className?:string})=>(
-  <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Интерес: автоматизация одной ручной цепочки между системами. Источник: /services/automation"})}
+  <Link to="/start?offer=automation-process&format=project#contact" onClick={()=>setContactIntent({kind:"implementation",offerId:"automation-process",offerLabel:"Автоматизация бизнеса",format:"project",sourcePath:"/services/automation",context:null,process:"Автоматизация рабочего процесса"})}
     className={["inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground transition-colors hover:bg-accent/85",className].join(" ")}>
     {label} <ArrowRight className="h-4 w-4" />
   </Link>
@@ -53,10 +53,10 @@ const AutomationHubPage = () => (
             <div className="grid items-center gap-8 rounded-[30px] bg-surface-mint px-6 py-10 shadow-plate md:grid-cols-12 md:rounded-[40px] md:px-12 md:py-16">
               <div className="min-w-0 md:col-span-7">
                 <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-primary-dark">Основной маршрут · Сквозные операции</p>
-                <h1 className="text-3xl font-bold leading-[1.07] tracking-tight text-foreground md:text-5xl">Автоматизируем ручную передачу заявок и документов между Вашими программами</h1>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">Берём один повторяющийся поток, измеряем текущую стоимость работы, связываем действующие системы и показываем результат на реальных данных.</p>
+                <h1 className="text-3xl font-bold leading-[1.07] tracking-tight text-foreground md:text-5xl">Комплексная автоматизация бизнеса</h1>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">Связываем процессы, данные, сотрудников и действующие системы. Измеряем исходные показатели и проверяем результат на реальных данных. Полноценные индивидуальные проекты от 260 000 ₽.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Inquiry label="Разобрать одну операцию" />
+                  <Inquiry label="Обсудить проект" />
                   <Link className="inline-flex min-h-12 items-center gap-2 px-3 font-semibold text-foreground hover:text-primary-dark" to="/cases">Реальные кейсы <ArrowUpRight className="h-4 w-4" /></Link>
                 </div>
               </div>
@@ -87,7 +87,8 @@ const AutomationHubPage = () => (
 
         <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Когда подходит</p>
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Между системами накопилась ручная работа</h2>
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Четыре направления автоматизации</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">{[["process","Комплексная автоматизация процессов","Связанный порядок выполнения операций, передачи данных и контроля результата."],["corporate-system","Корпоративные информационные системы","Единая рабочая среда, роли, документы, данные и отчётность."],["integration","Интеграция бизнес-систем","Согласованный обмен данными между существующими программами."],["custom-software","Индивидуальные программные решения","Инструмент под рабочий процесс и критерии приёмки предприятия."]].map(([id,title,body],i)=><article key={id} className={"rounded-[28px] p-7 text-[#212121] "+(i===0?"bg-surface-mint":i===1?"bg-surface-lavender":"bg-white border border-border")}><h3 className="text-xl font-bold !text-[#212121]">{title}</h3><p className="mt-3">{body}</p><Link className="inline-flex items-center gap-2 mt-4 font-semibold text-[#116078] underline" to={"/start?offer=automation-"+id+"&format=project#contact"} onClick={()=>setContactIntent({kind:"implementation",offerId:"automation-"+id,offerLabel:title,format:"project",sourcePath:"/services/automation",process:title,context:null})}>Обсудить проект <ArrowRight size={18}/></Link></article>)}</div>
           <div className="mt-7 grid gap-4 md:grid-cols-3">
             {[
               ["Входящие заявки","Сотрудники собирают сообщения из нескольких каналов и заносят данные в одну рабочую систему."],
@@ -134,7 +135,7 @@ const AutomationHubPage = () => (
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
             <Link to="/services/digital-audit" className="rounded-full border border-border px-4 py-3 font-semibold text-foreground hover:border-primary-dark">Глубокий аудит · от 116 000 ₽</Link>
             <Link to="/services/digital-solution-design" className="rounded-full border border-border px-4 py-3 font-semibold text-foreground hover:border-primary-dark">Разработка · от 260 000 ₽</Link>
-            <Link to="/services/digital-tools-support" className="rounded-full border border-border px-4 py-3 font-semibold text-foreground hover:border-primary-dark">Эксплуатация · 35 000–89 000 ₽/мес</Link>
+            <Link to="/faq#technical-obligations" className="rounded-full border border-border px-4 py-3 font-semibold text-foreground hover:border-primary-dark">Договорные условия эксплуатации</Link>
           </div>
         </section>
 
