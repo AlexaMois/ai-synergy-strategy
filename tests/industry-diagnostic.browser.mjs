@@ -1942,6 +1942,21 @@ try {
       assert((await contradicted.innerText()).includes("Причина пока не установлена"));
       assert(!(await contradicted.innerText()).includes(cases[0].solution));
       assert.equal(posts.length,1);
+      // Singular explicit absence is also a contradiction; it must not yield the scenario solution.
+      await contradicted.getByRole("button",{name:"Изменить ответы",exact:true}).click();
+      await visible(form.getByText("Шаг 1 из 5",{exact:true}));
+      await form.locator("textarea").first().fill("Ищем инструкцию к станку. Простоя нет.");
+      await next(2);
+      await next(3);
+      await form.locator("textarea").fill("Простоя нет.");
+      await next(4);
+      await next(5);
+      await form.getByRole("button",{name:"Показать результат",exact:true}).click();
+      await visible(contradicted);
+      assert((await contradicted.innerText()).includes("Причина пока не установлена"));
+      assert(!(await contradicted.innerText()).includes(cases[0].solution));
+      assert.equal(posts.length,1);
+      console.log("PASS",width,"explicit absence of downtime");
     }catch(error){await page.screenshot({path:"artifacts/site-pr/industry-"+width+"-failure.png",fullPage:true}).catch(()=>{});throw error;}
     finally{await context.close();}
   }
