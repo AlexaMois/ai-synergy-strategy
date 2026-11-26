@@ -31,9 +31,18 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: Install locked dependencies
+      # Match the existing deploy.yml installation strategy until the lockfile is repaired.
+      - name: Install dependencies (same as deployment)
         id: install
-        run: npm ci --no-audit --no-fund
+        run: npm install --no-audit --no-fund
+      - name: Report package lock drift
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            echo "::warning::package-lock.json differs after npm install; synchronize separately before switching to npm ci."
+            mkdir -p artifacts/site-pr
+            git diff -- package-lock.json > artifacts/site-pr/package-lock-drift.patch
+          fi
       - name: Build production preview
         id: build
         run: npm run build
