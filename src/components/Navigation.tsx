@@ -194,12 +194,12 @@ const Navigation = () => {
       {/* Row 1: Navigation */}
       <div className="container mx-auto px-4">
         <div className="hidden lg:flex items-center justify-between h-20">
-          <div className="flex items-center gap-10">
+          <div className="flex min-w-0 items-center gap-3 xl:gap-5">
             <Link to="/" className="flex items-center overflow-visible">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-40 xl:h-48 w-auto" width={320} height={160} />
+              <img src={logoHorizontal} alt="Нейрорешения" className="h-28 xl:h-32 w-auto max-w-[180px] xl:max-w-[210px] object-contain" width={320} height={160} />
             </Link>
 
-            <nav className="flex items-center gap-6">
+            <nav className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-0 xl:gap-x-4">
               {navLinks.map(link => {
                 if (link.submenu) {
                   return <div key={link.href} className="relative" onMouseEnter={() => handleMouseEnter(link.label, link.href)} onMouseLeave={handleMouseLeave}>
@@ -226,8 +226,8 @@ const Navigation = () => {
           </div>
           
           {/* Phone number and CTA button on the right */}
-          <div className="flex items-center gap-4">
-            <a href={phoneLink} className="flex items-center gap-2 text-base font-medium text-foreground hover:text-primary transition-colors">
+          <div className="flex shrink-0 items-center gap-2 xl:gap-3">
+            <a href={phoneLink} className="hidden 2xl:flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
               <Phone className="h-4 w-4" strokeWidth={1.5} />
               {phoneNumber}
             </a>
@@ -288,11 +288,11 @@ const Navigation = () => {
                   </div>
                 </div>;
             }
-            return link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+            return link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-[#212121] bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
               animationDelay: `${index * 50}ms`
             }}>
                 {link.label}
-              </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? "text-white bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+              </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? "text-[#212121] bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
               animationDelay: `${index * 50}ms`
             }}>
                 {link.label}

@@ -30,6 +30,7 @@ const StartPage = () => {
   const diagnosticRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
+    setContactIntent(null);
     setDiagnosticStarted(true);
     markDiagnosticStarted();
     setTimeout(() => {

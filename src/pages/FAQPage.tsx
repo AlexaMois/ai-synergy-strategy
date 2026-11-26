@@ -98,12 +98,12 @@ const faqCategories: FAQCategory[] = [
         answer: "Бесплатная проверка формирует предварительный результат по вашим ответам. Выездная диагностика предполагает изучение одного процесса на территории клиента в Красноярске и письменное заключение."
       },
       {
-        question: "Чем стратегия отличается от глубокого аудита?",
-        answer: "Стратегия даёт практический план на ближайшие 90 дней. Глубокий аудит подходит для более подробного разбора компании: процессов, данных, документов, текущих инструментов, рисков и готовности к внедрению."
+        question: "Когда нужен комплексный аудит?",
+        answer: "Комплексный аудит подходит для подробного разбора компании: процессов, данных, документов, текущих инструментов, рисков и готовности к внедрению."
       },
       {
-        question: "Что я получу после стратегии?",
-        answer: "Вы получите точку А, карту ручной нагрузки, приоритеты цифрового развития, план действий на 90 дней и понимание следующего этапа."
+        question: "Что я получу после аудита?",
+        answer: "Вы получите карту процессов и ручной нагрузки, точки потерь, риски, бюджетные ориентиры и дорожную карту внедрения."
       },
       {
         question: "Что входит в глубокий аудит?",
@@ -126,7 +126,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Когда нужен индивидуальный проект автоматизации?",
-        answer: "Сопровождение внедрения подходит, когда задача уже понятна, но нужен контроль процесса: задачи, сроки, подрядчики, команда, инструкции, обучение и проверка результата."
+        answer: "Индивидуальный проект подходит, когда требуется связать несколько процессов, сотрудников и систем или создать инструмент под специальные требования. Состав и критерии приёмки согласуем до начала работ."
       },
       {
         question: "Когда нужна разработка цифрового решения?",
@@ -136,7 +136,7 @@ const faqCategories: FAQCategory[] = [
   },
   {
     id: "technical-obligations",
-    title: "Сопровождение и результат",
+    title: "Эксплуатация и результат",
     icon: LifeBuoy,
     questions: [
       {
@@ -192,7 +192,7 @@ const faqCategories: FAQCategory[] = [
 const allQuestions = faqCategories.flatMap(cat => cat.questions);
 
 const FAQPage = () => {
-  const [activeCategory, setActiveCategory] = useState("start");
+  const [activeCategory, setActiveCategory] = useState(window.location.hash === "#technical-obligations" ? "technical-obligations" : "start");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -325,7 +325,7 @@ const FAQPage = () => {
                       className={cn(
                         "flex items-center gap-2 px-4 py-3 rounded-lg whitespace-nowrap transition-all duration-200 font-medium text-sm",
                         activeCategory === category.id
-                          ? "bg-primary text-primary-foreground shadow-md"
+                          ? "bg-primary !text-[#212121] shadow-md"
                           : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                       )}
                     >

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, ArrowUpRight, Bot, CalendarClock, Check, Database, FileSearch, Layers3, MessageSquareText, Network, Workflow, ChartNoAxesCombined, ClipboardCheck, Package } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bot, CalendarClock, Check, Database, FileSearch, MessageSquareText, Network, Workflow, ChartNoAxesCombined, ClipboardCheck, Package } from "lucide-react";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
