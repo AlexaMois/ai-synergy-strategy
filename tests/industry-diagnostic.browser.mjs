@@ -1876,6 +1876,10 @@ try {
         const beforeResult=posts.length;
         await form.getByRole("button",{name:"Показать результат",exact:true}).click();
         const result=form.locator("[data-assessment-result]");await visible(result);
+        assert.equal(await page.locator("[data-floating-home]").isVisible(),false,"floating home must not cover completed report");
+        assert.equal(await result.locator("[data-report-home]").getAttribute("href"),"/");
+        assert.equal(await result.locator("[data-report-home]").isVisible(),true);
+        assert(await result.evaluate(el=>[el,...el.querySelectorAll("[data-report-state], [data-report-state] > header, [data-report-state] > div, button")].every(node=>node.scrollWidth<=node.clientWidth+1)),"report must not clip horizontally");
         const resultText=await result.innerText();
         for(const a of s.actions.slice(0,2))assert(resultText.includes(a.label));
         assert(resultText.includes(s.question));
@@ -1908,7 +1912,7 @@ try {
           const artifact="artifacts/site-pr/report-"+width+"-"+s.id;
           await copyFile(pdfPath,artifact+".pdf");
           execFileSync("pdftoppm",["-r","110","-png",artifact+".pdf",artifact]);
-          await result.screenshot({path:artifact+".png", style:"header.fixed, button.fixed { visibility: hidden !important; }"});
+          await result.screenshot({path:artifact+".png", style:"body > #root header:not([data-report-state] header), button.fixed { visibility: hidden !important; }"});
           assert.equal(posts.length,beforeResult,"PDF must not submit");
         }
         if(i===0){
@@ -1982,7 +1986,7 @@ try {
       const captureReport=async(name, expectedState, long=false)=>{
         assert.equal(await contradicted.locator("[data-report-state]").getAttribute("data-report-state"),expectedState);
         const prefix="artifacts/site-pr/report-"+width+"-"+name;
-        await contradicted.screenshot({path:prefix+".png", style:"header.fixed, button.fixed { visibility: hidden !important; }"});
+        await contradicted.screenshot({path:prefix+".png", style:"body > #root header:not([data-report-state] header), button.fixed { visibility: hidden !important; }"});
         await contradicted.evaluate(el => el.scrollIntoView({block:"start",behavior:"instant"}));
         await page.screenshot({path:prefix+"-viewport.png"});
         const downloadPromise=page.waitForEvent("download");

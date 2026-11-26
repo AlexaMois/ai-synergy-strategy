@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, AlertCircle, Download } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, AlertCircle, Download, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
 import { assessProcess, assessmentText, ASSESSMENT_STEPS, validProcessTime } from "@/lib/processAssessment";
@@ -426,7 +427,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
           <AssessmentReport report={clientReport} scenarioId={scenarioId} />
           <div className="px-4 pb-4 sm:px-6 sm:pb-6">
           <div className="flex flex-col sm:flex-row flex-wrap gap-2">
-            <Button variant="outline" className="!text-[#212121] !border-[#616161] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" disabled={pdfBusy} onClick={async () => {
+            <Button variant="outline" className="w-full min-w-0 !h-auto min-h-10 !whitespace-normal py-2 text-center sm:w-auto !text-[#212121] !border-[#616161] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" disabled={pdfBusy} onClick={async () => {
               setPdfBusy(true); setPdfError("");
               try {
                 await saveAssessmentPdf(form, result, clientReport);
@@ -434,7 +435,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
               }
               catch { setPdfError("Не удалось сохранить PDF. Попробуйте ещё раз."); }
               finally { setPdfBusy(false); }
-            }}><Download className="h-4 w-4 mr-2" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
+            }}><Download className="h-4 w-4 mr-2 shrink-0" />{pdfBusy ? "Готовим PDF…" : "Сохранить результат в PDF"}</Button>
             <Button variant="ghost" className="!text-[#212121] hover:!bg-[#F3F5F6] focus-visible:!ring-[#116078]" onClick={() => { setCompleted(false); setStep(1); scrollTop(); }}>Изменить ответы</Button>
           </div>
           {pdfError && <p role="alert" className="!text-[#962D3A] mt-3">{pdfError}</p>}
@@ -442,6 +443,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
             <PillButton onClick={() => request("implementation")} variant="turquoise" size="md" className="!bg-[#4CBBD6] !text-[#212121] hover:!bg-[#4CBBD6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Обсудить внедрение</PillButton>
             <PillButton onClick={() => request("meeting")} variant="dark" size="md" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Личный разбор · 17 000 ₽</PillButton>
           </div>
+          <Link to="/" className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#116078] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2" data-report-home><Home className="h-4 w-4 shrink-0" aria-hidden="true" />На главную</Link>
           </div>
         </div>
       </div>

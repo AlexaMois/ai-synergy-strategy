@@ -1379,3 +1379,8 @@
     transform: scale(1.008);
   }
 }
+
+/* The completed diagnostic has its own inline home link; keep floating navigation off the report. */
+body:has([data-assessment-result]) [data-floating-home] {
+  display: none;
+}
