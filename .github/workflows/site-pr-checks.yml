@@ -83,14 +83,25 @@ jobs:
           done
           cat artifacts/site-pr/preview.log
           exit 1
+      - name: Commercial pages and mocked form submissions
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        run: node tests/product-architecture.browser.mjs
       - name: Desktop and mobile browser checks
         if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         run: |
           node --check tests/site-pr.browser.mjs
           node tests/site-pr.browser.mjs
+      - name: Protected industry diagnostic and PDF regression
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        run: |
           command -v pdftotext >/dev/null || (sudo apt-get update && sudo apt-get install -y poppler-utils)
           node --check tests/industry-diagnostic.browser.mjs
           node tests/industry-diagnostic.browser.mjs
+      - name: Commercial server mapping with isolated Bpium and notification mocks
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          npm ci --prefix forms-handler --no-audit --no-fund
+          node tests/commercial-handler.mjs
       - name: Upload browser evidence
         if: always()
         uses: actions/upload-artifact@v4

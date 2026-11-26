@@ -15,7 +15,7 @@ const routes=["/","/services","/products","/services/neurotenderolog","/products
 const digits=s=>s.replace(/[^0-9]/g,"");
 try {
   for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:568}]){
-    const context=await browser.newContext({viewport,reducedMotion:"reduce",serviceWorkers:"block"});
+    const context=await browser.newContext({viewport,isMobile:viewport.width<600,hasTouch:viewport.width<600,deviceScaleFactor:1,reducedMotion:"reduce",serviceWorkers:"block"});
     await context.addInitScript(()=>{localStorage.setItem("cookie_consent",JSON.stringify({version:"v3",savedAt:new Date().toISOString(),consent:{necessary:true,analytics:false}}));localStorage.setItem("self-start-popup-suppressed-until-v1",String(Date.now()+86400000));});
     await context.route("**/*",route=>{const req=route.request();const url=new URL(req.url());return (url.origin===BASE.origin||["fonts.googleapis.com","fonts.gstatic.com"].includes(url.hostname))&&["GET","HEAD"].includes(req.method())?route.continue():route.abort("blockedbyclient");});
     const page=await context.newPage();const errors=[];let fontEvidence;page.on("pageerror",e=>errors.push(e.message));
@@ -82,6 +82,10 @@ try {
       stage="verify confirmation";await page.waitForFunction(()=>document.querySelector("#contact")?.textContent.includes("Спасибо"),null,{timeout:10000});
       assert.equal(payload?.offerId,"mini-01");assert.equal(payload?.licensePlan,"plus");assert.equal(payload?.format,"connect");assert.equal(payload?.sourcePath,"/mini-agents/"+catalog.mini[0].slug);
       assert(payload.task.includes("mini-01"));
+      await page.goto(new URL("/start?offer=mini-01&format=connect&license=plus#contact",BASE).href);await page.locator('[data-commercial-intent="mini-01"]').waitFor();
+      const restored=await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")));assert.equal(restored.sourcePath,"/mini-agents/max-files");assert.equal(restored.licensePlan,"plus");
+      await page.getByRole("button",{name:"Обычное обращение",exact:true}).click();await page.waitForURL(url=>!url.searchParams.has("offer"));assert.equal(await page.locator("[data-commercial-intent]").count(),0);
+      for(const [route,id] of [["/services/digital-audit","expert-audit"],["/services/digital-solution-design","automation-custom-software"],["/services/digital-tools-program","expert-training"]]){await page.goto(new URL(route,BASE).href);await page.locator('main a[href*="offer='+id+'"]').first().click();await page.waitForURL(url=>url.searchParams.get("offer")===id);await page.locator('[data-commercial-intent="'+id+'"]').waitFor();assert.equal(await page.evaluate(()=>JSON.parse(sessionStorage.getItem("aleksamois.contactIntent")).offerId),id);}
       report.push({width:viewport.width,path:"commercial CTA and form intent",status:"pass"});
     }catch(e){report.push({width:viewport.width,path:"commercial CTA and form intent",status:"fail",stage,message:String(e),payloadReceived:!!payload,visibleErrors:await page.locator("#contact .text-destructive").allTextContents().catch(()=>[])});await page.screenshot({path:folder+"/"+viewport.width+"-form-failure.png",fullPage:true}).catch(()=>{});}
     if(errors.length)report.push({width:viewport.width,path:"runtime errors",status:"fail",message:errors.join("; ")});

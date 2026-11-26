@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
-import "./product-architecture.browser.mjs";
 
 // Public-page smoke tests only. Never send real leads or use production services.
 const BASE = new URL(process.env.TEST_BASE_URL || "http://127.0.0.1:4173");
