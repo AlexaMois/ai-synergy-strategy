@@ -102,6 +102,24 @@ try {
           assert(typography.accents.length===2&&typography.accents.every(x=>x.font.includes("Iriska")&&x.weight==="400"),"Iriska accents "+JSON.stringify(typography));
           assert(typography.headings.every(x=>x.font.includes("Golos Text")&&x.weight==="600"&&x.wrap==="normal"&&x.fit),"Home heading typography "+JSON.stringify(typography));
           assert(typography.text.every(x=>x.font.includes("Raleway")&&x.weight==="400")&&typography.fonts.every(Boolean),"Home body and loaded Cyrillic fonts "+JSON.stringify(typography));
+          const homePalette=await page.evaluate(()=>{
+            const bg=n=>getComputedStyle(n).backgroundColor;
+            const rgb=v=>v.match(/[\d.]+/g).slice(0,3).map(Number);
+            const lum=v=>rgb(v).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+            const ratio=(a,b)=>(Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);
+            const directions=[...document.querySelectorAll("#commercial-directions .nr-dir")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h3,p,strong")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
+            const minis=[...document.querySelectorAll(".nr-home-commerce .nr-mini-card")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h3,p,strong,small")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
+            const cases=[...document.querySelectorAll("#home-cases a.rounded-2xl")].map(n=>({background:bg(n),title:ratio(getComputedStyle(n.querySelector("h3")).color,bg(n))}));
+            return {hero:bg(document.querySelector("#brand-hero [data-brand-panel]")),directions,minis,cases,process:bg(document.querySelector("#home-process .rounded-\\[32px\\]")),reviews:bg(document.querySelector("#home-testimonials"))};
+          });
+          assert.equal(homePalette.hero,"rgb(76, 187, 214)","Preserved bright hero");
+          assert.deepEqual(homePalette.directions.map(x=>x.background),["rgb(242, 242, 242)","rgb(217, 217, 217)","rgb(179, 179, 179)","rgb(255, 255, 255)"],"Approved homepage graphite surfaces");
+          assert(homePalette.directions.every(x=>x.text.every(r=>r>=4.5))&&homePalette.minis.every(x=>x.text.every(r=>r>=4.5)),"Home commercial text contrast "+JSON.stringify(homePalette));
+          assert.deepEqual(homePalette.cases.map(x=>x.background),["rgb(7, 83, 106)","rgb(217, 217, 217)","rgb(242, 242, 242)"],"Homepage case palette");
+          assert(homePalette.cases.every(x=>x.title>=7),"Case title contrast");
+          assert.equal(homePalette.process,"rgb(61, 61, 61)");
+          assert.equal(homePalette.reviews,"rgb(242, 242, 242)");
+          report.push({width:viewport.width,path:"homepage-palette",status:"pass",evidence:homePalette});
           report.push({width:viewport.width,path:"homepage-typography",status:"pass",evidence:typography});await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
         if(path==="/ai-agents"){const formats=page.locator(".nr-agent-formats > a");assert.deepEqual(await formats.evaluateAll(nodes=>nodes.map(x=>x.getAttribute("href"))),["/mini-agents","/ai-agents/hermes","/ai-agents/custom"]);assert.equal(await formats.count(),3);assert.equal(await page.getByRole("heading",{name:"ИИ-агенты для бизнеса",exact:true}).count(),1);await page.locator(".nr-agent-formats").screenshot({path:folder+"/"+viewport.width+"-agent-formats.png",style:blockStyle});}
         if(path==="/expert"){assert.equal(await page.locator("#onsite h2").innerText(),"Выездная консультация");assert.match(await page.locator("#onsite").innerText(),/8\s*000\s*₽/);assert.equal(await page.locator("#dpo").count(),1);}
