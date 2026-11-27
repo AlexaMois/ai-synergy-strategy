@@ -98,31 +98,55 @@
 }
 
 /* Homepage only: original blue hero, bright accents and light editorial cards. */
-#brand-hero [data-brand-accent],#brand-hero [data-brand-signature]{color:#fff!important}
-#brand-hero [data-brand-panel]{
-  background-color:#07536a;
-  background-image:linear-gradient(90deg,#07536a 0%,#07536a 56%,hsl(var(--accent)) 100%)
-}
-@media(max-width:767px){
-  #brand-hero [data-brand-panel]{background-image:none}
-  #brand-hero [data-brand-panel] .grid>div:last-child{background:linear-gradient(180deg,#07536a,hsl(var(--accent)));border-radius:24px 24px 0 0}
-}
+/* Owner-approved historical hero color exception: white on #4CBBD6 (2.24:1). */
+#brand-hero [data-brand-panel]{background-color:#4CBBD6;background-image:none}
+#brand-hero [data-brand-panel] h1,
+#brand-hero [data-brand-panel] p,
+#brand-hero [data-brand-signature]{color:#fff!important}
 .nr-commercial.nr-home-commerce .nr-section-head{background:transparent;padding:0;color:#212121;align-items:end;margin-bottom:26px;border-radius:0}
 .nr-commercial.nr-home-commerce .nr-section-head h2{color:#212121!important;font-size:clamp(29px,3.05vw,44px)!important;margin:0 0 8px!important}
-.nr-commercial.nr-home-commerce .nr-section-head p{color:#454b50;font-size:16px}
-.nr-commercial.nr-home-commerce .nr-section-head .nr-eyebrow{color:#0e7490;font-size:13px}
-.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link{color:#0e7490;font-size:15px;font-weight:500;text-decoration:underline;text-underline-offset:3px}
-.nr-commercial.nr-home-commerce .nr-dir,.nr-commercial.nr-home-commerce .nr-mini-card{background:#fff;border:1px solid #dce6ea;box-shadow:0 4px 16px rgba(33,33,33,.06);border-radius:24px}
-.nr-commercial.nr-home-commerce .nr-dir-0,.nr-commercial.nr-home-commerce .nr-mini-card:nth-child(4n+1){background:#edf8fa}
-.nr-commercial.nr-home-commerce .nr-dir>svg:first-child,.nr-commercial.nr-home-commerce .nr-dir-arrow,.nr-commercial.nr-home-commerce .nr-card-icon,.nr-commercial.nr-home-commerce .nr-card-bottom svg{color:#0e7490}
-.nr-commercial.nr-home-commerce .nr-dir strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#0e7490}
-.nr-commercial.nr-home-commerce .nr-dir p,.nr-commercial.nr-home-commerce .nr-mini-card p{color:#454b50;font-size:15px}
-.nr-commercial.nr-home-commerce .nr-mini-card .nr-eyebrow{font-size:11px;color:#0e7490}
+.nr-commercial.nr-home-commerce .nr-section-head p{color:#3D3D3D;font-size:16px}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-eyebrow{color:#07536A;font-size:13px}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link{color:#07536A;font-size:15px;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.nr-commercial.nr-home-commerce .nr-dir,.nr-commercial.nr-home-commerce .nr-mini-card{background:#fff;border:1px solid #D9D9D9;box-shadow:0 4px 16px rgba(33,33,33,.06);border-radius:24px}
+.nr-commercial.nr-home-commerce .nr-dir-0,.nr-commercial.nr-home-commerce .nr-mini-card:nth-child(4n+1){background:#F2F2F2}
+.nr-commercial.nr-home-commerce .nr-dir-1,.nr-commercial.nr-home-commerce .nr-mini-card:nth-child(4n+3){background:#D9D9D9}
+.nr-commercial.nr-home-commerce .nr-dir-2{background:#B3B3B3}
+.nr-commercial.nr-home-commerce .nr-dir-3{background:#FFFFFF}
+.nr-commercial.nr-home-commerce .nr-dir>svg:first-child,.nr-commercial.nr-home-commerce .nr-dir-arrow,.nr-commercial.nr-home-commerce .nr-card-icon,.nr-commercial.nr-home-commerce .nr-card-bottom svg{color:#07536A}
+.nr-commercial.nr-home-commerce .nr-dir strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#07536A}
+.nr-commercial.nr-home-commerce .nr-dir p,.nr-commercial.nr-home-commerce .nr-mini-card p{color:#3D3D3D;font-size:15px}
+.nr-commercial.nr-home-commerce .nr-mini-card .nr-eyebrow{font-size:11px;color:#07536A}
 .nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:19px!important}
-.nr-commercial.nr-home-commerce .nr-mini-card .nr-card-icon{background:#eaf8fc}
+.nr-commercial.nr-home-commerce .nr-mini-card .nr-card-icon{background:#FFFFFF}
+.nr-commercial.nr-home-commerce h2 em{color:#07536A}
+.nr-commercial.nr-home-commerce .nr-dir strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#212121}
+.nr-commercial.nr-home-commerce .nr-dir-2 p,.nr-commercial.nr-home-commerce .nr-dir-2>svg,.nr-commercial.nr-home-commerce .nr-dir-2 .nr-dir-arrow{color:#212121}
+.nr-commercial.nr-home-commerce .nr-mini-card small{color:#3D3D3D}
+.nr-commercial.nr-home-commerce .nr-art [fill="#E0E3E6"],.nr-commercial.nr-home-commerce .nr-art [fill="#DDE3EA"]{fill:#D9D9D9}
+.nr-commercial.nr-home-commerce .nr-art [fill="#DCF1F1"],.nr-commercial.nr-home-commerce .nr-art [fill="#EAF8FC"]{fill:#E0F5F5}
+.nr-commercial.nr-home-commerce .nr-art [fill="#4CBAD6"]{fill:#4CBBD6}
+.nr-commercial.nr-home-commerce .nr-art [fill="#116078"]{fill:#07536A}
 .nr-commercial.nr-home-commerce .nr-dir{gap:18px}
 .nr-commercial.nr-home-commerce .nr-dir-2,.nr-commercial.nr-home-commerce .nr-dir-3{min-height:210px}
 @media(max-width:640px){
   .nr-commercial.nr-home-commerce .nr-dir-2,.nr-commercial.nr-home-commerce .nr-dir-3{min-height:auto}
   .nr-commercial.nr-home-commerce .nr-section-head{align-items:start}
 }
+
+/* Homepage-only approved graphite accents; hero, industry and shared routes stay intact. */
+#home-metrics .text-accent,#home-start .text-accent,#home-cases .text-accent,#home-partners .text-accent,#home-testimonials .text-accent{color:#07536A!important}
+#home-metrics .grid>div.bg-\[\#F2F2F2\]:nth-child(even){background:#D9D9D9}
+#home-metrics .grid>div.bg-\[\#F2F2F2\] .text-accent{color:#212121!important}
+#home-metrics .grid>div.bg-\[\#F2F2F2\] .text-muted-foreground\/80{color:#212121!important}
+#home-process .text-background,#home-process .text-background\/80,#home-process .text-accent{color:#FFFFFF!important}
+#home-cases a[href="/cases/aktransservice"] .text-background,
+#home-cases a[href="/cases/aktransservice"] .text-background\/70,
+#home-cases a[href="/cases/aktransservice"] .text-background\/85,
+#home-cases a[href="/cases/aktransservice"] .text-background\/60,
+#home-cases a[href="/cases/aktransservice"] .text-accent{color:#FFFFFF!important}
+#home-cases a[href="/cases/kraypotrebsoyuz"] .text-muted-foreground,
+#home-cases a[href="/cases/cargo-express"] .text-muted-foreground,
+#home-cases a[href="/cases/kraypotrebsoyuz"] .text-accent,
+#home-cases a[href="/cases/cargo-express"] .text-accent{color:#212121!important}
+#home-testimonials .border-accent{border-color:#07536A}
