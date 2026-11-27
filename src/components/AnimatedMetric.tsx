@@ -66,7 +66,7 @@ const AnimatedMetric = ({ text, isVisible }: AnimatedMetricProps) => {
   }, [isVisible, hasAnimated, parsed]);
 
   return (
-    <span className="text-primary font-semibold tabular-nums">
+    <span className="brand-large-number text-primary font-semibold tabular-nums">
       {displayValue}
     </span>
   );
