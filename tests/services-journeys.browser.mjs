@@ -38,6 +38,28 @@ try {
       assert.equal(await page.getByText("404", {exact:true}).count(),0,"route exists "+route);
       const scroll=await page.evaluate(()=>({content:document.documentElement.scrollWidth,viewport:innerWidth}));
       assert(scroll.content<=scroll.viewport+3, "horizontal page overflow on "+route+": "+JSON.stringify(scroll));
+      // Brand palette regression: legacy surfaces must resolve to neutral graphite/silver.
+      const palette = await page.evaluate(() => {
+        const names = ["--soft-sand", "--surface-sand", "--surface-lavender", "--surface-blush"];
+        const lum = rgb => rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+        const graphite = lum([33,33,33]);
+        return names.map(name=>{
+          const el=document.createElement("div");
+          el.style.backgroundColor="hsl(var("+name+"))";
+          document.body.append(el);
+          const color=getComputedStyle(el).backgroundColor;
+          el.remove();
+          const rgb=(color.match(/[\d.]+/g)||[]).slice(0,3).map(Number);
+          return {name,color,spread:Math.max(...rgb)-Math.min(...rgb),contrast:(lum(rgb)+.05)/(graphite+.05)};
+        });
+      });
+      for (const item of palette) assert(item.spread<=14 && item.contrast>=7,"neutral brand surface "+route+" "+JSON.stringify(item));
+      if(route==="/services/digital-audit"){
+        await page.locator("main .bg-surface-sand").first().waitFor({state:"visible"});
+        const surface=await page.locator("main .bg-surface-sand").first().evaluate(el=>getComputedStyle(el).backgroundColor);
+        assert.equal(surface,palette.find(item=>item.name==="--surface-sand").color,"audit hero uses silver");
+        await page.screenshot({path:"services-audit-"+viewport.width+".png",fullPage:true});
+      }
       // Check contrast of dark presentation cards against their actual background.
       const darkContrast = await page.evaluate(() => {
         const elements = [...document.querySelectorAll("article.bg-foreground h3, section.bg-foreground h2, section.bg-foreground h3, div.bg-foreground h2")];

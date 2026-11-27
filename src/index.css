@@ -63,13 +63,13 @@
     --gray-250: 0 0% 82%;
     --gray-300: 0 0% 78%;
     --gray-400: 0 0% 65%;
-    --soft-sand: 44 38% 94%;
+    --soft-sand: 220 10% 96%;       /* neutral silver, legacy token alias */
     
-    /* Tochka-style pastel surface plates */
+    /* Brand surfaces: cyan and cool graphite neutrals; legacy token names retained for compatibility. */
     --surface-mint: 180 50% 92%;        /* #DCF1F1 — мятный, разбавленная бирюза */
-    --surface-sand: 38 60% 92%;         /* #F7ECDA — тёплый песочный */
-    --surface-lavender: 250 40% 93%;    /* #E5E2F4 — холодный сиреневый */
-    --surface-blush: 12 60% 93%;        /* #F7E4DD — пыльно-розовый */
+    --surface-sand: 215 10% 92%;         /* cool silver, legacy token alias */
+    --surface-lavender: 215 10% 89%;    /* graphite mist, legacy token alias */
+    --surface-blush: 220 9% 95%;        /* light silver, legacy token alias */
     --surface-turquoise: 192 63% 57%;   /* акцентная бирюза для герой-плашек */
     
     --radius: 1rem;
@@ -1311,7 +1311,7 @@
   }
 
   .bg-primary\/10 {
-    background: #f0f4ff !important;
+    background: #F0F1F3 !important;
     border: 1px solid #ddd !important;
   }
 
