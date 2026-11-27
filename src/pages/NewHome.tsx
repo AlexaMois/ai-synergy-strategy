@@ -117,7 +117,7 @@ const NewHome = () => {
             <div className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-20 pb-0 md:pb-0">
                 <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-16">
-                  <h1 className="font-golos text-[30px] sm:text-[40px] md:text-[40px] lg:text-[52px] xl:text-[60px] font-bold leading-[1.05] tracking-tight break-words !text-[#212121] mb-3 md:mb-5">
+                  <h1 className="font-golos text-[30px] max-[359px]:text-[26px] sm:text-[40px] md:text-[40px] lg:text-[52px] xl:text-[60px] font-bold leading-[1.05] tracking-tight break-words !text-[#212121] mb-3 md:mb-5">
                     НейроРешения
                   </h1>
                   <p className="font-golos text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold !text-[#212121] mb-4 md:mb-5 max-w-2xl leading-snug">

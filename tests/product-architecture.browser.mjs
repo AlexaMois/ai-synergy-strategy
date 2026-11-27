@@ -63,10 +63,11 @@ try {
             const ctas=[...el.querySelectorAll("button,a")].map(n=>({text:n.textContent.trim(),ratio:ratio(getComputedStyle(n).color,getComputedStyle(n).backgroundColor)}));
             const bounds=panel.getBoundingClientRect();
             const fit=[...el.querySelectorAll("h1,p,[data-brand-signature],button,a")].every(n=>{const r=n.getBoundingClientRect();return r.left>=bounds.left-1&&r.right<=bounds.right+1&&n.scrollWidth<=n.clientWidth+1;});
-            return {font:getComputedStyle(sig).fontFamily,titleFont:getComputedStyle(title).fontFamily,loaded:loaded.some(f=>f.status==="loaded"),text,ctas,fit};
+            return {font:getComputedStyle(sig).fontFamily,titleFont:getComputedStyle(title).fontFamily,titleSingleLine:title.getBoundingClientRect().height<=parseFloat(getComputedStyle(title).lineHeight)+1,loaded:loaded.some(f=>f.status==="loaded"),text,ctas,fit};
           });
           assert(evidence.font.includes("Iriska")&&evidence.loaded,"Iriska signature "+JSON.stringify(evidence));
           assert(evidence.titleFont.includes("Golos Text"),"Hero title font");
+          assert(evidence.titleSingleLine,"Hero brand title must stay on one line "+JSON.stringify(evidence));
           assert(evidence.text.every(x=>x.ratio>=7),"Hero text contrast "+JSON.stringify(evidence));
           assert(evidence.ctas.length===3&&evidence.ctas.every(x=>x.ratio>=4.5),"Hero CTA contrast "+JSON.stringify(evidence));
           assert(evidence.fit,"Hero text or CTA overflow "+JSON.stringify(evidence));
