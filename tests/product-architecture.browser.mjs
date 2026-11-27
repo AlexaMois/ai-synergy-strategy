@@ -45,6 +45,42 @@ try {
           });
           report.push({width:viewport.width,path:"brand-assets",status:fontEvidence.faces.every(f=>f.loaded)&&fontEvidence.images.length>0&&fontEvidence.images.every(x=>x.loaded)?"pass":"fail",evidence:fontEvidence});
         }
+        if(path==="/"){
+          const hero=page.locator("#brand-hero");
+          const signature=hero.locator("[data-brand-signature]");
+          await signature.waitFor({state:"visible"});
+          assert.equal((await signature.innerText()).trim(),"Моисеева");
+          const evidence=await hero.evaluate(async el=>{
+            const sig=el.querySelector("[data-brand-signature]");
+            const title=el.querySelector("h1");
+            const panel=el.querySelector("[data-brand-panel]");
+            const loaded=await document.fonts.load('400 24px "Iriska"',"Моисеева");
+            const rgb=v=>v.match(/[\d.]+/g).slice(0,3).map(Number);
+            const lum=v=>rgb(v).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+            const ratio=(a,b)=>(Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);
+            const bg=getComputedStyle(panel).backgroundColor;
+            const text=[...el.querySelectorAll("h1,p,[data-brand-signature],[data-brand-accent]")].map(n=>({text:n.textContent.trim().slice(0,60),ratio:ratio(getComputedStyle(n).color,bg)}));
+            const ctas=[...el.querySelectorAll("button,a")].map(n=>({text:n.textContent.trim(),ratio:ratio(getComputedStyle(n).color,getComputedStyle(n).backgroundColor)}));
+            const bounds=panel.getBoundingClientRect();
+            const fit=[...el.querySelectorAll("h1,p,[data-brand-signature],button,a")].every(n=>{const r=n.getBoundingClientRect();return r.left>=bounds.left-1&&r.right<=bounds.right+1&&n.scrollWidth<=n.clientWidth+1;});
+            return {font:getComputedStyle(sig).fontFamily,titleFont:getComputedStyle(title).fontFamily,titleFit:title.scrollWidth<=title.clientWidth+1,accent:getComputedStyle(el.querySelector("[data-brand-accent]")).color,signatureColor:getComputedStyle(sig).color,loaded:loaded.some(f=>f.status==="loaded"),text,ctas,fit};
+          });
+          assert(evidence.font.includes("Iriska")&&evidence.loaded,"Iriska signature "+JSON.stringify(evidence));
+          assert(evidence.titleFont.includes("Golos Text"),"Hero title font");
+          assert(evidence.titleFit,"Hero title must fit "+JSON.stringify(evidence));
+          assert.equal(evidence.accent,evidence.signatureColor,"Matching white Iriska accents on blue");
+          assert.equal(evidence.accent,"rgb(255, 255, 255)","White hero lettering");
+          assert.equal(await page.locator("header img[alt=\"Нейрорешения\"]").first().getAttribute("src")!==null,true);
+          assert(evidence.text.every(x=>x.ratio>=7),"Hero text contrast "+JSON.stringify(evidence));
+          assert(evidence.ctas.length===3&&evidence.ctas.every(x=>x.ratio>=4.5),"Hero CTA contrast "+JSON.stringify(evidence));
+          assert(evidence.fit,"Hero text or CTA overflow "+JSON.stringify(evidence));
+          assert.equal(await hero.getByRole("link",{name:"Выбрать решение",exact:true}).getAttribute("href"),"/services");
+          await hero.getByRole("button",{name:"Узнать свою задачу",exact:true}).waitFor();
+          await hero.getByRole("button",{name:"Обсудить задачу",exact:true}).waitFor();
+          await hero.screenshot({path:folder+"/"+viewport.width+"-brand-hero.png",animations:"disabled"});
+          await page.screenshot({path:folder+"/"+viewport.width+"-first-screen.png",animations:"disabled"});
+          report.push({width:viewport.width,path:"brand-hero",status:"pass",evidence});
+        }
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         const geometry=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(geometry.width<=geometry.viewport+3,"overflow "+JSON.stringify(geometry));
@@ -52,7 +88,19 @@ try {
         const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
         assert.equal(new URL(canonical).pathname.replace(/\/$/,""),path.replace(/\/$/,""),"canonical path "+path);
         assert.equal(await page.locator("main h1").count(),1);
-        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),4);await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
+        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),4);
+          const typography=await page.locator(".nr-home-commerce").evaluate(async el=>{
+            const accents=[...el.querySelectorAll("h2 em")];
+            const headings=[...el.querySelectorAll("h2,h3")];
+            const text=[...el.querySelectorAll(".nr-dir p,.nr-mini-card p:not(.nr-eyebrow)")];
+            const faces=await Promise.all([document.fonts.load('400 30px "Iriska"',"вашего бизнеса Один МиниАгент"),document.fonts.load('600 22px "Golos Text"',"Решения для бизнеса"),document.fonts.load('400 16px "Raleway"',"Выберите решение")]);
+            return {accents:accents.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),headings:headings.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight,wrap:getComputedStyle(n).overflowWrap,fit:n.scrollWidth<=n.clientWidth+1})),text:text.map(n=>({font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),fonts:faces.map(f=>f.some(x=>x.status==="loaded"))};
+          });
+          assert.equal(await page.locator(".nr-home-commerce .nr-section-head").evaluateAll(ns=>ns.every(n=>getComputedStyle(n).backgroundColor==="rgba(0, 0, 0, 0)")),true,"Light editorial section headers");
+          assert(typography.accents.length===2&&typography.accents.every(x=>x.font.includes("Iriska")&&x.weight==="400"),"Iriska accents "+JSON.stringify(typography));
+          assert(typography.headings.every(x=>x.font.includes("Golos Text")&&x.weight==="600"&&x.wrap==="normal"&&x.fit),"Home heading typography "+JSON.stringify(typography));
+          assert(typography.text.every(x=>x.font.includes("Raleway")&&x.weight==="400")&&typography.fonts.every(Boolean),"Home body and loaded Cyrillic fonts "+JSON.stringify(typography));
+          report.push({width:viewport.width,path:"homepage-typography",status:"pass",evidence:typography});await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
         if(path==="/ai-agents"){const formats=page.locator(".nr-agent-formats > a");assert.deepEqual(await formats.evaluateAll(nodes=>nodes.map(x=>x.getAttribute("href"))),["/mini-agents","/ai-agents/hermes","/ai-agents/custom"]);assert.equal(await formats.count(),3);assert.equal(await page.getByRole("heading",{name:"ИИ-агенты для бизнеса",exact:true}).count(),1);await page.locator(".nr-agent-formats").screenshot({path:folder+"/"+viewport.width+"-agent-formats.png",style:blockStyle});}
         if(path==="/expert"){assert.equal(await page.locator("#onsite h2").innerText(),"Выездная консультация");assert.match(await page.locator("#onsite").innerText(),/8\s*000\s*₽/);assert.equal(await page.locator("#dpo").count(),1);}
         if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),4);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));const contrast=await block.evaluate(el=>{const lum=c=>c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll("p, h2, ul a")].map(n=>{const fg=lum(getComputedStyle(n).color);return {text:n.textContent.slice(0,70),ratio:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)};});});assert(contrast.every(x=>x.ratio>=7),"About commercial block contrast "+JSON.stringify(contrast));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png",style:blockStyle});}
