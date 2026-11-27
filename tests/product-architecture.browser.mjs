@@ -69,6 +69,38 @@ try {
         report.push({width:viewport.width,path,status:"pass"});
       }catch(e){report.push({width:viewport.width,path,status:"fail",message:String(e)});}
     }
+    // The compact navigation must preserve every approved destination on desktop and mobile.
+    try {
+      await page.goto(new URL("/",BASE).href,{waitUntil:"domcontentloaded"});
+      await page.locator("main h1").first().waitFor({state:"visible"});
+      const desktop=viewport.width>=1024;
+      const nav=page.getByRole("navigation",{name:desktop?"Основное меню":"Мобильное меню",exact:true});
+      if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      const topLabels=await nav.locator(":scope > div > a, :scope > div > button, :scope > a").allTextContents();
+      assert.deepEqual(topLabels.map(x=>x.trim()),["Решения","Экспертная работа","Кейсы","Цены","Об Александре"]);
+      for(const [label,expected] of [
+        ["Решения",["/services","/products","/services/neurotenderolog","/products/knowledge-management","/mini-agents","/ai-agents","/ai-agents/hermes","/ai-agents/custom","/services/automation"]],
+        ["Экспертная работа",["/expert","/start","/services/digital-audit","/services/digital-tools-program"]]
+      ]){
+        const trigger=nav.getByRole(desktop?"link":"button",{name:label,exact:true});
+        if(desktop) await trigger.hover(); else await trigger.click();
+        const group=trigger.locator("..");
+        for(const href of expected) await group.locator('a[href="'+href+'"]').last().waitFor({state:"visible"});
+        const links=await group.locator("div a").evaluateAll(nodes=>nodes.map(x=>x.getAttribute("href")));
+        assert.deepEqual(links,expected);
+        if(!desktop) assert.equal(await trigger.getAttribute("aria-expanded"),"true");
+        const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
+        assert(dims.width<=dims.viewport+3,"navigation overflow");
+        await page.screenshot({path:folder+"/"+viewport.width+"-menu-"+(label==="Решения"?"solutions":"expert")+".png",animations:"disabled"});
+      }
+      await nav.getByRole("link",{name:"Корпоративное обучение и ДПО",exact:true}).click();
+      await page.waitForURL(url=>url.pathname.replace(/\/$/,"")==="/services/digital-tools-program");
+      if(!desktop) assert.equal(await page.getByRole("button",{name:"Toggle menu"}).getAttribute("aria-expanded"),"false");
+      if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      await page.getByRole("button",{name:"Обсудить задачу",exact:true}).first().waitFor({state:"visible"});
+      if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      report.push({width:viewport.width,path:"compact navigation and approved destinations",status:"pass"});
+    }catch(e){report.push({width:viewport.width,path:"compact navigation and approved destinations",status:"fail",message:String(e)});await page.screenshot({path:folder+"/"+viewport.width+"-menu-failure.png"}).catch(()=>{});}
     let stage="open product";let payload;
     try{
       await page.goto(new URL("/mini-agents/"+catalog.mini[0].slug,BASE).href);
