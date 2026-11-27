@@ -51,3 +51,48 @@
 @media(max-width:640px){.nr-commercial .nr-hero-panel,.nr-commercial .nr-result-grid,.nr-commercial .nr-two,.nr-commercial .nr-mini-grid,.nr-commercial .nr-license-grid,.nr-commercial .nr-total{grid-template-columns:minmax(0,1fr)}.nr-commercial .nr-dir,.nr-commercial .nr-dir-0,.nr-commercial .nr-dir-1,.nr-commercial .nr-dir-2,.nr-commercial .nr-dir-3,.nr-commercial .nr-dir-4{grid-column:span 12;min-height:auto;padding:22px;gap:14px}.nr-commercial .nr-dir-4{display:flex;align-items:start}.nr-commercial .nr-dir-1 .nr-art,.nr-commercial .nr-dir-0 .nr-art{width:80%;max-height:135px}.nr-commercial .nr-dir-arrow{right:20px;top:20px}.nr-commercial .nr-mini-card{padding:20px}.nr-commercial .nr-hero-panel .nr-art{max-height:180px}.nr-commercial .nr-compare>a,.nr-commercial .nr-compare>div{grid-template-columns:minmax(0,1fr) auto;gap:8px}.nr-commercial .nr-compare span{grid-row:2;grid-column:1}.nr-commercial .nr-compare svg{grid-column:2;grid-row:1/3}.nr-commercial .nr-demo table{font-size:12px}.nr-commercial .nr-demo th,.nr-commercial .nr-demo td{padding:8px 4px}}
 
 @media(min-width:901px){.nr-commercial .nr-agent-formats{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}}
+
+/* Homepage typography: match the established Golos Text / Raleway / Iriska system.
+   The commercial page grid, cards and other routes retain their current styles. */
+.nr-commercial.nr-home-commerce h2{
+  font-family:"Golos Text",sans-serif!important;
+  font-weight:600!important;font-size:clamp(30px,3.35vw,48px)!important;
+  line-height:1.16!important;letter-spacing:-.012em;
+  overflow-wrap:normal;word-break:normal;text-wrap:balance
+}
+.nr-commercial.nr-home-commerce h2 em{
+  font-family:"Iriska",cursive;font-weight:400;font-style:normal;
+  font-size:1.17em;line-height:1.05;letter-spacing:.01em;color:#10566B
+}
+.nr-commercial.nr-home-commerce h3{
+  font-family:"Golos Text",sans-serif!important;font-weight:600!important;
+  letter-spacing:normal;line-height:1.25!important;
+  overflow-wrap:normal;word-break:normal;text-wrap:pretty
+}
+.nr-commercial.nr-home-commerce .nr-dir h3{
+  font-size:clamp(19px,1.6vw,23px)!important;margin-bottom:10px!important
+}
+.nr-commercial.nr-home-commerce .nr-mini-card h3{
+  font-size:20px!important;margin-bottom:10px!important
+}
+.nr-commercial.nr-home-commerce p,.nr-commercial.nr-home-commerce small{
+  font-family:"Raleway",sans-serif;font-weight:400;letter-spacing:normal;
+  overflow-wrap:normal;word-break:normal
+}
+.nr-commercial.nr-home-commerce p{line-height:1.65}
+.nr-commercial.nr-home-commerce .nr-eyebrow{
+  font-family:"Golos Text",sans-serif;font-size:12px;font-weight:400;
+  letter-spacing:.08em;line-height:1.5
+}
+.nr-commercial.nr-home-commerce .nr-dir strong,
+.nr-commercial.nr-home-commerce .nr-card-bottom strong{
+  font-family:"Golos Text",sans-serif;font-weight:600;letter-spacing:normal
+}
+.nr-commercial.nr-home-commerce .nr-dir strong{font-size:16px;line-height:1.5}
+.nr-commercial.nr-home-commerce .nr-card-bottom strong{font-size:21px}
+.nr-commercial.nr-home-commerce .nr-text-link{font-family:"Raleway",sans-serif;font-weight:600}
+@media(max-width:359px){
+  .nr-commercial.nr-home-commerce h2{font-size:26px!important}
+  .nr-commercial.nr-home-commerce .nr-dir h3,
+  .nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:18px!important}
+}

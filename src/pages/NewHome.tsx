@@ -117,17 +117,17 @@ const NewHome = () => {
             <div className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-20 pb-0 md:pb-0">
                 <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-16">
-                  <h1 className="font-golos text-[30px] max-[359px]:text-[26px] sm:text-[40px] md:text-[40px] lg:text-[52px] xl:text-[60px] font-bold leading-[1.05] tracking-tight break-words !text-[#212121] mb-3 md:mb-5">
+                  <h1 className="font-golos text-[30px] max-[359px]:text-[26px] sm:text-[38px] md:text-[38px] lg:text-[46px] xl:text-[50px] font-semibold leading-[1.12] tracking-normal !text-[#212121] mb-3 md:mb-5">
                     НейроРешения
                   </h1>
-                  <p className="font-golos text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold !text-[#212121] mb-4 md:mb-5 max-w-2xl leading-snug">
+                  <p className="font-raleway text-xl sm:text-2xl md:text-2xl lg:text-[28px] font-normal !text-[#212121] mb-4 md:mb-5 max-w-2xl leading-snug">
                     Программные продукты, ИИ-агенты и автоматизация бизнеса
                   </p>
                   <p className="font-raleway text-base md:text-lg !text-[#212121] mb-5 md:mb-6 max-w-xl leading-relaxed">
                     Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
                   </p>
-                  <div className="mb-6 md:mb-8 border-l-2 border-[#212121] pl-4">
-                    <p className="font-golos font-semibold text-[22px] sm:text-2xl lg:text-[28px] leading-tight !text-[#212121]">
+                  <div className="mb-6 md:mb-8">
+                    <p className="font-golos font-normal text-[22px] sm:text-[26px] lg:text-[30px] leading-tight !text-[#212121]">
                       Александра <span data-brand-signature className="inline-block font-iriska font-normal italic !text-[#212121]">Моисеева</span>
                     </p>
                     <p className="font-raleway text-sm md:text-base leading-relaxed !text-[#212121] mt-2">
