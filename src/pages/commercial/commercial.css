@@ -153,7 +153,7 @@
 
 /* Restore brand accent priority over homepage graphite overrides. */
 #home-metrics .font-iriska.text-accent,#home-start h2 .font-iriska,#home-process h2 .font-iriska,#home-cases h2 .font-iriska,#home-partners h2 .font-iriska,#home-testimonials .font-iriska.text-accent,#home-testimonials .section-title .font-semibold,#home-cases a .brand-large-number,#home-metrics .grid>div .font-iriska.text-accent{color:#4CBBD6!important}
-.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#4CBBD6!important}
+.nr-commercial .nr-mini-card .nr-card-bottom strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#212121!important}
 
 /* Solutions route only: approved brand color accents, existing geometry preserved. */
 .nr-commercial.nr-solutions .nr-hero-panel{background:#4CBBD6}
