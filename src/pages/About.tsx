@@ -503,7 +503,7 @@ const About = () => {
                 </p>
                 <h2 className="text-3xl md:text-5xl font-bold !text-[#212121] leading-[1.05] mb-6">
                   Что такое{" "}
-                  <span className="font-iriska font-normal italic !text-[#212121]">
+                  <span className="font-iriska font-normal italic text-accent">
                     «НейроРешения»
                   </span>
                 </h2>
@@ -763,7 +763,7 @@ const About = () => {
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.02] mb-6 max-w-4xl">
               Начните с понятного{" "}
-              <span className="font-iriska font-normal italic text-white">формата</span>{" "}
+              <span className="font-iriska font-normal italic text-accent">формата</span>{" "}
               работы
             </h2>
             <p className="text-base md:text-lg text-white/90 leading-relaxed mb-10 max-w-2xl">

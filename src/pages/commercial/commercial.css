@@ -9,8 +9,8 @@
 .nr-commercial p{font-size:16px;line-height:1.65;color:#212121;margin:0 0 16px;overflow-wrap:anywhere}
 .nr-commercial .nr-lead{font-size:clamp(16px,1.55vw,21px);max-width:68ch}
 .nr-commercial .nr-eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;color:#212121;margin:0 0 10px;text-transform:uppercase}
-.nr-commercial em{font-style:normal;color:#116078}
-.nr-commercial .nr-price{display:block;font-size:clamp(26px,3vw,40px);font-weight:700;color:#212121;line-height:1.2;margin:18px 0;font-variant-numeric:tabular-nums}
+.nr-commercial em{font-family:"Iriska",cursive;font-weight:400;font-style:italic;color:#4CBBD6}
+.nr-commercial .nr-price{display:block;font-size:clamp(26px,3vw,40px);font-weight:700;color:#4CBBD6;line-height:1.2;margin:18px 0;font-variant-numeric:tabular-nums}
 .nr-commercial .nr-price small{font-size:14px}
 .nr-commercial .nr-cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:#212121;color:#fff;border-radius:999px;min-height:48px;padding:13px 22px;font-size:16px;font-weight:600;line-height:1.35;text-align:left;max-width:100%;white-space:normal;overflow-wrap:anywhere;text-decoration:none}
 .nr-commercial .nr-cta:hover{background:#333}.nr-commercial .nr-cta svg,.nr-commercial .nr-text-link svg{flex-shrink:0}
@@ -119,7 +119,7 @@
 .nr-commercial.nr-home-commerce .nr-mini-card .nr-eyebrow{font-size:11px;color:#07536A}
 .nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:19px!important}
 .nr-commercial.nr-home-commerce .nr-mini-card .nr-card-icon{background:#FFFFFF}
-.nr-commercial.nr-home-commerce h2 em{color:#07536A}
+.nr-commercial.nr-home-commerce h2 em{color:#4CBBD6;font-family:"Iriska",cursive;font-weight:400;font-style:italic}
 .nr-commercial.nr-home-commerce .nr-dir strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#212121}
 .nr-commercial.nr-home-commerce .nr-dir-2 p,.nr-commercial.nr-home-commerce .nr-dir-2>svg,.nr-commercial.nr-home-commerce .nr-dir-2 .nr-dir-arrow{color:#212121}
 .nr-commercial.nr-home-commerce .nr-mini-card small{color:#3D3D3D}
@@ -144,12 +144,16 @@
 #home-cases a[href="/cases/aktransservice"] .text-background\/70,
 #home-cases a[href="/cases/aktransservice"] .text-background\/85,
 #home-cases a[href="/cases/aktransservice"] .text-background\/60,
-#home-cases a[href="/cases/aktransservice"] .text-accent{color:#FFFFFF!important}
+#home-cases a[href="/cases/aktransservice"] .text-accent:not(.brand-large-number){color:#FFFFFF!important}
 #home-cases a[href="/cases/kraypotrebsoyuz"] .text-muted-foreground,
 #home-cases a[href="/cases/cargo-express"] .text-muted-foreground,
-#home-cases a[href="/cases/kraypotrebsoyuz"] .text-accent,
-#home-cases a[href="/cases/cargo-express"] .text-accent{color:#212121!important}
+#home-cases a[href="/cases/kraypotrebsoyuz"] .text-accent:not(.brand-large-number),
+#home-cases a[href="/cases/cargo-express"] .text-accent:not(.brand-large-number){color:#212121!important}
 #home-testimonials .border-accent{border-color:#07536A}
+
+/* Restore brand accent priority over homepage graphite overrides. */
+#home-metrics .font-iriska.text-accent,#home-start h2 .font-iriska,#home-process h2 .font-iriska,#home-cases h2 .font-iriska,#home-partners h2 .font-iriska,#home-testimonials .font-iriska.text-accent,#home-testimonials .section-title .font-semibold,#home-cases a .brand-large-number,#home-metrics .grid>div .font-iriska.text-accent{color:#4CBBD6!important}
+.nr-commercial .nr-mini-card .nr-card-bottom strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#212121!important}
 
 /* Solutions route only: approved brand color accents, existing geometry preserved. */
 .nr-commercial.nr-solutions .nr-hero-panel{background:#4CBBD6}

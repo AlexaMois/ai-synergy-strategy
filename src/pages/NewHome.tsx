@@ -245,7 +245,7 @@ const NewHome = () => {
               <span><strong>Результат:</strong> краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</span>
             </p>
             <div className="space-y-4">
-              <div className="font-iriska font-bold text-3xl md:text-4xl leading-none text-foreground">
+              <div className="font-iriska font-bold text-3xl md:text-4xl leading-none text-accent">
                 <AnimatedNumber value={8000} suffix=" ₽" />
               </div>
               <p className="text-sm md:text-base text-foreground/85">
@@ -345,7 +345,7 @@ const NewHome = () => {
                 </div>
                 <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                   <div className="sm:max-w-[260px]">
-                    <div className="text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
+                    <div className="brand-large-number text-4xl md:text-5xl font-bold text-accent leading-none mb-1">
                       1,7 млн ₽
                     </div>
                     <p className="text-xs text-background/60 leading-snug">
@@ -378,7 +378,7 @@ const NewHome = () => {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
+                    <div className="brand-large-number text-2xl font-bold text-accent leading-none">1,3 млн ₽</div>
                     <p className="text-xs text-muted-foreground mt-1">Сохранено на покупке оборудования</p>
                   </div>
                   <ArrowRight className="h-5 w-5 text-foreground/60 group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
@@ -403,7 +403,7 @@ const NewHome = () => {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-bold text-accent leading-none">0% потерянных заявок после внедрения</div>
+                    <div className="brand-large-number text-2xl font-bold text-accent leading-none">0% потерянных заявок после внедрения</div>
                     <p className="text-xs text-muted-foreground mt-1">
                       9–12 часов в неделю экономит команда из трёх сотрудников
                     </p>

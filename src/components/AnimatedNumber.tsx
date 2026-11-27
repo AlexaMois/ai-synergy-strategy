@@ -58,7 +58,7 @@ const AnimatedNumber = ({
   const shown = `${prefix}${fracPart ? `${grouped},${fracPart}` : grouped}${suffix}`;
 
   return (
-    <span ref={ref as React.RefObject<HTMLSpanElement>} className={`tabular-nums ${className}`}>
+    <span ref={ref as React.RefObject<HTMLSpanElement>} className={`brand-large-number tabular-nums ${className}`}>
       {shown}
     </span>
   );
