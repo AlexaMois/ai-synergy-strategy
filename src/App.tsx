@@ -13,6 +13,7 @@ import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 import Index from "./pages/NewHome";
+const HomePreview = lazy(() => import("./pages/HomePreview"));
 const CommercialSolutions = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.SolutionsPage})));
 const ProductsPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.ProductsPage})));
 const KnowledgePage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.KnowledgePage})));
@@ -93,6 +94,7 @@ const AppContent = () => {
         <Routes>
           {/* Main */}
           <Route path="/" element={<Index />} />
+          <Route path="/home-preview" element={<HomePreview />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/old-home" element={<Navigate to="/" replace />} />
           
