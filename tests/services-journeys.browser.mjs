@@ -110,6 +110,19 @@ try {
     }
     await page.goto(BASE+"/services");
     await page.getByRole("heading",{name:"Решения для рабочих задач вашего бизнеса"}).waitFor();
+    const solutionsPalette = await page.evaluate(() => {
+      const root=document.querySelector("main.nr-solutions");
+      const bg=n=>getComputedStyle(n).backgroundColor;
+      const lum=v=>(v.match(/[\d.]+/g)||[]).slice(0,3).map(Number).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+      const ratio=(fg,b)=>(Math.max(lum(fg),lum(b))+.05)/(Math.min(lum(fg),lum(b))+.05);
+      const panels=[root.querySelector(".nr-hero-panel"),...root.querySelectorAll(".nr-dir")];
+      return {panels:panels.map(n=>({background:bg(n),text:[...n.querySelectorAll("h1,h3,p,strong")].map(t=>ratio(getComputedStyle(t).color,bg(n)))})),cta:bg(root.querySelector(".nr-cta")),ctaContrast:ratio(getComputedStyle(root.querySelector(".nr-cta")).color,bg(root.querySelector(".nr-cta")))};
+    });
+    assert.deepEqual(solutionsPalette.panels.map(p=>p.background),["rgb(76, 187, 214)","rgb(242, 242, 242)","rgb(7, 83, 106)","rgb(179, 179, 179)","rgb(242, 242, 242)"],"Solutions approved colors");
+    assert(solutionsPalette.panels.every(p=>p.text.every(r=>r>=7)),"Solutions primary text contrast "+JSON.stringify(solutionsPalette));
+    assert.equal(solutionsPalette.cta,"rgb(7, 83, 106)");
+    assert(solutionsPalette.ctaContrast>=7,"Solutions CTA contrast");
+    console.log("SOLUTIONS PALETTE",viewport.width,JSON.stringify(solutionsPalette));
     const routeLinks = [
       "/products",
       "/ai-agents",
