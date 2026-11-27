@@ -169,7 +169,7 @@ const NewHome = () => {
         </div>
 
         {/* ЦИФРЫ — асимметрия, гигантская акцентная цифра курсивом */}
-        <section className="bg-background py-16 md:py-24 mt-4">
+        <section id="home-metrics" className="bg-white py-16 md:py-24 mt-4">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
               <div className="md:col-span-5">
@@ -188,7 +188,7 @@ const NewHome = () => {
               </div>
               <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {stats.slice(1).map(({ value, suffix, label, decimals, sub }) => (
-                  <div key={label} className="bg-card p-3.5 md:p-6 flex items-center gap-3.5 md:gap-5">
+                  <div key={label} className="bg-[#F2F2F2] p-3.5 md:p-6 flex items-center gap-3.5 md:gap-5">
                     <div className="font-iriska font-bold text-accent leading-[0.85] shrink-0 text-4xl md:text-6xl">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
@@ -202,11 +202,11 @@ const NewHome = () => {
                     </div>
                   </div>
                 ))}
-                <div className="bg-accent text-white p-5 md:p-7 flex flex-col justify-center">
+                <div className="bg-[#07536A] text-white p-5 md:p-7 flex flex-col justify-center">
                   <div className="font-iriska text-2xl md:text-4xl leading-tight mb-2">
                     Клиенты возвращаются за следующим этапом
                   </div>
-                  <p className="text-xs md:text-sm text-white/85 leading-snug">
+                  <p className="text-xs md:text-sm !text-white leading-snug">
                     Большинство клиентов продолжают работу после первого проекта: новые цифровые инструменты, развитие и автоматизация процессов.
                   </p>
                 </div>
@@ -220,7 +220,7 @@ const NewHome = () => {
         <IndustryQuestions />
 
         {/* С ЧЕГО НАЧАТЬ — выездная консультация */}
-        <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
+        <section id="home-start" className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
               С чего начать{" "}
@@ -230,7 +230,7 @@ const NewHome = () => {
               Начнём с конкретного рабочего процесса. Выявим потери времени и денег, определим приоритет и следующий шаг.
             </p>
           </div>
-          <div className="relative flex flex-col rounded-[28px] bg-surface-mint p-7 md:p-9 overflow-hidden shadow-card ring-1 ring-foreground/5">
+          <div className="relative flex flex-col rounded-[28px] bg-[#F2F2F2] p-7 md:p-9 overflow-hidden shadow-card ring-1 ring-foreground/5">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
               Выездная консультация
             </h3>
@@ -270,9 +270,9 @@ const NewHome = () => {
         <MarqueeText />
 
         {/* КАК МЫ РАБОТАЕМ — тёмная плашка в тот же тон, что «Узнаёте свой бизнес»: заголовок сверху, картинка на всю ширину, пояснение снизу */}
-        <section className="px-4 md:px-6 py-10 md:py-14">
+        <section id="home-process" className="px-4 md:px-6 py-10 md:py-14">
           <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+            <div className="relative rounded-[32px] md:rounded-[40px] bg-[#3D3D3D] overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               {/* мягкое бирюзовое свечение в зонах текста */}
               <div aria-hidden className="pointer-events-none absolute inset-0">
                 <div className="absolute -top-24 left-1/2 h-64 w-[420px] -translate-x-1/2 rounded-full bg-accent/15 blur-[110px]" />
@@ -311,7 +311,7 @@ const NewHome = () => {
         </section>
 
         {/* РЕЗУЛЬТАТЫ — bento на сером, заголовок с курсивом */}
-        <section className="bg-background py-16 md:py-24">
+        <section id="home-cases" className="bg-white py-16 md:py-24">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
               <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05]">
@@ -326,7 +326,7 @@ const NewHome = () => {
               {/* Featured large case */}
               <Link
                 to="/cases/aktransservice"
-                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-foreground text-background p-8 md:p-10 min-h-[320px] shadow-plate hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
+                className="md:col-span-7 md:row-span-2 group flex flex-col justify-between rounded-2xl bg-[#07536A] text-white p-8 md:p-10 min-h-[320px] shadow-plate hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-4">
@@ -361,7 +361,7 @@ const NewHome = () => {
               {/* Two smaller stacked cases */}
               <Link
                 to="/cases/kraypotrebsoyuz"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-[#D9D9D9] p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
@@ -386,7 +386,7 @@ const NewHome = () => {
               </Link>
               <Link
                 to="/cases/cargo-express"
-                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
+                className="md:col-span-5 group flex flex-col justify-between rounded-2xl border border-border bg-[#F2F2F2] p-6 md:p-7 min-h-[150px] shadow-soft hover:shadow-card hover:-translate-y-1 hover:border-accent transition-all duration-300"
               >
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
@@ -416,7 +416,7 @@ const NewHome = () => {
         </section>
 
         {/* ПАРТНЁРЫ И КЛИЕНТЫ — ближе к концу страницы */}
-<div className="bg-background pt-4 pb-14 md:pb-20">
+<div id="home-partners" className="bg-white pt-4 pb-14 md:pb-20">
           <div className="container mx-auto max-w-6xl px-4 text-center mb-10 md:mb-14">
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
               Партнёры и клиенты
@@ -433,7 +433,7 @@ const NewHome = () => {
         </div>
 
         {/* О НАС ГОВОРЯТ — светло-бирюзовая полоса для отделения от соседних блоков */}
-        <section className="bg-accent/10 py-14 md:py-20">
+        <section id="home-testimonials" className="bg-[#F2F2F2] py-14 md:py-20">
           <div className="container mx-auto max-w-5xl px-4">
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4 text-center">
               О нас{" "}
