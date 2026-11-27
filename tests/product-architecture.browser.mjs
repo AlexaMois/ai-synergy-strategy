@@ -68,7 +68,8 @@ try {
           assert(evidence.font.includes("Iriska")&&evidence.loaded,"Iriska signature "+JSON.stringify(evidence));
           assert(evidence.titleFont.includes("Golos Text"),"Hero title font");
           assert(evidence.titleFit,"Hero title must fit "+JSON.stringify(evidence));
-          assert.equal(evidence.accent,evidence.signatureColor,"Matching original blue accents");
+          assert.equal(evidence.accent,evidence.signatureColor,"Matching white Iriska accents on blue");
+          assert.equal(evidence.accent,"rgb(255, 255, 255)","White hero lettering");
           assert.equal(await page.locator("header img[alt=\"Нейрорешения\"]").first().getAttribute("src")!==null,true);
           assert(evidence.text.every(x=>x.ratio>=7),"Hero text contrast "+JSON.stringify(evidence));
           assert(evidence.ctas.length===3&&evidence.ctas.every(x=>x.ratio>=4.5),"Hero CTA contrast "+JSON.stringify(evidence));
@@ -95,6 +96,7 @@ try {
             const faces=await Promise.all([document.fonts.load('400 30px "Iriska"',"вашего бизнеса Один МиниАгент"),document.fonts.load('600 22px "Golos Text"',"Решения для бизнеса"),document.fonts.load('400 16px "Raleway"',"Выберите решение")]);
             return {accents:accents.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),headings:headings.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight,wrap:getComputedStyle(n).overflowWrap,fit:n.scrollWidth<=n.clientWidth+1})),text:text.map(n=>({font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),fonts:faces.map(f=>f.some(x=>x.status==="loaded"))};
           });
+          assert.equal(await page.locator(".nr-home-commerce .nr-section-head").evaluateAll(ns=>ns.every(n=>getComputedStyle(n).backgroundColor==="rgba(0, 0, 0, 0)")),true,"Light editorial section headers");
           assert(typography.accents.length===2&&typography.accents.every(x=>x.font.includes("Iriska")&&x.weight==="400"),"Iriska accents "+JSON.stringify(typography));
           assert(typography.headings.every(x=>x.font.includes("Golos Text")&&x.weight==="600"&&x.wrap==="normal"&&x.fit),"Home heading typography "+JSON.stringify(typography));
           assert(typography.text.every(x=>x.font.includes("Raleway")&&x.weight==="400")&&typography.fonts.every(Boolean),"Home body and loaded Cyrillic fonts "+JSON.stringify(typography));

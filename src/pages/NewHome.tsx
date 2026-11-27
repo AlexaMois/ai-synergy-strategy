@@ -111,41 +111,41 @@ const NewHome = () => {
       </Helmet>
 
       <main>
-        {/* Фирменный первый экран: оригинальный логотип в шапке, Iriska и голубой акцент на графите. */}
+        {/* Фирменный первый экран: голубая поверхность, оригинальный портрет и Iriska. */}
         <section id="brand-hero" className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
-            <div data-brand-panel className="relative rounded-[28px] md:rounded-[40px] bg-[#212121] overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
+            <div data-brand-panel className="relative rounded-[28px] md:rounded-[40px] bg-[#07536a] overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <svg aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full opacity-30" viewBox="0 0 1200 650" preserveAspectRatio="none">
-                <path d="M760 -20 Q970 115 1240 160 M-80 570 Q230 480 540 590" fill="none" stroke="hsl(var(--accent))" strokeWidth="1" />
+                <path d="M760 -20 Q970 115 1240 160 M-80 570 Q230 480 540 590" fill="none" stroke="white" strokeWidth="1" />
               </svg>
               <div className="relative grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-16 pb-0">
                 <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-14">
                   <h1 className="font-golos text-[29px] max-[359px]:text-[25px] sm:text-[37px] lg:text-[43px] xl:text-[48px] font-semibold leading-[1.14] tracking-normal !text-white mb-5 md:mb-6">
-                    Программные продукты, ИИ-агенты и <span data-brand-accent className="font-iriska font-normal italic text-accent">автоматизация</span> бизнеса
+                    Программные продукты, ИИ-агенты и <span data-brand-accent className="font-iriska font-normal italic !text-white">автоматизация</span> бизнеса
                   </h1>
                   <p className="font-raleway text-base md:text-lg !text-white mb-6 md:mb-8 max-w-xl leading-relaxed">
                     Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
                   </p>
                   <div className="mb-7 md:mb-8">
                     <p className="font-golos font-normal text-[22px] sm:text-[26px] lg:text-[30px] leading-tight !text-white">
-                      Александра <span data-brand-signature className="inline-block font-iriska font-normal italic text-accent">Моисеева</span>
+                      Александра <span data-brand-signature className="inline-block font-iriska font-normal italic !text-white">Моисеева</span>
                     </p>
                     <p className="font-raleway text-sm md:text-base leading-relaxed !text-white mt-2">
                       основатель и инженер-архитектор цифрового развития бизнеса
                     </p>
                   </div>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
-                    <PillButton to="/services" variant="turquoise" className="!bg-accent !text-[#212121] [&>span:last-child]:!text-[#212121] hover:!bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Выбрать решение</PillButton>
+                    <PillButton to="/services" variant="light" className="!bg-white !text-[#07536a] [&>span:last-child]:!bg-[#07536a] [&>span:last-child]:!text-white hover:!bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Выбрать решение</PillButton>
                     <PillButton
                       variant="ghost-light"
-                      className="!bg-[#212121] !text-white !border-white/60 hover:!bg-[#333333] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                      className="!bg-[#07536a] !text-white !border-white/80 hover:!bg-[#06475b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                       onClick={() =>
                         document.getElementById("industry-questions")?.scrollIntoView({ behavior: "smooth", block: "start" })
                       }
                     >
                       Узнать свою задачу
                     </PillButton>
-                    <PillButton variant="ghost-light" className="!bg-[#212121] !text-white !border-white/60 hover:!bg-[#333333] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" onClick={() => { setContactIntent(null); scrollToContact(); }}>
+                    <PillButton variant="ghost-light" className="!bg-[#07536a] !text-white !border-white/80 hover:!bg-[#06475b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" onClick={() => { setContactIntent(null); scrollToContact(); }}>
                       Обсудить задачу
                     </PillButton>
                   </div>

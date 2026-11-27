@@ -97,13 +97,31 @@
   .nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:18px!important}
 }
 
-/* Dark heading surfaces keep the original bright accent readable, without altering cards. */
-.nr-commercial.nr-home-commerce .nr-section-head{
-  background:#212121;border-radius:24px;padding:clamp(18px,2.2vw,32px);
-  color:#fff;align-items:center
+/* Homepage only: original blue hero, bright accents and light editorial cards. */
+#brand-hero [data-brand-panel]{
+  background-color:#07536a;
+  background-image:linear-gradient(90deg,#07536a 0%,#07536a 56%,hsl(var(--accent)) 100%)
 }
-.nr-commercial.nr-home-commerce .nr-section-head h2{color:#fff!important;margin:0!important}
-.nr-commercial.nr-home-commerce .nr-section-head p{color:#fff}
-.nr-commercial.nr-home-commerce .nr-section-head .nr-eyebrow{color:hsl(var(--accent))}
-.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link{color:hsl(var(--accent));text-decoration:none}
-.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link:hover{text-decoration:underline}
+@media(max-width:767px){
+  #brand-hero [data-brand-panel]{background-image:none}
+  #brand-hero [data-brand-panel] .grid>div:last-child{background:linear-gradient(180deg,#07536a,hsl(var(--accent)));border-radius:24px 24px 0 0}
+}
+.nr-commercial.nr-home-commerce .nr-section-head{background:transparent;padding:0;color:#212121;align-items:end;margin-bottom:26px;border-radius:0}
+.nr-commercial.nr-home-commerce .nr-section-head h2{color:#212121!important;font-size:clamp(29px,3.05vw,44px)!important;margin:0 0 8px!important}
+.nr-commercial.nr-home-commerce .nr-section-head p{color:#454b50;font-size:16px}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-eyebrow{color:#0e7490;font-size:13px}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link{color:#0e7490;font-size:15px;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.nr-commercial.nr-home-commerce .nr-dir,.nr-commercial.nr-home-commerce .nr-mini-card{background:#fff;border:1px solid #dce6ea;box-shadow:0 4px 16px rgba(33,33,33,.06);border-radius:24px}
+.nr-commercial.nr-home-commerce .nr-dir-0,.nr-commercial.nr-home-commerce .nr-mini-card:nth-child(4n+1){background:#edf8fa}
+.nr-commercial.nr-home-commerce .nr-dir>svg:first-child,.nr-commercial.nr-home-commerce .nr-dir-arrow,.nr-commercial.nr-home-commerce .nr-card-icon,.nr-commercial.nr-home-commerce .nr-card-bottom svg{color:#0e7490}
+.nr-commercial.nr-home-commerce .nr-dir strong,.nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#0e7490}
+.nr-commercial.nr-home-commerce .nr-dir p,.nr-commercial.nr-home-commerce .nr-mini-card p{color:#454b50;font-size:15px}
+.nr-commercial.nr-home-commerce .nr-mini-card .nr-eyebrow{font-size:11px;color:#0e7490}
+.nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:19px!important}
+.nr-commercial.nr-home-commerce .nr-mini-card .nr-card-icon{background:#eaf8fc}
+.nr-commercial.nr-home-commerce .nr-dir{gap:18px}
+.nr-commercial.nr-home-commerce .nr-dir-2,.nr-commercial.nr-home-commerce .nr-dir-3{min-height:210px}
+@media(max-width:640px){
+  .nr-commercial.nr-home-commerce .nr-dir-2,.nr-commercial.nr-home-commerce .nr-dir-3{min-height:auto}
+  .nr-commercial.nr-home-commerce .nr-section-head{align-items:start}
+}
