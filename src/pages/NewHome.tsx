@@ -112,32 +112,40 @@ const NewHome = () => {
 
       <main>
         {/* HERO — большая бирюзовая плашка во всю ширину */}
-        <section className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
+        <section id="brand-hero" className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-20 pb-0 md:pb-0">
-                <div className="md:col-span-7 pb-6 sm:pb-8 md:pb-20">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] md:leading-[1.02] tracking-tight !text-[#212121] mb-4 md:mb-6">
+                <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-16">
+                  <h1 className="font-golos text-[30px] sm:text-[40px] md:text-[40px] lg:text-[52px] xl:text-[60px] font-bold leading-[1.05] tracking-tight break-words !text-[#212121] mb-3 md:mb-5">
                     НейроРешения
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl !text-[#212121] mb-4 md:mb-8 max-w-2xl leading-snug">
+                  <p className="font-golos text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold !text-[#212121] mb-4 md:mb-5 max-w-2xl leading-snug">
                     Программные продукты, ИИ-агенты и автоматизация бизнеса
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg !text-[#212121] mb-6 md:mb-10 max-w-xl">
+                  <p className="font-raleway text-base md:text-lg !text-[#212121] mb-5 md:mb-6 max-w-xl leading-relaxed">
                     Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
                   </p>
-                  <p className="!text-[#212121] font-semibold text-base md:text-lg mb-5">Александра Моисеева, основатель и инженер-архитектор цифрового развития бизнеса</p>
+                  <div className="mb-6 md:mb-8 border-l-2 border-[#212121] pl-4">
+                    <p className="font-golos font-semibold text-[22px] sm:text-2xl lg:text-[28px] leading-tight !text-[#212121]">
+                      Александра <span data-brand-signature className="inline-block font-iriska font-normal italic !text-[#212121]">Моисеева</span>
+                    </p>
+                    <p className="font-raleway text-sm md:text-base leading-relaxed !text-[#212121] mt-2">
+                      основатель и инженер-архитектор цифрового развития бизнеса
+                    </p>
+                  </div>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
-                    <PillButton to="/services" variant="dark">Выбрать решение</PillButton>
+                    <PillButton to="/services" variant="dark" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#212121]">Выбрать решение</PillButton>
                     <PillButton
                       variant="light"
+                      className="!bg-white !text-[#212121] hover:!bg-[#EAF8FC] [&>span:last-child]:!bg-[#212121] [&>span:last-child]:!text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#212121]"
                       onClick={() =>
                         document.getElementById("industry-questions")?.scrollIntoView({ behavior: "smooth", block: "start" })
                       }
                     >
                       Узнать свою задачу
                     </PillButton>
-                    <PillButton variant="light" onClick={() => { setContactIntent(null); scrollToContact(); }}>
+                    <PillButton variant="light" className="!bg-white !text-[#212121] hover:!bg-[#EAF8FC] [&>span:last-child]:!bg-[#212121] [&>span:last-child]:!text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#212121]" onClick={() => { setContactIntent(null); scrollToContact(); }}>
                       Обсудить задачу
                     </PillButton>
                   </div>
