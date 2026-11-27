@@ -193,7 +193,7 @@ const Navigation = () => {
         <div className="hidden lg:flex items-center justify-between h-20">
           <div className="flex min-w-0 items-center gap-3 xl:gap-5">
             <Link to="/" className="flex items-center overflow-visible">
-              <img src={logoHorizontal} alt="Нейрорешения" className="h-28 xl:h-32 w-auto max-w-[180px] xl:max-w-[210px] object-contain" width={320} height={160} />
+              <img src={logoHorizontal} alt="Нейрорешения" className={location.pathname === "/" ? "h-28 xl:h-48 w-auto max-w-[180px] xl:max-w-[290px] object-contain shrink-0" : "h-28 xl:h-32 w-auto max-w-[180px] xl:max-w-[210px] object-contain"} width={320} height={160} />
             </Link>
 
             <nav aria-label="Основное меню" className="flex min-w-0 flex-nowrap items-center gap-x-3 whitespace-nowrap xl:gap-x-4">

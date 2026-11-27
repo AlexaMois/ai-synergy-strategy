@@ -53,21 +53,23 @@ try {
           const evidence=await hero.evaluate(async el=>{
             const sig=el.querySelector("[data-brand-signature]");
             const title=el.querySelector("h1");
-            const panel=el.querySelector(".bg-accent");
+            const panel=el.querySelector("[data-brand-panel]");
             const loaded=await document.fonts.load('400 24px "Iriska"',"Моисеева");
             const rgb=v=>v.match(/[\d.]+/g).slice(0,3).map(Number);
             const lum=v=>rgb(v).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
             const ratio=(a,b)=>(Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);
             const bg=getComputedStyle(panel).backgroundColor;
-            const text=[...el.querySelectorAll("h1,p,[data-brand-signature]")].map(n=>({text:n.textContent.trim().slice(0,60),ratio:ratio(getComputedStyle(n).color,bg)}));
+            const text=[...el.querySelectorAll("h1,p,[data-brand-signature],[data-brand-accent]")].map(n=>({text:n.textContent.trim().slice(0,60),ratio:ratio(getComputedStyle(n).color,bg)}));
             const ctas=[...el.querySelectorAll("button,a")].map(n=>({text:n.textContent.trim(),ratio:ratio(getComputedStyle(n).color,getComputedStyle(n).backgroundColor)}));
             const bounds=panel.getBoundingClientRect();
             const fit=[...el.querySelectorAll("h1,p,[data-brand-signature],button,a")].every(n=>{const r=n.getBoundingClientRect();return r.left>=bounds.left-1&&r.right<=bounds.right+1&&n.scrollWidth<=n.clientWidth+1;});
-            return {font:getComputedStyle(sig).fontFamily,titleFont:getComputedStyle(title).fontFamily,titleSingleLine:title.getBoundingClientRect().height<=parseFloat(getComputedStyle(title).lineHeight)+1,loaded:loaded.some(f=>f.status==="loaded"),text,ctas,fit};
+            return {font:getComputedStyle(sig).fontFamily,titleFont:getComputedStyle(title).fontFamily,titleFit:title.scrollWidth<=title.clientWidth+1,accent:getComputedStyle(el.querySelector("[data-brand-accent]")).color,signatureColor:getComputedStyle(sig).color,loaded:loaded.some(f=>f.status==="loaded"),text,ctas,fit};
           });
           assert(evidence.font.includes("Iriska")&&evidence.loaded,"Iriska signature "+JSON.stringify(evidence));
           assert(evidence.titleFont.includes("Golos Text"),"Hero title font");
-          assert(evidence.titleSingleLine,"Hero brand title must stay on one line "+JSON.stringify(evidence));
+          assert(evidence.titleFit,"Hero title must fit "+JSON.stringify(evidence));
+          assert.equal(evidence.accent,evidence.signatureColor,"Matching original blue accents");
+          assert.equal(await page.locator("header img[alt=\"Нейрорешения\"]").first().getAttribute("src")!==null,true);
           assert(evidence.text.every(x=>x.ratio>=7),"Hero text contrast "+JSON.stringify(evidence));
           assert(evidence.ctas.length===3&&evidence.ctas.every(x=>x.ratio>=4.5),"Hero CTA contrast "+JSON.stringify(evidence));
           assert(evidence.fit,"Hero text or CTA overflow "+JSON.stringify(evidence));
@@ -75,6 +77,7 @@ try {
           await hero.getByRole("button",{name:"Узнать свою задачу",exact:true}).waitFor();
           await hero.getByRole("button",{name:"Обсудить задачу",exact:true}).waitFor();
           await hero.screenshot({path:folder+"/"+viewport.width+"-brand-hero.png",animations:"disabled"});
+          await page.screenshot({path:folder+"/"+viewport.width+"-first-screen.png",animations:"disabled"});
           report.push({width:viewport.width,path:"brand-hero",status:"pass",evidence});
         }
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});

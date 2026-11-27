@@ -62,7 +62,7 @@
 }
 .nr-commercial.nr-home-commerce h2 em{
   font-family:"Iriska",cursive;font-weight:400;font-style:normal;
-  font-size:1.17em;line-height:1.05;letter-spacing:.01em;color:#10566B
+  font-size:1.17em;line-height:1.05;letter-spacing:.01em;color:hsl(var(--accent))
 }
 .nr-commercial.nr-home-commerce h3{
   font-family:"Golos Text",sans-serif!important;font-weight:600!important;
@@ -96,3 +96,14 @@
   .nr-commercial.nr-home-commerce .nr-dir h3,
   .nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:18px!important}
 }
+
+/* Dark heading surfaces keep the original bright accent readable, without altering cards. */
+.nr-commercial.nr-home-commerce .nr-section-head{
+  background:#212121;border-radius:24px;padding:clamp(18px,2.2vw,32px);
+  color:#fff;align-items:center
+}
+.nr-commercial.nr-home-commerce .nr-section-head h2{color:#fff!important;margin:0!important}
+.nr-commercial.nr-home-commerce .nr-section-head p{color:#fff}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-eyebrow{color:hsl(var(--accent))}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link{color:hsl(var(--accent));text-decoration:none}
+.nr-commercial.nr-home-commerce .nr-section-head .nr-text-link:hover{text-decoration:underline}
