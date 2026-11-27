@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { readFile } from "node:fs/promises";
 // No production credentials, no network. Every outbound request is intercepted.
 process.env.BPIUM_BASE_URL="https://bpium.ci.invalid";
@@ -7,6 +10,8 @@ process.env.BPIUM_LOGIN="mock";
 process.env.BPIUM_PASSWORD="mock";
 process.env.NEUROSECRETARY_NOTIFY_URL="https://notify.ci.invalid";
 process.env.NEUROSECRETARY_NOTIFY_SECRET="mock";
+process.env.STATE_DIR=mkdtempSync(join(tmpdir(),"forms-commercial-ci-"));
+process.on("exit",()=>rmSync(process.env.STATE_DIR,{recursive:true,force:true}));
 const captured=[],notified=[];
 globalThis.fetch=async (url,init)=>{
   const u=new URL(url);
