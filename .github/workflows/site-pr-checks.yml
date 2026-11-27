@@ -130,3 +130,4 @@ jobs:
         run: |
           npm ci --prefix forms-handler --no-audit --no-fund
           node tests/commercial-handler.mjs
+          node tests/forms-handler-regression.mjs
