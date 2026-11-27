@@ -18,7 +18,6 @@ import iconPeople from "@/assets/how-we-work/icon-people.png";
 import iconProcess from "@/assets/how-we-work/icon-process.png";
 import iconBusiness from "@/assets/how-we-work/icon-business.png";
 import iconTech from "@/assets/how-we-work/icon-tech.png";
-import synergyImg from "@/assets/how-we-work/synergy.webp";
 import { requestDiagnosticAutostart } from "@/lib/diagnosticState";
 
 const workSteps = [
@@ -272,44 +271,25 @@ const HomePreview = () => {
 
         <MarqueeText />
 
-        {/* КАК МЫ РАБОТАЕМ — тёмная плашка в тот же тон, что «Узнаёте свой бизнес»: заголовок сверху, картинка на всю ширину, пояснение снизу */}
-        <section id="home-process" className="px-4 md:px-6 py-10 md:py-14">
-          <div className="container mx-auto max-w-7xl">
-            <div className="relative rounded-[32px] md:rounded-[40px] bg-[#3D3D3D] overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              {/* мягкое бирюзовое свечение в зонах текста */}
-              <div aria-hidden className="pointer-events-none absolute inset-0">
-                <div className="absolute -top-24 left-1/2 h-64 w-[420px] -translate-x-1/2 rounded-full bg-accent/15 blur-[110px]" />
-                <div className="absolute -bottom-24 left-1/2 h-40 w-[520px] -translate-x-1/2 rounded-full bg-accent/10 blur-[90px]" />
-              </div>
-              <div className="relative px-6 md:px-12 pt-10 md:pt-12 pb-7 md:pb-9 text-center">
-                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-4">
-                  Как мы работаем
-                </p>
-                <h2 className="text-3xl md:text-[34px] font-bold text-background leading-[1.15]">
-                  <span className="md:whitespace-nowrap">
-                    От процессов к <span className="font-iriska font-normal italic text-accent">технологии</span>
-                  </span>
-                </h2>
-              </div>
-              <div className="relative">
-                <div className="overflow-hidden">
-                  <img
-                    src={synergyImg}
-                    alt="Синергия результата: человек, процессы, бизнес и технологии"
-                    width={1920}
-                    height={681}
-                    loading="eager"
-                    fetchPriority="high"
-                    className="block h-auto w-full object-contain mix-blend-screen"
-                  />
+        {/* КАК МЫ РАБОТАЕМ — открытая графитовая полоса */}
+        <section id="home-process" className="preview-process">
+          <div className="preview-process-inner">
+            <p className="preview-process-eyebrow">Как мы работаем</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">От процессов к <span className="font-iriska font-normal italic">технологии</span></h2>
+            <div className="preview-process-steps">
+              {workSteps.map(({name, desc}, index) => (
+                <div key={name} className="preview-process-step">
+                  <span className="preview-process-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{name}</h3>
+                  <p>{desc}</p>
                 </div>
-              </div>
-              <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center">
-                Сначала разбираем процессы и считаем потери. До запуска согласуем правила работы с
-                данными, стоимость внедрения и договорные условия эксплуатации, критерии результата. После запуска
-                передаём доступы и инструкции в рамках согласованного проекта.
-              </p>
+              ))}
             </div>
+            <p className="preview-process-summary">
+              Сначала разбираем процессы и считаем потери. До запуска согласуем правила работы с
+              данными, стоимость внедрения и договорные условия эксплуатации, критерии результата. После запуска
+              передаём доступы и инструкции в рамках согласованного проекта.
+            </p>
           </div>
         </section>
 
