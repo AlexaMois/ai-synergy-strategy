@@ -57,19 +57,19 @@ const TenderServicePage = () => (
             ))}
           </div>
         </section>
-        <section className="bg-foreground py-14 text-background md:py-20">
+        <section className="bg-white py-14 text-foreground md:py-20">
           <div className="container mx-auto max-w-7xl px-4">
-            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-background md:text-4xl">Что проверяем перед запуском</h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-background/80">Составляем профиль закупок, проверяем релевантность первичного отбора и согласуем работу со спорными случаями.</p>
+            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Что проверяем перед запуском</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-foreground/80">Составляем профиль закупок, проверяем релевантность первичного отбора и согласуем работу со спорными случаями.</p>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
                 ["Профиль компании","Направления, территории, стоп-условия и критерии подходящей закупки."],
                 ["Проверка на примерах","Сравнение оценок системы с решениями специалиста на реальных закупках."],
                 ["Обратная связь","Причины принятого решения используются для уточнения правил отбора."]
               ].map(([title,text])=>(
-                <div key={title} className="rounded-2xl border border-background/20 bg-background/5 p-5">
-                  <CheckCircle2 className="mb-4 h-6 w-6 text-accent" />
-                  <h3 className="text-xl font-bold text-background">{title}</h3><p className="mt-3 text-base leading-relaxed text-background/85">{text}</p>
+                <div key={title} className="rounded-2xl border border-border bg-white p-5">
+                  <CheckCircle2 className="mb-4 h-6 w-6 text-[#07536A]" />
+                  <h3 className="text-xl font-bold text-foreground">{title}</h3><p className="mt-3 text-base leading-relaxed text-foreground/85">{text}</p>
                 </div>
               ))}
             </div>

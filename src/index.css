@@ -13,6 +13,14 @@
   font-display: swap;
 }
 
+/* Full-width editorial bands share the white page canvas. Rounded content cards retain their palette. */
+section.bg-muted:not([class*="rounded"]),
+section.bg-secondary:not([class*="rounded"]),
+section.bg-secondary\/30:not([class*="rounded"]),
+section[aria-labelledby="tender-evidence"] {
+  background-color: #FFFFFF;
+}
+
 /* Premium B2B Design System
    All colors MUST be HSL.
    Accent: #49BED8 (turquoise)
@@ -22,7 +30,7 @@
 @layer base {
   :root {
     /* Backgrounds */
-    --background: 220 14% 98%;        /* #F7F8FA - page background */
+    --background: 0 0% 100%;          /* #FFFFFF - page canvas */
     --foreground: 0 0% 13%;           /* #212121 - main text */
     
     --card: 0 0% 100%;                /* #FFFFFF - surface/cards */
