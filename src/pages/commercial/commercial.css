@@ -166,3 +166,9 @@
 .nr-commercial.nr-solutions .nr-dir-3{background:#F2F2F2}
 .nr-commercial.nr-solutions .nr-dir:not(.nr-dir-1)>svg:first-child,.nr-commercial.nr-solutions .nr-dir:not(.nr-dir-1) .nr-dir-arrow,.nr-commercial.nr-solutions .nr-text-link{color:#07536A}
 .nr-commercial.nr-solutions .nr-dir-1>svg:first-child,.nr-commercial.nr-solutions .nr-dir-1 .nr-dir-arrow{color:#FFFFFF}
+
+/* Shared typography scale, 2026-11-27 owner approval. */
+.nr-commercial h1,.nr-commercial h2,.nr-commercial.nr-home-commerce h2,.nr-commercial.nr-home-commerce .nr-section-head h2{font-size:30px!important;font-weight:700!important;line-height:1.05!important}
+.nr-commercial h3,.nr-commercial .nr-mini-card h3,.nr-commercial.nr-home-commerce .nr-dir h3,.nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:20px!important}
+.nr-commercial h1 em,.nr-commercial h2 em{font-family:"Iriska",cursive!important;font-weight:400!important;font-style:italic;color:#4CBBD6!important;font-size:1.25em}
+@media(min-width:768px){.nr-commercial h1,.nr-commercial h2,.nr-commercial.nr-home-commerce h2,.nr-commercial.nr-home-commerce .nr-section-head h2{font-size:48px!important}.nr-commercial h3,.nr-commercial .nr-mini-card h3,.nr-commercial.nr-home-commerce .nr-dir h3,.nr-commercial.nr-home-commerce .nr-mini-card h3{font-size:24px!important}}

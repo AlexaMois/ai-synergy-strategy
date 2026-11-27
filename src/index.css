@@ -1397,3 +1397,9 @@ body:has([data-assessment-result]) [data-floating-home] {
 .brand-large-number{color:#4CBBD6!important}
 :is(h1,h2,h3,h4,h5,h6) .font-iriska:not([data-brand-signature]),.section-title .font-semibold,.section-title .font-bold,.section-title strong{font-family:"Iriska",cursive!important;font-weight:400!important;font-style:italic;color:#4CBBD6!important}
 .nr-commercial .nr-total strong,.nr-commercial .nr-card-bottom strong{color:#4CBBD6!important}
+
+/* Approved common heading scale; original homepage hero and compact semantic card headings retained. */
+@layer base {
+  main h1:not(#brand-hero h1):not(.nr-commercial h1){font-size:30px!important;font-weight:700!important;line-height:1.05!important}
+  @media(min-width:768px){main h1:not(#brand-hero h1):not(.nr-commercial h1){font-size:48px!important}}
+}

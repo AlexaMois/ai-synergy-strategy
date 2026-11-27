@@ -48,7 +48,7 @@ const Footer = () => {
               <DisabledLink to="/start" className="hover:text-primary transition-colors">С чего начать</DisabledLink>
               <DisabledLink to="/services" className="hover:text-primary transition-colors">Все решения</DisabledLink>
               <DisabledLink to="/products" className="hover:text-primary transition-colors">Продукты</DisabledLink>
-              <DisabledLink to="/mini-agents" className="hover:text-primary transition-colors">МиниАгенты</DisabledLink>
+              <DisabledLink to="/mini-agents" className="hover:text-primary transition-colors">ИИ-агенты</DisabledLink>
               <DisabledLink to="/ai-agents" className="hover:text-primary transition-colors">ИИ-агенты</DisabledLink>
               <DisabledLink to="/services/automation" className="hover:text-primary transition-colors">Автоматизация</DisabledLink>
               <DisabledLink to="/expert" className="hover:text-primary transition-colors">Экспертная работа</DisabledLink>

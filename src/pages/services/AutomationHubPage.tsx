@@ -53,7 +53,7 @@ const AutomationHubPage = () => (
             <div className="grid items-center gap-8 rounded-[30px] bg-surface-mint px-6 py-10 shadow-plate md:grid-cols-12 md:rounded-[40px] md:px-12 md:py-16">
               <div className="min-w-0 md:col-span-7">
                 <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-primary-dark">Основной маршрут · Сквозные операции</p>
-                <h1 className="text-3xl font-bold leading-[1.07] tracking-tight text-foreground md:text-5xl">Комплексная автоматизация бизнеса</h1>
+                <h1 className="text-3xl font-bold leading-[1.07] tracking-tight text-foreground md:text-5xl">Комплексная автоматизация <span className="font-iriska font-normal italic text-accent">бизнеса</span></h1>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">Связываем процессы, данные, сотрудников и действующие системы. Измеряем исходные показатели и проверяем результат на реальных данных. Полноценные индивидуальные проекты от 260 000 ₽.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Inquiry label="Обсудить проект" />

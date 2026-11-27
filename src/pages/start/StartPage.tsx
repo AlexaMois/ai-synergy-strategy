@@ -174,7 +174,7 @@ const StartPage = () => {
 
         <main>
           <section className="container mx-auto max-w-7xl px-4 pt-6 md:pt-12 pb-8">
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6">С чего начать</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6">С чего <span className="font-iriska font-normal italic text-accent">начать</span></h1>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
               Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.
             </p>

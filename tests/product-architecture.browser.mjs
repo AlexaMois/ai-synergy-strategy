@@ -96,12 +96,12 @@ try {
             const accents=[...el.querySelectorAll("h2 em")];
             const headings=[...el.querySelectorAll("h2,h3")];
             const text=[...el.querySelectorAll(".nr-dir p,.nr-mini-card p:not(.nr-eyebrow)")];
-            const faces=await Promise.all([document.fonts.load('400 30px "Iriska"',"вашего бизнеса Один МиниАгент"),document.fonts.load('600 22px "Golos Text"',"Решения для бизнеса"),document.fonts.load('400 16px "Raleway"',"Выберите решение")]);
-            return {accents:accents.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),headings:headings.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight,wrap:getComputedStyle(n).overflowWrap,fit:n.scrollWidth<=n.clientWidth+1})),text:text.map(n=>({font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),fonts:faces.map(f=>f.some(x=>x.status==="loaded"))};
+            const faces=await Promise.all([document.fonts.load('400 30px "Iriska"',"вашего бизнеса Один ИИ-агент"),document.fonts.load('600 22px "Golos Text"',"Решения для бизнеса"),document.fonts.load('400 16px "Raleway"',"Выберите решение")]);
+            return {accents:accents.map(n=>({text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),headings:headings.map(n=>({tag:n.tagName,text:n.textContent,font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight,wrap:getComputedStyle(n).overflowWrap,fit:n.scrollWidth<=n.clientWidth+1})),text:text.map(n=>({font:getComputedStyle(n).fontFamily,weight:getComputedStyle(n).fontWeight})),fonts:faces.map(f=>f.some(x=>x.status==="loaded"))};
           });
           assert.equal(await page.locator(".nr-home-commerce .nr-section-head").evaluateAll(ns=>ns.every(n=>getComputedStyle(n).backgroundColor==="rgba(0, 0, 0, 0)")),true,"Light editorial section headers");
           assert(typography.accents.length===2&&typography.accents.every(x=>x.font.includes("Iriska")&&x.weight==="400"),"Iriska accents "+JSON.stringify(typography));
-          assert(typography.headings.every(x=>x.font.includes("Golos Text")&&x.weight==="600"&&x.wrap==="normal"&&x.fit),"Home heading typography "+JSON.stringify(typography));
+          assert(typography.headings.every(x=>x.font.includes("Golos Text")&&x.weight===(x.tag==="H2"?"700":"600")&&x.wrap==="normal"&&x.fit),"Home heading typography "+JSON.stringify(typography));
           assert(typography.text.every(x=>x.font.includes("Raleway")&&x.weight==="400")&&typography.fonts.every(Boolean),"Home body and loaded Cyrillic fonts "+JSON.stringify(typography));
           const homePalette=await page.evaluate(()=>{
             const bg=n=>getComputedStyle(n).backgroundColor;

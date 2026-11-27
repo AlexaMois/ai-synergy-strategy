@@ -33,7 +33,7 @@ const CasesPage = () => {
           <section className="container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-8">
             <p className="text-xs uppercase tracking-widest text-primary-dark font-semibold mb-4">Кейсы · НейроРешения</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-5 max-w-5xl">
-              Посмотрите, как мы решаем задачи бизнеса
+              Посмотрите, как мы решаем <span className="font-iriska font-normal italic text-accent">задачи бизнеса</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed mb-7">{description}.</p>
             <div className="flex flex-wrap gap-2" role="group" aria-label="Фильтры по бизнес-задачам">
