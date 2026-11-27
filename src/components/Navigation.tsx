@@ -97,10 +97,10 @@ const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
   const navLinks: NavLink[] = [
-    {"href":"/services","label":"Решения","isScroll":false,"submenu":[{"href":"/services","label":"Все направления"},{"href":"/products","label":"Все продукты"},{"href":"/services/neurotenderolog","label":"НейроТендеролог"},{"href":"/products/knowledge-management","label":"Корпоративный портал знаний"},{"href":"/mini-agents","label":"МиниАгенты"},{"href":"/ai-agents","label":"Все ИИ-агенты"},{"href":"/ai-agents/hermes","label":"Hermes"},{"href":"/ai-agents/custom","label":"Индивидуальная разработка"},{"href":"/services/automation","label":"Автоматизация"}]},
-    {"href":"/expert","label":"Экспертная работа","isScroll":false,"submenu":[{"href":"/expert","label":"Все экспертные услуги"},{"href":"/start","label":"С чего начать"},{"href":"/services/digital-audit","label":"Комплексный аудит"},{"href":"/services/digital-tools-program","label":"Корпоративное обучение и ДПО"}]},
+    {"href":"/start","label":"С чего начать","isScroll":false},
+    {"href":"/services","label":"Продукты и автоматизация","isScroll":false,"submenu":[{"href":"/services/neurotenderolog","label":"НейроТендеролог"},{"href":"/products/knowledge-management","label":"Корпоративный портал знаний"},{"href":"/ai-agents","label":"ИИ-агенты для бизнеса"},{"href":"/services/automation","label":"Комплексная автоматизация"}]},
+    {"href":"/expert","label":"Экспертная работа","isScroll":false,"submenu":[{"href":"/expert#onsite","label":"Выездная консультация"},{"href":"/services/digital-audit","label":"Аудит бизнес-процессов"},{"href":"/services/digital-tools-program","label":"Корпоративное обучение"},{"href":"/expert#dpo","label":"ДПО"}]},
     {"href":"/cases","label":"Кейсы","isScroll":false},
-    {"href":"/pricing","label":"Цены","isScroll":false},
     {"href":"/about","label":"Об Александре","isScroll":false}
   ];
   const scrollToContact = (e: React.MouseEvent) => {
@@ -200,14 +200,14 @@ const Navigation = () => {
               {navLinks.map(link => {
                 if (link.submenu) {
                   return <div key={link.href} className="relative" onMouseEnter={() => handleMouseEnter(link.label, link.href)} onMouseLeave={handleMouseLeave} onFocus={() => handleMouseEnter(link.label, link.href)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpenSubmenu(null); }}>
-                      <DisabledLink to={link.href} onMouseEnter={() => handleLinkHover(link.href)} className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${location.pathname === link.href || link.submenu.some(s => location.pathname === s.href) ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}>
+                      <DisabledLink to={link.href} onMouseEnter={() => handleLinkHover(link.href)} className={`flex items-center gap-1 transition-colors duration-200 text-base font-medium relative py-2 ${location.pathname === link.href || link.submenu.some(s => location.pathname === s.href.split("#")[0]) ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}>
                         {link.label}
                         <ChevronDown size={16} className={`transition-transform duration-200 ${openSubmenu === link.label ? 'rotate-180' : ''}`} />
                       </DisabledLink>
                       
                       {/* Dropdown */}
                       <div className={`absolute top-full left-0 mt-1 bg-card border border-border rounded-xl shadow-card py-2 min-w-[300px] max-h-[calc(100dvh-6rem)] overflow-y-auto whitespace-normal transition-all duration-200 ${openSubmenu === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-                        {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`} onClick={() => setOpenSubmenu(null)} onMouseEnter={() => handleLinkHover(subItem.href)}>
+                        {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} className={`block px-4 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname + location.hash === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`} onClick={() => setOpenSubmenu(null)} onMouseEnter={() => handleLinkHover(subItem.href)}>
                             {subItem.label}
                           </DisabledLink>)}
                       </div>
@@ -270,7 +270,7 @@ const Navigation = () => {
               return <div key={link.href} className={`${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
                 animationDelay: `${index * 50}ms`
               }}>
-                  <button onClick={() => toggleMobileSubmenu(link.label)} aria-expanded={mobileOpenSubmenu === link.label} className={`flex items-center justify-between w-full py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${link.submenu.some(s => location.pathname === s.href) ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`}>
+                  <button onClick={() => toggleMobileSubmenu(link.label)} aria-expanded={mobileOpenSubmenu === link.label} className={`flex items-center justify-between w-full py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${link.submenu.some(s => location.pathname === s.href.split("#")[0]) ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`}>
                     {link.label}
                     <ChevronDown size={18} className={`transition-transform duration-200 ${mobileOpenSubmenu === link.label ? 'rotate-180' : ''}`} />
                   </button>
@@ -278,7 +278,7 @@ const Navigation = () => {
                   {/* Mobile submenu */}
                   <div className={`overflow-hidden transition-all duration-300 ${mobileOpenSubmenu === link.label ? 'max-h-[800px]' : 'max-h-0 invisible'}`}>
                     <div className="pl-4 pt-1 space-y-1">
-                      {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 ${location.pathname === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`}>
+                      {link.submenu.map(subItem => <DisabledLink key={subItem.href} to={subItem.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 ${location.pathname + location.hash === subItem.href ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"}`}>
                           {subItem.label}
                         </DisabledLink>)}
                     </div>

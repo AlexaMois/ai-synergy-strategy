@@ -59,13 +59,13 @@ const StartPage = () => {
   }, [scenarioId]);
 
   const bookMeeting = () => {
-    setContactIntent({ kind: "onsite", offerId:"expert-onsite", offerLabel:"Выездная диагностика — 8 000 ₽",format:"onsite",sourcePath:"/start",context:null });
+    setContactIntent({ kind: "onsite", offerId:"expert-onsite", offerLabel:"Выездная консультация — 8 000 ₽",format:"onsite",sourcePath:"/start",context:null });
     scrollToContact();
   };
   useEffect(() => {
     const q=new URLSearchParams(location.search); const id=q.get("offer");
     if(!id) { if(readContactIntent()?.offerId) setContactIntent(null); return; }
-    const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная диагностика — 8 000 ₽","expert-audit":"Комплексный аудит","expert-training":"Авторская программа «Цифровые инструменты для бизнеса»","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
+    const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная консультация — 8 000 ₽","expert-audit":"Комплексный аудит","expert-training":"Авторская программа «Цифровые инструменты для бизнеса»","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
     const title=catalog.mini.find(x=>x.id===id)?.name||catalog.hermes.find(x=>x.id===id)?.name||offerNames[id];
     if(!title)return;
     const previous=readContactIntent(); const fmt=q.get("format")||"connect"; const license=q.get("license");
@@ -99,20 +99,20 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>С чего начать: бесплатная проверка и выездная диагностика | НейроРешения</title>
+        <title>С чего начать: бесплатная проверка и выездная консультация | НейроРешения</title>
         <meta
           name="description"
-          content="Самостоятельная проверка одного процесса бесплатно с PDF или выездная диагностика за 8 000 ₽ в Красноярске."
+          content="Бесплатная проверка бизнес-процесса с PDF или выездная консультация за 8 000 ₽ в Красноярске."
         />
         <meta
           name="keywords"
           content="разбор цифровых задач, автоматизация процессов, с чего начать автоматизацию, стратегия цифрового развития, аудит процессов"
         />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="С чего начать: бесплатная проверка и выездная диагностика | НейроРешения" />
+        <meta property="og:title" content="С чего начать: бесплатная проверка и выездная консультация | НейроРешения" />
         <meta
           property="og:description"
-          content="Самостоятельная проверка одного процесса бесплатно с PDF или выездная диагностика за 8 000 ₽ в Красноярске."
+          content="Бесплатная проверка бизнес-процесса с PDF или выездная консультация за 8 000 ₽ в Красноярске."
         />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
@@ -145,7 +145,7 @@ const StartPage = () => {
               </div>
               <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
                 <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-background/60 mb-4">С Александрой</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Выездная диагностика бизнес-процесса</h2>
+                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Выездная консультация</h2>
                 <p className="text-[16px] font-normal text-background/85 leading-relaxed mb-5">На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу. Красноярск · до 1 часа. Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
                 <p className="text-[20px] md:text-[22px] font-bold text-accent mb-1">8 000 ₽</p>
                 <p className="text-sm md:text-base text-background/70 mb-7">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
@@ -168,7 +168,7 @@ const StartPage = () => {
               <DiagnosticForm key={scenarioId || "universal"} scenario={scenario} />
             </section>
           )}
-          {/* 3. Что происходит на выездной диагностике + что Вы получите */}
+          {/* 3. Что происходит на выездной консультации + что Вы получите */}
           <section
             id="result"
             className="bg-background container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
@@ -176,7 +176,7 @@ const StartPage = () => {
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
               <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-background px-6 md:px-8 py-8 md:py-10 shadow-card">
                 <h2 className="text-2xl md:text-4xl font-bold text-background leading-[1.08] mb-6 md:mb-8">
-                  Что происходит на выездной диагностике
+                  Что происходит на выездной консультации
                 </h2>
                 <div className="border-t border-background/15 mb-6 md:mb-8">
                   {flow.map((step, i) => (
@@ -201,7 +201,7 @@ const StartPage = () => {
 
               <div className="md:col-span-7 md:pl-6">
                 <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
-                  Что Вы получите после диагностики
+                  Что Вы получите после консультации
                 </h2>
                 <ul className="mb-8 md:mb-10 border-t border-border">
                   {results.map((r) => (
@@ -226,12 +226,12 @@ const StartPage = () => {
 
         <FAQTeaser
           items={[
-            { question: "Что входит в выездную диагностику за 8 000 ₽?", answer: "Один рабочий процесс на территории клиента в Красноярске, до одного часа. Краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом." },
-            { question: "Как засчитывается стоимость диагностики?", answer: "Оплаченные 8 000 ₽ полностью засчитываются в оплату последующего проекта автоматизации." },
+            { question: "Что входит в выездную консультацию за 8 000 ₽?", answer: "Один рабочий процесс на территории клиента в Красноярске, до одного часа. Краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом." },
+            { question: "Как засчитывается стоимость консультации?", answer: "Оплаченные 8 000 ₽ полностью засчитываются в оплату последующего проекта автоматизации." },
             { question: "Нужно ли после встречи заказывать внедрение?", answer: "Нет. Вы получаете самостоятельный результат, который можете использовать внутри своей компании. Если потребуется дальнейшая помощь, возможные работы и их стоимость обсуждаются отдельно." },
             { question: "Что подготовить к встрече?", answer: "Достаточно описать одну конкретную проблему: как работа устроена сейчас, где возникают задержки или ошибки, что уже пробовали и какого результата хотите добиться.\n\nЕсли известны затраты времени, количество операций или стоимость ошибок, эти данные помогут оценить масштаб проблемы. Если цифр нет, определим, что нужно измерить." },
             { question: "Нужно ли заранее отправлять документы компании?", answer: "Нет, для первого обсуждения это необязательно. Не передавайте через открытую форму пароли, персональные данные третьих лиц и конфиденциальные документы. Если для дальнейшей работы потребуются материалы, отдельно согласуем состав и условия их передачи." },
-            { question: "Как начать работу из другого региона?", answer: "Выберите бесплатную проверку, готовое решение или обсудите задачу дистанционно. Выездная диагностика проводится в Красноярске." },
+            { question: "Как начать работу из другого региона?", answer: "Выберите бесплатную проверку, готовое решение или обсудите задачу дистанционно. Выездная консультация проводится в Красноярске." },
           ]}
         />
         <Footer />

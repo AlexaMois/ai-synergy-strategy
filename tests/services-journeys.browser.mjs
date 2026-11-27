@@ -65,7 +65,6 @@ try {
     await page.getByRole("heading",{name:"Решения для рабочих задач вашего бизнеса"}).waitFor();
     const routeLinks = [
       "/products",
-      "/mini-agents",
       "/ai-agents",
       "/services/automation",
       "/expert",
@@ -82,28 +81,47 @@ try {
     if(viewport.width===320)await page.screenshot({path:"services-mobile-small.png",fullPage:true});
     // Regression: every entry of the real navigation menu must be a working link.
     const menuEntries = [
-      ["Продукты", "/products", "Все продукты"],
-      ["МиниАгенты", "/mini-agents"],
-      ["ИИ-агенты", "/ai-agents", "Все ИИ-агенты"],
-      ["Автоматизация", "/services/automation"],
-      ["Экспертная работа", "/expert", "Все экспертные услуги"],
+      ["С чего начать", "/start"],
+      ["Продукты и автоматизация", "/services"],
+      ["НейроТендеролог", "/services/neurotenderolog", "Продукты и автоматизация"],
+      ["Корпоративный портал знаний", "/products/knowledge-management", "Продукты и автоматизация"],
+      ["ИИ-агенты для бизнеса", "/ai-agents", "Продукты и автоматизация"],
+      ["Комплексная автоматизация", "/services/automation", "Продукты и автоматизация"],
+      ["Экспертная работа", "/expert"],
+      ["Выездная консультация", "/expert#onsite", "Экспертная работа"],
+      ["Аудит бизнес-процессов", "/services/digital-audit", "Экспертная работа"],
+      ["Корпоративное обучение", "/services/digital-tools-program", "Экспертная работа"],
+      ["ДПО", "/expert#dpo", "Экспертная работа"],
       ["Кейсы", "/cases"],
-      ["Цены", "/pricing"],
       ["Об Александре", "/about"]
     ];
-    for (const [label,target,submenu] of menuEntries) {
-      await page.goto(BASE+"/cases");
+    for (const [label,target,parent] of menuEntries) {
       const desktop = viewport.width>=1024;
+      // On mobile the two section headers expand exactly the four requested submenu items.
+      if (!desktop && !parent && ["/services","/expert"].includes(target)) continue;
+      await page.goto(BASE+"/cases");
+      const nav=page.getByRole("navigation",{name:desktop?"Основное меню":"Мобильное меню",exact:true});
       if (!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
-      if (!desktop && submenu) await page.getByRole("button",{name:label,exact:true}).click();
-      const link=page.getByRole("link",{name:!desktop&&submenu?submenu:label,exact:true}).filter({visible:true}).first();
+      if (parent) {
+        const trigger=nav.getByRole(desktop?"link":"button",{name:parent,exact:true});
+        if (desktop) await trigger.hover(); else await trigger.click();
+      }
+      const link=nav.getByRole("link",{name:label,exact:true});
       await link.waitFor({state:"visible"});
       assert.equal(await link.getAttribute("href"),target);
       await link.click();
-      await page.waitForURL(url=>url.pathname.replace(/\/$/,"")===target,{timeout:8000});
+      const expected=new URL(target,BASE);
+      await page.waitForURL(url=>url.pathname.replace(/\/$/,"")===expected.pathname&&url.hash===expected.hash,{timeout:8000});
       await page.locator("main h1").first().waitFor({state:"visible"});
+      if(expected.hash) {
+        const anchor=page.locator(expected.hash);
+        await anchor.waitFor({state:"visible"});
+        await page.waitForFunction(id=>{const r=document.querySelector(id)?.getBoundingClientRect();return r&&r.top>=0&&r.top<innerHeight;},expected.hash);
+      }
       console.log("PASS menu",viewport.width,label,target);
     }
+    await page.goto(BASE+"/pricing");
+    await page.locator("main h1").first().waitFor({state:"visible"});
     await context.close();
   }
   console.log("PASS all service routes and commercial navigation");

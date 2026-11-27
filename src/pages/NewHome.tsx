@@ -214,7 +214,7 @@ const NewHome = () => {
         <CommercialHome />
         <IndustryQuestions />
 
-        {/* С ЧЕГО НАЧАТЬ — выездная диагностика */}
+        {/* С ЧЕГО НАЧАТЬ — выездная консультация */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
@@ -227,7 +227,7 @@ const NewHome = () => {
           </div>
           <div className="relative flex flex-col rounded-[28px] bg-surface-mint p-7 md:p-9 overflow-hidden shadow-card ring-1 ring-foreground/5">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
-              Выездная диагностика бизнес-процесса
+              Выездная консультация
             </h3>
             <p className="text-sm md:text-base text-foreground/85 leading-relaxed mb-4">
               На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу.
@@ -244,10 +244,10 @@ const NewHome = () => {
                 <AnimatedNumber value={8000} suffix=" ₽" />
               </div>
               <p className="text-sm md:text-base text-foreground/85">
-                Стоимость диагностики полностью засчитывается в оплату последующего проекта автоматизации.
+                Стоимость консультации полностью засчитывается в оплату последующего проекта автоматизации.
               </p>
               <p className="text-sm text-foreground/85">Место и время выезда согласуем заранее.</p>
-              <PillButton onClick={() => { setContactIntent({kind:"onsite",offerId:"expert-onsite",offerLabel:"Выездная диагностика — 8 000 ₽",format:"onsite",sourcePath:"/",context:null}); scrollToContact(); }} variant="dark" className="text-sm">
+              <PillButton onClick={() => { setContactIntent({kind:"onsite",offerId:"expert-onsite",offerLabel:"Выездная консультация — 8 000 ₽",format:"onsite",sourcePath:"/",context:null}); scrollToContact(); }} variant="dark" className="text-sm">
                 Пригласить специалиста
               </PillButton>
             </div>

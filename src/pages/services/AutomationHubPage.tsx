@@ -122,7 +122,7 @@ const AutomationHubPage = () => (
 
         <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Порядок работы</p>
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl">От диагностики к работающему процессу</h2>
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">От проверки бизнес-процесса к работающему процессу</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {stages.map(stage=>(
               <div key={stage.n} className="rounded-[22px] bg-card p-6 shadow-card">

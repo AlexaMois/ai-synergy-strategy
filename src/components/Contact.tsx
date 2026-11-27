@@ -92,7 +92,7 @@ export const buildContactSubmission = (data: ContactFormData, currentContext: Co
   selectedIndustry: contactContext?.industry || '',
   selectedQuestion: contactContext?.question || '',
   selectedQuestionTopic: contactContext?.topic || '',
-  formName: intent?.offerLabel || (intent?.kind === 'onsite' ? 'Выездная диагностика — 8 000 ₽' : 'Форма обратной связи'),
+  formName: intent?.offerLabel || (intent?.kind === 'onsite' ? 'Выездная консультация — 8 000 ₽' : 'Форма обратной связи'),
   ...(intent?.offerId ? {offerId:intent.offerId,format:intent.format||'connect',licensePlan:intent.licensePlan,sourcePath:intent.sourcePath} : {}),
   consent: true,
   website: honeypot,
@@ -270,7 +270,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
             >
             {currentCase && <p className="mb-6 border-b border-border pb-4 text-sm text-muted-foreground">Похожая задача · {currentCase.client}</p>}
             {(isStartPage || isHomePage) && intent && <div data-commercial-intent={intent.offerId||"legacy"} className="mb-6 border-b border-border pb-4">
-              <p className="font-semibold text-foreground">{intent.offerLabel || (intent.kind === "onsite" ? "Выездная диагностика — 8 000 ₽" : "Обсуждение внедрения")}</p>
+              <p className="font-semibold text-foreground">{intent.offerLabel || (intent.kind === "onsite" ? "Выездная консультация — 8 000 ₽" : "Обсуждение внедрения")}</p>
               {intent.assessment && <p className="mt-2 text-sm text-muted-foreground">К обращению приложен результат вашей проверки.</p>}
               <PillButton size="sm" variant="outline-dark" onClick={() => {setContactIntent(null); if(isStartPage && new URLSearchParams(location.search).has("offer")) navigate("/start#contact",{replace:true});}} className="mt-3">Обычное обращение</PillButton>
             </div>}

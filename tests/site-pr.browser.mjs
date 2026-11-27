@@ -120,12 +120,12 @@ try {
 
       await goto("/");
       // The paid offer and secondary journey are explicit current homepage contracts.
-      const offer = main.getByRole("heading", { name: "Выездная диагностика бизнес-процесса" });
+      const offer = main.getByRole("heading", { name: "Выездная консультация" });
       await visible(offer);
       await offer.scrollIntoViewIfNeeded();
       const offerCard = offer.locator("..");
       await visible(offerCard.getByText("Красноярск · До 1 часа", { exact: true }));
-      await visible(offerCard.getByText(/Стоимость диагностики полностью засчитывается/));
+      await visible(offerCard.getByText(/Стоимость консультации полностью засчитывается/));
       await visible(offerCard.getByText(/8[\s\u00a0\u202f]*000\s*₽/));
       await main.getByRole("link", { name: "Все решения", exact: true }).click();
       await page.waitForURL(url => url.pathname.replace(/\/$/, "") === "/services");

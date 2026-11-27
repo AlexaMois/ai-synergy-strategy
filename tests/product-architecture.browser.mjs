@@ -52,8 +52,10 @@ try {
         const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
         assert.equal(new URL(canonical).pathname.replace(/\/$/,""),path.replace(/\/$/,""),"canonical path "+path);
         assert.equal(await page.locator("main h1").count(),1);
-        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),5);await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
-        if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),5);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));const contrast=await block.evaluate(el=>{const lum=c=>c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll("p, h2, ul a")].map(n=>{const fg=lum(getComputedStyle(n).color);return {text:n.textContent.slice(0,70),ratio:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)};});});assert(contrast.every(x=>x.ratio>=7),"About commercial block contrast "+JSON.stringify(contrast));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png",style:blockStyle});}
+        if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),4);await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
+        if(path==="/ai-agents"){const formats=page.locator(".nr-agent-formats > a");assert.deepEqual(await formats.evaluateAll(nodes=>nodes.map(x=>x.getAttribute("href"))),["/mini-agents","/ai-agents/hermes","/ai-agents/custom"]);assert.equal(await formats.count(),3);assert.equal(await page.getByRole("heading",{name:"ИИ-агенты для бизнеса",exact:true}).count(),1);await page.locator(".nr-agent-formats").screenshot({path:folder+"/"+viewport.width+"-agent-formats.png",style:blockStyle});}
+        if(path==="/expert"){assert.equal(await page.locator("#onsite h2").innerText(),"Выездная консультация");assert.match(await page.locator("#onsite").innerText(),/8\s*000\s*₽/);assert.equal(await page.locator("#dpo").count(),1);}
+        if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),4);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));const contrast=await block.evaluate(el=>{const lum=c=>c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll("p, h2, ul a")].map(n=>{const fg=lum(getComputedStyle(n).color);return {text:n.textContent.slice(0,70),ratio:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)};});});assert(contrast.every(x=>x.ratio>=7),"About commercial block contrast "+JSON.stringify(contrast));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png",style:blockStyle});}
         if(path==="/mini-agents"){
           assert.equal(await page.locator("#catalog .nr-mini-card").count(),15);
           for(const item of catalog.mini){const card=page.locator('#catalog a[href="/mini-agents/'+item.slug+'"]');assert.equal(await card.count(),1);assert(digits(await card.locator(".nr-card-bottom").innerText()).includes(String(item.price)));}
@@ -77,10 +79,10 @@ try {
       const nav=page.getByRole("navigation",{name:desktop?"Основное меню":"Мобильное меню",exact:true});
       if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
       const topLabels=await nav.locator(":scope > div > a, :scope > div > button, :scope > a").allTextContents();
-      assert.deepEqual(topLabels.map(x=>x.trim()),["Решения","Экспертная работа","Кейсы","Цены","Об Александре"]);
+      assert.deepEqual(topLabels.map(x=>x.trim()),["С чего начать","Продукты и автоматизация","Экспертная работа","Кейсы","Об Александре"]);
       for(const [label,expected] of [
-        ["Решения",["/services","/products","/services/neurotenderolog","/products/knowledge-management","/mini-agents","/ai-agents","/ai-agents/hermes","/ai-agents/custom","/services/automation"]],
-        ["Экспертная работа",["/expert","/start","/services/digital-audit","/services/digital-tools-program"]]
+        ["Продукты и автоматизация",["/services/neurotenderolog","/products/knowledge-management","/ai-agents","/services/automation"]],
+        ["Экспертная работа",["/expert#onsite","/services/digital-audit","/services/digital-tools-program","/expert#dpo"]]
       ]){
         const trigger=nav.getByRole(desktop?"link":"button",{name:label,exact:true});
         if(desktop) await trigger.hover(); else await trigger.click();
@@ -91,9 +93,9 @@ try {
         if(!desktop) assert.equal(await trigger.getAttribute("aria-expanded"),"true");
         const dims=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(dims.width<=dims.viewport+3,"navigation overflow");
-        await page.screenshot({path:folder+"/"+viewport.width+"-menu-"+(label==="Решения"?"solutions":"expert")+".png",animations:"disabled"});
+        await page.screenshot({path:folder+"/"+viewport.width+"-menu-"+(label==="Продукты и автоматизация"?"solutions":"expert")+".png",animations:"disabled"});
       }
-      await nav.getByRole("link",{name:"Корпоративное обучение и ДПО",exact:true}).click();
+      await nav.getByRole("link",{name:"Корпоративное обучение",exact:true}).click();
       await page.waitForURL(url=>url.pathname.replace(/\/$/,"")==="/services/digital-tools-program");
       if(!desktop) assert.equal(await page.getByRole("button",{name:"Toggle menu"}).getAttribute("aria-expanded"),"false");
       if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();

@@ -34,7 +34,7 @@ export function setIndustryContext(context: IndustryContext | null) {
 export function intentTask(intent: ContactIntent | null) {
   if (!intent) return "";
   return [
-    intent.offerLabel ? `Выбранная услуга: ${intent.offerLabel} (${intent.offerId || ""}).` : intent.kind === "onsite" ? "Выездная диагностика — 8 000 ₽, Красноярск, один процесс, до 1 часа." : "Запрос на внедрение цифрового решения.",
+    intent.offerLabel ? `Выбранная услуга: ${intent.offerLabel} (${intent.offerId || ""}).` : intent.kind === "onsite" ? "Выездная консультация — 8 000 ₽, Красноярск, один процесс, до 1 часа." : "Запрос на внедрение цифрового решения.",
     intent.format ? `Формат: ${intent.format}` : "",
     intent.licensePlan ? `Лицензия: ${intent.licensePlan}` : "",
     intent.sourcePath ? `Источник: ${intent.sourcePath}` : "",
