@@ -10,7 +10,7 @@ const MarqueeText = () => {
   ];
 
   return (
-    <div className="bg-dark-bg text-background py-1 md:py-2 lg:py-3 overflow-hidden">
+    <div className="bg-white text-foreground py-1 md:py-2 lg:py-3 overflow-hidden">
       <div className="marquee-container">
         <div className="marquee-content">
           {[...Array(3)].map((_, setIndex) => (

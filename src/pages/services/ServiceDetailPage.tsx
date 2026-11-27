@@ -112,15 +112,15 @@ const ServiceDetailPage = () => {
           )}
 
           {includes?.list && (
-            <section className="bg-foreground py-14 text-background md:py-20">
+            <section className="bg-white py-14 text-foreground md:py-20">
               <div className="container mx-auto max-w-7xl px-4">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Состав работ</p>
-                <h2 className="mb-8 text-3xl font-bold text-background md:text-4xl">Что входит в формат</h2>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Состав работ</p>
+                <h2 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">Что входит в формат</h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {includes.list.map((item,i)=>(
-                    <div key={i} className="rounded-[20px] border border-background/20 bg-background/5 p-5">
-                      <span className="text-sm font-bold text-accent">{String(i+1).padStart(2,"0")}</span>
-                      <p className="mt-3 leading-relaxed text-background/90">{item}</p>
+                    <div key={i} className="rounded-[20px] border border-border bg-white p-5">
+                      <span className="text-sm font-bold text-[#07536A]">{String(i+1).padStart(2,"0")}</span>
+                      <p className="mt-3 leading-relaxed text-foreground/90">{item}</p>
                     </div>
                   ))}
                 </div>

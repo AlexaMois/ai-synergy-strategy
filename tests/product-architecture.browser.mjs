@@ -90,6 +90,7 @@ try {
         const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
         assert.equal(new URL(canonical).pathname.replace(/\/$/,""),path.replace(/\/$/,""),"canonical path "+path);
         assert.equal(await page.locator("main h1").count(),1);
+        assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(255, 255, 255)","White page canvas");
         if(path==="/"){assert.equal(await page.locator("#industry-questions").count(),1);assert.equal(await page.locator("#commercial-directions .nr-dir").count(),4);
           const typography=await page.locator(".nr-home-commerce").evaluate(async el=>{
             const accents=[...el.querySelectorAll("h2 em")];
@@ -120,7 +121,7 @@ try {
           assert.deepEqual(homePalette.cases.map(x=>x.background),["rgb(7, 83, 106)","rgb(217, 217, 217)","rgb(242, 242, 242)"],"Homepage case palette");
           assert(homePalette.cases.every(x=>x.title>=7),"Case title contrast");
           assert.equal(homePalette.process,"rgb(61, 61, 61)");
-          assert.equal(homePalette.reviews,"rgb(242, 242, 242)");
+          assert.equal(homePalette.reviews,"rgb(255, 255, 255)");
           report.push({width:viewport.width,path:"homepage-palette",status:"pass",evidence:homePalette});
           report.push({width:viewport.width,path:"homepage-typography",status:"pass",evidence:typography});await page.locator("#commercial-directions").screenshot({path:folder+"/"+viewport.width+"-block-home-directions.png",style:blockStyle});await page.locator("#commercial-directions + section").screenshot({path:folder+"/"+viewport.width+"-block-home-mini.png",style:blockStyle});}
         if(path==="/ai-agents"){const formats=page.locator(".nr-agent-formats > a");assert.deepEqual(await formats.evaluateAll(nodes=>nodes.map(x=>x.getAttribute("href"))),["/mini-agents","/ai-agents/hermes","/ai-agents/custom"]);assert.equal(await formats.count(),3);assert.equal(await page.getByRole("heading",{name:"ИИ-агенты для бизнеса",exact:true}).count(),1);await page.locator(".nr-agent-formats").screenshot({path:folder+"/"+viewport.width+"-agent-formats.png",style:blockStyle});}
