@@ -109,6 +109,8 @@ try {
             const ratio=(a,b)=>(Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);
             const directions=[...document.querySelectorAll("#commercial-directions .nr-dir")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h3,p,strong")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
             const minis=[...document.querySelectorAll(".nr-home-commerce .nr-mini-card")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h3,p,strong,small")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
+            const brandNumbers=[...document.querySelectorAll(".brand-large-number")].map(n=>getComputedStyle(n).color);
+            if(!brandNumbers.length||brandNumbers.some(c=>c!=="rgb(76, 187, 214)"))throw Error("Brand number colors: "+JSON.stringify(brandNumbers));
             const cases=[...document.querySelectorAll("#home-cases a.rounded-2xl")].map(n=>({background:bg(n),title:ratio(getComputedStyle(n.querySelector("h3")).color,bg(n))}));
             return {hero:bg(document.querySelector("#brand-hero [data-brand-panel]")),directions,minis,cases,process:bg(document.querySelector("#home-process .rounded-\\[32px\\]")),reviews:bg(document.querySelector("#home-testimonials"))};
           });
