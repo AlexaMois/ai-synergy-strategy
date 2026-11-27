@@ -4,6 +4,7 @@ import { chromium } from "playwright";
 const BASE = process.env.TEST_BASE_URL || "http://127.0.0.1:8080";
 const paths = [
   "/services",
+  "/start",
   "/services/automation",
   "/services/neurotenderolog",
   "/services/owner-digital-session",
@@ -59,6 +60,30 @@ try {
         const surface=await page.locator("main .bg-surface-sand").first().evaluate(el=>getComputedStyle(el).backgroundColor);
         assert.equal(surface,palette.find(item=>item.name==="--surface-sand").color,"audit hero uses silver");
         await page.screenshot({path:"services-audit-"+viewport.width+".png",fullPage:true});
+      }
+      if(route==="/start"){
+        const startPalette=await page.evaluate(()=>{
+          const root=document.querySelector("#start-brand-page");
+          const bg=n=>getComputedStyle(n).backgroundColor;
+          const lum=v=>v.match(/[\d.]+/g).slice(0,3).map(Number).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+          const ratio=(fg,b)=>(Math.max(lum(fg),lum(b))+.05)/(Math.min(lum(fg),lum(b))+.05);
+          const cards=[...root.querySelectorAll("main > section:first-child .grid > div")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h2,p")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
+          return {cards,flow:bg(root.querySelector("#result .grid > div:first-child")),summary:bg(root.querySelector("#result .grid > div:last-child p.rounded-2xl")),faq:bg(root.querySelector(":scope > section"))};
+        });
+        assert.deepEqual(startPalette.cards.map(c=>c.background),["rgb(242, 242, 242)","rgb(7, 83, 106)"],"Start offer surfaces");
+        assert(startPalette.cards.every(c=>c.text.every(r=>r>=7)),"Start offer text contrast "+JSON.stringify(startPalette));
+        assert.equal(startPalette.flow,"rgb(61, 61, 61)","Graphite consultation process");
+        assert.equal(startPalette.summary,"rgb(179, 179, 179)","Neutral result callout");
+        assert.equal(startPalette.faq,"rgb(242, 242, 242)","Light FAQ surface");
+        await page.getByRole("button",{name:/Проверить свой процесс/}).click();
+        await page.locator("#self-check").waitFor({state:"visible"});
+        const radio=page.locator("#self-check [role=radio]").first();
+        if(await radio.count()){
+          await radio.click();
+          assert.equal(await radio.getAttribute("aria-checked"),"true");
+          assert.equal(await radio.evaluate(n=>getComputedStyle(n).backgroundColor),"rgb(224, 245, 245)","Diagnostic selected state");
+        }
+        console.log("START PALETTE",viewport.width,JSON.stringify(startPalette));
       }
       // Check contrast of dark presentation cards against their actual background.
       const darkContrast = await page.evaluate(() => {

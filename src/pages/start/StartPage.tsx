@@ -125,7 +125,51 @@ const StartPage = () => {
         <script type="application/ld+json">{JSON.stringify(getBreadcrumbs.start())}</script>
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div id="start-brand-page" className="min-h-screen bg-white">
+
+        <style>{`
+          /* Scoped Start-page palette. Existing diagnostic logic, PDF and other routes are untouched. */
+          #start-brand-page main, #start-brand-page > section {
+            --background: 0 0% 100%;
+            --foreground: 0 0% 12.941176%;
+            --card: 0 0% 100%;
+            --muted: 0 0% 94.901961%;
+            --muted-foreground: 0 0% 23.921569%;
+            --border: 0 0% 85.098039%;
+            --primary: 191.739130 62.727273% 56.862745%;
+            --accent: 191.739130 62.727273% 56.862745%;
+            --primary-dark: 193.939394 87.610619% 22.156863%;
+            --accent-foreground: 0 0% 12.941176%;
+          }
+          #start-brand-page main [class~="text-muted-foreground"],
+          #start-brand-page > section [class~="text-muted-foreground"] { color:#3D3D3D; }
+          #start-brand-page #self-check [class~="text-accent"],
+          #start-brand-page > section a[href="/faq"] { color:#07536A!important; }
+          #start-brand-page #self-check [role="radio"],
+          #start-brand-page #self-check [role="checkbox"] { color:#212121!important; border-color:#707070; background:#FFFFFF; }
+          #start-brand-page #self-check [aria-checked="true"] { border-color:#07536A; background:#E0F5F5; }
+          #start-brand-page #self-check [aria-checked="true"] [class~="border-accent"] { border-color:#07536A; }
+          #start-brand-page #self-check [aria-checked="true"] [class~="bg-accent"] { background:#07536A; }
+          #start-brand-page #self-check [aria-checked="true"] svg { color:#FFFFFF; }
+          #start-brand-page #self-check [class~="border-foreground/25"],
+          #start-brand-page #self-check [class~="border-foreground/10"] { border-color:#707070; }
+          #start-brand-page #self-check [aria-checked="true"] { border-color:#07536A; }
+          #start-brand-page #self-check [class~="bg-muted"] { background:#D9D9D9; }
+          #start-brand-page #self-check [class~="rounded-t-[28px]"] { background:#3D3D3D; }
+          #start-brand-page #self-check [class~="rounded-t-[28px]"] h2 { color:#FFFFFF!important; }
+          #start-brand-page #self-check [class~="bg-[#F3F5F6]"] { background:#F2F2F2; }
+          #start-brand-page #self-check [class~="bg-[#DEF2F7]"] { background:#E0F5F5; }
+          #start-brand-page #self-check [class~="border-[#E5E7EB]"] { border-color:#D9D9D9; }
+          #start-brand-page #self-check [class~="text-[#616161]"] { color:#3D3D3D; }
+          #start-brand-page #self-check [class~="text-[#116078]"] { color:#07536A; }
+          #start-brand-page #self-check [class~="!border-[#616161]"] { border-color:#707070!important; }
+          #start-brand-page #self-check [class~="hover:!bg-[#F3F5F6]"]:hover { background:#F2F2F2!important; }
+          #start-brand-page #self-check [class~="hover:!bg-[#333333]"]:hover { background:#3D3D3D!important; }
+          #start-brand-page main :is(a,button,input,textarea,select):focus-visible,
+          #start-brand-page > section :is(a,button):focus-visible { outline-color:#07536A; }
+          #start-brand-page main [class~="bg-[#07536A]"] button:focus-visible { outline-color:#FFFFFF; }
+          #start-brand-page > section { background:#F2F2F2; }
+        `}</style>
         <PageBreadcrumbs currentPage="С чего начать" />
 
         <main>
@@ -135,29 +179,29 @@ const StartPage = () => {
               Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.
             </p>
             <div className="grid md:grid-cols-2 gap-5">
-              <div className="rounded-[28px] bg-surface-mint shadow-card p-6 md:p-8 flex flex-col items-start">
+              <div className="rounded-[28px] bg-[#F2F2F2] shadow-card p-6 md:p-8 flex flex-col items-start">
                 <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">Самостоятельно</p>
                 <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-foreground mb-4">Узнайте, где компания теряет деньги</h2>
                 <p className="text-[16px] font-normal text-muted-foreground leading-relaxed mb-5">Ответьте на вопросы о работе сотрудников, задержках и ошибках. Получите предварительные выводы и первый шаг для проверки.</p>
                 <p className="text-[20px] md:text-[22px] font-bold text-foreground mb-1">Бесплатно</p>
                 <p className="text-sm md:text-base text-muted-foreground mb-7">Без регистрации и обязательного звонка.</p>
-                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto">Проверить свой процесс →</PillButton>
+                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto !bg-[#212121] !text-white hover:!bg-[#3D3D3D] [&>span:last-child]:!text-[#212121]">Проверить свой процесс →</PillButton>
               </div>
-              <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
-                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-background/60 mb-4">С Александрой</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Выездная консультация</h2>
-                <p className="text-[16px] font-normal text-background/85 leading-relaxed mb-5">На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу. Красноярск · до 1 часа. Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
-                <p className="text-[20px] md:text-[22px] font-bold text-accent mb-1">8 000 ₽</p>
-                <p className="text-sm md:text-base text-background/70 mb-7">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
-                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Пригласить специалиста →</PillButton>
+              <div className="rounded-[28px] bg-[#07536A] shadow-card p-6 md:p-8 flex flex-col items-start">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] !text-white mb-4">С Александрой</p>
+                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-white mb-4">Выездная консультация</h2>
+                <p className="text-[16px] font-normal !text-white leading-relaxed mb-5">На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу. Красноярск · до 1 часа. Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
+                <p className="text-[20px] md:text-[22px] font-bold !text-white mb-1">8 000 ₽</p>
+                <p className="text-sm md:text-base !text-white mb-7">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
+                <PillButton onClick={bookMeeting} variant="light" size="md" className="mt-auto !bg-white !text-[#07536A] hover:!bg-[#F2F2F2] [&>span:last-child]:!bg-[#07536A] [&>span:last-child]:!text-white">Пригласить специалиста →</PillButton>
               </div>
             </div>
             <p className="mt-6 text-base md:text-lg text-foreground">
-              <Link className="font-semibold text-[#116078] underline underline-offset-4" to="/services">Выбрать решение из каталога</Link>. Уже знаете, что хотите внедрить?{" "}
+              <Link className="font-semibold text-[#07536A] underline underline-offset-4" to="/services">Выбрать решение из каталога</Link>. Уже знаете, что хотите внедрить?{" "}
               <button
                 type="button"
                 onClick={() => { setContactIntent(null); if(requestedOffer) navigate("/start#contact",{replace:true}); scrollToContact(); }}
-                className="font-semibold text-accent underline-offset-4 hover:underline"
+                className="font-semibold text-[#07536A] underline-offset-4 hover:underline"
               >
                 Сразу обсудить задачу →
               </button>
@@ -171,11 +215,11 @@ const StartPage = () => {
           {/* 3. Что происходит на выездной консультации + что Вы получите */}
           <section
             id="result"
-            className="bg-background container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
+            className="bg-white container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
           >
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-background px-6 md:px-8 py-8 md:py-10 shadow-card">
-                <h2 className="text-2xl md:text-4xl font-bold text-background leading-[1.08] mb-6 md:mb-8">
+              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-[#3D3D3D] text-white px-6 md:px-8 py-8 md:py-10 shadow-card">
+                <h2 className="text-2xl md:text-4xl font-bold text-white leading-[1.08] mb-6 md:mb-8">
                   Что происходит на выездной консультации
                 </h2>
                 <div className="border-t border-background/15 mb-6 md:mb-8">
@@ -184,17 +228,17 @@ const StartPage = () => {
                       key={step.title}
                       className="flex items-baseline gap-4 border-b border-background/15 py-3.5"
                     >
-                      <span className="text-base md:text-lg font-bold text-accent tabular-nums shrink-0">
+                      <span className="text-base md:text-lg font-bold text-white tabular-nums shrink-0">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-base md:text-lg text-background/85">
-                        <span className="font-semibold text-background">{step.title}</span>
-                        <span className="block text-sm md:text-base text-background/65 leading-snug mt-0.5">{step.text}</span>
+                      <span className="text-base md:text-lg text-white">
+                        <span className="font-semibold text-white">{step.title}</span>
+                        <span className="block text-sm md:text-base text-white leading-snug mt-0.5">{step.text}</span>
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="text-base md:text-lg text-background/70 leading-snug">
+                <p className="text-base md:text-lg !text-white leading-snug">
                   Не каждую проблему нужно решать автоматизацией. Иногда достаточно изменить порядок работы, распределить ответственность или устранить лишние действия.
                 </p>
               </div>
@@ -206,7 +250,7 @@ const StartPage = () => {
                 <ul className="mb-8 md:mb-10 border-t border-border">
                   {results.map((r) => (
                     <li key={r.title} className="flex items-start gap-4 border-b border-border py-5 md:py-6">
-                      <Check className="w-6 h-6 text-accent mt-1 shrink-0" strokeWidth={2} />
+                      <Check className="w-6 h-6 text-[#07536A] mt-1 shrink-0" strokeWidth={2} />
                       <span className="text-lg md:text-2xl text-foreground leading-snug">
                         {r.title}
                         <span className="block text-sm md:text-base text-muted-foreground leading-snug mt-1">{r.text}</span>
@@ -214,10 +258,10 @@ const StartPage = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold !text-[#212121] leading-snug max-w-xl">
+                <p className="rounded-2xl bg-[#B3B3B3] px-5 py-4 text-sm md:text-base font-semibold !text-[#212121] leading-snug max-w-xl">
                   Вы получите краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом. Гипотезы и предполагаемые результаты выделяются отдельно. Дальнейшие действия Вы выбираете самостоятельно.
                 </p>
-                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6">Пригласить специалиста</PillButton>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6 !bg-[#212121] !text-white hover:!bg-[#3D3D3D] [&>span:last-child]:!text-[#212121]">Пригласить специалиста</PillButton>
               </div>
             </div>
           </section>
