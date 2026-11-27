@@ -104,16 +104,16 @@ const AutomationHubPage = () => (
           </div>
         </section>
 
-        <section className="bg-foreground py-14 text-background md:py-20">
+        <section className="bg-white py-14 text-foreground md:py-20">
           <div className="container mx-auto max-w-7xl px-4">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Приёмка по фактам</p>
-            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-background md:text-4xl">Как доказываем ценность операции</h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-background/75">Измерения до и после согласуем на одном и том же типе работы. Отдельно проверяем качество результата и путь обработки исключений.</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Приёмка по фактам</p>
+            <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Как доказываем ценность операции</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-foreground/75">Измерения до и после согласуем на одном и том же типе работы. Отдельно проверяем качество результата и путь обработки исключений.</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map(metric=>(
-                <div key={metric.title} className="rounded-2xl border border-background/20 bg-background/5 p-5">
-                  <h3 className="text-xl font-bold text-background">{metric.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-background/85">{metric.detail}</p>
+                <div key={metric.title} className="rounded-2xl border border-border bg-white p-5">
+                  <h3 className="text-xl font-bold text-foreground">{metric.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-foreground/85">{metric.detail}</p>
                 </div>
               ))}
             </div>

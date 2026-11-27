@@ -229,8 +229,8 @@ const MarqueeRow = ({ items, direction, speed = 120 }: MarqueeRowProps) => {
       </button>
 
       {/* Градиенты по краям */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
       {/* Контейнер с overflow hidden */}
       <div className="overflow-hidden py-2">

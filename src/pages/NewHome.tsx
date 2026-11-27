@@ -433,7 +433,7 @@ const NewHome = () => {
         </div>
 
         {/* О НАС ГОВОРЯТ — светло-бирюзовая полоса для отделения от соседних блоков */}
-        <section id="home-testimonials" className="bg-[#F2F2F2] py-14 md:py-20">
+        <section id="home-testimonials" className="bg-white py-14 md:py-20">
           <div className="container mx-auto max-w-5xl px-4">
             <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4 text-center">
               О нас{" "}

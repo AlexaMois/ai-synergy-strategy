@@ -77,17 +77,17 @@ const BusinessCaseContent = ({ story, project }: Props) => (
       </div>
     </section>
 
-    <section aria-labelledby="case-work" className="bg-foreground py-12 md:py-16">
+    <section aria-labelledby="case-work" className="bg-white py-12 md:py-16">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-12 md:gap-12">
         <div className="md:col-span-4">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-accent">Решение на практике</p>
-          <h2 id="case-work" className="!text-3xl !leading-tight !text-background md:!text-4xl">Что сделали</h2>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Решение на практике</p>
+          <h2 id="case-work" className="!text-3xl !leading-tight !text-foreground md:!text-4xl">Что сделали</h2>
         </div>
         <ol className="grid gap-3 sm:grid-cols-2 md:col-span-8">
           {story.actions.map((action, index) => (
-            <li key={action} className="min-w-0 rounded-[22px] border border-background/15 bg-white/[0.07] p-5">
+            <li key={action} className="min-w-0 rounded-[22px] border border-border bg-white p-5">
               <span className="inline-flex h-12 min-w-12 items-center justify-center rounded-[14px] bg-accent px-3 text-xl font-bold tabular-nums text-foreground">{String(index + 1).padStart(2, "0")}</span>
-              <p className="mt-4 text-base leading-relaxed text-background/90">{action}</p>
+              <p className="mt-4 text-base leading-relaxed text-foreground/90">{action}</p>
             </li>
           ))}
         </ol>

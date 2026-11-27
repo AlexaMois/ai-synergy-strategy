@@ -24,7 +24,7 @@ if (fs.existsSync(sitemapPath)) {
 
 // Private / temporary routes — written so that direct hits get noindex meta,
 // but NOT in sitemap and NOT advertised to crawlers.
-const privateRoutes = ['/newyear', '/portal', '/portal/admin'];
+const privateRoutes = ['/newyear', '/portal', '/portal/admin', '/home-preview'];
 for (const r of privateRoutes) routes.add(r);
 
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
@@ -153,6 +153,7 @@ console.log(`[prerender] Parsed ${blogPosts.length} blog posts, ${services.lengt
 const DEFAULT_TITLE_SUFFIX = ' | Александра Моисеева';
 
 const staticMeta = {
+  '/home-preview': { title: 'Тестовая композиция главной | НейроРешения', description: 'Экспериментальный макет композиции главной страницы.', robots: 'noindex,nofollow' },
   '/': {
     title: 'НейроРешения | Программные продукты, ИИ-агенты и автоматизация бизнеса',
     description: 'Программные продукты, ИИ-агенты и автоматизация бизнеса. Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.',

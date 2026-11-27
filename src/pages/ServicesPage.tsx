@@ -86,19 +86,19 @@ const ServicesPage = () => (
           </div>
         </section>
 
-        <section className="bg-foreground py-14 text-background md:py-20">
+        <section className="bg-white py-14 text-foreground md:py-20">
           <div className="container mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Наш принцип</p>
-              <h2 className="text-3xl font-bold leading-tight text-background md:text-4xl">От процессов к технологии</h2>
-              <p className="mt-4 leading-relaxed text-background/75">Результат проверяется на фактических данных, а ответственность закрепляется за людьми.</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Наш принцип</p>
+              <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">От процессов к технологии</h2>
+              <p className="mt-4 leading-relaxed text-foreground/75">Результат проверяется на фактических данных, а ответственность закрепляется за людьми.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
               {phases.map(([number,title,detail])=>(
-                <div key={number} className="rounded-2xl border border-background/20 bg-background/5 p-5">
-                  <span className="text-sm font-bold text-accent">{number}</span>
-                  <h3 className="mt-3 text-lg font-bold text-background">{title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-background/85">{detail}</p>
+                <div key={number} className="rounded-2xl border border-border bg-white p-5">
+                  <span className="text-sm font-bold text-[#07536A]">{number}</span>
+                  <h3 className="mt-3 text-lg font-bold text-foreground">{title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-foreground/85">{detail}</p>
                 </div>
               ))}
             </div>
