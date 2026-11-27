@@ -98,6 +98,7 @@
 }
 
 /* Homepage only: original blue hero, bright accents and light editorial cards. */
+#brand-hero [data-brand-accent],#brand-hero [data-brand-signature]{color:#fff!important}
 #brand-hero [data-brand-panel]{
   background-color:#07536a;
   background-image:linear-gradient(90deg,#07536a 0%,#07536a 56%,hsl(var(--accent)) 100%)
