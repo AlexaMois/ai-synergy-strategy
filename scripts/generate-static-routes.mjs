@@ -36,13 +36,17 @@ const indexHtml = fs.readFileSync(indexPath, 'utf8');
 const legacyRedirects = {
   '/services/diagnostics': '/services/digital-audit',
   '/services/architecture': '/services/digital-solution-design',
-  '/services/support': '/services/implementation-support',
+  '/services/support': '/faq/#technical-obligations',
   '/services/add-ons': '/services',
   '/privacy-policy': '/legal/privacy-policy/',
   '/case_portfolio': '/cases/',
-  '/products': '/services/',
+  '/products/neurotenderolog': '/services/neurotenderolog/',
+  '/services/owner-digital-session': '/start/',
+  '/services/digital-development-strategy': '/expert/',
+  '/services/implementation-support': '/services/automation/',
+  '/services/digital-tools-support': '/faq/#technical-obligations',
   '/products/doc-search': '/cases/production-doc-search/',
-  '/products/voice-bot': '/services/digital-solution-design/',
+  '/products/voice-bot': '/mini-agents/customer-voice-requests/',
   '/materials/instrukciya-plaud-ai': '/materials/plaud-guide/',
   '/diagnostics': '/services/digital-audit/',
   '/diagnostic': '/services/digital-audit/',
@@ -150,20 +154,20 @@ const DEFAULT_TITLE_SUFFIX = ' | Александра Моисеева';
 
 const staticMeta = {
   '/': {
-    title: 'Цифровизация и автоматизация бизнеса — Александра Моисеева',
-    description: 'Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом.',
+    title: 'НейроРешения | Программные продукты, ИИ-агенты и автоматизация бизнеса',
+    description: 'Программные продукты, ИИ-агенты и автоматизация бизнеса. Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.',
   },
   '/start': {
-    title: 'Разбор цифровых задач для собственника — 17 000 ₽ | Александра Моисеева',
-    description: 'Разбор цифровых задач для собственника за 17 000 ₽: где компания теряет время и деньги, что автоматизировать первым и какой следующий шаг. Онлайн по всей России.',
+    title: 'С чего начать: бесплатная проверка и выездная консультация | НейроРешения',
+    description: 'Бесплатная проверка бизнес-процесса с PDF или выездная консультация за 8 000 ₽ в Красноярске.',
   },
   '/services': {
-    title: 'Услуги по цифровому развитию бизнеса' + DEFAULT_TITLE_SUFFIX,
-    description: 'Стратегия цифрового развития, аудит, программа «Цифровые инструменты», сопровождение внедрения и разработка цифровых решений под процесс.',
+    title: 'Продукты и решения для бизнеса | НейроРешения',
+    description: 'Продукты, ИИ-агенты для бизнеса, комплексная автоматизация и экспертная работа.',
   },
   '/services/automation': {
-    title: 'Автоматизация процессов и внедрение ИИ для бизнеса' + DEFAULT_TITLE_SUFFIX,
-    description: 'Хаб услуг по автоматизации: что подходит производству и торговле, как выбрать формат и с чего начать без хаоса и переплат.',
+    title: 'Автоматизация бизнес-процессов и ручных операций в 1С/CRM | НейроРешения',
+    description: 'Убираем ручную передачу заявок и документов между почтой, мессенджерами, таблицами и 1С/CRM. Измеряем время, ошибки и стоимость операции. Проектирование, внедрение и контроль результата.',
   },
   '/cases': {
     title: 'Кейсы внедрения ИИ и автоматизации' + DEFAULT_TITLE_SUFFIX,
@@ -220,18 +224,12 @@ const staticMeta = {
     title: 'Гайд по Plaud Note для руководителей' + DEFAULT_TITLE_SUFFIX,
     description: 'Практический гайд: как использовать Plaud Note в работе руководителя — встречи, заметки, передача задач команде.',
   },
-  '/pricing': {
-    title: 'Стоимость услуг по цифровому развитию' + DEFAULT_TITLE_SUFFIX,
-    description: 'Прозрачные цены на стратегические встречи, аудит, программу «Цифровые инструменты», сопровождение и разработку цифровых решений.',
-  },
+  '/pricing': {title:'Цены и условия подключения | НейроРешения',description:'Стоимость МиниАгентов, лицензий, Hermes, индивидуальных проектов и экспертных услуг.'},
   '/about': {
     title: 'Об эксперте — Александра Моисеева, инженер цифрового развития бизнеса',
     description: 'Опыт, подход и методология: как я веду проекты по цифровому развитию и внедрению ИИ в бизнесе.',
   },
-  '/faq': {
-    title: 'Частые вопросы о цифровизации и ИИ' + DEFAULT_TITLE_SUFFIX,
-    description: 'Ответы на самые частые вопросы о цифровом развитии, внедрении ИИ, сроках, рисках и стоимости проектов.',
-  },
+  '/faq': {title:'FAQ по цифровому развитию бизнеса — Александра Моисеева, НейроРешения',description:'Ответы на вопросы о продуктах, МиниАгентах, ИИ-агентах, лицензиях, автоматизации, консультациях, проверке бизнес-процесса и обучении.'},
   '/legal': {
     title: 'Правовая информация' + DEFAULT_TITLE_SUFFIX,
     description: 'Юридическая информация: согласие на обработку данных, политика конфиденциальности, cookies и условия использования.',
@@ -278,8 +276,19 @@ const staticMeta = {
   },
 };
 
+const commercialCatalog = JSON.parse(fs.readFileSync(path.join(rootDir,'src/data/commercialCatalog.json'),'utf8'));
+for (const [route,title,description] of [["/products","Программные продукты","НейроТендеролог и система управления корпоративными знаниями."],["/products/knowledge-management","Корпоративный портал знаний","Документы, инструкции и регламенты в единой интеллектуальной системе. Ролевой доступ, поиск, контроль состояния базы."],["/mini-agents","МиниАгенты","15 прикладных МиниАгентов: отдельная цена внедрения и ежемесячная лицензия."],["/ai-agents","ИИ-агенты для бизнеса","15 готовых МиниАгентов, персональный ИИ-агент Hermes и индивидуальная разработка ИИ-агентов для предприятия."],["/ai-agents/hermes","Hermes","Установка и настройка Hermes за 36 000 ₽. Продвинутая настройка от 126 000 ₽."],["/ai-agents/custom","Индивидуальная разработка ИИ-агентов","Специализированные ИИ-агенты и мультиагентные системы с корпоративными знаниями, инструментами, интеграциями и полномочиями."],["/expert","Экспертная работа","Бесплатная проверка бизнес-процесса, выездная консультация, комплексный аудит, корпоративное обучение и ДПО."],["/services/neurotenderolog","НейроТендеролог: поиск и первичный отбор закупок","НейроТендеролог находит и первично отбирает закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности."]]) {
+  staticMeta[route] = {title:title+' | НейроРешения',description};
+  routes.add(route);
+}
+for (const item of commercialCatalog.mini) {
+  const route='/mini-agents/'+item.slug;
+  staticMeta[route]={title:item.name+' | НейроРешения',description:item.headline+' Внедрение от '+item.price.toLocaleString('ru-RU')+' ₽. '+item.included};
+  routes.add(route);
+}
 // Add services dynamically
 for (const s of services) {
+  if (["owner-digital-session","digital-development-strategy","implementation-support","digital-tools-support"].includes(s.slug)) continue;
   staticMeta[`/services/${s.slug}`] = {
     title: s.title + DEFAULT_TITLE_SUFFIX,
     description: s.subtitle,
@@ -338,7 +347,7 @@ function injectMeta(html, route, meta) {
   // <meta name="description"> (upsert — отсутствует в index.html по умолчанию)
   upsert(
     /<meta\s+name="description"[^>]*>/i,
-    `<meta name="description" content="${description}">`
+    `<meta name="description" content="${description}" data-rh="true">`
   );
 
   // robots
@@ -354,14 +363,14 @@ function injectMeta(html, route, meta) {
   // canonical
   out = out.replace(
     /<link\s+rel="canonical"[^>]*>/i,
-    `<link rel="canonical" href="${canonical}">`
+    `<link rel="canonical" href="${canonical}" data-rh="true">`
   );
 
   // og:url / og:title / og:description / og:type
-  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}">`);
-  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}">`);
-  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}">`);
-  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}">`);
+  upsert(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}" data-rh="true">`);
+  upsert(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}" data-rh="true">`);
+  upsert(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}" data-rh="true">`);
+  upsert(/<meta\s+property="og:type"[^>]*>/i, `<meta property="og:type" content="${ogType}" data-rh="true">`);
 
   // twitter:url
   upsert(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${canonical}">`);

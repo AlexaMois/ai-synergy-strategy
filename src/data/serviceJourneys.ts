@@ -24,7 +24,7 @@ export const serviceJourneys: ServiceJourney[] = [
     evidence: "Ручные касания, время обработки, ошибки, стоимость операции.",
     href: "/services/automation",
     action: "Разобрать ручную операцию",
-    services: ["digital-audit", "digital-solution-design", "implementation-support", "digital-tools-support"],
+    services: ["digital-audit", "digital-solution-design"],
   },
   {
     id: "priority",
@@ -32,11 +32,11 @@ export const serviceJourneys: ServiceJourney[] = [
     eyebrow: "02 · Решение собственника",
     title: "Определить, с чего начать цифровизацию",
     situation: "В компании много ручной работы и разных инициатив. Руководителю нужен обоснованный приоритет.",
-    whatChanges: "На стратегической встрече определяем главное ограничение, первый шаг, ответственного и критерий проверки результата.",
+    whatChanges: "На выездной консультации определяем главное ограничение, первый шаг и критерий результата.",
     evidence: "Один приоритет, краткие письменные выводы, первый шаг.",
-    href: "/services/owner-digital-session",
+    href: "/expert",
     action: "Выбрать первый шаг",
-    services: ["owner-digital-session", "digital-development-strategy"],
+    services: [],
   },
   {
     id: "training",
@@ -79,7 +79,7 @@ export const serviceAcceptance: Record<string, { task: string; proof: string; pe
     task: "Компания выбирает последовательность изменений на 90 дней.",
     proof: "Описание текущей ситуации, приоритеты, дорожная карта на 90 дней и ориентиры для последующего решения.",
     people: "Собственник утверждает приоритеты, руководители отвечают за данные и исполнение.",
-    next: "Выбираем первую операцию для диагностики или проектирования.",
+    next: "Выбираем первую операцию для бесплатной проверки бизнес-процесса или проектирования.",
     cta: "Обсудить стратегию",
   },
   "digital-audit": {
@@ -93,7 +93,7 @@ export const serviceAcceptance: Record<string, { task: string; proof: string; pe
     task: "Одна согласованная операция переводится в рабочее цифровое решение.",
     proof: "Проверка согласованных сценариев на данных клиента, фиксация результата и документация.",
     people: "Сотрудник подтверждает исключения; владелец процесса принимает бизнес-результат.",
-    next: "Запуск в работу, инструкции и решение о сопровождении.",
+    next: "Запуск в работу, инструкции и договорные условия эксплуатации.",
     cta: "Обсудить внедрение",
   },
   "implementation-support": {

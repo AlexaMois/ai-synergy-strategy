@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import catalog from "@/data/commercialCatalog.json";
 import { getIndustryScenario, scenarioContext } from "@/data/industryScenarios";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -20,15 +21,19 @@ import {
 
 const StartPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const requestedOffer = new URLSearchParams(location.search).get("offer");
   const scenario = getIndustryScenario(new URLSearchParams(location.search).get("scenario"));
   const scenarioId = scenario?.id || "";
   const [diagnosticStarted, setDiagnosticStarted] = useState(
-    () => !!scenario || hasDiagnosticDraft(scenarioId) || isDiagnosticStarted()
+    () => !!scenario || (!requestedOffer && (hasDiagnosticDraft(scenarioId) || isDiagnosticStarted()))
   );
 
   const diagnosticRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = () => {
+    setContactIntent(null);
+    if (requestedOffer) navigate("/start", {replace:true});
     setDiagnosticStarted(true);
     markDiagnosticStarted();
     setTimeout(() => {
@@ -45,8 +50,8 @@ const StartPage = () => {
     setIndustryContext(scenario ? scenarioContext(scenario) : null);
     const requested = consumeDiagnosticAutostart();
     const intent = readContactIntent();
-    if (requested || (scenarioId && intent?.context?.scenarioId !== scenarioId) || (!scenarioId && intent?.context?.scenarioId)) setContactIntent(null);
-    if (scenario || requested) startDiagnostic();
+    if ((requested && !requestedOffer) || (scenarioId && intent?.context?.scenarioId !== scenarioId) || (!scenarioId && intent?.context?.scenarioId)) setContactIntent(null);
+    if (scenario || (requested && !requestedOffer)) startDiagnostic();
     const onOpen = () => startDiagnostic();
     window.addEventListener("self-start:open", onOpen);
     return () => window.removeEventListener("self-start:open", onOpen);
@@ -54,9 +59,24 @@ const StartPage = () => {
   }, [scenarioId]);
 
   const bookMeeting = () => {
-    setContactIntent({ kind: "meeting" });
+    setContactIntent({ kind: "onsite", offerId:"expert-onsite", offerLabel:"Выездная консультация — 8 000 ₽",format:"onsite",sourcePath:"/start",context:null });
     scrollToContact();
   };
+  useEffect(() => {
+    const q=new URLSearchParams(location.search); const id=q.get("offer");
+    if(!id) { if(readContactIntent()?.offerId) setContactIntent(null); return; }
+    const offerNames:Record<string,string> = {"product-neurotenderolog":"НейроТендеролог","product-knowledge-management":"Корпоративный портал знаний","custom-agent":"Индивидуальная разработка ИИ-агентов","expert-onsite":"Выездная консультация — 8 000 ₽","expert-audit":"Комплексный аудит","expert-training":"Авторская программа «Цифровые инструменты для бизнеса»","automation-process":"Автоматизация бизнеса","automation-corporate-system":"Корпоративная информационная система","automation-integration":"Интеграция бизнес-систем","automation-custom-software":"Индивидуальное программное решение"};
+    const title=catalog.mini.find(x=>x.id===id)?.name||catalog.hermes.find(x=>x.id===id)?.name||offerNames[id];
+    if(!title)return;
+    const previous=readContactIntent(); const fmt=q.get("format")||"connect"; const license=q.get("license");
+    const format=["demo","connect","setup","adaptation","project","onsite","audit","training"].includes(fmt)?fmt:"connect";
+    const licensePlan=catalog.mini.some(m=>m.id===id&&m.license==="standard")&&catalog.licenses.some(l=>l.id===license)?license||undefined:undefined;
+    const mini=catalog.mini.find(x=>x.id===id);
+    const fallbackSource=mini?"/mini-agents/"+mini.slug:catalog.hermes.some(x=>x.id===id)?"/ai-agents/hermes":({"product-neurotenderolog":"/services/neurotenderolog","product-knowledge-management":"/products/knowledge-management","custom-agent":"/ai-agents/custom","expert-onsite":"/expert","expert-audit":"/services/digital-audit","expert-training":"/services/digital-tools-program"} as Record<string,string>)[id]||"/services/automation";
+    const sourcePath=previous?.offerId===id&&previous.sourcePath?previous.sourcePath:fallbackSource;
+    setContactIntent({kind:id==="expert-onsite"?"onsite":"implementation",offerId:id,offerLabel:title,format,licensePlan,sourcePath,context:null,process:title});
+    const frame=window.requestAnimationFrame(()=>document.getElementById("contact")?.scrollIntoView({behavior:"instant" as ScrollBehavior,block:"start"}));return ()=>window.cancelAnimationFrame(frame);
+  }, [location.search]);
 
 
   const flow = [
@@ -79,20 +99,20 @@ const StartPage = () => {
   return (
     <PageTransition>
       <Helmet>
-        <title>Бесплатная проверка процесса и личный разбор · 17 000 ₽ | Александра Моисеева</title>
+        <title>С чего начать: бесплатная проверка и выездная консультация | НейроРешения</title>
         <meta
           name="description"
-          content="Самостоятельная проверка одного процесса бесплатно с результатом и PDF или личный разбор с Александрой за 17 000 ₽. Онлайн по всей России."
+          content="Бесплатная проверка бизнес-процесса с PDF или выездная консультация за 8 000 ₽ в Красноярске."
         />
         <meta
           name="keywords"
           content="разбор цифровых задач, автоматизация процессов, с чего начать автоматизацию, стратегия цифрового развития, аудит процессов"
         />
         <link rel="canonical" href="https://aleksamois.ru/start/" />
-        <meta property="og:title" content="Бесплатная проверка процесса и личный разбор · 17 000 ₽ | Александра Моисеева" />
+        <meta property="og:title" content="С чего начать: бесплатная проверка и выездная консультация | НейроРешения" />
         <meta
           property="og:description"
-          content="Бесплатная проверка одного процесса с PDF или личный разбор с Александрой за 17 000 ₽."
+          content="Бесплатная проверка бизнес-процесса с PDF или выездная консультация за 8 000 ₽ в Красноярске."
         />
         <meta property="og:url" content="https://aleksamois.ru/start/" />
         <meta property="og:type" content="website" />
@@ -125,18 +145,18 @@ const StartPage = () => {
               </div>
               <div className="rounded-[28px] bg-foreground shadow-card p-6 md:p-8 flex flex-col items-start">
                 <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-background/60 mb-4">С Александрой</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Разберём, что делать в первую очередь</h2>
-                <p className="text-[16px] font-normal text-background/85 leading-relaxed mb-5">На стратегической встрече разберём Вашу ситуацию, определим главное ограничение и выберем, какое действие стоит предпринять первым. Вы получите письменные выводы на одной странице: что менять, с чего начать и как проверить результат.</p>
-                <p className="text-[20px] md:text-[22px] font-bold text-accent mb-1">17 000 ₽</p>
-                <p className="text-sm md:text-base text-background/70 mb-7">Самостоятельная экспертная услуга. Дальнейшее сотрудничество необязательно.</p>
-                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Записаться на разбор →</PillButton>
+                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-background mb-4">Выездная консультация</h2>
+                <p className="text-[16px] font-normal text-background/85 leading-relaxed mb-5">На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу. Красноярск · до 1 часа. Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
+                <p className="text-[20px] md:text-[22px] font-bold text-accent mb-1">8 000 ₽</p>
+                <p className="text-sm md:text-base text-background/70 mb-7">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
+                <PillButton onClick={bookMeeting} variant="turquoise" size="md" className="mt-auto">Пригласить специалиста →</PillButton>
               </div>
             </div>
             <p className="mt-6 text-base md:text-lg text-foreground">
-              Уже знаете, что хотите внедрить?{" "}
+              <Link className="font-semibold text-[#116078] underline underline-offset-4" to="/services">Выбрать решение из каталога</Link>. Уже знаете, что хотите внедрить?{" "}
               <button
                 type="button"
-                onClick={scrollToContact}
+                onClick={() => { setContactIntent(null); if(requestedOffer) navigate("/start#contact",{replace:true}); scrollToContact(); }}
                 className="font-semibold text-accent underline-offset-4 hover:underline"
               >
                 Сразу обсудить задачу →
@@ -148,7 +168,7 @@ const StartPage = () => {
               <DiagnosticForm key={scenarioId || "universal"} scenario={scenario} />
             </section>
           )}
-          {/* 3. Что происходит на встрече + что Вы получите */}
+          {/* 3. Что происходит на выездной консультации + что Вы получите */}
           <section
             id="result"
             className="bg-background container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
@@ -156,7 +176,7 @@ const StartPage = () => {
             <div className="grid md:grid-cols-12 gap-10 md:gap-16">
               <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-foreground text-background px-6 md:px-8 py-8 md:py-10 shadow-card">
                 <h2 className="text-2xl md:text-4xl font-bold text-background leading-[1.08] mb-6 md:mb-8">
-                  Что происходит на встрече
+                  Что происходит на выездной консультации
                 </h2>
                 <div className="border-t border-background/15 mb-6 md:mb-8">
                   {flow.map((step, i) => (
@@ -181,7 +201,7 @@ const StartPage = () => {
 
               <div className="md:col-span-7 md:pl-6">
                 <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
-                  Что Вы получите после разбора
+                  Что Вы получите после консультации
                 </h2>
                 <ul className="mb-8 md:mb-10 border-t border-border">
                   {results.map((r) => (
@@ -194,10 +214,10 @@ const StartPage = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold text-accent-foreground leading-snug max-w-xl">
-                  Все выводы Вы получите в одном документе на одной странице. Документ составляется по информации, полученной на встрече. Неподтверждённые причины и предполагаемые результаты обозначаются отдельно. Разбор является самостоятельной услугой. После встречи Вы сами решаете, реализовать рекомендации своими силами или продолжить работу с «НейроРешениями».
+                <p className="rounded-2xl bg-accent px-5 py-4 text-sm md:text-base font-semibold !text-[#212121] leading-snug max-w-xl">
+                  Вы получите краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом. Гипотезы и предполагаемые результаты выделяются отдельно. Дальнейшие действия Вы выбираете самостоятельно.
                 </p>
-                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6">Записаться на разбор</PillButton>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6">Пригласить специалиста</PillButton>
               </div>
             </div>
           </section>
@@ -206,12 +226,12 @@ const StartPage = () => {
 
         <FAQTeaser
           items={[
-            { question: "Что входит в стратегическую встречу за 17 000 ₽?", answer: "Разбираем Вашу задачу, текущую организацию работы, потери и ограничения. Определяем один главный приоритет и первый шаг. По итогам Вы получаете краткий письменный документ с рекомендациями и критерием проверки результата." },
-            { question: "Чем встреча отличается от стратегии цифрового развития бизнеса?", answer: "Стратегическая встреча за 17 000 ₽ помогает собственнику определить, с чего начать, на основании обсуждения его ситуации.\n\nРазработка стратегии цифрового развития бизнеса за 78 000 ₽ предполагает более глубокую работу: анализ нескольких процессов, интервью с сотрудниками и план действий на 90 дней." },
+            { question: "Что входит в выездную консультацию за 8 000 ₽?", answer: "Один рабочий процесс на территории клиента в Красноярске, до одного часа. Краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом." },
+            { question: "Как засчитывается стоимость консультации?", answer: "Оплаченные 8 000 ₽ полностью засчитываются в оплату последующего проекта автоматизации." },
             { question: "Нужно ли после встречи заказывать внедрение?", answer: "Нет. Вы получаете самостоятельный результат, который можете использовать внутри своей компании. Если потребуется дальнейшая помощь, возможные работы и их стоимость обсуждаются отдельно." },
             { question: "Что подготовить к встрече?", answer: "Достаточно описать одну конкретную проблему: как работа устроена сейчас, где возникают задержки или ошибки, что уже пробовали и какого результата хотите добиться.\n\nЕсли известны затраты времени, количество операций или стоимость ошибок, эти данные помогут оценить масштаб проблемы. Если цифр нет, определим, что нужно измерить." },
             { question: "Нужно ли заранее отправлять документы компании?", answer: "Нет, для первого обсуждения это необязательно. Не передавайте через открытую форму пароли, персональные данные третьих лиц и конфиденциальные документы. Если для дальнейшей работы потребуются материалы, отдельно согласуем состав и условия их передачи." },
-            { question: "Как проходит встреча с компаниями из других регионов?", answer: "Стратегическую встречу можно провести дистанционно. Очный формат согласовывается отдельно." },
+            { question: "Как начать работу из другого региона?", answer: "Выберите бесплатную проверку, готовое решение или обсудите задачу дистанционно. Выездная консультация проводится в Красноярске." },
           ]}
         />
         <Footer />

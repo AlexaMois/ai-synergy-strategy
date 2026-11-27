@@ -30,8 +30,12 @@ const ServiceDetailPage = () => {
   const includes = service.sections.find(item=>item.heading==="Что входит");
   const forWhom = service.sections.find(item=>item.heading==="Подходит, если");
   const url = "https://aleksamois.ru" + service.href + "/";
+  const inquiryId=service.slug==="digital-audit"?"expert-audit":service.slug==="digital-solution-design"?"automation-custom-software":service.slug==="digital-tools-program"?"expert-training":undefined;
+  const inquiryFormat=service.slug==="digital-audit"?"audit":service.slug==="digital-tools-program"?"training":"project";
+  const inquiryHref=inquiryId?"/start?offer="+inquiryId+"&format="+inquiryFormat+"#contact":"/start";
   const openInquiry = () => setContactIntent({
-    kind: service.slug === "owner-digital-session" ? "meeting" : "implementation",
+    kind: "implementation",
+    ...(inquiryId?{offerId:inquiryId,offerLabel:service.title,format:inquiryFormat,sourcePath:service.href,context:null}:{}),
     process: "Услуга: " + service.title + ". Маршрут: " + journey.title + ". Источник: " + service.href,
   });
 
@@ -58,7 +62,7 @@ const ServiceDetailPage = () => {
                   <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">{meta.h1}</h1>
                   <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-lg">{service.subtitle}</p>
                   <div className="mt-7 flex flex-wrap items-center gap-4">
-                    <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
+                    <Link to={inquiryHref} onClick={openInquiry} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
                       {detail.cta} <ArrowRight className="h-4 w-4" />
                     </Link>
                     <Link to={journey.href} className="inline-flex min-h-12 items-center gap-2 font-medium text-primary-dark hover:underline">
@@ -149,7 +153,7 @@ const ServiceDetailPage = () => {
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3">
-                <Link to="/start" onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground">
+                <Link to={inquiryHref} onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground">
                   {detail.cta} <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/pricing" className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-background/85 hover:text-background">

@@ -413,10 +413,10 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
 
   const result = useMemo(() => assessProcess(form), [form]);
   const clientReport = useMemo(() => buildClientAssessment(form, result), [form, result]);
-  const request = (kind: "implementation" | "meeting") => {
+  const request = (kind: "implementation" | "onsite") => {
     const source = scenario ? null : getDiagnosticSource();
-    if (kind === "meeting" && source === "exit_popup") trackExitPopupEvent("exit_popup_meeting_click");
-    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result), source: source || undefined, context });
+    if (kind === "onsite" && source === "exit_popup") trackExitPopupEvent("exit_popup_meeting_click");
+    setContactIntent({ kind, process: form.process, assessment: assessmentText(form, result), source: source || undefined, context, ...(kind==="onsite"?{offerId:"expert-onsite",offerLabel:"Выездная консультация — 8 000 ₽",format:"onsite",sourcePath:"/start"}:{}) });
     scrollToContact();
   };
 
@@ -441,7 +441,7 @@ const DiagnosticForm = ({ scenario }: { scenario?: IndustryScenario }) => {
           {pdfError && <p role="alert" className="!text-[#962D3A] mt-3">{pdfError}</p>}
           <div className="border-t border-border mt-4 pt-4 flex flex-col sm:flex-row flex-wrap gap-2">
             <PillButton onClick={() => request("implementation")} variant="turquoise" size="md" className="!bg-[#4CBBD6] !text-[#212121] hover:!bg-[#4CBBD6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Обсудить внедрение</PillButton>
-            <PillButton onClick={() => request("meeting")} variant="dark" size="md" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Личный разбор · 17 000 ₽</PillButton>
+            <PillButton onClick={() => request("onsite")} variant="dark" size="md" className="!bg-[#212121] !text-white hover:!bg-[#333333] [&>span:last-child]:!text-[#212121] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2">Выездная консультация в Красноярске · 8 000 ₽</PillButton>
           </div>
           <Link to="/" className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#116078] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#116078] focus-visible:outline-offset-2" data-report-home><Home className="h-4 w-4 shrink-0" aria-hidden="true" />На главную</Link>
           </div>

@@ -16,10 +16,10 @@ const TenderServicePage = () => (
   <PageTransition>
     <Helmet>
       <title>НейроТендеролог: поиск и первичный отбор закупок | НейроРешения</title>
-      <meta name="description" content="НейроТендеролог помогает специалисту находить и первично отбирать закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности." />
+      <meta name="description" content="НейроТендеролог находит и первично отбирает закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности." />
       <link rel="canonical" href="https://aleksamois.ru/services/neurotenderolog/" />
-      <meta property="og:title" content="НейроТендеролог: отбор закупок | НейроРешения" />
-      <meta property="og:description" content="Поток закупок, первичная фильтрация, объяснение отбора и решение человека." />
+      <meta property="og:title" content="НейроТендеролог: поиск и первичный отбор закупок | НейроРешения" />
+      <meta property="og:description" content="НейроТендеролог находит и первично отбирает закупки по профилю компании. Настройка критериев, карточки в MAX, обратная связь специалиста и контроль релевантности." />
       <meta property="og:url" content="https://aleksamois.ru/services/neurotenderolog/" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -32,10 +32,10 @@ const TenderServicePage = () => (
             <div className="min-w-0 rounded-[30px] bg-surface-mint px-5 py-8 shadow-plate sm:px-7 md:rounded-[40px] md:p-12">
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">Отдельный продукт · Закупки и тендеры</p>
               <h1 className="max-w-4xl break-words text-[27px] font-bold leading-tight text-foreground [overflow-wrap:anywhere] sm:text-3xl md:text-5xl">НейроТендеролог: поиск и первичный отбор закупок</h1>
-              <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">Система помогает сократить ручной просмотр закупок: собирает предложения, применяет профиль компании, готовит предварительный разбор и передаёт решение специалисту.</p>
+              <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">Система сокращает ручной просмотр закупок: собирает предложения, применяет профиль компании, готовит предварительный разбор и передаёт решение специалисту.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/start" onClick={()=>setContactIntent({kind:"implementation",process:"Подключение НейроТендеролога. Источник: /services/neurotenderolog"})} className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full bg-foreground px-4 text-center text-sm font-semibold text-background hover:bg-foreground/85 sm:w-auto sm:px-6 sm:text-base">
-                  Обсудить отбор закупок <ArrowRight className="h-4 w-4"/>
+                <Link to="/start?offer=product-neurotenderolog&format=demo#contact" onClick={()=>setContactIntent({kind:"implementation",offerId:"product-neurotenderolog",offerLabel:"НейроТендеролог",format:"demo",sourcePath:"/services/neurotenderolog",context:null,process:"Запрос демонстрации НейроТендеролога"})} className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full bg-foreground px-4 text-center text-sm font-semibold text-background hover:bg-foreground/85 sm:w-auto sm:px-6 sm:text-base">
+                  Запросить демонстрацию <ArrowRight className="h-4 w-4"/>
                 </Link>
                 <Link to="/cases/neurotenderolog" className="inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 px-2 text-center text-sm font-semibold text-primary-dark hover:underline sm:w-auto sm:px-4 sm:text-base">
                   Реальный кейс и скриншоты <ArrowUpRight className="h-4 w-4"/>
@@ -76,10 +76,12 @@ const TenderServicePage = () => (
           </div>
         </section>
         <section className="container mx-auto max-w-7xl px-4 py-14 md:py-14">
-          <div className="grid gap-7 rounded-[28px] bg-surface-sand p-7 md:grid-cols-12 md:items-center md:p-10">
+          <div className="grid gap-7 rounded-[28px] bg-surface-lavender p-7 md:grid-cols-12 md:items-center md:p-10">
             <div className="md:col-span-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Доказательства</p>
               <h2 className="text-2xl font-bold text-foreground md:text-3xl">Три реальных сценария работы</h2>
+              <img src="/cases/neurotenderolog/tender_card_public.webp" alt="Реальная карточка закупки из опубликованного кейса" loading="lazy" className="mt-5 rounded-xl max-w-full max-h-[420px] object-contain"/>
+              <p className="mt-3 font-semibold text-foreground">Стоимость подключения и использования согласуем по профилю закупок.</p>
               <p className="mt-3 leading-relaxed text-foreground/75">В кейсе собраны скриншоты карточки закупки, дня с подходящим предложением и дня полного отсева. Изображения увеличиваются поверх страницы.</p>
             </div>
             <Link to="/cases/neurotenderolog" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background md:col-span-4">

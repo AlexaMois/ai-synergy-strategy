@@ -2,6 +2,13 @@
 export const ALLOWED_ROUTES = [
   '/',
   '/services',
+  '/products',
+  '/products/knowledge-management',
+  '/mini-agents',
+  '/ai-agents',
+  '/ai-agents/hermes',
+  '/ai-agents/custom',
+  '/expert',
   '/services/automation',
   '/services/neurotenderolog',
   '/services/diagnostics',
@@ -58,5 +65,5 @@ export const isRouteAllowed = (path: string): boolean => {
   // Разрешаем динамические маршруты блога в материалах (/materials/blog/:slug)
   if (path.startsWith('/materials/blog/')) return true;
   // Проверяем по списку статических маршрутов
-  return ALLOWED_ROUTES.includes(path);
+  return ALLOWED_ROUTES.includes(path.split(/[?#]/)[0].replace(/\/$/, '') || '/') || /^\/mini-agents\/[a-z0-9-]+\/?$/.test(path);
 };

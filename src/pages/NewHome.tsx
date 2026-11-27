@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, ChevronRight, Quote, Phone } from "lucide-react";
 import { scrollToContact } from "@/lib/scrollToContact";
+import { setContactIntent } from "@/lib/contactIntent";
+import { CommercialHome } from "@/pages/commercial/CommercialPages";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import TrustMarquee from "@/components/TrustMarquee";
@@ -92,14 +94,14 @@ const NewHome = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Цифровизация и автоматизация бизнеса — Александра Моисеева</title>
+        <title>НейроРешения | Программные продукты, ИИ-агенты и автоматизация бизнеса</title>
         <meta
           name="description"
-          content="Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом."
+          content="Программные продукты, ИИ-агенты и автоматизация бизнеса. Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании."
         />
         <link rel="canonical" href="https://aleksamois.ru/" />
-        <meta property="og:title" content="Цифровизация и автоматизация бизнеса — Александра Моисеева" />
-        <meta property="og:description" content="Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом." />
+        <meta property="og:title" content="НейроРешения | Программные продукты, ИИ-агенты и автоматизация бизнеса" />
+        <meta property="og:description" content="Программные продукты, ИИ-агенты и автоматизация бизнеса. Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании." />
         <meta property="og:url" content="https://aleksamois.ru/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -115,16 +117,18 @@ const NewHome = () => {
             <div className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-20 pb-0 md:pb-0">
                 <div className="md:col-span-7 pb-6 sm:pb-8 md:pb-20">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] md:leading-[1.02] tracking-tight text-background mb-4 md:mb-6">
-                    Александра <span className="font-iriska font-normal italic text-background/95">Моисеева</span>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] md:leading-[1.02] tracking-tight !text-[#212121] mb-4 md:mb-6">
+                    НейроРешения
                   </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-background/90 mb-4 md:mb-8 max-w-2xl leading-snug">
-                    Независимый инженер-архитектор цифрового развития бизнеса и внедрения искусственного интеллекта
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl !text-[#212121] mb-4 md:mb-8 max-w-2xl leading-snug">
+                    Программные продукты, ИИ-агенты и автоматизация бизнеса
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-background/80 mb-6 md:mb-10 max-w-xl">
-                    Выявляю потери времени и денег в бизнес-процессах, сокращаю ручную работу и внедряю цифровые решения с измеримым результатом.
+                  <p className="text-sm sm:text-base md:text-lg !text-[#212121] mb-6 md:mb-10 max-w-xl">
+                    Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
                   </p>
+                  <p className="!text-[#212121] font-semibold text-base md:text-lg mb-5">Александра Моисеева, основатель и инженер-архитектор цифрового развития бизнеса</p>
                   <div className="relative z-10 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-start">
+                    <PillButton to="/services" variant="dark">Выбрать решение</PillButton>
                     <PillButton
                       variant="light"
                       onClick={() =>
@@ -133,7 +137,7 @@ const NewHome = () => {
                     >
                       Узнать свою задачу
                     </PillButton>
-                    <PillButton variant="ghost-light" onClick={scrollToContact}>
+                    <PillButton variant="light" onClick={() => { setContactIntent(null); scrollToContact(); }}>
                       Обсудить задачу
                     </PillButton>
                   </div>
@@ -198,8 +202,7 @@ const NewHome = () => {
                     Клиенты возвращаются за следующим этапом
                   </div>
                   <p className="text-xs md:text-sm text-white/85 leading-snug">
-                    Большинство клиентов продолжают работу после первого проекта: стратегия,
-                    внедрение, сопровождение, новые цифровые инструменты.
+                    Большинство клиентов продолжают работу после первого проекта: новые цифровые инструменты, развитие и автоматизация процессов.
                   </p>
                 </div>
               </div>
@@ -208,9 +211,10 @@ const NewHome = () => {
         </section>
 
         {/* УЗНАЁТЕ СВОЙ БИЗНЕС? — интерактивные отраслевые вопросы */}
+        <CommercialHome />
         <IndustryQuestions />
 
-        {/* С ЧЕГО НАЧАТЬ — выездная диагностика */}
+        {/* С ЧЕГО НАЧАТЬ — выездная консультация */}
         <section className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
@@ -223,7 +227,7 @@ const NewHome = () => {
           </div>
           <div className="relative flex flex-col rounded-[28px] bg-surface-mint p-7 md:p-9 overflow-hidden shadow-card ring-1 ring-foreground/5">
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight">
-              Выездная диагностика бизнес-процесса
+              Выездная консультация
             </h3>
             <p className="text-sm md:text-base text-foreground/85 leading-relaxed mb-4">
               На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу.
@@ -240,10 +244,10 @@ const NewHome = () => {
                 <AnimatedNumber value={8000} suffix=" ₽" />
               </div>
               <p className="text-sm md:text-base text-foreground/85">
-                Стоимость диагностики полностью засчитывается в оплату последующего проекта автоматизации.
+                Стоимость консультации полностью засчитывается в оплату последующего проекта автоматизации.
               </p>
               <p className="text-sm text-foreground/85">Место и время выезда согласуем заранее.</p>
-              <PillButton onClick={scrollToContact} variant="dark" className="text-sm">
+              <PillButton onClick={() => { setContactIntent({kind:"onsite",offerId:"expert-onsite",offerLabel:"Выездная консультация — 8 000 ₽",format:"onsite",sourcePath:"/",context:null}); scrollToContact(); }} variant="dark" className="text-sm">
                 Пригласить специалиста
               </PillButton>
             </div>
@@ -253,7 +257,7 @@ const NewHome = () => {
               Проверить свой процесс бесплатно <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link to="/services" className="inline-flex items-center text-accent hover:underline font-semibold text-lg">
-              Все форматы работы <ArrowRight className="ml-2 h-5 w-5" />
+              Все решения <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
         </section>
@@ -294,7 +298,7 @@ const NewHome = () => {
               </div>
               <p className="relative px-6 md:px-12 pt-5 md:pt-6 pb-9 md:pb-11 text-xs text-background/80 leading-relaxed text-center">
                 Сначала разбираем процессы и считаем потери. До запуска согласуем правила работы с
-                данными, стоимость внедрения и сопровождения, критерии результата. После запуска
+                данными, стоимость внедрения и договорные условия эксплуатации, критерии результата. После запуска
                 передаём доступы и инструкции в рамках согласованного проекта.
               </p>
             </div>

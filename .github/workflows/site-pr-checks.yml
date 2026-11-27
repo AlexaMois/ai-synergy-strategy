@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: site-pr-checks-${{ github.event.pull_request.number || github.ref }}
+  group: site-pr-checks-${{ github.event.pull_request.number || github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -70,7 +70,7 @@ jobs:
       - name: Install Chromium
         id: chromium
         if: ${{ !cancelled() && steps.playwright.outcome == 'success' }}
-        run: npx --no-install playwright install --with-deps chromium
+        run: npx --no-install playwright install chromium
       - name: Start production preview
         id: preview
         if: ${{ !cancelled() && steps.chromium.outcome == 'success' }}
@@ -83,11 +83,25 @@ jobs:
           done
           cat artifacts/site-pr/preview.log
           exit 1
+      - name: Commercial pages and mocked form submissions
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        run: node tests/product-architecture.browser.mjs
+      - name: Upload commercial browser evidence immediately
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercial-browser-evidence
+          path: artifacts/site-pr/product-architecture/
+          if-no-files-found: error
+          retention-days: 14
       - name: Desktop and mobile browser checks
         if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         run: |
           node --check tests/site-pr.browser.mjs
           node tests/site-pr.browser.mjs
+      - name: Protected industry diagnostic and PDF regression
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        run: |
           command -v pdftotext >/dev/null || (sudo apt-get update && sudo apt-get install -y poppler-utils)
           node --check tests/industry-diagnostic.browser.mjs
           node tests/industry-diagnostic.browser.mjs
@@ -99,3 +113,21 @@ jobs:
           path: artifacts/site-pr/
           if-no-files-found: ignore
           retention-days: 14
+
+  commercial-server-mapping:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: forms-handler/package-lock.json
+      - name: Commercial server mapping with isolated Bpium and notification mocks
+        run: |
+          npm ci --prefix forms-handler --no-audit --no-fund
+          node tests/commercial-handler.mjs
+          node tests/forms-handler-regression.mjs

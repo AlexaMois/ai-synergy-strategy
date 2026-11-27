@@ -56,6 +56,10 @@ const corsHeaders = (origin) => ({
 // Ограничение частоты. Ключ — SHA-256 от IP, сам IP не сохраняется и не логируется.
 const RATE_WINDOW_MS = 60 * 60 * 1000
 const rate = new Map()
+// Повтор клика или сетевой повтор с тем же содержимым не создаёт вторую
+// запись. Ключ — хеш, персональные данные в памяти ключа не остаются.
+const SUBMISSION_TTL_MS = 30 * 60 * 1000
+const recentSubmissions = new Map()
 
 const hashKey = async (value) => {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`forms:${value}`))
@@ -192,17 +196,41 @@ const str = (max) => z.string().trim().min(1).max(max)
 const ids = z.array(z.string().regex(/^\d{1,3}$/)).min(1).max(20)
 const optId = z.string().regex(/^\d{1,3}$/)
 
+const commercialRoutes = {
+  ...Object.fromEntries(Array.from({ length: 15 }, (_, i) => [
+    `mini-${String(i + 1).padStart(2, '0')}`,
+    ['5', 'Уточнить рабочий сценарий, источники данных и условия лицензирования'],
+  ])),
+  'product-neurotenderolog': ['6', 'Уточнить профиль закупок и условия демонстрации или подключения'],
+  'product-knowledge-management': ['6', 'Уточнить задачи, документы, доступы и условия демонстрации'],
+  'hermes-basic': ['5', 'Согласовать модель, размещение, мессенджер и доступы'],
+  'hermes-advanced': ['5', 'Согласовать сценарий, навыки и техническое задание'],
+  'custom-agent': ['5', 'Определить сценарии, данные, полномочия и критерии приёмки'],
+  'automation-process': ['5', 'Определить процесс, системы и критерии приёмки'],
+  'automation-corporate-system': ['5', 'Уточнить роли, данные и состав системы'],
+  'automation-integration': ['5', 'Уточнить системы, данные и правила интеграции'],
+  'automation-custom-software': ['5', 'Согласовать задачу, объём и критерии приёмки'],
+  'expert-onsite': ['2', 'Согласовать адрес, процесс и время выезда в Красноярске'],
+  'expert-training': ['3', 'Согласовать задачу обучения, состав участников и действующие условия'],
+  'expert-audit': ['2', 'Согласовать объём аудита и данные'],
+}
+
 const ShortLeadSchema = z.object({
+  offerId: z.enum(Object.keys(commercialRoutes)).optional(),
+  format: z.enum(['demo', 'connect', 'setup', 'adaptation', 'project', 'onsite', 'audit', 'training']).optional(),
+  licensePlan: z.enum(['license', 'plus', 'managed']).optional(),
+  sourcePath: z.string().trim().max(300).optional(),
   name: str(150),
   phone: z.string().trim().min(6).max(30),
   email: z.string().trim().email().max(200).optional().or(z.literal('')),
   company: z.string().trim().max(200).optional().default(''),
   industry: z.string().trim().max(200).optional().default(''),
-  task: z.string().trim().max(20000).optional().default(''),
+  task: z.string().trim().max(2000).optional().default(''),
   formName: z.string().trim().max(120).optional().default('Короткая заявка'),
   consent: z.literal(true),
   pageUrl: z.string().trim().max(300).optional().default(''),
   website: z.string().max(0).optional(),
+  test_mode: z.boolean().optional().default(false),
 })
 
 const DiagnosticSchema = z.object({
@@ -285,7 +313,22 @@ function shortLeadValues(d) {
   if (d.email) values['5'] = [{ contact: d.email }]
   if (d.company) values['8'] = d.company
   if (d.industry) values['9'] = d.industry
-  if (d.task) values['14'] = d.task
+  values['14'] = d.task || 'Заявка с сайта: запрос не указан'
+  if (d.offerId) {
+    const [category, next] = commercialRoutes[d.offerId]
+    values['45'] = category
+    values['47'] = next
+    const license = d.offerId.startsWith('mini-') && d.offerId !== 'mini-15' ? d.licensePlan : undefined
+    values['14'] = [
+      d.task,
+      `ID предложения: ${d.offerId}`,
+      `Формат: ${d.format || 'connect'}`,
+      license ? `Лицензия: ${license}` : '',
+      d.sourcePath ? `Источник: ${d.sourcePath}` : '',
+    ].filter(Boolean).join('\n\n')
+  }
+  values['intake_next_action'] = values['47']
+  if (d.test_mode) values['52'] = true
   return values
 }
 
@@ -342,6 +385,7 @@ function stylistLeadValues(d) {
     '28': [answersText, photosText && `Фото:\n${photosText}`].filter(Boolean).join('\n\n').slice(0, 20000),
     ...serviceValues,
   }
+  if (d.test_mode) values['52'] = true
   return values
 }
 
@@ -479,14 +523,30 @@ export const handleRequest = async ({ method = 'POST', path = '', rawBody = '', 
     return reply({ error: 'Некорректный номер телефона' }, 400)
   }
 
-  let recordId
-  try {
-    recordId = await createBpiumRecord(route.values(d), requestId, route.form)
-  } catch {
-    log(requestId, route.form, 502, 'bpium_request_failed')
-    return reply({ error: 'Сервис временно недоступен. Попробуйте позже или напишите на ai@aleksamois.ru' }, 502)
+  const submissionKey = await hashKey(`${cleanPath}:${JSON.stringify(d)}`)
+  if (recentSubmissions.size > 1000) {
+    for (const [key, item] of recentSubmissions) {
+      if (item.expiresAt <= Date.now()) recentSubmissions.delete(key)
+    }
   }
+  const previous = recentSubmissions.get(submissionKey)
+  if (previous && previous.expiresAt > Date.now()) {
+    const priorId = await previous.result
+    if (priorId) {
+      log(requestId, route.form, 200, 'duplicate')
+      return reply({ ok: true, recordId: priorId, duplicate: true })
+    }
+    // Исход первого POST в Bpium мог потеряться после записи. Повторная
+    // вставка вслепую создала бы две заявки.
+    return reply({ error: 'Исход первой отправки не подтверждён. Напишите на ai@aleksamois.ru' }, 503)
+  }
+
+  const result = createBpiumRecord(route.values(d), requestId, route.form)
+  recentSubmissions.set(submissionKey, { result, expiresAt: Date.now() + SUBMISSION_TTL_MS })
+  let recordId
+  try { recordId = await result } catch { recordId = null }
   if (!recordId) {
+    log(requestId, route.form, 502, 'bpium_request_failed')
     return reply({ error: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите на ai@aleksamois.ru' }, 502)
   }
 

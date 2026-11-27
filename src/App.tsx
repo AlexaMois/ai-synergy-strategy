@@ -13,6 +13,16 @@ import CookieConsent from "@/components/CookieConsent";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 import Index from "./pages/NewHome";
+const CommercialSolutions = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.SolutionsPage})));
+const ProductsPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.ProductsPage})));
+const KnowledgePage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.KnowledgePage})));
+const MiniAgentsPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.MiniAgentsPage})));
+const MiniAgentDetailPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.MiniAgentDetailPage})));
+const AgentsPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.AgentsPage})));
+const HermesPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.HermesPage})));
+const CustomAgentsPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.CustomAgentsPage})));
+const ExpertPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.ExpertPage})));
+const CommercialPricingPage = lazy(() => import("./pages/commercial/CommercialPages").then(m => ({default:m.CommercialPricingPage})));
 
 const BlogOldRedirect = () => {
   const { slug } = useParams();
@@ -21,7 +31,6 @@ const BlogOldRedirect = () => {
 
 // Lazy load pages
 const StartPage = lazy(() => import("./pages/start/StartPage"));
-const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const AutomationHubPage = lazy(() => import("./pages/services/AutomationHubPage"));
 const TenderServicePage = lazy(() => import("./pages/services/TenderServicePage"));
 const ServiceDetailPage = lazy(() => import("./pages/services/ServiceDetailPage"));
@@ -33,7 +42,6 @@ const Checklist30Page = lazy(() => import("./pages/materials/Checklist30Page"));
 const PlaudGuidePage = lazy(() => import("./pages/materials/PlaudGuidePage"));
 
 const LegalPage = lazy(() => import("./pages/legal/LegalPage"));
-const PricingPage = lazy(() => import("./pages/PricingPage"));
 const About = lazy(() => import("./pages/About"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -93,14 +101,14 @@ const AppContent = () => {
           <Route path="/start/" element={<StartPage />} />
           
           {/* Services */}
-          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services" element={<CommercialSolutions />} />
           <Route path="/services/automation" element={<AutomationHubPage />} />
           <Route path="/services/neurotenderolog" element={<TenderServicePage />} />
           <Route path="/services/neurotenderolog/" element={<TenderServicePage />} />
           {/* Legacy slugs → 301-style redirects to current service pages */}
           <Route path="/services/diagnostics" element={<Navigate to="/services/digital-audit" replace />} />
           <Route path="/services/architecture" element={<Navigate to="/services/digital-solution-design" replace />} />
-          <Route path="/services/support" element={<Navigate to="/services/implementation-support" replace />} />
+          <Route path="/services/support" element={<Navigate to="/faq#technical-obligations" replace />} />
           <Route path="/services/add-ons" element={<Navigate to="/services" replace />} />
           {/* Demo legacy slugs */}
           <Route path="/demo" element={<Navigate to="/services" replace />} />
@@ -112,11 +120,23 @@ const AppContent = () => {
           <Route path="/services/cifrovizaciya-biznesa/" element={<PillarPage />} />
           <Route path="/services/vnedrenie-ii-v-biznes" element={<PillarPage />} />
           <Route path="/services/vnedrenie-ii-v-biznes/" element={<PillarPage />} />
+          <Route path="/services/owner-digital-session" element={<Navigate to="/start" replace />} />
+          <Route path="/services/digital-development-strategy" element={<Navigate to="/expert" replace />} />
+          <Route path="/services/implementation-support" element={<Navigate to="/services/automation" replace />} />
+          <Route path="/services/digital-tools-support" element={<Navigate to="/faq#technical-obligations" replace />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           
           {/* Products */}
-          <Route path="/products" element={<Navigate to="/services" replace />} />
-          <Route path="/products/voice-bot" element={<Navigate to="/services/digital-solution-design" replace />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/neurotenderolog" element={<Navigate to="/services/neurotenderolog" replace />} />
+          <Route path="/products/knowledge-management" element={<KnowledgePage />} />
+          <Route path="/mini-agents" element={<MiniAgentsPage />} />
+          <Route path="/mini-agents/:slug" element={<MiniAgentDetailPage />} />
+          <Route path="/ai-agents" element={<AgentsPage />} />
+          <Route path="/ai-agents/hermes" element={<HermesPage />} />
+          <Route path="/ai-agents/custom" element={<CustomAgentsPage />} />
+          <Route path="/expert" element={<ExpertPage />} />
+          <Route path="/products/voice-bot" element={<Navigate to="/mini-agents/customer-voice-requests" replace />} />
           <Route path="/products/doc-search" element={<Navigate to="/cases/production-doc-search" replace />} />
           
           {/* Cases */}
@@ -140,7 +160,7 @@ const AppContent = () => {
           <Route path="/approach/contacts" element={<Navigate to="/about" replace />} />
           
           {/* Pricing */}
-          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/pricing" element={<CommercialPricingPage />} />
           
           {/* Legal */}
           <Route path="/legal" element={<Navigate to="/legal/privacy-policy/" replace />} />

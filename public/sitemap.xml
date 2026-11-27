@@ -36,16 +36,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/services/owner-digital-session</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/services/digital-development-strategy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://aleksamois.ru/services/digital-audit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -56,17 +46,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aleksamois.ru/services/implementation-support</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://aleksamois.ru/services/digital-solution-design</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://aleksamois.ru/services/digital-tools-support</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -236,4 +216,26 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url><loc>https://aleksamois.ru/products</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/products/knowledge-management</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/ai-agents</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/ai-agents/hermes</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/ai-agents/custom</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/expert</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/max-files</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/max-accounting-reconciliation</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/excel-deadlines</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/employee-permits</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/fleet-docs-maintenance</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/plaud-meetings</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/field-trip-reports</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/chat-tasks</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/employee-messages</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/website-crm-leads</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/customer-voice-requests</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/bank-cashflow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/construction-purchase-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/management-dashboards</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aleksamois.ru/mini-agents/market-price-analyst</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
