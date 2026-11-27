@@ -154,3 +154,15 @@
 /* Restore brand accent priority over homepage graphite overrides. */
 #home-metrics .font-iriska.text-accent,#home-start h2 .font-iriska,#home-process h2 .font-iriska,#home-cases h2 .font-iriska,#home-partners h2 .font-iriska,#home-testimonials .font-iriska.text-accent,#home-testimonials .section-title .font-semibold,#home-cases a .brand-large-number,#home-metrics .grid>div .font-iriska.text-accent{color:#4CBBD6!important}
 .nr-commercial.nr-home-commerce .nr-card-bottom strong{color:#4CBBD6!important}
+
+/* Solutions route only: approved brand color accents, existing geometry preserved. */
+.nr-commercial.nr-solutions .nr-hero-panel{background:#4CBBD6}
+.nr-commercial.nr-solutions .nr-hero-panel .nr-cta{background:#07536A;color:#FFFFFF}
+.nr-commercial.nr-solutions .nr-hero-panel .nr-cta:hover{background:#212121}
+.nr-commercial.nr-solutions .nr-dir-0{background:#F2F2F2}
+.nr-commercial.nr-solutions .nr-dir-1{background:#07536A;color:#FFFFFF}
+.nr-commercial.nr-solutions .nr-dir-1 h3,.nr-commercial.nr-solutions .nr-dir-1 p,.nr-commercial.nr-solutions .nr-dir-1 strong{color:#FFFFFF!important}
+.nr-commercial.nr-solutions .nr-dir-2{background:#B3B3B3}
+.nr-commercial.nr-solutions .nr-dir-3{background:#F2F2F2}
+.nr-commercial.nr-solutions .nr-dir:not(.nr-dir-1)>svg:first-child,.nr-commercial.nr-solutions .nr-dir:not(.nr-dir-1) .nr-dir-arrow,.nr-commercial.nr-solutions .nr-text-link{color:#07536A}
+.nr-commercial.nr-solutions .nr-dir-1>svg:first-child,.nr-commercial.nr-solutions .nr-dir-1 .nr-dir-arrow{color:#FFFFFF}
