@@ -70,7 +70,7 @@ jobs:
       - name: Install Chromium
         id: chromium
         if: ${{ !cancelled() && steps.playwright.outcome == 'success' }}
-        run: npx --no-install playwright install --with-deps chromium
+        run: npx --no-install playwright install chromium
       - name: Start production preview
         id: preview
         if: ${{ !cancelled() && steps.chromium.outcome == 'success' }}
