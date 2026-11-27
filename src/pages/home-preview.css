@@ -1,35 +1,71 @@
-/* Experimental route only. Existing live homepage is untouched. */
-.home-composition-preview{--preview-blue:#4CBBD6;--preview-deep:#07536A;--preview-ink:#212121;--preview-gray:#F2F2F2;color:var(--preview-ink)}
+/* Experimental route only. Revision 2: approved bright-blue identity. */
+.home-composition-preview{--preview-blue:#4CBBD6;--preview-ink:#212121;--preview-gray:#F2F2F2;color:var(--preview-ink)}
 .home-composition-preview .preview-notice{max-width:1200px;margin:0 auto;padding:6rem 24px 0;font-size:13px;color:#07536A}
 .home-composition-preview .preview-notice a{text-decoration:underline}
 .home-composition-preview #brand-hero{padding-top:16px}
-.home-composition-preview #brand-hero [data-brand-panel]{background:#4CBBD6}
+.home-composition-preview #brand-hero [data-brand-panel]{background:var(--preview-blue)}
 .home-composition-preview :is(#home-metrics,#home-start,#home-cases,#home-partners,#home-testimonials){padding-block:56px}
 .home-composition-preview :is(#home-metrics,#home-cases,#home-partners,#home-testimonials)>.container{max-width:1280px}
 .home-composition-preview #home-metrics .grid>div.grid{background:transparent;box-shadow:none;gap:20px;overflow:visible;border-radius:0}
-.home-composition-preview #home-metrics .grid>div.grid>div:not(:last-child){background:transparent;box-shadow:none;border-bottom:1px solid #D9D9D9;padding:14px 0}
-.home-composition-preview #home-metrics .grid>div.grid>div:last-child{border-radius:24px;padding:24px;grid-column:1/-1}
-.home-composition-preview #home-metrics .font-iriska.text-accent,.home-composition-preview #home-metrics .grid>div.bg-\\[\\#F2F2F2\\] .font-iriska.text-accent,.home-composition-preview :is(#home-start,#home-process,#home-cases,#home-partners) h2 .font-iriska,.home-composition-preview #home-testimonials .font-iriska,.home-composition-preview #home-cases a .font-bold.text-accent{color:#4CBBD6!important}
-.home-composition-preview #home-start .preview-consultation .font-iriska{color:#4CBBD6!important}
-.home-composition-preview .nr-home-commerce h2 em{font-family:Iriska,cursive;font-style:italic;font-weight:400;color:#4CBBD6}
-.home-composition-preview .nr-home-commerce .nr-dir,.home-composition-preview .nr-home-commerce .nr-mini-card{box-shadow:none}
-.home-composition-preview .nr-home-commerce .nr-dir-0{background:#F2F2F2}
-.home-composition-preview .nr-home-commerce .nr-dir-1{background:#07536A;color:white}
-.home-composition-preview .nr-home-commerce .nr-dir-1 :is(h3,p,strong),.home-composition-preview .nr-home-commerce .nr-dir-1>svg{color:white!important}
-.home-composition-preview .nr-home-commerce .nr-dir-2,.home-composition-preview .nr-home-commerce .nr-dir-3{grid-column:span 6;min-height:0;background:transparent;border:0;border-bottom:1px solid #D9D9D9;border-radius:0;padding:20px 0}
+.home-composition-preview #home-metrics .grid>div.grid>div:not(:last-child){background:transparent!important;box-shadow:none;border-bottom:1px solid #D9D9D9;padding:14px 0}
+.home-composition-preview #home-metrics .grid>div.grid>div:last-child{border-radius:24px;padding:24px;grid-column:1/-1;background:var(--preview-blue);color:var(--preview-ink)}
+.home-composition-preview #home-metrics .grid>div.grid>div:last-child p{color:var(--preview-ink)!important}
+.home-composition-preview.home-composition-preview #home-metrics .font-iriska.text-accent,
+.home-composition-preview.home-composition-preview #home-metrics .grid>div.grid .font-iriska.text-accent,
+.home-composition-preview.home-composition-preview :is(#home-start,#home-cases,#home-partners) h2 .font-iriska,
+.home-composition-preview.home-composition-preview #home-testimonials .font-iriska,
+.home-composition-preview.home-composition-preview #home-start .preview-consultation .font-iriska,
+.home-composition-preview .nr-commercial.nr-home-commerce h2 em,
+.home-composition-preview.home-composition-preview #home-cases a .font-bold.text-accent{color:var(--preview-blue)!important;-webkit-text-stroke:.35px #3D3D3D;paint-order:stroke fill}
+.home-composition-preview.home-composition-preview #home-metrics .font-iriska.text-accent{-webkit-text-stroke:1px #3D3D3D}
+.home-composition-preview .nr-commercial.nr-home-commerce h2 em{font-family:Iriska,cursive;font-style:italic;font-weight:400}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir,.home-composition-preview .nr-commercial.nr-home-commerce .nr-mini-card{box-shadow:none}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-0{background:#F2F2F2}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-1{background:var(--preview-blue);color:var(--preview-ink)}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-1 :is(h3,p,strong),.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-1>svg,.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-1 .nr-dir-arrow{color:var(--preview-ink)!important}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-2,.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-3{grid-column:span 6;min-height:0;background:transparent;border:0;border-bottom:1px solid #D9D9D9;border-radius:0;padding:20px 0}
 .home-composition-preview .nr-home-commerce .nr-dir-2 .nr-dir-arrow,.home-composition-preview .nr-home-commerce .nr-dir-3 .nr-dir-arrow{right:0}
-.home-composition-preview .nr-home-commerce #commercial-directions+.nr-section{background:#F2F2F2;border-radius:28px;width:calc(100% - 32px);padding-block:32px;margin-bottom:40px}
-.home-composition-preview .nr-home-commerce #commercial-directions+.nr-section .nr-mini-grid{grid-template-columns:1fr 1fr;gap:0 28px}
-.home-composition-preview .nr-home-commerce #commercial-directions+.nr-section .nr-mini-card{background:transparent;border:0;border-bottom:1px solid #D9D9D9;border-radius:0;padding:20px 0}
+.home-composition-preview .nr-commercial.nr-home-commerce #commercial-directions+.nr-section{background:#F2F2F2;border-radius:24px;width:min(calc(100% - 32px),1200px);max-width:1200px;margin-inline:auto;padding:28px clamp(16px,3vw,32px);margin-bottom:40px;box-sizing:border-box}
+.home-composition-preview .nr-commercial.nr-home-commerce #commercial-directions+.nr-section .nr-mini-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+.home-composition-preview .nr-commercial.nr-home-commerce #commercial-directions+.nr-section .nr-mini-card{background:transparent;border:0;border-bottom:1px solid #D9D9D9;border-radius:0;padding:16px 0;min-height:0}
 .home-composition-preview .nr-home-commerce .nr-mini-card .nr-card-icon{background:transparent}
-.home-composition-preview .nr-home-commerce .nr-card-bottom strong{color:#4CBBD6}
+.home-composition-preview .nr-commercial.nr-home-commerce .nr-card-bottom strong{color:var(--preview-ink)!important}
 .home-composition-preview #home-start{display:grid;grid-template-columns:5fr 7fr;gap:24px 48px;align-items:start}
 .home-composition-preview #home-start>.max-w-3xl{margin:0}
-.home-composition-preview #home-start .preview-consultation{grid-column:2;grid-row:1 / span 2;box-shadow:none}
+.home-composition-preview #home-start .preview-consultation{grid-column:2;grid-row:1 / span 2;box-shadow:none;background:#212121;color:white;--foreground:0 0% 100%;--muted-foreground:0 0% 90%;border:0}
+.home-composition-preview #home-start .preview-consultation :is(h3,p){color:#FFFFFF!important}
+.home-composition-preview #home-start .preview-consultation h3{font-size:clamp(24px,2.5vw,32px)}
+.home-composition-preview #home-start .preview-consultation .font-iriska{font-size:clamp(40px,5vw,64px);-webkit-text-stroke:0}
+.home-composition-preview #home-start .preview-consultation svg{color:var(--preview-blue)!important}
+.home-composition-preview #home-start .preview-consultation button{background:var(--preview-blue)!important;color:#212121!important}
 .home-composition-preview #home-start .preview-start-links{grid-column:1;margin:0;text-align:left}
 .home-composition-preview #home-start .preview-start-links a{justify-content:flex-start}
-.home-composition-preview #home-process .rounded-\\[32px\\]{box-shadow:none}
+.home-composition-preview .preview-process{background:#212121;color:#FFFFFF;padding:48px 16px}
+.home-composition-preview .preview-process-inner{max-width:1200px;margin:0 auto}
+.home-composition-preview .preview-process-eyebrow{color:var(--preview-blue);font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.home-composition-preview .preview-process h2{color:#FFFFFF}
+.home-composition-preview .preview-process h2 .font-iriska{color:var(--preview-blue)!important}
+.home-composition-preview .preview-process-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:32px 0}
+.home-composition-preview .preview-process-step{border-top:1px solid #707070;padding-top:16px}
+.home-composition-preview .preview-process-number{font-size:32px;font-weight:700;color:var(--preview-blue)}
+.home-composition-preview .preview-process-step h3{font-size:20px;font-weight:600;margin:8px 0;color:#FFFFFF}
+.home-composition-preview .preview-process-step p,.home-composition-preview .preview-process-summary{color:#FFFFFF;font-size:16px;line-height:1.6}
+.home-composition-preview .preview-process-summary{max-width:85ch}
 .home-composition-preview #home-cases a{box-shadow:none}
+.home-composition-preview.home-composition-preview #home-cases a[href="/cases/aktransservice"]{background:var(--preview-blue);color:var(--preview-ink)}
+.home-composition-preview.home-composition-preview #home-cases a[href="/cases/aktransservice"] :is(p,h3,span,.text-accent){color:var(--preview-ink)!important}
+.home-composition-preview.home-composition-preview #home-cases a[href="/cases/aktransservice"] .font-bold.text-accent{color:var(--preview-ink)!important;-webkit-text-stroke:0}
 .home-composition-preview #home-cases a[href="/cases/kraypotrebsoyuz"]{background:white;border:0;border-bottom:1px solid #D9D9D9;border-radius:0}
 .home-composition-preview #home-cases a[href="/cases/cargo-express"]{border:0}
-@media(max-width:767px){.home-composition-preview .preview-notice{padding-top:4.5rem}.home-composition-preview :is(#home-metrics,#home-start,#home-cases,#home-partners,#home-testimonials){padding-block:32px}.home-composition-preview #home-start{display:flex;flex-direction:column;gap:20px}.home-composition-preview #home-start .preview-consultation{width:100%}.home-composition-preview .nr-home-commerce .nr-dir-2,.home-composition-preview .nr-home-commerce .nr-dir-3{grid-column:span 12}.home-composition-preview .nr-home-commerce #commercial-directions+.nr-section .nr-mini-grid{grid-template-columns:1fr}.home-composition-preview #home-metrics .grid>div.grid{gap:10px}}
+@media(max-width:767px){
+  .home-composition-preview .preview-notice{padding-top:4.5rem}
+  .home-composition-preview :is(#home-metrics,#home-start,#home-cases,#home-partners,#home-testimonials){padding-block:32px}
+  .home-composition-preview #home-start{display:flex;flex-direction:column;gap:20px}
+  .home-composition-preview #home-start .preview-consultation{width:100%}
+  .home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-2,.home-composition-preview .nr-commercial.nr-home-commerce .nr-dir-3{grid-column:span 12}
+  .home-composition-preview .nr-commercial.nr-home-commerce #commercial-directions+.nr-section .nr-mini-grid{grid-template-columns:minmax(0,1fr)}
+  .home-composition-preview #home-metrics .grid>div.grid{gap:10px}
+  .home-composition-preview .preview-process{padding:32px 16px}
+  .home-composition-preview .preview-process-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+}
+@media(max-width:360px){.home-composition-preview .preview-process-steps{grid-template-columns:minmax(0,1fr)}}
