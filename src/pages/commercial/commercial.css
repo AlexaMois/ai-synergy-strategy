@@ -1,4 +1,4 @@
-.nr-commercial{--nr-dark:#212121;--nr-mint:#DCF1F1;--nr-lavender:#E5E2F4;--nr-turquoise:#4CBAD6;--nr-ice:#EAF8FC;color:var(--nr-dark)}
+.nr-commercial{--nr-dark:#212121;--nr-mint:#DCF1F1;--nr-lavender:#E0E3E6;--nr-turquoise:#4CBAD6;--nr-ice:#EAF8FC;color:var(--nr-dark)}
 .nr-commercial .nr-wrap{width:min(100%,1280px);margin-inline:auto;padding-inline:clamp(16px,3vw,40px);box-sizing:border-box}
 .nr-commercial .nr-section{padding-block:clamp(38px,5vw,76px)}
 .nr-commercial .nr-hero{padding-block:18px 30px}
@@ -27,7 +27,7 @@
 .nr-commercial .nr-dir-arrow{position:absolute;top:22px;right:24px}.nr-commercial .nr-dir strong{display:block;font-size:17px}
 .nr-commercial .nr-mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .nr-commercial .nr-mini-card{background:#fff;border:1px solid #DDE3EA;border-radius:24px;padding:24px;display:flex;flex-direction:column;min-width:0;color:#212121;text-decoration:none;transition:transform .18s}
-.nr-commercial .nr-mini-card:nth-child(4n+1){background:#DCF1F1}.nr-commercial .nr-mini-card:nth-child(4n+3){background:#E5E2F4}
+.nr-commercial .nr-mini-card:nth-child(4n+1){background:#DCF1F1}.nr-commercial .nr-mini-card:nth-child(4n+3){background:#E0E3E6}
 .nr-commercial .nr-card-icon{width:50px;height:50px;border-radius:16px;background:#fff;display:grid;place-items:center;color:#212121;margin-bottom:18px}
 .nr-commercial .nr-mini-card h3{font-size:21px!important;line-height:1.25!important;margin-bottom:10px!important}
 .nr-commercial .nr-card-bottom{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:auto;padding-top:14px}
