@@ -555,4 +555,3 @@ export const handleRequest = async ({ method = 'POST', path = '', rawBody = '', 
 
   return reply({ ok: true, recordId })
 }
-
