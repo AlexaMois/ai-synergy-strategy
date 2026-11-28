@@ -27,7 +27,19 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
-        if(path!=="/services/digital-tools-program"){
+        if(["/start","/services/automation","/faq"].includes(path)){
+          const faq=page.locator(".bt-faq").first();
+          await faq.waitFor({state:"visible"});
+          const trigger=faq.locator(".bt-faq-trigger").first();
+          const style=await faq.evaluate(el=>{const h=el.querySelector(".bt-faq-heading"),t=el.querySelector(".bt-faq-trigger"),i=el.querySelector(".bt-faq-item"),l=el.querySelector(".bt-faq-layout");return {heading:getComputedStyle(h).fontSize,question:getComputedStyle(t).fontSize,radius:getComputedStyle(i).borderRadius,border:getComputedStyle(i).borderBottomWidth,columns:getComputedStyle(l).gridTemplateColumns.split(" ").length};});
+          assert.equal(style.heading,viewport.width>=768?"28px":"24px","FAQ heading "+path);
+          assert.equal(style.question,"16px","FAQ question "+path);
+          assert.equal(style.radius,"0px");assert.equal(style.border,"1px");assert.equal(style.columns,viewport.width>=768?2:1);
+          await trigger.click();assert.equal(await trigger.getAttribute("data-state"),"open");await trigger.click();assert.equal(await trigger.getAttribute("data-state"),"closed");
+          await page.evaluate(()=>window.scrollTo({top:0,left:0,behavior:"instant"}));
+          await page.waitForFunction(()=>window.scrollY===0);
+        }
+        {
           const type=await page.evaluate(()=>{const root=document.querySelector(".bt-site,#start-brand-page,#home-black-titanium");return root?[...root.querySelectorAll("h1,h2,h3")].filter(e=>e.getClientRects().length>0).map(e=>({tag:e.tagName,text:e.textContent.slice(0,100),size:parseFloat(getComputedStyle(e).fontSize),contact:!!e.closest("#contact")&&e.classList.contains("section-title")})):[];});
           const desktop=viewport.width>=768;const expected={H1:desktop?36:28,H2:desktop?28:24,H3:desktop?22:20};
           for(const h of type)assert.equal(h.size,h.contact?(desktop?26:22):expected[h.tag],"Unified heading "+path+" "+JSON.stringify(h));

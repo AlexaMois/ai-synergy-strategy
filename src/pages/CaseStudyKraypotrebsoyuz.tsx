@@ -81,7 +81,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                   Крайпотребсоюз: архитектура цифрового развития бизнеса
                 </h1>
                 <dl className="mt-8 rounded-[24px] bg-card/90 p-5 shadow-card ring-1 ring-foreground/5 md:p-6">
-                  <dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">1,3 млн ₽</dd>
+                  <dd className="bt-display-number text-4xl md:text-5xl font-bold text-foreground mb-2">1,3 млн ₽</dd>
                   <dt className="text-sm text-foreground/75 leading-relaxed">экономия капитальных затрат<br />(отказ от серверного оборудования)</dt>
                 </dl>
               </div>

@@ -249,7 +249,7 @@ const Testimonials = () => {
   }
 
   return (
-    <section className="py-12 md:py-16 bg-background" id="testimonials">
+    <section className="py-8 bg-background" id="testimonials">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(reviewSchema)}
@@ -296,24 +296,24 @@ const Testimonials = () => {
             setApi={setApi}
             className="w-full touch-pan-y"
           >
-            <CarouselContent className="-ml-4 cursor-grab active:cursor-grabbing">
+            <CarouselContent className="-ml-3 cursor-grab active:cursor-grabbing">
               {shuffledReviews.map((review) => (
                 <CarouselItem
                   key={review.id}
-                  className="basis-1/2 sm:basis-1/3 lg:basis-1/4 pl-4"
+                  className="basis-1/2 sm:basis-1/3 lg:basis-1/4 pl-3"
                 >
                   <div
-                    className="relative group cursor-pointer w-full h-72 md:h-80 transition-all duration-300 hover:scale-105 active:scale-95 hover:z-10 select-none"
+                    className="relative group cursor-pointer w-full h-[220px] transition-all duration-300 active:scale-95 hover:z-10 select-none"
                     onClick={() => setSelectedImage(review.image)}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === 'Enter' && setSelectedImage(review.image)}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelectedImage(review.image))}
                   >
                     <div className="relative w-full h-full overflow-hidden rounded-xl bg-card shadow-soft transition-all duration-300 group-hover:shadow-elevated group-active:shadow-soft">
                       <img
                         src={review.image}
                         alt={review.alt}
-                        className="w-full h-full object-cover object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-active:grayscale-0 group-active:opacity-100 pointer-events-none"
+                        className="w-full h-full object-contain object-top grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-focus-visible:grayscale-0 group-focus-visible:opacity-100 group-active:grayscale-0 group-active:opacity-100 pointer-events-none"
                         loading="lazy"
                         decoding="async"
                         draggable={false}

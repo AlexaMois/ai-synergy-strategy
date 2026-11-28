@@ -274,11 +274,11 @@ const FAQPage = () => {
         <div className="container mx-auto px-4">
 
           {/* Hero Section */}
-          <section className="text-center mb-12 mt-8">
+          <section className="text-left mb-8 mt-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
               <span className="font-bold">Частые вопросы</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl">
               Ответы на вопросы о продуктах, ИИ-агентах, лицензиях, автоматизации, консультациях, проверке бизнес-процесса и обучении.
             </p>
           </section>
@@ -340,20 +340,23 @@ const FAQPage = () => {
           )}
 
           {/* FAQ Accordion */}
-          <section className="max-w-3xl mx-auto mb-16">
+          <section className="bt-faq bt-faq-results mb-16">
+            <div className="bt-faq-layout">
+              <h2 className="bt-faq-heading">{isSearching ? "Результаты поиска" : activeData?.title}</h2>
+              <div className="bt-faq-body">
             {isSearching ? (
               // Search results
               filteredQuestions && filteredQuestions.length > 0 && (
-                <Accordion type="single" collapsible className="space-y-3">
+                <Accordion type="single" collapsible className="bt-faq-list">
                   {filteredQuestions.map((item, index) => {
                     const Icon = item.category.icon;
                     return (
                       <AccordionItem
                         key={`search-${index}`}
                         value={`item-${index}`}
-                        className="bg-card border border-border rounded-lg px-6 overflow-hidden"
+                        className="bt-faq-item"
                       >
-                        <AccordionTrigger className="text-left hover:no-underline py-5">
+                        <AccordionTrigger className="bt-faq-trigger">
                           <div className="flex flex-col gap-1 pr-4">
                             <span className="font-medium text-foreground">
                               {item.question.question}
@@ -364,7 +367,7 @@ const FAQPage = () => {
                             </span>
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground pb-5">
+                        <AccordionContent className="bt-faq-answer">
                           <p>{item.question.answer}</p>
                           {item.question.links && item.question.links.length > 0 && (
                             <div className="mt-3 flex flex-wrap gap-3">
@@ -384,19 +387,19 @@ const FAQPage = () => {
             ) : (
               // Category view
               activeData && (
-                <Accordion type="single" collapsible className="space-y-3">
+                <Accordion type="single" collapsible className="bt-faq-list">
                   {activeData.questions.map((item, index) => (
                     <AccordionItem
                       key={`${activeCategory}-${index}`}
                       value={`item-${index}`}
-                      className="bg-card border border-border rounded-lg px-6 overflow-hidden"
+                      className="bt-faq-item"
                     >
-                      <AccordionTrigger className="text-left hover:no-underline py-5">
+                      <AccordionTrigger className="bt-faq-trigger">
                         <span className="font-medium text-foreground pr-4">
                           {item.question}
                         </span>
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-5">
+                      <AccordionContent className="bt-faq-answer">
                         <p>{item.answer}</p>
                         {item.links && item.links.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-3">
@@ -413,6 +416,8 @@ const FAQPage = () => {
                 </Accordion>
               )
             )}
+              </div>
+            </div>
           </section>
 
           {/* CTA Section */}

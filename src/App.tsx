@@ -87,7 +87,7 @@ const usePrefetchRoutes = () => {
 
 const blackTitaniumTemplate = (pathname: string) => {
   const path = pathname.replace(/\/+$/, "") || "/";
-  if (path === "/services/digital-tools-program") return "";
+  if (path === "/services/digital-tools-program") return "commercial";
   if (["/services", "/products", "/mini-agents", "/ai-agents"].includes(path)) return "catalog";
   if (path === "/expert" || path === "/about") return "expert";
   if (path === "/pricing") return "pricing";

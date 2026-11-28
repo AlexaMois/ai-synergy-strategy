@@ -351,15 +351,14 @@ section[aria-labelledby="tender-evidence"] {
   h1.text-white, h2.text-white, h3.text-white, h4.text-white, h5.text-white, h6.text-white,
   h1.text-background, h2.text-background, h3.text-background, h4.text-background, h5.text-background, h6.text-background,
   h1.text-primary-foreground, h2.text-primary-foreground, h3.text-primary-foreground, h4.text-primary-foreground, h5.text-primary-foreground, h6.text-primary-foreground,
-  h1.text-accent-foreground, h2.text-accent-foreground, h3.text-accent-foreground, h4.text-accent-foreground, h5.text-accent-foreground, h6.text-accent-foreground {
+  :is(h1,h2,h3,h4,h5,h6)[class~="text-accent-foreground"] {
     color: hsl(var(--background)) !important;
   }
   h1.text-primary-foreground, h2.text-primary-foreground, h3.text-primary-foreground,
   h4.text-primary-foreground, h5.text-primary-foreground, h6.text-primary-foreground {
     color: hsl(var(--primary-foreground)) !important;
   }
-  h1.text-accent-foreground, h2.text-accent-foreground, h3.text-accent-foreground,
-  h4.text-accent-foreground, h5.text-accent-foreground, h6.text-accent-foreground {
+  :is(h1,h2,h3,h4,h5,h6)[class~="text-accent-foreground"] {
     color: hsl(var(--accent-foreground)) !important;
   }
   /* Inner spans with explicit light colors must also win over h1-h6 cascade */

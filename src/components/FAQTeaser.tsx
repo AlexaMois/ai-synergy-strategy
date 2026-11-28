@@ -14,38 +14,42 @@ interface FAQItem {
 interface FAQTeaserProps {
   items: FAQItem[];
   title?: string;
+  showAllLink?: boolean;
+  embedded?: boolean;
 }
 
-const FAQTeaser = ({ items, title = "Частые вопросы" }: FAQTeaserProps) => {
+const FAQTeaser = ({ items, title = "Частые вопросы", showAllLink = true, embedded = false }: FAQTeaserProps) => {
   return (
-    <section className="py-10 md:py-16 bg-background">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-center leading-[1.05]">
+    <section className={`bt-faq ${embedded ? "bt-faq-embedded" : ""}`}>
+      <div className="bt-faq-layout">
+        <h2 className="bt-faq-heading">
           {title}
         </h2>
-        <Accordion type="single" collapsible className="space-y-2">
+        <div className="bt-faq-body">
+        <Accordion type="single" collapsible className="bt-faq-list">
           {items.map((item, i) => (
             <AccordionItem
               key={i}
               value={`item-${i}`}
-              className="border border-border rounded-xl px-4 bg-card"
+              className="bt-faq-item"
             >
-              <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+              <AccordionTrigger className="bt-faq-trigger">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
+              <AccordionContent className="bt-faq-answer whitespace-pre-line">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="text-center mt-6">
+        {showAllLink && <div className="bt-faq-more">
           <Link
             to="/faq"
-            className="text-primary hover:text-primary/80 font-medium transition-colors"
+            className="bt-faq-link"
           >
             Смотреть все вопросы →
           </Link>
+        </div>}
         </div>
       </div>
     </section>

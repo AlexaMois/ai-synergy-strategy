@@ -33,12 +33,12 @@ const MaterialsPage = () => {
         
         <main>
           {/* Hero Section */}
-          <section className="py-10 md:py-16 lg:py-20">
-            <div className="container mx-auto px-4 max-w-5xl text-center">
+          <section className="py-6 md:py-8">
+            <div className="container mx-auto px-4 max-w-7xl text-left">
               <h1 className="text-[28px] sm:text-[32px] md:text-[40px] font-semibold text-foreground leading-tight mb-6">
                 Материалы
               </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-3xl">
                 Чек-листы, гайды и статьи для самостоятельной оценки AI-готовности компании
               </p>
             </div>
