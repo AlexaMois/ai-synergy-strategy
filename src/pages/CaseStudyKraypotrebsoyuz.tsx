@@ -376,7 +376,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                 <p className="text-4xl font-bold text-primary-dark mb-2">
                   ~<AnimatedNumber value={250} className="text-primary" /> тыс ₽
                 </p>
-                <p className="text-sm text-foreground/75">инвестиции во внедрение и сопровождение</p>
+                <p className="text-sm text-foreground/75">инвестиции во внедрение и сопровождение в рамках исторического проекта</p>
               </div>
               
               <div className="border-t border-foreground/15 pt-6 text-center">
@@ -385,7 +385,7 @@ const CaseStudyKraypotrebsoyuz = () => {
                   ~<AnimatedNumber value={1.3} decimals={1} className="text-primary" /> млн ₽
                 </p>
                 <p className="text-sm text-foreground font-medium">экономия капитальных затрат</p>
-                <p className="text-xs text-foreground/75 mt-1">(отказ от серверного оборудования)</p>
+                <p className="text-xs text-foreground/75 mt-1">Обоснованный выбор архитектуры позволил сократить капитальные расходы на серверное оборудование.</p>
               </div>
             </div>
           </div>

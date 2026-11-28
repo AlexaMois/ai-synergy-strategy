@@ -471,9 +471,7 @@ const PlaudGuidePage = () => {
             <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-8 items-center px-6 md:px-12 lg:px-16 py-12 md:py-20">
                 <div className="md:col-span-7">
-                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
-                    Инструкция PLAUD AI
-                  </p>
+                  
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight text-foreground mb-6">
                     PLAUD Note на русском:{" "}
                     <span className="font-iriska font-normal italic text-accent">

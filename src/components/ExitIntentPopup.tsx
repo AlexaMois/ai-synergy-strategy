@@ -33,7 +33,7 @@ const isInterfaceIdle = () => {
   const active = document.activeElement;
   if (active?.matches("input, textarea, select, [contenteditable='true']")) return false;
   if (document.querySelector("form:focus-within")) return false;
-  if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open']")) return false;
+  if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open'], dialog[open], [data-bt-menu-open='true']")) return false;
   if (document.getElementById("cookie-consent-title") || document.title.startsWith("404")) return false;
   return true;
 };
@@ -168,7 +168,7 @@ const ExitIntentPopup = () => {
       <DialogContent
         aria-describedby="exit-popup-description"
         className={[
-          "w-[calc(100vw-32px)] max-w-[520px] max-h-[90dvh]",
+          "bt-global-ui bt-dialog-surface bt-exit-dialog w-[calc(100vw-32px)] max-w-[520px] max-h-[90dvh]",
           "overflow-x-hidden overflow-y-auto overscroll-contain",
           "rounded-[28px] border border-border/60 bg-background p-0 shadow-elevated",
           "[&>button]:hidden",
@@ -183,7 +183,7 @@ const ExitIntentPopup = () => {
           style={isMobile ? { paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" } : undefined}
         >
           <div className="mb-5 flex min-w-0 items-center justify-between gap-3">
-            <span className="inline-flex min-w-0 items-center gap-2 rounded-full bg-accent/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-accent sm:px-3.5 sm:text-[11px]">
+            <span className="inline-flex min-w-0 items-center gap-2 rounded-full bg-accent/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-foreground sm:px-3.5 sm:text-[11px]">
               <span className="dot-soft-pulse shrink-0" aria-hidden="true" />
               Бесплатно · 7–10 минут
             </span>
@@ -201,8 +201,8 @@ const ExitIntentPopup = () => {
             <DialogTitle className="min-w-0 text-left font-golos text-[29px] font-bold leading-[1.11] tracking-[-0.035em] text-foreground sm:text-[36px]">
               Превратите рабочую задачу
               <span
-                className="mt-1 block max-w-full font-normal leading-[1.14] tracking-normal text-accent"
-                style={{ fontFamily: "Iriska, cursive", fontSize: "clamp(24px, 3.2vw, 32px)" }}
+                className="mt-1 block max-w-full font-normal leading-[1.14] tracking-normal text-foreground"
+                style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(24px, 3.2vw, 32px)" }}
               >
                 в понятный первый шаг
               </span>
@@ -222,7 +222,7 @@ const ExitIntentPopup = () => {
               "Возможность сохранить результат в PDF",
             ].map((item, index) => (
               <li key={item} className="flex min-w-0 items-center gap-3 py-2.5">
-                <span className="w-6 shrink-0 text-[11px] font-bold tabular-nums text-accent">
+                <span className="w-6 shrink-0 text-[11px] font-bold tabular-nums text-foreground">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="min-w-0 text-[13px] leading-[1.4] text-foreground/85 sm:text-[14px]">
@@ -241,7 +241,7 @@ const ExitIntentPopup = () => {
           <div className="flex min-w-0 flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-4">
             <PillButton
               onClick={handleCTA}
-              variant="turquoise"
+              variant="dark"
               size="md"
               className="w-full justify-between whitespace-nowrap sm:w-auto sm:shrink-0"
             >

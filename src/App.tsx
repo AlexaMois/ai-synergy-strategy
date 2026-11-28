@@ -91,7 +91,8 @@ const blackTitaniumTemplate = (pathname: string) => {
   if (["/services", "/products", "/mini-agents", "/ai-agents"].includes(path)) return "catalog";
   if (path === "/expert" || path === "/about") return "expert";
   if (path === "/pricing") return "pricing";
-  if (path === "/faq" || path === "/materials" || path.startsWith("/materials/")) return "information";
+  if (path === "/legal" || path.startsWith("/legal/")) return "legal";
+  if (path === "/faq" || path === "/materials" || path.startsWith("/materials/") || path === "/blog" || path.startsWith("/blog/")) return "information";
   if (path === "/cases" || path.startsWith("/cases/")) return "case";
   if (["/services/", "/products/", "/mini-agents/", "/ai-agents/"].some(prefix => path.startsWith(prefix))) return "commercial";
   return "";

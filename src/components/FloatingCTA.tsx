@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import PillButton from "@/components/PillButton";
 import { trackCTAClick, trackZakazatZvonok } from "@/utils/analytics";
 import { openCallbackModal } from "@/components/CallbackModal";
 
@@ -25,17 +24,16 @@ const FloatingCTA = () => {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-40 transition-all duration-300 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16 pointer-events-none"
+      className={`bt-global-ui fixed bottom-6 right-6 z-40 transition-all duration-300 ${
+        isVisible ? "opacity-100 translate-y-0" : "invisible opacity-0 translate-y-16 pointer-events-none"
       }`}
     >
-      <Button
-        className="h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl"
+      <PillButton variant="dark" size="md"
+        className="justify-between"
         onClick={handleClick}
       >
-        <Phone className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
-        <span className="hidden sm:inline">Заказать звонок</span>
-      </Button>
+        Заказать звонок
+      </PillButton>
     </div>
   );
 };

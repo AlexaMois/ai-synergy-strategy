@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import PhotoLightbox from "@/components/PhotoLightbox";
 
-import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import FAQTeaser from "@/components/FAQTeaser";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Quote, CheckCircle2 } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
@@ -21,6 +21,10 @@ const BlogPostImageCompact = ({ image, onClick }: { image: BlogImage; onClick?: 
       alt={image.alt}
       className="w-full rounded-xl shadow-soft cursor-pointer hover:shadow-card transition-shadow duration-300"
       onClick={onClick}
+      data-bt-gallery-trigger={onClick ? true : undefined}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={event => { if (onClick && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); onClick(); } }}
       loading="lazy"
     />
     <figcaption className="text-xs text-muted-foreground mt-2 text-center italic">
@@ -342,9 +346,7 @@ const BlogPost = () => {
                     <p className="text-muted-foreground mb-4">
                       Готовый шаблон для аудита вашего корпоративного ассистента — с примерами вопросов, эталонными ответами и таблицей интерпретации.
                     </p>
-                    <Link to="/materials/checklist-30">
-                      <Button size="lg">Открыть чек-лист</Button>
-                    </Link>
+                    <PillButton to="/materials/checklist-30" size="lg" variant="outline-dark">Открыть чек-лист</PillButton>
                   </div>
                 </div>
               </div>
@@ -363,7 +365,7 @@ const BlogPost = () => {
               <p className="text-lg text-muted-foreground mb-6">
                 Запросите аудит — разберём на примерах ваших документов
               </p>
-              <Button size="lg" onClick={() => {
+              <PillButton size="lg" variant="dark" onClick={() => {
                 trackCTAClick({ location: 'blog_post' });
                 const element = document.querySelector('#contact');
                 if (element) {
@@ -374,7 +376,7 @@ const BlogPost = () => {
                 }
               }}>
                 Запросить аудит ИИ-ассистента
-              </Button>
+              </PillButton>
             </div>
           </div>
         </div>

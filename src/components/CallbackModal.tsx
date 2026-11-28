@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -71,6 +71,7 @@ const CallbackModal = () => {
 
   useEffect(() => {
     const handler = (e: Event) => {
+      if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open'], dialog[open], [data-bt-menu-open='true']")) return;
       const detail = (e as CustomEvent).detail as { variant?: CallbackVariant } | undefined;
       const nextVariant: CallbackVariant = detail?.variant === "task" ? "task" : "callback";
       setVariant(nextVariant);
@@ -84,6 +85,26 @@ const CallbackModal = () => {
     window.addEventListener(CALLBACK_MODAL_EVENT, handler);
     return () => window.removeEventListener(CALLBACK_MODAL_EVENT, handler);
   }, [reset]);
+
+  useEffect(() => {
+    if (!open) return;
+    const viewport = window.visualViewport;
+    const update = () => {
+      document.documentElement.style.setProperty("--bt-visible-height", (viewport?.height ?? window.innerHeight) + "px");
+      document.documentElement.style.setProperty("--bt-visible-top", (viewport?.offsetTop ?? 0) + "px");
+    };
+    update();
+    viewport?.addEventListener("resize", update);
+    viewport?.addEventListener("scroll", update);
+    window.addEventListener("resize", update);
+    return () => {
+      viewport?.removeEventListener("resize", update);
+      viewport?.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      document.documentElement.style.removeProperty("--bt-visible-height");
+      document.documentElement.style.removeProperty("--bt-visible-top");
+    };
+  }, [open]);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -142,7 +163,7 @@ const CallbackModal = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[480px]">
+      <DialogContent className="bt-global-ui bt-dialog-surface bt-callback-dialog w-[calc(100vw-24px)] sm:max-w-[480px]">
         {isSubmitted ? (
           <div className="py-6 text-center">
             <DialogHeader>
@@ -222,9 +243,9 @@ const CallbackModal = () => {
                 </Label>
               </div>
               {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
-              <Button type="submit" className="w-full h-12" disabled={isSubmitting}>
+              <PillButton type="submit" variant="dark" className="w-full justify-between" disabled={isSubmitting}>
                 {isSubmitting ? "Отправка..." : submitLabel}
-              </Button>
+              </PillButton>
             </form>
           </>
         )}

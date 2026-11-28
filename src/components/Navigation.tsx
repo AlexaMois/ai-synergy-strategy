@@ -87,13 +87,31 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    if (!isMobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const trigger = document.activeElement as HTMLElement | null;
+    const drawer = document.getElementById("mobile-navigation");
+    document.body.style.overflow = "hidden";
+    const closeIfModal = () => {
+      if (document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open'], dialog[open]")) setIsMobileMenuOpen(false);
+    };
+    const observer = new MutationObserver(closeIfModal);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-state", "open"] });
+    const keys = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { event.preventDefault(); setIsMobileMenuOpen(false); return; }
+      if (event.key !== "Tab") return;
+      const items = [trigger, ...Array.from(drawer?.querySelectorAll<HTMLElement>("a[href],button:not([disabled])") ?? [])].filter((node): node is HTMLElement => !!node && node.getClientRects().length > 0 && getComputedStyle(node).visibility !== "hidden");
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", keys);
     return () => {
-      document.body.style.overflow = 'unset';
+      observer.disconnect();
+      document.removeEventListener("keydown", keys);
+      document.body.style.overflow = previousOverflow;
+      if (!document.querySelector("[role='dialog'][data-state='open'],dialog[open]")) trigger?.focus({ preventScroll: true });
     };
   }, [isMobileMenuOpen]);
   const navLinks: NavLink[] = [
@@ -255,7 +273,7 @@ const Navigation = () => {
                  pointer-events-auto touch-manipulation
                  w-10 h-10 flex items-center justify-center
                  bg-card rounded-full shadow-soft border border-border
-                 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu" aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation">
+                 transition-colors duration-200" onClick={() => { if (isMobileMenuOpen || !document.querySelector("[role='dialog'][data-state='open'], [role='alertdialog'][data-state='open'], dialog[open]")) setIsMobileMenuOpen(!isMobileMenuOpen); }} aria-label="Toggle menu" aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation">
       {isMobileMenuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
     </button>
 
@@ -263,7 +281,7 @@ const Navigation = () => {
     {isMobileMenuOpen && <div className="fixed inset-0 bg-foreground/20 z-[55] lg:hidden animate-fade-in" onClick={() => setIsMobileMenuOpen(false)} />}
 
     {/* Mobile Navigation Drawer */}
-    <div id="mobile-navigation" className={`fixed top-0 right-0 h-full w-[280px] bg-card shadow-card z-[60] lg:hidden transition-transform duration-300 ease-out border-l border-border ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full invisible"}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+    <div id="mobile-navigation" data-bt-menu-open={isMobileMenuOpen} className={`${isNeurostylist ? "" : "bt-global-ui"} fixed top-0 right-0 h-full w-[280px] bg-card shadow-card z-[60] lg:hidden transition-transform duration-300 ease-out border-l border-border ${isMobileMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible"}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       <div className="flex flex-col h-full pt-20 p-6 overflow-y-auto">
         <nav aria-label="Мобильное меню" className="space-y-1 flex-1">
           {navLinks.map((link, index) => {
@@ -286,11 +304,11 @@ const Navigation = () => {
                   </div>
                 </div>;
             }
-            return link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? "text-[#212121] bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+            return link.isScroll ? <a key={link.href} href={link.href} onClick={e => scrollToSection(e, link.href)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${activeSection === link.href ? (isNeurostylist ? "text-[#212121] bg-primary" : "text-white bg-[#212121]") : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
               animationDelay: `${index * 50}ms`
             }}>
                 {link.label}
-              </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? "text-[#212121] bg-primary" : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
+              </a> : <DisabledLink key={link.href} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-3 px-4 rounded-xl transition-colors duration-200 font-medium ${location.pathname === link.href || location.pathname.startsWith(link.href + '/') ? (isNeurostylist ? "text-[#212121] bg-primary" : "text-white bg-[#212121]") : "text-foreground hover:text-primary hover:bg-muted"} ${isMobileMenuOpen ? 'animate-fade-in-up' : ''}`} style={{
               animationDelay: `${index * 50}ms`
             }}>
                 {link.label}

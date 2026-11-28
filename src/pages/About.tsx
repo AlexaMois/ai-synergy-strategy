@@ -163,12 +163,12 @@ const About = () => {
 
   return <PageTransition>
       <Helmet>
-        <title>Александра Моисеева — инженер цифрового развития бизнеса</title>
-        <meta name="description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
+        <title>Александра Моисеева: инженер цифрового развития бизнеса</title>
+        <meta name="description" content="Александра Моисеева, основатель компании «НейроРешения», Красноярск. Проектирование и внедрение цифровых систем, автоматизация бизнеса и ИИ-агенты." />
         <meta name="keywords" content="Александра Моисеева, НейроРешения, инженер-архитектор, автоматизация бизнеса, ИИ-агенты, Красноярск" />
         <link rel="canonical" href="https://aleksamois.ru/about/" />
-        <meta property="og:title" content="Александра Моисеева — инженер цифрового развития бизнеса" />
-        <meta property="og:description" content="Александра Моисеева из Красноярска помогает бизнесу внедрять ИИ, автоматизировать процессы и выстраивать цифровое развитие компании." />
+        <meta property="og:title" content="Александра Моисеева: инженер цифрового развития бизнеса" />
+        <meta property="og:description" content="Александра Моисеева, основатель компании «НейроРешения», Красноярск. Проектирование и внедрение цифровых систем, автоматизация бизнеса и ИИ-агенты." />
         <meta property="og:url" content="https://aleksamois.ru/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:image" content="https://aleksamois.ru/og-aleksa-2026-v1.png" />
@@ -200,7 +200,7 @@ const About = () => {
                     Независимый инженер и архитектор цифрового развития бизнеса
                   </p>
                   <p className="text-base md:text-lg text-foreground/75 mb-10 max-w-xl leading-relaxed">
-                    Основатель компании «НейроРешения»<br />Помогаю собственникам превращать цифровизацию из набора идей и сервисов в понятную систему управления процессами
+                    Основатель компании «НейроРешения»<br />Проектирую и внедряю цифровые системы, которые сокращают потери, повышают производительность команды и возвращают собственнику контроль над бизнесом.
                   </p>
                   <div className="relative z-10 flex flex-wrap gap-3">
                     <PillButton to="/start" variant="dark">
@@ -271,7 +271,7 @@ const About = () => {
               </span>
             </h2>
             <p className="text-base md:text-lg text-foreground/70 mt-6 max-w-3xl leading-relaxed">
-              Моя задача — помочь собственнику видеть компанию не через хаос задач, чатов и таблиц, а через понятную систему: процессы, ответственные, данные, сроки и точки контроля.
+              Моя задача: выстроить систему, в которой собственник видит реальное состояние бизнеса, сотрудники понимают свою ответственность, а данные, сроки и результаты находятся под контролем.
               <br /><br />
               Так цифровые решения становятся не отдельными сервисами, а частью управления бизнесом.
             </p>
@@ -455,7 +455,7 @@ const About = () => {
                 {
                   number: "02",
                   title: "Я работаю с руководителями, которые участвуют в изменениях",
-                  text: "Цифровое развитие начинается с управленческого решения. Руководитель задаёт цель, помогает команде принять новый порядок работы и закрепляет ответственность. Когда руководство включено в проект, цифровой инструмент становится частью работы компании.",
+                  text: "Цифровое развитие начинается с управленческого решения. Руководитель задаёт цель, закрепляет новый порядок работы и распределяет ответственность. Когда руководство включено в проект, цифровой инструмент становится частью работы компании.",
                 },
                 {
                   number: "03",
@@ -510,7 +510,7 @@ const About = () => {
                   «НейроРешения» выросли из моей практики внедрения ИИ, автоматизации и управленческих инструментов для компаний.
                 </p>
                 <p>
-                  Программные продукты, ИИ-агенты и автоматизация бизнеса. Помогаем сократить ручную работу, связать данные и системы, проверяем результат на согласованных показателях.
+                  Программные продукты, ИИ-агенты и автоматизация бизнеса. Сокращаем ручную работу, связываем данные и системы, проверяем результат на согласованных показателях.
                 </p>
                 </div>
               </div>
@@ -666,7 +666,7 @@ const About = () => {
 
         {/* Modal for zoomed credential view */}
         <Dialog open={!!selectedCredential} onOpenChange={(open) => !open && setSelectedCredential(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border">
+          <DialogContent aria-describedby={undefined} className="bt-global-ui bt-dialog-surface bt-credential-dialog max-w-4xl p-0 overflow-hidden bg-background border-border">
             <DialogTitle className="sr-only">
               {selectedCredential?.title}
             </DialogTitle>
@@ -675,9 +675,9 @@ const About = () => {
                 <img
                   src={selectedCredential.image}
                   alt={selectedCredential.title}
-                  className="w-full h-auto max-h-[85vh] object-contain"
+                  className="bt-credential-full w-full h-auto max-h-[85vh] object-contain"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-4 md:p-6">
+                <div className="bt-credential-caption p-4 md:p-6">
                   <h3 className="font-semibold text-foreground text-base md:text-lg">
                     {selectedCredential.title}
                   </h3>
@@ -707,11 +707,11 @@ const About = () => {
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-[20px] shadow-card ring-1 ring-foreground/5 hover:shadow-elevated transition-all duration-200 cursor-pointer group" onClick={() => openLightbox(index)}>
+              {galleryImages.map((image, index) => <button type="button" data-bt-gallery-trigger key={index} className="w-full overflow-hidden rounded-[20px] shadow-card ring-1 ring-foreground/5 hover:shadow-elevated transition-all duration-200 cursor-pointer group" onClick={() => openLightbox(index)}>
                   <img src={image.src} alt={image.alt} className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" style={index === 2 ? {
                   objectPosition: 'center center'
                 } : undefined} loading="lazy" />
-                </div>)}
+                </button>)}
             </div>
         </section>
 
