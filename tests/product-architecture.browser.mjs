@@ -88,6 +88,12 @@ try {
           report.push({width:viewport.width,path:"brand-hero",status:"pass",evidence});
         }
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
+        if(viewport.width===1440 && ["/","/start","/services","/expert"].includes(path)){
+          const compact=await page.evaluate(()=>({h1:parseFloat(getComputedStyle(document.querySelector("main h1")).fontSize),blocks:Object.fromEntries(["brand-hero","home-metrics","commercial-directions","home-start"].map(id=>[id,Math.round(document.getElementById(id)?.getBoundingClientRect().height||0)]))}));
+          assert(compact.h1<=48,"Compact H1 "+path+" "+JSON.stringify(compact));
+          if(path==="/"){for(const id of ["brand-hero","home-metrics","commercial-directions","home-start"])assert(compact.blocks[id]>0&&compact.blocks[id]<=820,"Compact section "+id+" "+JSON.stringify(compact));}
+          report.push({width:viewport.width,path:path+" compact dimensions",status:"pass",evidence:compact});
+        }
         const geometry=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));
         assert(geometry.width<=geometry.viewport+3,"overflow "+JSON.stringify(geometry));
         await page.waitForFunction(()=>document.querySelectorAll('link[rel="canonical"]').length===1,{},{timeout:10000});

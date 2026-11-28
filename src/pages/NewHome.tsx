@@ -111,11 +111,11 @@ const NewHome = () => {
 
       <main>
         {/* Black Titanium: графитовая поверхность, оригинальный портрет и Iriska. */}
-        <section id="brand-hero" className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
+        <section id="brand-hero" className="pt-20 md:pt-24 px-3 sm:px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
             <div data-brand-panel className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
-              <div className="relative grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-16 pb-0">
-                <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-14">
+              <div className="relative grid md:grid-cols-12 gap-4 md:gap-6 items-center px-5 sm:px-6 md:px-10 lg:px-12 pt-6 sm:pt-8 md:pt-8 pb-0">
+                <div className="min-w-0 md:col-span-7 pb-6 sm:pb-8 md:pb-8">
                   <div className="mb-4 md:mb-6">
                     <p data-brand-name className="font-golos font-bold text-[30px] max-[359px]:text-[26px] sm:text-[38px] lg:text-[48px] leading-[1.12] tracking-tight !text-white">
                       Александра <span data-brand-signature className="inline-block font-iriska font-normal italic !text-white">Моисеева</span>
@@ -155,7 +155,7 @@ const NewHome = () => {
                     height={900}
                     fetchPriority="high"
                     decoding="async"
-                    className="relative w-[85%] max-w-[295px] sm:max-w-[368px] md:max-w-[504px] lg:max-w-[576px] h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
+                    className="relative w-[85%] max-w-[295px] sm:max-w-[368px] md:max-w-[380px] lg:max-w-[420px] h-auto object-contain [filter:drop-shadow(0_25px_25px_rgba(0,0,0,0.25))_drop-shadow(0_10px_10px_rgba(0,0,0,0.15))]"
                   />
                 </div>
               </div>
@@ -168,14 +168,14 @@ const NewHome = () => {
         </div>
 
         {/* ЦИФРЫ — асимметрия, гигантская акцентная цифра курсивом */}
-        <section id="home-metrics" className="bg-white py-16 md:py-24 mt-4">
+        <section id="home-metrics" className="bg-white py-8 md:py-12 mt-4">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
               <div className="md:col-span-5">
                 <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">
                   Компания в цифрах
                 </p>
-                <div className="font-iriska font-bold text-accent leading-none mb-4 text-[7rem] md:text-[12rem]">
+                <div className="font-iriska font-bold text-accent leading-none mb-4 text-[5.5rem] md:text-[8rem]">
                   <AnimatedNumber value={360} suffix="" />
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">
@@ -188,7 +188,7 @@ const NewHome = () => {
               <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {stats.slice(1).map(({ value, suffix, label, decimals, sub }) => (
                   <div key={label} className="bg-[#F2F2F2] p-3.5 md:p-6 flex items-center gap-3.5 md:gap-5">
-                    <div className="font-iriska font-bold text-accent leading-[0.85] shrink-0 text-4xl md:text-6xl">
+                    <div className="font-iriska font-bold text-accent leading-[0.85] shrink-0 text-3xl md:text-4xl">
                       <AnimatedNumber value={value} suffix={suffix} decimals={decimals ?? 0} />
                     </div>
                     <div className="min-w-0">
@@ -219,8 +219,8 @@ const NewHome = () => {
         <IndustryQuestions />
 
         {/* С ЧЕГО НАЧАТЬ — выездная консультация */}
-        <section id="home-start" className="container mx-auto max-w-7xl px-4 py-16 md:py-24">
-          <div className="max-w-3xl mb-12">
+        <section id="home-start" className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
+          <div className="max-w-3xl mb-6">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-[1.05] mb-5">
               С чего начать{" "}
               <span className="font-iriska font-normal italic text-accent">цифровизацию</span>?
