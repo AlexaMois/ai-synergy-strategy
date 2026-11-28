@@ -247,7 +247,7 @@ const NewHome = () => {
             </div>
             <div className="bt-start-offer space-y-4">
               <div className="bt-start-price text-3xl md:text-4xl leading-none">
-                <AnimatedNumber value={8000} suffix=" ₽" />
+                <span className="brand-large-number tabular-nums">8&nbsp;000 ₽</span>
               </div>
               <p className="text-sm md:text-base text-foreground/85">
                 Стоимость консультации полностью засчитывается в оплату последующего проекта автоматизации.
