@@ -174,21 +174,21 @@ const StartPage = () => {
           #start-brand-page .bt-start-wrap{width:min(1240px,calc(100% - 64px));margin:auto;color:#212121;font-family:Raleway,Arial,sans-serif;font-size:17px;line-height:1.55}
           #start-brand-page :is(.bt-start-hero,.bt-start-choices,.bt-start-consult) :is(h1,h2,h3){font-family:"Golos Text",Arial,sans-serif!important;font-weight:700!important;line-height:1.12!important;letter-spacing:-.035em;color:inherit!important;margin:0}
           #start-brand-page .bt-start-wrap em{font-family:Georgia,"Times New Roman",serif!important;font-style:italic;font-weight:400!important;color:inherit!important}
-          #start-brand-page .bt-start-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:40px;padding:24px 0 36px}
-          #start-brand-page .bt-start-hero h1{font-size:clamp(36px,5.7vw,76px)!important;line-height:1.04!important;letter-spacing:-.045em}
+          #start-brand-page .bt-start-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:40px;padding:20px 0 24px}
+          #start-brand-page .bt-start-hero h1{font-size:clamp(30px,3.35vw,48px)!important;line-height:1.04!important;letter-spacing:-.045em}
           #start-brand-page .bt-start-hero p{font-size:20px;max-width:480px;line-height:1.5;color:#3d3d3d;margin:0}
           #start-brand-page .bt-start-line{display:block;width:60px;height:4px;background:var(--bt-cyan);margin-bottom:24px}
           #start-brand-page .bt-start-choices{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:20px}
-          #start-brand-page .bt-start-tile{border-radius:30px;padding:36px;display:flex;flex-direction:column;align-items:flex-start;min-width:0;box-shadow:var(--bt-shadow)}
+          #start-brand-page .bt-start-tile{border-radius:30px;padding:26px;display:flex;flex-direction:column;align-items:flex-start;min-width:0;box-shadow:var(--bt-shadow)}
           #start-brand-page .bt-start-free{background:#212121 var(--bt-gloss);color:#fff}
           #start-brand-page .bt-start-paid{background-color:#d9d9d9;background-image:var(--bt-steel);color:#212121}
-          #start-brand-page .bt-start-tile h2{font-size:clamp(27px,3.1vw,42px)!important;margin-bottom:16px;max-width:540px}
+          #start-brand-page .bt-start-tile h2{font-size:clamp(25px,2.5vw,34px)!important;margin-bottom:16px;max-width:540px}
           #start-brand-page .bt-start-tile p{color:inherit!important;margin:0;max-width:540px}
-          #start-brand-page .bt-start-tile .bt-start-eyebrow{font-family:"Golos Text",Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.17em;font-size:12px;margin-bottom:32px}
+          #start-brand-page .bt-start-tile .bt-start-eyebrow{font-family:"Golos Text",Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.17em;font-size:12px;margin-bottom:20px}
           #start-brand-page .bt-start-free .bt-start-eyebrow{color:var(--bt-cyan)!important}
-          #start-brand-page .bt-start-tile .bt-start-price{font-family:"Golos Text",Arial,sans-serif;font-size:clamp(39px,4.2vw,62px)!important;font-weight:700;letter-spacing:-.05em;line-height:1.07;margin-top:30px;margin-bottom:7px}
+          #start-brand-page .bt-start-tile .bt-start-price{font-family:"Golos Text",Arial,sans-serif;font-size:clamp(34px,3.3vw,48px)!important;font-weight:700;letter-spacing:-.05em;line-height:1.07;margin-top:20px;margin-bottom:7px}
           #start-brand-page .bt-start-free .bt-start-price{color:var(--bt-cyan)!important}
-          #start-brand-page .bt-start-tile .bt-start-terms{font-size:15px;margin-bottom:28px}
+          #start-brand-page .bt-start-tile .bt-start-terms{font-size:15px;margin-bottom:20px}
           #start-brand-page .bt-start-tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
           #start-brand-page .bt-start-tags span{font-size:13px;font-weight:700;border:1px solid #21212166;border-radius:999px;padding:5px 12px}
           #start-brand-page .bt-start-tile .bt-start-summary{margin-top:15px;font-size:15px}
@@ -199,14 +199,14 @@ const StartPage = () => {
           #start-brand-page .bt-start-free .bt-start-cta>span:last-child{background:var(--bt-gloss)!important;color:#fff!important}
           #start-brand-page .bt-start-other{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:24px;font-size:15px;color:#212121}
           #start-brand-page .bt-start-other :is(a,button){color:#212121!important;font-weight:700;text-decoration:underline;text-underline-offset:5px}
-          #start-brand-page .bt-start-consult{padding:80px 0;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:52px;align-items:start}
+          #start-brand-page .bt-start-consult{padding:44px 0;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:52px;align-items:start}
           #start-brand-page .bt-start-steps{background:#34393b var(--bt-titan);color:#fff;border-radius:30px;padding:32px}
           #start-brand-page .bt-start-steps h2{font-size:30px!important;margin-bottom:25px}
           #start-brand-page .bt-start-steps .bt-start-step{display:grid;grid-template-columns:43px minmax(0,1fr);gap:12px;border-top:1px solid #ffffff35;padding:16px 0}
           #start-brand-page .bt-start-step h3{font-size:18px!important}#start-brand-page .bt-start-step p{font-size:15px;color:#fff!important;margin:4px 0 0}#start-brand-page .bt-start-number{font-family:"Golos Text",Arial,sans-serif;font-size:20px;font-weight:600}
           #start-brand-page .bt-start-note{font-size:15px;color:#fff!important;margin-top:18px;padding-top:18px;border-top:1px solid #ffffff35}
           #start-brand-page .bt-start-results{padding:20px 0;min-width:0}
-          #start-brand-page .bt-start-results h2{font-size:clamp(29px,3.1vw,46px)!important;margin-bottom:22px}
+          #start-brand-page .bt-start-results h2{font-size:clamp(27px,2.55vw,36px)!important;margin-bottom:22px}
           #start-brand-page .bt-start-result{display:grid;grid-template-columns:30px minmax(0,1fr);gap:15px;padding:18px 0;border-top:1px solid #d9d9d9}
           #start-brand-page .bt-start-result h3{font-size:21px!important}#start-brand-page .bt-start-result p{font-size:16px;color:#3d3d3d;margin:5px 0 0}
           #start-brand-page .bt-start-result svg{background:var(--bt-cyan);color:#212121!important;border-radius:50%;padding:5px;width:25px;height:25px;margin-top:2px}
@@ -215,7 +215,7 @@ const StartPage = () => {
           #start-brand-page .bt-start-free button:focus-visible{outline-color:var(--bt-cyan)}
           #start-brand-page #self-check [class~="rounded-t-[28px]"]{background:#212121 var(--bt-gloss)}
           #start-brand-page > section:not(#contact)>.container:has(>h2){max-width:1240px;display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:0 70px}
-          #start-brand-page > section:not(#contact)>.container:has(>h2)>h2{text-align:left;grid-row:1/3;margin:0;font-size:clamp(29px,3.1vw,46px)!important}
+          #start-brand-page > section:not(#contact)>.container:has(>h2)>h2{text-align:left;grid-row:1/3;margin:0;font-size:clamp(27px,2.55vw,36px)!important}
           #start-brand-page > section:not(#contact) [data-state][class*="rounded-xl"]{border:0;border-bottom:1px solid #c6c6c6;border-radius:0;background:transparent;padding-inline:0}
           #start-brand-page > section:not(#contact) a[href="/faq"]{color:#212121!important;text-decoration:underline;text-underline-offset:5px}
           #start-brand-page #contact{background:#fff;padding:70px 0}
