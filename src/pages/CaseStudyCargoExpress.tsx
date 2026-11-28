@@ -57,8 +57,8 @@ const CaseStudyCargoExpress = () => {
               Приём заявок голосом в Telegram → единый учёт и контроль
             </p>
 <dl className="grid sm:grid-cols-2 gap-5 rounded-[24px] bg-card/85 p-5 ring-1 ring-foreground/5 md:gap-9 md:p-7">
-              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">0%</dd><dt className="text-sm text-foreground/75">потерь заявок</dt></div>
-              <div><dd className="text-4xl md:text-5xl font-bold text-foreground mb-2">9–12 часов</dd><dt className="text-sm text-foreground/75">экономия в неделю на обработке заявок для команды из 3 человек</dt></div>
+              <div><dd className="bt-display-number text-4xl md:text-5xl font-bold text-foreground mb-2">0%</dd><dt className="text-sm text-foreground/75">потерь заявок</dt></div>
+              <div><dd className="bt-display-number text-4xl md:text-5xl font-bold text-foreground mb-2">9–12 часов</dd><dt className="text-sm text-foreground/75">экономия в неделю на обработке заявок для команды из 3 человек</dt></div>
             </dl>
           </div>
         </section>
