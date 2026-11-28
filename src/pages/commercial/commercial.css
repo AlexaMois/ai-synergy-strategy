@@ -349,3 +349,11 @@
 @media(forced-colors:active){
   #home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .brand-large-number{background:none;-webkit-text-fill-color:CanvasText;color:CanvasText!important}
 }
+
+
+/* Narrow-screen method cards: keep the four labels intact at 320px. */
+@media(max-width:359px){
+  #home-black-titanium #home-process .bt-process-steps{gap:8px;margin-inline:12px}
+  #home-black-titanium #home-process .bt-process-step{padding-inline:4px}
+  #home-black-titanium #home-process .bt-process-label{font-size:13px;overflow-wrap:normal}
+}
