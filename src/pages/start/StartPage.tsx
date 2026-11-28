@@ -172,7 +172,7 @@ const StartPage = () => {
 
           #start-brand-page{--bt-cyan:#3ddce8;--bt-gloss:linear-gradient(154deg,#434343 0%,#292929 19%,#1d1d1d 39%,#151515 55%,#252525 56%,#191919 75%,#101010 100%);--bt-titan:linear-gradient(135deg,#505659,#34393b 44%,#272b2d);--bt-steel:repeating-linear-gradient(0deg,#ffffff12 0px,#ffffff12 1px,#00000005 1px,#00000005 2px),linear-gradient(110deg,#b4b4b4,#d9d9d9 18%,#f2f2f2 37%,#c2c2c2 57%,#e5e5e5 82%,#bcbcbc);--bt-shadow:0 12px 26px #21212117,0 3px 7px #21212109}
           #start-brand-page .bt-start-wrap{width:min(1240px,calc(100% - 64px));margin:auto;color:#212121;font-family:Raleway,Arial,sans-serif;font-size:17px;line-height:1.55}
-          #start-brand-page .bt-start-wrap :is(h1,h2,h3){font-family:"Golos Text",Arial,sans-serif!important;font-weight:700!important;line-height:1.12!important;letter-spacing:-.035em;color:inherit!important;margin:0}
+          #start-brand-page :is(.bt-start-hero,.bt-start-choices,.bt-start-consult) :is(h1,h2,h3){font-family:"Golos Text",Arial,sans-serif!important;font-weight:700!important;line-height:1.12!important;letter-spacing:-.035em;color:inherit!important;margin:0}
           #start-brand-page .bt-start-wrap em{font-family:Georgia,"Times New Roman",serif!important;font-style:italic;font-weight:400!important;color:inherit!important}
           #start-brand-page .bt-start-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:40px;padding:24px 0 36px}
           #start-brand-page .bt-start-hero h1{font-size:clamp(36px,5.7vw,76px)!important;line-height:1.04!important;letter-spacing:-.045em}
