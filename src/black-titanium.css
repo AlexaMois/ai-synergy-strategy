@@ -256,7 +256,7 @@
 /* PR40: shared Black Titanium CTA and display numeral roles. */
 @media screen {
   :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta) {
-    background:linear-gradient(155deg,#434343 0%,#252525 32%,#151515 65%,#292929 100%)!important;
+    background-color:#212121!important;background-image:linear-gradient(155deg,#434343 0%,#252525 32%,#151515 65%,#292929 100%)!important;
     color:#fff!important;border:1px solid #505659;border-radius:999px!important;
     min-height:56px;padding:8px 8px 8px 20px!important;gap:14px;max-width:100%;
     font-family:Raleway,Arial,sans-serif;font-size:16px!important;white-space:normal;
