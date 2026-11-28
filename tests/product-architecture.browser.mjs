@@ -176,6 +176,16 @@ try {
           assert.equal(startVisual.formOpacity,"1","Start contact form visible");assert.equal(startVisual.copyOpacity,"1","Start contact copy visible");assert.equal(startVisual.price,"8 000 ₽");
           await page.locator(".bt-start-paid").screenshot({path:folder+"/"+viewport.width+"-block-start-paid.png",style:blockStyle});await page.locator("#contact").screenshot({path:folder+"/"+viewport.width+"-block-start-contact.png",style:blockStyle});
         }
+        if(path!=="/"&&path!=="/start"&&path!=="/services/digital-tools-program"){
+          const scope=page.locator("[data-bt-template]");assert.equal(await scope.count(),1,"Scoped Black Titanium template: "+path);
+          assert.equal(await scope.evaluate(el=>getComputedStyle(el).getPropertyValue("--bt-cyan").trim().toLowerCase()),"#3ddce8","Shared design tokens");
+          const contact=page.locator("#contact form");if(await contact.count()){assert.equal(await contact.evaluate(el=>getComputedStyle(el).opacity),"1","Visible contact "+path);}
+        }
+        if(path==="/services"){
+          const visual=await page.evaluate(()=>({steel:getComputedStyle(document.querySelector(".bt-sol-expert")).backgroundImage,font:getComputedStyle(document.querySelector(".bt-solutions h1 em")).fontFamily,accent:getComputedStyle(document.querySelector(".bt-solutions h1 em")).color}));
+          assert(visual.steel.includes("repeating-linear-gradient"),"Solutions steel");assert(visual.font.includes("Georgia")&&visual.accent==="rgb(33, 33, 33)","Solutions editorial typography "+JSON.stringify(visual));
+          assert.deepEqual(await page.locator(".bt-sol-card").evaluateAll(ns=>ns.map(n=>n.getAttribute("href"))),["/products","/ai-agents","/services/automation","/expert"]);
+        }
         if(path==="/expert"){assert.equal(await page.locator("#onsite h2").innerText(),"Выездная консультация");assert.match(await page.locator("#onsite").innerText(),/8\s*000\s*₽/);assert.equal(await page.locator("#dpo").count(),1);}
         if(path==="/about"){const block=page.locator("#company-directions");assert.equal(await block.locator("ul a").count(),4);assert(!/сопровождение цифрового внедрения|стратегия цифрового развития/i.test(await block.innerText()));const contrast=await block.evaluate(el=>{const lum=c=>c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll("p, h2, ul a")].map(n=>{const fg=lum(getComputedStyle(n).color);return {text:n.textContent.slice(0,70),ratio:(Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05)};});});assert(contrast.every(x=>x.ratio>=7),"About commercial block contrast "+JSON.stringify(contrast));await block.screenshot({path:folder+"/"+viewport.width+"-block-about-directions.png",style:blockStyle});}
         if(path==="/mini-agents"){
