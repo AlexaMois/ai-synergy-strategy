@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
+import "./black-titanium.css";
 import { lazy, Suspense, useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -84,13 +85,26 @@ const usePrefetchRoutes = () => {
   }, []);
 };
 
+const blackTitaniumTemplate = (pathname: string) => {
+  const path = pathname.replace(/\/+$/, "") || "/";
+  if (path === "/services/digital-tools-program") return "";
+  if (["/services", "/products", "/mini-agents", "/ai-agents"].includes(path)) return "catalog";
+  if (path === "/expert" || path === "/about") return "expert";
+  if (path === "/pricing") return "pricing";
+  if (path === "/faq" || path === "/materials" || path.startsWith("/materials/")) return "information";
+  if (path === "/cases" || path.startsWith("/cases/")) return "case";
+  if (["/services/", "/products/", "/mini-agents/", "/ai-agents/"].some(prefix => path.startsWith(prefix))) return "commercial";
+  return "";
+};
 const AppContent = () => {
   usePrefetchRoutes();
+  const template = blackTitaniumTemplate(useLocation().pathname);
   
   return (
     <>
       <Navigation />
       <Suspense fallback={<PageLoader />}>
+        <div className={template ? "bt-site bt-"+template : undefined} data-bt-template={template || undefined} style={{display:"contents"}}>
         <Routes>
           {/* Main */}
           <Route path="/" element={<Index />} />
@@ -211,6 +225,7 @@ const AppContent = () => {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </div>
       </Suspense>
       <ExitIntentPopup />
     </>

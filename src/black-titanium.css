@@ -1,0 +1,120 @@
+/* Black Titanium 2.0 — shared B2B presentation layer.
+   Existing content, routes, components and handlers are retained. Home/Start,
+   educational detail, legal documents, portal and independent products excluded. */
+.bt-site {
+  --bt-cyan:#3DDCE8; --bt-ink:#212121;
+  --bt-gloss:linear-gradient(154deg,#434343 0%,#292929 19%,#1D1D1D 39%,#151515 55%,#252525 56%,#191919 75%,#101010 100%);
+  --bt-titan:linear-gradient(135deg,#505659,#34393B 44%,#272B2D);
+  --bt-steel:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0px,rgba(255,255,255,.07) 1px,rgba(0,0,0,.018) 1px,rgba(0,0,0,.018) 2px),linear-gradient(110deg,#B4B4B4,#D9D9D9 18%,#F2F2F2 37%,#C2C2C2 57%,#E5E5E5 82%,#BCBCBC);
+  --bt-shadow:0 12px 26px rgba(33,33,33,.09),0 3px 7px rgba(33,33,33,.035);
+  --bt-dark-shadow:0 15px 30px rgba(0,0,0,.17),inset 0 1px 2px rgba(255,255,255,.16);
+  --background:0 0% 100%;--foreground:0 0% 12.941176%;--card:0 0% 100%;--card-foreground:0 0% 12.941176%;
+  --primary:0 0% 12.941176%;--primary-foreground:0 0% 100%;--primary-dark:0 0% 23.921569%;
+  --primary-light:0 0% 94.901961%;--muted:0 0% 94.901961%;--muted-foreground:0 0% 23.921569%;
+  --secondary:0 0% 94.901961%;--secondary-foreground:0 0% 12.941176%;--border:0 0% 85.098039%;--input:0 0% 66.666667%;
+  --accent:184.210526 78.838174% 57.45098%;--accent-foreground:0 0% 12.941176%;--ring:0 0% 12.941176%;
+  --surface-mint:0 0% 94.901961%;--surface-sand:0 0% 85.098039%;--surface-lavender:0 0% 94.901961%;
+  --surface-blush:0 0% 94.901961%;--surface-turquoise:0 0% 85.098039%;
+  --shadow-card:var(--bt-shadow);--shadow-plate:var(--bt-shadow);--shadow-soft:var(--bt-shadow);
+}
+.bt-site main {font-family:"Raleway",Arial,sans-serif;color:#212121}
+.bt-site main :is(h1,h2,h3,h4) {font-family:"Golos Text",Arial,sans-serif!important;letter-spacing:-.025em}
+.bt-site main :is(h1,h2,h3,h4) :is(.font-iriska,em),
+.bt-site main .section-title :is(.font-semibold,.font-bold,strong){font-family:Georgia,"Times New Roman",serif!important;font-style:italic!important;font-weight:400!important;color:inherit!important}
+.bt-site main .font-iriska:not(:is(h1,h2,h3,h4) *){font-family:"Golos Text",Arial,sans-serif!important;font-style:normal!important}
+.bt-site main .text-accent{color:#212121!important}
+.bt-site main :is(.bg-foreground,.bg-accent.text-white) .text-accent{color:#3DDCE8!important}
+.bt-site main .bg-accent.text-white{background-color:#212121;background-image:var(--bt-gloss);color:white}
+.bt-site main .bg-accent.text-white :is(h1,h2,h3,h4,p){color:white!important}
+.bt-site main .bg-foreground:has(> :is(h1,h2,h3,h4,div,section,p)){background-color:#212121;background-image:var(--bt-gloss)}
+.bt-site main :is(a,button).bg-foreground{background-color:#212121;color:white}
+.bt-site main :is(a,button).bg-accent{background-color:#3DDCE8;color:#212121}
+.bt-site main :is(a,button)[aria-pressed="true"]{background-color:#212121;color:white}
+.bt-site main :is(a,button,input,textarea,select):focus-visible{outline:2px solid #212121;outline-offset:3px}
+.bt-site main .bg-foreground :is(a,button):focus-visible{outline-color:#3DDCE8}
+.bt-site main .bg-surface-mint:has(h1),.bt-site main .bg-surface-sand:has(h1){background-color:#d9d9d9;background-image:var(--bt-steel);box-shadow:var(--bt-shadow)}
+.bt-site main .bg-surface-turquoise{background-color:#d9d9d9}
+.bt-site main .bg-surface-mint:not(:has(h1)),.bt-site main .bg-surface-blush{background-color:#F2F2F2}
+.bt-site main .bg-surface-lavender{background-color:#D9D9D9}
+.bt-site main .bg-surface-sand:not(:has(h1)){background-color:#D9D9D9}
+.bt-site main .bg-card:is([class*="rounded-2"],[class*="rounded-[2"]){border-color:#D9D9D9}
+.bt-site main [class~="bg-accent"] :is(.text-white,.text-background){color:#212121!important}
+.bt-site main [class~="bg-accent"].text-white :is(.text-white,.text-background){color:white!important}
+/* Commercial catalog, detail, expert and price share the same source components. */
+.bt-site main.nr-commercial:not(.bt-solutions) {
+  --nr-dark:#212121;--nr-mint:#F2F2F2;--nr-lavender:#D9D9D9;--nr-turquoise:#D9D9D9;--nr-ice:#F2F2F2;
+}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel{background-color:#fff;background-image:none;box-shadow:none;border-radius:0;padding:clamp(16px,2.5vw,38px) 0;overflow:visible}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>div:first-child::before{content:"";display:block;width:60px;height:4px;background:#3DDCE8;margin-bottom:22px}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.nr-art{background-color:#d9d9d9;background-image:var(--bt-steel);border-radius:30px;padding:22px;box-shadow:var(--bt-shadow);max-height:340px}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-hero h1{font-size:clamp(32px,4.7vw,64px)!important;line-height:1.08!important;letter-spacing:-.04em}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-section{padding-block:clamp(30px,4.4vw,66px)}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-flat,.bt-site main.nr-commercial:not(.bt-solutions) .nr-license,.bt-site main.nr-commercial:not(.bt-solutions) .nr-mini-card{border-radius:28px;box-shadow:var(--bt-shadow);border:1px solid #D9D9D9}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-mini-card{background:#fff;color:#212121}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-card-icon{background:#F2F2F2;color:#212121}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-price{color:#212121!important;font-family:"Golos Text",Arial,sans-serif;font-weight:700}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-cta{justify-content:space-between;background:#212121;color:#fff;padding:8px 8px 8px 20px;min-height:52px;gap:14px}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-cta>svg:last-child{box-sizing:content-box;flex:none;width:18px;height:18px;padding:9px;background:#3DDCE8;color:#212121;border-radius:50%}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-text-link,.bt-site main.nr-commercial:not(.bt-solutions) .nr-checklist svg,.bt-site main.nr-commercial:not(.bt-solutions) .nr-compare svg{color:#212121}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-compare>a:hover{background:#F2F2F2}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-demo th{background:#F2F2F2}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-total{background-color:#d9d9d9;background-image:var(--bt-steel)}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-license-grid .nr-license:nth-child(3){background-color:#d9d9d9;background-image:var(--bt-steel)}
+.bt-site main.nr-commercial:not(.bt-solutions) .nr-license.nr-selected{outline:3px solid #212121;outline-offset:2px;border-color:#212121}
+.bt-site main.nr-commercial:not(.bt-solutions) input[type=radio]{accent-color:#212121}
+.bt-site main.nr-commercial .nr-art [fill="#4CBAD6"]{fill:#3DDCE8}
+.bt-site main.nr-commercial .nr-art [fill="#DCF1F1"],.bt-site main.nr-commercial .nr-art [fill="#EAF8FC"]{fill:#F2F2F2}
+.bt-site main.nr-commercial .nr-art [fill="#116078"]{fill:#3D3D3D}
+.bt-site main.nr-commercial .nr-art [stroke="#116078"]{stroke:#3D3D3D}
+/* Surfaces assigned to established template roles; use separate fallback and image declarations. */
+.bt-catalog main.nr-commercial:not(.bt-solutions) .nr-two:not(.nr-agent-formats)>.nr-flat:first-child,
+.bt-expert main.nr-commercial .nr-two>.nr-flat:first-child{background-color:#212121;background-image:var(--bt-gloss);color:#fff;box-shadow:var(--bt-dark-shadow)}
+.bt-catalog main.nr-commercial:not(.bt-solutions) .nr-two:not(.nr-agent-formats)>.nr-flat:nth-child(2){background:#fff}
+.bt-catalog main.nr-commercial .nr-agent-formats>.nr-flat:nth-child(2),
+.bt-expert main.nr-commercial .nr-two>.nr-flat:nth-child(3),
+.bt-commercial main.nr-commercial .nr-result-grid>.nr-flat.nr-lavender,
+.bt-site main.nr-commercial .nr-license-grid .nr-license:nth-child(2){background-color:#34393B;background-image:var(--bt-titan);color:#fff;box-shadow:var(--bt-dark-shadow)}
+.bt-expert main.nr-commercial #onsite,.bt-commercial main.nr-commercial .nr-result-grid>.nr-flat.nr-mint{background-color:#D9D9D9;background-image:var(--bt-steel)}
+.bt-site main.nr-commercial .nr-flat:is(.nr-mint,.nr-lavender) :is(h2,h3,p,strong),.bt-site main.nr-commercial .nr-license :is(p,strong){color:inherit!important}
+.bt-site main.nr-commercial .nr-two>.nr-flat :is(h2,h3,p,strong),.bt-site main.nr-commercial .nr-result-grid>.nr-flat :is(h2,h3,p,strong){color:inherit!important}
+.bt-catalog main.nr-commercial:not(.bt-solutions) .nr-two:not(.nr-agent-formats)>.nr-flat:first-child .nr-text-link,
+.bt-expert main.nr-commercial .nr-two>.nr-flat:nth-child(3) .nr-text-link,
+.bt-catalog main.nr-commercial .nr-agent-formats>.nr-flat:nth-child(2) .nr-text-link,
+.bt-commercial main.nr-commercial .nr-result-grid>.nr-flat.nr-lavender .nr-text-link{color:#fff}
+.bt-expert main.nr-commercial .nr-two>.nr-flat:first-child .nr-cta,
+.bt-commercial main.nr-commercial .nr-result-grid>.nr-flat.nr-lavender .nr-cta{background:white;color:#212121}
+.bt-site main.nr-commercial .nr-license:nth-child(2).nr-selected{outline-color:#34393b;border-color:#fff}
+.bt-site main.nr-commercial .nr-license:nth-child(2) input[type=radio]{accent-color:#3DDCE8}
+/* Information and case families keep existing content and filters. */
+.bt-information main [role="region"]{color:#212121}
+.bt-information main [data-state][class*="rounded-lg"]{border-radius:18px;border-color:#D9D9D9}
+.bt-case main article[data-case-id]:not(.bg-foreground){background-color:#fff;box-shadow:var(--bt-shadow)}
+.bt-case main article[data-case-id].bg-foreground{background-color:#212121;background-image:var(--bt-gloss);box-shadow:var(--bt-dark-shadow)}
+.bt-case main [aria-labelledby="case-outcomes"] .bg-card{background-color:#d9d9d9;background-image:var(--bt-steel)}
+.bt-expert main #company-directions{background-color:#D9D9D9;background-image:var(--bt-steel);color:#212121}
+.bt-expert main #company-directions :is(h2,h3,p,a,li){color:#212121!important}
+.bt-expert main .bg-accent:has(> .text-white){background-color:#212121;background-image:var(--bt-gloss)}
+/* One shared contact treatment. Existing form, validation and CRM handlers stay intact. */
+.bt-site #contact{background:#fff;padding-block:clamp(32px,5vw,70px)}
+.bt-site #contact>.container>div{max-width:1240px!important;background-color:#212121;background-image:var(--bt-gloss);border-radius:32px;padding:clamp(24px,3.3vw,44px)}
+.bt-site #contact .grid:has(>form){grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:clamp(22px,3.5vw,50px)}
+.bt-site #contact .grid:has(>form)>div:first-child,.bt-site #contact .grid:has(>form)>form{opacity:1!important;transform:none!important;animation:none!important}
+.bt-site #contact .section-title,.bt-site #contact .section-title+p{color:white!important}
+.bt-site #contact .section-title .font-semibold{font-family:Georgia,"Times New Roman",serif!important;font-style:italic!important;font-weight:400!important;color:white!important}
+.bt-site #contact form{min-width:0;background:white;color:#212121}
+.bt-site #contact form a{color:#212121;text-decoration:underline}
+.bt-site #contact form button[type=submit]>span:last-child{background:#3DDCE8;color:#212121}
+.bt-site #contact form input,.bt-site #contact form textarea,.bt-site #contact form select{max-width:100%;min-width:0}
+.bt-site footer{--primary:0 0% 94.901961%;--muted-foreground:0 0% 85.098039%}
+.bt-site footer p:not([class*="text-background/"]){color:inherit}
+@media(max-width:900px){.bt-site #contact .grid:has(>form){grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){
+  .bt-site #contact>.container>div{padding:20px;border-radius:24px}
+  .bt-site #contact form{padding:16px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel{padding:14px 0 20px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.nr-art{padding:14px;max-height:220px;border-radius:24px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-section{padding-block:28px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero h1{font-size:clamp(28px,8vw,36px)!important}
+}
+@media(max-width:359px){.bt-site #contact>.container>div{padding:14px}.bt-site #contact form{padding:12px}}
+@media(prefers-reduced-motion:reduce){.bt-site main .nr-mini-card,.bt-site main .nr-flat{transition:none}}
