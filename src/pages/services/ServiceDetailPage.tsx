@@ -62,10 +62,10 @@ const ServiceDetailPage = () => {
                   <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">{meta.h1}</h1>
                   <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-lg">{service.subtitle}</p>
                   <div className="mt-7 flex flex-wrap items-center gap-4">
-                    <Link to={inquiryHref} onClick={openInquiry} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
+                    <Link to={inquiryHref} onClick={openInquiry} className="bt-cta-primary inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 font-semibold text-background hover:bg-foreground/85">
                       {detail.cta} <ArrowRight className="h-4 w-4" />
                     </Link>
-                    <Link to={journey.href} className="inline-flex min-h-12 items-center gap-2 font-medium text-primary-dark hover:underline">
+                    <Link to={journey.href} className="bt-cta-text inline-flex min-h-12 items-center gap-2 font-medium text-primary-dark hover:underline">
                       <ArrowLeft className="h-4 w-4" /> Весь маршрут
                     </Link>
                   </div>
@@ -114,12 +114,12 @@ const ServiceDetailPage = () => {
           {includes?.list && (
             <section className="bg-white py-14 text-foreground md:py-20">
               <div className="container mx-auto max-w-7xl px-4">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Состав работ</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">Состав работ</p>
                 <h2 className="mb-8 text-3xl font-bold text-foreground md:text-4xl">Что входит в формат</h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {includes.list.map((item,i)=>(
                     <div key={i} className="rounded-[20px] border border-border bg-white p-5">
-                      <span className="text-sm font-bold text-[#07536A]">{String(i+1).padStart(2,"0")}</span>
+                      <span className="text-sm font-bold text-foreground">{String(i+1).padStart(2,"0")}</span>
                       <p className="mt-3 leading-relaxed text-foreground/90">{item}</p>
                     </div>
                   ))}
@@ -147,16 +147,16 @@ const ServiceDetailPage = () => {
             <div className="flex flex-col gap-6 rounded-[30px] bg-foreground p-7 text-background md:flex-row md:items-center md:justify-between md:p-10">
               <div className="max-w-2xl">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Стоимость формата</p>
-                <p className="text-3xl font-bold md:text-4xl">{service.price}</p>
+                <p className="bt-display-number text-3xl font-bold md:text-4xl">{service.price}</p>
                 <p className="mt-3 text-sm leading-relaxed text-background/75">
                   {fixed(service.price) ? "Фиксированная цена. Состав и результат услуги согласуются до начала." : "Объём, этапы, срок и окончательная стоимость согласуются по задаче."}
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3">
-                <Link to={inquiryHref} onClick={openInquiry} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground">
+                <Link to={inquiryHref} onClick={openInquiry} className="bt-cta-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-semibold text-foreground">
                   {detail.cta} <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/pricing" className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-background/85 hover:text-background">
+                <Link to="/pricing" className="bt-cta-text inline-flex items-center justify-center gap-2 text-sm font-semibold text-background/85 hover:text-background">
                   Все цены <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
