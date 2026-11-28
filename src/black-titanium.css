@@ -252,3 +252,33 @@
   .bt-faq.bt-faq-embedded {padding-block:24px;}
   @media(max-width:767px){.bt-faq{padding-block:28px}.bt-faq .bt-faq-layout{grid-template-columns:minmax(0,1fr);gap:16px}.bt-faq .bt-faq-heading{font-size:24px!important}}
 }
+
+/* PR40: shared Black Titanium CTA and display numeral roles. */
+@media screen {
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta) {
+    background:linear-gradient(155deg,#434343 0%,#252525 32%,#151515 65%,#292929 100%)!important;
+    color:#fff!important;border:1px solid #505659;border-radius:999px!important;
+    min-height:56px;padding:8px 8px 8px 20px!important;gap:14px;max-width:100%;
+    font-family:Raleway,Arial,sans-serif;font-size:16px!important;white-space:normal;
+    box-shadow:0 5px 12px rgba(0,0,0,.16);transition:box-shadow .2s,background .2s;
+  }
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta)>:is(svg:last-child,span:last-child:has(svg)) {
+    box-sizing:border-box;width:36px;height:36px;flex:0 0 36px;border-radius:50%;
+    background:#3DDCE8!important;color:#212121!important;display:grid;place-items:center;padding:9px;
+  }
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta):hover {box-shadow:0 5px 14px rgba(0,0,0,.23),inset 0 0 0 1px #3DDCE8}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) .bt-cta-secondary {display:inline-flex;align-items:center;justify-content:space-between;gap:14px;background-image:var(--bt-steel);background-color:#D9D9D9;color:#212121!important;border-radius:999px;min-height:56px;padding:8px 8px 8px 20px;font:600 16px Raleway,Arial,sans-serif}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) .bt-cta-secondary>svg:last-child {box-sizing:border-box;width:36px;height:36px;padding:9px;border-radius:50%;background:#212121;color:#3DDCE8;flex:none}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-text,.nr-text-link,.bt-faq-link) {text-decoration:underline;text-underline-offset:5px}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-text,.nr-text-link,.bt-faq-link):hover {text-decoration-color:#3DDCE8;text-decoration-thickness:2px}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-display-number,.brand-large-number,.nr-price,.bt-start-price) {font-family:Georgia,"Times New Roman",serif!important;font-style:italic!important;font-weight:400!important}
+  .bt-site main :is(.brand-large-number,.nr-price) {color:inherit!important}
+  .bt-site main :is([class~="text-[#07536A]"],[class~="text-[#116078]"],[class~="text-[#4CBBD6]"]) {color:#212121!important}
+  .bt-site main :is(.bg-foreground,.bg-accent.text-white) :is([class~="text-[#07536A]"],[class~="text-[#116078]"],[class~="text-[#4CBBD6]"]) {color:#3DDCE8!important}
+  @media(max-width:767px) {
+    :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta,.bt-cta-secondary) {min-height:48px}
+  }
+  @media(prefers-reduced-motion:reduce) {
+    :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta,.bt-cta-secondary) {transition:none}
+  }
+}
