@@ -169,103 +169,124 @@ const StartPage = () => {
           #start-brand-page > section :is(a,button):focus-visible { outline-color:#07536A; }
           #start-brand-page main [class~="bg-[#07536A]"] button:focus-visible { outline-color:#FFFFFF; }
           #start-brand-page > section { background:#F2F2F2; }
+
+          #start-brand-page{--bt-cyan:#3ddce8;--bt-gloss:linear-gradient(154deg,#434343 0%,#292929 19%,#1d1d1d 39%,#151515 55%,#252525 56%,#191919 75%,#101010 100%);--bt-titan:linear-gradient(135deg,#505659,#34393b 44%,#272b2d);--bt-steel:repeating-linear-gradient(0deg,#ffffff12 0px,#ffffff12 1px,#00000005 1px,#00000005 2px),linear-gradient(110deg,#b4b4b4,#d9d9d9 18%,#f2f2f2 37%,#c2c2c2 57%,#e5e5e5 82%,#bcbcbc);--bt-shadow:0 12px 26px #21212117,0 3px 7px #21212109}
+          #start-brand-page .bt-start-wrap{width:min(1240px,calc(100% - 64px));margin:auto;color:#212121;font-family:Raleway,Arial,sans-serif;font-size:17px;line-height:1.55}
+          #start-brand-page .bt-start-wrap :is(h1,h2,h3){font-family:"Golos Text",Arial,sans-serif!important;font-weight:700!important;line-height:1.12!important;letter-spacing:-.035em;color:inherit!important;margin:0}
+          #start-brand-page .bt-start-wrap em{font-family:Georgia,"Times New Roman",serif!important;font-style:italic;font-weight:400!important;color:inherit!important}
+          #start-brand-page .bt-start-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:40px;padding:24px 0 36px}
+          #start-brand-page .bt-start-hero h1{font-size:clamp(36px,5.7vw,76px)!important;line-height:1.04!important;letter-spacing:-.045em}
+          #start-brand-page .bt-start-hero p{font-size:20px;max-width:480px;line-height:1.5;color:#3d3d3d;margin:0}
+          #start-brand-page .bt-start-line{display:block;width:60px;height:4px;background:var(--bt-cyan);margin-bottom:24px}
+          #start-brand-page .bt-start-choices{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:20px}
+          #start-brand-page .bt-start-tile{border-radius:30px;padding:36px;display:flex;flex-direction:column;align-items:flex-start;min-width:0;box-shadow:var(--bt-shadow)}
+          #start-brand-page .bt-start-free{background:#212121 var(--bt-gloss);color:#fff}
+          #start-brand-page .bt-start-paid{background:#d9d9d9 var(--bt-steel);color:#212121}
+          #start-brand-page .bt-start-tile h2{font-size:clamp(27px,3.1vw,42px)!important;margin-bottom:16px;max-width:540px}
+          #start-brand-page .bt-start-tile p{color:inherit!important;margin:0;max-width:540px}
+          #start-brand-page .bt-start-tile .bt-start-eyebrow{font-family:"Golos Text",Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.17em;font-size:12px;margin-bottom:32px}
+          #start-brand-page .bt-start-free .bt-start-eyebrow{color:var(--bt-cyan)!important}
+          #start-brand-page .bt-start-tile .bt-start-price{font-family:"Golos Text",Arial,sans-serif;font-size:clamp(39px,4.2vw,62px)!important;font-weight:700;letter-spacing:-.05em;line-height:1.07;margin-top:30px;margin-bottom:7px}
+          #start-brand-page .bt-start-free .bt-start-price{color:var(--bt-cyan)!important}
+          #start-brand-page .bt-start-tile .bt-start-terms{font-size:15px;margin-bottom:28px}
+          #start-brand-page .bt-start-tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+          #start-brand-page .bt-start-tags span{font-size:13px;font-weight:700;border:1px solid #21212166;border-radius:999px;padding:5px 12px}
+          #start-brand-page .bt-start-tile .bt-start-summary{margin-top:15px;font-size:15px}
+          #start-brand-page .bt-start-cta{max-width:100%;min-height:52px;white-space:normal;text-align:left;background:#212121!important;color:#fff!important;font-size:15px}
+          #start-brand-page .bt-start-tile .bt-start-cta{margin-top:auto}
+          #start-brand-page .bt-start-cta>span:last-child{background:var(--bt-cyan)!important;color:#212121!important;flex-shrink:0}
+          #start-brand-page .bt-start-free .bt-start-cta{background:#fff!important;color:#212121!important}
+          #start-brand-page .bt-start-free .bt-start-cta>span:last-child{background:var(--bt-gloss)!important;color:#fff!important}
+          #start-brand-page .bt-start-other{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:24px;font-size:15px;color:#212121}
+          #start-brand-page .bt-start-other :is(a,button){color:#212121!important;font-weight:700;text-decoration:underline;text-underline-offset:5px}
+          #start-brand-page .bt-start-consult{padding:80px 0;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:52px;align-items:start}
+          #start-brand-page .bt-start-steps{background:#34393b var(--bt-titan);color:#fff;border-radius:30px;padding:32px}
+          #start-brand-page .bt-start-steps h2{font-size:30px!important;margin-bottom:25px}
+          #start-brand-page .bt-start-steps .bt-start-step{display:grid;grid-template-columns:43px minmax(0,1fr);gap:12px;border-top:1px solid #ffffff35;padding:16px 0}
+          #start-brand-page .bt-start-step h3{font-size:18px!important}#start-brand-page .bt-start-step p{font-size:15px;color:#fff!important;margin:4px 0 0}#start-brand-page .bt-start-number{font-family:"Golos Text",Arial,sans-serif;font-size:20px;font-weight:600}
+          #start-brand-page .bt-start-note{font-size:15px;color:#fff!important;margin-top:18px;padding-top:18px;border-top:1px solid #ffffff35}
+          #start-brand-page .bt-start-results{padding:20px 0;min-width:0}
+          #start-brand-page .bt-start-results h2{font-size:clamp(29px,3.1vw,46px)!important;margin-bottom:22px}
+          #start-brand-page .bt-start-result{display:grid;grid-template-columns:30px minmax(0,1fr);gap:15px;padding:18px 0;border-top:1px solid #d9d9d9}
+          #start-brand-page .bt-start-result h3{font-size:21px!important}#start-brand-page .bt-start-result p{font-size:16px;color:#3d3d3d;margin:5px 0 0}
+          #start-brand-page .bt-start-result svg{background:var(--bt-cyan);color:#212121!important;border-radius:50%;padding:5px;width:25px;height:25px;margin-top:2px}
+          #start-brand-page .bt-start-document{background:var(--bt-steel);border-radius:24px;padding:25px;color:#212121!important;font-size:16px;font-weight:600;margin:14px 0 22px}
+          #start-brand-page .bt-start-wrap :is(a,button):focus-visible{outline:3px solid #212121;outline-offset:4px}
+          #start-brand-page .bt-start-free button:focus-visible{outline-color:var(--bt-cyan)}
+          #start-brand-page #self-check [class~="rounded-t-[28px]"]{background:#212121 var(--bt-gloss)}
+          #start-brand-page > section:not(#contact)>.container:has(>h2){max-width:1240px;display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:0 70px}
+          #start-brand-page > section:not(#contact)>.container:has(>h2)>h2{text-align:left;grid-row:1/3;margin:0;font-size:clamp(29px,3.1vw,46px)!important}
+          #start-brand-page > section:not(#contact) [data-state][class*="rounded-xl"]{border:0;border-bottom:1px solid #c6c6c6;border-radius:0;background:transparent;padding-inline:0}
+          #start-brand-page > section:not(#contact) a[href="/faq"]{color:#212121!important;text-decoration:underline;text-underline-offset:5px}
+          #start-brand-page #contact{background:#fff;padding:70px 0}
+          #start-brand-page #contact>.container>div{max-width:1240px!important;background:#212121 var(--bt-gloss);border-radius:32px;padding:42px}
+          #start-brand-page #contact .grid:has(>form){grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:50px}
+          #start-brand-page #contact .section-title,#start-brand-page #contact .section-title+p{color:#fff!important}
+          #start-brand-page #contact .section-title .font-semibold{font-family:Georgia,"Times New Roman",serif!important;color:#fff!important;font-weight:400!important;font-style:italic}
+          #start-brand-page #contact form{background:#fff;color:#212121;min-width:0}
+          @media(max-width:800px){
+            #start-brand-page .bt-start-wrap{width:calc(100% - 36px)}
+            #start-brand-page .bt-start-hero,#start-brand-page .bt-start-choices,#start-brand-page .bt-start-consult{grid-template-columns:minmax(0,1fr);gap:22px}
+            #start-brand-page .bt-start-hero{padding:14px 0 26px}#start-brand-page .bt-start-hero p{font-size:17px}
+            #start-brand-page .bt-start-tile{padding:25px;border-radius:24px}#start-brand-page .bt-start-tile .bt-start-eyebrow{margin-bottom:20px}#start-brand-page .bt-start-tile .bt-start-price{margin-top:24px}
+            #start-brand-page .bt-start-other{flex-direction:column;align-items:flex-start;gap:12px}
+            #start-brand-page .bt-start-consult{padding:50px 0}#start-brand-page .bt-start-steps{padding:23px}#start-brand-page .bt-start-steps .bt-start-step{grid-template-columns:35px minmax(0,1fr);gap:9px}#start-brand-page .bt-start-results{padding:0}
+            #start-brand-page > section:not(#contact)>.container:has(>h2){display:block}#start-brand-page > section:not(#contact)>.container:has(>h2)>h2{margin-bottom:24px}
+            #start-brand-page #contact{padding:40px 0}#start-brand-page #contact>.container>div{padding:23px;border-radius:24px}#start-brand-page #contact .grid:has(>form){grid-template-columns:minmax(0,1fr);gap:22px}#start-brand-page #contact form{padding:17px}
+          }
+          @media(max-width:359px){#start-brand-page .bt-start-wrap{width:calc(100% - 28px)}#start-brand-page .bt-start-tile{padding:20px}#start-brand-page .bt-start-tile .bt-start-price{font-size:35px!important}#start-brand-page #contact>.container>div{padding:16px}}
         `}</style>
         <PageBreadcrumbs currentPage="С чего начать" />
 
         <main>
-          <section className="container mx-auto max-w-7xl px-4 pt-6 md:pt-12 pb-8">
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6">С чего <span className="font-iriska font-normal italic text-accent">начать</span></h1>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
-              Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.
-            </p>
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="rounded-[28px] bg-[#F2F2F2] shadow-card p-6 md:p-8 flex flex-col items-start">
-                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-4">Самостоятельно</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-foreground mb-4">Узнайте, где компания теряет деньги</h2>
-                <p className="text-[16px] font-normal text-muted-foreground leading-relaxed mb-5">Ответьте на вопросы о работе сотрудников, задержках и ошибках. Получите предварительные выводы и первый шаг для проверки.</p>
-                <p className="text-[20px] md:text-[22px] font-bold text-foreground mb-1">Бесплатно</p>
-                <p className="text-sm md:text-base text-muted-foreground mb-7">Без регистрации и обязательного звонка.</p>
-                <PillButton onClick={startDiagnostic} variant="dark" size="md" className="mt-auto !bg-[#212121] !text-white hover:!bg-[#3D3D3D] [&>span:last-child]:!text-[#212121]">Проверить свой процесс →</PillButton>
-              </div>
-              <div className="rounded-[28px] bg-[#07536A] shadow-card p-6 md:p-8 flex flex-col items-start">
-                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] !text-white mb-4">С Александрой</p>
-                <h2 className="!text-[20px] md:!text-[24px] !font-bold !leading-[1.2] text-white mb-4">Выездная консультация</h2>
-                <p className="text-[16px] font-normal !text-white leading-relaxed mb-5">На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу. Красноярск · до 1 часа. Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
-                <p className="text-[20px] md:text-[22px] font-bold !text-white mb-1">8 000 ₽</p>
-                <p className="text-sm md:text-base !text-white mb-7">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
-                <PillButton onClick={bookMeeting} variant="light" size="md" className="mt-auto !bg-white !text-[#07536A] hover:!bg-[#F2F2F2] [&>span:last-child]:!bg-[#07536A] [&>span:last-child]:!text-white">Пригласить специалиста →</PillButton>
-              </div>
+          <div className="bt-start-wrap">
+            <section className="bt-start-hero">
+              <div><span className="bt-start-line" aria-hidden="true"/><h1>С чего <em>начать</em></h1></div>
+              <p>Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.</p>
+            </section>
+            <section className="bt-start-choices" aria-label="Форматы начала работы">
+              <article className="bt-start-tile bt-start-free">
+                <p className="bt-start-eyebrow">Самостоятельно</p>
+                <h2>Узнайте, где компания <em>теряет деньги</em></h2>
+                <p>Ответьте на вопросы о работе сотрудников, задержках и ошибках. Получите предварительные выводы и первый шаг для проверки.</p>
+                <p className="bt-start-price">Бесплатно</p>
+                <p className="bt-start-terms">Без регистрации и обязательного звонка.</p>
+                <PillButton onClick={startDiagnostic} variant="light" size="md" className="bt-start-cta">Проверить свой процесс</PillButton>
+              </article>
+              <article className="bt-start-tile bt-start-paid">
+                <p className="bt-start-eyebrow">С Александрой</p>
+                <h2>Выездная <em>консультация</em></h2>
+                <p>На месте изучим один рабочий процесс, выясним, где теряются время и деньги, определим приоритетную задачу.</p>
+                <div className="bt-start-tags"><span>Красноярск</span><span>До 1 часа</span></div>
+                <p className="bt-start-summary">Результат: краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом.</p>
+                <p className="bt-start-price">8 000 ₽</p>
+                <p className="bt-start-terms">Стоимость полностью засчитывается в оплату последующего проекта автоматизации. Место и время согласуем заранее.</p>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="bt-start-cta">Пригласить специалиста</PillButton>
+              </article>
+            </section>
+            <div className="bt-start-other">
+              <Link to="/services">Выбрать решение из каталога ↗</Link>
+              <div>Уже знаете, что хотите внедрить?{" "}<button type="button" onClick={() => { setContactIntent(null); if(requestedOffer) navigate("/start#contact",{replace:true}); scrollToContact(); }}>Сразу обсудить задачу →</button></div>
             </div>
-            <p className="mt-6 text-base md:text-lg text-foreground">
-              <Link className="font-semibold text-[#07536A] underline underline-offset-4" to="/services">Выбрать решение из каталога</Link>. Уже знаете, что хотите внедрить?{" "}
-              <button
-                type="button"
-                onClick={() => { setContactIntent(null); if(requestedOffer) navigate("/start#contact",{replace:true}); scrollToContact(); }}
-                className="font-semibold text-[#07536A] underline-offset-4 hover:underline"
-              >
-                Сразу обсудить задачу →
-              </button>
-            </p>
-          </section>
-          {diagnosticStarted && (
+            {diagnosticStarted && (
             <section ref={diagnosticRef} id="self-check" className="container mx-auto px-4 pt-6 pb-12 scroll-mt-24">
               <DiagnosticForm key={scenarioId || "universal"} scenario={scenario} />
             </section>
           )}
-          {/* 3. Что происходит на выездной консультации + что Вы получите */}
-          <section
-            id="result"
-            className="bg-white container mx-auto max-w-7xl px-4 pt-8 md:pt-12 pb-12 md:pb-16 scroll-mt-24"
-          >
-            <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-              <div className="md:col-span-5 rounded-[24px] md:rounded-[32px] bg-[#3D3D3D] text-white px-6 md:px-8 py-8 md:py-10 shadow-card">
-                <h2 className="text-2xl md:text-4xl font-bold text-white leading-[1.08] mb-6 md:mb-8">
-                  Что происходит на выездной консультации
-                </h2>
-                <div className="border-t border-background/15 mb-6 md:mb-8">
-                  {flow.map((step, i) => (
-                    <div
-                      key={step.title}
-                      className="flex items-baseline gap-4 border-b border-background/15 py-3.5"
-                    >
-                      <span className="text-base md:text-lg font-bold text-white tabular-nums shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-base md:text-lg text-white">
-                        <span className="font-semibold text-white">{step.title}</span>
-                        <span className="block text-sm md:text-base text-white leading-snug mt-0.5">{step.text}</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-base md:text-lg !text-white leading-snug">
-                  Не каждую проблему нужно решать автоматизацией. Иногда достаточно изменить порядок работы, распределить ответственность или устранить лишние действия.
-                </p>
-              </div>
-
-              <div className="md:col-span-7 md:pl-6">
-                <h2 className="text-2xl md:text-4xl font-bold text-foreground leading-[1.08] mb-6 md:mb-8">
-                  Что Вы получите после консультации
-                </h2>
-                <ul className="mb-8 md:mb-10 border-t border-border">
-                  {results.map((r) => (
-                    <li key={r.title} className="flex items-start gap-4 border-b border-border py-5 md:py-6">
-                      <Check className="w-6 h-6 text-[#07536A] mt-1 shrink-0" strokeWidth={2} />
-                      <span className="text-lg md:text-2xl text-foreground leading-snug">
-                        {r.title}
-                        <span className="block text-sm md:text-base text-muted-foreground leading-snug mt-1">{r.text}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="rounded-2xl bg-[#B3B3B3] px-5 py-4 text-sm md:text-base font-semibold !text-[#212121] leading-snug max-w-xl">
-                  Вы получите краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом. Гипотезы и предполагаемые результаты выделяются отдельно. Дальнейшие действия Вы выбираете самостоятельно.
-                </p>
-                <PillButton onClick={bookMeeting} variant="dark" size="md" className="mt-6 !bg-[#212121] !text-white hover:!bg-[#3D3D3D] [&>span:last-child]:!text-[#212121]">Пригласить специалиста</PillButton>
-              </div>
-            </div>
-          </section>
-
+            <section id="result" className="bt-start-consult scroll-mt-24">
+              <article className="bt-start-steps">
+                <h2>Что происходит на выездной <em>консультации</em></h2>
+                {flow.map((step,i)=><div className="bt-start-step" key={step.title}><span className="bt-start-number">{String(i+1).padStart(2,"0")}</span><div><h3>{step.title}</h3><p>{step.text}</p></div></div>)}
+                <p className="bt-start-note">Не каждую проблему нужно решать автоматизацией. Иногда достаточно изменить порядок работы, распределить ответственность или устранить лишние действия.</p>
+              </article>
+              <article className="bt-start-results">
+                <h2>Что Вы получите после <em>консультации</em></h2>
+                {results.map(r=><div className="bt-start-result" key={r.title}><Check aria-hidden="true"/><div><h3>{r.title}</h3><p>{r.text}</p></div></div>)}
+                <p className="bt-start-document">Вы получите краткое письменное заключение с рекомендациями, возможным решением, ориентиром бюджета и следующим шагом. Гипотезы и предполагаемые результаты выделяются отдельно. Дальнейшие действия Вы выбираете самостоятельно.</p>
+                <PillButton onClick={bookMeeting} variant="dark" size="md" className="bt-start-cta">Пригласить специалиста</PillButton>
+              </article>
+            </section>
+          </div>
         </main>
 
         <FAQTeaser
