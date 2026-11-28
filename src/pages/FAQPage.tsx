@@ -274,11 +274,11 @@ const FAQPage = () => {
         <div className="container mx-auto px-4">
 
           {/* Hero Section */}
-          <section className="text-center mb-12 mt-8">
+          <section className="text-left mb-8 mt-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
               <span className="font-bold">Частые вопросы</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl">
               Ответы на вопросы о продуктах, ИИ-агентах, лицензиях, автоматизации, консультациях, проверке бизнес-процесса и обучении.
             </p>
           </section>

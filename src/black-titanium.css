@@ -282,3 +282,27 @@
     :is(.bt-site,#start-brand-page,#home-black-titanium) :is(.bt-cta-primary,.nr-cta,.bt-sol-cta,.bt-start-cta,.bt-cta-secondary) {transition:none}
   }
 }
+
+/* Final PR40 editorial presentation */
+@media screen {
+ .breadcrumb-nav,.site-route-frame .breadcrumb-nav {border-bottom:0!important;padding-block:12px!important;background:#fff!important;}
+ .breadcrumb-nav ol {font-family:Raleway,Arial,sans-serif;font-size:12px!important;letter-spacing:.09em;text-transform:uppercase;gap:8px;}
+ .breadcrumb-nav .breadcrumb-separator {color:#707070;}
+ [data-site-header] {--primary:0 0% 12.94%;--primary-dark:0 0% 23.92%;}
+ [data-site-header] nav a.text-primary {color:#212121!important;}
+ [data-site-header] nav a:after {background-color:#3DDCE8;}
+ .bt-header-cta {background-color:#212121!important;background-image:linear-gradient(155deg,#434343,#151515 65%,#292929)!important;color:white!important;border-radius:999px!important;min-height:48px;padding:6px 8px 6px 14px!important;gap:10px!important;}
+ .bt-header-cta:after {content:'↗';display:grid;place-items:center;background:#3DDCE8;color:#212121;border-radius:50%;width:30px;height:30px;flex:none;}
+ .bt-editorial-photo {padding-block:32px!important;}
+ .bt-editorial-copy {background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;}
+ .bt-credential {background:#34393B!important;background-image:linear-gradient(135deg,#505659,#34393B 44%,#272B2D)!important;color:white!important;}
+ .bt-credential :is(h3,p) {color:white!important;}
+ .bt-credential-preview {height:240px;background:#212121!important;position:relative;padding:12px;}
+ .bt-credential-preview:after {content:'↗';position:absolute;right:8px;bottom:8px;background:#3DDCE8;color:#212121;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;}
+ .bt-credential img {object-fit:contain!important;}
+ #home-testimonials {padding-block:0!important;}
+ #testimonials {padding-block:32px!important;}
+ .bt-cta-secondary>span:last-child:has(svg) {width:36px;height:36px;flex:0 0 36px;background:#212121!important;color:#3DDCE8!important;border-radius:50%;display:grid;place-items:center;}
+ .bt-cta-secondary {background-image:var(--bt-steel,linear-gradient(110deg,#B4B4B4,#F2F2F2,#C2C2C2))!important;}
+ @media(max-width:767px){.bt-credential-preview{height:220px}.bt-editorial-photo{padding-block:24px!important}}
+}

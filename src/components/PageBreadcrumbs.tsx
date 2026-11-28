@@ -42,7 +42,7 @@ const PageBreadcrumbs = ({
             </li>
             {parentPages?.map((parent, index) => (
               <li key={index} className="flex min-w-0 items-center gap-1.5">
-                <span aria-hidden="true" className="breadcrumb-separator">&gt;</span>
+                <span aria-hidden="true" className="breadcrumb-separator">·</span>
                 {parent.href ? (
                   <Link 
                     to={parent.href} 
@@ -56,7 +56,7 @@ const PageBreadcrumbs = ({
               </li>
             ))}
             <li className="flex min-w-0 items-center gap-1.5">
-              <span aria-hidden="true" className="breadcrumb-separator">&gt;</span>
+              <span aria-hidden="true" className="breadcrumb-separator">·</span>
               <span className="breadcrumb-current font-medium" aria-current="page">
                 {currentPage}
               </span>

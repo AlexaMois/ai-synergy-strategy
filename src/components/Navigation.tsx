@@ -229,7 +229,7 @@ const Navigation = () => {
               <Phone className="h-4 w-4" strokeWidth={1.5} />
               <span className="sr-only 2xl:not-sr-only">{phoneNumber}</span>
             </a>
-            <Button size="sm" onClick={scrollToContact}>
+            <Button size="sm" className="bt-header-cta" onClick={scrollToContact}>
               Обсудить задачу
             </Button>
           </div>
@@ -304,7 +304,7 @@ const Navigation = () => {
             <Phone className="h-5 w-5" strokeWidth={1.5} />
             {phoneNumber}
           </a>
-          <Button size="sm" className="w-full" onClick={scrollToContact}>
+          <Button size="sm" className="w-full bt-header-cta" onClick={scrollToContact}>
             Обсудить задачу
           </Button>
         </div>

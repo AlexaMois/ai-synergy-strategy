@@ -192,9 +192,7 @@ const About = () => {
             <div className="relative rounded-[32px] md:rounded-[40px] bg-surface-mint overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
               <div className="grid md:grid-cols-12 gap-6 items-center px-6 md:px-12 lg:px-16 pt-6 md:pt-10 pb-0 md:pb-0">
                 <div className={`md:col-span-7 pb-10 md:pb-16 ${heroAnimation('animate-fade-in-up')}`}>
-                  <p className="text-sm uppercase tracking-widest text-accent font-semibold mb-6">
-                    Обо мне
-                  </p>
+                  
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.02] tracking-tight text-foreground mb-6">
                     Александра <span className="font-iriska font-normal italic text-accent">Моисеева</span>
                   </h1>
@@ -281,18 +279,18 @@ const About = () => {
         </section>
 
         {/* Photo: Business Success Award - Combined */}
-        <section className="py-14 md:py-20">
+        <section className="bt-editorial-photo py-8">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-3 gap-6 items-center">
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5">
-                <img src={awardDiploma} alt="Александра Моисеева — диплом победителя регионального этапа премии «Бизнес-Успех»" className="w-full h-64 md:h-72 object-cover" style={{
+                <img src={awardDiploma} alt="Александра Моисеева — диплом победителя регионального этапа премии «Бизнес-Успех»" className="w-full h-52 md:h-60 object-contain" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
               </div>
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 bg-surface-sand">
-                <img src={awardCeremony} alt="Церемония награждения на премии «Бизнес-Успех» 2025" className="w-full h-64 md:h-72 object-contain" loading="lazy" decoding="async" />
+                <img src={awardCeremony} alt="Церемония награждения на премии «Бизнес-Успех» 2025" className="w-full h-52 md:h-60 object-contain" loading="lazy" decoding="async" />
               </div>
-              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
+              <div className="bt-editorial-copy">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Премия «Бизнес-Успех» 2025</span> — национальная предпринимательская премия для тех, кто строит бизнес на результатах, а не обещаниях.
                 </p>
@@ -308,14 +306,14 @@ const About = () => {
         <HowIChoose />
 
         {/* Photo: Speaking at Podium */}
-        <section className="py-12 md:py-16">
+        <section className="bt-editorial-photo py-8">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8 order-2 md:order-1">
+              <div className="bt-editorial-copy order-2 md:order-1">
                 <p className="text-lg text-foreground leading-relaxed"><span className="text-primary font-semibold">Выступление</span> — делюсь практикой внедрения ИИ в малом и среднем бизнесе.</p>
               </div>
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 order-1 md:order-2">
-                <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-72 md:h-80 object-cover" style={{
+                <img src={speakingPodium} alt="Александра Моисеева выступает на форуме" className="w-full h-52 md:h-60 object-cover" style={{
                   objectPosition: '65% top'
                 }} loading="lazy" decoding="async" />
               </div>
@@ -420,16 +418,16 @@ const About = () => {
         </section>
 
         {/* Photo: Presenting to Audience */}
-        <section className="py-12 md:py-16">
+        <section className="bt-editorial-photo py-8">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8 order-2 md:order-1">
+              <div className="bt-editorial-copy order-2 md:order-1">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Презентация на бизнес-форуме</span> — практические инструменты для привлечения и удержания клиентов с помощью технологий.
                 </p>
               </div>
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5 order-1 md:order-2">
-                <img src={presentingAudience} alt="Презентация для аудитории на бизнес-форуме" className="w-full h-72 md:h-80 object-cover object-center" loading="lazy" decoding="async" />
+                <img src={presentingAudience} alt="Презентация для аудитории на бизнес-форуме" className="w-full h-52 md:h-60 object-cover object-center" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -542,13 +540,13 @@ const About = () => {
         </section>
 
         {/* Photo: Business Angels Event */}
-        <section className="py-12 md:py-16">
+        <section className="bt-editorial-photo py-8">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-6 items-center">
               <div className="overflow-hidden rounded-[24px] shadow-card ring-1 ring-foreground/5">
-                <img src={businessAngels} alt="Мероприятие «Ангелы бизнеса»" className="w-full h-72 md:h-80 object-cover object-top" loading="lazy" decoding="async" />
+                <img src={businessAngels} alt="Мероприятие «Ангелы бизнеса»" className="w-full h-52 md:h-60 object-cover object-top" loading="lazy" decoding="async" />
               </div>
-              <div className="bg-card rounded-[24px] ring-1 ring-foreground/5 shadow-card p-6 md:p-8">
+              <div className="bt-editorial-copy">
                 <p className="text-lg text-foreground leading-relaxed">
                   <span className="text-primary font-semibold">Мероприятие «Ангелы бизнеса»</span> — нетворкинг с предпринимателями, которые строят бизнес на ценностях и результате.
                 </p>
@@ -593,7 +591,7 @@ const About = () => {
                           key={i}
                           className={`relative flex flex-col rounded-[24px] ${it.bg} ${it.size} p-5 md:p-7 ring-1 ring-foreground/5 shadow-card hover:shadow-plate hover:-translate-y-0.5 transition-all duration-300 overflow-hidden`}
                         >
-                          <span className={`font-iriska tabular-nums leading-none font-bold ${isFeatured ? "text-7xl md:text-8xl text-white/90" : "text-3xl md:text-4xl text-accent"} mb-3`}>
+                          <span className={`bt-display-number tabular-nums leading-none font-bold ${isFeatured ? "text-7xl md:text-8xl text-white/90" : "text-3xl md:text-4xl text-accent"} mb-3`}>
                             {it.num}
                           </span>
                           <p className={`${isFeatured ? "text-xl md:text-2xl font-bold leading-tight" : "text-sm md:text-base font-medium leading-snug"} ${it.color} mt-auto`}>
@@ -612,13 +610,13 @@ const About = () => {
                   <button
                     key={credential.title}
                     onClick={() => setSelectedCredential(credential)}
-                    className="group bg-card rounded-[20px] shadow-card ring-1 ring-foreground/5 p-5 text-left transition-all duration-200 hover:shadow-elevated hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    className="bt-credential group bg-card rounded-[20px] shadow-card ring-1 ring-foreground/5 p-5 text-left transition-all duration-200 hover:shadow-elevated hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
                   >
-                    <div className="aspect-[3/4] mb-4 rounded-[16px] overflow-hidden bg-surface-sand">
+                    <div className="bt-credential-preview mb-4 rounded-[16px] overflow-hidden bg-surface-sand">
                       <img
                         src={credential.image}
                         alt={credential.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0"
                         loading="lazy"
                       />
                     </div>
