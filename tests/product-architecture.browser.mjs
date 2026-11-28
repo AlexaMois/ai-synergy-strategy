@@ -139,7 +139,7 @@ try {
           assert.deepEqual(homePalette.cases.map(x=>x.background),["rgb(33, 33, 33)","rgb(217, 217, 217)","rgb(255, 255, 255)"],"Homepage case palette");
           assert(homePalette.cases[0].image.includes("rgb(67, 67, 67)")&&homePalette.cases[1].image.includes("repeating-linear-gradient")&&homePalette.cases[2].image==="none","Case materials");
           assert(homePalette.cases.every(x=>x.title>=7&&x.text.every(r=>r>=4.5)),"Case text contrast");
-          assert.deepEqual(homePalette.brandNumbers.map(x=>x.color),["rgb(61, 220, 232)","rgb(33, 33, 33)","rgb(33, 33, 33)"],"Case numbers palette");
+          assert.deepEqual(homePalette.brandNumbers.map(x=>x.color),["rgb(255, 255, 255)","rgb(33, 33, 33)","rgb(33, 33, 33)"],"Case numbers palette");
           assert(homePalette.brandNumbers.every(x=>x.font.includes("Golos Text")&&x.ratio>=7),"Case number font and contrast");
           assert(homePalette.stats.bg==="rgb(33, 33, 33)"&&homePalette.stats.font.includes("Iriska")&&homePalette.stats.color==="rgb(61, 220, 232)"&&homePalette.stats.ratio>=7&&homePalette.stats.ordinary.length===7&&homePalette.stats.ordinary.every(x=>x.font.includes("Golos Text")&&x.ratio>=7),"Statistics font roles and contrast");
           assert.equal(homePalette.process,"rgb(33, 33, 33)");
