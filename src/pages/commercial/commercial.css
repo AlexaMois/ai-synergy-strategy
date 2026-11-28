@@ -306,3 +306,6 @@
 #home-black-titanium #home-start>div[class*="rounded-[28px]"]{background-color:#D9D9D9}
 #home-black-titanium #brand-hero [data-brand-panel] h1{overflow-wrap:break-word}
 #home-black-titanium #home-metrics [class~="md:col-span-7"]>div .font-iriska{max-width:100%;overflow-wrap:break-word}
+
+/* Ordinary key figures on gloss: white maintains 7:1 even at the brightest stop. */
+#home-black-titanium #home-cases a[href="/cases/aktransservice"] .brand-large-number{color:#fff!important}
