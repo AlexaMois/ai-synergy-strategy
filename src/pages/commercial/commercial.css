@@ -309,3 +309,43 @@
 
 /* Ordinary key figures on gloss: white maintains 7:1 even at the brightest stop. */
 #home-black-titanium #home-cases a[href="/cases/aktransservice"] .brand-large-number{color:#fff!important}
+
+
+/* Owner review: restrained steel numerals, editorial consultation and four-step method. */
+#home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .font-iriska,
+#home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .brand-large-number{
+  color:#D9D9D9!important;font-family:"Golos Text",sans-serif!important;font-style:normal
+}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .brand-large-number{
+    background-image:linear-gradient(155deg,#F2F2F2 0%,#D9D9D9 35%,#B3B3B3 55%,#E5E5E5 77%,#D9D9D9 100%);
+    background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+}
+#home-black-titanium #home-metrics [class~="md:col-span-5"] .brand-large-number{color:#3DDCE8!important}
+#home-black-titanium #home-start .bt-start-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,64px);padding:clamp(24px,4vw,48px)}
+#home-black-titanium #home-start .bt-start-copy,#home-black-titanium #home-start .bt-start-offer{min-width:0}
+#home-black-titanium #home-start .bt-start-copy>p:last-child{margin-bottom:0}
+#home-black-titanium #home-start .bt-start-offer{border-left:1px solid rgba(33,33,33,.2);padding-left:clamp(24px,3vw,48px)}
+#home-black-titanium #home-start .bt-start-price,#home-black-titanium #home-start .bt-start-price .brand-large-number{
+  font-family:Georgia,"Times New Roman",serif!important;font-style:italic;font-weight:400!important;color:#212121!important
+}
+#home-black-titanium #home-start .bt-start-price{font-size:clamp(38px,5vw,72px);line-height:1.1;letter-spacing:-.035em}
+#home-black-titanium #home-start .bt-start-card .text-accent{color:#212121!important}
+#home-black-titanium #home-start .bt-start-card button>span:last-child{background:#fff!important;color:#212121!important}
+#home-black-titanium #home-start .bt-start-card button:focus-visible{outline-color:#212121!important}
+#home-black-titanium #home-process .bt-process-accent{font-family:Georgia,"Times New Roman",serif!important;font-style:italic;font-weight:400!important;color:#fff!important}
+#home-black-titanium #home-process .bt-process-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 clamp(24px,5vw,64px) 12px;padding:0;list-style:none}
+#home-black-titanium #home-process .bt-process-step{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-width:0;padding:24px 12px;min-height:124px;border:1px solid #505050;border-radius:24px;background:linear-gradient(145deg,#343434,#292929);box-shadow:0 8px 20px rgba(0,0,0,.14);color:#fff;text-align:center}
+#home-black-titanium #home-process .bt-process-index{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:32px;line-height:1;color:#D9D9D9}
+#home-black-titanium #home-process .bt-process-label{font-family:"Golos Text",sans-serif;font-weight:600;font-size:clamp(14px,1.45vw,20px);color:#fff;overflow-wrap:anywhere}
+#home-black-titanium #home-process .bt-process-description{max-width:920px;margin-inline:auto}
+@media(max-width:767px){
+  #home-black-titanium #home-start .bt-start-card{grid-template-columns:minmax(0,1fr);gap:24px}
+  #home-black-titanium #home-start .bt-start-offer{border-left:0;border-top:1px solid rgba(33,33,33,.2);padding-left:0;padding-top:24px}
+  #home-black-titanium #home-process .bt-process-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-inline:20px}
+  #home-black-titanium #home-process .bt-process-step{min-height:104px;padding:18px 8px;border-radius:20px}
+}
+@media(forced-colors:active){
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .brand-large-number{background:none;-webkit-text-fill-color:CanvasText;color:CanvasText!important}
+}
