@@ -27,6 +27,12 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
+        if(path!=="/"){
+          const nav=await page.evaluate(()=>{const h=document.querySelector("[data-site-header]"),b=document.querySelector(".breadcrumb-nav");return {count:document.querySelectorAll(".breadcrumb-nav").length,headerBottom:h?.getBoundingClientRect().bottom,breadcrumbTop:b?.getBoundingClientRect().top,current:b?.querySelectorAll("[aria-current=page]").length};});
+          assert.equal(nav.count,1,"One shared breadcrumb "+path);
+          assert.equal(nav.current,1,"One current page "+path);
+          assert(nav.breadcrumbTop>=nav.headerBottom-1&&nav.breadcrumbTop<=nav.headerBottom+2,"Breadcrumb immediately below header "+JSON.stringify(nav));
+        }
 
         // Trigger existing on-scroll animations and lazy assets before recording a full page.
         await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,65));}window.scrollTo(0,0);await new Promise(r=>setTimeout(r,300));});
