@@ -77,7 +77,8 @@ const PillButton = (props: Props) => {
         ? "h-3.5 w-3.5 md:h-4 md:w-4"
         : "h-3 w-3";
 
-  const cls = `group inline-flex items-center ${size === "sm" ? "gap-2" : "gap-3"} ${sizing} rounded-full font-semibold shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles[variant]} ${className}`;
+  const role = variant.startsWith("outline") ? "bt-cta-secondary" : "bt-cta-primary";
+  const cls = `${role} group inline-flex items-center ${size === "sm" ? "gap-2" : "gap-3"} ${sizing} rounded-full font-semibold shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300 ${styles[variant]} ${className}`;
 
   const inner = (
     <>
