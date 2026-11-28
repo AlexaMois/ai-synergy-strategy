@@ -209,3 +209,25 @@
   .site-route-frame .breadcrumb-nav .breadcrumb-separator { color:#707070; flex:none; }
   .site-route-frame .breadcrumb-nav li { overflow-wrap:anywhere; }
 }
+
+/* Unified heading scale: fixed desktop sizes, independent of monitor width. */
+@media screen {
+  :is(.bt-site,#start-brand-page,#home-black-titanium) {--bt-heading-1:36px;--bt-heading-2:28px;--bt-heading-3:22px;--bt-contact-heading:26px;}
+  @media(max-width:767px){:is(.bt-site,#start-brand-page,#home-black-titanium){--bt-heading-1:28px;--bt-heading-2:24px;--bt-heading-3:20px;--bt-contact-heading:22px;}}
+  /* Specificity is deliberate: supersedes historical per-template important declarations. */
+  :is(.bt-site,#start-brand-page,#home-black-titanium):not(#bt-unused-a):not(#bt-unused-b):not(#bt-unused-c) h1 {font-size:var(--bt-heading-1)!important;line-height:1.15!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium):not(#bt-unused-a):not(#bt-unused-b):not(#bt-unused-c) h2 {font-size:var(--bt-heading-2)!important;line-height:1.2!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium):not(#bt-unused-a):not(#bt-unused-b):not(#bt-unused-c) h3 {font-size:var(--bt-heading-3)!important;line-height:1.25!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium):not(#bt-unused-a):not(#bt-unused-b):not(#bt-unused-c) :is(h1,h2,h3) :is(em,.font-iriska,.font-semibold,strong) {font-size:inherit!important;line-height:inherit!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium):not(#bt-unused-a):not(#bt-unused-b):not(#bt-unused-c) #contact .section-title {font-size:var(--bt-contact-heading)!important;line-height:1.2!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] {padding-block:24px!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact]>.container>div {max-width:1120px!important;padding:24px!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] .grid:has(>form) {gap:24px!important;align-items:center;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] form {padding:20px!important;}
+  :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] .section-title+p {font-size:16px;line-height:1.5;}
+  @media(max-width:640px){
+    :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] {padding-block:20px!important;}
+    :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact]>.container>div {padding:16px!important;}
+    :is(.bt-site,#start-brand-page,#home-black-titanium) #contact[data-compact-contact] form {padding:14px!important;}
+  }
+}
