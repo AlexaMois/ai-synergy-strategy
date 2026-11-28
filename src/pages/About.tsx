@@ -666,7 +666,7 @@ const About = () => {
 
         {/* Modal for zoomed credential view */}
         <Dialog open={!!selectedCredential} onOpenChange={(open) => !open && setSelectedCredential(null)}>
-          <DialogContent className="bt-credential-dialog max-w-4xl p-0 overflow-hidden bg-background border-border">
+          <DialogContent aria-describedby={undefined} className="bt-global-ui bt-dialog-surface bt-credential-dialog max-w-4xl p-0 overflow-hidden bg-background border-border">
             <DialogTitle className="sr-only">
               {selectedCredential?.title}
             </DialogTitle>
@@ -707,11 +707,11 @@ const About = () => {
             
             {/* 4-column grid gallery */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryImages.map((image, index) => <div key={index} className="overflow-hidden rounded-[20px] shadow-card ring-1 ring-foreground/5 hover:shadow-elevated transition-all duration-200 cursor-pointer group" onClick={() => openLightbox(index)}>
+              {galleryImages.map((image, index) => <button type="button" data-bt-gallery-trigger key={index} className="w-full overflow-hidden rounded-[20px] shadow-card ring-1 ring-foreground/5 hover:shadow-elevated transition-all duration-200 cursor-pointer group" onClick={() => openLightbox(index)}>
                   <img src={image.src} alt={image.alt} className="w-full h-40 md:h-48 object-cover object-top transition-transform duration-300 group-hover:scale-110" style={index === 2 ? {
                   objectPosition: 'center center'
                 } : undefined} loading="lazy" />
-                </div>)}
+                </button>)}
             </div>
         </section>
 

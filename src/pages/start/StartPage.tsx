@@ -144,29 +144,29 @@ const StartPage = () => {
           #start-brand-page main [class~="text-muted-foreground"],
           #start-brand-page > section [class~="text-muted-foreground"] { color:#3D3D3D; }
           #start-brand-page #self-check [class~="text-accent"],
-          #start-brand-page > section a[href="/faq"] { color:#07536A!important; }
+          #start-brand-page > section a[href="/faq"] { color:#212121!important; }
           #start-brand-page #self-check [role="radio"],
           #start-brand-page #self-check [role="checkbox"] { color:#212121!important; border-color:#707070; background:#FFFFFF; }
-          #start-brand-page #self-check [aria-checked="true"] { border-color:#07536A; background:#E0F5F5; }
-          #start-brand-page #self-check [aria-checked="true"] [class~="border-accent"] { border-color:#07536A; }
-          #start-brand-page #self-check [aria-checked="true"] [class~="bg-accent"] { background:#07536A; }
+          #start-brand-page #self-check [aria-checked="true"] { border-color:#212121; background:#F2F2F2; }
+          #start-brand-page #self-check [aria-checked="true"] [class~="border-accent"] { border-color:#212121; }
+          #start-brand-page #self-check [aria-checked="true"] [class~="bg-accent"] { background:#212121; }
           #start-brand-page #self-check [aria-checked="true"] svg { color:#FFFFFF; }
           #start-brand-page #self-check [class~="border-foreground/25"],
           #start-brand-page #self-check [class~="border-foreground/10"] { border-color:#707070; }
-          #start-brand-page #self-check [aria-checked="true"] { border-color:#07536A; }
+          #start-brand-page #self-check [aria-checked="true"] { border-color:#212121; }
           #start-brand-page #self-check [class~="bg-muted"] { background:#D9D9D9; }
           #start-brand-page #self-check [class~="rounded-t-[28px]"] { background:#3D3D3D; }
           #start-brand-page #self-check [class~="rounded-t-[28px]"] h2 { color:#FFFFFF!important; }
           #start-brand-page #self-check [class~="bg-[#F3F5F6]"] { background:#F2F2F2; }
-          #start-brand-page #self-check [class~="bg-[#DEF2F7]"] { background:#E0F5F5; }
+          #start-brand-page #self-check [class~="bg-[#DEF2F7]"] { background:#F2F2F2; }
           #start-brand-page #self-check [class~="border-[#E5E7EB]"] { border-color:#D9D9D9; }
           #start-brand-page #self-check [class~="text-[#616161]"] { color:#3D3D3D; }
-          #start-brand-page #self-check [class~="text-[#116078]"] { color:#07536A; }
+          #start-brand-page #self-check [class~="text-[#116078]"] { color:#212121; }
           #start-brand-page #self-check [class~="!border-[#616161]"] { border-color:#707070!important; }
           #start-brand-page #self-check [class~="hover:!bg-[#F3F5F6]"]:hover { background:#F2F2F2!important; }
           #start-brand-page #self-check [class~="hover:!bg-[#333333]"]:hover { background:#3D3D3D!important; }
           #start-brand-page main :is(a,button,input,textarea,select):focus-visible,
-          #start-brand-page > section :is(a,button):focus-visible { outline-color:#07536A; }
+          #start-brand-page > section :is(a,button):focus-visible { outline-color:#212121; }
           #start-brand-page main [class~="bg-[#07536A]"] button:focus-visible { outline-color:#FFFFFF; }
           #start-brand-page > section { background:#F2F2F2; }
 

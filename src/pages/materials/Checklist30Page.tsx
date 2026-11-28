@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import { Printer, Phone, CheckCircle2, AlertTriangle, XCircle, HelpCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
@@ -323,14 +323,14 @@ const Checklist30Page = () => {
               Сохраните чек-лист и проведите аудит самостоятельно — или доверьте тестирование эксперту с готовой методологией и опытом в корпоративных RAG-системах.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" variant="outline" onClick={() => window.print()} className="gap-2">
+              <PillButton size="lg" variant="outline-dark" onClick={() => window.print()} className="gap-2">
                 <Printer size={20} />
                 Распечатать / Сохранить PDF
-              </Button>
-              <Button size="lg" onClick={scrollToContact} className="gap-2">
+              </PillButton>
+              <PillButton size="lg" variant="dark" onClick={scrollToContact} className="gap-2">
                 <Phone size={20} />
                 Запросить аудит вашей системы
-              </Button>
+              </PillButton>
             </div>
           </section>
         </main>

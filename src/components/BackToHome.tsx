@@ -21,7 +21,7 @@ const BackToHome = () => {
     location.pathname.startsWith('/cases/')
   ) return null;
   
-  const commercialPath = /^(\/products|\/mini-agents|\/ai-agents|\/expert|\/services|\/pricing|\/start|\/faq|\/about)(\/|$)/.test(location.pathname);
+  const commercialPath = /^(\/products|\/mini-agents|\/ai-agents|\/expert|\/services|\/pricing|\/start|\/faq|\/about|\/materials|\/blog|\/legal)(\/|$)/.test(location.pathname);
   return (
     <Link
       to="/"

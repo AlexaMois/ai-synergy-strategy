@@ -131,3 +131,48 @@ jobs:
           npm ci --prefix forms-handler --no-audit --no-fund
           node tests/commercial-handler.mjs
           node tests/forms-handler-regression.mjs
+
+
+  bt-hidden-states:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      VITE_FORMS_BASE_URL: https://forms.ci.invalid
+      VITE_SUPABASE_URL: https://supabase.ci.invalid
+      VITE_SUPABASE_PUBLISHABLE_KEY: ci-preview-placeholder
+      VITE_SUPABASE_PROJECT_ID: ci-preview
+      TEST_BASE_URL: http://127.0.0.1:4173
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - run: npm install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
+      - run: npx --no-install playwright install chromium
+      - name: Start isolated preview
+        run: |
+          mkdir -p artifacts/site-pr
+          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort > artifacts/site-pr/bt-preview.log 2>&1 &
+          for i in $(seq 1 45); do
+            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat artifacts/site-pr/bt-preview.log
+          exit 1
+      - name: Indexed routes and hidden states at five widths
+        run: |
+          node --check tests/bt-hidden-states.browser.mjs
+          node tests/bt-hidden-states.browser.mjs
+      - name: Upload hidden-state evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bt-hidden-state-browser-evidence
+          path: artifacts/site-pr/
+          if-no-files-found: ignore
+          retention-days: 14

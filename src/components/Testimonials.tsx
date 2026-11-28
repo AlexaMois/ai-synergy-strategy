@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Carousel,
@@ -306,6 +306,7 @@ const Testimonials = () => {
                     className="relative group cursor-pointer w-full h-[220px] transition-all duration-300 active:scale-95 hover:z-10 select-none"
                     onClick={() => setSelectedImage(review.image)}
                     role="button"
+                    data-bt-review-trigger
                     tabIndex={0}
                     onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelectedImage(review.image))}
                   >
@@ -333,14 +334,8 @@ const Testimonials = () => {
 
       {/* Modal for full-size view */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-lg w-auto p-0 bg-transparent border-none shadow-none [&>button]:hidden data-[state=open]:animate-fade-in data-[state=open]:duration-200">
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute -top-10 right-0 z-50 p-2 rounded-full bg-card/90 backdrop-blur-sm shadow-soft hover:bg-card transition-colors"
-            aria-label="Закрыть"
-          >
-            <X className="w-5 h-5 text-foreground" />
-          </button>
+        <DialogContent aria-describedby={undefined} className="bt-global-ui bt-dialog-surface bt-review-dialog">
+          <DialogTitle className="sr-only">Отзыв в полном размере</DialogTitle>
           {selectedImage && (
             <img
               src={selectedImage}

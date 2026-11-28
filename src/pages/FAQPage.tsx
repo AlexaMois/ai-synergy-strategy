@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import PillButton from "@/components/PillButton";
 import { Input } from "@/components/ui/input";
 import {
   Accordion,
@@ -429,21 +429,20 @@ const FAQPage = () => {
               Начните с каталога решений или бесплатной проверки процесса. Выберите подходящий результат и формат работы.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Button
+              <PillButton
                 size="lg"
+                variant="dark"
                 onClick={() => navigate("/start")}
-                className="px-8"
               >
                 Подобрать формат работы
-              </Button>
-              <Button
+              </PillButton>
+              <PillButton
                 size="lg"
-                variant="outline"
+                variant="outline-dark"
                 onClick={() => navigate("/services")}
-                className="px-8"
               >
                 Посмотреть услуги
-              </Button>
+              </PillButton>
             </div>
           </section>
         </div>

@@ -36,8 +36,8 @@
 .nr-commercial .nr-license-grid,.nr-commercial .nr-two,.nr-commercial .nr-result-grid{display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
 .nr-commercial .nr-license-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin:20px 0}
 .nr-commercial .nr-license{border:1px solid #616161;border-radius:22px;padding:24px;background:#fff;min-width:0}
-.nr-commercial .nr-license.nr-selected{background:#DCF1F1;border:2px solid #116078;padding:23px}
-.nr-commercial .nr-license label{display:flex;align-items:center;gap:8px;cursor:pointer}.nr-commercial input[type=radio]{width:20px;height:20px;accent-color:#116078}
+.nr-commercial .nr-license.nr-selected{background:#F2F2F2;border:2px solid #212121;padding:23px}
+.nr-commercial .nr-license label{display:flex;align-items:center;gap:8px;cursor:pointer}.nr-commercial input[type=radio]{width:20px;height:20px;accent-color:#212121}
 .nr-commercial .nr-flat{border-radius:30px;padding:clamp(22px,3vw,40px);display:block;min-width:0;color:#212121;text-decoration:none}.nr-commercial .nr-flat .nr-text-link,.nr-commercial .nr-flat .nr-cta{margin-top:14px}
 .nr-commercial .nr-flat img,.nr-commercial .nr-figure img{width:100%;height:auto;border-radius:16px;display:block}.nr-commercial .nr-figure{margin:0;min-width:0}.nr-commercial .nr-figure figcaption{font-size:14px;line-height:1.5;margin-top:12px;color:#3d4548}
 .nr-commercial .nr-result-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,4vw,52px)}
