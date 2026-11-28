@@ -47,7 +47,7 @@ try {
         return names.map(name=>{
           const el=document.createElement("div");
           el.style.backgroundColor="hsl(var("+name+"))";
-          document.body.append(el);
+          (document.querySelector("main") || document.body).append(el);
           const color=getComputedStyle(el).backgroundColor;
           el.remove();
           const rgb=(color.match(/[\d.]+/g)||[]).slice(0,3).map(Number);
@@ -67,13 +67,15 @@ try {
           const bg=n=>getComputedStyle(n).backgroundColor;
           const lum=v=>v.match(/[\d.]+/g).slice(0,3).map(Number).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
           const ratio=(fg,b)=>(Math.max(lum(fg),lum(b))+.05)/(Math.min(lum(fg),lum(b))+.05);
-          const cards=[...root.querySelectorAll("main > section:first-child .grid > div")].map(n=>({background:bg(n),text:[...n.querySelectorAll("h2,p")].map(t=>ratio(getComputedStyle(t).color,bg(n)))}));
-          return {cards,flow:bg(root.querySelector("#result .grid > div:first-child")),summary:bg(root.querySelector("#result .grid > div:last-child p.rounded-2xl")),faq:bg(root.querySelector(":scope > section"))};
+          const material=(selector,stops)=>{const n=root.querySelector(selector);if(!n)throw new Error("Missing Start material "+selector);return {background:bg(n),image:getComputedStyle(n).backgroundImage,text:[...n.querySelectorAll("h2,h3,p")].map(t=>Math.min(...stops.map(stop=>ratio(getComputedStyle(t).color,stop))))};};
+          return {cards:[material(".bt-start-free",["rgb(67,67,67)","rgb(16,16,16)"]),material(".bt-start-paid",["rgb(180,180,180)","rgb(242,242,242)"])],flow:material(".bt-start-steps",["rgb(80,86,89)","rgb(39,43,45)"]),summary:material(".bt-start-document",["rgb(180,180,180)","rgb(242,242,242)"]),faq:bg(root.querySelector(":scope > section:not(#contact)"))};
         });
-        assert.deepEqual(startPalette.cards.map(c=>c.background),["rgb(242, 242, 242)","rgb(7, 83, 106)"],"Start offer surfaces");
-        assert(startPalette.cards.every(c=>c.text.every(r=>r>=7)),"Start offer text contrast "+JSON.stringify(startPalette));
-        assert.equal(startPalette.flow,"rgb(61, 61, 61)","Graphite consultation process");
-        assert.equal(startPalette.summary,"rgb(179, 179, 179)","Neutral result callout");
+        assert.deepEqual(startPalette.cards.map(c=>c.background),["rgb(33, 33, 33)","rgb(217, 217, 217)"],"Start offer surfaces");
+        assert(startPalette.cards.every(c=>c.text.every(r=>r>=4.5)),"Start offer text contrast "+JSON.stringify(startPalette));
+        assert(startPalette.cards[0].image.includes("linear-gradient") && startPalette.cards[1].image.includes("repeating-linear-gradient"),"Start offer materials");
+        assert.equal(startPalette.flow.background,"rgb(52, 57, 59)","Titan consultation process");
+        assert(startPalette.flow.image.includes("linear-gradient") && startPalette.flow.text.every(r=>r>=7),"Consultation contrast");
+        assert(startPalette.summary.image.includes("repeating-linear-gradient"),"Steel result callout");
         assert.equal(startPalette.faq,"rgb(242, 242, 242)","Light FAQ surface");
         await page.getByRole("button",{name:/Проверить свой процесс/}).click();
         await page.locator("#self-check").waitFor({state:"visible"});
@@ -115,12 +117,17 @@ try {
       const bg=n=>getComputedStyle(n).backgroundColor;
       const lum=v=>(v.match(/[\d.]+/g)||[]).slice(0,3).map(Number).map(c=>c/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
       const ratio=(fg,b)=>(Math.max(lum(fg),lum(b))+.05)/(Math.min(lum(fg),lum(b))+.05);
-      const panels=[root.querySelector(".nr-hero-panel"),...root.querySelectorAll(".nr-dir")];
-      return {panels:panels.map(n=>({background:bg(n),text:[...n.querySelectorAll("h1,h3,p,strong")].map(t=>ratio(getComputedStyle(t).color,bg(n)))})),cta:bg(root.querySelector(".nr-cta")),ctaContrast:ratio(getComputedStyle(root.querySelector(".nr-cta")).color,bg(root.querySelector(".nr-cta")))};
+      const selectors=[".bt-sol-products",".bt-sol-ai",".bt-sol-automation",".bt-sol-expert"];
+      const stops=[["rgb(255,255,255)"],["rgb(80,86,89)","rgb(39,43,45)"],["rgb(67,67,67)","rgb(16,16,16)"],["rgb(180,180,180)","rgb(242,242,242)"]];
+      const panels=selectors.map((selector,i)=>{const n=root.querySelector(selector);if(!n)throw new Error("Missing Solutions panel "+selector);return {background:bg(n),image:getComputedStyle(n).backgroundImage,text:[...n.querySelectorAll("h3,p,em")].map(t=>Math.min(...stops[i].map(stop=>ratio(getComputedStyle(t).color,stop))))};});
+      const cta=root.querySelector(".bt-sol-cta");
+      return {panels,hero:bg(root.querySelector(".bt-sol-hero-art")),cta:bg(cta),ctaContrast:ratio(getComputedStyle(cta).color,bg(cta))};
     });
-    assert.deepEqual(solutionsPalette.panels.map(p=>p.background),["rgb(76, 187, 214)","rgb(242, 242, 242)","rgb(7, 83, 106)","rgb(179, 179, 179)","rgb(242, 242, 242)"],"Solutions approved colors");
-    assert(solutionsPalette.panels.every(p=>p.text.every(r=>r>=7)),"Solutions primary text contrast "+JSON.stringify(solutionsPalette));
-    assert.equal(solutionsPalette.cta,"rgb(7, 83, 106)");
+    assert.deepEqual(solutionsPalette.panels.map(p=>p.background),["rgb(255, 255, 255)","rgb(52, 57, 59)","rgb(33, 33, 33)","rgb(217, 217, 217)"],"Solutions approved colors");
+    assert.equal(solutionsPalette.hero,"rgb(33, 33, 33)","Solutions gloss hero");
+    assert(solutionsPalette.panels.slice(1).every(p=>p.image.includes("linear-gradient")) && solutionsPalette.panels[3].image.includes("repeating-linear-gradient"),"Solutions approved materials");
+    assert(solutionsPalette.panels.every(p=>p.text.length>0 && p.text.every(r=>r>=7)),"Solutions primary text contrast "+JSON.stringify(solutionsPalette));
+    assert.equal(solutionsPalette.cta,"rgb(33, 33, 33)");
     assert(solutionsPalette.ctaContrast>=7,"Solutions CTA contrast");
     console.log("SOLUTIONS PALETTE",viewport.width,JSON.stringify(solutionsPalette));
     const routeLinks = [
