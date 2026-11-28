@@ -7,7 +7,7 @@ import Partners from "@/components/Partners";
 import PhotoLightbox from "@/components/PhotoLightbox";
 
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FAQTeaser from "@/components/FAQTeaser";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Quote, CheckCircle2 } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
@@ -350,27 +350,8 @@ const BlogPost = () => {
               </div>
             )}
 
-            {/* FAQ with card styling */}
             {post.content.faq && post.content.faq.length > 0 && (
-              <div className="my-12">
-                <h2 className="text-2xl font-semibold text-foreground mb-6 border-l-4 border-primary pl-4">Часто задаваемые вопросы</h2>
-                <Accordion type="single" collapsible className="w-full space-y-3">
-                  {post.content.faq.map((item, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`faq-${index}`}
-                      className="border border-border/40 rounded-xl px-5 bg-muted/30 data-[state=open]:bg-muted/60 transition-colors"
-                    >
-                      <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
-                        {item.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-base text-muted-foreground leading-relaxed">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+              <FAQTeaser items={post.content.faq} title="Часто задаваемые вопросы" showAllLink={false} embedded />
             )}
           </div>
 
