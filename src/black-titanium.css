@@ -196,3 +196,16 @@
   .bt-site main.bt-solutions .bt-sol-hero-art svg {max-height:200px}
   .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.nr-art {max-height:210px}
 }
+
+/* Shared public route clearance and breadcrumb rhythm. Header rows are 56/80px plus border. */
+@media screen {
+  :root { --site-header-height:57px; --site-breadcrumb-gap:12px; }
+  @media(min-width:1024px){ :root { --site-header-height:81px; --site-breadcrumb-gap:16px; } }
+  .site-route-frame { padding-top:var(--site-header-height); }
+  .site-route-frame .breadcrumb-nav { padding-block:var(--site-breadcrumb-gap); background:#fff; color:#616161; border-bottom:1px solid #D9D9D9; font-family:"Raleway",Arial,sans-serif; }
+  .site-route-frame .breadcrumb-nav a { color:#616161; text-decoration:none; }
+  .site-route-frame .breadcrumb-nav a:hover,.site-route-frame .breadcrumb-nav a:focus-visible { color:#212121; text-decoration:underline; }
+  .site-route-frame .breadcrumb-nav .breadcrumb-current { color:#212121; overflow-wrap:anywhere; }
+  .site-route-frame .breadcrumb-nav .breadcrumb-separator { color:#707070; flex:none; }
+  .site-route-frame .breadcrumb-nav li { overflow-wrap:anywhere; }
+}
