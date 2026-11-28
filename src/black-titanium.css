@@ -118,3 +118,81 @@
 }
 @media(max-width:359px){.bt-site #contact>.container>div{padding:14px}.bt-site #contact form{padding:12px}}
 @media(prefers-reduced-motion:reduce){.bt-site main .nr-mini-card,.bt-site main .nr-flat{transition:none}}
+
+/* Approved compact rhythm: only public Black Titanium pages. Header, cases
+   reference block, diagnostic controls, print/PDF and independent routes retain their styles. */
+@media screen {
+  :is(.bt-site,#start-brand-page,#home-black-titanium) {--bt-compact-h1:clamp(30px,3.35vw,48px);--bt-compact-h2:clamp(27px,2.55vw,36px);--bt-compact-h3:clamp(21px,1.85vw,26px)}
+  .bt-site main:not(.bt-solutions) h1,
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero h1,
+  .bt-site main.bt-solutions.bt-solutions h1,
+  #start-brand-page .bt-start-wrap .bt-start-hero h1 {font-size:var(--bt-compact-h1)!important;line-height:1.12!important}
+  .bt-site main:not(.bt-solutions) h2,
+  .bt-site main.bt-solutions.bt-solutions h2,
+  #start-brand-page .bt-start-wrap :is(.bt-start-choices,.bt-start-consult) h2,
+  #home-black-titanium main :is(#home-start,#home-process,#home-partners,.nr-home-commerce) h2 {font-size:var(--bt-compact-h2)!important;line-height:1.16!important}
+  .bt-site main:not(.bt-solutions) h3,
+  .bt-site main.bt-solutions.bt-solutions h3,
+  #home-black-titanium .nr-home-commerce h3 {font-size:var(--bt-compact-h3)!important;line-height:1.22!important}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-section {padding-block:clamp(24px,3.5vw,48px)}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel {padding-block:20px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.nr-art {max-height:270px}
+  .bt-site main.nr-commercial:not(.bt-solutions) :is(.nr-flat,.nr-license,.nr-mini-card) {padding:clamp(20px,2.1vw,28px)}
+  .bt-site main.bt-solutions .bt-sol-hero {padding:22px 0 36px;gap:30px}
+  .bt-site main.bt-solutions .bt-sol-hero-art {min-height:0;padding:22px}
+  .bt-site main.bt-solutions .bt-sol-hero-art svg {max-height:250px}
+  .bt-site main.bt-solutions .bt-sol-card {min-height:0;padding:26px;gap:16px}
+  .bt-site main.bt-solutions .bt-sol-art {height:90px}
+  .bt-site main.bt-solutions .bt-sol-catalog {padding:16px 0 42px}
+  .bt-site main.bt-solutions .bt-sol-method {padding-bottom:42px}
+  .bt-site main.bt-solutions .bt-sol-method-inner {padding-top:30px;gap:30px}
+  #start-brand-page .bt-start-wrap .bt-start-hero {padding:20px 0 26px}
+  #start-brand-page .bt-start-wrap .bt-start-tile {padding:28px}
+  #start-brand-page .bt-start-wrap .bt-start-tile .bt-start-eyebrow {margin-bottom:20px}
+  #start-brand-page .bt-start-wrap .bt-start-tile .bt-start-price {font-size:clamp(34px,3.3vw,48px)!important;margin-top:20px}
+  #start-brand-page .bt-start-wrap .bt-start-tile .bt-start-terms {margin-bottom:20px}
+  #start-brand-page .bt-start-wrap .bt-start-consult {padding-block:48px;gap:32px}
+  #start-brand-page .bt-start-wrap .bt-start-steps {padding:26px}
+  #start-brand-page .bt-start-wrap .bt-start-step {padding-block:12px}
+  #home-black-titanium #brand-hero {padding-top:clamp(76px,7vw,94px)}
+  #home-black-titanium #brand-hero [data-brand-panel] h1 {font-size:clamp(30px,3.5vw,48px)!important;line-height:1.12!important}
+  #home-black-titanium #brand-hero [data-brand-panel]>div {padding-top:32px}
+  #home-black-titanium #brand-hero [data-brand-panel] img {max-width:420px;max-height:420px;object-fit:contain}
+  #home-black-titanium #brand-hero [data-brand-name] {font-size:clamp(28px,2.8vw,40px)!important}
+  #home-black-titanium #brand-hero+div {margin-top:32px}
+  #home-black-titanium #home-metrics {padding-block:48px}
+  #home-black-titanium #home-metrics [class~="md:col-span-5"]>.font-iriska {font-size:clamp(88px,9.5vw,140px)!important}
+  #home-black-titanium #home-metrics [class~="md:col-span-7"] {gap:8px 20px}
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div {padding:10px 0;gap:6px}
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .font-iriska {font-size:clamp(30px,3vw,44px)!important}
+  #home-black-titanium .nr-home-commerce .nr-section {padding-block:42px}
+  #home-black-titanium .nr-home-commerce .nr-dir {min-height:0;padding:24px;gap:12px}
+  #home-black-titanium .nr-home-commerce .nr-dir .nr-art {max-height:90px}
+  #home-black-titanium .nr-home-commerce .nr-dir-2 .nr-art {max-height:140px}
+  #home-black-titanium .nr-home-commerce .nr-dir-3 {min-height:0}
+  #home-black-titanium #home-start {padding-block:48px}
+  #home-black-titanium #home-start>div:first-child {margin-bottom:24px}
+  #home-black-titanium #home-start .bt-start-card {padding:28px;gap:28px}
+  #home-black-titanium #home-start .bt-start-price {font-size:clamp(34px,3.5vw,48px)}
+  #home-black-titanium #home-start>div:last-child {margin-top:24px}
+  #home-black-titanium #home-partners {padding-bottom:48px}
+  #home-black-titanium #home-testimonials {padding-block:48px}
+}
+@media screen and (min-width:768px) {
+  #home-black-titanium #brand-hero [data-brand-panel]>div>div:first-child {padding-bottom:28px}
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div {flex-direction:row;align-items:center;gap:14px}
+  #home-black-titanium #home-metrics [class~="md:col-span-7"]>div:last-child {flex-direction:column;align-items:flex-start}
+}
+@media screen and (max-width:767px) {
+  :is(.bt-site,#start-brand-page,#home-black-titanium) {--bt-compact-h1:clamp(28px,7.6vw,34px);--bt-compact-h2:clamp(25px,6.8vw,30px);--bt-compact-h3:clamp(20px,5.7vw,24px)}
+  #home-black-titanium #brand-hero [data-brand-panel] h1 {font-size:var(--bt-compact-h1)!important}
+  #home-black-titanium #brand-hero [data-brand-panel] img {max-width:280px;max-height:280px}
+  #home-black-titanium #brand-hero [data-brand-panel]>div {padding-top:24px}
+  #home-black-titanium #home-metrics,#home-black-titanium #home-start {padding-block:32px}
+  #home-black-titanium .nr-home-commerce .nr-section {padding-block:30px}
+  #home-black-titanium #home-start .bt-start-card,#start-brand-page .bt-start-wrap .bt-start-tile,.bt-site main.bt-solutions .bt-sol-card {padding:20px}
+  #start-brand-page .bt-start-wrap .bt-start-consult {padding-block:32px;gap:24px}
+  .bt-site main.bt-solutions .bt-sol-hero {gap:22px}
+  .bt-site main.bt-solutions .bt-sol-hero-art svg {max-height:200px}
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.nr-art {max-height:210px}
+}
