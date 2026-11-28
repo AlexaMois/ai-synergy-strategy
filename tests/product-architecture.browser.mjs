@@ -129,7 +129,7 @@ try {
             const stats=document.querySelector("#home-metrics");
             const big=stats.querySelector('[class~="md:col-span-5"]>.font-iriska');
             const ordinary=[...stats.querySelectorAll('[class~="md:col-span-7"]>div:not(:last-child) .font-iriska')];
-            return {hero:bg(document.querySelector("#brand-hero [data-brand-panel]")),directions,minis,brandNumbers,stats:{bg:bg(stats),font:getComputedStyle(big).fontFamily,color:getComputedStyle(big).color,ratio:surface(stats).minimum(getComputedStyle(big).color),ordinary:ordinary.map(n=>({font:getComputedStyle(n).fontFamily,ratio:surface(stats).minimum(getComputedStyle(n).color)}))},cases:[...document.querySelectorAll("#home-cases a.rounded-2xl")].map(card),process:bg(document.querySelector("#home-process .rounded-\\[32px\\]")),reviews:bg(document.querySelector("#home-testimonials"))};
+            return {hero:bg(document.querySelector("#brand-hero [data-brand-panel]")),directions,minis,brandNumbers,stats:{bg:bg(stats),font:getComputedStyle(big).fontFamily,color:getComputedStyle(big).color,ratio:surface(stats).minimum(getComputedStyle(big).color),ordinary:ordinary.map(n=>{const v=n.querySelector(".brand-large-number");const style=getComputedStyle(v);const stops=[...style.backgroundImage.matchAll(/rgb\(([^)]+)\)/g)].map(m=>m[1].match(/[\d.]+/g).map(Number));return {font:style.fontFamily,color:style.color,image:style.backgroundImage,ratio:Math.min(surface(stats).minimum(style.color),...stops.map(stop=>ratio(stop,rgb(bg(stats)))))}})},cases:[...document.querySelectorAll("#home-cases a.rounded-2xl")].map(card),process:bg(document.querySelector("#home-process .rounded-\\[32px\\]")),reviews:bg(document.querySelector("#home-testimonials"))};
           });
           assert.equal(homePalette.hero,"rgb(33, 33, 33)","Graphite hero");
           assert.deepEqual(homePalette.directions.map(x=>x.href),["/services/automation","/products","/ai-agents","/expert"],"Homepage visual and reading order");
@@ -141,8 +141,25 @@ try {
           assert(homePalette.cases.every(x=>x.title>=7&&x.text.every(r=>r>=4.5)),"Case text contrast");
           assert.deepEqual(homePalette.brandNumbers.map(x=>x.color),["rgb(255, 255, 255)","rgb(33, 33, 33)","rgb(33, 33, 33)"],"Case numbers palette");
           assert(homePalette.brandNumbers.every(x=>x.font.includes("Golos Text")&&x.ratio>=7),"Case number font and contrast");
-          assert(homePalette.stats.bg==="rgb(33, 33, 33)"&&homePalette.stats.font.includes("Iriska")&&homePalette.stats.color==="rgb(61, 220, 232)"&&homePalette.stats.ratio>=7&&homePalette.stats.ordinary.length===7&&homePalette.stats.ordinary.every(x=>x.font.includes("Golos Text")&&x.ratio>=7),"Statistics font roles and contrast");
+          assert(homePalette.stats.bg==="rgb(33, 33, 33)"&&homePalette.stats.font.includes("Iriska")&&homePalette.stats.color==="rgb(61, 220, 232)"&&homePalette.stats.ratio>=7&&homePalette.stats.ordinary.length===7&&homePalette.stats.ordinary.every(x=>x.font.includes("Golos Text")&&x.color==="rgb(217, 217, 217)"&&x.image.includes("linear-gradient")&&x.ratio>=7),"Statistics font roles and contrast");
           assert.equal(homePalette.process,"rgb(33, 33, 33)");
+          const refinements=await page.evaluate(()=>{
+            const price=document.querySelector("#home-start .bt-start-price .brand-large-number");
+            const title=document.querySelector("#home-start h2 .font-iriska");
+            const steps=[...document.querySelectorAll("#home-process .bt-process-step")];
+            const arrow=document.querySelector("#home-start .bt-start-card button>span:last-child");
+            const accent=document.querySelector("#home-process .bt-process-accent");
+            const sample=n=>{const s=getComputedStyle(n);return {font:s.fontFamily,style:s.fontStyle,color:s.color,background:s.backgroundColor}};
+            return {price:sample(price),title:sample(title),arrow:sample(arrow),accent:sample(accent),steps:steps.map(n=>n.querySelector(".bt-process-label").textContent),form:getComputedStyle(document.querySelector("#contact")).backgroundImage};
+          });
+          assert(refinements.price.font.includes("Georgia")&&refinements.price.style==="italic"&&refinements.price.color==="rgb(33, 33, 33)","Graphite editorial consultation price");
+          assert(refinements.title.font.includes("Georgia")&&refinements.title.style==="italic"&&refinements.title.color==="rgb(33, 33, 33)","Graphite editorial consultation title");
+          assert.equal(refinements.arrow.background,"rgb(255, 255, 255)","Neutral capsule arrow on steel");
+          assert.deepEqual(refinements.steps,["Человек","Процессы","Бизнес","Технологии"],"Four method steps");
+          assert(refinements.accent.font.includes("Georgia")&&refinements.accent.style==="italic"&&refinements.accent.color==="rgb(255, 255, 255)","White editorial process title");
+          assert(refinements.form.includes("linear-gradient"),"Preserve dark contact surface");
+          for(const id of ["home-metrics","home-start","home-process","contact"]){await page.locator("#"+id).screenshot({path:folder+"/"+viewport.width+"-block-"+id+".png",style:blockStyle});}
+
           assert.equal(homePalette.reviews,"rgb(255, 255, 255)");
           const marquees=page.locator("#home-black-titanium .marquee-content");
           assert.equal(await marquees.count(),3,"Three original marquees");
