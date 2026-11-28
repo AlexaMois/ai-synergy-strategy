@@ -434,12 +434,12 @@ const CaseStudyCargoExpress = () => {
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <Clock className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
                 <p className="text-3xl font-bold text-primary-dark mb-2">9–12 часов</p>
-                <p className="text-sm text-foreground/75">экономия в неделю<br />на обработке заявок</p>
+                <p className="text-sm text-foreground/75">экономия в неделю<br />на обработке заявок для команды из трёх менеджеров</p>
               </div>
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <TrendingUp className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
-                <p className="text-3xl font-bold text-primary-dark mb-2">0</p>
-                <p className="text-sm text-foreground/75">потерь заявок<br />сведены к нулю</p>
+                <p className="text-3xl font-bold text-primary-dark mb-2">0%</p>
+                <p className="text-sm text-foreground/75">потерь заявок<br />после внедрения в рамках проекта</p>
               </div>
               <div className="border-t border-foreground/10 pt-6 text-center">
                 <BarChart3 className="hidden w-10 h-10 text-primary-dark mx-auto mb-4" strokeWidth={1.5} />
