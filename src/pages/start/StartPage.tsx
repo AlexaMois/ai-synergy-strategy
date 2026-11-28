@@ -181,7 +181,7 @@ const StartPage = () => {
           #start-brand-page .bt-start-choices{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:20px}
           #start-brand-page .bt-start-tile{border-radius:30px;padding:36px;display:flex;flex-direction:column;align-items:flex-start;min-width:0;box-shadow:var(--bt-shadow)}
           #start-brand-page .bt-start-free{background:#212121 var(--bt-gloss);color:#fff}
-          #start-brand-page .bt-start-paid{background:#d9d9d9 var(--bt-steel);color:#212121}
+          #start-brand-page .bt-start-paid{background-color:#d9d9d9;background-image:var(--bt-steel);color:#212121}
           #start-brand-page .bt-start-tile h2{font-size:clamp(27px,3.1vw,42px)!important;margin-bottom:16px;max-width:540px}
           #start-brand-page .bt-start-tile p{color:inherit!important;margin:0;max-width:540px}
           #start-brand-page .bt-start-tile .bt-start-eyebrow{font-family:"Golos Text",Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.17em;font-size:12px;margin-bottom:32px}
@@ -224,6 +224,8 @@ const StartPage = () => {
           #start-brand-page #contact .section-title,#start-brand-page #contact .section-title+p{color:#fff!important}
           #start-brand-page #contact .section-title .font-semibold{font-family:Georgia,"Times New Roman",serif!important;color:#fff!important;font-weight:400!important;font-style:italic}
           #start-brand-page #contact form{background:#fff;color:#212121;min-width:0}
+          /* Render the approved contact panel immediately, including in full-page captures. */
+          #start-brand-page #contact .grid:has(>form)>div:first-child,#start-brand-page #contact .grid:has(>form)>form{opacity:1!important;transform:none!important;animation:none!important}
           @media(max-width:800px){
             #start-brand-page .bt-start-wrap{width:calc(100% - 36px)}
             #start-brand-page .bt-start-hero,#start-brand-page .bt-start-choices,#start-brand-page .bt-start-consult{grid-template-columns:minmax(0,1fr);gap:22px}
