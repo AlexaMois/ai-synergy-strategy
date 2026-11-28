@@ -239,7 +239,7 @@ const StartPage = () => {
           <div className="bt-start-wrap">
             <section className="bt-start-hero">
               <div><span className="bt-start-line" aria-hidden="true"/><h1>С чего <em>начать</em></h1></div>
-              <p>Не знаете, что стоит менять первым? Проверьте один рабочий процесс самостоятельно или обсудите ситуацию с экспертом.</p>
+              <p>Определите, с чего начать цифровизацию вашего бизнеса. Проверьте рабочий процесс самостоятельно или обсудите задачу с экспертом.</p>
             </section>
             <section className="bt-start-choices" aria-label="Форматы начала работы">
               <article className="bt-start-tile bt-start-free">

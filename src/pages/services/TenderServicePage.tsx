@@ -31,8 +31,15 @@ const TenderServicePage = () => (
           <div className="container mx-auto max-w-7xl">
             <div className="min-w-0 rounded-[30px] bg-surface-mint px-5 py-8 shadow-plate sm:px-7 md:rounded-[40px] md:p-12">
               
-              <h1 className="max-w-4xl break-words text-[27px] font-bold leading-tight text-foreground [overflow-wrap:anywhere] sm:text-3xl md:text-5xl">НейроТендеролог: поиск и первичный отбор закупок</h1>
-              <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">Система сокращает ручной просмотр закупок: собирает предложения, применяет профиль компании, готовит предварительный разбор и передаёт решение специалисту.</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">Автоматизация закупок</p>
+              <h1 className="max-w-4xl break-words text-[27px] font-bold leading-tight text-foreground [overflow-wrap:anywhere] sm:text-3xl md:text-5xl">НейроТендеролог</h1>
+              <h2 className="mt-4 max-w-3xl font-bold text-foreground">Закупки по профилю вашей компании прямо в MAX</h2>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">НейроТендеролог анализирует поток закупок из подключённого источника, оценивает соответствие вашим требованиям и отправляет карточки с обоснованием отбора. Специалист изучает подходящие предложения и принимает решение об участии.</p>
+              <dl className="mt-6 grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
+                <div><dt className="bt-display-number text-4xl text-foreground">До 750</dt><dd className="text-sm text-foreground">закупок в день на одно направление</dd></div>
+                <div><dt className="bt-display-number text-4xl text-foreground">3</dt><dd className="text-sm text-foreground">постоянных клиента сервиса</dd></div>
+              </dl>
+              <p className="mt-3 text-sm text-foreground/80">По данным опубликованного кейса. Эксплуатационные показатели; финансовый эффект оценивается отдельно.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link to="/start?offer=product-neurotenderolog&format=demo#contact" onClick={()=>setContactIntent({kind:"implementation",offerId:"product-neurotenderolog",offerLabel:"НейроТендеролог",format:"demo",sourcePath:"/services/neurotenderolog",context:null,process:"Запрос демонстрации НейроТендеролога"})} className="bt-cta-primary inline-flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-full bg-foreground px-4 text-center text-sm font-semibold text-background hover:bg-foreground/85 sm:w-auto sm:px-6 sm:text-base">
                   Запросить демонстрацию <ArrowRight className="h-4 w-4"/>
