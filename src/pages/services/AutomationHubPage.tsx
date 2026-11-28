@@ -57,7 +57,7 @@ const AutomationHubPage = () => (
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">Связываем процессы, данные, сотрудников и действующие системы. Измеряем исходные показатели и проверяем результат на реальных данных. Полноценные индивидуальные проекты от 260 000 ₽.</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Inquiry label="Обсудить проект" />
-                  <Link className="inline-flex min-h-12 items-center gap-2 px-3 font-semibold text-foreground hover:text-primary-dark" to="/cases">Реальные кейсы <ArrowUpRight className="h-4 w-4" /></Link>
+                  <Link className="bt-cta-text inline-flex min-h-12 items-center gap-2 px-3 font-semibold text-foreground hover:text-primary-dark" to="/cases">Реальные кейсы <ArrowUpRight className="h-4 w-4" /></Link>
                 </div>
               </div>
               <div className="min-w-0 rounded-[26px] bg-background p-5 shadow-card md:col-span-5 md:p-7">
@@ -88,7 +88,7 @@ const AutomationHubPage = () => (
         <section className="container mx-auto max-w-7xl px-4 py-14 md:py-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dark">Когда подходит</p>
           <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Четыре направления автоматизации</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">{[["process","Комплексная автоматизация процессов","Связанный порядок выполнения операций, передачи данных и контроля результата."],["corporate-system","Корпоративные информационные системы","Единая рабочая среда, роли, документы, данные и отчётность."],["integration","Интеграция бизнес-систем","Согласованный обмен данными между существующими программами."],["custom-software","Индивидуальные программные решения","Инструмент под рабочий процесс и критерии приёмки предприятия."]].map(([id,title,body],i)=><article key={id} className={"rounded-[28px] p-7 text-[#212121] "+(i===0?"bg-surface-mint":i===1?"bg-surface-lavender":"bg-white border border-border")}><h3 className="text-xl font-bold !text-[#212121]">{title}</h3><p className="mt-3">{body}</p><Link className="inline-flex items-center gap-2 mt-4 font-semibold text-[#116078] underline" to={"/start?offer=automation-"+id+"&format=project#contact"} onClick={()=>setContactIntent({kind:"implementation",offerId:"automation-"+id,offerLabel:title,format:"project",sourcePath:"/services/automation",process:title,context:null})}>Обсудить проект <ArrowRight size={18}/></Link></article>)}</div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">{[["process","Комплексная автоматизация процессов","Связанный порядок выполнения операций, передачи данных и контроля результата."],["corporate-system","Корпоративные информационные системы","Единая рабочая среда, роли, документы, данные и отчётность."],["integration","Интеграция бизнес-систем","Согласованный обмен данными между существующими программами."],["custom-software","Индивидуальные программные решения","Инструмент под рабочий процесс и критерии приёмки предприятия."]].map(([id,title,body],i)=><article key={id} className={"rounded-[28px] p-7 text-[#212121] "+(i===0?"bg-surface-mint":i===1?"bg-surface-lavender":"bg-white border border-border")}><h3 className="text-xl font-bold !text-[#212121]">{title}</h3><p className="mt-3">{body}</p><Link className="inline-flex items-center gap-2 mt-4 font-semibold text-foreground underline" to={"/start?offer=automation-"+id+"&format=project#contact"} onClick={()=>setContactIntent({kind:"implementation",offerId:"automation-"+id,offerLabel:title,format:"project",sourcePath:"/services/automation",process:title,context:null})}>Обсудить проект <ArrowRight size={18}/></Link></article>)}</div>
           <div className="mt-7 grid gap-4 md:grid-cols-3">
             {[
               ["Входящие заявки","Сотрудники собирают сообщения из нескольких каналов и заносят данные в одну рабочую систему."],
@@ -106,7 +106,7 @@ const AutomationHubPage = () => (
 
         <section className="bg-white py-14 text-foreground md:py-20">
           <div className="container mx-auto max-w-7xl px-4">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#07536A]">Приёмка по фактам</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-foreground">Приёмка по фактам</p>
             <h2 className="max-w-3xl text-3xl font-bold leading-tight text-foreground md:text-4xl">Как доказываем ценность операции</h2>
             <p className="mt-4 max-w-3xl leading-relaxed text-foreground/75">Измерения до и после согласуем на одном и том же типе работы. Отдельно проверяем качество результата и путь обработки исключений.</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
