@@ -105,7 +105,8 @@
 .bt-site #contact form a{color:#212121;text-decoration:underline}
 .bt-site #contact form button[type=submit]>span:last-child{background:#3DDCE8;color:#212121}
 .bt-site #contact form input,.bt-site #contact form textarea,.bt-site #contact form select{max-width:100%;min-width:0}
-.bt-site footer{--primary:0 0% 94.901961%}
+.bt-site footer{--primary:0 0% 94.901961%;--muted-foreground:0 0% 85.098039%}
+.bt-site footer p:not([class*="text-background/"]){color:inherit}
 @media(max-width:900px){.bt-site #contact .grid:has(>form){grid-template-columns:minmax(0,1fr)}}
 @media(max-width:640px){
   .bt-site #contact>.container>div{padding:20px;border-radius:24px}
