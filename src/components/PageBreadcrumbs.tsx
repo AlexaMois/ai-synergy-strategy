@@ -28,25 +28,25 @@ const PageBreadcrumbs = ({
   const backLabel = backButtonLabel || "Ко всем кейсам";
 
   return (
-    <nav className="py-4 border-b border-border" aria-label="breadcrumb">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex items-center justify-between">
-          <ol className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
+    <nav className="breadcrumb-nav" aria-label="breadcrumb">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex items-center justify-between gap-3">
+          <ol className="flex min-w-0 items-center gap-1.5 text-sm flex-wrap">
             <li>
               <Link 
                 to="/" 
-                className="hover:text-primary transition-colors"
+                className="transition-colors"
               >
                 Главная
               </Link>
             </li>
             {parentPages?.map((parent, index) => (
-              <li key={index} className="flex items-center gap-1.5">
-                <span className="text-muted-foreground/60">&gt;</span>
+              <li key={index} className="flex min-w-0 items-center gap-1.5">
+                <span aria-hidden="true" className="breadcrumb-separator">&gt;</span>
                 {parent.href ? (
                   <Link 
                     to={parent.href} 
-                    className="hover:text-primary transition-colors"
+                    className="transition-colors"
                   >
                     {parent.label}
                   </Link>
@@ -55,16 +55,16 @@ const PageBreadcrumbs = ({
                 )}
               </li>
             ))}
-            <li className="flex items-center gap-1.5">
-              <span className="text-muted-foreground/60">&gt;</span>
-              <span className="text-foreground font-medium" aria-current="page">
+            <li className="flex min-w-0 items-center gap-1.5">
+              <span aria-hidden="true" className="breadcrumb-separator">&gt;</span>
+              <span className="breadcrumb-current font-medium" aria-current="page">
                 {currentPage}
               </span>
             </li>
           </ol>
 
           {shouldShowBack && (
-            <Button asChild variant="ghost" size="sm" className="hidden sm:flex">
+            <Button asChild variant="ghost" size="sm" className="hidden shrink-0 sm:flex">
               <Link to={backHref}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {backLabel}
