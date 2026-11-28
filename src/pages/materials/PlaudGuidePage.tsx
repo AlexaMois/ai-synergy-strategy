@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import Footer from "@/components/Footer";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FAQTeaser from "@/components/FAQTeaser";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ExternalLink, ArrowRight, Mic, FileText, Sparkles, ListChecks } from "lucide-react";
 import plaudHeroDevice from "@/assets/plaud/plaud-hero-device.png";
@@ -1100,19 +1100,7 @@ const PlaudGuidePage = () => {
 
 
         {/* 10. FAQ */}
-        <section className="py-12 md:py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Ответы на частые вопросы</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqItems.map((item, i) => (
-                <AccordionItem key={i} value={`faq-${i}`}>
-                  <AccordionTrigger className="text-left text-foreground">{item.q}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
+        <FAQTeaser title="Ответы на частые вопросы" items={faqItems.map(item => ({question:item.q, answer:item.a}))} showAllLink={false} />
 
         {/* 11. Итог */}
         <section className="py-12 md:py-16">
