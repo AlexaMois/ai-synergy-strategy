@@ -128,7 +128,7 @@ const PillarPage = () => {
               </div>
               <div className="md:col-span-5">
                 <p className="mb-3 text-sm text-foreground/65">Что можно измерить: {route.evidence}</p>
-                <Link to={route.href} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-5 font-semibold text-background hover:bg-foreground/85">
+                <Link to={route.href} className="bt-cta-primary inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-5 font-semibold text-background hover:bg-foreground/85">
                   {route.action} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -150,7 +150,7 @@ const PillarPage = () => {
               <div className="grid sm:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden shadow-card">
                 {data.metricCards.map((m, i) => (
                   <div key={i} className="bg-card p-6 md:p-8">
-                    <div className="font-iriska font-bold text-accent leading-none mb-3 text-5xl md:text-6xl">
+                    <div className="bt-display-number text-foreground leading-none mb-3 text-5xl md:text-6xl">
                       {m.value}
                     </div>
                     <p className="text-sm md:text-base text-muted-foreground leading-snug">
