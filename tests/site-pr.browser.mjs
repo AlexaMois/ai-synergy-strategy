@@ -123,10 +123,13 @@ try {
       const offer = main.getByRole("heading", { name: "Выездная консультация" });
       await visible(offer);
       await offer.scrollIntoViewIfNeeded();
-      const offerCard = offer.locator("..");
+      const offerCard = main.locator("#home-start .bt-start-card");
+      assert.equal(await offerCard.count(), 1, "Exactly one consultation card");
+      await visible(offerCard.getByRole("heading", { name: "Выездная консультация", exact: true }));
       await visible(offerCard.getByText("Красноярск · До 1 часа", { exact: true }));
       await visible(offerCard.getByText(/Стоимость консультации полностью засчитывается/));
       await visible(offerCard.getByText(/8[\s\u00a0\u202f]*000\s*₽/));
+      assert.match(await offerCard.locator(".bt-start-price").innerText(), /^8[\s\u00a0\u202f]*000\s*₽$/u, "Exact fixed consultation price");
       await main.getByRole("link", { name: "Все решения", exact: true }).click();
       await page.waitForURL(url => url.pathname.replace(/\/$/, "") === "/services");
       await visible(page.locator("main h1").first());
