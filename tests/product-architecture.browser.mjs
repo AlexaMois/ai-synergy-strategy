@@ -27,6 +27,11 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
+        if(path!=="/services/digital-tools-program"){
+          const type=await page.evaluate(()=>{const root=document.querySelector(".bt-site,#start-brand-page,#home-black-titanium");return root?[...root.querySelectorAll("h1,h2,h3")].filter(e=>e.getClientRects().length>0).map(e=>({tag:e.tagName,text:e.textContent.slice(0,100),size:parseFloat(getComputedStyle(e).fontSize),contact:!!e.closest("#contact")&&e.classList.contains("section-title")})):[];});
+          const desktop=viewport.width>=768;const expected={H1:desktop?36:28,H2:desktop?28:24,H3:desktop?22:20};
+          for(const h of type)assert.equal(h.size,h.contact?(desktop?26:22):expected[h.tag],"Unified heading "+path+" "+JSON.stringify(h));
+        }
         if(path!=="/"){
           const nav=await page.evaluate(()=>{const h=document.querySelector("[data-site-header]"),b=document.querySelector(".breadcrumb-nav");return {count:document.querySelectorAll(".breadcrumb-nav").length,headerBottom:h?.getBoundingClientRect().bottom,breadcrumbTop:b?.getBoundingClientRect().top,current:b?.querySelectorAll("[aria-current=page]").length};});
           assert.equal(nav.count,1,"One shared breadcrumb "+path);
@@ -96,7 +101,7 @@ try {
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         if(viewport.width===1440 && ["/","/start","/services","/expert"].includes(path)){
           const compact=await page.evaluate(()=>({h1:parseFloat(getComputedStyle(document.querySelector("main h1")).fontSize),blocks:Object.fromEntries(["brand-hero","home-metrics","commercial-directions","home-start"].map(id=>[id,Math.round(document.getElementById(id)?.getBoundingClientRect().height||0)]))}));
-          assert(compact.h1<=48,"Compact H1 "+path+" "+JSON.stringify(compact));
+          assert(compact.h1<=36,"Compact H1 "+path+" "+JSON.stringify(compact));
           if(path==="/"){for(const id of ["brand-hero","home-metrics","commercial-directions","home-start"])assert(compact.blocks[id]>0&&compact.blocks[id]<=820,"Compact section "+id+" "+JSON.stringify(compact));}
           report.push({width:viewport.width,path:path+" compact dimensions",status:"pass",evidence:compact});
         }
