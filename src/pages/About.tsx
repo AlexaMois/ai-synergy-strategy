@@ -666,7 +666,7 @@ const About = () => {
 
         {/* Modal for zoomed credential view */}
         <Dialog open={!!selectedCredential} onOpenChange={(open) => !open && setSelectedCredential(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background border-border">
+          <DialogContent className="bt-credential-dialog max-w-4xl p-0 overflow-hidden bg-background border-border">
             <DialogTitle className="sr-only">
               {selectedCredential?.title}
             </DialogTitle>
@@ -675,9 +675,9 @@ const About = () => {
                 <img
                   src={selectedCredential.image}
                   alt={selectedCredential.title}
-                  className="w-full h-auto max-h-[85vh] object-contain"
+                  className="bt-credential-full w-full h-auto max-h-[85vh] object-contain"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-4 md:p-6">
+                <div className="bt-credential-caption p-4 md:p-6">
                   <h3 className="font-semibold text-foreground text-base md:text-lg">
                     {selectedCredential.title}
                   </h3>

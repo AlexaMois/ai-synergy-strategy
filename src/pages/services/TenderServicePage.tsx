@@ -27,10 +27,10 @@ const TenderServicePage = () => (
     <div className="min-h-screen bg-background">
       <PageBreadcrumbs currentPage="НейроТендеролог" parentPages={[{label:"Услуги",href:"/services"}]} />
       <main>
-        <section className="px-4 pt-8 md:px-6 md:pt-12">
+        <section className="px-4 pt-4 md:px-6 md:pt-5">
           <div className="container mx-auto max-w-7xl">
             <div className="min-w-0 rounded-[30px] bg-surface-mint px-5 py-8 shadow-plate sm:px-7 md:rounded-[40px] md:p-12">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">Отдельный продукт · Закупки и тендеры</p>
+              
               <h1 className="max-w-4xl break-words text-[27px] font-bold leading-tight text-foreground [overflow-wrap:anywhere] sm:text-3xl md:text-5xl">НейроТендеролог: поиск и первичный отбор закупок</h1>
               <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-xl">Система сокращает ручной просмотр закупок: собирает предложения, применяет профиль компании, готовит предварительный разбор и передаёт решение специалисту.</p>
               <div className="mt-8 flex flex-wrap gap-3">

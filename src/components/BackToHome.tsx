@@ -25,7 +25,7 @@ const BackToHome = () => {
   return (
     <Link
       to="/"
-      className={"fixed bottom-20 right-6 z-40 bg-accent text-accent-foreground rounded-xl px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"+(commercialPath?" !text-[#212121] max-sm:right-2 max-sm:p-3 max-sm:rounded-full":"")+(contactVisible?" max-sm:hidden":"")}
+      className={"fixed bottom-20 right-6 z-40 bg-accent text-accent-foreground rounded-xl px-4 py-3 shadow-card hover:shadow-hover transition-all duration-300 flex items-center gap-2"+(commercialPath?" bt-floating-home max-sm:right-2 max-sm:p-3 max-sm:rounded-full":"")+(contactVisible?" max-sm:hidden":"")}
       data-floating-home
       aria-label="На главную"
     >

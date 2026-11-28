@@ -54,11 +54,11 @@ const ServiceDetailPage = () => {
       <div className="min-h-screen bg-background">
         <PageBreadcrumbs currentPage={service.shortTitle} parentPages={[{label:"Услуги",href:"/services"},{label:journey.title,href:journey.href}]} />
         <main>
-          <section className="px-4 pt-8 md:px-6 md:pt-12">
+          <section className="px-4 pt-4 md:px-6 md:pt-5">
             <div className="container mx-auto max-w-7xl">
               <div className="grid items-center gap-5 overflow-hidden rounded-[30px] bg-surface-sand p-7 shadow-plate md:grid-cols-12 md:rounded-[40px] md:p-12">
                 <div className="min-w-0 md:col-span-8">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary-dark">{journey.eyebrow} · Формат работы</p>
+                  
                   <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">{meta.h1}</h1>
                   <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-lg">{service.subtitle}</p>
                   <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -147,7 +147,7 @@ const ServiceDetailPage = () => {
             <div className="flex flex-col gap-6 rounded-[30px] bg-foreground p-7 text-background md:flex-row md:items-center md:justify-between md:p-10">
               <div className="max-w-2xl">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Стоимость формата</p>
-                <p className="bt-display-number text-3xl font-bold md:text-4xl">{service.price}</p>
+                <p className="bt-display-number text-3xl font-bold md:text-4xl !text-white">{service.price}</p>
                 <p className="mt-3 text-sm leading-relaxed text-background/75">
                   {fixed(service.price) ? "Фиксированная цена. Состав и результат услуги согласуются до начала." : "Объём, этапы, срок и окончательная стоимость согласуются по задаче."}
                 </p>
