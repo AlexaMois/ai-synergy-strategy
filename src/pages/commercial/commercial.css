@@ -279,3 +279,30 @@
   #home-black-titanium #contact>.container{padding-inline:12px}
 }
 @media(prefers-reduced-motion:reduce){#home-black-titanium .marquee-content{animation:none}}
+
+
+/* Black Titanium 2.0: approved typography refinement, homepage only. */
+#home-black-titanium #brand-hero [data-brand-signature]{font-family:Georgia,"Times New Roman",serif!important;color:#fff!important;font-weight:400!important;font-style:italic}
+#home-black-titanium #brand-hero h1 .bt-hero-accent{font-family:"Iriska",cursive!important;color:#3DDCE8!important;font-weight:400!important;font-style:normal}
+#home-black-titanium #home-metrics [class~="md:col-span-5"]>.font-iriska{font-family:"Iriska",cursive!important;color:#3DDCE8!important;font-weight:400!important;font-style:normal}
+#home-black-titanium #home-metrics [class~="md:col-span-7"]>div:not(:last-child) .font-iriska,
+#home-black-titanium #home-start .font-iriska.font-bold,
+#home-black-titanium #home-cases a .brand-large-number{font-family:"Golos Text",sans-serif!important;font-weight:600!important;font-style:normal}
+#home-black-titanium #home-metrics [class~="md:col-span-7"]>div:last-child .font-iriska,
+#home-black-titanium .nr-home-commerce h2 em,
+#home-black-titanium :is(#home-start,#home-cases,#home-partners,#home-process,#industry-questions) h2 .font-iriska,
+#home-black-titanium #home-testimonials .font-iriska,
+#home-black-titanium :is(#testimonials,#contact) .section-title :is(.font-semibold,.font-bold,strong){font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;font-style:italic}
+#home-black-titanium .nr-home-commerce h2 em{font-size:1em;letter-spacing:-.025em;color:#212121!important}
+#home-black-titanium :is(#home-process,#industry-questions) h2 .font-iriska,
+#home-black-titanium #contact .section-title .font-semibold{color:#fff!important}
+#home-black-titanium :is(#home-start,#home-cases,#home-partners) h2 .font-iriska,
+#home-black-titanium #home-testimonials .font-iriska{color:#212121!important}
+#home-black-titanium #contact .bg-card .section-title .font-semibold{color:#212121!important}
+#home-black-titanium #home-start .font-iriska.font-bold{color:#212121!important}
+#home-black-titanium .nr-home-commerce .nr-dir-2,#home-black-titanium #home-cases a[href="/cases/aktransservice"]{background-color:#212121}
+#home-black-titanium .nr-home-commerce .nr-dir-0{background-color:#34393B}
+#home-black-titanium .nr-home-commerce .nr-dir-3,#home-black-titanium #home-cases a[href="/cases/kraypotrebsoyuz"]{background-color:#D9D9D9}
+#home-black-titanium #home-start>div[class*="rounded-[28px]"]{background-color:#D9D9D9}
+#home-black-titanium #brand-hero [data-brand-panel] h1{overflow-wrap:break-word}
+#home-black-titanium #home-metrics [class~="md:col-span-7"]>div .font-iriska{max-width:100%;overflow-wrap:break-word}
