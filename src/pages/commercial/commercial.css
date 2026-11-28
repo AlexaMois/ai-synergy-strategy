@@ -425,3 +425,8 @@
 @media screen and (max-width:767px){
  #home-black-titanium .nr-home-commerce #commercial-directions .nr-dir-3 .bt-direction-sketch{max-height:90px;width:100%;margin:0}
 }
+
+/* Preserve the compact asymmetric directions block on narrower desktops. */
+@media screen and (min-width:1024px) and (max-width:1199px){
+ #home-black-titanium .nr-home-commerce #commercial-directions .nr-dir{padding-block:12px}
+}

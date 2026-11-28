@@ -74,7 +74,13 @@ try{
     await assertDialog(callback,width);
     await callback.locator("#cb-name").fill("CI Test");
     await callback.locator("#cb-phone").fill("+7 (999) 000-00-00");
-    if(width<=390){await page.setViewportSize({width,height:360});await assertDialog(callback,width);await screenshot(page,"callback-reduced-viewport",width);await page.setViewportSize(viewport);}
+    if(width<=390){
+      await page.setViewportSize({width,height:360});
+      await page.waitForFunction(()=>{const el=document.querySelector(".bt-callback-dialog");if(!el)return false;const r=el.getBoundingClientRect();return r.top>=-2&&r.bottom<=innerHeight+2&&r.height<=innerHeight-22;});
+      await assertDialog(callback,width);await screenshot(page,"callback-reduced-viewport",width);
+      await page.setViewportSize(viewport);
+      await page.waitForFunction(()=>{const el=document.querySelector(".bt-callback-dialog");if(!el)return false;const r=el.getBoundingClientRect();return r.top>=-2&&r.bottom<=innerHeight+2;});
+    }
     await callback.locator("#cb-consent").click();
     await assertCTA(callback.locator("button[type=submit]"));
     await screenshot(page,"callback",width);
@@ -151,9 +157,20 @@ try{
     await visit(page,"/mini-agents");const filters=page.locator(".nr-filters button");
     assert(await filters.count()>1);
     for(let i=0;i<await filters.count();i++){
-     await filters.nth(i).click();const cards=page.locator(".nr-mini-grid .nr-mini-card");
-     assert(await cards.count()>0);
-     for(const card of await cards.all())assert.equal(await card.evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(255, 255, 255)");
+     const group=(await filters.nth(i).innerText()).trim();
+     await filters.nth(i).click();
+     await page.waitForFunction(label=>[...document.querySelectorAll(".nr-filters button")].some(el=>el.textContent.trim()===label&&el.getAttribute("aria-pressed")==="true"),group);
+     const cards=page.locator("#catalog .nr-mini-grid .nr-mini-card");
+     const expected=catalog.mini.filter(item=>group==="Все"||item.group===group);
+     assert(expected.length>0);assert.equal(await cards.count(),expected.length);
+     assert.deepEqual(await cards.evaluateAll(nodes=>nodes.map(el=>el.getAttribute("href"))),expected.map(item=>"/mini-agents/"+item.slug));
+     const palette=["rgb(255, 255, 255)","rgb(198, 233, 237)","rgb(255, 255, 255)","rgb(217, 217, 217)","rgb(255, 255, 255)","rgb(52, 57, 59)"];
+     for(const [index,card] of (await cards.all()).entries()){
+      const evidence=await card.evaluate(el=>({bg:getComputedStyle(el).backgroundColor,texture:getComputedStyle(el).backgroundImage,title:getComputedStyle(el.querySelector("h3")).color}));
+      assert.equal(evidence.bg,palette[index%6],group+" material "+index);
+      assert.equal(evidence.title,index%6===5?"rgb(255, 255, 255)":"rgb(33, 33, 33)",group+" title contrast "+index);
+      assert.equal(evidence.texture==="none",index%2===0,group+" texture "+index);
+     }
      assert.equal(await filters.nth(i).evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(33, 33, 33)");
      await screenshot(page,"catalog-filter-"+i,width);
     }
