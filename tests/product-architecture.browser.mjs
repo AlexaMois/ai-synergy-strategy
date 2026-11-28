@@ -27,6 +27,11 @@ try {
         assert(response?.ok(),"HTTP "+path);
         await page.locator("main h1").first().waitFor({state:"visible",timeout:20000});
         await page.evaluate(()=>document.fonts.ready);
+        if(path!=="/services/digital-tools-program"){
+          const type=await page.evaluate(()=>{const root=document.querySelector(".bt-site,#start-brand-page,#home-black-titanium");return root?[...root.querySelectorAll("h1,h2,h3")].filter(e=>e.getClientRects().length>0).map(e=>({tag:e.tagName,text:e.textContent.slice(0,100),size:parseFloat(getComputedStyle(e).fontSize),contact:!!e.closest("#contact")&&e.classList.contains("section-title")})):[];});
+          const desktop=viewport.width>=768;const expected={H1:desktop?36:28,H2:desktop?28:24,H3:desktop?22:20};
+          for(const h of type)assert.equal(h.size,h.contact?(desktop?26:22):expected[h.tag],"Unified heading "+path+" "+JSON.stringify(h));
+        }
         if(path!=="/"){
           const nav=await page.evaluate(()=>{const h=document.querySelector("[data-site-header]"),b=document.querySelector(".breadcrumb-nav");return {count:document.querySelectorAll(".breadcrumb-nav").length,headerBottom:h?.getBoundingClientRect().bottom,breadcrumbTop:b?.getBoundingClientRect().top,current:b?.querySelectorAll("[aria-current=page]").length};});
           assert.equal(nav.count,1,"One shared breadcrumb "+path);
@@ -96,7 +101,7 @@ try {
         await page.screenshot({path:folder+"/"+viewport.width+"-"+(path==="/"?"home":path.slice(1).replaceAll("/","-"))+".png",fullPage:true,animations:"disabled"});
         if(viewport.width===1440 && ["/","/start","/services","/expert"].includes(path)){
           const compact=await page.evaluate(()=>({h1:parseFloat(getComputedStyle(document.querySelector("main h1")).fontSize),blocks:Object.fromEntries(["brand-hero","home-metrics","commercial-directions","home-start"].map(id=>[id,Math.round(document.getElementById(id)?.getBoundingClientRect().height||0)]))}));
-          assert(compact.h1<=48,"Compact H1 "+path+" "+JSON.stringify(compact));
+          assert(compact.h1<=36,"Compact H1 "+path+" "+JSON.stringify(compact));
           if(path==="/"){for(const id of ["brand-hero","home-metrics","commercial-directions","home-start"])assert(compact.blocks[id]>0&&compact.blocks[id]<=820,"Compact section "+id+" "+JSON.stringify(compact));}
           report.push({width:viewport.width,path:path+" compact dimensions",status:"pass",evidence:compact});
         }
@@ -144,6 +149,10 @@ try {
             return {hero:bg(document.querySelector("#brand-hero [data-brand-panel]")),directions,minis,brandNumbers,stats:{bg:bg(stats),font:getComputedStyle(big).fontFamily,color:getComputedStyle(big).color,ratio:surface(stats).minimum(getComputedStyle(big).color),ordinary:ordinary.map(n=>{const v=n.querySelector(".brand-large-number");const style=getComputedStyle(v);const stops=[...style.backgroundImage.matchAll(/rgb\(([^)]+)\)/g)].map(m=>m[1].match(/[\d.]+/g).map(Number));return {font:style.fontFamily,color:style.color,image:style.backgroundImage,ratio:Math.min(surface(stats).minimum(style.color),...stops.map(stop=>ratio(stop,rgb(bg(stats)))))}})},cases:[...document.querySelectorAll("#home-cases a.rounded-2xl")].map(card),process:bg(document.querySelector("#home-process .rounded-\\[32px\\]")),reviews:bg(document.querySelector("#home-testimonials"))};
           });
           assert.equal(homePalette.hero,"rgb(33, 33, 33)","Graphite hero");
+          assert.deepEqual(homePalette.minis.map(x=>x.background),["rgb(255, 255, 255)","rgb(198, 233, 237)","rgb(52, 57, 59)","rgb(217, 217, 217)"],"Premium mini-agent materials");
+          assert(homePalette.minis[1].image.includes("linear-gradient")&&homePalette.minis[2].image.includes("linear-gradient")&&homePalette.minis[3].image.includes("repeating-linear-gradient"),"Premium material textures");
+          assert.equal(await page.locator("#industry-questions .bt-industry-row").count(),6);
+          if(viewport.width>=1024){const geometry=await page.locator("#commercial-directions").evaluate(el=>{const cards=[...el.querySelectorAll(".nr-dir")].map(n=>{const r=n.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right};});return {height:el.getBoundingClientRect().height,cards};});const [a,b,c,d]=geometry.cards;assert(geometry.height<=650,"One-screen directions "+JSON.stringify(geometry));assert(Math.abs(a.top-b.top)<3&&Math.abs(a.bottom-c.bottom)<3&&c.top>b.top&&Math.abs(b.left-c.left)<3&&d.top>=a.bottom,"Asymmetric grid "+JSON.stringify(geometry));}
           assert.deepEqual(homePalette.directions.map(x=>x.href),["/services/automation","/products","/ai-agents","/expert"],"Homepage visual and reading order");
           assert.deepEqual(homePalette.directions.map(x=>x.background),["rgb(33, 33, 33)","rgb(52, 57, 59)","rgb(255, 255, 255)","rgb(217, 217, 217)"],"Black Titanium direction fallback palette");
           assert(homePalette.directions[0].image.includes("rgb(67, 67, 67)")&&homePalette.directions[1].image.includes("rgb(80, 86, 89)")&&homePalette.directions[2].image==="none"&&homePalette.directions[3].image.includes("repeating-linear-gradient"),"Gloss, titanium, white, steel materials "+JSON.stringify(homePalette));
@@ -153,7 +162,7 @@ try {
           assert(homePalette.cases.every(x=>x.title>=7&&x.text.every(r=>r>=4.5)),"Case text contrast");
           assert.deepEqual(homePalette.brandNumbers.map(x=>x.color),["rgb(255, 255, 255)","rgb(33, 33, 33)","rgb(33, 33, 33)"],"Case numbers palette");
           assert(homePalette.brandNumbers.every(x=>x.font.includes("Golos Text")&&x.ratio>=7),"Case number font and contrast");
-          assert(homePalette.stats.bg==="rgb(33, 33, 33)"&&homePalette.stats.font.includes("Iriska")&&homePalette.stats.color==="rgb(61, 220, 232)"&&homePalette.stats.ratio>=7&&homePalette.stats.ordinary.length===7&&homePalette.stats.ordinary.every(x=>x.font.includes("Golos Text")&&x.color==="rgb(217, 217, 217)"&&x.image.includes("linear-gradient")&&x.ratio>=7),"Statistics font roles and contrast");
+          assert(homePalette.stats.bg==="rgb(33, 33, 33)"&&homePalette.stats.font.includes("Iriska")&&homePalette.stats.color==="rgb(61, 220, 232)"&&homePalette.stats.ratio>=7&&homePalette.stats.ordinary.length===7&&homePalette.stats.ordinary.every(x=>x.font.includes("Georgia")&&x.color==="rgb(217, 217, 217)"&&x.image.includes("linear-gradient")&&x.ratio>=7),"Statistics font roles and contrast");
           assert.equal(homePalette.process,"rgb(33, 33, 33)");
           const refinements=await page.evaluate(()=>{
             const price=document.querySelector("#home-start .bt-start-price .brand-large-number");

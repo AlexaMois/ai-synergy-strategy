@@ -246,7 +246,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
+    <section id="contact" data-compact-contact ref={ref} className="relative py-10 md:py-16 lg:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Двухколоночный макет */}
@@ -278,14 +278,14 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               <div><Label htmlFor="contact-budget">Бюджет (необязательно)</Label><select id="contact-budget" {...register("budget")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{budgetOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
               <div><Label htmlFor="contact-call">Готовность к разговору (необязательно)</Label><select id="contact-call" {...register("readyForCall")} className="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-foreground"><option value="">Не указывать</option>{readyForCallOptions.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></div>
             </div>}
-            <div className="space-y-2 mb-4 sm:mb-6">
+            <div className="space-y-1.5 mb-3 sm:mb-4">
               <Label htmlFor="comment" className="text-foreground">
                 Описание задачи <span className="text-primary">*</span>
               </Label>
               <Textarea
                 id="comment"
                 placeholder="Что сейчас отнимает время, мешает работе или приводит к лишним расходам?"
-                rows={5}
+                rows={3}
                 {...register("comment")}
                 className={errors.comment ? "border-destructive" : ""}
               />
@@ -294,7 +294,7 @@ const Contact = ({ defaultComment = "" }: ContactProps) => {
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
               {/* Имя */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-foreground">

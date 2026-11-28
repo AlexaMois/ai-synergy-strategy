@@ -1,30 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { industries, type Industry, type IndustryScenario as Question } from "@/data/industryScenarios";
 import { Link } from "react-router-dom";
-import { ArrowRight, MousePointerClick } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { scrollToContact } from "@/lib/scrollToContact";
 import PillButton from "@/components/PillButton";
 import { Button } from "@/components/ui/button";
-import chatDeco from "@/assets/industry-chat-deco.png";
 import { requestDiagnosticAutostart } from "@/lib/diagnosticState";
 import { setContactIntent } from "@/lib/contactIntent";
 
 const CONTACT_CONTEXT_STORAGE_KEY = "aleksamois.contactContext";
 const CONTACT_CONTEXT_EVENT = "aleksamois:contact-context";
-
-const times = ["10:24", "10:26", "10:28", "10:31", "10:32", "10:35"];
-
-// Разная ширина сообщений внутри колонки — как в живом чате.
-const widths = ["md:max-w-[92%]", "md:max-w-[78%]", "md:max-w-[84%]", "md:max-w-[76%]", "md:max-w-[88%]", "md:max-w-[80%]"];
-
-// Габариты окна переписки на компьютере оставлены прежними: сообщения плотнее,
-// а свободное место равномерно распределяется между ними.
-const chatMinH: Record<string, string> = {
-  production: "md:min-h-[627.8px]",
-  transport: "md:min-h-[586.5px]",
-  construction: "md:min-h-[586.5px]",
-  services: "md:min-h-[627.8px]",
-};
 
 const IndustryQuestions = () => {
   const [activeId, setActiveId] = useState(industries[0].id);
@@ -57,32 +42,8 @@ const IndustryQuestions = () => {
     window.dispatchEvent(new CustomEvent(CONTACT_CONTEXT_EVENT));
   };
 
-  const Bubble = ({ item, side }: { item: (typeof items)[number]; side: "l" | "r" }) => {
+  const QuestionRow = ({ item }: { item: (typeof items)[number] }) => {
     const isOpen = openId === item.q.id;
-    const lit = isOpen;
-    const bubbleEl = (
-      <span
-        className={`relative min-w-0 px-4 pt-2.5 pb-2 md:px-4 md:pt-1.5 md:pb-1 text-sm md:text-[17px] font-medium leading-snug md:leading-[1.4] transition-all duration-300 rounded-[22px] ${
-          lit
-            ? "bg-primary-dark text-accent-foreground"
-            : "bg-background/[0.09] text-card ring-1 ring-background/10 group-hover:bg-background/[0.14] group-hover:ring-accent/50"
-        } ${side === "l" ? "rounded-bl-none" : "rounded-br-none"}`}
-      >
-
-        <span aria-hidden className={`absolute bottom-0 h-3 w-3 ${lit ? "bg-primary-dark" : "bg-background/[0.09]"} ${side === "l" ? "-left-2 [clip-path:polygon(100%_0,100%_100%,0_100%)]" : "-right-2 [clip-path:polygon(0_0,100%_100%,0_100%)]"}`} />
-        {item.short}
-        <span
-          className={`mt-1 block text-right text-[11px] leading-none font-medium md:mt-[6px] md:ml-2 md:inline md:float-right ${
-            lit ? "text-accent-foreground/60" : "text-card/50"
-          }`}
-        >
-          {times[item.idx % times.length]}
-        </span>
-        <span className="absolute -top-3 right-4 z-10 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none">
-          <MousePointerClick className="h-3.5 w-3.5" /> Нажмите
-        </span>
-      </span>
-    );
     return (
       <Button
         type="button"
@@ -95,11 +56,9 @@ const IndustryQuestions = () => {
           setContactIntent(null);
           saveContactContext(industry, isOpen ? undefined : item.q);
         }}
-        className={`group flex h-auto items-end gap-2.5 w-fit max-w-[94%] p-0 whitespace-normal text-left cursor-pointer hover:bg-transparent hover:text-inherit hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none transition-transform duration-300 ${widths[item.idx % widths.length]} ${
-          side === "r" ? "self-end" : "self-start"
-        }`}
+        className="bt-industry-row group"
       >
-        {bubbleEl}
+        <span><span aria-hidden="true">{String(item.idx + 1).padStart(2, "0")}</span><span>{item.short}</span><ChevronRight size={16} aria-hidden="true" /></span>
       </Button>
     );
   };
@@ -108,16 +67,7 @@ const IndustryQuestions = () => {
     <section id="industry-questions" className="scroll-mt-20 px-4 md:px-6 py-12 md:py-16">
       <div className="container mx-auto max-w-7xl">
         <div className="relative rounded-[32px] md:rounded-[40px] bg-foreground overflow-hidden shadow-plate ring-1 ring-foreground/5 px-6 md:px-10 lg:px-14 py-12 md:py-14">
-          <div aria-hidden className="pointer-events-none absolute inset-0">
-            <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 1200 800" preserveAspectRatio="none">
-              <path d="M700 0 C 860 90, 980 140, 1200 200" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.45" />
-              <path d="M560 120 C 660 320, 480 480, 620 700" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.28" />
-              <path d="M0 600 C 180 540, 320 690, 520 620" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" opacity="0.35" />
-              <path d="M780 360 C 920 460, 1010 410, 1200 520" stroke="hsl(var(--accent))" strokeWidth="0.7" fill="none" opacity="0.22" />
-            </svg>
-          </div>
-
-          <div className="relative grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-14 items-center">
+          <div className="relative grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 lg:gap-8 items-center">
             <div>
             <p className="text-[15px] uppercase tracking-[0.22em] text-accent font-semibold mb-4">Отрасли</p>
             <h2 className="text-4xl md:text-5xl font-bold text-background leading-[1.05] mb-5">
@@ -159,25 +109,14 @@ const IndustryQuestions = () => {
             </div>
 
             <div className="relative">
-              <img
-                src={chatDeco}
-                alt=""
-                width={1024}
-                height={1024}
-                loading="lazy"
-                className="pointer-events-none absolute -top-14 -right-6 md:-right-10 z-10 w-24 md:w-36"
-              />
-              <div className={`relative flex flex-col rounded-[28px] bg-background/[0.04] ring-1 ring-background/10 backdrop-blur-sm overflow-hidden ${chatMinH[industry.id] ?? ""}`}>
+              <div className="bt-industry-panel relative flex flex-col">
                 <div className="flex items-center gap-3 px-5 md:px-6 py-4 md:py-3 border-b border-background/10">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-background leading-tight">Вопросы собственников · {industry.label}</p>
-                    <p className="text-xs text-background/50 flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent" /> на связи
-                    </p>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col justify-between gap-3 md:gap-2.5 px-4 md:px-6 py-5 md:py-4">
-                  {items.map((it) => <Bubble key={it.q.id} item={it} side={it.idx % 2 === 0 ? "l" : "r"} />)}
+                <div className="flex flex-col gap-2 pt-3">
+                  {items.map((it) => <QuestionRow key={it.q.id} item={it} />)}
                 </div>
               </div>
             </div>
