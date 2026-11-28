@@ -124,6 +124,29 @@ try{
      }
     });
    }
+   await record(width,"bt-sketch-three-blocks",page,async()=>{
+    for(const [path,selector,name,count] of [["/","#commercial-directions","home-sketches",4],["/expert",".nr-hero","expert-sketch",1],["/services/digital-audit","[data-bt-audit-hero]","audit-sketch",1]]){
+     await visit(page,path);
+     const block=page.locator(selector).first();await block.waitFor({state:"visible"});
+     const art=block.locator("img[data-bt-sketch]");assert.equal(await art.count(),count,name+" artwork count");
+     for(const node of await art.all()){
+      await node.evaluate(img=>img.decode());
+      const evidence=await node.evaluate(img=>{const r=img.getBoundingClientRect();return {loaded:img.complete&&img.naturalWidth>0,w:r.width,h:r.height,fit:getComputedStyle(img).objectFit};});
+      assert(evidence.loaded&&evidence.w>0&&evidence.h>0&&evidence.fit==="contain",name+" "+JSON.stringify(evidence));
+     }
+     if(path==="/"){
+      assert.deepEqual(await art.evaluateAll(nodes=>nodes.map(n=>n.getAttribute("data-bt-sketch"))),["automation","products","agents","audit"]);
+      const geometry=await block.evaluate(el=>{const cards=[...el.querySelectorAll(".nr-dir")].map(n=>{const r=n.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right};});return {height:el.getBoundingClientRect().height,cards};});
+      if(width>=1024){const [a,b,c,d]=geometry.cards;assert(geometry.height<=650,"one-screen home artwork "+JSON.stringify(geometry));assert(Math.abs(a.top-b.top)<3&&Math.abs(a.bottom-c.bottom)<3&&c.top>b.top&&Math.abs(b.left-c.left)<3&&d.top>=a.bottom,"approved card geometry");}
+     }
+     if(path==="/expert"){
+      const surface=await art.first().evaluate(el=>{const s=getComputedStyle(el);return {background:s.backgroundColor,image:s.backgroundImage,shadow:s.boxShadow,radius:s.borderRadius,padding:s.padding};});
+      assert.equal(surface.background,"rgba(0, 0, 0, 0)");assert.equal(surface.image,"none");assert.equal(surface.shadow,"none");assert.equal(surface.radius,"0px");assert.equal(surface.padding,"0px");
+     }
+     if(path.includes("digital-audit")){assert(await block.evaluate(el=>getComputedStyle(el).backgroundImage!=="none"),"steel surface retained");assert.equal(await block.getByRole("link").count(),2);}
+     await block.screenshot({path:folder+"/"+name+"-"+width+".png",animations:"disabled",style:"[data-site-header], [data-floating-home], button.fixed {visibility:hidden!important}"});
+    }
+   });
    await record(width,"catalog-filters",page,async()=>{
     await visit(page,"/mini-agents");const filters=page.locator(".nr-filters button");
     assert(await filters.count()>1);

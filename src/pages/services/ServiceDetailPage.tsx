@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { getServiceBySlug } from "@/data/services";
+import BrandSketch from "@/components/BrandSketch";
 import { journeyForService, serviceAcceptance } from "@/data/serviceJourneys";
 import { setContactIntent } from "@/lib/contactIntent";
 
@@ -56,7 +57,7 @@ const ServiceDetailPage = () => {
         <main>
           <section className="px-4 pt-4 md:px-6 md:pt-5">
             <div className="container mx-auto max-w-7xl">
-              <div className="grid items-center gap-5 overflow-hidden rounded-[30px] bg-surface-sand p-7 shadow-plate md:grid-cols-12 md:rounded-[40px] md:p-12">
+              <div data-bt-audit-hero={service.slug==="digital-audit"?true:undefined} className="grid items-center gap-5 overflow-hidden rounded-[30px] bg-surface-sand p-7 shadow-plate md:grid-cols-12 md:rounded-[40px] md:p-12">
                 <div className="min-w-0 md:col-span-8">
                   
                   <h1 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl">{meta.h1}</h1>
@@ -71,7 +72,7 @@ const ServiceDetailPage = () => {
                   </div>
                 </div>
                 <div className="flex justify-center md:col-span-4 md:justify-end">
-                  <img src={service.sketch} alt="" width={480} height={480} className="h-auto w-44 object-contain md:w-64" loading="lazy"/>
+                  {service.slug==="digital-audit"?<BrandSketch name="audit" className="bt-audit-sketch"/>:<img src={service.sketch} alt="" width={480} height={480} className="h-auto w-44 object-contain md:w-64" loading="lazy"/>}
                 </div>
               </div>
             </div>

@@ -411,3 +411,13 @@
   .bt-site .nr-filters button:focus-visible {outline:2px solid #212121;outline-offset:3px}
   [data-bt-gallery-trigger]:focus-visible,[data-bt-review-trigger]:focus-visible {outline:2px solid #212121;outline-offset:3px}
 }
+
+/* BT21 Sketch 1.0: scoped expert and audit artwork, no change to other hero templates. */
+@media screen{
+ .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.bt-expert-sketch{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;width:100%;height:auto;aspect-ratio:440/230;object-fit:contain;max-height:270px}
+ [data-bt-audit-hero] .bt-audit-sketch{display:block;width:min(100%,320px);height:256px;object-fit:contain;object-position:center;min-width:0}
+ @media(max-width:767px){
+  .bt-site main.nr-commercial:not(.bt-solutions) .nr-hero-panel>.bt-expert-sketch{max-height:180px}
+  [data-bt-audit-hero] .bt-audit-sketch{height:176px;width:min(100%,256px)}
+ }
+}
