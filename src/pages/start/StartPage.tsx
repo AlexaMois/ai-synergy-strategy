@@ -214,10 +214,6 @@ const StartPage = () => {
           #start-brand-page .bt-start-wrap :is(a,button):focus-visible{outline:3px solid #212121;outline-offset:4px}
           #start-brand-page .bt-start-free button:focus-visible{outline-color:var(--bt-cyan)}
           #start-brand-page #self-check [class~="rounded-t-[28px]"]{background:#212121 var(--bt-gloss)}
-          #start-brand-page > section:not(#contact)>.container:has(>h2){max-width:1240px;display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:0 70px}
-          #start-brand-page > section:not(#contact)>.container:has(>h2)>h2{text-align:left;grid-row:1/3;margin:0;font-size:clamp(27px,2.55vw,36px)!important}
-          #start-brand-page > section:not(#contact) [data-state][class*="rounded-xl"]{border:0;border-bottom:1px solid #c6c6c6;border-radius:0;background:transparent;padding-inline:0}
-          #start-brand-page > section:not(#contact) a[href="/faq"]{color:#212121!important;text-decoration:underline;text-underline-offset:5px}
           #start-brand-page #contact{background:#fff;padding:70px 0}
           #start-brand-page #contact>.container>div{max-width:1240px!important;background:#212121 var(--bt-gloss);border-radius:32px;padding:42px}
           #start-brand-page #contact .grid:has(>form){grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:50px}
@@ -233,7 +229,6 @@ const StartPage = () => {
             #start-brand-page .bt-start-tile{padding:25px;border-radius:24px}#start-brand-page .bt-start-tile .bt-start-eyebrow{margin-bottom:20px}#start-brand-page .bt-start-tile .bt-start-price{margin-top:24px}
             #start-brand-page .bt-start-other{flex-direction:column;align-items:flex-start;gap:12px}
             #start-brand-page .bt-start-consult{padding:50px 0}#start-brand-page .bt-start-steps{padding:23px}#start-brand-page .bt-start-steps .bt-start-step{grid-template-columns:35px minmax(0,1fr);gap:9px}#start-brand-page .bt-start-results{padding:0}
-            #start-brand-page > section:not(#contact)>.container:has(>h2){display:block}#start-brand-page > section:not(#contact)>.container:has(>h2)>h2{margin-bottom:24px}
             #start-brand-page #contact{padding:40px 0}#start-brand-page #contact>.container>div{padding:23px;border-radius:24px}#start-brand-page #contact .grid:has(>form){grid-template-columns:minmax(0,1fr);gap:22px}#start-brand-page #contact form{padding:17px}
           }
           @media(max-width:359px){#start-brand-page .bt-start-wrap{width:calc(100% - 28px)}#start-brand-page .bt-start-tile{padding:20px}#start-brand-page .bt-start-tile .bt-start-price{font-size:35px!important}#start-brand-page #contact>.container>div{padding:16px}}
