@@ -92,7 +92,7 @@ const PillButton = ({
 
 const NewHome = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div id="home-black-titanium" className="min-h-screen bg-background">
       <Helmet>
         <title>НейроРешения | Программные продукты, ИИ-агенты и автоматизация бизнеса</title>
         <meta
@@ -111,7 +111,7 @@ const NewHome = () => {
       </Helmet>
 
       <main>
-        {/* Фирменный первый экран: голубая поверхность, оригинальный портрет и Iriska. */}
+        {/* Black Titanium: графитовая поверхность, оригинальный портрет и Iriska. */}
         <section id="brand-hero" className="pt-20 md:pt-28 px-3 sm:px-4 md:px-6">
           <div className="container mx-auto max-w-7xl">
             <div data-brand-panel className="relative rounded-[28px] md:rounded-[40px] bg-accent overflow-hidden shadow-plate-lg ring-1 ring-foreground/5">
@@ -126,7 +126,7 @@ const NewHome = () => {
                     </p>
                   </div>
                   <h1 className="font-golos text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug tracking-normal !text-white mb-4 md:mb-5">
-                    Программные продукты, ИИ-агенты и автоматизация бизнеса
+                    Программные продукты, ИИ-агенты и <span className="font-iriska font-normal italic bt-hero-accent">автоматизация бизнеса</span>
                   </h1>
                   <p className="font-raleway text-base md:text-lg !text-white mb-6 md:mb-8 max-w-xl leading-relaxed">
                     Выявляем потери, сокращаем ручную работу и проверяем результат на данных компании.
