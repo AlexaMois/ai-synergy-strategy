@@ -1,12 +1,19 @@
 import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { chromium } from "playwright";
 const base = new URL(process.env.TEST_BASE_URL || "http://127.0.0.1:4173");
 assert(["localhost","127.0.0.1"].includes(base.hostname));
-const sitemap = await readFile(new URL("../public/sitemap.xml",import.meta.url),"utf8");
-const indexed = [...new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname))];
-assert.equal(indexed.length,63,"source sitemap coverage");
-const routes = [...new Set([...indexed,"/services/neurotenderolog"])];
+const parseRoutes = xml => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>new URL(x[1]).pathname);
+const committed = parseRoutes(execFileSync("git",["show","HEAD:public/sitemap.xml"],{encoding:"utf8"}));
+const generated = parseRoutes(await readFile(new URL("../dist/sitemap.xml",import.meta.url),"utf8"));
+const indexed = [...new Set(generated)];
+assert.equal(indexed.length,generated.length,"generated sitemap must have unique URLs");
+const normalize = route => route.replace(/\/+$/,"") || "/";
+const normalized = new Set(indexed.map(normalize));
+assert(indexed.length>=64,"all 63 audited URLs and the tender service must be covered");
+for(const route of [...committed,"/services/neurotenderolog"]) assert(normalized.has(normalize(route)),"missing from generated sitemap: "+route);
+const routes = indexed;
 const catalog=JSON.parse(await readFile(new URL("../src/data/commercialCatalog.json",import.meta.url),"utf8"));
 const folder="artifacts/site-pr/bt-hidden-states";
 await mkdir(folder,{recursive:true});
@@ -158,14 +165,14 @@ try{
    });
    if(width<1024)await record(width,"mobile-menu",page,async()=>{
     await visit(page,"/start");const toggle=page.getByRole("button",{name:"Toggle menu"});await toggle.click();
-    const drawer=page.locator("#mobile-navigation");assert.equal(await drawer.getAttribute("data-bt-menu-open"),"true");
+    const drawer=page.locator("#mobile-navigation");await page.waitForFunction(()=>document.querySelector("#mobile-navigation")?.getAttribute("data-bt-menu-open")==="true");await drawer.waitFor({state:"visible"});assert.equal(await drawer.getAttribute("data-bt-menu-open"),"true");
     const active=drawer.getByRole("link",{name:"С чего начать"});assert.equal(await active.evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(33, 33, 33)");
     await page.evaluate(()=>window.dispatchEvent(new CustomEvent("openCallbackModal",{detail:{variant:"callback"}})));
     assert.equal(await page.locator(".bt-callback-dialog").count(),0,"callback must not overlap menu");
-    await screenshot(page,"menu",width);await page.keyboard.press("Escape");assert.equal(await drawer.getAttribute("data-bt-menu-open"),"false");
+    await screenshot(page,"menu",width);await page.keyboard.press("Escape");await page.waitForFunction(()=>document.querySelector("#mobile-navigation")?.getAttribute("data-bt-menu-open")==="false");assert.equal(await drawer.getAttribute("data-bt-menu-open"),"false");
    });
   }finally{await context.close();}
  }
 }finally{await writeFile(folder+"/report.json",JSON.stringify({indexed: indexed.length,routes:routes.length,viewports:sizes,report,failures},null,2));await browser.close();}
 assert.equal(failures.length,0,JSON.stringify(failures,null,2));
-console.log("BT hidden-state checks: "+indexed.length+" sitemap URLs plus tender service × "+sizes.length+" viewports; overlays, filters, licenses and mocked forms.");
+console.log("BT hidden-state checks: "+indexed.length+" generated sitemap URLs × "+sizes.length+" viewports; overlays, filters, licenses and mocked forms.");

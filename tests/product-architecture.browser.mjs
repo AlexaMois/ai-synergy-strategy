@@ -242,7 +242,13 @@ try {
       await page.locator("main h1").first().waitFor({state:"visible"});
       const desktop=viewport.width>=1024;
       const nav=page.getByRole("navigation",{name:desktop?"Основное меню":"Мобильное меню",exact:true});
-      if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      if(!desktop){
+        const toggle=page.getByRole("button",{name:"Toggle menu"});
+        await toggle.click();
+        await page.waitForFunction(()=>document.querySelector('[aria-controls="mobile-navigation"]')?.getAttribute("aria-expanded")==="true");
+        await nav.waitFor({state:"visible"});
+        await nav.getByRole("link",{name:"С чего начать",exact:true}).waitFor({state:"visible"});
+      }
       const topLabels=await nav.locator(":scope > div > a, :scope > div > button, :scope > a").allTextContents();
       assert.deepEqual(topLabels.map(x=>x.trim()),["С чего начать","Продукты и автоматизация","Экспертная работа","Кейсы","Об Александре"]);
       for(const [label,expected] of [
@@ -262,8 +268,13 @@ try {
       }
       await nav.getByRole("link",{name:"Корпоративное обучение",exact:true}).click();
       await page.waitForURL(url=>url.pathname.replace(/\/$/,"")==="/services/digital-tools-program");
-      if(!desktop) assert.equal(await page.getByRole("button",{name:"Toggle menu"}).getAttribute("aria-expanded"),"false");
-      if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
+      if(!desktop){
+        await page.waitForFunction(()=>document.querySelector('[aria-controls="mobile-navigation"]')?.getAttribute("aria-expanded")==="false");
+        assert.equal(await page.getByRole("button",{name:"Toggle menu"}).getAttribute("aria-expanded"),"false");
+        await page.getByRole("button",{name:"Toggle menu"}).click();
+        await page.waitForFunction(()=>document.querySelector('[aria-controls="mobile-navigation"]')?.getAttribute("aria-expanded")==="true");
+        await nav.waitFor({state:"visible"});
+      }
       await page.getByRole("button",{name:"Обсудить задачу",exact:true}).first().waitFor({state:"visible"});
       if(!desktop) await page.getByRole("button",{name:"Toggle menu"}).click();
       report.push({width:viewport.width,path:"compact navigation and approved destinations",status:"pass"});

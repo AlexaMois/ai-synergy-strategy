@@ -281,7 +281,7 @@ const Navigation = () => {
     {isMobileMenuOpen && <div className="fixed inset-0 bg-foreground/20 z-[55] lg:hidden animate-fade-in" onClick={() => setIsMobileMenuOpen(false)} />}
 
     {/* Mobile Navigation Drawer */}
-    <div id="mobile-navigation" data-bt-menu-open={isMobileMenuOpen} className={`${isNeurostylist ? "" : "bt-global-ui"} fixed top-0 right-0 h-full w-[280px] bg-card shadow-card z-[60] lg:hidden transition-transform duration-300 ease-out border-l border-border ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full invisible"}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+    <div id="mobile-navigation" data-bt-menu-open={isMobileMenuOpen} className={`${isNeurostylist ? "" : "bt-global-ui"} fixed top-0 right-0 h-full w-[280px] bg-card shadow-card z-[60] lg:hidden transition-transform duration-300 ease-out border-l border-border ${isMobileMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible"}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       <div className="flex flex-col h-full pt-20 p-6 overflow-y-auto">
         <nav aria-label="Мобильное меню" className="space-y-1 flex-1">
           {navLinks.map((link, index) => {
