@@ -182,6 +182,7 @@ const Navigation = () => {
     )}
     {/* Desktop Header */}
     <header
+      data-site-header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         isNeurostylist
           ? "ns-dark-nav bg-[#1a0a16]/90 backdrop-blur-md border-white/10 text-[#F7EDE3]"

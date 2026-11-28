@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Calendar, Clock, ArrowLeft, ArrowRight, Quote, CheckCircle2 } from "lucide-react";
 import { getBlogPostBySlug, getRelatedPosts, type BlogImage } from "@/data/blogPosts";
 import PageTransition from "@/components/PageTransition";
+import PageBreadcrumbs from "@/components/PageBreadcrumbs";
 import { trackCTAClick } from "@/utils/analytics";
 
 const BlogPostImageCompact = ({ image, onClick }: { image: BlogImage; onClick?: () => void }) => (
@@ -144,8 +145,9 @@ const BlogPost = () => {
       <div className="min-h-screen bg-background">
         
       
+      <PageBreadcrumbs currentPage={post.title} parentPages={[{label:"Материалы",href:"/materials"},{label:"Блог",href:"/materials/blog"}]} />
       <main>
-      <article className="pt-32 pb-16">
+      <article className="pt-8 md:pt-12 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <Link 
             to="/materials/blog" 

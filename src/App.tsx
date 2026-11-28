@@ -98,13 +98,15 @@ const blackTitaniumTemplate = (pathname: string) => {
 };
 const AppContent = () => {
   usePrefetchRoutes();
-  const template = blackTitaniumTemplate(useLocation().pathname);
+  const pathname = useLocation().pathname;
+  const template = blackTitaniumTemplate(pathname);
+  const framed = Boolean(template) || pathname.replace(/\/+$/, "") === "/start" || pathname.replace(/\/+$/, "") === "/services/digital-tools-program";
   
   return (
     <>
       <Navigation />
       <Suspense fallback={<PageLoader />}>
-        <div className={template ? "bt-site bt-"+template : undefined} data-bt-template={template || undefined} style={{display:"contents"}}>
+        <div className={[template ? "bt-site bt-"+template : "", framed ? "site-route-frame" : ""].filter(Boolean).join(" ")} data-bt-template={template || undefined} style={framed ? undefined : {display:"contents"}}>
         <Routes>
           {/* Main */}
           <Route path="/" element={<Index />} />

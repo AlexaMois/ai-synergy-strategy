@@ -269,9 +269,9 @@ const FAQPage = () => {
 
       
 
-      <main className="pt-24 pb-16">
+      <PageBreadcrumbs currentPage="FAQ" />
+      <main className="pb-16">
         <div className="container mx-auto px-4">
-          <PageBreadcrumbs currentPage="FAQ" />
 
           {/* Hero Section */}
           <section className="text-center mb-12 mt-8">
